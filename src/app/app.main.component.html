@@ -1,0 +1,21 @@
+<div class="layout-wrapper" [ngClass]="{'layout-overlay':isOverlay(),
+                                'layout-static':isStatic(),
+                                'layout-theme-light':!app.darkMode,
+                                'layout-theme-dark':app.darkMode,
+                                'layout-overlay-sidebar-active': overlayMenuActive,
+                                'layout-static-sidebar-inactive': staticMenuInactive,
+                                'layout-mobile-sidebar-active':menuActiveMobile,
+                                'p-ripple-disabled': !app.ripple, 'p-input-filled': app.inputStyle === 'filled'}">
+    <app-topbar></app-topbar>
+    <div class="layout-sidebar">
+        <app-menu></app-menu>
+    </div>
+    <div class="layout-main-container">
+        <div class="layout-main">
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+    </div>
+        <app-config></app-config>
+        <div *ngIf="menuActiveMobile" class="layout-mask p-component-overlay"></div>
+</div>

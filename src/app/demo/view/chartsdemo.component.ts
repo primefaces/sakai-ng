@@ -1,0 +1,239 @@
+import {Component, OnInit} from '@angular/core';
+
+@Component({
+    templateUrl: './chartsdemo.component.html'
+})
+export class ChartsDemoComponent implements OnInit {
+
+    lineData: any;
+
+    barData: any;
+
+    pieData: any;
+
+    polarData: any;
+
+    radarData: any;
+
+    lineOptions: any;
+
+    barOptions: any;
+
+    pieOptions: any;
+
+    polarOptions: any;
+
+    radarOptions: any;
+
+    ngOnInit() {
+        this.lineData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [
+                {
+                    label: 'First Dataset',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    fill: false,
+                    backgroundColor: '#2f4860',
+                    borderColor: '#2f4860',
+                    tension: .4
+                },
+                {
+                    label: 'Second Dataset',
+                    data: [28, 48, 40, 19, 86, 27, 90],
+                    fill: false,
+                    backgroundColor: '#00bb7e',
+                    borderColor: '#00bb7e',
+                    tension: .4
+                }
+            ]
+        };
+
+        this.lineOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        fontColor: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
+        };
+
+        this.barData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [
+                {
+                    label: 'My First dataset',
+                    backgroundColor: '#2f4860',
+                    data: [65, 59, 80, 81, 56, 55, 40]
+                },
+                {
+                    label: 'My Second dataset',
+                    backgroundColor: '#00bb7e',
+                    data: [28, 48, 40, 19, 86, 27, 90]
+                }
+            ]
+        };
+
+        this.barOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        fontColor: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
+        };
+
+        this.pieData = {
+            labels: ['A', 'B', 'C'],
+            datasets: [
+                {
+                    data: [300, 50, 100],
+                    backgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56"
+                    ]
+                }
+            ]
+        };
+
+        this.pieOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        fontColor: '#A0A7B5'
+                    }
+                }
+            }
+        };
+
+        this.polarData = {
+            datasets: [{
+                data: [
+                    11,
+                    16,
+                    7,
+                    3,
+                    14
+                ],
+                backgroundColor: [
+                    "#FF6384",
+                    "#4BC0C0",
+                    "#FFCE56",
+                    "#E7E9ED",
+                    "#36A2EB"
+                ],
+                label: 'My dataset'
+            }],
+            labels: [
+                "Red",
+                "Green",
+                "Yellow",
+                "Grey",
+                "Blue"
+            ]
+        };
+
+        this.polarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        fontColor: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
+        };
+
+        this.radarData = {
+            labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
+            datasets: [
+                {
+                    label: 'My First dataset',
+                    backgroundColor: 'rgba(179,181,198,0.2)',
+                    borderColor: 'rgba(179,181,198,1)',
+                    pointBackgroundColor: 'rgba(179,181,198,1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(179,181,198,1)',
+                    data: [65, 59, 90, 81, 56, 55, 40]
+                },
+                {
+                    label: 'My Second dataset',
+                    backgroundColor: 'rgba(255,99,132,0.2)',
+                    borderColor: 'rgba(255,99,132,1)',
+                    pointBackgroundColor: 'rgba(255,99,132,1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(255,99,132,1)',
+                    data: [28, 48, 40, 19, 96, 27, 100]
+                }
+            ]
+        };
+
+        this.radarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        fontColor: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
+        };
+    }
+}

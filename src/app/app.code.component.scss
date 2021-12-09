@@ -1,0 +1,68 @@
+.p-d-flex > div,
+.box {
+	background-color: var(--surface-e);
+	text-align: center;
+	padding: 1rem;
+	border-radius: 4px;
+	box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+}
+
+.p-d-flex > div {
+	width: 8rem;
+}
+
+i:not([class~="pi"]) {
+	background-color: var(--surface-b);
+	color: var(--primary-color);
+	font-family: Monaco, courier, monospace;
+	font-style: normal;
+	font-size: 12px;
+	padding: 2px 4px;
+	letter-spacing: .5px;
+	border-radius: 3px;
+	font-weight: 600;
+	margin: 0 2px;
+}
+
+:host ::ng-deep pre[class*="language-"] {
+	box-shadow: none;
+	border: 0 none;
+
+	&:before, &:after {
+		display: none !important;
+	}
+
+	code {
+		border-left: 10px solid var(--surface-d) !important;
+		box-shadow: none !important;
+		background: var(--surface-b) !important;
+		margin: 1em 0;
+		color: var(--text-color);
+		font-size: 14px;
+
+		.token {
+			&.tag,
+			&.keyword {
+				color: #2196F3 !important;
+			}
+
+			&.attr-name,
+			&.attr-string {
+				color: #2196F3 !important;
+			}
+
+			&.attr-value {
+				color: #4CAF50 !important;
+			}
+
+			&.punctuation {
+				color: var(--text-color);
+			}
+
+			&.operator,
+			&.string {
+				background: transparent;
+			}
+		}
+	}
+}
