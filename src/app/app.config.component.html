@@ -27,6 +27,8 @@
 
             <h6>Ripple Effect</h6>
             <p-inputSwitch [ngModel]="app.ripple" (onChange)="appMain.onRippleChange($event)"></p-inputSwitch>
+
+            <h6>Menu Type</h6>
             <div class="p-formgroup-inline">
                 <div class="field-radiobutton">
                     <p-radioButton name="menuType" value="static" [(ngModel)]="app.menuMode" (onClick)="appMain.isStatic()"
