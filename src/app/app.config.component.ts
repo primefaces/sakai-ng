@@ -23,17 +23,6 @@ export class AppConfigComponent implements OnInit{
     constructor(public app: AppComponent, public appMain: AppMainComponent) {}
 
     ngOnInit() { }
-    // TODO: TO BE REMOVED
-    // changeComponentTheme(theme) {
-    //     this.componentColor = theme;
-    //     const element = document.getElementById('theme-css');
-    //     const urlTokens = element.getAttribute('href').split('/');
-    //     urlTokens[urlTokens.length - 1] = 'theme-' + theme + '.css';
-    //     const newURL = urlTokens.join('/');
-
-    //     this.replaceLink(element, newURL);
-    // }
-    // TODO: TO BE REMOVED (MAYBE) 
     replaceLink(linkElement, href) {
         if (this.isIE()) {
             linkElement.setAttribute('href', href);

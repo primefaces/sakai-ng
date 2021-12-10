@@ -165,7 +165,7 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
         }
     }
 
-    toggleTheme(theme:string, darkMode:boolean){
+    changeTheme(theme:string, darkMode:boolean){
         let themeElement = document.getElementById('theme-css');
         themeElement.setAttribute('href', 'assets/theme/' + theme + '/theme.css');
         this.app.darkMode = darkMode;
