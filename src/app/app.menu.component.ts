@@ -12,7 +12,7 @@ import {AppComponent} from './app.component';
                         <li app-menuitem *ngFor="let child of item.items" [item]="child" [index]="i"></li>
                     </ul>
                 </li>
-                <a href="https://www.primefaces.org/primeblocks-ng/">
+                <a href="https://www.primefaces.org/primeblocks-ng/#/">
                     <img src="assets/layout/images/{{app.darkMode ? 'banner-primeblocks-dark' : 'banner-primeblocks'}}.png" alt="Prime Blocks" class="w-full mt-3"/>
                 </a>
             </ul>
@@ -41,7 +41,7 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']},
                     {label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input']},
                     {label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel']},
-                    {label: 'Invalid State', icon: 'pi pi-exclamation-circle', routerLink: ['/uikit/invalidstate']},
+                    {label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate']},
                     {label: 'Button', icon: 'pi pi-fw pi-mobile', routerLink: ['/uikit/button'], class: 'rotated-icon'},
                     {label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table']},
                     {label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list']},
@@ -67,38 +67,38 @@ export class AppMenuComponent implements OnInit {
                 label: 'Hierarchy',
                 items: [
                     {
-                        label: 'Submenu 1', icon: 'pi pi-fw pi-align-left',
+                        label: 'Submenu 1', icon: 'pi pi-fw pi-bookmark',
                         items: [
                             {
-                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-align-left',
+                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-bookmark',
                                 items: [
-                                    {label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-align-left'},
-                                    {label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-align-left'},
-                                    {label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-align-left'},
+                                    {label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark'},
+                                    {label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark'},
+                                    {label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark'},
                                 ]
                             },
                             {
-                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-align-left',
+                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-bookmark',
                                 items: [
-                                    {label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-align-left'}
+                                    {label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-bookmark'}
                                 ]
                             },
                         ]
                     },
                     {
-                        label: 'Submenu 2', icon: 'pi pi-fw pi-align-left',
+                        label: 'Submenu 2', icon: 'pi pi-fw pi-bookmark',
                         items: [
                             {
-                                label: 'Submenu 2.1', icon: 'pi pi-fw pi-align-left',
+                                label: 'Submenu 2.1', icon: 'pi pi-fw pi-bookmark',
                                 items: [
-                                    {label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-align-left'},
-                                    {label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-align-left'},
+                                    {label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-bookmark'},
+                                    {label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-bookmark'},
                                 ]
                             },
                             {
-                                label: 'Submenu 2.2', icon: 'pi pi-fw pi-align-left',
+                                label: 'Submenu 2.2', icon: 'pi pi-fw pi-bookmark',
                                 items: [
-                                    {label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-align-left'},
+                                    {label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-bookmark'},
                                 ]
                             },
                         ]

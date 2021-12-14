@@ -40,6 +40,10 @@ export class AppCrudComponent implements OnInit {
 
     cols: any[];
 
+    statuses: any[];
+
+    selectedStatus:any;
+
     rowsPerPageOptions = [5, 10, 20];
 
     constructor(private productService: ProductService, private messageService: MessageService,
@@ -54,6 +58,12 @@ export class AppCrudComponent implements OnInit {
             {field: 'category', header: 'Category'},
             {field: 'rating', header: 'Reviews'},
             {field: 'inventoryStatus', header: 'Status'}
+        ];
+
+        this.statuses = [
+            {label: 'INSTOCK', value: 'instock'},
+            {label: 'LOWSTOCK', value: 'lowstock'},
+            {label: 'OUTOFSTOCK', value: 'outofstock'}
         ];
     }
 

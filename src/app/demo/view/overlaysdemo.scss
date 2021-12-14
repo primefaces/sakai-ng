@@ -6,3 +6,9 @@
 :host ::ng-deep button {
 	margin-right: .25em;
 }
+
+@media (max-width: 1024px){
+	:host ::ng-deep .p-dialog{
+		margin: 0 20px;
+	}
+}

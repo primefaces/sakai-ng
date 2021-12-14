@@ -64,7 +64,7 @@
         <div class="col-12 xl:col-6">
             <div class="card">
                 <h5>Recent Sales</h5>
-                <p-table [value]="products" [paginator]="true" [rows]="5">
+                <p-table [value]="products" [paginator]="true" [rows]="5" responsiveLayout="scroll">
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Image</th>
@@ -76,7 +76,7 @@
                     <ng-template pTemplate="body" let-product>
                         <tr>
                             <td>
-                                <img src="../../../assets/demo/images/product/{{product.image}}" alt="{{product.name}}" width="50px" height="50px">
+                                <img src="../../../assets/demo/images/product/{{product.image}}" alt="{{product.name}}" width="100">
                             </td>
                             <td>{{product.name}}</td>
                             <td>{{product.price | currency:'USD'}}</td>

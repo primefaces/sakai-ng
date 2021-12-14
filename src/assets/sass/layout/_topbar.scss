@@ -118,8 +118,8 @@
             top: 5rem;
             min-width: 15rem;
             display: none;
-            -webkit-animation: scalein 0.15s linear;
-            animation: scalein 0.15s linear;
+            // -webkit-animation: scalein 0.15s linear;
+            // animation: scalein 0.15s linear;
 
             &.layout-topbar-menu-mobile-active {
                 display: block

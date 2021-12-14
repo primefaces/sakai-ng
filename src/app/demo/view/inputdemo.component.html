@@ -47,10 +47,10 @@
 			<textarea pInputTextarea placeholder="Your Message" autoResize rows="3" cols="30"></textarea>
 
 			<h5>AutoComplete</h5>
-			<p-autoComplete placeholder="Search" id="dd" dropdown multiple></p-autoComplete>
+			<p-autoComplete placeholder="Search" id="dd" [dropdown]="true" [multiple]="true" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name"></p-autoComplete>
 
 			<h5>Calendar</h5>
-			<p-calendar showIcon showButtonBar></p-calendar>
+			<p-calendar [showIcon]="true" [showButtonBar]="true" [(ngModel)]="selectedDate"></p-calendar>
 
 			<h5>InputNumber</h5>
 			<p-inputNumber mode="decimal" [showButtons]="true" [min]="0" [max]="100">

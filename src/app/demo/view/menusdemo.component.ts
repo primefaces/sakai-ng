@@ -340,7 +340,7 @@ export class MenusDemoComponent implements OnInit {
                 ]
             },
             {
-                label: 'Sports', icon: 'pi pi-fw pi-star-o',
+                label: 'Sports', icon: 'pi pi-fw pi-star',
                 items: [
                     [
                         {

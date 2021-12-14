@@ -99,6 +99,7 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
         }
         else {
             this.menuActiveMobile = !this.menuActiveMobile;
+            this.topMenuActive = false;
         }
 
         event.preventDefault();
@@ -127,7 +128,7 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
         setTimeout(() => {
             this.topMenuActive = false;
             this.topMenuLeaving = false;
-        }, 500);
+        }, 1);
     }
 
     onMenuClick() {
@@ -153,6 +154,10 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
 
     isDesktop() {
         return window.innerWidth > 1024;
+    }
+
+    isMobile(){
+        return window.innerWidth < 1024;
     }
 
     onSearchClick() {

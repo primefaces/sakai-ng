@@ -49,6 +49,8 @@ export class TableDemoComponent implements OnInit {
 
     isExpanded: boolean = false;
 
+    idFrozen: boolean = false;
+
     @ViewChild('dt') table: Table;
 
     constructor(private customerService: CustomerService, private productService: ProductService, private messageService: MessageService, private confirmService: ConfirmationService, private cd: ChangeDetectorRef) {}
@@ -60,7 +62,7 @@ export class TableDemoComponent implements OnInit {
             this.customers1.forEach(customer => customer.date = new Date(customer.date));
         });
         this.customerService.getCustomersMedium().then(customers => this.customers2 = customers);
-        this.customerService.getCustomersMedium().then(customers => this.customers3 = customers);
+        this.customerService.getCustomersLarge().then(customers => this.customers3 = customers);
         this.productService.getProductsWithOrdersSmall().then(data => this.products = data);
 
         this.representatives = [
@@ -125,7 +127,7 @@ export class TableDemoComponent implements OnInit {
         this.isExpanded = !this.isExpanded;
     }
 
-    collapseAll(){
-        this.products.forEach(product => this.expandedRows[product.name] = false);
+    formatCurrency(value) {
+        return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
     }
 }

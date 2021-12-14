@@ -107,71 +107,71 @@ export class AppMenuComponent implements OnInit, AfterViewInit &#123;
         this.model = [
             &#123;label: 'Dashboard', icon: 'pi pi-home', routerLink: ['/']&#125;,
             &#123;
-                label: 'UI Kit', icon: 'pi pi-star-o', routerLink: ['/uikit'],
+                label: 'UI Kit', icon: 'pi pi-star', routerLink: ['/uikit'],
                 items: [
-                    &#123;label: 'Form Layout', icon: 'pi pi-id-card', routerLink: ['/uikit/formlayout']&#125;,
-                    &#123;label: 'Input', icon: 'pi pi-check-square', routerLink: ['/uikit/input']&#125;,
-                    &#123;label: 'Float Label', icon: 'pi pi-bookmark', routerLink: ['/uikit/floatlabel']&#125;,
-                    &#123;label: 'Invalid State', icon: 'pi pi-exclamation-circle', routerLink: ['/uikit/invalidstate']&#125;,
-                    &#123;label: 'Button', icon: 'pi pi-mobile', routerLink: ['/uikit/button'], class: 'rotated-icon'&#125;,
-                    &#123;label: 'Table', icon: 'pi pi-table', routerLink: ['/uikit/table']&#125;,
-                    &#123;label: 'List', icon: 'pi pi-list', routerLink: ['/uikit/list']&#125;,
-                    &#123;label: 'Tree', icon: 'pi pi-share-alt', routerLink: ['/uikit/tree']&#125;,
-                    &#123;label: 'Panel', icon: 'pi pi-tablet', routerLink: ['/uikit/panel']&#125;,
-                    &#123;label: 'Overlay', icon: 'pi pi-clone', routerLink: ['/uikit/overlay']&#125;,
-                    &#123;label: 'Media', icon: 'pi pi-image', routerLink: ['/uikit/media']&#125;,
-                    &#123;label: 'Menu', icon: 'pi pi-bars', routerLink: ['/uikit/menu']&#125;,
-                    &#123;label: 'Message', icon: 'pi pi-comment', routerLink: ['/uikit/message']&#125;,
-                    &#123;label: 'File', icon: 'pi pi-file', routerLink: ['/uikit/file']&#125;,
-                    &#123;label: 'Chart', icon: 'pi pi-chart-bar', routerLink: ['/uikit/charts']&#125;,
-                    &#123;label: 'Misc', icon: 'pi pi-circle-off', routerLink: ['/uikit/misc']&#125;
+                    &#123;label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']&#125;,
+                    &#123;label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input']&#125;,
+                    &#123;label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel']&#125;,
+                    &#123;label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate']&#125;,
+                    &#123;label: 'Button', icon: 'pi pi-fw pi-mobile', routerLink: ['/uikit/button'], class: 'rotated-icon'&#125;,
+                    &#123;label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table']&#125;,
+                    &#123;label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list']&#125;,
+                    &#123;label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/uikit/tree']&#125;,
+                    &#123;label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel']&#125;,
+                    &#123;label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/uikit/overlay']&#125;,
+                    &#123;label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/uikit/media']&#125;,
+                    &#123;label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu']&#125;,
+                    &#123;label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message']&#125;,
+                    &#123;label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file']&#125;,
+                    &#123;label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']&#125;,
+                    &#123;label: 'Misc', icon: 'pi pi-fw pi-circle-off', routerLink: ['/uikit/misc']&#125;
                 ]
             &#125;,
             &#123;
-                label: 'Pages', icon: 'pi pi-briefcase', routerLink: ['/pages'],
+                label: 'Pages', icon: 'pi pi-fw pi-briefcase', routerLink: ['/pages'],
                 items: [
-                    &#123;label: 'Crud', icon: 'pi pi-pencil', routerLink: ['/pages/crud']&#125;,
+                    &#123;label: 'Crud', icon: 'pi pi-fw pi-pencil', routerLink: ['/pages/crud']&#125;,
                     &#123;label: 'Timeline', icon: 'pi pi-fw pi-calendar', routerLink: ['/pages/timeline']&#125;,
-                    &#123;label: 'Not Found', icon: 'pi pi-exclamation-circle', routerLink: ['/notfound']&#125;,
-                    &#123;label: 'Empty', icon: 'pi pi-circle-off', routerLink: ['/pages/empty']&#125;
+                    &#123;label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/notfound']&#125;,
+                    &#123;label: 'Empty', icon: 'pi pi-fw pi-circle-off', routerLink: ['/pages/empty']&#125;
                 ]
             &#125;,
             &#123;
-                label: 'Hierarchy', icon: 'pi pi-align-left',
+                label: 'Hierarchy', icon: 'pi pi-fw pi-align-left',
                 items: [
                     &#123;
-                        label: 'Submenu 1', icon: 'pi pi-align-left',
+                        label: 'Submenu 1', icon: 'pi pi-fw pi-bookmark',
                         items: [
                             &#123;
-                                label: 'Submenu 1.1', icon: 'pi pi-align-left',
+                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-bookmark',
                                 items: [
-                                    &#123;label: 'Submenu 1.1.1', icon: 'pi pi-align-left'&#125;,
-                                    &#123;label: 'Submenu 1.1.2', icon: 'pi pi-align-left'&#125;,
-                                    &#123;label: 'Submenu 1.1.3', icon: 'pi pi-align-left'&#125;,
+                                    &#123;label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark'&#125;,
+                                    &#123;label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark'&#125;,
+                                    &#123;label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark'&#125;,
                                 ]
                             &#125;,
                             &#123;
-                                label: 'Submenu 1.2', icon: 'pi pi-align-left',
+                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-bookmark',
                                 items: [
-                                    &#123;label: 'Submenu 1.2.1', icon: 'pi pi-align-left'&#125;
+                                    &#123;label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-bookmark'&#125;
                                 ]
                             &#125;,
                         ]
                     &#125;,
                     &#123;
-                        label: 'Submenu 2', icon: 'pi pi-align-left',
+                        label: 'Submenu 2', icon: 'pi pi-fw pi-bookmark',
                         items: [
                             &#123;
-                                label: 'Submenu 2.1', icon: 'pi pi-align-left',
+                                label: 'Submenu 2.1', icon: 'pi pi-fw pi-bookmark',
                                 items: [
-                                    &#123;label: 'Submenu 2.1.1', icon: 'pi pi-align-left'&#125;,
-                                    &#123;label: 'Submenu 2.1.2', icon: 'pi pi-align-left'&#125;,
+                                    &#123;label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-bookmark'&#125;,
+                                    &#123;label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-bookmark'&#125;,
                                 ]
                             &#125;,
                             &#123;
-                                label: 'Submenu 2.2', icon: 'pi pi-align-left',
+                                label: 'Submenu 2.2', icon: 'pi pi-fw pi-bookmark',
                                 items: [
-                                    &#123;label: 'Submenu 2.2.1', icon: 'pi pi-align-left'&#125;,
+                                    &#123;label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-bookmark'&#125;,
                                 ]
                             &#125;,
                         ]
@@ -179,13 +179,13 @@ export class AppMenuComponent implements OnInit, AfterViewInit &#123;
                 ]
             &#125;,
             &#123;
-                label: 'Start', icon: 'pi pi-download',
+                label: 'Start', icon: 'pi pi-fw pi-download',
                 items: [
                     &#123;
-                        label: 'Buy Now', icon: 'pi pi-shopping-cart', url: ['https://www.primefaces.org/store']
+                        label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', url: ['https://www.primefaces.org/store']
                     &#125;,
                     &#123;
-                        label: 'Documentation', icon: 'pi pi-info-circle', routerLink: ['/documentation']
+                        label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
                     &#125;
                 ]
             &#125;
@@ -322,7 +322,7 @@ $menuTooltipTextColor:#ffffff !default;
 </app-code>
 
 <h5>sass/variables/theme/_theme_light</h5>
-<p>Variables of the light component theme, see the <a href="https://www.primefaces.org/designer/api/primeng/10.0.0/">Theme Designer API</a> for documentation.</p>
+<p>Variables of the light component theme, see the <a href="https://www.primefaces.org/designer/api/primeng/11.1.0/">Theme Designer API</a> for documentation.</p>
 <div style="height:400px;overflow: auto;">
 <app-code ngPreserveWhitespaces ngNonBindable lang="css">
 //reused color variables

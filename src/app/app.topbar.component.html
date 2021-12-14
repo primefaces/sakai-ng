@@ -4,16 +4,16 @@
         <span>SAKAI</span>
     </a>
 
-    <a class="p-link  layout-menu-button layout-topbar-button" href="#" (click)="appMain.toggleMenu($event)">
+    <a class="p-link layout-menu-button layout-topbar-button" href="#" (click)="appMain.toggleMenu($event)">
         <i class="pi pi-bars"></i>
     </a>
 
     <a class="p-link layout-topbar-menu-button layout-topbar-button" href="#" (click)="appMain.toggleTopMenu($event)">
         <i class="pi pi-ellipsis-v"></i>
     </a>
-    
-    <div class="layout-topbar-menu lg flex origin-top layout-topbar-menu-mobile-active" *ngIf="appMain.topMenuActive">
-        <a href="#" class="p-link layout-topbar-button">
+
+    <div class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active':appMain.topMenuActive,'':appMain.topMenuLeaving}">
+         <a href="#" class="p-link layout-topbar-button">
             <i class="pi pi-calendar"></i>
             <span>Calendar</span>
         </a>

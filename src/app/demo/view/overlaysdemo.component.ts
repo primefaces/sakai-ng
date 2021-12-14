@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Product} from '../domain/product';
+import {AppMainComponent} from 'src/app/app.main.component';
 import {ProductService} from '../service/productservice';
 
 @Component({
@@ -28,7 +29,7 @@ export class OverlaysDemoComponent implements OnInit {
 
     visibleSidebar5;
 
-    constructor(private productService: ProductService, private confirmationService: ConfirmationService, private messageService: MessageService) {}
+    constructor(private productService: ProductService, private confirmationService: ConfirmationService, private messageService: MessageService, public appMain: AppMainComponent) {}
 
     ngOnInit() {
         this.productService.getProductsSmall().then(products => this.products = products);
