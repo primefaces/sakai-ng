@@ -187,8 +187,8 @@ a {
     top: 5rem;
     min-width: 15rem;
     display: none;
-    -webkit-animation: scalein 0.15s linear;
-    animation: scalein 0.15s linear;
+    -webkit-animation: fadein 0.15s linear;
+    animation: fadein 0.15s linear;
   }
   .layout-topbar .layout-topbar-menu.layout-topbar-menu-mobile-active {
     display: block;
