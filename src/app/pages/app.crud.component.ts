@@ -22,6 +22,11 @@ import {ConfirmationService, MessageService} from 'primeng/api';
                 display: flex;
             }
         }
+        @media (max-width: 1024px){
+            :host ::ng-deep .p-dialog{
+                margin: 0 20px;
+            }
+        }
 
     `],
     providers: [MessageService, ConfirmationService]
