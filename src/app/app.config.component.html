@@ -7,7 +7,7 @@
             <h6 class="mt-0">Component Scale</h6>
             <div class="config-scale">
                 <button pButton pRipple type="button" icon="pi pi-minus" (click)="decrementScale()" class="p-button-rounded p-button-text" [disabled]="scale === scales[0]"></button>
-                    <i *ngFor="let item of scales" class="pi pi-circle-on" [ngClass]="{'scale-active': item === scale}"></i>
+                    <i *ngFor="let item of scales" class="pi pi-circle-fill" [ngClass]="{'scale-active': item === scale}"></i>
                 <button pButton pRipple type="button" icon="pi pi-plus" (click)="incrementScale()" class="p-button-rounded p-button-text" [disabled]="scale === scales[scales.length - 1]"></button>
             </div>
 
