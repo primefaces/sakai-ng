@@ -6,12 +6,10 @@ import {Message, MessageService} from 'primeng/api';
     styles: [`
         :host ::ng-deep .p-button {
             min-width: 8em;
-            z-index:10000;
         }
 
 		:host ::ng-deep .p-message {
 			margin-left: .25em;
-            z-index:10000;
 		}
 
         :host ::ng-deep .p-toast{
