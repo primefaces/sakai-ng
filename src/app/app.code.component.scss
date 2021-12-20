@@ -21,7 +21,6 @@ i:not([class~="pi"]) {
 	letter-spacing: .5px;
 	border-radius: 3px;
 	font-weight: 600;
-	margin: 0 2px;
 }
 
 :host ::ng-deep pre[class*="language-"] {
@@ -33,10 +32,11 @@ i:not([class~="pi"]) {
 	}
 
 	code {
-		border-left: 10px solid var(--surface-d) !important;
+		border-left: 0px solid var(--surface-d) !important;
 		box-shadow: none !important;
 		background: var(--surface-b) !important;
-		margin: 1em 0;
+		margin: 0 !important;
+		padding-bottom: 1.5rem;
 		color: var(--text-color);
 		font-size: 14px;
 

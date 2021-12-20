@@ -240,7 +240,7 @@ a {
 }
 .layout-menu li .layout-menuitem-root-text {
   text-transform: uppercase;
-  color: var(--text-color-secondary);
+  color: var(--surface-900);
   font-weight: 600;
   margin-bottom: 0.5rem;
   font-size: 0.875rem;
@@ -273,6 +273,7 @@ a {
 }
 .layout-menu li a.router-link-exact-active {
   font-weight: 700;
+  color: var(--primary-color);
 }
 .layout-menu li.active-menuitem > a .menuitem-toggle-icon:before {
   content: "\e933";

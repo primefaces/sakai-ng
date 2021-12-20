@@ -1,9 +1,10 @@
-import {Component, OnInit, ViewChild, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ChangeDetectorRef, ElementRef} from '@angular/core';
 import {Customer, Representative} from '../domain/customer';
 import {CustomerService} from '../service/customerservice';
 import {Product} from '../domain/product';
 import {ProductService} from '../service/productservice';
 import {Table} from 'primeng/table';
+import {InputText} from 'primeng/inputtext';
 import { MessageService, ConfirmationService } from 'primeng/api'
 
 @Component({
@@ -51,13 +52,19 @@ export class TableDemoComponent implements OnInit {
 
     idFrozen: boolean = false;
 
+    loading:boolean = true;
+
     @ViewChild('dt') table: Table;
+
+    @ViewChild('filter') filter: ElementRef;
 
     constructor(private customerService: CustomerService, private productService: ProductService, private messageService: MessageService, private confirmService: ConfirmationService, private cd: ChangeDetectorRef) {}
 
     ngOnInit() {
         this.customerService.getCustomersLarge().then(customers => {
             this.customers1 = customers;
+            this.loading = false;
+
             // @ts-ignore
             this.customers1.forEach(customer => customer.date = new Date(customer.date));
         });
@@ -129,5 +136,10 @@ export class TableDemoComponent implements OnInit {
 
     formatCurrency(value) {
         return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+    }
+
+    clear(table: Table) {
+        table.clear();
+        this.filter.nativeElement.value = '';
     }
 }

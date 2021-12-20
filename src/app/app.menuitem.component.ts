@@ -25,7 +25,7 @@ import {AppMainComponent} from './app.main.component';
 			   [routerLinkActiveOptions]="{exact: true}" [attr.target]="item.target" [attr.tabindex]="0" pRipple>
 				<i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
 				<span>{{item.label}}</span>
-				<span class="menuitem-badge" *ngIf="item.badge">{{item.badge}}</span>
+				<span class="p-tag p-badge ml-auto" *ngIf="item.badge">{{item.badge}}</span>
 				<i class="pi pi-fw {{active ? 'pi-angle-up' : 'pi-angle-down'}} ml-auto" *ngIf="item.items"></i>
 			</a>
 			<ul *ngIf="(item.items && active) && item.visible !== false" [@children]="(active ? 'visibleAnimated' : 'hiddenAnimated')">

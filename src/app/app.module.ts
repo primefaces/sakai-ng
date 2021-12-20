@@ -86,6 +86,7 @@ import {TooltipModule} from 'primeng/tooltip';
 import {TreeModule} from 'primeng/tree';
 import {TreeTableModule} from 'primeng/treetable';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
+import {BlockViewer} from './app.blockviewer.component'
 
 import {AppCodeModule} from './app.code.component';
 import {AppComponent} from './app.component';
@@ -115,6 +116,8 @@ import {FileDemoComponent} from './demo/view/filedemo.component';
 import {DocumentationComponent} from './demo/view/documentation.component';
 import {AppCrudComponent} from './pages/app.crud.component';
 import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
+import {IconsDemoComponent} from './demo/view/iconsdemo.component';
+import {AppBlocksDemoComponent} from './demo/view/app.blocksdemo.component';
 
 import {CountryService} from './demo/service/countryservice';
 import {CustomerService} from './demo/service/customerservice';
@@ -222,7 +225,7 @@ FullCalendarModule.registerPlugins([
         TreeModule,
         TreeTableModule,
         VirtualScrollerModule,
-        AppCodeModule
+        AppCodeModule,
     ],
     declarations: [
         AppComponent,
@@ -250,9 +253,12 @@ FullCalendarModule.registerPlugins([
         ChartsDemoComponent,
         EmptyDemoComponent,
         FileDemoComponent,
+        IconsDemoComponent,
         DocumentationComponent,
         AppCrudComponent,
         AppTimelineDemoComponent,
+        AppBlocksDemoComponent,
+        BlockViewer
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -36,7 +36,7 @@ export class AppMenuComponent implements OnInit {
                 }]
             },
             {
-                label: 'UI Kit',
+                label: 'UI Components',
                 items: [
                     {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']},
                     {label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input']},
@@ -53,6 +53,19 @@ export class AppMenuComponent implements OnInit {
                     {label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file']},
                     {label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']},
                     {label: 'Misc', icon: 'pi pi-fw pi-circle-off', routerLink: ['/uikit/misc']}
+                ]
+            },
+            {
+                label:'UI Blocks',
+                items:[
+                    {label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks'], 
+                    badge:'NEW'},
+                    {label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: ['https://www.primefaces.org/primeblocks-ng/#/']},
+                ]
+            },
+            {label:'Icons',
+                items:[
+                    {label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', routerLink: ['/icons']},
                 ]
             },
             {

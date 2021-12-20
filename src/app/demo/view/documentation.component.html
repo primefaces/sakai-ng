@@ -13,36 +13,36 @@
             <h4>Dependencies</h4>
             <p>Sakai has no direct dependency other than PrimeNG. More information about dependencies is available at <a href="https://www.primefaces.org/why-primeng-templates/">Why PrimeNG Templates</a> article.</p>
 
-            <app-code  ngPreserveWhitespaces ngNonBindable lang="markup">
-            npm install -g @angular/cli
-            </app-code>
+<app-code  ngPreserveWhitespaces ngNonBindable lang="markup">
+npm install -g @angular/cli
+</app-code>
 
             <p>Once CLI is ready in your system, extract the contents of the Sakai zip file distribution, cd to the directory,
             install the libraries from npm and then execute "ng serve" to run the application in your local environment.</p>
 
-            <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
-            cd sakai-ng
-            npm install
-            ng serve
-            </app-code>
+<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
+cd sakai-ng
+npm install
+ng serve
+</app-code>
 
             <p>The application should run at http://localhost:4200/, you may now start with the development of your application.</p>
 
             <h4>Important CLI Commands</h4>
             <p>Following commands are derived from CLI.</p>
-            <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
-            Run 'ng serve' for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
+Run 'ng serve' for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-            Run 'ng generate component component-name' to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+Run 'ng generate component component-name' to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
 
-            Run 'ng build' to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run 'ng build' to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-            Run 'ng test' to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run 'ng test' to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-            Run 'ng e2e' to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run 'ng e2e' to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-            Run 'ng help' for more options.
-            </app-code>
+Run 'ng help' for more options.
+</app-code>
 
             <h5>Structure</h5>
             <p>Sakai consists of 2 main parts; the application layout, layout resources. <i>app.component.html</i> inside app folder is the html template for the base layout,
@@ -204,18 +204,18 @@ export class AppMenuComponent implements OnInit, AfterViewInit &#123;
     </ul>
 
     <p>Install PrimeNG</p>
-    <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
-    npm install primeng@latest --save
-    npm install primeicons@latest --save
-    </app-code>
+<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
+npm install primeng@latest --save
+npm install primeicons@latest --save
+</app-code>
 
     <p>Add PrimeNG CSS at styles section in angular.json.</p>
 
-    <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
-    "styles": [
-        "styles.scss"               //your styles and overrides
-    ],
-    </app-code>
+<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
+"styles": [
+    "styles.scss"               //your styles and overrides
+],
+</app-code>
 
             <p>Last part is adding theme and layout css files, in the CLI app they are defined using link tags in index.html so the demo can switch them on
             the fly by changing the path however if this is not a requirement, you may also add them to the styles configuration above so they go inside the bundle.</p>
@@ -325,7 +325,6 @@ $menuTooltipTextColor:#ffffff !default;
 <p>Variables of the light component theme, see the <a href="https://www.primefaces.org/designer/api/primeng/11.1.0/">Theme Designer API</a> for documentation.</p>
 <div style="height:400px;overflow: auto;">
 <app-code ngPreserveWhitespaces ngNonBindable lang="css">
-//reused color variables
 //reused color variables
 $shade000:#ffffff !default;    //surface
 $shade100:#FCFCFC !default;    //header background

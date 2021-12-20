@@ -18,9 +18,11 @@ import {TableDemoComponent} from './demo/view/tabledemo.component';
 import {ListDemoComponent} from './demo/view/listdemo.component';
 import {TreeDemoComponent} from './demo/view/treedemo.component';
 import {AppCrudComponent} from './pages/app.crud.component';
+import {AppBlocksDemoComponent} from './demo/view/app.blocksdemo.component';
 import {FloatLabelDemoComponent} from './demo/view/floatlabeldemo.component';
-import { InvalidStateDemoComponent } from './demo/view/invalidstatedemo.component';
-import { AppTimelineDemoComponent } from './pages/app.timelinedemo.component';
+import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component';
+import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
+import {IconsDemoComponent} from './demo/view/iconsdemo.component';
 
 @NgModule({
     imports: [
@@ -47,6 +49,8 @@ import { AppTimelineDemoComponent } from './pages/app.timelinedemo.component';
                     {path: 'pages/crud', component: AppCrudComponent},
                     {path: 'pages/timeline', component: AppTimelineDemoComponent},
                     {path: 'pages/empty', component: EmptyDemoComponent},
+                    {path: 'icons', component: IconsDemoComponent},
+                    {path: 'blocks', component: AppBlocksDemoComponent},
                     {path: 'documentation', component: DocumentationComponent}
                 ]
             },
