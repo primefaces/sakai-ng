@@ -2,13 +2,13 @@
 	<div class="col-12">
 		<div class="card">
 			<h5>Filter Menu</h5>
-			<p-table #dt1 [value]="customers1" dataKey="id" [rows]="10" [showCurrentPageReport]="true" [loading]="loading" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll">
+			<p-table #dt1 [value]="customers1" dataKey="id" [rows]="10" [loading]="loading" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll">
 				<ng-template pTemplate="caption">
-					<div class="flex">
-						<button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
-						<span class="p-input-icon-left ml-auto">
+					<div class="flex justify-content-between flex-column sm:flex-row">
+						<button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+						<span class="p-input-icon-left mb-2">
 							<i class="pi pi-search"></i>
-							<input pInputText type="text" #filter (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+							<input pInputText type="text" #filter (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" class="w-full"/>
 						</span>
 					</div>
 				</ng-template>
