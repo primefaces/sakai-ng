@@ -101,7 +101,7 @@
 						<td style="min-width: 200px;">
 							{{customer.name}}
 						</td>
-						<td style="min-width: 200px;"> 
+						<td style="min-width: 200px;">
 							<img src="assets/demo/flags/flag_placeholder.png" [class]="'flag flag-' + customer.country.code" width="30">
 							<span class="image-text ml-2">{{customer.country.name}}</span>
 						</td>
@@ -140,7 +140,7 @@
 		<div class="card">
 			<h5>Frozen Columns</h5>
 			<p-toggleButton [(ngModel)]="idFrozen" [onIcon]="'pi pi-lock'" offIcon="pi pi-lock-open" [onLabel]="'Unfreeze Id'" offLabel="Freeze Id" [style]="{'width': '12rem'}"></p-toggleButton>
-		
+
 			<p-table [value]="customers3" scrollDirection="both" [scrollable]="true" scrollHeight="400px" styleClass="mt-3" responsiveLayout="scroll">
 				<ng-template pTemplate="header">
 					<tr>
@@ -152,7 +152,7 @@
 						<th style="width:200px">Status</th>
 						<th style="width:200px">Activity</th>
 						<th style="width:200px">Representative</th>
-						<th style="width:200px">Balance</th>
+						<th style="width:200px" pFrozenColumn alignFrozen="right">Balance</th>
 					</tr>
 				</ng-template>
 				<ng-template pTemplate="body" let-customer>
@@ -165,7 +165,7 @@
 						<td style="width:200px">{{customer.status}}</td>
 						<td style="width:200px">{{customer.activity}}</td>
 						<td style="width:200px">{{customer.representative.name}}</td>
-						<td style="width:200px">{{formatCurrency(customer.balance)}}</td>
+						<td style="width:200px" pFrozenColumn alignFrozen="right">{{formatCurrency(customer.balance)}}</td>
 					</tr>
 				</ng-template>
 			</p-table>
