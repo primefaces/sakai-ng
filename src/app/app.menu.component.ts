@@ -22,11 +22,11 @@ import {AppComponent} from './app.component';
 export class AppMenuComponent implements OnInit {
 
     model: any[];
-    
+
     constructor(public app: AppComponent){}
 
     ngOnInit() {
-        
+
         this.model = [
             {
                 label: 'Home',
@@ -52,13 +52,13 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message']},
                     {label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file']},
                     {label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']},
-                    {label: 'Misc', icon: 'pi pi-fw pi-circle-off', routerLink: ['/uikit/misc']}
+                    {label: 'Misc', icon: 'pi pi-fw pi-circle', routerLink: ['/uikit/misc']}
                 ]
             },
             {
                 label:'UI Blocks',
                 items:[
-                    {label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks'], 
+                    {label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks'],
                     badge:'NEW'},
                     {label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: ['https://www.primefaces.org/primeblocks-ng/#/']},
                 ]
@@ -73,7 +73,7 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     {label: 'Crud', icon: 'pi pi-fw pi-user-edit', routerLink: ['/pages/crud']},
                     {label: 'Timeline', icon: 'pi pi-fw pi-calendar', routerLink: ['/pages/timeline']},
-                    {label: 'Empty', icon: 'pi pi-fw pi-circle-off', routerLink: ['/pages/empty']}
+                    {label: 'Empty', icon: 'pi pi-fw pi-circle', routerLink: ['/pages/empty']}
                 ]
             },
             {
