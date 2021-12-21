@@ -65,7 +65,7 @@
 								Status
 								<p-columnFilter field="status" matchMode="equals" display="menu">
 									<ng-template pTemplate="filter" let-value let-filter="filterCallback">
-										<p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any">
+										<p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any" [style]="{'min-width': '12rem'}" >
 											<ng-template let-option pTemplate="item">
 												<span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
 											</ng-template>
@@ -79,7 +79,7 @@
 								Activity
 								<p-columnFilter field="activity" matchMode="between" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
 									<ng-template pTemplate="filter" let-filter="filterCallback">
-										<p-slider [ngModel]="activityValues" [range]="true" (onSlideEnd)="filter($event.values)" styleClass="m-3"></p-slider>
+										<p-slider [ngModel]="activityValues" [range]="true" (onSlideEnd)="filter($event.values)" styleClass="m-3" [style]="{'min-width': '12rem'}" ></p-slider>
 										<div class="flex align-items-center justify-content-between px-2">
 											<span>{{activityValues[0]}}</span>
 											<span>{{activityValues[1]}}</span>
@@ -95,7 +95,7 @@
 							</div>
 						</th>
 					</tr>
-				</ng-template>
+				</ng-template> 
 				<ng-template pTemplate="body" let-customer>
 					<tr>
 						<td style="min-width: 12rem;">
@@ -164,10 +164,15 @@
 					<tr>
 						<td style="width:200px" pFrozenColumn>{{customer.name}}</td>
 						<td style="width:200px" alignFrozen="left" pFrozenColumn [frozen]="idFrozen">{{customer.id}}</td>
-						<td style="width:200px">{{customer.country.name}}</td>
+						<td style="width:200px">
+							<img src="assets/demo/flags/flag_placeholder.png" [class]="'flag flag-' + customer.country.code" width="30">
+							<span class="image-text ml-2">{{customer.country.name}}</span>
+						</td>
 						<td style="width:200px">{{customer.date}}</td>
 						<td style="width:200px">{{customer.company}}</td>
-						<td style="width:200px">{{customer.status}}</td>
+						<td style="width:200px">
+							<span [class]="'customer-badge status-' + customer.status">{{customer.status}}</span>
+						</td>
 						<td style="width:200px">{{customer.activity}}</td>
 						<td style="width:200px">{{customer.representative.name}}</td>
 						<td style="width:200px" pFrozenColumn alignFrozen="right">{{formatCurrency(customer.balance)}}</td>
