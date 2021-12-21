@@ -248,7 +248,7 @@
 	<div class="col-12">
 		<div class="card">
 			<h5>Subheader Grouping</h5>
-			<p-table [value]="customers3" sortField="representative.name" sortMode="single" (onSort)="onSort()" responsiveLayout="scroll" [scrollable]="true" scrollHeight="600px"
+			<p-table [value]="customers3" rowGroupMode="subheader" groupRowsBy="representative.name" sortField="representative.name" sortMode="single" (onSort)="onSort()" responsiveLayout="scroll" [scrollable]="true" scrollHeight="600px"
 					styleClass="p-datatable-customers">
 				<ng-template pTemplate="header">
 					<tr>
@@ -260,7 +260,7 @@
 					</tr>
 				</ng-template>
 				<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
-					<tr *ngIf="rowGroupMetadata[customer.representative.name].index === rowIndex">
+					<tr pRowGroupHeader *ngIf="rowGroupMetadata[customer.representative.name].index === rowIndex">
 						<td colspan="5" style="min-width: 200px;">
 							<img [alt]="customer.representative.name" src="assets/demo/images/avatar/{{customer.representative.image}}" width="32" style="vertical-align: middle" />
 							<span class="p-text-bold ml-2">{{customer.representative.name}}</span>
