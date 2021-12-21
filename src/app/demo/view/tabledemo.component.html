@@ -174,7 +174,10 @@
 							<span [class]="'customer-badge status-' + customer.status">{{customer.status}}</span>
 						</td>
 						<td style="width:200px">{{customer.activity}}</td>
-						<td style="width:200px">{{customer.representative.name}}</td>
+						<td style="width:200px">
+							<img [alt]="customer.representative.name" src="assets/demo/images/avatar/{{customer.representative.image}}" width="32" style="vertical-align: middle"/>
+							<span class="image-text ml-2">{{customer.representative.name}}</span>
+						</td>
 						<td style="width:200px" pFrozenColumn alignFrozen="right">{{formatCurrency(customer.balance)}}</td>
 					</tr>
 				</ng-template>
