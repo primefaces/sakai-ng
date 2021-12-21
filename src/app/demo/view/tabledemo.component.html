@@ -32,7 +32,7 @@
 								<p-columnFilter field="representative" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
 									<ng-template pTemplate="header">
 										<div class="px-3 pt-3 pb-0">
-											<span class="p-text-bold">Agent Picker</span>
+											<span class="font-bold">Agent Picker</span>
 										</div>
 									</ng-template>
 									<ng-template pTemplate="filter" let-value let-filter="filterCallback">
@@ -263,7 +263,7 @@
 					<tr pRowGroupHeader *ngIf="rowGroupMetadata[customer.representative.name].index === rowIndex">
 						<td colspan="5" style="min-width: 200px;">
 							<img [alt]="customer.representative.name" src="assets/demo/images/avatar/{{customer.representative.image}}" width="32" style="vertical-align: middle" />
-							<span class="p-text-bold ml-2">{{customer.representative.name}}</span>
+							<span class="font-bold ml-2">{{customer.representative.name}}</span>
 						</td>
 					</tr>
 					<tr>
