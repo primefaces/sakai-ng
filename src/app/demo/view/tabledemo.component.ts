@@ -9,19 +9,6 @@ import { MessageService, ConfirmationService } from 'primeng/api'
 
 @Component({
     templateUrl: './tabledemo.component.html',
-    styleUrls: ['./tabledemo.scss'],
-    styles: [`
-        :host ::ng-deep .p-datatable-gridlines p-progressBar {
-            width: 100%;
-        }
-
-        @media screen and (max-width: 960px) {
-            :host ::ng-deep .p-datatable.p-datatable-customers.rowexpand-table .p-datatable-tbody > tr > td:nth-child(6) {
-                display: flex;
-            }
-        }
-
-    `],
     providers: [MessageService, ConfirmationService]
 })
 export class TableDemoComponent implements OnInit {
@@ -123,11 +110,11 @@ export class TableDemoComponent implements OnInit {
             }
         }
     }
-   
+
     expandAll() {
         if(!this.isExpanded){
           this.products.forEach(product => this.expandedRows[product.name] = true);
-          
+
         } else {
           this.expandedRows={};
         }

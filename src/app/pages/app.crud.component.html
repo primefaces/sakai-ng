@@ -13,8 +13,8 @@
                     <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help mb-2" (click)="dt.exportCSV()"></button>
                 </ng-template>
             </p-toolbar>
-            
-            <p-table #dt [value]="products" [columns]="cols" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" [rowHover]="true" dataKey="id" styleClass="p-datatable-customers" class="p-datatable-responsive">
+
+            <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" [rowHover]="true" dataKey="id" styleClass="p-datatable-customers" class="p-datatable-responsive">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-md-row justify-content-md-between table-header">
                         <h5 class="m-0">Manage Products</h5>

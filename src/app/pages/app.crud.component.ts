@@ -5,30 +5,6 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 
 @Component({
     templateUrl: './app.crud.component.html',
-    styleUrls: ['../demo/view/tabledemo.scss'],
-    styles: [`
-        :host ::ng-deep .p-dialog .product-image {
-            width: 150px;
-            margin: 0 auto 2rem auto;
-            display: block;
-        }
-
-        @media screen and (max-width: 960px) {
-            :host ::ng-deep .p-datatable.p-datatable-customers .p-datatable-tbody > tr > td:last-child {
-                text-align: center;
-            }
-
-            :host ::ng-deep .p-datatable.p-datatable-customers .p-datatable-tbody > tr > td:nth-child(6) {
-                display: flex;
-            }
-        }
-        @media (max-width: 1024px){
-            :host ::ng-deep .p-dialog{
-                margin: 0 20px;
-            }
-        }
-
-    `],
     providers: [MessageService, ConfirmationService]
 })
 export class AppCrudComponent implements OnInit {
