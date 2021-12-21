@@ -1,4 +1,4 @@
-<div class="grid crud-demo">
+<div class="grid">
     <div class="col-12">
         <div class="card">
             <p-toast></p-toast>
@@ -16,12 +16,12 @@
 
             <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" [rowHover]="true" dataKey="id" styleClass="p-datatable-customers" class="p-datatable-responsive">
                 <ng-template pTemplate="caption">
-                    <div class="flex flex-md-row justify-content-md-between table-header">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Manage Products</h5>
-                        <span class="p-input-icon-left">
-                        <i class="pi pi-search"></i>
-                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
-                    </span>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+                        </span>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
@@ -47,19 +47,22 @@
                         <td><span class="p-column-title">Code</span>
                             {{product.code}}
                         </td>
-                        <td><span class="p-column-title">Name</span>
+                        <td style="min-width:10rem;">
+                            <span class="p-column-title">Name</span>
                             {{product.name}}
                         </td>
                         <td><span class="p-column-title">Image</span>
                             <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" />
                         </td>
-                        <td><span class="p-column-title">Price</span>
+                        <td style="min-width:8rem;">
+                            <span class="p-column-title">Price</span>
                             {{product.price | currency:'USD'}}
                         </td>
-                        <td><span class="p-column-title">Category</span>
+                        <td style="min-width:10rem;">
+                            <span class="p-column-title">Category</span>
                             {{product.category}}
                         </td>
-                        <td><span class="p-column-title">Reviews</span>
+                        <td style="min-width: 10rem;"><span class="p-column-title">Reviews</span>
                             <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
                         </td>
                         <td><span class="p-column-title">Status</span>
@@ -74,9 +77,9 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
+        <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
-                <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" class="product-image" *ngIf="product.image">
+                <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image">
                 <div class="field">
                     <label for="name">Name</label>
                     <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
