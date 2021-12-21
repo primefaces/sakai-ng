@@ -187,8 +187,8 @@ a {
     top: 5rem;
     min-width: 15rem;
     display: none;
-    -webkit-animation: fadein 0.15s linear;
-    animation: fadein 0.15s linear;
+    -webkit-animation: scalein 0.15s linear;
+    animation: scalein 0.15s linear;
   }
   .layout-topbar .layout-topbar-menu.layout-topbar-menu-mobile-active {
     display: block;
@@ -363,7 +363,7 @@ a {
 .layout-config .layout-config-content {
   position: relative;
   overflow: auto;
-  height: calc(100vh - 5rem);
+  height: 100vh;
   padding: 2rem;
 }
 .layout-config .config-scale {
