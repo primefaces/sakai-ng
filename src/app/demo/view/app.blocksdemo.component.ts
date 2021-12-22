@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: './app.blocksdemo.component.html',
-  styleUrls: ['./app.blocksdemo.component.scss']
+  templateUrl: './app.blocksdemo.component.html'
 })
 export class AppBlocksDemoComponent{
 
@@ -13,7 +12,7 @@ export class AppBlocksDemoComponent{
               <span class="block text-6xl font-bold mb-1">Create the screens your</span>
               <div class="text-6xl text-primary font-bold mb-3">your visitors deserve to see</div>
               <p class="mt-0 mb-4 text-700 line-height-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              
+
               <button pButton pRipple label="Learn More" type="button" class="mr-3 p-button-raised"></button>
               <button pButton pRipple label="Live Demo" type="button" class="p-button-outlined"></button>
           </section>
@@ -22,7 +21,7 @@ export class AppBlocksDemoComponent{
           <img src="assets/demo/images/blocks/hero/hero-1.png" alt="Image" class="md:ml-auto block md:h-full" style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)">
       </div>
   </div>`;
-  
+
       block2: string = `
   <div class="surface-section px-4 py-8 md:px-6 lg:px-8 text-center">
       <div class="mb-3 font-bold text-2xl">
@@ -75,12 +74,12 @@ export class AppBlocksDemoComponent{
           </div>
       </div>
   </div>`;
-  
+
       block3: string = `
   <div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
       <div class="text-900 font-bold text-6xl mb-4 text-center">Pricing Plans</div>
       <div class="text-700 text-xl mb-6 text-center line-height-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit numquam eligendi quos.</div>
-  
+
       <div class="grid">
           <div class="col-12 lg:col-4">
               <div class="p-3 h-full">
@@ -112,7 +111,7 @@ export class AppBlocksDemoComponent{
                   </div>
               </div>
           </div>
-  
+
           <div class="col-12 lg:col-4">
               <div class="p-3 h-full">
                   <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
@@ -147,7 +146,7 @@ export class AppBlocksDemoComponent{
                   </div>
               </div>
           </div>
-  
+
           <div class="col-12 lg:col-4">
               <div class="p-3 h-full">
                   <div class="shadow-2 p-3 flex flex-column surface-card" style="border-radius: 6px">
@@ -192,7 +191,7 @@ export class AppBlocksDemoComponent{
           </div>
       </div>
   </div>`;
-  
+
       block4: string = `
   <div class="surface-section px-4 py-8 md:px-6 lg:px-8">
       <div class="text-700 text-center">
@@ -202,7 +201,7 @@ export class AppBlocksDemoComponent{
           <button pButton pRipple label="Join Now" icon="pi pi-discord" class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"></button>
       </div>
   </div>`;
-  
+
       block5: string = `
   <div class="bg-bluegray-900 text-gray-100 p-3 flex justify-content-between lg:justify-content-center align-items-center flex-wrap">
       <div class="font-bold mr-8">🔥 Hot Deals!</div>
@@ -216,7 +215,7 @@ export class AppBlocksDemoComponent{
           <i class="pi pi-times"></i>
       </a>
   </div>`;
-  
+
       block6: string = `
   <div class="surface-section px-4 py-5 md:px-6 lg:px-8">
       <ul class="list-none p-0 m-0 flex align-items-center font-medium mb-3">
@@ -254,7 +253,7 @@ export class AppBlocksDemoComponent{
           </div>
       </div>
   </div>`;
-  
+
       block7: string = `
   <div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
       <div class="grid">
@@ -320,7 +319,7 @@ export class AppBlocksDemoComponent{
           </div>
       </div>
   </div>`;
-  
+
       block8: string = `
   <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
       <div class="text-center mb-5">
@@ -329,14 +328,14 @@ export class AppBlocksDemoComponent{
           <span class="text-600 font-medium line-height-3">Don't have an account?</span>
           <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a>
       </div>
-  
+
       <div>
           <label for="email1" class="block text-900 font-medium mb-2">Email</label>
           <input id="email1" type="text" pInputText class="w-full mb-3">
-  
+
           <label for="password1" class="block text-900 font-medium mb-2">Password</label>
           <input id="password1" type="password" pInputText class="w-full mb-3">
-  
+
           <div class="flex align-items-center justify-content-between mb-6">
               <div class="flex align-items-center">
                   <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
@@ -344,11 +343,11 @@ export class AppBlocksDemoComponent{
               </div>
               <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a>
           </div>
-  
+
           <button pButton pRipple label="Sign In" icon="pi pi-user" class="w-full"></button>
       </div>
   </div>`;
-  
+
       block9: string = `
   <div class="surface-section">
       <div class="font-medium text-3xl text-900 mb-3">Movie Information</div>
@@ -397,7 +396,7 @@ export class AppBlocksDemoComponent{
           </li>
       </ul>
   </div>`;
-  
+
       block10: string = `
   <div class="surface-card p-4 shadow-2 border-round">
       <div class="text-3xl font-medium text-900 mb-3">Card Title</div>
