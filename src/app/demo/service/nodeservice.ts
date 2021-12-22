@@ -31,10 +31,4 @@ export class NodeService {
       .toPromise()
       .then(res => res.data as TreeNode[]);
     }
-
-    getTreeNodes(){
-      return this.http.get<any>('assets/demo/data/treenodes.json')
-      .toPromise()
-      .then(res => res.data as TreeNode[]);
-    }
 }

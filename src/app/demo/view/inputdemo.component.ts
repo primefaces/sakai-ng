@@ -110,7 +110,7 @@ export class InputDemoComponent implements OnInit{
             {name: 'Option 3', value: 3}
         ];
 
-        this.nodeService.getTreeNodes().then(data => this.treeSelectNodes = data);
+        this.nodeService.getFiles().then(files => this.treeSelectNodes = files)
     }
 
     filterCountry(event) {
