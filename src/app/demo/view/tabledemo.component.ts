@@ -9,7 +9,16 @@ import { MessageService, ConfirmationService } from 'primeng/api'
 
 @Component({
     templateUrl: './tabledemo.component.html',
-    providers: [MessageService, ConfirmationService]
+    providers: [MessageService, ConfirmationService],
+    styles: [`
+        :host ::ng-deep  .p-frozen-column {
+            font-weight: bold;
+        }
+
+        :host ::ng-deep .p-datatable-frozen-tbody {
+            font-weight: bold;
+        }
+    `]
 })
 export class TableDemoComponent implements OnInit {
 
