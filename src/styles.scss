@@ -101,116 +101,116 @@
     }
 }
 
-.table-demo {
-    .p-progressbar {
-        height: .5rem;
-        background-color: #D8DADC;
+// .table-demo {
+//     .p-progressbar {
+//         height: .5rem;
+//         background-color: #D8DADC;
 
-        .p-progressbar-value {
-            background-color: #607D8B;
-        }
-    }
+//         .p-progressbar-value {
+//             background-color: #607D8B;
+//         }
+//     }
 
-    .table-header {
-        font-size: 1.25rem;
-        display: flex;
-        justify-content: space-between;
-    }
+//     .table-header {
+//         font-size: 1.25rem;
+//         display: flex;
+//         justify-content: space-between;
+//     }
 
-    .p-datatable.p-datatable-customers {
-        .p-datatable-header {
-            padding: 1rem;
-            text-align: left;
-            font-size: 1.5rem;
-        }
+//     .p-datatable.p-datatable-customers {
+//         .p-datatable-header {
+//             padding: 1rem;
+//             text-align: left;
+//             font-size: 1.5rem;
+//         }
 
-        .p-paginator {
-            padding: 1rem;
-        }
+//         .p-paginator {
+//             padding: 1rem;
+//         }
 
-        .p-datatable-thead > tr > th {
-            text-align: left;
-        }
+//         .p-datatable-thead > tr > th {
+//             text-align: left;
+//         }
 
-        .p-datatable-tbody > tr > td {
-            cursor: auto;
-        }
+//         .p-datatable-tbody > tr > td {
+//             cursor: auto;
+//         }
 
-        .p-dropdown-label:not(.p-placeholder) {
-            text-transform: uppercase;
-        }
-    }
+//         .p-dropdown-label:not(.p-placeholder) {
+//             text-transform: uppercase;
+//         }
+//     }
 
-    /* Responsive */
-    .p-datatable-customers .p-datatable-tbody > tr > td > .p-column-title {
-        display: none;
-    }
+//     /* Responsive */
+//     .p-datatable-customers .p-datatable-tbody > tr > td > .p-column-title {
+//         display: none;
+//     }
 
-    .p-progressbar-value.ui-widget-header {
-        background: #607d8b;
-    }
+//     .p-progressbar-value.ui-widget-header {
+//         background: #607d8b;
+//     }
 
-    @media (max-width: 640px) {
-        .p-progressbar {
-            margin-top: .5rem;
-        }
-    }
+//     @media (max-width: 640px) {
+//         .p-progressbar {
+//             margin-top: .5rem;
+//         }
+//     }
 
-    .product-image {
-        width: 100px;
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
-    }
+//     .product-image {
+//         width: 100px;
+//         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+//     }
 
-    .orders-subtable {
-        padding: 1rem;
-    }
+//     .orders-subtable {
+//         padding: 1rem;
+//     }
 
 
-    @media screen and (max-width: 960px) {
-        .p-datatable {
-            &.p-datatable-customers {
-                .p-datatable-thead > tr > th,
-                .p-datatable-tfoot > tr > td {
-                    display: none !important;
-                }
+//     @media screen and (max-width: 960px) {
+//         .p-datatable {
+//             &.p-datatable-customers {
+//                 .p-datatable-thead > tr > th,
+//                 .p-datatable-tfoot > tr > td {
+//                     display: none !important;
+//                 }
 
-                .p-datatable-tbody > tr {
-                    > td {
-                        text-align: left;
-                        display: block;
-                        border: 0 none !important;
-                        width: 100% !important;
-                        float: left;
-                        clear: left;
-                        border: 0 none;
+//                 .p-datatable-tbody > tr {
+//                     > td {
+//                         text-align: left;
+//                         display: block;
+//                         border: 0 none !important;
+//                         width: 100% !important;
+//                         float: left;
+//                         clear: left;
+//                         border: 0 none;
 
-                        .p-column-title {
-                            padding: .4rem;
-                            min-width: 30%;
-                            display: inline-block;
-                            margin: -.4rem 1rem -.4rem -.4rem;
-                            font-weight: bold;
-                        }
+//                         .p-column-title {
+//                             padding: .4rem;
+//                             min-width: 30%;
+//                             display: inline-block;
+//                             margin: -.4rem 1rem -.4rem -.4rem;
+//                             font-weight: bold;
+//                         }
 
-                        .p-progressbar {
-                            margin-top: .5rem;
-                        }
-                    }
-                }
+//                         .p-progressbar {
+//                             margin-top: .5rem;
+//                         }
+//                     }
+//                 }
 
-                colgroup {
-                    display: none;
-                }
-            }
+//                 colgroup {
+//                     display: none;
+//                 }
+//             }
 
-            .p-datatable-header {
-                .table-header {
-                    flex-direction: column !important;
-                }
-            }
-        }
-    }
-}
+//             .p-datatable-header {
+//                 .table-header {
+//                     flex-direction: column !important;
+//                 }
+//             }
+//         }
+//     }
+// }
 
 .crud-demo {
     .p-toolbar {

@@ -1,8 +1,8 @@
-<div class="grid table-demo">
+<div class="grid">
 	<div class="col-12">
 		<div class="card">
 			<h5>Filter Menu</h5>
-			<p-table #dt1 [value]="customers1" dataKey="id" [rows]="10" [loading]="loading" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll">
+			<p-table #dt1 [value]="customers1" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll">
 				<ng-template pTemplate="caption">
 					<div class="flex justify-content-between flex-column sm:flex-row">
 						<button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
@@ -118,7 +118,7 @@
 						<td style="min-width: 12rem;">
 							<span [class]="'customer-badge status-' + customer.status">{{customer.status}}</span>
 						</td>
-						<td style="min-width: 12rem;">
+						<td style="min-width: 12rem; ">
 							<p-progressBar [value]="customer.activity" [showValue]="false"></p-progressBar>
 						</td>
 						<td class="text-center" style="min-width: 8rem;">

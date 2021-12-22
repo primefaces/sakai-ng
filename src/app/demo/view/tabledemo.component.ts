@@ -18,6 +18,10 @@ import { MessageService, ConfirmationService } from 'primeng/api'
         :host ::ng-deep .p-datatable-frozen-tbody {
             font-weight: bold;
         }
+
+        :host ::ng-deep .p-progressbar {
+            height:.5rem;
+        }
     `]
 })
 export class TableDemoComponent implements OnInit {
