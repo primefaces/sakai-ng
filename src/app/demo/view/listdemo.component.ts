@@ -5,7 +5,6 @@ import {ProductService} from '../service/productservice';
 
 @Component({
     templateUrl: './listdemo.component.html',
-    styleUrls: ['./listdemo.scss']
 })
 export class ListDemoComponent implements OnInit {
 

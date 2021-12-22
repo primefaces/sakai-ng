@@ -1,6 +1,6 @@
 <div class="grid">
     <div class="col-12">
-        <div class="card docs no-margin">
+        <div class="card docs">
 
             <h4>Current Version</h4>
             <p>Angular 13 and PrimeNG 13</p>
@@ -14,8 +14,7 @@
             <p>Sakai has no direct dependency other than PrimeNG. More information about dependencies is available at <a href="https://www.primefaces.org/why-primeng-templates/">Why PrimeNG Templates</a> article.</p>
 
 <app-code  ngPreserveWhitespaces ngNonBindable lang="markup">
-npm install -g @angular/cli
-</app-code>
+npm install -g @angular/cli</app-code>
 
             <p>Once CLI is ready in your system, extract the contents of the Sakai zip file distribution, cd to the directory,
             install the libraries from npm and then execute "ng serve" to run the application in your local environment.</p>
@@ -23,8 +22,7 @@ npm install -g @angular/cli
 <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
 cd sakai-ng
 npm install
-ng serve
-</app-code>
+ng serve</app-code>
 
             <p>The application should run at http://localhost:4200/, you may now start with the development of your application.</p>
 
@@ -41,8 +39,7 @@ Run 'ng test' to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run 'ng e2e' to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-Run 'ng help' for more options.
-</app-code>
+Run 'ng help' for more options.</app-code>
 
             <h5>Structure</h5>
             <p>Sakai consists of 2 main parts; the application layout, layout resources. <i>app.component.html</i> inside app folder is the html template for the base layout,
@@ -80,9 +77,8 @@ Run 'ng help' for more options.
 
     &lt;app-config&gt;&lt;/app-config&gt;
 
-    &lt;div class=&quot;layout-mask p-component-overlay&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-</app-code>
+    &lt;div *ngIf=&quot;menuActiveMobile&quot; class=&quot;layout-mask p-component-overlay&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</app-code>
 
             <h5>Menu</h5>
             <p>Menu is a separate component defined in app.menu.component.ts file based on PrimeNG MenuModel API. In order to define the menuitems,
@@ -125,6 +121,19 @@ export class AppMenuComponent implements OnInit, AfterViewInit &#123;
                     &#123;label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file']&#125;,
                     &#123;label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']&#125;,
                     &#123;label: 'Misc', icon: 'pi pi-fw pi-circle', routerLink: ['/uikit/misc']&#125;
+                ]
+            &#125;,
+            &#123;
+            label: 'UI Blocks',
+            items: [
+                &#123;label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks'], badge: 'NEW'&#125;,
+                &#123;label: 'Timeline', icon: 'pi pi-fw pi-calendar', url: ['https://www.primefaces.org/primeblocks-ng']&#125;
+                ]
+            &#125;,
+            &#123;
+            label: 'Icons',
+            items: [
+                &#123;label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', routerLink: ['/icons']&#125;,
                 ]
             &#125;,
             &#123;
@@ -179,13 +188,13 @@ export class AppMenuComponent implements OnInit, AfterViewInit &#123;
                 ]
             &#125;,
             &#123;
-                label: 'Start', icon: 'pi pi-fw pi-download',
+                label: 'Get Started',
                 items: [
                     &#123;
-                        label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', url: ['https://www.primefaces.org/store']
-                    &#125;,
-                    &#123;
                         label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
+                    &#125;
+                    &#123;
+                        label: 'View Source', icon: 'pi pi-fw pi-search', url: ['https://github.com/primefaces/sakai-angular']
                     &#125;
                 ]
             &#125;
@@ -213,7 +222,7 @@ npm install primeicons@latest --save
 
 <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
 "styles": [
-    "styles.scss"               //your styles and overrides
+    "styles.scss" //your styles and overrides
 ],
 </app-code>
 

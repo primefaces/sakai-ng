@@ -2,7 +2,7 @@
 	<div class="col-12 md:col-6">
 		<div class="card">
 			<h5>InputText</h5>
-			<div class="grid p-formgrid">
+			<div class="grid formgrid">
 				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
 					<input pInputText type="text" placeholder="Default" />
 				</div>
@@ -15,7 +15,7 @@
 			</div>
 
 			<h5>Icons</h5>
-			<div class="grid p-formgrid">
+			<div class="grid formgrid">
 				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
 					<span class="p-input-icon-left">
 						<i class="pi pi-user"></i>
@@ -89,7 +89,7 @@
 			<h5>RadioButton</h5>
 			<div class="grid">
 				<div class="col-12 md:col-4">
-					<div class="field-radiobutton">
+					<div class="field-radiobutton mb-0">
 						<p-radioButton name="city" value="Chicago" [(ngModel)]="valRadio" id="city1"></p-radioButton>
 						<label for="city1">Chicago</label>
 					</div>
@@ -112,21 +112,21 @@
 			<h5>Checkbox</h5>
 			<div class="grid">
 				<div class="col-12 md:col-4">
-					<div class="field-checkbox">
-						<p-checkbox name="group1" value="New York" [(ngModel)]="valCheck" id="ny"></p-checkbox>
-						<label for="ny">New York</label>
+					<div class="field-checkbox mb-0">
+						<p-checkbox name="group1" value="Chicago" [(ngModel)]="valCheck" id="ch"></p-checkbox>
+						<label for="ch">Chicago</label>
 					</div>
 				</div>
 				<div class="col-12 md:col-4">
-					<div class="field-checkbox">
-						<p-checkbox name="group1" value="San Francisco" [(ngModel)]="valCheck" id="sf"></p-checkbox>
-						<label for="sf">San Francisco</label>
-					</div>
-				</div>
-				<div class="col-12 md:col-4">
-					<div class="field-checkbox">
+					<div class="field-checkbox mb-0">
 						<p-checkbox name="group1" value="Los Angeles" [(ngModel)]="valCheck" id="la"></p-checkbox>
 						<label for="la">Los Angeles</label>
+					</div>
+				</div>
+				<div class="col-12 md:col-4">
+					<div class="field-checkbox mb-0">
+						<p-checkbox name="group1" value="New York" [(ngModel)]="valCheck" id="ny"></p-checkbox>
+						<label for="ny">New York</label>
 					</div>
 				</div>
 			</div>
@@ -142,10 +142,10 @@
 			<h5>Dropdown</h5>
 			<p-dropdown [options]="cities" [(ngModel)]="selectedDrop" placeholder="Select a City" [showClear]="true"></p-dropdown>
 
-			<h5>Multiselect</h5>
+			<h5>MultiSelect</h5>
 			<p-multiSelect [options]="countries" [(ngModel)]="selectedMulti" defaultLabel="Select a Country" optionLabel="name" class="multiselect-custom">
 				<ng-template let-value pTemplate="selectedItems">
-					<div class="country-item country-item-value" *ngFor="let option of selectedMulti">
+					<div class="country-item country-item-value inline-flex align-items-center py-1 px-2 bg-primary text-primary border-round mr-2" *ngFor="let option of selectedMulti">
 						<img src="assets/demo/flags/flag_placeholder.png" [class]="'flag flag-' + option.code.toLowerCase()" />
 						<div>{{option.name}}</div>
 					</div>
@@ -154,17 +154,20 @@
 					</div>
 				</ng-template>
 				<ng-template let-country pTemplate="item">
-					<div class="country-item">
-						<img src="assets/demo/flags/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />
+					<div class="flex align-items-center country-item">
+						<img src="assets/demo/flags/flag_placeholder.png" [class]="'mr-2 flag flag-' + country.code.toLowerCase()" style="width:18px; height:12px;"/>
 						<div>{{country.name}}</div>
 					</div>
 				</ng-template>
 			</p-multiSelect>
+
+			<h5>TreeSelect</h5>
+			<p-treeSelect [(ngModel)]="selectedNode" [options]="treeSelectNodes" placeholder="Select Item"></p-treeSelect>
 		</div>
 
 		<div class="card">
 			<h5>ToggleButton</h5>
-			<p-toggleButton [(ngModel)]="valToggle" onLabel="Yes" offLabel="No"></p-toggleButton>
+			<p-toggleButton [(ngModel)]="valToggle" onLabel="Yes" offLabel="No" [style]="{width:'10em'}"></p-toggleButton>
 
 			<h5>SelectButton</h5>
 			<p-selectButton [options]="paymentOptions" [(ngModel)]="valSelect1" optionLabel="name"></p-selectButton>

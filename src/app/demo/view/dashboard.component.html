@@ -1,4 +1,3 @@
-<div class="layout-main">
     <div class="grid">
         <div class="col-12 lg:col-6 xl:col-3">
             <div class="card mb-0">
@@ -75,11 +74,11 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-product>
                         <tr>
-                            <td>
+                            <td style="min-width: 5rem;">
                                 <img src="../../../assets/demo/images/product/{{product.image}}" class="shadow-4" alt="{{product.name}}" width="50">
                             </td>
-                            <td>{{product.name}}</td>
-                            <td>{{product.price | currency:'USD'}}</td>
+                            <td style="min-width: 7rem;">{{product.name}}</td>
+                            <td style="min-width: 8rem;">{{product.price | currency:'USD'}}</td>
                             <td>
                                 <button pButton pRipple type="button" icon="pi pi-search" class="p-button p-component p-button-text p-button-icon-only"></button>
                             </td>
@@ -241,4 +240,4 @@
         </div>
 
     </div>
-</div>
+

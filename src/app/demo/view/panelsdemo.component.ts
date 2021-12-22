@@ -3,27 +3,6 @@ import {MenuItem} from 'primeng/api';
 
 @Component({
     templateUrl: './panelsdemo.component.html',
-    styles: [`
-        :host ::ng-deep button {
-            margin-right: .25em;
-            margin-left: .25em;
-        }
-
-        :host ::ng-deep .p-splitbutton button {
-            margin-right: 0;
-            margin-left: 0;
-        }
-
-        :host ::ng-deep .p-splitter-panel-nested {
-            overflow: auto;
-        }
-
-        @media screen and (max-width: 960px) {
-            .card.toolbar-demo {
-                overflow: auto;
-            }
-        }
-    `]
 })
 export class PanelsDemoComponent implements OnInit {
 

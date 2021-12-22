@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CountryService} from '../service/countryservice';
+import {NodeService} from '../service/nodeservice';
 import {SelectItem} from 'primeng/api';
 
 @Component({
@@ -12,9 +13,9 @@ import {SelectItem} from 'primeng/api';
 		min-width: 20rem;
 	}
 
-	:host ::ng-deep .multiselect-custom .p-multiselect-label {
-		padding-top: .25rem;
-		padding-bottom: .25rem;
+	:host ::ng-deep .multiselect-custom .p-multiselect-label,  {
+		padding-top: 0.75rem;
+		padding-bottom: 0.75rem;
 
 	}
 
@@ -45,9 +46,6 @@ import {SelectItem} from 'primeng/api';
 		padding: 0.25rem;
 	}
 
-	:host ::ng-deep .p-colorpicker {
-		width: 2.5em
-	}
     `]
 })
 export class InputDemoComponent implements OnInit{
@@ -57,7 +55,7 @@ export class InputDemoComponent implements OnInit{
 
     selectedCountryAdvanced: any[];
 
-    valSlider = 0;
+    valSlider = 50;
 
     valColor = '#424242';
 
@@ -75,6 +73,10 @@ export class InputDemoComponent implements OnInit{
 
     selectedMulti: string[] = [];
 
+    treeSelectNodes: any[];
+
+    selectedNode: SelectItem;
+
     valToggle = false;
 
     paymentOptions: any[];
@@ -87,7 +89,7 @@ export class InputDemoComponent implements OnInit{
 
     selectedDate:any;
 
-    constructor(private countryService: CountryService) {}
+    constructor(private countryService: CountryService, private nodeService: NodeService) {}
 
     ngOnInit() {
         this.countryService.getCountries().then(countries => {
@@ -107,6 +109,8 @@ export class InputDemoComponent implements OnInit{
             {name: 'Option 2', value: 2},
             {name: 'Option 3', value: 3}
         ];
+
+        this.nodeService.getTreeNodes().then(data => this.treeSelectNodes = data);
     }
 
     filterCountry(event) {

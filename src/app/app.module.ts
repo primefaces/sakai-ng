@@ -84,6 +84,7 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
 import {ToolbarModule} from 'primeng/toolbar';
 import {TooltipModule} from 'primeng/tooltip';
 import {TreeModule} from 'primeng/tree';
+import {TreeSelect, TreeSelectModule} from 'primeng/treeselect';
 import {TreeTableModule} from 'primeng/treetable';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {BlockViewer} from './app.blockviewer.component'
@@ -223,6 +224,7 @@ FullCalendarModule.registerPlugins([
         ToolbarModule,
         TooltipModule,
         TreeModule,
+        TreeSelectModule,
         TreeTableModule,
         VirtualScrollerModule,
         AppCodeModule,

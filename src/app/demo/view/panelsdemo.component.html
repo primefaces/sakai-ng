@@ -1,18 +1,17 @@
 <div class="grid">
     <div class="col-12">
-        <div class="card panel-demo">
+        <div class="card">
             <h5>Toolbar</h5>
             <p-toolbar>
                 <div class="p-toolbar-group-left flex flex-wrap">
-                    <button pButton type="button" label="New" icon="pi pi-plus"></button>
-                    <button pButton type="button" label="Update" class="p-button-secondary"
-                            icon="pi pi-refresh"></button>
+                    <button pButton type="button" label="New" icon="pi pi-plus" class="mr-2 sm:mb-2"></button>
+                    <button pButton type="button" label="Open" icon="pi pi-folder-open" class="p-button-secondary mr-2"></button>
 
                     <i class="pi pi-bars p-toolbar-separator"></i>
 
-                    <button pButton type="button" class="p-button-success" icon="pi pi-check"></button>
-                    <button pButton type="button" class="p-button-help" icon="pi pi-print"></button>
-                    <button pButton type="button" class="p-button-danger" icon="pi pi-trash"></button>
+                    <button pButton type="button" icon="pi pi-check" class="p-button-success mr-2"></button>
+                    <button pButton type="button" icon="pi pi-trash" class="p-button-warning mr-2"></button>
+                    <button pButton type="button" icon="pi pi-print" class="p-button-danger sm:mb-2"></button>
                 </div>
 
                 <div class="p-toolbar-group-right">
@@ -26,7 +25,7 @@
         <div class="card">
             <h5>AccordionPanel</h5>
             <p-accordion>
-                <p-accordionTab header="Header I" [selected]="true">
+                <p-accordionTab header="Header I" [selected]="true" class="line-height-3 m-0">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -36,7 +35,7 @@
                     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
                     est laborum.
                 </p-accordionTab>
-                <p-accordionTab header="Header II">
+                <p-accordionTab header="Header II" class="line-height-3 m-0">
                     Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
                     totam rem aperiam, eaque
                     ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
@@ -45,7 +44,7 @@
                     voluptatem sequi nesciunt.
                     Consectetur, adipisci velit, sed quia non numquam eius modi.
                 </p-accordionTab>
-                <p-accordionTab header="Header III">
+                <p-accordionTab header="Header III" class="line-height-3 m-0">
                     At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
                     deleniti atque corrupti quos dolores
                     et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
@@ -60,7 +59,7 @@
         <div class="card">
             <h5>TabView</h5>
             <p-tabView orientation="left">
-                <p-tabPanel header="Header I">
+                <p-tabPanel header="Header I" class="line-height-3 m-0">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -70,7 +69,7 @@
                     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
                     est laborum.
                 </p-tabPanel>
-                <p-tabPanel header="Header II">
+                <p-tabPanel header="Header II" class="line-height-3 m-0">
                     Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
                     totam rem aperiam, eaque
                     ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
@@ -79,7 +78,7 @@
                     voluptatem sequi nesciunt.
                     Consectetur, adipisci velit, sed quia non numquam eius modi.
                 </p-tabPanel>
-                <p-tabPanel header="Header III">
+                <p-tabPanel header="Header III" class="line-height-3 m-0">
                     At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
                     deleniti atque corrupti quos dolores
                     et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
@@ -95,7 +94,7 @@
     <div class="col-12 md:col-6">
         <div class="card">
             <h5>Panel</h5>
-            <p-panel header="Header" [toggleable]="true">
+            <p-panel header="Header" [toggleable]="true" class="line-height-3 m-0">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua.
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -108,7 +107,7 @@
 
         <div class="card">
             <h5>Fieldset</h5>
-            <p-fieldset legend="Legend" toggleable="true">
+            <p-fieldset legend="Legend" toggleable="true" class="line-height-3 m-0">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua.
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -120,10 +119,10 @@
         </div>
 
         <div class="card">
-            <div class="flex align-items-center justify-content-between mb-0 p-3 pb-0">
+            <div class="flex align-items-center justify-content-between mb-0">
                 <h5>Card</h5>
                 <p-menu #menu [popup]="true" [model]="cardMenu"></p-menu>
-                <button pButton type="button" icon="pi pi-plus" class="p-button-rounded p-button-plain p-button-text"
+                <button pButton type="button" icon="pi pi-plus" class="p-button-text"
                         (click)="menu.toggle($event)"></button>
             </div>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -142,24 +141,24 @@
             <div class="grid">
                 <div class="col-5 flex align-items-center justify-content-center">
                     <div class="p-fluid">
-                        <div class="p-field mb-3">
+                        <div class="field">
                             <label for="username">Username</label>
                             <input pInputText id="username" type="text"/>
                         </div>
-                        <div class="p-field mb-3">
+                        <div class="field">
                             <label for="password">Password</label>
                             <input pInputText id="password" type="password"/>
                         </div>
-                        <p-button label="Login" styleClass="m-0"></p-button>
+                        <p-button label="Login" class="mt-2"></p-button>
                     </div>
                 </div>
-                <div class="col-1">
+                <div class="col-2">
                     <p-divider layout="vertical">
                         <b>OR</b>
                     </p-divider>
                 </div>
                 <div class="col-5 align-items-center justify-content-center">
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                    <p class="line-height-3 m-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
                         totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
                         architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
                         aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
@@ -169,7 +168,7 @@
                         <span class="p-tag">Badge</span>
                     </p-divider>
 
-                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
+                    <p class="line-height-3 m-0">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
                         deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
                         cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est
                         laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
@@ -179,7 +178,7 @@
                         <p-button label="Button" icon="pi pi-search" styleClass="p-button-outlined"></p-button>
                     </p-divider>
 
-                    <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et
+                    <p class="line-height-3 m-0">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et
                         voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur
                         a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis
                         doloribus asperiores repellat.
@@ -193,21 +192,21 @@
     <div class="col-12">
         <div class="card">
             <h5>Splitter</h5>
-            <p-splitter [style]="{'height': '300px'}" [panelSizes]="[20,80]" [minSizes]="[10,0]" styleClass="mb-5">
-                <ng-template pTemplate="panel">
-                    <div class="col flex align-items-center justify-content-center p-2" style="overflow: auto">
+            <p-splitter [style]="{'height': '300px'}" [minSizes]="[10,0]" styleClass="mb-5" [panelStyle]="{'overflow': 'scroll'}">
+                <ng-template pTemplate>
+                    <p class="col m-3">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                         ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
                         in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
                         id est laborum.
-                    </div>
+                    </p>
                 </ng-template>
-                <ng-template pTemplate="panel">
-                    <p-splitter layout="vertical" [panelSizes]="[30,70]" [minSizes]="[10,10]" panelStyleClass="splitter-overflow">
-                        <ng-template pTemplate="panel">
-                            <div class="d-flex align-items-center justify-content-center p-2">
+                <ng-template pTemplate>
+                    <p-splitter layout="vertical" [panelSizes]="[30,70]" [minSizes]="[10,10]" [style]="{'overflow':'scroll'}">
+                        <ng-template pTemplate>
+                            <p class="col m-3">
                                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
                                 doloremque
                                 laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
@@ -217,17 +216,17 @@
                                 aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
                                 voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius
                                 modi.
-                            </div>
+                            </p>
                         </ng-template>
-                        <ng-template pTemplate="panel">
-                            <div class="d-flex align-items-center justify-content-center p-2">
+                        <ng-template pTemplate>
+                            <p class="col m-3">
                                 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
                                 praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
                                 excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
                                 officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem
                                 rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est
                                 eligendi optio cumque nihil impedit quo minus.
-                            </div>
+                            </p>
                         </ng-template>
                     </p-splitter>
                 </ng-template>

@@ -1,42 +1,34 @@
 <div class="grid p-fluid">
     <div class="col-12 lg:col-6">
         <div class="card">
-            <h5 class="centerText">Linear Chart</h5>
+            <h5>Linear Chart</h5>
             <p-chart type="line" [data]="lineData" [options]="lineOptions" [style]="{'width': '50%'}"></p-chart>
         </div>
 
         <div class="card flex flex-column align-items-center">
-            <h5 class="centerText">Pie Chart</h5>
-            <div class="d-flex justify-content-center">
-                <p-chart type="pie" [data]="pieData" [options]="pieOptions" [style]="{'width': '50%'}"></p-chart>
-            </div>
+            <h5>Pie Chart</h5>
+            <p-chart type="pie" [data]="pieData" [options]="pieOptions" [style]="{'width': '50%'}"></p-chart>
         </div>
 
         <div class="card flex flex-column align-items-center">
-            <h5 class="centerText">Polar Area Chart</h5>
-            <div class="d-flex justify-content-center">
-                <p-chart type="polarArea" [data]="polarData" [options]="polarOptions" [style]="{'width': '50%'}"></p-chart>
-            </div>
+            <h5>Polar Area Chart</h5>
+            <p-chart type="polarArea" [data]="polarData" [options]="polarOptions" [style]="{'width': '50%'}"></p-chart>
         </div>
     </div>
     <div class="col-12 lg:col-6">
         <div class="card">
-            <h5 class="centerText">Bar Chart</h5>
+            <h5>Bar Chart</h5>
             <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
         </div>
 
         <div class="card flex flex-column align-items-center">
-            <h5 class="centerText">Doughnut Chart</h5>
-            <div class="d-flex justify-content-center">
-                <p-chart type="doughnut" [data]="pieData" [options]="pieOptions" [style]="{'width': '50%'}"></p-chart>
-            </div>
+            <h5>Doughnut Chart</h5>
+            <p-chart type="doughnut" [data]="pieData" [options]="pieOptions" [style]="{'width': '50%'}"></p-chart>
         </div>
 
         <div class="card flex flex-column align-items-center">
-            <h5 class="centerText">Radar Chart</h5>
-            <div class="d-flex justify-content-center">
-                <p-chart type="radar" [data]="radarData" [options]="radarOptions" [style]="{'width': '50%'}"></p-chart>
-            </div>
+            <h5>Radar Chart</h5>
+            <p-chart type="radar" [data]="radarData" [options]="radarOptions" [style]="{'width': '50%'}"></p-chart>
         </div>
     </div>
 </div>

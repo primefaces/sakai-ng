@@ -25,6 +25,8 @@ export class MenusDemoComponent implements OnInit {
 
     menuItems: MenuItem[];
 
+    plainMenuItems: MenuItem[];
+
     ngOnInit() {
 
         this.tieredItems = [
@@ -172,7 +174,7 @@ export class MenusDemoComponent implements OnInit {
                 separator: true
             },
             {
-                label: 'Quit', icon: 'pi pi-fw pi-sign-out'
+                label: 'Home', icon: 'pi pi-fw pi-home'
             },
         ];
 
@@ -238,6 +240,36 @@ export class MenusDemoComponent implements OnInit {
                         label: 'Billing',
                         icon: 'pi pi-fw pi-file'
                     }
+                ]
+            }
+        ];
+
+        this.plainMenuItems = [
+            {
+                label: 'Customers',
+                items: [
+                    {
+                        label: 'New',
+                        icon: 'pi pi-fw pi-plus'
+                    },
+                    {
+                        label: 'Edit',
+                        icon: 'pi pi-fw pi-user-edit'
+                    }
+                ]
+            },
+            {
+                label: 'Orders',
+                items: [
+                    {
+                        label: 'View',
+                        icon: 'pi pi-fw pi-list'
+                    },
+                    {
+                        label: 'Search',
+                        icon: 'pi pi-fw pi-search'
+                    }
+
                 ]
             }
         ];

@@ -1,6 +1,6 @@
 <div class="grid p-fluid">
     <div class="col-12">
-        <div class="card">
+        <div class="card card-w-title">
             <h5>MenuBar</h5>
             <p-menubar [model]="tieredItems">
                 <ng-template pTemplate="end">
@@ -14,50 +14,50 @@
     </div>
 
     <div class="col-12">
-        <div class="card">
+        <div class="card card-w-title">
             <h5>Breadcrumb</h5>
             <p-breadcrumb [model]="breadcrumbItems" [home]="{icon: 'pi pi-home'}"></p-breadcrumb>
         </div>
     </div>
-
+    <!-- TODO: ROUTERVIEW PROBLEM ? -->
     <div class="col-12 md:col-6">
-        <div class="card">
+        <div class="card card-w-title">
             <h5>Steps</h5>
             <p-steps [model]="stepsItems" [activeIndex]="1"></p-steps>
         </div>
     </div>
 
     <div class="col-12 md:col-6">
-        <div class="card">
+        <div class="card card-w-title">
             <h5>TabMenu</h5>
             <p-tabMenu [model]="tabMenuItems" [activeItem]="tabMenuItems[0]"></p-tabMenu>
         </div>
     </div>
 
     <div class="col-12 md:col-4">
-        <div class="card">
+        <div class="card card-w-title">
             <h5>TieredMenu</h5>
             <p-tieredMenu [model]="tieredItems"></p-tieredMenu>
         </div>
     </div>
 
     <div class="col-12 md:col-4">
-        <div class="card">
+        <div class="card card-w-title">
             <h5>Plain Menu</h5>
-            <p-menu [model]="items" [style]="{'width':'100%'}"></p-menu>
+            <p-menu [model]="plainMenuItems"></p-menu>
         </div>
     </div>
 
     <div class="col-12 md:col-4">
 
-        <div class="card">
+        <div class="card card-w-title">
             <h5>Overlay Menu</h5>
             
-            <p-menu #menu [popup]="true" [model]="items" style="width:175px"></p-menu>
-            <button type="button" pButton icon="pi pi-chevron-down" label="Options" (click)="menu.toggle($event)"></button>
+            <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
+            <button type="button" pButton icon="pi pi-chevron-down" label="Options" (click)="menu.toggle($event)" style="width:auto"></button>
         </div>
 
-        <div class="card">
+        <div class="card card-w-title">
             <h5>ContextMenu</h5>
             Right click to display.
             <p-contextMenu [global]="true" [model]="menuItems"></p-contextMenu>
@@ -65,7 +65,7 @@
     </div>
 
     <div class="col-12 md:col-6">
-        <div class="card">
+        <div class="card card-w-title">
             <h5>MegaMenu - Horizontal</h5>
             <p-megaMenu [model]="megaMenuItems"></p-megaMenu>
 
@@ -75,7 +75,7 @@
     </div>
 
     <div class="col-12 md:col-6">
-        <div class="card">
+        <div class="card card-w-title">
             <h5>PanelMenu</h5>
             <p-panelMenu [model]="panelMenuItems"></p-panelMenu>
         </div>
