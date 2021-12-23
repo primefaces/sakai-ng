@@ -26,13 +26,13 @@
             <div class="grid formgrid">
                 <div class="col-6">
                     <button type="button" pButton label="Image" (click)="op1.toggle($event)" class="p-button-success"></button>
-                    <p-overlayPanel #op1 [showCloseIcon]="true" [style]="{width: '375px'}">
+                    <p-overlayPanel #op1 [showCloseIcon]="true" [style]="{width: '450px'}">
                         <img src="assets/demo/images/nature/nature1.jpg" alt="Nature 1" style="width:100%"/>
                     </p-overlayPanel>
                 </div>
                 <div class="col-6">
                     <button type="button" pButton label="DataTable" (click)="op2.toggle($event)" class="p-button-success"></button>
-                    <p-overlayPanel #op2 [showCloseIcon]="true" [style]="{width: '375px'}">
+                    <p-overlayPanel #op2 [showCloseIcon]="true" [style]="{width: '450px'}">
                         <ng-template pTemplate>
                             <p-table [value]="products" selectionMode="single" [(selection)]="selectedProduct" [paginator]="true" [rows]="5" (onRowSelect)="op2.hide()" responsiveLayout="scroll">
                                 <ng-template pTemplate="header">
