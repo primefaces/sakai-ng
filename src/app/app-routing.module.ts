@@ -46,15 +46,7 @@ import {PaymentDemoComponent} from './demo/view/menu/paymentdemo.component';
                     {path: 'uikit/panel', component: PanelsDemoComponent},
                     {path: 'uikit/overlay', component: OverlaysDemoComponent},
                     {path: 'uikit/media', component: MediaDemoComponent},
-                    {path: 'uikit/menu', component: MenusDemoComponent,
-                        children: [
-                            {path:'', redirectTo: 'personal', pathMatch: 'full'},
-				            {path: 'personal', component: PersonalDemoComponent},
-                            {path:'seat', component: SeatDemoComponent},
-                            {path:'payment', component: PaymentDemoComponent},
-                            {path:'confirmation', component: ConfirmationDemoComponent},
-                        ]
-                    },
+                    {path: 'uikit/menu', loadChildren: () => import('./demo/view/menu/menudemo.module').then(m => m.MenudemoModule)},
                     {path: 'uikit/message', component: MessagesDemoComponent},
                     {path: 'uikit/misc', component: MiscDemoComponent},
                     {path: 'uikit/charts', component: ChartsDemoComponent},

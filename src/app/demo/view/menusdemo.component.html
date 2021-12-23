@@ -23,7 +23,8 @@
     <div class="col-12 md:col-6">
         <div class="card card-w-title">
             <h5>Steps</h5>
-            <p-steps [model]="routeItems" [readonly]="false" (activeIndexChange)="pageIndex = $event" [activeIndex]="pageIndex"></p-steps>
+            <p>Steps and TabMenu are integrated with the same child routes.</p>
+            <p-steps [model]="routeItems" [readonly]="false"></p-steps>
             <router-outlet></router-outlet>
         </div>
     </div>
@@ -31,6 +32,7 @@
     <div class="col-12 md:col-6">
         <div class="card card-w-title">
             <h5>TabMenu</h5>
+            <p>Steps and TabMenu are integrated with the same child routes.</p>
             <p-tabMenu [model]="routeItems"></p-tabMenu>
             <router-outlet></router-outlet>
         </div>
