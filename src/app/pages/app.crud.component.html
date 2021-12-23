@@ -1,20 +1,22 @@
-<div class="grid crud-demo">
+<div class="grid">
     <div class="col-12">
         <div class="card">
             <p-toast></p-toast>
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
-                    <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2 mb-2" (click)="openNew()"></button>
-                    <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger mb-2" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
+                    <div class="my-2">
+                        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
+                    </div>
                 </ng-template>
 
                 <ng-template pTemplate="right">
-                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 mb-2 inline-block"></p-fileUpload>
-                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help mb-2" (click)="dt.exportCSV()"></button>
+                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" [rowHover]="true" dataKey="id" styleClass="p-datatable-customers" class="p-datatable-responsive">
+            <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Manage Products</h5>
@@ -44,8 +46,8 @@
                         <td>
                             <p-tableCheckbox [value]="product"></p-tableCheckbox>
                         </td>
-                        <td><span class="p-column-title">Code</span>
-                            {{product.code}}
+                        <td style="min-width:8rem;"><span class="p-column-title">Code</span>
+                            {{product.code || product.id}}
                         </td>
                         <td style="min-width:10rem;">
                             <span class="p-column-title">Name</span>
@@ -82,7 +84,7 @@
                 <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image">
                 <div class="field">
                     <label for="name">Name</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
+                    <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.name}"/>
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.name">Name is required.</small>
                 </div>
                 <div class="field">
@@ -92,9 +94,9 @@
 
                 <div class="field">
                     <label for="status">Inventory Status</label>
-                    <p-dropdown id="status" [options]="statuses" optionLabel="label" [(ngModel)]="selectedStatus" placeholder="Select a Status" >
+                    <p-dropdown id="status" [options]="statuses" optionLabel="label" [(ngModel)]="product.inventoryStatus" placeholder="Select a Status">
                         <ng-template pTemplate="selectedItem">
-                            <span *ngIf="selectedStatus" [class]="'product-badge status-' + selectedStatus.value.toLowerCase()">{{selectedStatus.label}}</span>
+                            <span *ngIf="product && product.inventoryStatus" [class]="'product-badge status-' + product.inventoryStatus.value">{{product.inventoryStatus.label}}</span>
                         </ng-template>
                         <ng-template let-status pTemplate="status">
                             <span [class]="'product-badge status-' + status.value.toLowerCase()">{{status.label}}</span>
@@ -103,7 +105,7 @@
                 </div>
 
                 <div class="field">
-                    <label>Category</label>
+                    <label class="mb-3">Category</label>
                     <div class="formgrid grid">
                         <div class="field-radiobutton col-6">
                             <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="product.category"></p-radioButton>
@@ -142,6 +144,26 @@
             </ng-template>
         </p-dialog>
 
-        <p-confirmDialog [style]="{width: '350px'}"></p-confirmDialog>
+        <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="product">Are you sure you want to delete <b>{{product.name}}</b>?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span>Are you sure you want to delete selected products?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelected()"></button>
+            </ng-template>
+        </p-dialog>
     </div>
 </div>
