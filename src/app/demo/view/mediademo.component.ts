@@ -30,7 +30,7 @@ export class MediaDemoComponent implements OnInit {
       },
       {
           breakpoint: '768px',
-          numVisible: 1
+          numVisible: 3
       },
       {
           breakpoint: '560px',

@@ -37,7 +37,7 @@
         <div class="card">
             <h5>Galleria</h5>
             <p-galleria [value]="images" [responsiveOptions]="galleriaResponsiveOptions"
-                        [containerStyle]="{'max-width': '800px', 'margin':'auto'}" [numVisible]="7" [circular]="true">
+                        [containerStyle]="{'max-width': '800px', 'margin':'auto'}" [numVisible]="6" [circular]="true">
                 <ng-template pTemplate="item" let-item>
                     <img [src]="item.itemImageSrc" style="width: 100%; display: block;"/>
                 </ng-template>
