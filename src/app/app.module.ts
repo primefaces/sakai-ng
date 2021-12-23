@@ -108,6 +108,7 @@ import {ListDemoComponent} from './demo/view/listdemo.component';
 import {TreeDemoComponent} from './demo/view/treedemo.component';
 import {PanelsDemoComponent} from './demo/view/panelsdemo.component';
 import {OverlaysDemoComponent} from './demo/view/overlaysdemo.component';
+import {MediaDemoComponent} from './demo/view/mediademo.component';
 import {MenusDemoComponent} from './demo/view/menusdemo.component';
 import {MessagesDemoComponent} from './demo/view/messagesdemo.component';
 import {MiscDemoComponent} from './demo/view/miscdemo.component';
@@ -268,7 +269,8 @@ FullCalendarModule.registerPlugins([
         SeatDemoComponent,
         PaymentDemoComponent,
         PersonalDemoComponent,
-        ConfirmationDemoComponent
+        ConfirmationDemoComponent,
+        MediaDemoComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
