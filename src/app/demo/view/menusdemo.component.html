@@ -23,14 +23,16 @@
     <div class="col-12 md:col-6">
         <div class="card card-w-title">
             <h5>Steps</h5>
-            <p-steps [model]="stepsItems" [activeIndex]="1"></p-steps>
+            <p-steps [model]="routeItems" [readonly]="false" (activeIndexChange)="pageIndex = $event" [activeIndex]="pageIndex"></p-steps>
+            <router-outlet></router-outlet>
         </div>
     </div>
 
     <div class="col-12 md:col-6">
         <div class="card card-w-title">
             <h5>TabMenu</h5>
-            <p-tabMenu [model]="tabMenuItems" [activeItem]="tabMenuItems[0]"></p-tabMenu>
+            <p-tabMenu [model]="routeItems" [activeItem]="routeItems[0]"></p-tabMenu>
+            <router-outlet></router-outlet>
         </div>
     </div>
 

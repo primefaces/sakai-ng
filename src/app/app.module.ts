@@ -119,6 +119,10 @@ import {AppCrudComponent} from './pages/app.crud.component';
 import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
 import {IconsDemoComponent} from './demo/view/iconsdemo.component';
 import {AppBlocksDemoComponent} from './demo/view/app.blocksdemo.component';
+import {SeatDemoComponent} from './demo/view/menu/seatdemo.component';
+import {PaymentDemoComponent} from './demo/view/menu/paymentdemo.component';
+import {PersonalDemoComponent} from './demo/view/menu/personaldemo.component';
+import {ConfirmationDemoComponent} from './demo/view/menu/confirmationdemo.component';
 
 import {CountryService} from './demo/service/countryservice';
 import {CustomerService} from './demo/service/customerservice';
@@ -260,7 +264,11 @@ FullCalendarModule.registerPlugins([
         AppCrudComponent,
         AppTimelineDemoComponent,
         AppBlocksDemoComponent,
-        BlockViewer
+        BlockViewer,
+        SeatDemoComponent,
+        PaymentDemoComponent,
+        PersonalDemoComponent,
+        ConfirmationDemoComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

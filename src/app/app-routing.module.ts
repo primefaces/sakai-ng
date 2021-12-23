@@ -24,6 +24,10 @@ import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component'
 import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
 import {IconsDemoComponent} from './demo/view/iconsdemo.component';
 
+import {SeatDemoComponent} from './demo/view/menu/seatdemo.component';
+import {PersonalDemoComponent} from './demo/view/menu/personaldemo.component';
+import {ConfirmationDemoComponent} from './demo/view/menu/confirmationdemo.component';
+import {PaymentDemoComponent} from './demo/view/menu/paymentdemo.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -41,7 +45,14 @@ import {IconsDemoComponent} from './demo/view/iconsdemo.component';
                     {path: 'uikit/tree', component: TreeDemoComponent},
                     {path: 'uikit/panel', component: PanelsDemoComponent},
                     {path: 'uikit/overlay', component: OverlaysDemoComponent},
-                    {path: 'uikit/menu', component: MenusDemoComponent},
+                    {path: 'uikit/menu', component: MenusDemoComponent,
+                        children: [
+                            {path:'', component: PersonalDemoComponent },
+                            {path:'seat', component: SeatDemoComponent },
+                            {path:'payment', component: PaymentDemoComponent },
+                            {path:'confirmation', component: ConfirmationDemoComponent },
+                        ]
+                    },
                     {path: 'uikit/message', component: MessagesDemoComponent},
                     {path: 'uikit/misc', component: MiscDemoComponent},
                     {path: 'uikit/charts', component: ChartsDemoComponent},

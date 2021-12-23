@@ -13,7 +13,7 @@ export class MenusDemoComponent implements OnInit {
 
     items: MenuItem[];
 
-    tabMenuItems: MenuItem[];
+    routeItems: MenuItem[];
 
     megaMenuItems: MegaMenuItem[];
 
@@ -26,6 +26,8 @@ export class MenusDemoComponent implements OnInit {
     menuItems: MenuItem[];
 
     plainMenuItems: MenuItem[];
+
+    pageIndex: number = 0;
 
     ngOnInit() {
 
@@ -282,11 +284,11 @@ export class MenusDemoComponent implements OnInit {
         this.breadcrumbItems.push({ label: 'Backpacks' });
         this.breadcrumbItems.push({ label: 'Item' });
 
-        this.tabMenuItems = [
-            {label: 'Personal'},
-            {label: 'Seat'},
-            {label: 'Payment'},
-            {label: 'Confirmation'}
+        this.routeItems = [
+            {label: 'Personal',routerLink:''},
+            {label: 'Seat', routerLink:'seat'},
+            {label: 'Payment', routerLink:'payment'},
+            {label: 'Confirmation', routerLink:'confirmation'},
         ];
 
         this.megaMenuItems = [
@@ -464,21 +466,6 @@ export class MenusDemoComponent implements OnInit {
                         icon: 'pi pi-fw pi-file'
                     }
                 ]
-            }
-        ];
-
-        this.stepsItems = [
-            {
-                label: 'Personal'
-            },
-            {
-                label: 'Seat'
-            },
-            {
-                label: 'Payment'
-            },
-            {
-                label: 'Confirmation'
             }
         ];
     }
