@@ -5,7 +5,8 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 
 @Component({
     templateUrl: './app.crud.component.html',
-    providers: [MessageService, ConfirmationService]
+    providers: [MessageService, ConfirmationService],
+    styleUrls: ['../../assets/demo/badges.scss']
 })
 export class AppCrudComponent implements OnInit {
 
