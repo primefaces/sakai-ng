@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
         <pre [ngClass]="'language-' + lang"><code #code><ng-content></ng-content>
 </code></pre>
     `,
-    styleUrls: ['./app.code.component.scss']
 })
 export class AppCodeComponent implements AfterViewInit {
 

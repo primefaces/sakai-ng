@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { environment } from '../environments/environment';
+
 enum BlockView {
   PREVIEW,
   CODE
@@ -30,7 +31,8 @@ enum BlockView {
                 <ng-content></ng-content>
             </div>
             <div *ngIf="blockView == BlockView.CODE && !codeDisabled">
-                <app-code lang="markup" ngPreserveWhitespaces>{{code}}</app-code>
+                <app-code lang="markup" ngPreserveWhitespaces>{{code}}
+                </app-code>
             </div>
         </div>
     </div>

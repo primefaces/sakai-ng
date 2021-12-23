@@ -14,7 +14,8 @@
             <p>Sakai has no direct dependency other than PrimeNG. More information about dependencies is available at <a href="https://www.primefaces.org/why-primeng-templates/">Why PrimeNG Templates</a> article.</p>
 
 <app-code  ngPreserveWhitespaces ngNonBindable lang="markup">
-npm install -g @angular/cli</app-code>
+npm install -g @angular/cli
+</app-code>
 
             <p>Once CLI is ready in your system, extract the contents of the Sakai zip file distribution, cd to the directory,
             install the libraries from npm and then execute "ng serve" to run the application in your local environment.</p>
@@ -22,7 +23,8 @@ npm install -g @angular/cli</app-code>
 <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
 cd sakai-ng
 npm install
-ng serve</app-code>
+ng serve
+</app-code>
 
             <p>The application should run at http://localhost:4200/, you may now start with the development of your application.</p>
 
@@ -39,7 +41,8 @@ Run 'ng test' to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run 'ng e2e' to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-Run 'ng help' for more options.</app-code>
+Run 'ng help' for more options.
+</app-code>
 
             <h5>Structure</h5>
             <p>Sakai consists of 2 main parts; the application layout, layout resources. <i>app.component.html</i> inside app folder is the html template for the base layout,
@@ -78,7 +81,8 @@ Run 'ng help' for more options.</app-code>
     &lt;app-config&gt;&lt;/app-config&gt;
 
     &lt;div *ngIf=&quot;menuActiveMobile&quot; class=&quot;layout-mask p-component-overlay&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;</app-code>
+&lt;/div&gt;
+</app-code>
 
             <h5>Menu</h5>
             <p>Menu is a separate component defined in app.menu.component.ts file based on PrimeNG MenuModel API. In order to define the menuitems,
@@ -115,8 +119,14 @@ export class AppMenuComponent implements OnInit, AfterViewInit &#123;
                     &#123;label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/uikit/tree']&#125;,
                     &#123;label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel']&#125;,
                     &#123;label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/uikit/overlay']&#125;,
-                    &#123;label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/uikit/media']&#125;,
-                    &#123;label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu']&#125;,
+                    &#123;label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu'],
+                        children:[
+                            &#123;label: '', component: 'PersonalDemoComponent'&#125;,
+                            &#123;label: 'seat', component: 'SeatDemoComponent'&#125;,
+                            &#123;label: 'payment', component: 'PaymentDemoComponent'&#125;,
+                            &#123;label: 'confirmation', component: 'ConfirmationDemoComponent'&#125;,
+                        ]
+                    &#125;,
                     &#123;label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message']&#125;,
                     &#123;label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file']&#125;,
                     &#123;label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']&#125;,
