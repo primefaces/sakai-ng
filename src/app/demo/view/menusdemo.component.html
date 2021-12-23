@@ -19,7 +19,7 @@
             <p-breadcrumb [model]="breadcrumbItems" [home]="{icon: 'pi pi-home'}"></p-breadcrumb>
         </div>
     </div>
-    
+
     <div class="col-12 md:col-6">
         <div class="card card-w-title">
             <h5>Steps</h5>
@@ -31,7 +31,7 @@
     <div class="col-12 md:col-6">
         <div class="card card-w-title">
             <h5>TabMenu</h5>
-            <p-tabMenu [model]="routeItems" [activeItem]="routeItems[0]"></p-tabMenu>
+            <p-tabMenu [model]="routeItems"></p-tabMenu>
             <router-outlet></router-outlet>
         </div>
     </div>
@@ -54,7 +54,7 @@
 
         <div class="card card-w-title">
             <h5>Overlay Menu</h5>
-            
+
             <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
             <button type="button" pButton icon="pi pi-chevron-down" label="Options" (click)="menu.toggle($event)" style="width:auto"></button>
         </div>

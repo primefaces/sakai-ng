@@ -48,7 +48,8 @@ import {PaymentDemoComponent} from './demo/view/menu/paymentdemo.component';
                     {path: 'uikit/media', component: MediaDemoComponent},
                     {path: 'uikit/menu', component: MenusDemoComponent,
                         children: [
-                            {path:'', component: PersonalDemoComponent},
+                            {path:'', redirectTo: 'personal', pathMatch: 'full'},
+				            {path: 'personal', component: PersonalDemoComponent},
                             {path:'seat', component: SeatDemoComponent},
                             {path:'payment', component: PaymentDemoComponent},
                             {path:'confirmation', component: ConfirmationDemoComponent},
