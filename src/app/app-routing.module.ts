@@ -47,10 +47,10 @@ import {PaymentDemoComponent} from './demo/view/menu/paymentdemo.component';
                     {path: 'uikit/overlay', component: OverlaysDemoComponent},
                     {path: 'uikit/menu', component: MenusDemoComponent,
                         children: [
-                            {path:'', component: PersonalDemoComponent },
-                            {path:'seat', component: SeatDemoComponent },
-                            {path:'payment', component: PaymentDemoComponent },
-                            {path:'confirmation', component: ConfirmationDemoComponent },
+                            {path:'', component: PersonalDemoComponent},
+                            {path:'seat', component: SeatDemoComponent},
+                            {path:'payment', component: PaymentDemoComponent},
+                            {path:'confirmation', component: ConfirmationDemoComponent},
                         ]
                     },
                     {path: 'uikit/message', component: MessagesDemoComponent},
