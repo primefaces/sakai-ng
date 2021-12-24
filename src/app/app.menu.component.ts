@@ -30,10 +30,9 @@ export class AppMenuComponent implements OnInit {
         this.model = [
             {
                 label: 'Home',
-                items:[{
-                    label: 'Dashboard',
-                    icon: 'pi pi-fw pi-home', routerLink: ['/']
-                }]
+                items:[
+                    {label: 'Dashboard',icon: 'pi pi-fw pi-home', routerLink: ['/']}
+                ]
             },
             {
                 label: 'UI Components',

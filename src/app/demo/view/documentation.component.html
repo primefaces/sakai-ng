@@ -105,9 +105,14 @@ export class AppMenuComponent implements OnInit, AfterViewInit &#123;
 
     ngOnInit() &#123;
         this.model = [
-            &#123;label: 'Dashboard', icon: 'pi pi-home', routerLink: ['/']&#125;,
             &#123;
-                label: 'UI Kit', icon: 'pi pi-star', routerLink: ['/uikit'],
+            label: 'Home',
+            items: [
+                &#123;label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']&#125;
+                ]
+            &#125;,
+            &#123;
+                label: 'UI Kit',
                 items: [
                     &#123;label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']&#125;,
                     &#123;label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input']&#125;,
