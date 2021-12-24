@@ -19,26 +19,21 @@
             <p-breadcrumb [model]="breadcrumbItems" [home]="{icon: 'pi pi-home'}"></p-breadcrumb>
         </div>
     </div>
-    
+
     <div class="col-12">
         <div class="card flex flex-wrap">
-            <div class="col-12 md:col-6 justify-content-center">
+            <div class="col-12 md:col-8">
                 <div class="card-w-title">
-                    <h5>Steps</h5>
-                    <p>Steps and TabMenu are integrated with the same child routes.</p>
-                    <p-steps [model]="routeItems" [readonly]="false"></p-steps>
+                    <h5>TabMenu and Steps</h5>
+                    <p>TabMenu and Steps are integrated with the same child routes.</p>
+                </div>
+                <div class="col-12">
+                    <p-tabMenu [model]="routeItems"></p-tabMenu>
+                    <p-steps [model]="routeItems" styleClass="mt-5" [readonly]="false"></p-steps>
                 </div>
             </div>
 
-            <div class="col-12 md:col-6 mt-5 sm:mt-0">
-                <div class="card-w-title">
-                    <h5>TabMenu</h5>
-                    <p>Steps and TabMenu are integrated with the same child routes.</p>
-                    <p-tabMenu [model]="routeItems"></p-tabMenu>
-                </div>
-            </div>
-            
-            <div class="col-12 md:col-4 mx-auto">
+            <div class="col-12 md:col-4 align-self-center">
                 <router-outlet></router-outlet>
             </div>
         </div>
