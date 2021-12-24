@@ -21,19 +21,16 @@
     </div>
 
     <div class="col-12">
-        <div class="card flex flex-wrap">
+        <div class="card card-w-title flex flex-wrap">
+            <div class="col-12">
+                <h5>TabMenu and Steps</h5>
+                <p>TabMenu and Steps are integrated with the same child routes.</p>
+            </div>
             <div class="col-12 md:col-8">
-                <div class="card-w-title">
-                    <h5>TabMenu and Steps</h5>
-                    <p>TabMenu and Steps are integrated with the same child routes.</p>
-                </div>
-                <div class="col-12">
                     <p-tabMenu [model]="routeItems"></p-tabMenu>
                     <p-steps [model]="routeItems" styleClass="mt-5" [readonly]="false"></p-steps>
-                </div>
             </div>
-
-            <div class="col-12 md:col-4 align-self-center">
+            <div class="col-12 md:col-4 align-self-center h-full">
                 <router-outlet></router-outlet>
             </div>
         </div>
