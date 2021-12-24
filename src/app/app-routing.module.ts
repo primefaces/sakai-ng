@@ -24,10 +24,6 @@ import {FloatLabelDemoComponent} from './demo/view/floatlabeldemo.component';
 import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component';
 import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
 import {IconsDemoComponent} from './demo/view/iconsdemo.component';
-import {SeatDemoComponent} from './demo/view/menu/seatdemo.component';
-import {PersonalDemoComponent} from './demo/view/menu/personaldemo.component';
-import {ConfirmationDemoComponent} from './demo/view/menu/confirmationdemo.component';
-import {PaymentDemoComponent} from './demo/view/menu/paymentdemo.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
