@@ -9,6 +9,9 @@
 		<div class="card">
 			<h4>TreeTable</h4>
 			<p-treeTable [value]="files2" [columns]="cols" selectionMode="checkbox" [(selection)]="selectedFiles2">
+				<ng-template pTemplate="caption">
+					FileSystem
+				</ng-template>
 				<ng-template pTemplate="header" let-columns>
 					<tr>
 						<th *ngFor="let col of columns">
