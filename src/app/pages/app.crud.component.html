@@ -46,28 +46,28 @@
                         <td>
                             <p-tableCheckbox [value]="product"></p-tableCheckbox>
                         </td>
-                        <td style="min-width:8rem;"><span class="p-column-title">Code</span>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
                             {{product.code || product.id}}
                         </td>
-                        <td style="min-width:10rem;">
+                        <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Name</span>
                             {{product.name}}
                         </td>
-                        <td><span class="p-column-title">Image</span>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Image</span>
                             <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" />
                         </td>
-                        <td style="min-width:8rem;">
+                        <td style="width:14%; min-width:8rem;">
                             <span class="p-column-title">Price</span>
                             {{product.price | currency:'USD'}}
                         </td>
-                        <td style="min-width:10rem;">
+                        <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Category</span>
                             {{product.category}}
                         </td>
-                        <td style="min-width: 10rem;"><span class="p-column-title">Reviews</span>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Reviews</span>
                             <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
                         </td>
-                        <td><span class="p-column-title">Status</span>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Status</span>
                             <span [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span>
                         </td>
                         <td>
