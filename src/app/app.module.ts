@@ -32,7 +32,6 @@ import {DividerModule} from 'primeng/divider';
 import {DropdownModule} from 'primeng/dropdown';
 import {FieldsetModule} from 'primeng/fieldset';
 import {FileUploadModule} from 'primeng/fileupload';
-import {FullCalendarModule} from '@fullcalendar/angular';
 import {GalleriaModule} from 'primeng/galleria';
 import {ImageModule} from 'primeng/image';
 import {InplaceModule} from 'primeng/inplace';
@@ -134,16 +133,6 @@ import {PhotoService} from './demo/service/photoservice';
 import {ProductService} from './demo/service/productservice';
 import {MenuService} from './app.menu.service';
 
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-
-FullCalendarModule.registerPlugins([
-    dayGridPlugin,
-    timeGridPlugin,
-    interactionPlugin
-]);
-
 @NgModule({
     imports: [
         BrowserModule,
@@ -177,7 +166,6 @@ FullCalendarModule.registerPlugins([
         DropdownModule,
         FieldsetModule,
         FileUploadModule,
-        FullCalendarModule,
         GalleriaModule,
         ImageModule,
         InplaceModule,
