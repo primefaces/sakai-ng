@@ -86,9 +86,9 @@ import {TreeModule} from 'primeng/tree';
 import {TreeSelectModule} from 'primeng/treeselect';
 import {TreeTableModule} from 'primeng/treetable';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
-import {BlockViewer} from './app.blockviewer.component'
+import {BlockViewer} from './components/app-blockviewer/app.blockviewer.component';
 
-import {AppCodeModule} from './app.code.component';
+import {AppCodeModule} from './components/app-code/app.code.component';
 import {AppComponent} from './app.component';
 import {AppMainComponent} from './app.main.component';
 import {AppTopBarComponent} from './app.topbar.component';
@@ -96,42 +96,38 @@ import {AppFooterComponent} from './app.footer.component';
 import {AppConfigComponent} from './app.config.component';
 import {AppMenuComponent} from './app.menu.component';
 import {AppMenuitemComponent} from './app.menuitem.component';
-import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
-import {FormLayoutDemoComponent} from './demo/view/formlayoutdemo.component';
-import {FloatLabelDemoComponent} from './demo/view/floatlabeldemo.component';
-import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component';
-import {InputDemoComponent} from './demo/view/inputdemo.component';
-import {ButtonDemoComponent} from './demo/view/buttondemo.component';
-import {TableDemoComponent} from './demo/view/tabledemo.component';
-import {ListDemoComponent} from './demo/view/listdemo.component';
-import {TreeDemoComponent} from './demo/view/treedemo.component';
-import {PanelsDemoComponent} from './demo/view/panelsdemo.component';
-import {OverlaysDemoComponent} from './demo/view/overlaysdemo.component';
-import {MediaDemoComponent} from './demo/view/mediademo.component';
-import {MenusDemoComponent} from './demo/view/menusdemo.component';
-import {MessagesDemoComponent} from './demo/view/messagesdemo.component';
-import {MiscDemoComponent} from './demo/view/miscdemo.component';
-import {EmptyDemoComponent} from './demo/view/emptydemo.component';
-import {ChartsDemoComponent} from './demo/view/chartsdemo.component';
-import {FileDemoComponent} from './demo/view/filedemo.component';
-import {DocumentationComponent} from './demo/view/documentation.component';
-import {AppCrudComponent} from './pages/app.crud.component';
-import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
-import {IconsDemoComponent} from './demo/view/iconsdemo.component';
-import {AppBlocksDemoComponent} from './demo/view/app.blocksdemo.component';
-import {SeatDemoComponent} from './demo/view/menu/seatdemo.component';
-import {PaymentDemoComponent} from './demo/view/menu/paymentdemo.component';
-import {PersonalDemoComponent} from './demo/view/menu/personaldemo.component';
-import {ConfirmationDemoComponent} from './demo/view/menu/confirmationdemo.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {FormLayoutComponent} from './components/formlayout/formlayout.component';
+import {FloatLabelComponent} from './components/floatlabel/floatlabel.component';
+import {InvalidStateComponent} from './components/invalidstate/invalidstate.component';
+import {InputComponent} from './components/input/input.component';
+import {ButtonComponent} from './components/button/button.component';
+import {TableComponent} from './components/table/table.component';
+import {ListComponent} from './components/list/list.component';
+import {TreeComponent} from './components/tree/tree.component';
+import {PanelsComponent} from './components/panels/panels.component';
+import {OverlaysComponent} from './components/overlays/overlays.component';
+import {MediaComponent} from './components/media/media.component';
+import {MenusComponent} from './components/menus/menus.component';
+import {MessagesComponent} from './components/messages/messages.component';
+import {MiscComponent} from './components/misc/misc.component';
+import {EmptyComponent} from './components/empty/empty.component';
+import {ChartsComponent} from './components/charts/charts.component';
+import {FileComponent} from './components/file/file.component';
+import {DocumentationComponent} from './components/documentation/documentation.component';
+import {CrudComponent} from './components/crud/crud.component';
+import {TimelineComponent} from './components/timeline/timeline.component';
+import {IconsComponent} from './components/icons/icons.component';
+import {AppBlocksComponent} from './components/app-blocks/app-blocks.component';
 
-import {CountryService} from './demo/service/countryservice';
-import {CustomerService} from './demo/service/customerservice';
-import {EventService} from './demo/service/eventservice';
-import {IconService} from './demo/service/iconservice';
-import {NodeService} from './demo/service/nodeservice';
-import {PhotoService} from './demo/service/photoservice';
-import {ProductService} from './demo/service/productservice';
-import {MenuService} from './app.menu.service';
+import {CountryService} from './service/countryservice';
+import {CustomerService} from './service/customerservice';
+import {EventService} from './service/eventservice';
+import {IconService} from './service/iconservice';
+import {NodeService} from './service/nodeservice';
+import {PhotoService} from './service/photoservice';
+import {ProductService} from './service/productservice';
+import {MenuService} from './service/app.menu.service';
 
 @NgModule({
     imports: [
@@ -230,35 +226,35 @@ import {MenuService} from './app.menu.service';
         AppConfigComponent,
         AppMenuComponent,
         AppMenuitemComponent,
-        DashboardDemoComponent,
-        FormLayoutDemoComponent,
-        FloatLabelDemoComponent,
-        InvalidStateDemoComponent,
-        InputDemoComponent,
-        ButtonDemoComponent,
-        TableDemoComponent,
-        ListDemoComponent,
-        TreeDemoComponent,
-        PanelsDemoComponent,
-        OverlaysDemoComponent,
-        MenusDemoComponent,
-        MessagesDemoComponent,
-        MessagesDemoComponent,
-        MiscDemoComponent,
-        ChartsDemoComponent,
-        EmptyDemoComponent,
-        FileDemoComponent,
-        IconsDemoComponent,
+        DashboardComponent,
+        FormLayoutComponent,
+        FloatLabelComponent,
+        InvalidStateComponent,
+        InputComponent,
+        ButtonComponent,
+        TableComponent,
+        ListComponent,
+        TreeComponent,
+        PanelsComponent,
+        OverlaysComponent,
+        MenusComponent,
+        MessagesComponent,
+        MessagesComponent,
+        MiscComponent,
+        ChartsComponent,
+        EmptyComponent,
+        FileComponent,
+        IconsComponent,
         DocumentationComponent,
-        AppCrudComponent,
-        AppTimelineDemoComponent,
-        AppBlocksDemoComponent,
+        CrudComponent,
+        TimelineComponent,
+        AppBlocksComponent,
         BlockViewer,
-        SeatDemoComponent,
-        PaymentDemoComponent,
-        PersonalDemoComponent,
-        ConfirmationDemoComponent,
-        MediaDemoComponent
+        // SeatDemoComponent,
+        // PaymentDemoComponent,
+        // PersonalDemoComponent,
+        // ConfirmationDemoComponent,
+        MediaComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

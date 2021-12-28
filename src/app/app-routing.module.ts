@@ -1,56 +1,57 @@
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
-import {FormLayoutDemoComponent} from './demo/view/formlayoutdemo.component';
-import {PanelsDemoComponent} from './demo/view/panelsdemo.component';
-import {OverlaysDemoComponent} from './demo/view/overlaysdemo.component';
-import {MediaDemoComponent} from './demo/view/mediademo.component';
-import {MessagesDemoComponent} from './demo/view/messagesdemo.component';
-import {MiscDemoComponent} from './demo/view/miscdemo.component';
-import {EmptyDemoComponent} from './demo/view/emptydemo.component';
-import {ChartsDemoComponent} from './demo/view/chartsdemo.component';
-import {FileDemoComponent} from './demo/view/filedemo.component';
-import {DocumentationComponent} from './demo/view/documentation.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {FormLayoutComponent} from './components/formlayout/formlayout.component';
+import {PanelsComponent} from './components/panels/panels.component';
+import {OverlaysComponent} from './components/overlays/overlays.component';
+import {MediaComponent} from './components/media/media.component';
+import {MessagesComponent} from './components/messages/messages.component';
+import {MiscComponent} from './components/misc/misc.component';
+import {EmptyComponent} from './components/empty/empty.component';
+import {ChartsComponent} from './components/charts/charts.component';
+import {FileComponent} from './components/file/file.component';
+import {DocumentationComponent} from './components/documentation/documentation.component';
 import {AppMainComponent} from './app.main.component';
-import {InputDemoComponent} from './demo/view/inputdemo.component';
-import {ButtonDemoComponent} from './demo/view/buttondemo.component';
-import {TableDemoComponent} from './demo/view/tabledemo.component';
-import {ListDemoComponent} from './demo/view/listdemo.component';
-import {TreeDemoComponent} from './demo/view/treedemo.component';
-import {AppCrudComponent} from './pages/app.crud.component';
-import {AppBlocksDemoComponent} from './demo/view/app.blocksdemo.component';
-import {FloatLabelDemoComponent} from './demo/view/floatlabeldemo.component';
-import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component';
-import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
-import {IconsDemoComponent} from './demo/view/iconsdemo.component';
+import {InputComponent} from './components/input/input.component';
+import {ButtonComponent} from './components/button/button.component';
+import {TableComponent} from './components/table/table.component';
+import {ListComponent} from './components/list/list.component';
+import {TreeComponent} from './components/tree/tree.component';
+import {CrudComponent} from './components/crud/crud.component';
+import {AppBlocksComponent} from './components/app-blocks/app-blocks.component';
+import {FloatLabelComponent} from './components/floatlabel/floatlabel.component';
+import {InvalidStateComponent} from './components/invalidstate/invalidstate.component';
+import {TimelineComponent} from './components/timeline/timeline.component';
+import {IconsComponent} from './components/icons/icons.component';
+import {MenusComponent} from './components/menus/menus.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
             {
                 path: '', component: AppMainComponent,
                 children: [
-                    {path: '', component: DashboardDemoComponent},
-                    {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
-                    {path: 'uikit/input', component: InputDemoComponent},
-                    {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
-                    {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},
-                    {path: 'uikit/button', component: ButtonDemoComponent},
-                    {path: 'uikit/table', component: TableDemoComponent},
-                    {path: 'uikit/list', component: ListDemoComponent},
-                    {path: 'uikit/tree', component: TreeDemoComponent},
-                    {path: 'uikit/panel', component: PanelsDemoComponent},
-                    {path: 'uikit/overlay', component: OverlaysDemoComponent},
-                    {path: 'uikit/media', component: MediaDemoComponent},
-                    {path: 'uikit/menu', loadChildren: () => import('./demo/view/menu/menudemo.module').then(m => m.MenudemoModule)},
-                    {path: 'uikit/message', component: MessagesDemoComponent},
-                    {path: 'uikit/misc', component: MiscDemoComponent},
-                    {path: 'uikit/charts', component: ChartsDemoComponent},
-                    {path: 'uikit/file', component: FileDemoComponent},
-                    {path: 'pages/crud', component: AppCrudComponent},
-                    {path: 'pages/timeline', component: AppTimelineDemoComponent},
-                    {path: 'pages/empty', component: EmptyDemoComponent},
-                    {path: 'icons', component: IconsDemoComponent},
-                    {path: 'blocks', component: AppBlocksDemoComponent},
+                    {path: '', component: DashboardComponent},
+                    {path: 'uikit/formlayout', component: FormLayoutComponent},
+                    {path: 'uikit/input', component: InputComponent},
+                    {path: 'uikit/floatlabel', component: FloatLabelComponent},
+                    {path: 'uikit/invalidstate', component: InvalidStateComponent},
+                    {path: 'uikit/button', component: ButtonComponent},
+                    {path: 'uikit/table', component: TableComponent},
+                    {path: 'uikit/list', component: ListComponent},
+                    {path: 'uikit/tree', component: TreeComponent},
+                    {path: 'uikit/panel', component: PanelsComponent},
+                    {path: 'uikit/overlay', component: OverlaysComponent},
+                    {path: 'uikit/media', component: MediaComponent},
+                    {path: 'uikit/menu', component: MenusComponent},
+                    {path: 'uikit/message', component: MessagesComponent},
+                    {path: 'uikit/misc', component: MiscComponent},
+                    {path: 'uikit/charts', component: ChartsComponent},
+                    {path: 'uikit/file', component: FileComponent},
+                    {path: 'pages/crud', component: CrudComponent},
+                    {path: 'pages/timeline', component: TimelineComponent},
+                    {path: 'pages/empty', component: EmptyComponent},
+                    {path: 'icons', component: IconsComponent},
+                    {path: 'blocks', component: AppBlocksComponent},
                     {path: 'documentation', component: DocumentationComponent}
                 ]
             },
