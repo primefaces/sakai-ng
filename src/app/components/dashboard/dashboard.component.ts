@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {MenuModule} from 'primeng/menu';
-import {MenuItem} from 'primeng/api';
-import {Product} from '../../api/product';
-import {ProductService} from '../../service/productservice';
+import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
+import { Product } from '../../api/product';
+import { ProductService } from '../../service/productservice';
  
 @Component({
     templateUrl: './dashboard.component.html',

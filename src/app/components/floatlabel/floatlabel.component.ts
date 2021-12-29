@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {CountryService} from '../../service/countryservice';
+import { Component, OnInit } from '@angular/core';
+import { CountryService } from '../../service/countryservice';
 
 @Component({
     templateUrl: './floatlabel.component.html',

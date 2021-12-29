@@ -1,5 +1,5 @@
-import {Component, AfterViewInit, OnDestroy, ViewChild, Renderer2, OnInit} from '@angular/core';
-import {trigger, state, style, transition, animate} from '@angular/animations';
+import { Component, AfterViewInit, OnDestroy, Renderer2, OnInit } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { PrimeNGConfig } from 'primeng/api';
 import { AppComponent } from './app.component';
 

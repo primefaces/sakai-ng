@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {CountryService} from '../../service/countryservice';
-import {NodeService} from '../../service/nodeservice';
-import {SelectItem} from 'primeng/api';
+import { Component, OnInit } from '@angular/core';
+import { CountryService } from '../../service/countryservice';
+import { NodeService } from '../../service/nodeservice';
+import { SelectItem } from 'primeng/api';
 
 @Component({
     templateUrl: './input.component.html',

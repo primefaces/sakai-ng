@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {PrimeIcons} from 'primeng/api';
+import { Component, OnInit } from '@angular/core';
+import { PrimeIcons } from 'primeng/api';
 
 @Component({
     templateUrl: './timeline.component.html',

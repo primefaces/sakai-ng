@@ -1,11 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {CountryService} from '../../service/countryservice';
+import { Component, OnInit } from '@angular/core';
+import { CountryService } from '../../service/countryservice';
 
 @Component({
     templateUrl: './invalidstate.component.html'
 })
 export class InvalidStateComponent implements OnInit {
-
 
     countries: any[];
 

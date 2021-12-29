@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Product} from '../../api/product';
-import {ProductService} from '../../service/productservice';
-import {ConfirmationService, MessageService} from 'primeng/api';
+import { Component, OnInit } from '@angular/core';
+import { Product } from '../../api/product';
+import { ProductService } from '../../service/productservice';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
     templateUrl: './crud.component.html',

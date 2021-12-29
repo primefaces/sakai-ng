@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {MegaMenuItem, MenuItem} from 'primeng/api';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MegaMenuItem, MenuItem } from 'primeng/api';
 
 @Component({
     templateUrl: './menus.component.html',
