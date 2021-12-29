@@ -22,15 +22,14 @@
 
     <div class="col-12">
         <div class="card card-w-title flex flex-wrap">
-            <div class="col-12">
-                <h5>TabMenu and Steps</h5>
-                <p>TabMenu and Steps are integrated with the same child routes.</p>
+            <div class="col-12 md:col-8 h-full">
+                <h5>TabMenu</h5>
+                <p-tabMenu styleClass="mb-5" [model]="routeItems"></p-tabMenu>
+
+                <h5>Steps</h5>
+                <p-steps [model]="routeItems" styleClass="mt-5" [readonly]="false"></p-steps>
             </div>
-            <div class="col-12 md:col-8">
-                    <p-tabMenu [model]="routeItems"></p-tabMenu>
-                    <p-steps [model]="routeItems" styleClass="mt-5" [readonly]="false"></p-steps>
-            </div>
-            <div class="col-12 md:col-4 align-self-center h-full">
+            <div class="col-12 md:col-4 mt-5 md:mt-0">
                 <router-outlet></router-outlet>
             </div>
         </div>
