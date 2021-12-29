@@ -1,8 +1,7 @@
 <div class="grid">
     <div class="col-12">
         <div class="card docs">
-
-            <h4>Current Version</h4>
+            <h3>Current Version</h3>
             <p>Angular 13 and PrimeNG 13</p>
 
             <h4>Getting Started</h4>
@@ -10,25 +9,23 @@
                 the command below to set it up.
             </p>
 
-            <h4>Dependencies</h4>
-            <p>Sakai has no direct dependency other than PrimeNG. More information about dependencies is available at <a href="https://www.primefaces.org/why-primeng-templates/">Why PrimeNG Templates</a> article.</p>
-
 <app-code  ngPreserveWhitespaces ngNonBindable lang="markup">
 npm install -g @angular/cli
 </app-code>
 
-            <p>Once CLI is ready in your system, extract the contents of the Sakai zip file distribution, cd to the directory,
+            <p>Once CLI is ready in your system, clone the github repository, cd to the directory,
             install the libraries from npm and then execute "ng serve" to run the application in your local environment.</p>
 
 <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
+git clone https://github.com/primefaces/sakai-ng.git
 cd sakai-ng
 npm install
 ng serve
 </app-code>
 
-            <p>The application should run at http://localhost:4200/, you may now start with the development of your application.</p>
+            <p>The application should run at <i>http://localhost:4200/</i>, you may now start with the development of your application.</p>
 
-            <h4>Important CLI Commands</h4>
+            <h5>Important CLI Commands</h5>
             <p>Following commands are derived from CLI.</p>
 <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
 Run 'ng serve' for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -44,7 +41,10 @@ Run 'ng e2e' to execute the end-to-end tests via [Protractor](http://www.protrac
 Run 'ng help' for more options.
 </app-code>
 
-            <h5>Structure</h5>
+            <h5>Dependencies</h5>
+            <p>Sakai has no direct dependency other than PrimeNG. More information about dependencies of PrimeNG templates is available at <a href="https://www.primefaces.org/why-primeng-templates/">Why PrimeNG Templates</a> article.</p>
+
+            <h4>Structure</h4>
             <p>Sakai consists of 2 main parts; the application layout, layout resources. <i>app.component.html</i> inside app folder is the html template for the base layout,
                 required resources for the layout are placed inside the <i>src/assets/layout</i> folder and similarly theme resources are inside <i>src/assets/theme</i> folder.
             </p>
@@ -53,213 +53,17 @@ Run 'ng help' for more options.
             <p>Main layout is the html template of the app.main.component.ts, it is divided into a couple of sections such as topbar, sidebar, right panel and footer. Here is the code for
                 the main template. The component class app.main.component.ts implements the logic such as opening menus and managing layout modes.
             </p>
-<app-code ngPreserveWhitespaces ngNonBindable>
-&lt;div class=&quot;layout-wrapper&quot; [ngClass]=&quot;&#123;
-                    'layout-overlay':isOverlay(),
-                    'layout-static':isStatic(),
-                    'layout-theme-light': !app.darkMode,
-                    'layout-theme-dark': app.darkMode,
-                    'layout-overlay-sidebar-active': overlayMenuActive,
-                    'layout-static-sidebar-inactive': staticMenuInactive,
-                    'layout-mobile-sidebar-active': menuActiveMobile,
-                    'p-ripple-disabled': !app.ripple, 'p-input-filled' : app.inputStyle === 'filled'&#125;&quot;
-
-    &lt;app-topbar&gt;&lt;/app-topbar&gt;
-
-    &lt;div class=&quot;layout-sidebar&quot;&gt;
-        &lt;app-menu&gt;&lt;/app-menu&gt;
-    &lt;/div&gt;
-
-    &lt;div class=&quot;layout-main-container&quot;&gt;
-        &lt;div class=&quot;layout-main&quot;&gt;
-            &lt;router-outlet&gt;&lt;/router-outlet&gt;
-        &lt;/div&gt;
-
-        &lt;app-footer&gt;&lt;/app-footer&gt;
-    &lt;/div&gt;
-
-    &lt;app-config&gt;&lt;/app-config&gt;
-
-    &lt;div *ngIf=&quot;menuActiveMobile&quot; class=&quot;layout-mask p-component-overlay&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-</app-code>
 
             <h5>Menu</h5>
             <p>Menu is a separate component defined in app.menu.component.ts file based on PrimeNG MenuModel API. In order to define the menuitems,
             navigate to this file and define your own model as a nested structure. Here is the menu component from the sample application.</p>
 
-<div style="height:400px;overflow: auto;">
-<app-code ngPreserveWhitespaces ngNonBindable lang="javascript">
-import &#123; Component, OnInit &#125; from '@angular/core';
-import &#123; AppMainComponent &#125; from './app.main.component';
-
-@Component(&#123;
-    selector: 'app-menu',
-    templateUrl: './app.menu.component.html'
-&#125;)
-export class AppMenuComponent implements OnInit, AfterViewInit &#123;
-
-    model: any[];
-
-    constructor(public appMain: AppMainComponent) &#123; &#125;
-
-    ngOnInit() &#123;
-        this.model = [
-            &#123;
-            label: 'Home',
-            items: [
-                &#123;label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']&#125;
-                ]
-            &#125;,
-            &#123;
-                label: 'UI Kit',
-                items: [
-                    &#123;label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']&#125;,
-                    &#123;label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input']&#125;,
-                    &#123;label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel']&#125;,
-                    &#123;label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate']&#125;,
-                    &#123;label: 'Button', icon: 'pi pi-fw pi-mobile', routerLink: ['/uikit/button'], class: 'rotated-icon'&#125;,
-                    &#123;label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table']&#125;,
-                    &#123;label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list']&#125;,
-                    &#123;label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/uikit/tree']&#125;,
-                    &#123;label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel']&#125;,
-                    &#123;label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/uikit/overlay']&#125;,
-                    &#123;label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/uikit/media']&#125;,
-                    &#123;label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu']&#125;,
-                    &#123;label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message']&#125;,
-                    &#123;label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file']&#125;,
-                    &#123;label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']&#125;,
-                    &#123;label: 'Misc', icon: 'pi pi-fw pi-circle', routerLink: ['/uikit/misc']&#125;
-                ]
-            &#125;,
-            &#123;
-            label: 'UI Blocks',
-            items: [
-                &#123;label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks'], badge: 'NEW'&#125;,
-                &#123;label: 'Timeline', icon: 'pi pi-fw pi-calendar', url: ['https://www.primefaces.org/primeblocks-ng']&#125;
-                ]
-            &#125;,
-            &#123;
-            label: 'Icons',
-            items: [
-                &#123;label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', routerLink: ['/icons']&#125;,
-                ]
-            &#125;,
-            &#123;
-                label: 'Pages', icon: 'pi pi-fw pi-briefcase', routerLink: ['/pages'],
-                items: [
-                    &#123;label: 'Crud', icon: 'pi pi-fw pi-pencil', routerLink: ['/pages/crud']&#125;,
-                    &#123;label: 'Timeline', icon: 'pi pi-fw pi-calendar', routerLink: ['/pages/timeline']&#125;,
-                    &#123;label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/notfound']&#125;,
-                    &#123;label: 'Empty', icon: 'pi pi-fw pi-circle', routerLink: ['/pages/empty']&#125;
-                ]
-            &#125;,
-            &#123;
-                label: 'Hierarchy', icon: 'pi pi-fw pi-align-left',
-                items: [
-                    &#123;
-                        label: 'Submenu 1', icon: 'pi pi-fw pi-bookmark',
-                        items: [
-                            &#123;
-                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    &#123;label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark'&#125;,
-                                    &#123;label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark'&#125;,
-                                    &#123;label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark'&#125;,
-                                ]
-                            &#125;,
-                            &#123;
-                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    &#123;label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-bookmark'&#125;
-                                ]
-                            &#125;,
-                        ]
-                    &#125;,
-                    &#123;
-                        label: 'Submenu 2', icon: 'pi pi-fw pi-bookmark',
-                        items: [
-                            &#123;
-                                label: 'Submenu 2.1', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    &#123;label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-bookmark'&#125;,
-                                    &#123;label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-bookmark'&#125;,
-                                ]
-                            &#125;,
-                            &#123;
-                                label: 'Submenu 2.2', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    &#123;label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-bookmark'&#125;,
-                                ]
-                            &#125;,
-                        ]
-                    &#125;
-                ]
-            &#125;,
-            &#123;
-                label: 'Get Started',
-                items: [
-                    &#123;
-                        label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
-                    &#125;
-                    &#123;
-                        label: 'View Source', icon: 'pi pi-fw pi-search', url: ['https://github.com/primefaces/sakai-angular']
-                    &#125;
-                ]
-            &#125;
-        ];
-    &#125;
-&#125;
-</app-code>
-</div>
-
-    <h4>Integration with an Existing CLI Project</h4>
-    <p>To setup Sakai in an existing project, follow the steps below;</p>
-
-    <ul>
-        <li>Copy the <i>src/assets</i> folder to your projects folder with the same name</li>
-        <li>Copy all app.* files to the src/app folder of your application.</li>
-    </ul>
-
-    <p>Install PrimeNG</p>
-<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
-npm install primeng@latest --save
-npm install primeicons@latest --save
-</app-code>
-
-    <p>Add PrimeNG CSS at styles section in angular.json.</p>
-
-<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
-"styles": [
-    "styles.scss" //your styles and overrides
-],
-</app-code>
-
-            <p>Last part is adding theme and layout css files, in the CLI app they are defined using link tags in index.html so the demo can switch them on
-            the fly by changing the path however if this is not a requirement, you may also add them to the styles configuration above so they go inside the bundle.</p>
-
             <h5>Theme</h5>
-            <p>Sakai uses the free Saga, Arya and Vela themes which are distributed within PrimeNG, however it can be used with any PrimeNG theme as well such as material, tailwind and bootstrap.</p>
+            <p>Sakai layout derives the color scheme from the PrimeNG theme being used so that it can be combined any theme such as PrimeOne, Material, Bootstrap and others with dark mode alternatives.</p>
 
             <h5>SASS Variables</h5>
-            <p>In case you'd like to customize the layout variables, open <i>_variables.scss</i> file under src/layout folder. Saving the changes
+            <p>In case you'd like to customize the layout variables, open <i>_variables.scss</i> file under src/assets/sass/layout folder. Saving the changes
                 will be reflected instantly at your browser.</p>
-
-            <h6>src/assets/_variables.scss</h6>
-
-            <p>A custom theme can be developed by the following steps.</p>
-            <ul>
-                <li>Choose a custom theme name such as "mytheme".</li>
-                <li>Create a folder named "mytheme" under <i>assets/theme folder</i>.</li>
-                <li>Create a file such as theme.scss under <i>assets/theme/mytheme folder</i>.</li>
-                <li>Define the variables listed below in your file and import the <i>../../sass/theme/_theme.scss</i> file.</li>
-                <li>Build the scss to generate css</li>
-                <li>Include the generated theme.css to your page.</li>
-            </ul>
-
-            <p>Here are the variables required to create a theme.</p>
-<app-code ngPreserveWhitespaces ngNonBindable lang="css">
-$fontSize:1rem;
-$borderRadius:12px;
-$transitionDuration:.2s;
-</app-code>
+        </div>
+    </div>
+</div>
