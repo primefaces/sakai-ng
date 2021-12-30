@@ -18,7 +18,7 @@ import { TableComponent } from './components/table/table.component';
 import { ListComponent } from './components/list/list.component';
 import { TreeComponent } from './components/tree/tree.component';
 import { CrudComponent } from './components/crud/crud.component';
-import { AppBlocksComponent } from './components/app-blocks/app-blocks.component';
+import { BlocksComponent } from './components/blocks/blocks.component';
 import { FloatLabelComponent } from './components/floatlabel/floatlabel.component';
 import { InvalidStateComponent } from './components/invalidstate/invalidstate.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
@@ -50,7 +50,7 @@ import { IconsComponent } from './components/icons/icons.component';
                     {path: 'pages/timeline', component: TimelineComponent},
                     {path: 'pages/empty', component: EmptyComponent},
                     {path: 'icons', component: IconsComponent},
-                    {path: 'blocks', component: AppBlocksComponent},
+                    {path: 'blocks', component: BlocksComponent},
                     {path: 'documentation', component: DocumentationComponent}
                 ]
             },

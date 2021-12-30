@@ -86,7 +86,7 @@ import { TreeModule } from 'primeng/tree';
 import { TreeSelectModule } from 'primeng/treeselect';
 import { TreeTableModule } from 'primeng/treetable';
 import { VirtualScrollerModule } from 'primeng/virtualscroller';
-import { BlockViewer } from './components/app-blockviewer/app.blockviewer.component';
+import { BlockViewer } from './components/blockviewer/blockviewer.component';
  
 import { AppCodeModule } from './components/app-code/app.code.component';
 import { AppComponent } from './app.component';
@@ -118,7 +118,7 @@ import { DocumentationComponent } from './components/documentation/documentation
 import { CrudComponent } from './components/crud/crud.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { IconsComponent } from './components/icons/icons.component';
-import { AppBlocksComponent } from './components/app-blocks/app-blocks.component';
+import { BlocksComponent } from './components/blocks/blocks.component';
 
 import { PaymentComponent} from './components/menus/payment.component';
 import { ConfirmationComponent } from './components/menus/confirmation.component';
@@ -252,7 +252,7 @@ import { MenuService } from './service/app.menu.service';
         DocumentationComponent,
         CrudComponent,
         TimelineComponent,
-        AppBlocksComponent,
+        BlocksComponent,
         BlockViewer,
         MediaComponent,
         PaymentComponent,

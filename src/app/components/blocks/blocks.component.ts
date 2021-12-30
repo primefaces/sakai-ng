@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: './app-blocks.component.html'
+  templateUrl: './blocks.component.html'
 })
-export class AppBlocksComponent{
+export class BlocksComponent{
 
   block1: string = `
   <div class="grid grid-nogutter surface-section text-800">
