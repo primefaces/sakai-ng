@@ -58,10 +58,10 @@
             <button type="button" pButton icon="pi pi-chevron-down" label="Options" (click)="menu.toggle($event)" style="width:auto"></button>
         </div>
 
-        <div class="card card-w-title">
+        <div class="card card-w-title" #anchor>
             <h5>ContextMenu</h5>
             Right click to display.
-            <p-contextMenu [global]="true" [model]="menuItems"></p-contextMenu>
+            <p-contextMenu [target]="anchor" [model]="menuItems"></p-contextMenu>
         </div>
     </div>
 
