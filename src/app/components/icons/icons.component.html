@@ -48,9 +48,9 @@ npm install primeicons --save
 		<input class="icon-filter" (input)="onFilter($event)" pInputText placeholder="Search an icon" class="w-full p-3 mt-3 mb-5 w-full p-3 mt-3 mb-5">
 	</div>
 
-	<div class="grid icons-list text-center">
+	<div class="grid text-center">
 		<div class="col-6 sm:col-4 lg:col-3 xl:col-2 pb-5" *ngFor="let icon of filteredIcons">
-			<i class="pi pi-{{icon.properties.name}}"></i>
+			<i class="text-2xl pi pi-{{icon.properties.name}}"></i>
 			<div>pi-{{icon.properties.name}}</div>
 		</div>
 	</div>
