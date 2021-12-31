@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
     selector: 'app-menu',
     template: `
         <div class="layout-menu-container">
-            <ul class="layout-menu" role="menu">
+            <ul class="layout-menu" role="menu" (keydown)="onKeydown($event)">
                 <li app-menu class="layout-menuitem-category" *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true" role="none">
                     <div class="layout-menuitem-root-text" [attr.aria-label]="item.label">{{item.label}}</div>
                     <ul role="menu">
