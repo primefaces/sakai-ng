@@ -5,11 +5,11 @@ import { AppComponent } from './app.component';
     selector: 'app-menu',
     template: `
         <div class="layout-menu-container">
-            <ul class="layout-menu" (keydown)="onKeydown($event)">
-                <li app-menu class="layout-menuitem-category" *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true">
-                    <div class="layout-menuitem-root-text">{{item.label}}</div>
-                    <ul>
-                        <li app-menuitem *ngFor="let child of item.items" [item]="child" [index]="i"></li>
+            <ul class="layout-menu" role="menu">
+                <li app-menu class="layout-menuitem-category" *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true" role="none">
+                    <div class="layout-menuitem-root-text" [attr.aria-label]="item.label">{{item.label}}</div>
+                    <ul role="menu">
+                        <li app-menuitem *ngFor="let child of item.items" [item]="child" [index]="i" role="none"></li>
                     </ul>
                 </li>
                 <a href="https://www.primefaces.org/primeblocks-ng/#/">

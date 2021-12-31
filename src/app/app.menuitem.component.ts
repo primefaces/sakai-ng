@@ -14,7 +14,7 @@ import { AppMainComponent } from './app.main.component';
 		<ng-container>
 			<a [attr.href]="item.url" (click)="itemClick($event)" [ngClass]="item.class"
 			   *ngIf="(!item.routerLink || item.items) && item.visible !== false"
-			   [attr.target]="item.target" [attr.tabindex]="0" pRipple>
+			   [attr.target]="item.target" [attr.tabindex]="0" [attr.aria-label]="item.label" role="menuitem" pRipple>
 				<i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
 				<span>{{item.label}}</span>
 				<span class="menuitem-badge" *ngIf="item.badge">{{item.badge}}</span>
@@ -22,15 +22,15 @@ import { AppMainComponent } from './app.main.component';
 			</a>
 			<a (click)="itemClick($event)" *ngIf="(item.routerLink && !item.items) && item.visible !== false" [ngClass]="item.class"
 			   [routerLink]="item.routerLink" routerLinkActive="active-menuitem-routerlink router-link-exact-active"
-			   [routerLinkActiveOptions]="{exact: true}" [attr.target]="item.target" [attr.tabindex]="0" pRipple>
+			   [routerLinkActiveOptions]="{exact: true}" [attr.target]="item.target" [attr.tabindex]="0" [attr.aria-label]="item.label" role="menuitem" pRipple>
 				<i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
 				<span>{{item.label}}</span>
 				<span class="p-tag p-badge ml-auto" *ngIf="item.badge">{{item.badge}}</span>
 				<i class="pi pi-fw {{active ? 'pi-angle-up' : 'pi-angle-down'}} ml-auto" *ngIf="item.items"></i>
 			</a>
-			<ul *ngIf="(item.items && active) && item.visible !== false" [@children]="(active ? 'visibleAnimated' : 'hiddenAnimated')">
+			<ul *ngIf="(item.items && active) && item.visible !== false" [@children]="(active ? 'visibleAnimated' : 'hiddenAnimated')" role="menu">
 				<ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
-					<li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
+					<li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass" role="none"></li>
 				</ng-template>
 			</ul>
 		</ng-container>
