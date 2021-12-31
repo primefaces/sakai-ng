@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
     selector: 'app-menu',
     template: `
         <div class="layout-menu-container">
-            <ul class="layout-menu">
+            <ul class="layout-menu" (keydown)="onKeydown($event)">
                 <li app-menu class="layout-menuitem-category" *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true">
                     <div class="layout-menuitem-root-text">{{item.label}}</div>
                     <ul>
@@ -59,7 +59,7 @@ export class AppMenuComponent implements OnInit {
                 label:'UI Blocks',
                 items:[
                     {label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks'], badge: 'NEW'},
-                    {label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: ['https://www.primefaces.org/primeblocks-ng']},
+                    {label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: ['https://www.primefaces.org/primeblocks-ng'], target: '_blank'},
                 ]
             },
             {label:'Icons',
@@ -124,10 +124,20 @@ export class AppMenuComponent implements OnInit {
                         label: 'Documentation', icon: 'pi pi-fw pi-question', routerLink: ['/documentation']
                     },
                     {
-                        label: 'View Source', icon: 'pi pi-fw pi-search', url: ['https://github.com/primefaces/sakai-ng']
+                        label: 'View Source', icon: 'pi pi-fw pi-search', url: ['https://github.com/primefaces/sakai-ng'], target: '_blank'
                     }
                 ]
             }
         ];
+    }
+
+    onKeydown(event: KeyboardEvent) {
+        const nodeElement = (<HTMLDivElement> event.target);
+        if (event.key === 'Enter' || event.key === ' '){
+            event.preventDefault();
+        }
+        if (event.key === ' ') {
+            nodeElement.click();
+        }
     }
 }

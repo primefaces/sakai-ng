@@ -13,7 +13,7 @@ import { AppMainComponent } from './app.main.component';
     template: `
 		<ng-container>
 			<a [attr.href]="item.url" (click)="itemClick($event)" [ngClass]="item.class"
-			   *ngIf="(!item.routerLink || item.items) && item.visible !== false" (keydown.enter)="itemClick($event)"
+			   *ngIf="(!item.routerLink || item.items) && item.visible !== false"
 			   [attr.target]="item.target" [attr.tabindex]="0" pRipple>
 				<i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
 				<span>{{item.label}}</span>
