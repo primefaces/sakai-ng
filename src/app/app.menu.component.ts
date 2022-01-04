@@ -133,11 +133,9 @@ export class AppMenuComponent implements OnInit {
 
     onKeydown(event: KeyboardEvent) {
         const nodeElement = (<HTMLDivElement> event.target);
-        if (event.key === 'Enter' || event.key === ' '){
-            event.preventDefault();
-        }
-        if (event.key === ' ') {
+        if (event.code === 'Enter' || event.code === 'Space') {
             nodeElement.click();
+            event.preventDefault();
         }
     }
 }
