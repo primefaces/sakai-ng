@@ -1,0 +1,28 @@
+#hero-content{
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), radial-gradient(77.36% 256.97% at 77.36% 57.52%, #EEEFAF 0%, #C3E3FA 100%);
+    -webkit-clip-path: ellipse(150% 87% at 93% 13%);
+    clip-path: ellipse(150% 87% at 93% 13%);
+    min-height: 630px;
+
+}
+
+#testimonial-card{
+    background:linear-gradient(0deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), radial-gradient(77.36% 256.97% at 77.36% 57.52%, #EFE1AF 0%, #C3DCFA 100%);
+}
+a{
+    color:none;
+}
+
+@media (min-width:769px){
+    #hero-img{
+        top:30% !important;
+        right:0 !important;
+    }
+}
+
+@media (min-width: 992px) {
+    #hero-img{
+        top:7% !important;
+        right:7% !important;
+    }
+}

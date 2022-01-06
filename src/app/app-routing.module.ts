@@ -23,6 +23,7 @@ import { FloatLabelComponent } from './components/floatlabel/floatlabel.componen
 import { InvalidStateComponent } from './components/invalidstate/invalidstate.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { IconsComponent } from './components/icons/icons.component';
+import { LandingComponent } from './components/landing/landing.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -52,8 +53,9 @@ import { IconsComponent } from './components/icons/icons.component';
                     {path: 'icons', component: IconsComponent},
                     {path: 'blocks', component: BlocksComponent},
                     {path: 'documentation', component: DocumentationComponent}
-                ]
+                ],
             },
+            {path:'landing', component: LandingComponent},
             {path: '**', redirectTo: 'pages/empty'},
         ], {scrollPositionRestoration: 'enabled'})
     ],

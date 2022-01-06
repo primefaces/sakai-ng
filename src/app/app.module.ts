@@ -6,6 +6,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
+import { StyleClassModule } from 'primeng/styleclass';
 import { AccordionModule } from 'primeng/accordion';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { AvatarModule } from 'primeng/avatar';
@@ -132,6 +133,7 @@ import { NodeService } from './service/nodeservice';
 import { PhotoService } from './service/photoservice';
 import { ProductService } from './service/productservice';
 import { MenuService } from './service/app.menu.service';
+import { LandingComponent } from './components/landing/landing.component';
 
 @NgModule({
     imports: [
@@ -221,6 +223,7 @@ import { MenuService } from './service/app.menu.service';
         TreeTableModule,
         VirtualScrollerModule,
         AppCodeModule,
+        StyleClassModule,
     ],
     declarations: [
         AppComponent,
@@ -259,6 +262,7 @@ import { MenuService } from './service/app.menu.service';
         ConfirmationComponent,
         PersonalComponent,
         SeatComponent,
+        LandingComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
