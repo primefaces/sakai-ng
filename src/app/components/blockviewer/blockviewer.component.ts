@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { environment } from '../../../environments/environment';
 
 enum BlockView {
   PREVIEW,
@@ -22,7 +21,7 @@ enum BlockView {
                     <span>Code</span>
                 </a>
                 <a [attr.tabindex]="'0'" class="block-action-copy" (click)="copyCode($event)" 
-                    pTooltip="Copied to clipboard" tooltipEvent="focus" tooltipPosition="bottom"><i class="pi pi-copy"></i></a>
+                    pTooltip="Copied to clipboard" tooltipEvent="focus" tooltipPosition="bottom"><i class="pi pi-copy m-0"></i></a>
             </div>
         </div>
         <div class="block-content">
