@@ -58,7 +58,6 @@ export class AppConfigComponent implements OnInit, OnDestroy {
     }
 
     onInputStyleChange() {
-        console.log(this.config)
         this.configService.updateConfig(this.config);
     }
 

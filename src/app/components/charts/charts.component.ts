@@ -36,7 +36,6 @@ export class ChartsComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.config = this.configService.config;
-
         this.subscription = this.configService.configUpdate$.subscribe(config => {
             this.config = config;
             this.updateChartOptions();
@@ -68,7 +67,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        fontColor: '#A0A7B5'
+                        color: '#A0A7B5'
                     }
                 }
             },
@@ -112,7 +111,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        fontColor: '#A0A7B5'
+                        color: '#A0A7B5'
                     }
                 }
             },
@@ -159,7 +158,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        fontColor: '#A0A7B5'
+                        color: '#A0A7B5'
                     }
                 }
             }
@@ -196,7 +195,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        fontColor: '#A0A7B5'
+                        color: '#A0A7B5'
                     }
                 }
             },
@@ -239,7 +238,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        fontColor: '#A0A7B5'
+                        color: '#A0A7B5'
                     }
                 }
             },
@@ -261,11 +260,208 @@ export class ChartsComponent implements OnInit, OnDestroy {
     }
 
     applyLightTheme() {
+        this.lineOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
+        };
+
+        this.barOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
+        };
+
+        this.pieOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            }
+        };
+
+        this.polarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
+        };
+
+        this.radarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
+        };
 
     }
 
     applyDarkTheme() {
+        this.lineOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
+        };
 
+        this.barOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
+        };
+
+        this.pieOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            }
+        };
+
+        this.polarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
+        };
+
+        this.radarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
+        };
     }
 
     ngOnDestroy() {
