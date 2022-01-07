@@ -9,8 +9,33 @@
 #testimonial-card{
     background:linear-gradient(0deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), radial-gradient(77.36% 256.97% at 77.36% 57.52%, #EFE1AF 0%, #C3DCFA 100%);
 }
-a{
-    color:none;
+
+.box-wrapper{
+    padding:2px;
+}
+
+.border-10{
+    border-radius:10px;
+}
+
+.gradient-yellow{
+    background: linear-gradient(180deg, rgba(253, 228, 165, 0.2),rgba(187, 199, 205, 0.2)), linear-gradient(90deg, rgba(253, 228, 165, 0.2),rgba(187, 199, 205, 0.2));
+}
+
+.gradient-yellow-2{
+    background: linear-gradient(90deg, rgba(187, 199, 205, 0.2),rgba(251, 199, 145, 0.2)), linear-gradient(180deg, rgba(253, 228, 165, 0.2),rgba(145, 210, 204, 0.2));
+}
+
+.gradient-blue{
+    background: linear-gradient(180deg, rgba(145,226,237,0.2),rgba(251, 199, 145, 0.2)), linear-gradient(90deg, rgba(253, 228, 165, 0.2), rgba(172, 180, 223, 0.2));
+}
+
+.gradient-purple{
+    background: linear-gradient(90deg, rgba(145, 226, 237, 0.2), rgba(172, 180, 223, 0.2)), linear-gradient(180deg, rgba(172, 180, 223, 0.2), rgba(246, 158, 188, 0.2));
+}
+
+.gradient-purple-2{
+    background: linear-gradient(90deg, rgba(187, 199, 205, 0.2), rgba(246, 158, 188, 0.2)), linear-gradient(180deg, rgba(145, 226, 237, 0.2), rgba(160, 158, 188, 0.2));
 }
 
 @media (min-width:769px){

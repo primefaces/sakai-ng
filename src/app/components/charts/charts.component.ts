@@ -52,7 +52,7 @@ export class ChartsComponent implements OnInit {
             plugins: {
                 legend: {
                     labels: {
-                        fontColor: '#A0A7B5'
+                        fontColor: '#FFFFFF'
                     }
                 }
             },
