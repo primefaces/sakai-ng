@@ -1,7 +1,9 @@
 import { Component, AfterViewInit, OnDestroy, Renderer2, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { PrimeNGConfig } from 'primeng/api';
 import { AppComponent } from './app.component';
+import { ConfigService } from './service/app.config.service';
+import { AppConfig } from './api/appconfig';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-main',
@@ -47,10 +49,15 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
 
     configClick: boolean;
 
-    constructor(public renderer: Renderer2, private primengConfig: PrimeNGConfig, public app: AppComponent) {}
+    config: AppConfig;
+
+    subscription: Subscription;
+    
+    constructor(public renderer: Renderer2, public app: AppComponent, public configService: ConfigService) { }
 
     ngOnInit() {
-        this.primengConfig.ripple = true;
+        this.config = this.configService.config;
+        this.subscription = this.configService.configUpdate$.subscribe(config => this.config = config);
     }
 
     ngAfterViewInit() {
@@ -138,11 +145,6 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
         this.menuClick = true;
     }
 
-    onRippleChange(event) {
-        this.app.ripple = event.checked;
-        this.primengConfig.ripple = event.checked;
-    }
-
     onConfigClick(event) {
         this.configClick = true;
     }
@@ -171,11 +173,10 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
         if (this.documentClickListener) {
             this.documentClickListener();
         }
-    }
 
-    changeTheme(theme:string, darkMode:boolean){
-        let themeElement = document.getElementById('theme-css');
-        themeElement.setAttribute('href', 'assets/theme/' + theme + '/theme.css');
-        this.app.darkMode = darkMode;
+
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
 }

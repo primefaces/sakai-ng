@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from './app.component';
+import { AppMainComponent } from './app.main.component';
 
 @Component({
     selector: 'app-menu',
@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
                     </ul>
                 </li>
                 <a href="https://www.primefaces.org/primeblocks-ng/#/">
-                    <img src="assets/layout/images/{{app.darkMode ? 'banner-primeblocks-dark' : 'banner-primeblocks'}}.png" alt="Prime Blocks" class="w-full mt-3"/>
+                    <img src="assets/layout/images/{{appMain.config.dark ? 'banner-primeblocks-dark' : 'banner-primeblocks'}}.png" alt="Prime Blocks" class="w-full mt-3"/>
                 </a>
             </ul>
         </div>
@@ -23,10 +23,9 @@ export class AppMenuComponent implements OnInit {
 
     model: any[];
 
-    constructor(public app: AppComponent){}
+    constructor(public appMain: AppMainComponent) { }
 
     ngOnInit() {
-
         this.model = [
             {
                 label: 'Home',

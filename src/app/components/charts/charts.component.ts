@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AppConfig } from 'src/app/api/appconfig';
+import { ConfigService } from 'src/app/service/app.config.service';
 
 @Component({
     templateUrl: './charts.component.html'
 })
-export class ChartsComponent implements OnInit {
+export class ChartsComponent implements OnInit, OnDestroy {
 
     lineData: any;
 
@@ -25,7 +28,20 @@ export class ChartsComponent implements OnInit {
 
     radarOptions: any;
 
+    config: AppConfig;
+
+    subscription: Subscription;
+    
+    constructor(public configService: ConfigService) { }
+
     ngOnInit() {
+        this.config = this.configService.config;
+
+        this.subscription = this.configService.configUpdate$.subscribe(config => {
+            this.config = config;
+            this.updateChartOptions();
+        });
+
         this.lineData = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             datasets: [
@@ -235,5 +251,26 @@ export class ChartsComponent implements OnInit {
                 }
             }
         };
+    }
+
+    updateChartOptions() {
+        if (this.config.dark)
+            this.applyDarkTheme();
+        else
+            this.applyLightTheme();
+    }
+
+    applyLightTheme() {
+
+    }
+
+    applyDarkTheme() {
+
+    }
+
+    ngOnDestroy() {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
 }
