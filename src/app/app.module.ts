@@ -97,6 +97,7 @@ import { AppFooterComponent } from './app.footer.component';
 import { AppConfigComponent } from './app.config.component';
 import { AppMenuComponent } from './app.menu.component';
 import { AppMenuitemComponent } from './app.menuitem.component';
+
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FormLayoutComponent } from './components/formlayout/formlayout.component';
 import { FloatLabelComponent } from './components/floatlabel/floatlabel.component';
@@ -120,11 +121,11 @@ import { CrudComponent } from './components/crud/crud.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { IconsComponent } from './components/icons/icons.component';
 import { BlocksComponent } from './components/blocks/blocks.component';
-
 import { PaymentComponent} from './components/menus/payment.component';
 import { ConfirmationComponent } from './components/menus/confirmation.component';
 import { PersonalComponent } from './components/menus/personal.component';
 import { SeatComponent } from './components/menus/seat.component';
+
 import { CountryService } from './service/countryservice';
 import { CustomerService } from './service/customerservice';
 import { EventService } from './service/eventservice';
@@ -133,7 +134,11 @@ import { NodeService } from './service/nodeservice';
 import { PhotoService } from './service/photoservice';
 import { ProductService } from './service/productservice';
 import { MenuService } from './service/app.menu.service';
+<<<<<<< HEAD
 import { LandingComponent } from './components/landing/landing.component';
+=======
+import { ConfigService } from './service/app.config.service';
+>>>>>>> ffd58ddc301f2db09fb646ebb6e97e77fc2ab70e
 
 @NgModule({
     imports: [
@@ -267,7 +272,7 @@ import { LandingComponent } from './components/landing/landing.component';
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService
+        PhotoService, ProductService, MenuService, ConfigService
     ],
     bootstrap: [AppComponent]
 })

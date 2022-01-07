@@ -1,50 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { PrimeNGConfig } from 'primeng/api';
+import { Subscription } from 'rxjs';
+import { AppConfig } from './api/appconfig';
 import { AppComponent } from './app.component';
 import { AppMainComponent } from './app.main.component';
+import { ConfigService } from './service/app.config.service';
 
 @Component({
     selector: 'app-config',
-    templateUrl:'./app.config.component.html'
+    templateUrl: './app.config.component.html'
 })
-export class AppConfigComponent implements OnInit{
+export class AppConfigComponent implements OnInit, OnDestroy {
 
-    topbarThemes: any[];
+    scale: number = 14;
 
-    componentThemes: any[];
+    scales: any[] = [12, 13, 14, 15, 16];
 
-    topbarColor = 'light';
+    config: AppConfig;
 
-    componentColor = 'blue';
+    subscription: Subscription;
 
-    scale:number = 14;
-    
-    scales:any[] = [12,13,14,15,16];
+    constructor(public app: AppComponent, public appMain: AppMainComponent, public configService: ConfigService, public primengConfig: PrimeNGConfig) { }
 
-    constructor(public app: AppComponent, public appMain: AppMainComponent) {}
+    ngOnInit() {
+        this.config = this.configService.config;
+        this.subscription = this.configService.configUpdate$.subscribe(config => {
+            this.config = config;
+            this.scale = 14;
 
-    ngOnInit() { }
-    replaceLink(linkElement, href) {
-        if (this.isIE()) {
-            linkElement.setAttribute('href', href);
-        }
-        else {
-            const id = linkElement.getAttribute('id');
-            const cloneLinkElement = linkElement.cloneNode(true);
-
-            cloneLinkElement.setAttribute('href', href);
-            cloneLinkElement.setAttribute('id', id + '-clone');
-
-            linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
-
-            cloneLinkElement.addEventListener('load', () => {
-                linkElement.remove();
-                cloneLinkElement.setAttribute('id', id);
-            });
-        }
-    }
-
-    isIE() {
-        return /(MSIE|Trident\/|Edge\/)/i.test(window.navigator.userAgent);
+            this.applyScale();
+        });
     }
 
     onConfigButtonClick(event) {
@@ -53,18 +38,38 @@ export class AppConfigComponent implements OnInit{
         event.preventDefault();
     }
 
-    incrementScale(){
+    incrementScale() {
         this.scale++;
         this.applyScale();
     }
 
-    decrementScale(){
+    decrementScale() {
         this.scale--;
         this.applyScale();
     }
 
-    applyScale(){
+    applyScale() {
         document.documentElement.style.fontSize = this.scale + 'px';
     }
 
+    onRippleChange(ripple) {
+        this.primengConfig.ripple = ripple;
+        this.configService.updateConfig({...this.config, ...{ripple}});
+    }
+
+    onInputStyleChange() {
+        this.configService.updateConfig(this.config);
+    }
+
+    changeTheme(theme:string, dark:boolean){
+        let themeElement = document.getElementById('theme-css');
+        themeElement.setAttribute('href', 'assets/theme/' + theme + '/theme.css');
+        this.configService.updateConfig({...this.config, ...{theme, dark}});
+    }
+
+    ngOnDestroy() {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
+    }
 }

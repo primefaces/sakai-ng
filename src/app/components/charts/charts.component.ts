@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AppConfig } from 'src/app/api/appconfig';
+import { ConfigService } from 'src/app/service/app.config.service';
 
 @Component({
     templateUrl: './charts.component.html'
 })
-export class ChartsComponent implements OnInit {
+export class ChartsComponent implements OnInit, OnDestroy {
 
     lineData: any;
 
@@ -25,7 +28,19 @@ export class ChartsComponent implements OnInit {
 
     radarOptions: any;
 
+    config: AppConfig;
+
+    subscription: Subscription;
+    
+    constructor(public configService: ConfigService) { }
+
     ngOnInit() {
+        this.config = this.configService.config;
+        this.subscription = this.configService.configUpdate$.subscribe(config => {
+            this.config = config;
+            this.updateChartOptions();
+        });
+
         this.lineData = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             datasets: [
@@ -52,7 +67,7 @@ export class ChartsComponent implements OnInit {
             plugins: {
                 legend: {
                     labels: {
-                        fontColor: '#FFFFFF'
+                        color: '#A0A7B5'
                     }
                 }
             },
@@ -96,7 +111,7 @@ export class ChartsComponent implements OnInit {
             plugins: {
                 legend: {
                     labels: {
-                        fontColor: '#A0A7B5'
+                        color: '#A0A7B5'
                     }
                 }
             },
@@ -143,7 +158,7 @@ export class ChartsComponent implements OnInit {
             plugins: {
                 legend: {
                     labels: {
-                        fontColor: '#A0A7B5'
+                        color: '#A0A7B5'
                     }
                 }
             }
@@ -180,7 +195,7 @@ export class ChartsComponent implements OnInit {
             plugins: {
                 legend: {
                     labels: {
-                        fontColor: '#A0A7B5'
+                        color: '#A0A7B5'
                     }
                 }
             },
@@ -223,7 +238,7 @@ export class ChartsComponent implements OnInit {
             plugins: {
                 legend: {
                     labels: {
-                        fontColor: '#A0A7B5'
+                        color: '#A0A7B5'
                     }
                 }
             },
@@ -235,5 +250,223 @@ export class ChartsComponent implements OnInit {
                 }
             }
         };
+    }
+
+    updateChartOptions() {
+        if (this.config.dark)
+            this.applyDarkTheme();
+        else
+            this.applyLightTheme();
+    }
+
+    applyLightTheme() {
+        this.lineOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
+        };
+
+        this.barOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
+        };
+
+        this.pieOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            }
+        };
+
+        this.polarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
+        };
+
+        this.radarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
+        };
+
+    }
+
+    applyDarkTheme() {
+        this.lineOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
+        };
+
+        this.barOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
+        };
+
+        this.pieOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            }
+        };
+
+        this.polarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
+        };
+
+        this.radarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
+        };
+    }
+
+    ngOnDestroy() {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
 }
