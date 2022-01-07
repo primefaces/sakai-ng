@@ -125,6 +125,7 @@ import { PaymentComponent} from './components/menus/payment.component';
 import { ConfirmationComponent } from './components/menus/confirmation.component';
 import { PersonalComponent } from './components/menus/personal.component';
 import { SeatComponent } from './components/menus/seat.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 import { CountryService } from './service/countryservice';
 import { CustomerService } from './service/customerservice';
@@ -134,11 +135,7 @@ import { NodeService } from './service/nodeservice';
 import { PhotoService } from './service/photoservice';
 import { ProductService } from './service/productservice';
 import { MenuService } from './service/app.menu.service';
-<<<<<<< HEAD
-import { LandingComponent } from './components/landing/landing.component';
-=======
 import { ConfigService } from './service/app.config.service';
->>>>>>> ffd58ddc301f2db09fb646ebb6e97e77fc2ab70e
 
 @NgModule({
     imports: [
