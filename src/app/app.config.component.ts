@@ -6,23 +6,14 @@ import { AppMainComponent } from './app.main.component';
     selector: 'app-config',
     templateUrl:'./app.config.component.html'
 })
-export class AppConfigComponent implements OnInit{
+export class AppConfigComponent {
 
-    topbarThemes: any[];
-
-    componentThemes: any[];
-
-    topbarColor = 'light';
-
-    componentColor = 'blue';
-
-    scale:number = 14;
+    scale: number = 14;
     
-    scales:any[] = [12,13,14,15,16];
+    scales: any[] = [12,13,14,15,16];
 
-    constructor(public app: AppComponent, public appMain: AppMainComponent) {}
+    constructor(public app: AppComponent, public appMain: AppMainComponent) { }
 
-    ngOnInit() { }
     replaceLink(linkElement, href) {
         if (this.isIE()) {
             linkElement.setAttribute('href', href);
