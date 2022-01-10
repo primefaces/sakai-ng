@@ -9,11 +9,48 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
       overflow:hidden;
     }
 
-    @media (min-width: 768px) {
+    @media screen and (min-width: 768px) {
       #hero{
           -webkit-clip-path: ellipse(150% 87% at 93% 13%);
           clip-path: ellipse(150% 87% at 93% 13%);
           height: 430px;
+      }
+    }
+
+    @media screen and (max-width: 1300px){
+      #hero > img {
+        transform: scale(0.85);
+        top:10%;
+      }
+    }
+
+    @media screen and (min-width: 1260px){
+      #hero > img {
+        position: absolute;
+      }
+
+      #hero > div > p { 
+        max-width: 450px;
+      }
+    }
+
+    @media screen and (max-width: 1260px){
+      #hero {
+        height: 600px;
+      }
+
+      #hero > img {
+        position:static;
+        transform: scale(1);
+        margin-left: auto;
+      }
+
+      #hero > div {
+        width: 100%;
+      }
+
+      #hero > div > p {
+        width: 100%;
       }
     }
   `]
