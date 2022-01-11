@@ -63,34 +63,6 @@ export class ChartsComponent implements OnInit, OnDestroy {
             ]
         };
 
-        this.lineOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        color: '#A0A7B5'
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: '#A0A7B5'
-                    },
-                    grid: {
-                        color:  'rgba(160, 167, 181, .3)',
-                    }
-                },
-                y: {
-                    ticks: {
-                        color: '#A0A7B5'
-                    },
-                    grid: {
-                        color:  'rgba(160, 167, 181, .3)',
-                    }
-                },
-            }
-        };
-
         this.barData = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             datasets: [
@@ -105,34 +77,6 @@ export class ChartsComponent implements OnInit, OnDestroy {
                     data: [28, 48, 40, 19, 86, 27, 90]
                 }
             ]
-        };
-
-        this.barOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        color: '#A0A7B5'
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: '#A0A7B5'
-                    },
-                    grid: {
-                        color:  'rgba(160, 167, 181, .3)',
-                    }
-                },
-                y: {
-                    ticks: {
-                        color: '#A0A7B5'
-                    },
-                    grid: {
-                        color:  'rgba(160, 167, 181, .3)',
-                    }
-                },
-            }
         };
 
         this.pieData = {
@@ -152,16 +96,6 @@ export class ChartsComponent implements OnInit, OnDestroy {
                     ]
                 }
             ]
-        };
-
-        this.pieOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        color: '#A0A7B5'
-                    }
-                }
-            }
         };
 
         this.polarData = {
@@ -191,23 +125,6 @@ export class ChartsComponent implements OnInit, OnDestroy {
             ]
         };
 
-        this.polarOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        color: '#A0A7B5'
-                    }
-                }
-            },
-            scales: {
-                r: {
-                    grid: {
-                        color: 'rgba(160, 167, 181, .3)'
-                    }
-                }
-            }
-        };
-
         this.radarData = {
             labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
             datasets: [
@@ -234,22 +151,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
             ]
         };
 
-        this.radarOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        color: '#A0A7B5'
-                    }
-                }
-            },
-            scales: {
-                r: {
-                    grid: {
-                        color: 'rgba(160, 167, 181, .3)'
-                    }
-                }
-            }
-        };
+        this.updateChartOptions();
     }
 
     updateChartOptions() {
@@ -264,25 +166,25 @@ export class ChartsComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        color: '#A0A7B5'
+                        color: '#495057'
                     }
                 }
             },
             scales: {
                 x: {
                     ticks: {
-                        color: '#A0A7B5'
+                        color: '#495057'
                     },
                     grid: {
-                        color:  'rgba(160, 167, 181, .3)',
+                        color:  '#ebedef',
                     }
                 },
                 y: {
                     ticks: {
-                        color: '#A0A7B5'
+                        color: '#495057'
                     },
                     grid: {
-                        color:  'rgba(160, 167, 181, .3)',
+                        color:  '#ebedef',
                     }
                 },
             }
@@ -292,25 +194,25 @@ export class ChartsComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        color: '#A0A7B5'
+                        color: '#495057'
                     }
                 }
             },
             scales: {
                 x: {
                     ticks: {
-                        color: '#A0A7B5'
+                        color: '#495057'
                     },
                     grid: {
-                        color:  'rgba(160, 167, 181, .3)',
+                        color:  '#ebedef',
                     }
                 },
                 y: {
                     ticks: {
-                        color: '#A0A7B5'
+                        color: '#495057'
                     },
                     grid: {
-                        color:  'rgba(160, 167, 181, .3)',
+                        color:  '#ebedef',
                     }
                 },
             }
@@ -320,7 +222,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        color: '#A0A7B5'
+                        color: '#495057'
                     }
                 }
             }
@@ -330,14 +232,14 @@ export class ChartsComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        color: '#A0A7B5'
+                        color: '#495057'
                     }
                 }
             },
             scales: {
                 r: {
                     grid: {
-                        color: 'rgba(160, 167, 181, .3)'
+                        color: '#ebedef'
                     }
                 }
             }
@@ -347,14 +249,14 @@ export class ChartsComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        color: '#A0A7B5'
+                        color: '#495057'
                     }
                 }
             },
             scales: {
                 r: {
                     grid: {
-                        color: 'rgba(160, 167, 181, .3)'
+                        color: '#ebedef'
                     }
                 }
             }
