@@ -17,14 +17,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
       }
     }
 
-    @media screen and (max-width: 1300px){
-      #hero > img {
-        transform: scale(0.85);
-        top:10%;
-      }
-    }
-
-    @media screen and (min-width: 1260px){
+    @media screen and (min-width: 1300px){
       #hero > img {
         position: absolute;
       }
@@ -34,7 +27,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
       }
     }
 
-    @media screen and (max-width: 1260px){
+    @media screen and (max-width: 1300px){
       #hero {
         height: 600px;
       }
@@ -51,6 +44,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
       #hero > div > p {
         width: 100%;
+        max-width: 100%;
       }
     }
   `]
