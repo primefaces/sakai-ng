@@ -1,0 +1,36 @@
+<div class="grid surface-card align-items-center justify-content-center h-screen">
+    <div class="col-12 text-center mb-4">
+        <img src="assets/layout/images/logo-blue.svg" alt="Sakai logo" style="width:81px; height:60px;">
+    </div>
+    <div class="col-6" style="border:none; border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, rgba(33, 150, 243, 0.4) 10%, rgba(33, 150, 243, 0) 30%);">
+        <div class="surface-card h-full w-full m-0 py-7 px-4" style="border:none; border-radius:53px;">
+            <div class="grid flex-column align-items-center">
+                <img src="assets/layout/images/avatar.png" alt="Profile avatar" style="width:56px; height:56px;">
+                <h4 class="font-medium text-gray-900 text-5xl mb-2">Welcome, Isabel!</h4>
+                <span class="text-gray-600 text-2xl">Sign in to continue</span>
+                <div class="col-10 mt-5">
+                    <div class="grid">
+                        <div class="col-12 my-2">
+                            <label htmlFor="email" class="text-gray-900 text-2xl font-medium block mb-2 line-height-3">Email Address</label>
+                            <input pInputText id="email" placeholder="Email address" type="text" style="width:100%; padding:1.25rem; font-size:21px;"/>
+                        </div>
+                        <div class="col-12 my-2">
+                            <label htmlFor="password" class="text-gray-900 text-2xl font-medium block mb-2 line-height-3">Password</label>
+                            <p-password [(ngModel)]="password" placeholder="Password" [toggleMask]="true" styleClass="w-full"></p-password>
+                        </div>
+                        <div class="col-6 field-checkbox">
+                            <p-checkbox name="group1" value="remember" [(ngModel)]="valCheck" id="checkbox"></p-checkbox>
+                            <label for="checkbox" class="text-gray-900 text-2xl">Remember me</label>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="#" class="text-blue-500 text-2xl">Forgot your password ?</a>
+                        </div>
+                        <div class="col-12">
+                            <button pButton pRipple type="button" class="w-full p-3 mt-2"><span class="text-2xl text-center w-full">Sign In</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

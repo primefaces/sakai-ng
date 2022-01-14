@@ -136,6 +136,7 @@ import { PhotoService } from './service/photoservice';
 import { ProductService } from './service/productservice';
 import { MenuService } from './service/app.menu.service';
 import { ConfigService } from './service/app.config.service';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
     imports: [
@@ -265,6 +266,7 @@ import { ConfigService } from './service/app.config.service';
         PersonalComponent,
         SeatComponent,
         LandingComponent,
+        LoginComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
