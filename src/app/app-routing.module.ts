@@ -25,6 +25,7 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 import { IconsComponent } from './components/icons/icons.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
+import { ErrorComponent } from './components/error/error.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -58,6 +59,7 @@ import { LoginComponent } from './components/login/login.component';
             },
             {path:'pages/landing', component: LandingComponent},
             {path:'pages/login', component: LoginComponent},
+            {path:'pages/error', component: ErrorComponent},
             {path: '**', redirectTo: 'pages/empty'},
         ], {scrollPositionRestoration: 'enabled'})
     ],
