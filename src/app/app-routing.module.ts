@@ -26,6 +26,7 @@ import { IconsComponent } from './components/icons/icons.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { ErrorComponent } from './components/error/error.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -60,7 +61,8 @@ import { ErrorComponent } from './components/error/error.component';
             {path:'pages/landing', component: LandingComponent},
             {path:'pages/login', component: LoginComponent},
             {path:'pages/error', component: ErrorComponent},
-            {path: '**', redirectTo: 'pages/empty'},
+            {path:'pages/notfound', component: NotfoundComponent},
+            {path: '**', redirectTo: 'pages/notfound'},
         ], {scrollPositionRestoration: 'enabled'})
     ],
     exports: [RouterModule]

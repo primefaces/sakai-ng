@@ -138,6 +138,7 @@ import { MenuService } from './service/app.menu.service';
 import { ConfigService } from './service/app.config.service';
 import { LoginComponent } from './components/login/login.component';
 import { ErrorComponent } from './components/error/error.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 @NgModule({
     imports: [
@@ -269,6 +270,7 @@ import { ErrorComponent } from './components/error/error.component';
         LandingComponent,
         LoginComponent,
         ErrorComponent,
+        NotfoundComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
