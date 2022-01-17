@@ -6,8 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styles:[`
     :host ::ng-deep .p-password input {
     width: 100%;
-    padding:1.25rem;
-    font-size:21px;
+    padding:1rem;
     }
 
     :host ::ng-deep .pi-eye{
