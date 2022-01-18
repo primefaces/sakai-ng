@@ -23,6 +23,11 @@ import { FloatLabelComponent } from './components/floatlabel/floatlabel.componen
 import { InvalidStateComponent } from './components/invalidstate/invalidstate.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { IconsComponent } from './components/icons/icons.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { LoginComponent } from './components/login/login.component';
+import { ErrorComponent } from './components/error/error.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
+import { AccessComponent } from './components/access/access.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -52,9 +57,14 @@ import { IconsComponent } from './components/icons/icons.component';
                     {path: 'icons', component: IconsComponent},
                     {path: 'blocks', component: BlocksComponent},
                     {path: 'documentation', component: DocumentationComponent}
-                ]
+                ],
             },
-            {path: '**', redirectTo: 'pages/empty'},
+            {path:'pages/landing', component: LandingComponent},
+            {path:'pages/login', component: LoginComponent},
+            {path:'pages/error', component: ErrorComponent},
+            {path:'pages/notfound', component: NotfoundComponent},
+            {path:'pages/access', component: AccessComponent},
+            {path: '**', redirectTo: 'pages/notfound'},
         ], {scrollPositionRestoration: 'enabled'})
     ],
     exports: [RouterModule]

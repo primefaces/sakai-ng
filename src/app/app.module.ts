@@ -6,6 +6,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
+import { StyleClassModule } from 'primeng/styleclass';
 import { AccordionModule } from 'primeng/accordion';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { AvatarModule } from 'primeng/avatar';
@@ -124,6 +125,7 @@ import { PaymentComponent} from './components/menus/payment.component';
 import { ConfirmationComponent } from './components/menus/confirmation.component';
 import { PersonalComponent } from './components/menus/personal.component';
 import { SeatComponent } from './components/menus/seat.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 import { CountryService } from './service/countryservice';
 import { CustomerService } from './service/customerservice';
@@ -134,6 +136,10 @@ import { PhotoService } from './service/photoservice';
 import { ProductService } from './service/productservice';
 import { MenuService } from './service/app.menu.service';
 import { ConfigService } from './service/app.config.service';
+import { LoginComponent } from './components/login/login.component';
+import { ErrorComponent } from './components/error/error.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
+import { AccessComponent } from './components/access/access.component';
 
 @NgModule({
     imports: [
@@ -223,6 +229,7 @@ import { ConfigService } from './service/app.config.service';
         TreeTableModule,
         VirtualScrollerModule,
         AppCodeModule,
+        StyleClassModule,
     ],
     declarations: [
         AppComponent,
@@ -261,6 +268,11 @@ import { ConfigService } from './service/app.config.service';
         ConfirmationComponent,
         PersonalComponent,
         SeatComponent,
+        LandingComponent,
+        LoginComponent,
+        ErrorComponent,
+        NotfoundComponent,
+        AccessComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
