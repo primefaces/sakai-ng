@@ -61,9 +61,10 @@ export class AppMenuComponent implements OnInit {
                     {label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: ['https://www.primefaces.org/primeblocks-ng'], target: '_blank'},
                 ]
             },
-            {label:'Icons',
+            {label:'Utilities',
                 items:[
                     {label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', routerLink: ['/icons']},
+                    {label: 'PrimeFlex', icon: 'pi pi-fw pi-desktop', url: ['https://www.primefaces.org/primeflex/'], target: '_blank'},
                 ]
             },
             {
