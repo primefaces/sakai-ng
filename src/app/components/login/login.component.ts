@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ConfigService } from '../../service/app.config.service';
+import { AppConfig } from '../../api/appconfig';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,21 +22,28 @@ import { Component, OnInit } from '@angular/core';
     }
   `]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   valCheck: string[] = ['remember'];
-  password: string;
-  themeElement: any;
 
-  constructor() { }
+  password: string;
+  
+  config: AppConfig;
+  
+  subscription: Subscription;
+
+  constructor(public configService: ConfigService){ }
 
   ngOnInit(): void {
-    this.themeElement = document.getElementById('theme-css');
-    this.themeElement.setAttribute('href','assets/theme/saga-blue/theme.css');
+    this.config = this.configService.config;
+    this.subscription = this.configService.configUpdate$.subscribe(config => {
+      this.config = config;
+    });
   }
 
   ngOnDestroy(): void {
-    this.themeElement.setAttribute('href', 'assets/theme/lara-light-indigo/theme.css');
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
-
 }

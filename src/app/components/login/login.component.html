@@ -7,15 +7,15 @@
             <div class="surface-card h-full w-full m-0 py-7 px-4" style="border-radius:53px;">
                 <div class="text-center mb-5">
                     <img src="assets/layout/images/avatar.png" alt="Image" height="50" class="mb-3">
-                    <div class="text-900 text-3xl font-medium mb-3">Welcome, Isabel!</div>
-                    <span class="text-600 font-medium">Sign in to continue</span>
+                    <div class="text-3xl font-medium mb-3" [ngClass]="config.dark ? 'text-900' : 'text-gray-900'">Welcome, Isabel!</div>
+                    <span class="font-medium" [ngClass]="config.dark ? 'text-600' : 'text-gray-600'">Sign in to continue</span>
                 </div>
             
                 <div class="w-full md:w-10 mx-auto">
-                    <label for="email1" class="block text-900 text-xl font-medium mb-2">Email</label>
+                    <label for="email1" class="block text-900 text-xl font-medium mb-2" [ngClass]="config.dark ? 'text-900' : 'text-gray-900'">Email</label>
                     <input id="email1" type="text" pInputText class="w-full mb-3" style="padding:1rem;">
             
-                    <label for="password1" class="block text-900 font-medium text-xl mb-2">Password</label>
+                    <label for="password1" class="block text-900 font-medium text-xl mb-2" [ngClass]="config.dark ? 'text-900' : 'text-gray-900'">Password</label>
                     <p-password id="password1" [(ngModel)]="password" placeholder="Password" [toggleMask]="true" styleClass="w-full mb-3"></p-password>
             
                     <div class="flex align-items-center justify-content-between mb-5">
@@ -25,7 +25,7 @@
                         </div>
                         <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a>
                     </div>
-                    <button pButton pRipple label="Sign In" class="w-full p-3 text-xl"></button>
+                    <button pButton pRipple label="Sign In" class="w-full p-3 text-xl bg-blue-500 border-none" [ngClass]="config.dark ? 'text-900' : 'text-50'"></button>
                 </div>
             </div>
         </div>
