@@ -54,8 +54,6 @@ import { Subscription } from 'rxjs';
 })
 export class LandingComponent implements OnInit, OnDestroy {
   
-  themeElement: any;
-
   config: AppConfig;  
 
   subscription: Subscription;
@@ -67,12 +65,12 @@ export class LandingComponent implements OnInit, OnDestroy {
     this.subscription = this.configService.configUpdate$.subscribe(config => {
       this.config = config;
     });
-    this.themeElement = document.getElementById('theme-css');
-    this.themeElement.setAttribute('href','assets/theme/saga-blue/theme.css');
   }
 
   ngOnDestroy(): void {
-    this.themeElement.setAttribute('href',`assets/theme/${this.config.theme}/theme.css`);
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
 
 }
