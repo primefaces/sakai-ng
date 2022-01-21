@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Product } from '../../api/product';
 import { ProductService } from '../../service/productservice';
+import { Subscription } from 'rxjs';
+import { ConfigService } from '../../service/app.config.service';
+import { AppConfig } from '../../api/appconfig';
  
 @Component({
     templateUrl: './dashboard.component.html',
@@ -12,11 +15,22 @@ export class DashboardComponent implements OnInit {
 
     products: Product[];
 
-    chartData:any;
+    chartData: any;
 
-    constructor(private productService: ProductService) {}
+    chartOptions: any;
+
+    subscription: Subscription;
+
+    config: AppConfig;
+
+    constructor(private productService: ProductService, public configService: ConfigService) {}
 
     ngOnInit() {
+        this.config = this.configService.config;
+        this.subscription = this.configService.configUpdate$.subscribe(config => {
+            this.config = config;
+            this.updateChartOptions();
+        });
         this.productService.getProductsSmall().then(data => this.products = data);
           
         this.items = [
@@ -44,6 +58,74 @@ export class DashboardComponent implements OnInit {
                     tension: .4
                 }
             ]
+        };
+    }
+
+    updateChartOptions() {
+        if (this.config.dark)
+            this.applyDarkTheme();
+        else
+            this.applyLightTheme();
+
+    }
+
+    applyDarkTheme() {
+        this.chartOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
+        };
+    }
+
+    applyLightTheme() {
+            this.chartOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#495057'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#495057'
+                    },
+                    grid: {
+                        color:  '#ebedef',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#495057'
+                    },
+                    grid: {
+                        color:  '#ebedef',
+                    }
+                },
+            }
         };
     }
 }
