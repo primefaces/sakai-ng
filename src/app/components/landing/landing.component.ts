@@ -1,4 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ConfigService } from '../../service/app.config.service';
+import { AppConfig } from '../../api/appconfig';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -49,19 +52,25 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
     }
   `]
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, OnDestroy {
   
-  themeElement: any;
+  config: AppConfig;  
 
-  constructor() { }
+  subscription: Subscription;
+
+  constructor(public configService: ConfigService) { }
 
   ngOnInit(): void {
-    this.themeElement = document.getElementById('theme-css');
-    this.themeElement.setAttribute('href','assets/theme/saga-blue/theme.css');
+    this.config = this.configService.config;
+    this.subscription = this.configService.configUpdate$.subscribe(config => {
+      this.config = config;
+    });
   }
 
   ngOnDestroy(): void {
-    this.themeElement.setAttribute('href', 'assets/theme/lara-light-indigo/theme.css');
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
 
 }
