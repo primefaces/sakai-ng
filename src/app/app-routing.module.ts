@@ -65,7 +65,7 @@ import { AccessComponent } from './components/access/access.component';
             {path:'pages/notfound', component: NotfoundComponent},
             {path:'pages/access', component: AccessComponent},
             {path: '**', redirectTo: 'pages/notfound'},
-        ], {scrollPositionRestoration: 'enabled'})
+        ], {scrollPositionRestoration: 'enabled', anchorScrolling:'enabled'})
     ],
     exports: [RouterModule]
 })
