@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ConfigService } from '../../service/app.config.service';
 import { AppConfig } from '../../api/appconfig';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -12,17 +13,23 @@ import { Subscription } from 'rxjs';
       overflow:hidden;
     }
 
+    .pricing-card:hover{
+      border:2px solid var(--cyan-200) !important;
+    }
+
     @media screen and (min-width: 768px) {
       #hero{
           -webkit-clip-path: ellipse(150% 87% at 93% 13%);
           clip-path: ellipse(150% 87% at 93% 13%);
-          height: 430px;
+          height: 530px;
       }
     }
 
     @media screen and (min-width: 1300px){
       #hero > img {
         position: absolute;
+        transform:scale(1.2);
+        top:15%;
       }
 
       #hero > div > p { 
@@ -58,7 +65,7 @@ export class LandingComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  constructor(public configService: ConfigService) { }
+  constructor(public configService: ConfigService, public router: Router) { }
 
   ngOnInit(): void {
     this.config = this.configService.config;
