@@ -4,13 +4,13 @@
 			<h5>DataView</h5>
 			<p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
 				<ng-template pTemplate="header">
-					<div class="grid grid-nogutter">
-						<div class="col-6 text-left">
-							<p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price" (onChange)="onSortChange($event)"></p-dropdown>
-						</div>
-						<div class="col-6 text-right">
-							<p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-						</div>
+					<div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
+						<p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price" (onChange)="onSortChange($event)"></p-dropdown>
+						<span class="p-input-icon-left mb-2 md:mb-0">
+                            <i class="pi pi-search"></i>
+                            <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                        </span>	
+						<p-dataViewLayoutOptions></p-dataViewLayoutOptions>
 					</div>
 				</ng-template>
 
