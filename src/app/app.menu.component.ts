@@ -6,12 +6,7 @@ import { AppComponent } from './app.component';
     template: `
         <div class="layout-menu-container">
             <ul class="layout-menu" role="menu" (keydown)="onKeydown($event)">
-                <li app-menu class="layout-menuitem-category" *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true" role="none">
-                    <div class="layout-menuitem-root-text" [attr.aria-label]="item.label">{{item.label}}</div>
-                    <ul role="menu">
-                        <li app-menuitem *ngFor="let child of item.items" [item]="child" [index]="i" role="none"></li>
-                    </ul>
-                </li>
+                <li app-menuitem class="layout-menuitem-category" *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true" role="none"></li>
                 <a href="https://www.primefaces.org/primeblocks-ng/#/">
                     <img src="assets/layout/images/{{app.darkMode ? 'banner-primeblocks-dark' : 'banner-primeblocks'}}.png" alt="Prime Blocks" class="w-full mt-3"/>
                 </a>
