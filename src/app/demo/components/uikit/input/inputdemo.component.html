@@ -1,0 +1,214 @@
+<div class="grid p-fluid">
+	<div class="col-12 md:col-6">
+		<div class="card">
+			<h5>InputText</h5>
+			<div class="grid formgrid">
+				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
+					<input type="text" pInputText placeholder="Default">
+				</div>
+				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
+					<input type="text" pInputText placeholder="Disabled" [disabled]="true"/>
+				</div>
+				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
+					<input type="text" pInputText placeholder="Invalid" class="ng-dirty ng-invalid"/>
+				</div>
+			</div>
+
+			<h5>Icons</h5>
+			<div class="grid formgrid">
+				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
+					<span class="p-input-icon-left">
+						<i class="pi pi-user"></i>
+						<input type="text" pInputText placeholder="Username"/>
+					</span>
+				</div>
+				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
+					<span class="p-input-icon-right">
+						<input type="text" pInputText placeholder="Search"/>
+						<i class="pi pi-search"></i>
+					</span>
+				</div>
+				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
+					<span class="p-input-icon-left p-input-icon-right">
+						<i class="pi pi-user"></i>
+						<input type="text" pInputText placeholder="Search"/>
+						<i class="pi pi-search"></i>
+					</span>
+				</div>
+			</div>
+
+			<h5>Float Label</h5>
+			<span class="p-float-label">
+				<input id="float-input" type="text" pInputText>
+				<label for="float-input">Username</label>
+			</span>
+
+			<h5>Textarea</h5>
+			<textarea rows="5" cols="30" placeholder="Your Message" pInputTextarea></textarea>
+
+			<h5>AutoComplete</h5>
+			<p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [dropdown]="true">
+			</p-autoComplete>
+
+			<h5>Calendar</h5>
+			<p-calendar [showIcon]="true" inputId="icon"></p-calendar>
+
+			<h5>InputNumber</h5>
+			<p-inputNumber mode="decimal" [showButtons]="true" [min]="0" [max]="100">
+			</p-inputNumber>
+
+			<h5>Chips</h5>
+			<p-chips></p-chips>
+		</div>
+
+
+		<div class="card">
+            <div class="grid">
+                <div class="col-12">
+                    <h5>Slider</h5>
+                    <input type="text" pInputText [(ngModel)]="valSlider" readonly/>
+                    <p-slider [(ngModel)]="valSlider"></p-slider>
+                </div>
+                <div class="col-12 md:col-6">
+                    <h5>Rating</h5>
+                    <p-rating></p-rating>
+                </div>
+                <div class="col-12 md:col-6">
+                    <h5>ColorPicker</h5>
+                    <p-colorPicker [(ngModel)]="valColor"></p-colorPicker>
+                </div>
+                <div class="col-12">
+                    <h5>Knob</h5>
+                    <p-knob [(ngModel)]="valueKnob" valueTemplate="{value}%" [step]="10" [min]="-50" [max]="50"></p-knob>
+                </div>
+            </div>
+		</div>
+	</div>
+
+	<div class="col-12 md:col-6">
+		<div class="card">
+			<h5>RadioButton</h5>
+			<div class="grid formgrid">
+				<div class="col-12 md:col-4">
+					<div class="field-radiobutton">
+						<p-radioButton name="city" value="Chicago" [(ngModel)]="valRadio" id="city1"></p-radioButton>
+						<label for="city1">Chicago</label>
+					</div>
+				</div>
+				<div class="col-12 md:col-4">
+					<div class="field-radiobutton">
+						<p-radioButton name="city" value="Los Angeles" [(ngModel)]="valRadio"
+									   id="city2"></p-radioButton>
+						<label for="city2">Los Angeles</label>
+					</div>
+				</div>
+				<div class="col-12 md:col-4">
+					<div class="field-radiobutton">
+						<p-radioButton name="city" value="New York" [(ngModel)]="valRadio" id="city3"></p-radioButton>
+						<label for="city3">New York</label>
+					</div>
+				</div>
+			</div>
+
+			<h5>Checkbox</h5>
+			<div class="grid formgrid">
+				<div class="col-12 md:col-4">
+					<div class="field-checkbox">
+						<p-checkbox name="group1" value="New York" [(ngModel)]="valCheck" id="ny"></p-checkbox>
+						<label for="ny">New York</label>
+					</div>
+				</div>
+				<div class="col-12 md:col-4">
+					<div class="field-checkbox">
+						<p-checkbox name="group1" value="San Francisco" [(ngModel)]="valCheck" id="sf"></p-checkbox>
+						<label for="sf">San Francisco</label>
+					</div>
+				</div>
+				<div class="col-12 md:col-4">
+					<div class="field-checkbox">
+						<p-checkbox name="group1" value="Los Angeles" [(ngModel)]="valCheck" id="la"></p-checkbox>
+						<label for="la">Los Angeles</label>
+					</div>
+				</div>
+			</div>
+
+			<h5>Input Switch</h5>
+			<p-inputSwitch [(ngModel)]="valSwitch"></p-inputSwitch>
+		</div>
+
+		<div class="card">
+			<h5>Listbox</h5>
+			<p-listbox [options]="cities" [(ngModel)]="selectedList" [filter]="true"></p-listbox>
+
+			<h5>Dropdown</h5>
+			<p-dropdown [options]="cities" [(ngModel)]="selectedDrop" placeholder="Select a City" [showClear]="true"></p-dropdown>
+
+
+			<h5>Multiselect</h5>
+			<p-multiSelect [options]="countries" [(ngModel)]="selectedMulti" defaultLabel="Select a Country" optionLabel="name" class="multiselect-custom">
+				<ng-template let-value pTemplate="selectedItems">
+					<div class="country-item country-item-value" *ngFor="let option of selectedMulti">
+						<img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + option.code.toLowerCase()" />
+						<div>{{option.name}}</div>
+					</div>
+					<div *ngIf="!selectedMulti || selectedMulti.length === 0" class="country-placeholder">
+						Select Countries
+					</div>
+				</ng-template>
+				<ng-template let-country pTemplate="item">
+					<div class="country-item">
+						<img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />
+						<div>{{country.name}}</div>
+					</div>
+				</ng-template>
+			</p-multiSelect>
+		</div>
+
+		<div class="card">
+			<h5>ToggleButton</h5>
+			<p-toggleButton [(ngModel)]="valToggle" onLabel="Yes" offLabel="No" [style]="{'width': '10em'}"></p-toggleButton>
+
+			<h5>SelectOneButton</h5>
+			<p-selectButton [options]="paymentOptions" [(ngModel)]="valSelect1" optionLabel="name"></p-selectButton>
+
+			<h5>SelectManyButton</h5>
+			<p-selectButton [options]="paymentOptions" [(ngModel)]="valSelect2" [multiple]="true" optionLabel="name"></p-selectButton>
+
+		</div>
+	</div>
+	<div class="col-12">
+		<div class="card">
+			<h5>InputGroup</h5>
+			<div class="grid p-fluid">
+				<div class="col-12 md:col-6">
+					<div class="p-inputgroup">
+						<span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+						<input type="text" pInputText placeholder="Username">
+					</div>
+				</div>
+				<div class="col-12 md:col-6">
+					<div class="p-inputgroup">
+						<span class="p-inputgroup-addon"><i class="pi pi-tags" style="line-height: 1.25;"></i></span>
+						<span class="p-inputgroup-addon"><i class="pi pi-shopping-cart" style="line-height: 1.25;"></i></span>
+						<input type="text" pInputText placeholder="Price">
+						<span class="p-inputgroup-addon">$</span>
+						<span class="p-inputgroup-addon">.00</span>
+					</div>
+				</div>
+				<div class="col-12 md:col-6">
+					<div class="p-inputgroup">
+						<button type="button" pButton pRipple label="Search"></button>
+						<input type="text" pInputText placeholder="Keyword">
+					</div>
+				</div>
+				<div class="col-12 md:col-6">
+					<div class="p-inputgroup">
+						<span class="p-inputgroup-addon"><p-checkbox></p-checkbox></span>
+						<input type="text" pInputText placeholder="Username">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
