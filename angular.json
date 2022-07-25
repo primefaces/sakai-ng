@@ -108,5 +108,8 @@
             }
         }
     },
-    "defaultProject": "sakai"
+    "defaultProject": "sakai",
+    "cli": {
+      "analytics": false
+    }
 }
