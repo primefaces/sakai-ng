@@ -1,6 +1,6 @@
 # Changelog
 
-## 13.2.0
+## 14.0.0
 
 - Folder structure updated.
 - Replace app.config.service by layout.service.
