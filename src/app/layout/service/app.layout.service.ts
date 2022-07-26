@@ -97,10 +97,6 @@ export class LayoutService {
         return this.config.menuMode === 'slim';
     }
 
-    isHorizontal() {
-        return this.config.menuMode === 'horizontal';
-    }
-
     isMobile() {
         return !this.isDesktop();
     }
