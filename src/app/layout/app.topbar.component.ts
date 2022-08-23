@@ -10,7 +10,11 @@ export class AppTopBarComponent {
 
     items!: MenuItem[];
 
-    @ViewChild('menu') menu!: ElementRef;
+    @ViewChild('menubutton') menuButton!: ElementRef;
+
+    @ViewChild('topbarmenubutton') topbarMenuButton!: ElementRef;
+
+    @ViewChild('topbarmenu') menu!: ElementRef;
 
     constructor(public layoutService: LayoutService) { }
 }
