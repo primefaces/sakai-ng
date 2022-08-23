@@ -93,10 +93,6 @@ export class LayoutService {
         return window.innerWidth > 991;
     }
 
-    isSlim() {
-        return this.config.menuMode === 'slim';
-    }
-
     isMobile() {
         return !this.isDesktop();
     }

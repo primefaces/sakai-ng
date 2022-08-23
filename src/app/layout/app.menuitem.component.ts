@@ -48,12 +48,6 @@ import { LayoutService } from './service/app.layout.service';
             state('expanded', style({
                 height: '*'
             })),
-            state('hidden', style({
-                display: 'none'
-            })),
-            state('visible', style({
-                display: 'block'
-            })),
             transition('collapsed <=> expanded', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'))
         ])
     ]
@@ -133,25 +127,13 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         // toggle active state
         if (this.item.items) {
             this.active = !this.active;
-
-            if (this.root && this.active) {
-                this.layoutService.onOverlaySubmenuOpen();
-            }
-        }
-        else {
-            if (this.layoutService.isMobile()) {
-                this.layoutService.state.staticMenuMobileActive = false;
-            }
         }
 
         this.menuService.onMenuStateChange({ key: this.key });
     }
 
     get submenuAnimation() {
-        if (this.layoutService.isDesktop() && this.layoutService.isSlim())
-            return this.active ? 'visible' : 'hidden';
-        else
-            return this.root ? 'expanded' : (this.active ? 'expanded' : 'collapsed');
+        return this.root ? 'expanded' : (this.active ? 'expanded' : 'collapsed');
     }
 
     ngOnDestroy() {

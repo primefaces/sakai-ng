@@ -28,41 +28,53 @@ export class AppLayoutComponent implements OnDestroy {
                 this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
                     const isOutsideClicked = !(this.appSidebar.el.nativeElement.isSameNode(event.target) || this.appSidebar.el.nativeElement.contains(event.target) 
                         || event.target.classList.contains('p-trigger') || event.target.parentNode.classList.contains('p-trigger'));
-
+                    
                     if (isOutsideClicked) {
-                        this.layoutService.state.overlayMenuActive = false;
-                        this.layoutService.state.staticMenuMobileActive = false;
-                        this.layoutService.state.menuHoverActive = false;
-                        this.menuService.reset();
-                        this.menuOutsideClickListener();
-                        this.menuOutsideClickListener = null;
-                        this.unblockBodyScroll();
-                    }
-                    else {
-                        if (this.layoutService.state.staticMenuMobileActive) {
-                            this.blockBodyScroll();
-                        }
+                        this.hideMenu();
                     }
                 });
             }
 
             if (!this.profileMenuOutsideClickListener) {
                 this.profileMenuOutsideClickListener = this.renderer.listen('document', 'click', event => {
-                    const shouldCloseProfileMenu = !(this.appTopbar.menu.nativeElement.isSameNode(event.target) || event.target.classList.contains('p-trigger') || event.target.parentNode.classList.contains('p-trigger'));
+                    const isOutsideClicked = !(this.appTopbar.menu.nativeElement.isSameNode(event.target) || this.appTopbar.menu.nativeElement.contains(event.target)
+                        || event.target.classList.contains('p-trigger') || event.target.parentNode.classList.contains('p-trigger'));
 
-                        if (shouldCloseProfileMenu) {
-                            this.layoutService.state.profileSidebarVisible = false;
-                            this.profileMenuOutsideClickListener();
-                            this.profileMenuOutsideClickListener = null;
-                        }
+                    if (isOutsideClicked) {
+                        this.hideProfileMenu();
+                    }
                 });
+            }
+
+            if (this.layoutService.state.staticMenuMobileActive) {
+                this.blockBodyScroll();
             }
         });
 
         this.router.events.pipe(filter(event => event instanceof NavigationEnd))
             .subscribe(() => {
-                this.unblockBodyScroll();
+                this.hideMenu();
+                this.hideProfileMenu();
             });
+    }
+
+    hideMenu() {
+        this.layoutService.state.overlayMenuActive = false;
+        this.layoutService.state.staticMenuMobileActive = false;
+        this.layoutService.state.menuHoverActive = false;
+        if (this.menuOutsideClickListener) {
+            this.menuOutsideClickListener();
+            this.menuOutsideClickListener = null;
+        }
+        this.unblockBodyScroll();
+    }
+
+    hideProfileMenu() {
+        this.layoutService.state.profileSidebarVisible = false;
+        if (this.profileMenuOutsideClickListener) {
+            this.profileMenuOutsideClickListener();
+            this.profileMenuOutsideClickListener = null;
+        }
     }
 
     blockBodyScroll(): void {

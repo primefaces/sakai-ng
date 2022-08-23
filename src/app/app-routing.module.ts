@@ -21,7 +21,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
             { path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },
             { path: 'pages/notfound', component: NotfoundComponent },
             { path: '**', redirectTo: 'pages/notfound' },
-        ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled' })
+        ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })
     ],
     exports: [RouterModule]
 })
