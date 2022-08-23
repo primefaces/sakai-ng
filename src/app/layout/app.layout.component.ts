@@ -16,7 +16,11 @@ export class AppLayoutComponent implements OnDestroy {
 
     menuOutsideClickListener: any;
 
+    profileMenuOutsideClickListener: any;
+
     @ViewChild(AppSidebarComponent) appSidebar!: AppSidebarComponent;
+
+    @ViewChild(AppTopBarComponent) appTopbar!: AppTopBarComponent;
 
     constructor(private menuService: MenuService, public layoutService: LayoutService, public renderer: Renderer2, public router: Router) {
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
@@ -26,7 +30,6 @@ export class AppLayoutComponent implements OnDestroy {
                         || event.target.classList.contains('p-trigger') || event.target.parentNode.classList.contains('p-trigger'));
 
                     if (isOutsideClicked) {
-                        this.layoutService.state.profileSidebarVisible = false;
                         this.layoutService.state.overlayMenuActive = false;
                         this.layoutService.state.staticMenuMobileActive = false;
                         this.layoutService.state.menuHoverActive = false;
@@ -40,6 +43,18 @@ export class AppLayoutComponent implements OnDestroy {
                             this.blockBodyScroll();
                         }
                     }
+                });
+            }
+
+            if (!this.profileMenuOutsideClickListener) {
+                this.profileMenuOutsideClickListener = this.renderer.listen('document', 'click', event => {
+                    const shouldCloseProfileMenu = !(this.appTopbar.menu.nativeElement.isSameNode(event.target) || event.target.classList.contains('p-trigger') || event.target.parentNode.classList.contains('p-trigger'));
+
+                        if (shouldCloseProfileMenu) {
+                            this.layoutService.state.profileSidebarVisible = false;
+                            this.profileMenuOutsideClickListener();
+                            this.profileMenuOutsideClickListener = null;
+                        }
                 });
             }
         });
