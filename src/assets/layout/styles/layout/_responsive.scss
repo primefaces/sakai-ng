@@ -76,12 +76,6 @@
         }
 
         .layout-mask {
-            z-index: 998;
-            background-color: var(--mask-bg);
-
-        }
-
-        .layout-mask {
             display: none;
             position: fixed;
             top: 0;
@@ -99,6 +93,7 @@
 
             .layout-mask {
                 display: block;
+                animation: fadein $transitionDuration;
             }
         }
     }
