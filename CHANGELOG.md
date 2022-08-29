@@ -1,5 +1,9 @@
 # Changelog
 
+## 14.0.2
+
+- Updated to PrimeNG 14.0.2.
+
 ## 14.0.0
 
 - Folder structure updated.
