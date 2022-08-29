@@ -80,7 +80,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
                         }
                     },
                     grid: {
-                        display: false,
+                        color:[surfaceBorder],
                         drawBorder: false
                     }
                 },
@@ -89,7 +89,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
                         color: textColorSecondary
                     },
                     grid: {
-                        color: surfaceBorder,
+                        color:[surfaceBorder],
                         drawBorder: false
                     }
                 },
@@ -110,7 +110,8 @@ export class ChartsComponent implements OnInit, OnDestroy {
                         documentStyle.getPropertyValue('--yellow-400'),
                         documentStyle.getPropertyValue('--blue-400'),
                         documentStyle.getPropertyValue('--red-400')
-                    ]
+                    ],
+                    borderColor: [surfaceBorder]
                 }]
         };
 
@@ -161,7 +162,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
                         color: textColorSecondary
                     },
                     grid: {
-                        color: surfaceBorder,
+                        color: [surfaceBorder],
                         drawBorder: false
                     }
                 },
@@ -170,10 +171,10 @@ export class ChartsComponent implements OnInit, OnDestroy {
                         color: textColorSecondary
                     },
                     grid: {
-                        color: surfaceBorder,
+                        color: [surfaceBorder],
                         drawBorder: false
                     }
-                }
+                },
             }
         };
 
@@ -252,8 +253,12 @@ export class ChartsComponent implements OnInit, OnDestroy {
             },
             scales: {
                 r: {
+                    pointLabels: {
+                        color: textColor
+                    },
                     grid: {
-                        color: textColorSecondary
+                        color:[surfaceBorder],
+                        drawBorder: false
                     }
                 }
             }
