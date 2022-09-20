@@ -6,12 +6,9 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class AppComponent {
 
-    menuMode = 'static';
-
     constructor(private primengConfig: PrimeNGConfig) { }
 
     ngOnInit() {
         this.primengConfig.ripple = true;
-        document.documentElement.style.fontSize = '14px';
     }
 }
