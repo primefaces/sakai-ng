@@ -70,10 +70,6 @@ export class LayoutService {
         }
     }
 
-    onOverlaySubmenuOpen() {
-        this.overlayOpen.next(null);
-    }
-
     showProfileSidebar() {
         this.state.profileSidebarVisible = !this.state.profileSidebarVisible;
         if (this.state.profileSidebarVisible) {
