@@ -2,21 +2,25 @@
     <div class="col-12 lg:col-6">
         <div class="card">
             <h5>Toast</h5>
-            <p-toast key="tst" [baseZIndex]="99999"></p-toast>
-            <button type="button" pButton (click)="showSuccessViaToast()" label="Success" class="p-button-success mr-2"></button>
-            <button type="button" pButton (click)="showInfoViaToast()" label="Info" class="p-button-info mr-2"></button>
-            <button type="button" pButton (click)="showWarnViaToast()" label="Warn" class="p-button-warning mr-2"></button>
-            <button type="button" pButton (click)="showErrorViaToast()" label="Error" class="p-button-danger"></button>
+            <p-toast key="tst"></p-toast>
+            <div class="flex flex-wrap gap-2">
+                <button type="button" pButton (click)="showSuccessViaToast()" label="Success" class="p-button-success"></button>
+                <button type="button" pButton (click)="showInfoViaToast()" label="Info" class="p-button-info"></button>
+                <button type="button" pButton (click)="showWarnViaToast()" label="Warn" class="p-button-warning"></button>
+                <button type="button" pButton (click)="showErrorViaToast()" label="Error" class="p-button-danger"></button>
+            </div>
         </div>
     </div>
 
     <div class="col-12 lg:col-6">
         <div class="card z-3">
             <h5>Messages</h5>
-            <button type="button" pButton (click)="showSuccessViaMessages()" label="Success" class="p-button-success mr-2"></button>
-            <button type="button" pButton (click)="showInfoViaMessages()" label="Info" class="p-button-info mr-2"></button>
-            <button type="button" pButton (click)="showWarnViaMessages()" label="Warn" class="p-button-warning mr-2"></button>
-            <button type="button" pButton (click)="showErrorViaMessages()" label="Error" class="p-button-danger"></button>
+            <div class="flex flex-wrap gap-2">
+                <button type="button" pButton (click)="showSuccessViaMessages()" label="Success" class="p-button-success"></button>
+                <button type="button" pButton (click)="showInfoViaMessages()" label="Info" class="p-button-info"></button>
+                <button type="button" pButton (click)="showWarnViaMessages()" label="Warn" class="p-button-warning"></button>
+                <button type="button" pButton (click)="showErrorViaMessages()" label="Error" class="p-button-danger"></button>
+            </div>
 
             <p-messages [value]="msgs"></p-messages>
         </div>
@@ -25,20 +29,16 @@
     <div class="col-12 lg:col-8">
         <div class="card">
             <h5>Inline</h5>
-            <div class="field grid">
-                <label for="username" class="col-fixed w-9rem">Username</label>
-                <div class="col">
-                    <input id="username" type="text" #username pInputText placeholder="Username" class="ng-dirty ng-invalid mr-2">
-                    <p-message severity="error" text="Field is required"></p-message>
-                </div>
+            <div class="flex align-items-center flex-wrap gap-2 mb-3">
+                <label for="username" class="w-9rem">Username</label>
+                <input id="username" type="text" #username pInputText placeholder="Username" class="ng-dirty ng-invalid">
+                <p-message severity="error" text="Field is required"></p-message>
             </div>
 
-            <div class="field grid">
-                <label for="email" class="col-fixed w-9rem">Email</label>
-                <div class="col">
-                    <input type="text" #email pInputText placeholder="Email" label="email" class="ng-dirty ng-invalid mr-2">
-                    <p-message severity="error"></p-message>
-                </div>
+            <div class="flex align-items-center flex-wrap gap-2">
+                <label for="email" class="w-9rem">Email</label>
+                <input type="text" #email pInputText placeholder="Email" label="email" class="ng-dirty ng-invalid">
+                <p-message severity="error"></p-message>
             </div>
         </div>
     </div>

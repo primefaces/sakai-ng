@@ -145,20 +145,11 @@
 
 
 			<h5>Multiselect</h5>
-			<p-multiSelect [options]="countries" [(ngModel)]="selectedMulti" defaultLabel="Select a Country" optionLabel="name" class="multiselect-custom">
-				<ng-template let-value pTemplate="selectedItems">
-					<div class="country-item country-item-value" *ngFor="let option of selectedMulti">
-						<img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + option.code.toLowerCase()" />
-						<div>{{option.name}}</div>
-					</div>
-					<div *ngIf="!selectedMulti || selectedMulti.length === 0" class="country-placeholder">
-						Select Countries
-					</div>
-				</ng-template>
+			<p-multiSelect [options]="countries" [(ngModel)]="selectedMulti" placeholder="Select a Country" optionLabel="name" class="multiselect-custom" display="chip">
 				<ng-template let-country pTemplate="item">
-					<div class="country-item">
-						<img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />
-						<div>{{country.name}}</div>
+					<div class="flex align-items-center">
+						<img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" style="width:21px"/>
+						<span class="ml-2">{{country.name}}</span>
 					</div>
 				</ng-template>
 			</p-multiSelect>
@@ -179,7 +170,7 @@
 	<div class="col-12">
 		<div class="card">
 			<h5>InputGroup</h5>
-			<div class="grid p-fluid">
+			<div class="grid">
 				<div class="col-12 md:col-6">
 					<div class="p-inputgroup">
 						<span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>

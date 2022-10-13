@@ -12,20 +12,7 @@ interface expandedRows {
 
 @Component({
     templateUrl: './tabledemo.component.html',
-    providers: [MessageService, ConfirmationService],
-    styles: [`
-        :host ::ng-deep  .p-frozen-column {
-            font-weight: bold;
-        }
-
-        :host ::ng-deep .p-datatable-frozen-tbody {
-            font-weight: bold;
-        }
-
-        :host ::ng-deep .p-progressbar {
-            height:.5rem;
-        }
-    `]
+    providers: [MessageService, ConfirmationService]
 })
 export class TableDemoComponent implements OnInit {
 

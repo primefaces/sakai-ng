@@ -3,7 +3,11 @@ import { MegaMenuItem, MenuItem } from 'primeng/api';
 
 @Component({
     templateUrl: './menus.component.html',
-    encapsulation: ViewEncapsulation.None
+    styles: [`
+        :host ::ng-deep .p-menubar-root-list {
+            flex-wrap: wrap;
+        }
+    `]
 })
 export class MenusComponent implements OnInit {
 

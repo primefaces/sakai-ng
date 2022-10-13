@@ -23,14 +23,14 @@
 
         <div class="card p-fluid">
             <h5>Overlay Panel</h5>
-            <div class="grid formgrid">
-                <div class="col-6">
+            <div class="flex flex-wrap gap-2">
+                <div>
                     <button type="button" pButton label="Image" (click)="op1.toggle($event)" class="p-button-success"></button>
                     <p-overlayPanel #op1 [showCloseIcon]="true" [style]="{width: '450px'}">
                         <img src="assets/demo/images/nature/nature1.jpg" alt="Nature 1" style="width:100%"/>
                     </p-overlayPanel>
                 </div>
-                <div class="col-6">
+                <div>
                     <button type="button" pButton label="DataTable" (click)="op2.toggle($event)" class="p-button-success"></button>
                     <p-overlayPanel #op2 [showCloseIcon]="true" [style]="{width: '450px'}">
                         <ng-template pTemplate>
@@ -91,22 +91,24 @@
                 <h3 style="font-weight:normal">Full Screen Sidebar</h3>
             </p-sidebar>
 
-            <button pButton type="button" (click)="visibleSidebar1 = true" icon="pi pi-arrow-right" class="p-button-warning mr-2"></button>
-            <button pButton type="button" (click)="visibleSidebar2 = true" icon="pi pi-arrow-left" class="p-button-warning mr-2"></button>
-            <button pButton type="button" (click)="visibleSidebar3 = true" icon="pi pi-arrow-down" class="p-button-warning mr-2"></button>
-            <button pButton type="button" (click)="visibleSidebar4 = true" icon="pi pi-arrow-up" class="p-button-warning mr-2"></button>
-            <button pButton type="button" (click)="visibleSidebar5 = true" icon="pi pi-external-link" class="p-button-warning"></button>
+            <div class="flex flex-wrap gap-2">
+                <button pButton type="button" (click)="visibleSidebar1 = true" icon="pi pi-arrow-right" class="p-button-warning"></button>
+                <button pButton type="button" (click)="visibleSidebar2 = true" icon="pi pi-arrow-left" class="p-button-warning"></button>
+                <button pButton type="button" (click)="visibleSidebar3 = true" icon="pi pi-arrow-down" class="p-button-warning"></button>
+                <button pButton type="button" (click)="visibleSidebar4 = true" icon="pi pi-arrow-up" class="p-button-warning"></button>
+                <button pButton type="button" (click)="visibleSidebar5 = true" icon="pi pi-external-link" class="p-button-warning"></button>
+            </div>
         </div>
     </div>
 
     <div class="col-12 lg:col-6">
         <div class="card">
             <h5>Tooltip</h5>
-            <div class="formgroup-inline">
-                <div class="field">
+            <div class="flex align-items-center gap-2">
+                <span>
                     <label for="firstname5" class="p-sr-only">Username</label>
                     <input id="firstname5" type="text" pInputText placeholder="Username" pTooltip="Enter your username">
-                </div>
+                </span>
                 <button pButton pRipple type="button" label="Save" icon="pi pi-check" pTooltip="Click to proceed"></button>
             </div>
         </div>

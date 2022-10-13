@@ -4,53 +4,7 @@ import { SelectItem } from 'primeng/api';
 import { CountryService } from 'src/app/demo/service/country.service';
 
 @Component({
-    templateUrl: './inputdemo.component.html',
-    styles: [`
-        :host ::ng-deep .p-multiselect {
-            min-width: 15rem;
-        }
-
-        :host ::ng-deep .multiselect-custom-virtual-scroll .p-multiselect {
-            min-width: 20rem;
-        }
-
-        :host ::ng-deep .multiselect-custom .p-multiselect-label {
-            padding-top: .25rem;
-            padding-bottom: .25rem;
-
-        }
-
-        :host ::ng-deep .multiselect-custom .country-item.country-item-value {
-            padding: .25rem .5rem;
-            border-radius: 3px;
-            display: inline-flex;
-            margin-right: .5rem;
-            background-color: var(--primary-color);
-            color: var(--primary-color-text);
-        }
-
-        :host ::ng-deep .multiselect-custom .country-item.country-item-value img.flag {
-            width: 17px;
-        }
-
-        :host ::ng-deep .multiselect-custom .country-item {
-            display: flex;
-            align-items: center;
-        }
-
-        :host ::ng-deep .multiselect-custom .country-item img.flag {
-            width: 18px;
-            margin-right: .5rem;
-        }
-
-        :host ::ng-deep .multiselect-custom .country-placeholder {
-            padding: 0.25rem;
-        }
-
-        :host ::ng-deep .p-colorpicker {
-            width: 2.5em
-        }
-    `]
+    templateUrl: './inputdemo.component.html'
 })
 export class InputDemoComponent implements OnInit {
     countries: any[] = [];

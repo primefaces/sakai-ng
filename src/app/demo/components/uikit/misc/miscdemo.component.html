@@ -16,29 +16,34 @@
         <div class="card">
             <h4>Badge</h4>
             <h5>Numbers</h5>
-            <div>
-                <p-badge value="2" styleClass="mr-2"></p-badge>
-                <p-badge value="8" severity="success" styleClass="mr-2"></p-badge>
-                <p-badge value="4" severity="info" styleClass="mr-2"></p-badge>
-                <p-badge value="12" severity="warning" styleClass="mr-2"></p-badge>
+            <div class="flex flex-wrap gap-2">
+                <p-badge value="2"></p-badge>
+                <p-badge value="8" severity="success"></p-badge>
+                <p-badge value="4" severity="info"></p-badge>
+                <p-badge value="12" severity="warning"></p-badge>
                 <p-badge value="3" severity="danger"></p-badge>
             </div>
 
             <h5>Positioned Badge</h5>
-            <i class="pi pi-bell mr-4 p-text-secondary" pBadge style="font-size: 2rem" value="2"></i>
-            <i class="pi pi-calendar mr-4 p-text-secondary" pBadge style="font-size: 2rem" [value]="'10+'" severity="danger"></i>
-            <i class="pi pi-envelope p-text-secondary" pBadge style="font-size: 2rem" severity="danger"></i>
+            <div class="flex flex-wrap gap-2">
+                <i class="pi pi-bell mr-4 p-text-secondary" pBadge style="font-size: 2rem" value="2"></i>
+                <i class="pi pi-calendar mr-4 p-text-secondary" pBadge style="font-size: 2rem" [value]="'10+'" severity="danger"></i>
+                <i class="pi pi-envelope p-text-secondary" pBadge style="font-size: 2rem" severity="danger"></i>
+            </div>
 
 
             <h5>Inline Button Badge</h5>
-            <p-button label="Emails" badge="8" styleClass="mr-2"></p-button>
-            <p-button label="Messages" icon="pi pi-users" styleClass="p-button-warning" badge="8" badgeClass="p-badge-danger"></p-button>
+            <div class="flex flex-wrap gap-2">
+                <p-button label="Emails" badge="8"></p-button>
+                <p-button label="Messages" icon="pi pi-users" styleClass="p-button-warning" badge="8" badgeClass="p-badge-danger"></p-button>
+            </div>
+
 
             <h5>Sizes</h5>
-            <div>
-                <p-badge value="2" styleClass="mr-2"></p-badge>
-                <p-badge value="4" size="large" severity="warning" styleClass="mr-2"></p-badge>
-                <p-badge value="6" size="xlarge" severity="success" styleClass="mr-2"></p-badge>
+            <div class="flex flex-wrap gap-2 align-items-end">
+                <p-badge value="2"></p-badge>
+                <p-badge value="4" size="large" severity="warning"></p-badge>
+                <p-badge value="6" size="xlarge" severity="success"></p-badge>
             </div>
         </div>
 
@@ -55,12 +60,14 @@
             </p-avatarGroup>
 
             <h5>Label - Circle</h5>
-            <p-avatar label="P" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
-            <p-avatar label="V" styleClass="mr-2" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
-            <p-avatar label="U" styleClass="mr-2" [style]="{'background-color': '#9c27b0', 'color': '#ffffff'}" shape="circle"></p-avatar>
+            <div class="flex flex-wrap gap-2 align-items-end">
+                <p-avatar label="P" size="xlarge" shape="circle"></p-avatar>
+                <p-avatar label="V" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
+                <p-avatar label="U" [style]="{'background-color': '#9c27b0', 'color': '#ffffff'}" shape="circle"></p-avatar>
+            </div>
 
             <h5>Icon - Badge</h5>
-            <p-avatar icon="pi pi-user" pBadge value="4" severity="success" styleClass="mr-2" size="xlarge"></p-avatar>
+            <p-avatar icon="pi pi-user" pBadge value="4" severity="success" size="xlarge"></p-avatar>
         </div>
 
         <div class="card">
@@ -87,31 +94,37 @@
         <div class="card">
             <h4>Tag</h4>
             <h5>Tags</h5>
-            <p-tag styleClass="mr-2" value="Primary"></p-tag>
-            <p-tag styleClass="mr-2" severity="success" value="Success"></p-tag>
-            <p-tag styleClass="mr-2" severity="info" value="Info"></p-tag>
-            <p-tag styleClass="mr-2" severity="warning" value="Warning"></p-tag>
-            <p-tag severity="danger" value="Danger"></p-tag>
+            <div class="flex flex-wrap gap-2">
+                <p-tag value="Primary"></p-tag>
+                <p-tag severity="success" value="Success"></p-tag>
+                <p-tag severity="info" value="Info"></p-tag>
+                <p-tag severity="warning" value="Warning"></p-tag>
+                <p-tag severity="danger" value="Danger"></p-tag>
+            </div>
 
             <h5>Pills</h5>
-            <p-tag styleClass="mr-2" value="Primary" [rounded]="true"></p-tag>
-            <p-tag styleClass="mr-2" severity="success" value="Success" [rounded]="true"></p-tag>
-            <p-tag styleClass="mr-2" severity="info" value="Info" [rounded]="true"></p-tag>
-            <p-tag styleClass="mr-2" severity="warning" value="Warning" [rounded]="true"></p-tag>
-            <p-tag severity="danger" value="Danger" [rounded]="true"></p-tag>
+            <div class="flex flex-wrap gap-2">
+                <p-tag value="Primary" [rounded]="true"></p-tag>
+                <p-tag severity="success" value="Success" [rounded]="true"></p-tag>
+                <p-tag severity="info" value="Info" [rounded]="true"></p-tag>
+                <p-tag severity="warning" value="Warning" [rounded]="true"></p-tag>
+                <p-tag severity="danger" value="Danger" [rounded]="true"></p-tag>
+            </div>
 
             <h5>Icons</h5>
-            <p-tag styleClass="mr-2" icon="pi pi-user" value="Primary"></p-tag>
-            <p-tag styleClass="mr-2" icon="pi pi-check" severity="success" value="Success"></p-tag>
-            <p-tag styleClass="mr-2" icon="pi pi-info-circle" severity="info" value="Info"></p-tag>
-            <p-tag styleClass="mr-2" con="pi pi-exclamation-triangle" severity="warning" value="Warning"></p-tag>
-            <p-tag icon="pi pi-times" severity="danger" value="Danger"></p-tag>
+            <div class="flex flex-wrap gap-2">
+                <p-tag icon="pi pi-user" value="Primary"></p-tag>
+                <p-tag icon="pi pi-check" severity="success" value="Success"></p-tag>
+                <p-tag icon="pi pi-info-circle" severity="info" value="Info"></p-tag>
+                <p-tag con="pi pi-exclamation-triangle" severity="warning" value="Warning"></p-tag>
+                <p-tag icon="pi pi-times" severity="danger" value="Danger"></p-tag>
+            </div>
         </div>
 
         <div class="card">
             <h4>Chip</h4>
             <h5>Basic</h5>
-            <div class="flex align-items-center flex-column sm:flex-row">
+            <div class="flex flex-wrap align-items-center">
                 <p-chip label="Action" styleClass="m-1"></p-chip>
                 <p-chip label="Comedy" styleClass="m-1"></p-chip>
                 <p-chip label="Mystery" styleClass="m-1"></p-chip>
@@ -119,7 +132,7 @@
             </div>
 
             <h5>Icon</h5>
-            <div class="flex align-items-center flex-column sm:flex-row">
+            <div class="flex flex-wrap align-items-center">
                 <p-chip label="Apple" icon="pi pi-apple" styleClass="m-1"></p-chip>
                 <p-chip label="Facebook" icon="pi pi-facebook" styleClass="m-1"></p-chip>
                 <p-chip label="Google" icon="pi pi-google" styleClass="m-1"></p-chip>
@@ -127,7 +140,7 @@
             </div>
 
             <h5>Image</h5>
-            <div class="flex align-items-center flex-column sm:flex-row">
+            <div class="flex flex-wrap align-items-center">
                 <p-chip label="Amy Elsner" image="assets/demo/images/avatar/amyelsner.png" styleClass="m-1"></p-chip>
                 <p-chip label="Asiya Javayant" image="assets/demo/images/avatar/asiyajavayant.png" styleClass="m-1"></p-chip>
                 <p-chip label="Onyama Limba" image="assets/demo/images/avatar/onyamalimba.png" styleClass="m-1"></p-chip>
@@ -135,7 +148,7 @@
             </div>
 
             <h5>Styling</h5>
-            <div class="flex align-items-center flex-column sm:flex-row">
+            <div class="flex flex-wrap align-items-center">
                 <p-chip label="Action" styleClass="m-1 custom-chip"></p-chip>
                 <p-chip label="Comedy" styleClass="m-1 custom-chip"></p-chip>
                 <p-chip label="Onyama Limba" image="assets/demo/images/avatar/onyamalimba.png" styleClass="m-1 custom-chip"></p-chip>

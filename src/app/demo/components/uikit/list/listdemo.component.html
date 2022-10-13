@@ -20,7 +20,7 @@
 							<img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" class="my-4 md:my-0 w-9 md:w-10rem shadow-2 mr-5"/>
 							<div class="flex-1 text-center md:text-left">
 								<div class="font-bold text-2xl">{{product.name}}</div>
-								<div class="mb-3">{{product.description}}</div>
+								<div class="mb-2">{{product.description}}</div>
 								<p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
 								<div class="flex align-items-center mt-2">
 									<i class="pi pi-tag mr-2"></i>
@@ -39,14 +39,14 @@
 				<ng-template let-product pTemplate="gridItem">
 					<div class="col-12 md:col-4">
 						<div class="card m-3 border-1 surface-border">
-							<div class="flex align-items-center justify-content-between">
+							<div class="flex align-items-center justify-content-between mb-2">
 								<div class="flex align-items-center">
 									<i class="pi pi-tag mr-2"></i>
 									<span class="font-semibold">{{product.category}}</span>
 								</div>
 								<span [class]="'sm:ml-2 product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
 							</div>
-							<div class="text-center">
+							<div class="text-center mb-3">
 								<img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" class="w-9 shadow-2 my-3 mx-0"/>
 								<div class="text-2xl font-bold">{{product.name}}</div>
 								<div class="mb-3">{{product.description}}</div>
