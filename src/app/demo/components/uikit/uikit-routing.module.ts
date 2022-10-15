@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
     imports: [RouterModule.forChild([
         { path: 'formlayout', loadChildren: () => import('./formlayout/formlayout.module').then(m => m.FormlayoutModule) },
         { path: 'button', loadChildren: () => import('./button/buttondemo.module').then(m => m.ButtonDemoModule) },
-        { path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsModule) },
+        { path: 'charts', loadChildren: () => import('./charts/chartsdemo.module').then(m => m.ChartsDemoModule) },
         { path: 'file', loadChildren: () => import('./file/filedemo.module').then(m => m.FileDemoModule) },
         { path: 'floatlabel', loadChildren: () => import('./floatlabel/floatlabeldemo.module').then(m => m.FloatlabelDemoModule) },
         { path: 'input', loadChildren: () => import('./input/inputdemo.module').then(m => m.InputDemoModule) },

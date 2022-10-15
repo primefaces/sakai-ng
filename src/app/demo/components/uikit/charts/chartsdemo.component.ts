@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 @Component({
-    templateUrl: './charts.component.html'
+    templateUrl: './chartsdemo.component.html'
 })
-export class ChartsComponent implements OnInit, OnDestroy {
+export class ChartsDemoComponent implements OnInit {
 
     lineData: any;
 
@@ -27,10 +27,10 @@ export class ChartsComponent implements OnInit, OnDestroy {
 
     radarOptions: any;
 
-    subscription!: Subscription;
+    subscription: Subscription;
 
     constructor(public layoutService: LayoutService) {
-        this.subscription = this.layoutService.configUpdate$.subscribe(() => {
+        this.subscription = this.layoutService.configUpdate$.subscribe(config => {
             this.initCharts();
         });
     }
@@ -44,20 +44,20 @@ export class ChartsComponent implements OnInit, OnDestroy {
         const textColor = documentStyle.getPropertyValue('--text-color');
         const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
+        
         this.barData = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             datasets: [
                 {
                     label: 'My First dataset',
                     backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-                    borderColor: documentStyle.getPropertyValue('--primary-700'),
+                    borderColor: documentStyle.getPropertyValue('--primary-500'),
                     data: [65, 59, 80, 81, 56, 55, 40]
                 },
                 {
                     label: 'My Second dataset',
-                    backgroundColor: documentStyle.getPropertyValue('--bluegray-500'),
-                    borderColor: documentStyle.getPropertyValue('--bluegray-500'),
+                    backgroundColor: documentStyle.getPropertyValue('--primary-200'),
+                    borderColor: documentStyle.getPropertyValue('--primary-200'),
                     data: [28, 48, 40, 19, 86, 27, 90]
                 }
             ]
@@ -67,7 +67,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        color: textColor
+                        fontColor: textColor
                     }
                 }
             },
@@ -80,7 +80,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
                         }
                     },
                     grid: {
-                        color:[surfaceBorder],
+                        display: false,
                         drawBorder: false
                     }
                 },
@@ -89,7 +89,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
                         color: textColorSecondary
                     },
                     grid: {
-                        color:[surfaceBorder],
+                        color: surfaceBorder,
                         drawBorder: false
                     }
                 },
@@ -102,16 +102,15 @@ export class ChartsComponent implements OnInit, OnDestroy {
                 {
                     data: [540, 325, 702],
                     backgroundColor: [
-                        documentStyle.getPropertyValue('--yellow-500'),
-                        documentStyle.getPropertyValue('--blue-500'),
-                        documentStyle.getPropertyValue('--pink-500')
+                        documentStyle.getPropertyValue('--indigo-500'),
+                        documentStyle.getPropertyValue('--purple-500'),
+                        documentStyle.getPropertyValue('--teal-500')
                     ],
                     hoverBackgroundColor: [
-                        documentStyle.getPropertyValue('--yellow-400'),
-                        documentStyle.getPropertyValue('--blue-400'),
-                        documentStyle.getPropertyValue('--red-400')
-                    ],
-                    borderColor: [surfaceBorder]
+                        documentStyle.getPropertyValue('--indigo-400'),
+                        documentStyle.getPropertyValue('--purple-400'),
+                        documentStyle.getPropertyValue('--teal-400')
+                    ]
                 }]
         };
 
@@ -133,16 +132,16 @@ export class ChartsComponent implements OnInit, OnDestroy {
                     label: 'First Dataset',
                     data: [65, 59, 80, 81, 56, 55, 40],
                     fill: false,
-                    backgroundColor: documentStyle.getPropertyValue('--primary-700'),
-                    borderColor: documentStyle.getPropertyValue('--primary-700'),
+                    backgroundColor: documentStyle.getPropertyValue('--primary-500'),
+                    borderColor: documentStyle.getPropertyValue('--primary-500'),
                     tension: .4
                 },
                 {
                     label: 'Second Dataset',
                     data: [28, 48, 40, 19, 86, 27, 90],
                     fill: false,
-                    backgroundColor: documentStyle.getPropertyValue('--bluegray-600'),
-                    borderColor: documentStyle.getPropertyValue('--bluegray-600'),
+                    backgroundColor: documentStyle.getPropertyValue('--primary-200'),
+                    borderColor: documentStyle.getPropertyValue('--primary-200'),
                     tension: .4
                 }
             ]
@@ -152,7 +151,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        color: textColor
+                        fontColor: textColor
                     }
                 }
             },
@@ -162,7 +161,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
                         color: textColorSecondary
                     },
                     grid: {
-                        color: [surfaceBorder],
+                        color: surfaceBorder,
                         drawBorder: false
                     }
                 },
@@ -171,7 +170,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
                         color: textColorSecondary
                     },
                     grid: {
-                        color: [surfaceBorder],
+                        color: surfaceBorder,
                         drawBorder: false
                     }
                 },
@@ -187,18 +186,18 @@ export class ChartsComponent implements OnInit, OnDestroy {
                     3
                 ],
                 backgroundColor: [
-                    documentStyle.getPropertyValue('--red-500'),
-                    documentStyle.getPropertyValue('--blue-500'),
-                    documentStyle.getPropertyValue('--yellow-500'),
-                    documentStyle.getPropertyValue('--green-500')
+                    documentStyle.getPropertyValue('--indigo-500'),
+                    documentStyle.getPropertyValue('--purple-500'),
+                    documentStyle.getPropertyValue('--teal-500'),
+                    documentStyle.getPropertyValue('--orange-500')
                 ],
                 label: 'My dataset'
             }],
             labels: [
-                'Red',
-                'Blue',
-                'Yellow',
-                'Green'
+                'Indigo',
+                'Purple',
+                'Teal',
+                'Orange'
             ]
         };
 
@@ -224,20 +223,20 @@ export class ChartsComponent implements OnInit, OnDestroy {
             datasets: [
                 {
                     label: 'My First dataset',
-                    borderColor: documentStyle.getPropertyValue('--red-500'),
-                    pointBackgroundColor: documentStyle.getPropertyValue('--red-500'),
-                    pointBorderColor: documentStyle.getPropertyValue('--red-500'),
+                    borderColor: documentStyle.getPropertyValue('--indigo-400'),
+                    pointBackgroundColor: documentStyle.getPropertyValue('--indigo-400'),
+                    pointBorderColor: documentStyle.getPropertyValue('--indigo-400'),
                     pointHoverBackgroundColor: textColor,
-                    pointHoverBorderColor: documentStyle.getPropertyValue('--red-500'),
+                    pointHoverBorderColor: documentStyle.getPropertyValue('--indigo-400'),
                     data: [65, 59, 90, 81, 56, 55, 40]
                 },
                 {
                     label: 'My Second dataset',
-                    borderColor: documentStyle.getPropertyValue('--bluegray-500'),
-                    pointBackgroundColor: documentStyle.getPropertyValue('--bluegray-500'),
-                    pointBorderColor: documentStyle.getPropertyValue('--bluegray-500'),
+                    borderColor: documentStyle.getPropertyValue('--purple-400'),
+                    pointBackgroundColor: documentStyle.getPropertyValue('--purple-400'),
+                    pointBorderColor: documentStyle.getPropertyValue('--purple-400'),
                     pointHoverBackgroundColor: textColor,
-                    pointHoverBorderColor: documentStyle.getPropertyValue('--bluegray-500'),
+                    pointHoverBorderColor: documentStyle.getPropertyValue('--purple-400'),
                     data: [28, 48, 40, 19, 96, 27, 100]
                 }
             ]
@@ -247,18 +246,14 @@ export class ChartsComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        color: textColor
+                        fontColor: textColor
                     }
                 }
             },
             scales: {
                 r: {
-                    pointLabels: {
-                        color: textColor
-                    },
                     grid: {
-                        color:[surfaceBorder],
-                        drawBorder: false
+                        color: textColorSecondary
                     }
                 }
             }
