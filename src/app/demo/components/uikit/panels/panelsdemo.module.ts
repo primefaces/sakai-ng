@@ -17,23 +17,23 @@ import { SplitterModule } from 'primeng/splitter';
 import { PanelModule } from 'primeng/panel';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        PanelsDemoRoutingModule,
-        ToolbarModule,
-        ButtonModule,
-        RippleModule,
-        SplitButtonModule,
-        AccordionModule,
-        TabViewModule,
-        FieldsetModule,
-        MenuModule,
-        InputTextModule,
-        DividerModule,
-        SplitterModule,
-        PanelModule
-    ],
-    declarations: [PanelsDemoComponent]
+	imports: [
+		CommonModule,
+		FormsModule,
+		PanelsDemoRoutingModule,
+		ToolbarModule,
+		ButtonModule,
+		RippleModule,
+		SplitButtonModule,
+		AccordionModule,
+		TabViewModule,
+		FieldsetModule,
+		MenuModule,
+		InputTextModule,
+		DividerModule,
+		SplitterModule,
+		PanelModule
+	],
+	declarations: [PanelsDemoComponent]
 })
 export class PanelsDemoModule { }

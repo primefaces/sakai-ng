@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ButtonDemoComponent } from './buttondemo.component';
+import { FormLayoutDemoComponent } from './formlayoutdemo.component';
 
 @NgModule({
 	imports: [RouterModule.forChild([
-		{ path: '', component: ButtonDemoComponent }
+		{ path: '', component: FormLayoutDemoComponent }
 	])],
 	exports: [RouterModule]
 })
-export class ButtonDemoRoutingModule { }
+export class FormLayoutDemoRoutingModule { }

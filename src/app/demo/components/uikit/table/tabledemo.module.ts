@@ -16,22 +16,22 @@ import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        TableDemoRoutingModule,
-        FormsModule,
-        TableModule,
-        RatingModule,
-        ButtonModule,
-        SliderModule,
-        InputTextModule,
-        ToggleButtonModule,
-        RippleModule,
-        MultiSelectModule,
-        DropdownModule,
-        ProgressBarModule,
-        ToastModule
-    ],
-    declarations: [TableDemoComponent]
+	imports: [
+		CommonModule,
+		TableDemoRoutingModule,
+		FormsModule,
+		TableModule,
+		RatingModule,
+		ButtonModule,
+		SliderModule,
+		InputTextModule,
+		ToggleButtonModule,
+		RippleModule,
+		MultiSelectModule,
+		DropdownModule,
+		ProgressBarModule,
+		ToastModule
+	],
+	declarations: [TableDemoComponent]
 })
 export class TableDemoModule { }

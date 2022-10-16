@@ -9,15 +9,15 @@ import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        MessagesDemoRoutingModule,
-        MessagesModule,
-        MessageModule,
-        ButtonModule,
-        ToastModule,
-        InputTextModule
-    ],
-    declarations: [MessagesDemoComponent]
+	imports: [
+		CommonModule,
+		MessagesDemoRoutingModule,
+		MessagesModule,
+		MessageModule,
+		ButtonModule,
+		ToastModule,
+		InputTextModule
+	],
+	declarations: [MessagesDemoComponent]
 })
 export class MessagesDemoModule { }

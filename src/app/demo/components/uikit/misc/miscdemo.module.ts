@@ -14,20 +14,20 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ScrollTopModule } from 'primeng/scrolltop';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        MiscDemoRoutingModule,
-        ProgressBarModule,
-        BadgeModule,
-        AvatarModule,
-        ScrollPanelModule,
-        TagModule,
-        ChipModule,
-        ButtonModule,
-        SkeletonModule,
-        AvatarGroupModule,
-        ScrollTopModule
-    ],
-    declarations: [MiscDemoComponent]
+	imports: [
+		CommonModule,
+		MiscDemoRoutingModule,
+		ProgressBarModule,
+		BadgeModule,
+		AvatarModule,
+		ScrollPanelModule,
+		TagModule,
+		ChipModule,
+		ButtonModule,
+		SkeletonModule,
+		AvatarGroupModule,
+		ScrollTopModule
+	],
+	declarations: [MiscDemoComponent]
 })
 export class MiscDemoModule { }

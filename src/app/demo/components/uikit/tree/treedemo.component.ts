@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TreeNode } from 'primeng/api';
 import { NodeService } from 'src/app/demo/service/node.service';
+import { TreeNode} from 'primeng/api';
 
 @Component({
     templateUrl: './treedemo.component.html'
@@ -21,7 +21,7 @@ export class TreeDemoComponent implements OnInit {
 
     cols: any[] = [];
 
-    constructor(private nodeService: NodeService) { }
+    constructor(private nodeService: NodeService) {}
 
     ngOnInit() {
         this.nodeService.getFiles().then(files => this.files1 = files);

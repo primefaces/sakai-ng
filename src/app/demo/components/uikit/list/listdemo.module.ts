@@ -12,18 +12,18 @@ import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ListDemoRoutingModule,
-        DataViewModule,
-        PickListModule,
-        OrderListModule,
-        InputTextModule,
-        DropdownModule,
-        RatingModule,
-        ButtonModule
-    ],
-    declarations: [ListDemoComponent]
+	imports: [
+		CommonModule,
+		FormsModule,
+		ListDemoRoutingModule,
+		DataViewModule,
+		PickListModule,
+		OrderListModule,
+		InputTextModule,
+		DropdownModule,
+		RatingModule,
+		ButtonModule
+	],
+	declarations: [ListDemoComponent]
 })
 export class ListDemoModule { }

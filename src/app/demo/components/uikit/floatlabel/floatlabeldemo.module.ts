@@ -15,21 +15,21 @@ import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputTextModule } from "primeng/inputtext";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        FloatlabelDemoRoutingModule,
-        AutoCompleteModule,
-        CalendarModule,
-        ChipsModule,
-        DropdownModule,
-        InputMaskModule,
-        InputNumberModule,
-        CascadeSelectModule,
-        MultiSelectModule,
-        InputTextareaModule,
-        InputTextModule
-    ],
-    declarations: [FloatLabelDemoComponent]
+	imports: [
+		CommonModule,
+		FormsModule,
+		FloatlabelDemoRoutingModule,
+		AutoCompleteModule,
+		CalendarModule,
+		ChipsModule,
+		DropdownModule,
+		InputMaskModule,
+		InputNumberModule,
+		CascadeSelectModule,
+		MultiSelectModule,
+		InputTextareaModule,
+		InputTextModule
+	],
+	declarations: [FloatLabelDemoComponent]
 })
 export class FloatlabelDemoModule { }

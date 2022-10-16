@@ -8,14 +8,14 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        ButtonDemoRoutingModule,
-        ButtonModule,
-        RippleModule,
-        SplitButtonModule,
-        ToggleButtonModule,
-    ],
-    declarations: [ButtonDemoComponent]
+	imports: [
+		CommonModule,
+		ButtonDemoRoutingModule,
+		ButtonModule,
+		RippleModule,
+		SplitButtonModule,
+		ToggleButtonModule,
+	],
+	declarations: [ButtonDemoComponent]
 })
 export class ButtonDemoModule { }

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { InvalidStateDemoComponent } from './invalidstatedemo.component';
-import { InvalidStateDemoRoutingModule } from './invalidstatedemo-routing.module';
+import { FormLayoutDemoComponent } from './formlayoutdemo.component';
+import { FormLayoutDemoRoutingModule } from './formlayoutdemo-routing.module';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { CalendarModule } from "primeng/calendar";
 import { ChipsModule } from "primeng/chips";
@@ -13,13 +13,12 @@ import { CascadeSelectModule } from "primeng/cascadeselect";
 import { MultiSelectModule } from "primeng/multiselect";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputTextModule } from "primeng/inputtext";
-import { PasswordModule } from "primeng/password";
 
 @NgModule({
 	imports: [
 		CommonModule,
 		FormsModule,
-		InvalidStateDemoRoutingModule,
+		FormLayoutDemoRoutingModule,
 		AutoCompleteModule,
 		CalendarModule,
 		ChipsModule,
@@ -28,10 +27,9 @@ import { PasswordModule } from "primeng/password";
 		InputNumberModule,
 		CascadeSelectModule,
 		MultiSelectModule,
-		PasswordModule,
 		InputTextareaModule,
 		InputTextModule
 	],
-	declarations: [InvalidStateDemoComponent]
+	declarations: [FormLayoutDemoComponent]
 })
-export class InvalidStateDemoModule { }
+export class FormLayoutDemoModule { }

@@ -7,13 +7,13 @@ import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        TreeDemoRoutingModule,
-        FormsModule,
-        TreeModule,
-        TreeTableModule
-    ],
-    declarations: [TreeDemoComponent],
+	imports: [
+		CommonModule,
+		TreeDemoRoutingModule,
+		FormsModule,
+		TreeModule,
+		TreeTableModule
+	],
+	declarations: [TreeDemoComponent],
 })
 export class TreeDemoModule { }

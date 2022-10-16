@@ -46,4 +46,5 @@ export class MessagesDemoComponent {
         this.msgs = [];
         this.msgs.push({ severity: 'success', summary: 'Success Message', detail: 'Message sent' });
     }
+    
 }

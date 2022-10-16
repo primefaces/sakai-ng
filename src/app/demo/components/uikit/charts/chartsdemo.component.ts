@@ -265,4 +265,5 @@ export class ChartsDemoComponent implements OnInit {
             this.subscription.unsubscribe();
         }
     }
+    
 }

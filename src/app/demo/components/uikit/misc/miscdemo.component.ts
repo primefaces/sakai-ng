@@ -22,4 +22,5 @@ export class MiscDemoComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         clearInterval(this.interval);
     }
+    
 }

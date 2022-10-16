@@ -27,33 +27,33 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { SliderModule } from 'primeng/slider';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        InputDemoRoutingModule,
-        AutoCompleteModule,
-        CalendarModule,
-        ChipsModule,
-        DropdownModule,
-        InputMaskModule,
-        InputNumberModule,
-        ColorPickerModule,
-        CascadeSelectModule,
-        MultiSelectModule,
-        ToggleButtonModule,
-        SliderModule,
-        InputTextareaModule,
-        RadioButtonModule,
-        InputTextModule,
-        RatingModule,
-        ChipModule,
-        KnobModule,
-        InputSwitchModule,
-        ListboxModule,
-        SelectButtonModule,
-        CheckboxModule,
-        ButtonModule
-    ],
-    declarations: [InputDemoComponent]
+	imports: [
+		CommonModule,
+		FormsModule,
+		InputDemoRoutingModule,
+		AutoCompleteModule,
+		CalendarModule,
+		ChipsModule,
+		DropdownModule,
+		InputMaskModule,
+		InputNumberModule,
+		ColorPickerModule,
+		CascadeSelectModule,
+		MultiSelectModule,
+		ToggleButtonModule,
+		SliderModule,
+		InputTextareaModule,
+		RadioButtonModule,
+		InputTextModule,
+		RatingModule,
+		ChipModule,
+		KnobModule,
+		InputSwitchModule,
+		ListboxModule,
+		SelectButtonModule,
+		CheckboxModule,
+		ButtonModule
+	],
+	declarations: [InputDemoComponent]
 })
 export class InputDemoModule { }
