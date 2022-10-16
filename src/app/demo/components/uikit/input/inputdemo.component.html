@@ -143,7 +143,6 @@
 			<h5>Dropdown</h5>
 			<p-dropdown [options]="cities" [(ngModel)]="selectedDrop" placeholder="Select a City" [showClear]="true"></p-dropdown>
 
-
 			<h5>Multiselect</h5>
 			<p-multiSelect [options]="countries" [(ngModel)]="selectedMulti" placeholder="Select a Country" optionLabel="name" class="multiselect-custom" display="chip">
 				<ng-template let-country pTemplate="item">
@@ -164,7 +163,6 @@
 
 			<h5>SelectManyButton</h5>
 			<p-selectButton [options]="paymentOptions" [(ngModel)]="valSelect2" [multiple]="true" optionLabel="name"></p-selectButton>
-
 		</div>
 	</div>
 	<div class="col-12">
