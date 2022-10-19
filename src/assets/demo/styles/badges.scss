@@ -1,11 +1,15 @@
-.product-badge {
+.customer-badge,
+.product-badge,
+.order-badge {
     border-radius: var(--border-radius);
     padding: .25em .5rem;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 12px;
     letter-spacing: .3px;
+}
 
+.product-badge {
     &.status-instock {
         background: #C8E6C9;
         color: #256029;
@@ -23,13 +27,6 @@
 }
 
 .customer-badge {
-    border-radius: var(--border-radius);
-    padding: .25em .5rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: .3px;
-
     &.status-qualified {
         background: #C8E6C9;
         color: #256029;
@@ -62,13 +59,6 @@
 }
 
 .order-badge {
-    border-radius: var(--border-radius);
-    padding: .25em .5rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: .3px;
-
     &.order-delivered {
         background: #C8E6C9;
         color: #256029;
