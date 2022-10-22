@@ -1,7 +1,7 @@
 <div class="grid">
     <p-toast></p-toast>
     <div class="col-12 lg:col-6">
-        <div class="card p-fluid">
+        <div class="card">
             <h5>Dialog</h5>
             <p-dialog header="Dialog" [(visible)]="display" [modal]="true" showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
                 <p class="line-height-3 m-0">
@@ -16,7 +16,7 @@
             </p-dialog>
             <div class="grid">
                 <div class="col-12">
-                    <button (click)="display=true" pButton icon="pi pi-external-link" label="Show" style="width:auto;"></button>
+                    <button (click)="display=true" pButton icon="pi pi-external-link" label="Show"></button>
                 </div>
             </div>
         </div>
