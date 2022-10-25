@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Host, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs';
@@ -7,9 +7,8 @@ import { MenuService } from './app.menu.service';
 import { LayoutService } from './service/app.layout.service';
 
 @Component({
-    /* tslint:disable:component-selector */
+    // eslint-disable-next-line @angular-eslint/component-selector
     selector: '[app-menuitem]',
-    /* tslint:enable:component-selector */
     template: `
 		<ng-container>
             <div *ngIf="root && item.visible !== false" class="layout-menuitem-root-text">{{item.label}}</div>
@@ -36,10 +35,6 @@ import { LayoutService } from './service/app.layout.service';
 			</ul>
 		</ng-container>
     `,
-    host: {
-        '[class.layout-root-menuitem]': 'root',
-        '[class.active-menuitem]': 'active'
-    },
     animations: [
         trigger('children', [
             state('collapsed', style({
@@ -58,11 +53,11 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     @Input() index!: number;
 
-    @Input() root!: boolean;
+    @Input() @HostBinding('class.layout-root-menuitem') root!: boolean;
 
     @Input() parentKey!: string;
 
-    active = false;
+    @HostBinding('class.active-menuitem') active = false;
 
     menuSourceSubscription: Subscription;
 

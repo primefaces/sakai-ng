@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
 @Component({
     templateUrl: './timelinedemo.component.html',
     styleUrls: ['./timelinedemo.scss']
 })
-export class TimelineDemoComponent {
+export class TimelineDemoComponent implements OnInit {
 
     events1: any[] = [];
 

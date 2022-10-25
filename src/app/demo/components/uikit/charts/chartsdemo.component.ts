@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 @Component({
     templateUrl: './chartsdemo.component.html'
 })
-export class ChartsDemoComponent implements OnInit {
+export class ChartsDemoComponent implements OnInit, OnDestroy {
 
     lineData: any;
 

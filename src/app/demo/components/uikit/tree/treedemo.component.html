@@ -19,8 +19,8 @@
 				<ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-columns="columns">
 					<tr>
 						<td *ngFor="let col of columns; let i = index">
-							<p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
-							<p-treeTableCheckbox [value]="rowNode" *ngIf="i == 0"></p-treeTableCheckbox>
+							<p-treeTableToggler [rowNode]="rowNode" *ngIf="i === 0"></p-treeTableToggler>
+							<p-treeTableCheckbox [value]="rowNode" *ngIf="i === 0"></p-treeTableCheckbox>
 							{{rowData[col.field]}}
 						</td>
 					</tr>
