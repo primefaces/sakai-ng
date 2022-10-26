@@ -77,12 +77,6 @@
                 transition: transform $transitionDuration;
             }
 
-            &.rotated-icon {
-                .layout-menuitem-icon {
-                    transform: rotate(90deg);
-                }
-            }
-
             &.active-route {
                 font-weight: 700;
                 color: var(--primary-color);
