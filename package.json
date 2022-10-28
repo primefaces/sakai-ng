@@ -1,6 +1,6 @@
 {
   "name": "sakai-ng",
-  "version": "14.0.4-SNAPSHOT",
+  "version": "14.0.5-SNAPSHOT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
