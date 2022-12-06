@@ -4,25 +4,21 @@
         <h4>Getting Started</h4>
         <p>Sakai is an application template for Angular and is distributed as a CLI project. Current versions is Angular v14 with PrimeNG v14. In case CLI is not installed already, use the command below to set it up.</p>
     
-<app-code  ngPreserveWhitespaces ngNonBindable lang="markup">
-npm install -g @angular/cli
-</app-code>
+<pre class="app-code"><code>npm install -g @angular/cli</code></pre>
         
         <p>Once CLI is ready in your system, extract the contents of the zip file distribution, cd to the directory,
             install the libraries from npm and then execute "ng serve" to run the application in your local environment.</p>
 
-<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
-cd sakai
+<pre class="app-code"><code>cd sakai
 npm install
-ng serve
-</app-code>
+ng serve</code></pre>
     
         <p>The application should run at <span class="font-semibold">http://localhost:4200/</span>, you may now start with the development of your application.</p>
     
         <h5>Important CLI Commands</h5>
         <p>Following commands are derived from CLI.</p>
-<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
-Run 'ng serve' for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+<pre class="app-code"><code>Run 'ng serve' for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 Run 'ng generate component component-name' to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
 
@@ -32,8 +28,7 @@ Run 'ng test' to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run 'ng e2e' to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-Run 'ng help' for more options.
-</app-code>
+Run 'ng help' for more options.</code></pre>
     
         <h4>Structure</h4>
         <p>Sakai consists of 3 main parts; the application layout, layout assets and PrimeNG component theme assets. Layout is placed inside the <span class="text-primary font-medium">src/app/layout</span> folder,
@@ -46,8 +41,7 @@ Run 'ng help' for more options.
             initial scale is defined with the <span class="text-primary font-medium">$scale</span> at <strong class="font-semibold">layout.scss</strong>. When default theme or scale is changed at their files initially, it is required to configure the layout service with the matching values
             to avoid sync issues. </p>
     
-<app-code ngPreserveWhitespaces ngNonBindable lang="javascript">
-import &#123; Component, OnInit &#125; from '@angular/core';
+<pre class="app-code"><code>import &#123; Component, OnInit &#125; from '@angular/core';
 import &#123; PrimeNGConfig &#125; from 'primeng/api';
 import &#123; LayoutService &#125; from './layout/service/app.layout.service';
 
@@ -73,15 +67,13 @@ export class AppComponent implements OnInit &#123;
         &#125;;
     &#125;
 
-&#125;
-</app-code>
+&#125;</code></pre>
     
         <h5>Menu</h5>
         <p>Menu is a separate component defined in <span class="text-primary font-medium">src/app/layout/app.menu.component.ts</span> file and based on PrimeNG MenuModel API. In order to define the menuitems,
             navigate to this file and define your own model as a nested structure.</p>
     
-<app-code ngPreserveWhitespaces ngNonBindable lang="javascript">
-import &#123; OnInit &#125; from '@angular/core';
+<pre class="app-code"><code>import &#123; OnInit &#125; from '@angular/core';
 import &#123; Component &#125; from '@angular/core';
 
 @Component(&#123;
@@ -107,8 +99,7 @@ export class AppMenuComponent implements OnInit &#123;
             //...
         ];
     &#125;
-&#125;
-</app-code>
+&#125;</code></pre>
     
         <h4>Integration with Existing Angular CLI Projects</h4>
         <p>Sakai structure is designed in a modular way so that it can easily be integrated with your existing application. We've created a short tutorial with details.</p>

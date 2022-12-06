@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { BlocksComponent } from './blocks/blocks.component';
 import { PrimeBlocksRoutingModule } from './primeblocks-routing.module';
 import { BlockViewerComponent } from './blockviewer/blockviewer.component'
-import { AppCodeModule } from '../code/code.component';
 import { ChipModule } from 'primeng/chip';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
@@ -16,7 +15,6 @@ import { TooltipModule } from 'primeng/tooltip';
 @NgModule({
     imports: [
         CommonModule,
-        AppCodeModule,
         ButtonModule,
         RippleModule,
         ChipModule,
@@ -25,8 +23,7 @@ import { TooltipModule } from 'primeng/tooltip';
         InputTextModule,
         PasswordModule,
         TooltipModule,
-        PrimeBlocksRoutingModule,
-        AppCodeModule
+        PrimeBlocksRoutingModule
     ],
     declarations: [BlocksComponent, BlockViewerComponent]
 })
