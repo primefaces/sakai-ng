@@ -1,5 +1,13 @@
 # Changelog
 
+## 15.0.0
+**Migration Guide**
+- Upgrade to PrimeNG 15
+- Upgrade to Angular 15
+  
+**Implemented New Features and Enhancements:**
+- Update to PrimeNG 15
+- Update to Angular 15
 ## 14.0.5
 
 - Router updates
