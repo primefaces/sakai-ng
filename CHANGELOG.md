@@ -8,6 +8,7 @@
 **Implemented New Features and Enhancements:**
 - Update to PrimeNG 15
 - Update to Angular 15
+
 ## 14.0.5
 
 - Router updates
