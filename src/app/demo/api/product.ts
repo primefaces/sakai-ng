@@ -14,3 +14,20 @@ export interface Product {
     image?: string;
     rating?: number;
 }
+
+export interface Appointment {
+    _id?: string;
+    title?: string;
+    appointmentType?: string;
+    appointmentWith?: string;
+    btName?: string;
+    btCRID?: string;
+    timezone?: string;
+    date?: string;
+    startTime?: string;
+    endTime?: string;
+    supervisorName?: string;
+    supervisorCRID?: string;
+    supervisorEmail?: string;
+    recordedToBot?: boolean;
+}

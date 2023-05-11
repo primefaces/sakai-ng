@@ -1,202 +1,169 @@
 <div class="grid p-fluid">
+	<p-dialog header="Scheduled Information" [(visible)]="display" [modal]="true" showEffect="fade" [style]="{width: '50vw'}" [breakpoints]="{'960px': '80vw'}">
+		<div class="col-12 md:col-12">
+			<h5>Choosen BT</h5> 
+			<div class="grid formgrid">
+				<div class="font-bold field col-12 mb-2 lg:col-12 lg:mb-0 ">
+					<input type="text" [(ngModel)]="selectedPopUpBT" pInputText placeholder="Default" [disabled]="true">
+				</div>	
+			</div>
+			<h5>Choosen Meeting Type</h5>
+			<div class="grid formgrid">
+				<div class="field col-12 mb-2 lg:col-12 lg:mb-0">
+					<input type="text" [(ngModel)]="selectedPopUpAppointmentType" pInputText placeholder="Default" [disabled]="true">
+				</div>
+			</div>
+			<br>
+
+			<div class="card">
+				<h5>Schedule Meeting On</h5>
+				<p-calendar [(ngModel)]="selectedPopUpDate" [showIcon]="true" inputId="icon"></p-calendar>
+	
+				<h5>Choose Start and End Time:</h5>
+	
+				<div class="grid formgrid">
+					<div class="col-12 md:col-6">
+						<div class="field">
+							<h6>Start Time</h6>
+						<p-calendar [timeOnly]="true" hourFormat = "12" [(ngModel)]="selectedPopUpStartTime" (onSelect)="compareTwoTimesM()" placeholder="hh:mm">
+							<ng-template class="align-self-center" pTemplate="footer">Choose local time</ng-template>
+						</p-calendar>
+					</div>
+					</div>
+					<div class="col-12 md:col-6">
+						<div class="field">
+							<h6>End Time</h6>
+						<p-calendar [timeOnly]="true"  hourFormat = "12" [(ngModel)]="selectedPopUpEndTime" (onSelect)="compareTwoTimesM()" placeholder="hh:mm">
+							<ng-template pTemplate="footer">Choose local time</ng-template>
+						</p-calendar>
+					</div>
+					</div>
+					<div *ngIf="invalidDate" class="col-12 md:col-12">
+						<div>
+							<p-message severity="error" text="End Time should be greater than Start Time">
+							</p-message>
+						</div>
+					</div>
+				</div>
+				<h5>Appointment With</h5>
+				<div class="grid formgrid">
+					<div class="field col-12 mb-2 lg:col-12 lg:mb-0">
+						<p-dropdown [options]="supervisionClients" [(ngModel)]="selectedPopUpAppointmentWith" placeholder={{selectedPopUpAppointmentWith.label}} [filter]="true" filterBy="label" [showClear]="true"></p-dropdown>
+					</div>	
+				</div>
+	
+				
+				<br>
+				<div class="formgroup-inline">
+					<button pButton label="Update" (click)="updateMeeting()"></button>
+				</div>
+	
+			</div>
+		</div>
+		<!-- <ng-template pTemplate="footer">
+				<button pButton icon="pi pi-check" (click)="display=false" label="Ok" class="p-button-outlined"></button>
+		</ng-template> -->
+	</p-dialog>
 	<div class="col-12 md:col-6">
 		<div class="card">
-			<h5>InputText</h5>
+			<h5>Select Meeting Type</h5>
 			<div class="grid formgrid">
-				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
-					<input type="text" pInputText placeholder="Default">
-				</div>
-				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
-					<input type="text" pInputText placeholder="Disabled" [disabled]="true"/>
-				</div>
-				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
-					<input type="text" pInputText placeholder="Invalid" class="ng-dirty ng-invalid"/>
-				</div>
+				<div class="field col-12 mb-2 lg:col-12 lg:mb-0">
+					<p-dropdown [options]="masterMeetings"  [(ngModel)]="selectedMeeting" placeholder="Choose a Meeting" [showClear]="true"></p-dropdown>
+				</div>	
 			</div>
-
-			<h5>Icons</h5>
+			<h5>Schedule Meeting On</h5>
+			<p-calendar [(ngModel)]="selectedDate" [showIcon]="true" inputId="icon"></p-calendar>
+			<h5>Choose Start and End Time:</h5>
 			<div class="grid formgrid">
-				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
-					<span class="p-input-icon-left">
-						<i class="pi pi-user"></i>
-						<input type="text" pInputText placeholder="Username"/>
-					</span>
+				<div class="col-12 md:col-6">
+					<div class="field">
+						<h6>Start Time</h6>
+					<p-calendar [timeOnly]="true" hourFormat = "12" [(ngModel)]="startTime" (onSelect)="compareTwoTimesM();checkValidations()" placeholder="hh:mm">
+						<ng-template class="align-self-center" pTemplate="footer">Choose local time</ng-template>
+					</p-calendar>
 				</div>
-				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
-					<span class="p-input-icon-right">
-						<input type="text" pInputText placeholder="Search"/>
-						<i class="pi pi-search"></i>
-					</span>
 				</div>
-				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
-					<span class="p-input-icon-left p-input-icon-right">
-						<i class="pi pi-user"></i>
-						<input type="text" pInputText placeholder="Search"/>
-						<i class="pi pi-search"></i>
-					</span>
+				<div class="col-12 md:col-6">
+					<div class="field">
+						<h6>End Time</h6>
+					<p-calendar [timeOnly]="true"  hourFormat = "12" [(ngModel)]="endTime" (onSelect)="compareTwoTimesM();checkValidations()" placeholder="hh:mm">
+						<ng-template pTemplate="footer">Choose local time</ng-template>
+					</p-calendar>
 				</div>
-			</div>
-
-			<h5>Float Label</h5>
-			<span class="p-float-label">
-				<input id="float-input" type="text" pInputText>
-				<label for="float-input">Username</label>
-			</span>
-
-			<h5>Textarea</h5>
-			<textarea rows="5" cols="30" placeholder="Your Message" pInputTextarea></textarea>
-
-			<h5>AutoComplete</h5>
-			<p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [dropdown]="true">
-			</p-autoComplete>
-
-			<h5>Calendar</h5>
-			<p-calendar [showIcon]="true" inputId="icon"></p-calendar>
-
-			<h5>InputNumber</h5>
-			<p-inputNumber mode="decimal" [showButtons]="true" [min]="0" [max]="100">
-			</p-inputNumber>
-
-			<h5>Chips</h5>
-			<p-chips></p-chips>
-		</div>
-
-		<div class="card">
-            <div class="grid">
-                <div class="col-12">
-                    <h5>Slider</h5>
-                    <input type="text" pInputText [(ngModel)]="valSlider" readonly/>
-                    <p-slider [(ngModel)]="valSlider"></p-slider>
-                </div>
-                <div class="col-12 md:col-6">
-                    <h5>Rating</h5>
-                    <p-rating></p-rating>
-                </div>
-                <div class="col-12 md:col-6">
-                    <h5>ColorPicker</h5>
-                    <p-colorPicker [(ngModel)]="valColor"></p-colorPicker>
-                </div>
-                <div class="col-12">
-                    <h5>Knob</h5>
-                    <p-knob [(ngModel)]="valueKnob" valueTemplate="{value}%" [step]="10" [min]="-50" [max]="50"></p-knob>
-                </div>
-            </div>
-		</div>
-	</div>
-
-	<div class="col-12 md:col-6">
-		<div class="card">
-			<h5>RadioButton</h5>
-			<div class="grid formgrid">
-				<div class="col-12 md:col-4">
-					<div class="field-radiobutton">
-						<p-radioButton name="city" value="Chicago" [(ngModel)]="valRadio" id="city1"></p-radioButton>
-						<label for="city1">Chicago</label>
-					</div>
 				</div>
-				<div class="col-12 md:col-4">
-					<div class="field-radiobutton">
-						<p-radioButton name="city" value="Los Angeles" [(ngModel)]="valRadio"
-									   id="city2"></p-radioButton>
-						<label for="city2">Los Angeles</label>
-					</div>
-				</div>
-				<div class="col-12 md:col-4">
-					<div class="field-radiobutton">
-						<p-radioButton name="city" value="New York" [(ngModel)]="valRadio" id="city3"></p-radioButton>
-						<label for="city3">New York</label>
+				<div *ngIf="invalidDate" class="col-12 md:col-12">
+					<div>
+						<p-message severity="error" text="End Time should be greater than Start Time">
+						</p-message>
 					</div>
 				</div>
 			</div>
-
-			<h5>Checkbox</h5>
+			<h5>Appointment With</h5>
 			<div class="grid formgrid">
-				<div class="col-12 md:col-4">
-					<div class="field-checkbox">
-						<p-checkbox name="group1" value="New York" [(ngModel)]="valCheck" id="ny"></p-checkbox>
-						<label for="ny">New York</label>
-					</div>
-				</div>
-				<div class="col-12 md:col-4">
-					<div class="field-checkbox">
-						<p-checkbox name="group1" value="San Francisco" [(ngModel)]="valCheck" id="sf"></p-checkbox>
-						<label for="sf">San Francisco</label>
-					</div>
-				</div>
-				<div class="col-12 md:col-4">
-					<div class="field-checkbox">
-						<p-checkbox name="group1" value="Los Angeles" [(ngModel)]="valCheck" id="la"></p-checkbox>
-						<label for="la">Los Angeles</label>
-					</div>
-				</div>
+				<div class="field col-12 mb-2 lg:col-12 lg:mb-0">
+					<p-dropdown [options]="supervisionClients" [(ngModel)]="selectedClient" placeholder="Choose Supervision Client" [filter]="true" filterBy="label" [showClear]="true"></p-dropdown>
+				</div>	
 			</div>
 
-			<h5>Input Switch</h5>
-			<p-inputSwitch [(ngModel)]="valSwitch"></p-inputSwitch>
-		</div>
-
-		<div class="card">
-			<h5>Listbox</h5>
-			<p-listbox [options]="cities" [(ngModel)]="selectedList" [filter]="true"></p-listbox>
-
-			<h5>Dropdown</h5>
-			<p-dropdown [options]="cities" [(ngModel)]="selectedDrop" placeholder="Select a City" [showClear]="true"></p-dropdown>
-
-			<h5>Multiselect</h5>
-			<p-multiSelect [options]="countries" [(ngModel)]="selectedMulti" placeholder="Select a Country" optionLabel="name" class="multiselect-custom" display="chip">
+			<h5>Select BT</h5>
+			<p-multiSelect [options]="BTs" [(ngModel)]="selectedMultiBT" placeholder="Select a BT" optionLabel="btName" class="multiselect-custom" display="chip">
 				<ng-template let-country pTemplate="item">
 					<div class="flex align-items-center">
-						<img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" style="width:21px"/>
-						<span class="ml-2">{{country.name}}</span>
+						<!-- <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" style="width:21px"/> -->
+						<span class="ml-2">{{country.btName}}</span>
 					</div>
 				</ng-template>
 			</p-multiSelect>
-		</div>
-
-		<div class="card">
-			<h5>ToggleButton</h5>
-			<p-toggleButton [(ngModel)]="valToggle" onLabel="Yes" offLabel="No" [style]="{'width': '10em'}"></p-toggleButton>
-
-			<h5>SelectOneButton</h5>
-			<p-selectButton [options]="paymentOptions" [(ngModel)]="valSelect1" optionLabel="name"></p-selectButton>
-
-			<h5>SelectManyButton</h5>
-			<p-selectButton [options]="paymentOptions" [(ngModel)]="valSelect2" [multiple]="true" optionLabel="name"></p-selectButton>
-		</div>
-	</div>
-	
-	<div class="col-12">
-		<div class="card">
-			<h5>InputGroup</h5>
-			<div class="grid">
-				<div class="col-12 md:col-6">
-					<div class="p-inputgroup">
-						<span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-						<input type="text" pInputText placeholder="Username">
-					</div>
-				</div>
-				<div class="col-12 md:col-6">
-					<div class="p-inputgroup">
-						<span class="p-inputgroup-addon"><i class="pi pi-tags" style="line-height: 1.25;"></i></span>
-						<span class="p-inputgroup-addon"><i class="pi pi-shopping-cart" style="line-height: 1.25;"></i></span>
-						<input type="text" pInputText placeholder="Price">
-						<span class="p-inputgroup-addon">$</span>
-						<span class="p-inputgroup-addon">.00</span>
-					</div>
-				</div>
-				<div class="col-12 md:col-6">
-					<div class="p-inputgroup">
-						<button type="button" pButton pRipple label="Search"></button>
-						<input type="text" pInputText placeholder="Keyword">
-					</div>
-				</div>
-				<div class="col-12 md:col-6">
-					<div class="p-inputgroup">
-						<span class="p-inputgroup-addon"><p-checkbox [(ngModel)]="valCheck2" [binary]="true"></p-checkbox></span>
-						<input type="text" pInputText placeholder="Username">
-					</div>
-				</div>
+			<br>
+			<div class="formgroup-inline">
+				<button pButton label="Schedule" (click)="saveMeeting()" [disabled]="disableSubmit"></button>
 			</div>
+
 		</div>
 	</div>
+	<div class="col-12 md:col-6">
+		<div class="card">
+			<h5>Scheduled Meetings</h5>
+			<p-dataView #dv [value]="scheduledMeetings" [paginator]="true" [rows]="3" filterBy="btName" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+				<ng-template pTemplate="header">
+					<div class="flex flex-column md:flex-row md:justify-content-between gap-2">
+						<!-- <p-dropdown [options]="sortOptions" placeholder="Sort By Name" (onChange)="onSortChange($event)"></p-dropdown> -->
+						<span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input type="search" pInputText placeholder="Search by Name" (input)="onFilter(dv, $event)">
+                        </span>	
+					</div>
+				</ng-template>
+
+				
+				<ng-template let-product pTemplate="gridItem">
+					<div class="col-12">
+						<div class="flex flex-column md:flex-row  p-3 w-full">
+							<!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" class="my-4 md:my-0 w-9 md:w-10rem shadow-2 mr-5"/> -->
+							<div class="flex-1 flex flex-column  text-center md:text-left">
+								<div class="font-bold text-2xl">{{product.btName}}</div>
+								<div class="mb-2">{{product.description}}</div>
+								<div class="text-xl">{{product.appointmentType}}</div>
+								<!-- <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false" styleClass="mb-2"></p-rating> -->
+								<div class="flex  mt-2">
+									<span class="font-semibold">Appointment With: {{product.appointmentWith}}</span>
+								</div>
+								<div class="flex  mt-2">
+									<span class="font-semibold">Start Time: {{product.startTime}} End Time: {{product.endTime}}</span>
+								</div>
+							</div>
+							<div class="flex flex-row md:flex-column justify-content-between w-full md:w-auto align-items-center md:align-items-end mt-5 md:mt-0">
+								<span class="text-xl font-semibold mb-2 align-self-center md:align-self-end">{{product.date}}</span>
+								<p-button icon="pi pi-search" label="" styleClass="mb-2 p-button-sm" (onClick)="showPopUp(product)"></p-button>
+								<!-- <span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span> -->
+							</div>
+						</div>
+					</div>
+				</ng-template>
+			</p-dataView>
+		</div>
+	</div>
+
+	
 </div>

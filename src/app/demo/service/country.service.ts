@@ -12,4 +12,11 @@ export class CountryService {
             .then(res => res.data as any[])
             .then(data => data);
     }
+
+    getBTs() {
+        return this.http.get<any>('assets/demo/data/Bts.json')
+            .toPromise()
+            .then(res => res.data as any[])
+            .then(data => data);
+    }
 }

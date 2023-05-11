@@ -1,0 +1,74 @@
+{
+    "data": [
+        {
+            "_id": "644fe995ae3ad39ff6502ed8",
+            "btName": "Jerod Shields",
+            "crID": "256267",
+            "emailAddress": "jshields@autismlearningpartners.com",
+            "region": "CA",
+            "supervisorName": "Adhanet Tesfai",
+            "supervisorCRID": "2687514",
+            "supervisorEmailAddress": "APenugonda@autismlearningpartners.com"
+        },
+        {
+            "_id": "644fe995ae3ad39ff6502ed9",
+            "btName": "Jennifer Gallardo-Cabrera",
+            "crID": "1539688",
+            "emailAddress": "JenniferGallardo@autismlearningpartners.com",
+            "region": "CA",
+            "supervisorName": "Adhanet Tesfai",
+            "supervisorCRID": "2687514",
+            "supervisorEmailAddress": "APenugonda@autismlearningpartners.com"
+        },
+        {
+            "_id": "644fe995ae3ad39ff6502eda",
+            "btName": "Samnann \"Michael\" Yoeung",
+            "crID": "1675774",
+            "emailAddress": "SYoeung@autismlearningpartners.com",
+            "region": "CA",
+            "supervisorName": "Adhanet Tesfai",
+            "supervisorCRID": "2687514",
+            "supervisorEmailAddress": "APenugonda@autismlearningpartners.com"
+        },
+        {
+            "_id": "644fe995ae3ad39ff6502edb",
+            "btName": "Rachel Beard",
+            "crID": "2040798",
+            "emailAddress": "RBeard@autismlearningpartners.com",
+            "region": "CA",
+            "supervisorName": "Adhanet Tesfai",
+            "supervisorCRID": "2687514",
+            "supervisorEmailAddress": "APenugonda@autismlearningpartners.com"
+        },
+        {
+            "_id": "644fe995ae3ad39ff6502edc",
+            "btName": "Christopher Livermore",
+            "crID": "2154920",
+            "emailAddress": "CLivermore@autismlearningpartners.com",
+            "region": "CA",
+            "supervisorName": "Adhanet Tesfai",
+            "supervisorCRID": "2687514",
+            "supervisorEmailAddress": "APenugonda@autismlearningpartners.com"
+        },
+        {
+            "_id": "644fe995ae3ad39ff6502edd",
+            "btName": "Cameron Rossi",
+            "crID": "2319137",
+            "emailAddress": "crossi@autismlearningpartners.com",
+            "region": "CA",
+            "supervisorName": "Adhanet Tesfai",
+            "supervisorCRID": "2687514",
+            "supervisorEmailAddress": "APenugonda@autismlearningpartners.com"
+        },
+        {
+            "_id": "644fe995ae3ad39ff6502ede",
+            "btName": "Samara Pomering",
+            "crID": "2557819",
+            "emailAddress": "spomering@autismlearningpartners.com",
+            "region": "CA",
+            "supervisorName": "Adhanet Tesfai",
+            "supervisorCRID": "2687514",
+            "supervisorEmailAddress": "APenugonda@autismlearningpartners.com"
+        }
+    ]
+}
