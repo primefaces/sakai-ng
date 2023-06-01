@@ -22,6 +22,7 @@ interface LayoutState {
 @Injectable({
     providedIn: 'root',
 })
+
 export class LayoutService {
 
     config: AppConfig = {
