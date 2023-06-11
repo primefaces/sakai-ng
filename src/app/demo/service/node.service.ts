@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TreeNode } from 'primeng/api';
 
-@Injectable()
+@Injectable({ providedIn: 'root'})
 export class NodeService {
 
     constructor(private http: HttpClient) { }

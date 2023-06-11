@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Image } from '../api/image';
 
-@Injectable()
+@Injectable({ providedIn: 'root'})
 export class PhotoService {
 
     constructor(private http: HttpClient) { }
