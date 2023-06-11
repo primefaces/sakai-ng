@@ -13,15 +13,15 @@ export class TreeDemoComponent implements OnInit {
 
     files3: TreeNode[] = [];
 
-    selectedFiles1: TreeNode[] = [];
+    selectedFiles1: TreeNode<any> | TreeNode<any>[] | null = [];
 
-    selectedFiles2: TreeNode[] = [];
+    selectedFiles2: TreeNode<any> | TreeNode<any>[] | null = [];
 
-    selectedFiles3: TreeNode = {};
+    selectedFiles3: TreeNode<any> | TreeNode<any>[] | null = {};
 
     cols: any[] = [];
 
-    constructor(private nodeService: NodeService) {}
+    constructor(private nodeService: NodeService) {}
 
     ngOnInit() {
         this.nodeService.getFiles().then(files => this.files1 = files);
