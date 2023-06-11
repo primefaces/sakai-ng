@@ -13,12 +13,11 @@ import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 
 @NgModule({
-    declarations: [
-        AppComponent, NotfoundComponent
-    ],
+    declarations: [AppComponent],
     imports: [
         AppRoutingModule,
-        AppLayoutModule
+        AppLayoutModule,
+        NotfoundComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

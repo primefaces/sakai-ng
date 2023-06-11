@@ -1,10 +1,12 @@
-import { ChangeDetectorRef, Component, Host, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ChangeDetectorRef, Component, Host, HostBinding, Input, OnDestroy, OnInit, forwardRef } from '@angular/core';
+import { NavigationEnd, Router, RouterLinkActive, RouterLink } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MenuService } from './app.menu.service';
 import { LayoutService } from './service/app.layout.service';
+import { RippleModule } from 'primeng/ripple';
+import { NgIf, NgClass, NgFor } from '@angular/common';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -45,7 +47,9 @@ import { LayoutService } from './service/app.layout.service';
             })),
             transition('collapsed <=> expanded', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'))
         ])
-    ]
+    ],
+    standalone: true,
+    imports: [NgIf, RippleModule, NgClass, RouterLinkActive, RouterLink, NgFor, forwardRef(() => AppMenuitemComponent)]
 })
 export class AppMenuitemComponent implements OnInit, OnDestroy {
 

@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
 import { Message, MessageService } from 'primeng/api';
+import { MessageModule } from 'primeng/message';
+import { InputTextModule } from 'primeng/inputtext';
+import { MessagesModule } from 'primeng/messages';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
     templateUrl: './messagesdemo.component.html',
-    providers: [MessageService]
+    providers: [MessageService],
+    standalone: true,
+    imports: [ToastModule, ButtonModule, MessagesModule, InputTextModule, MessageModule]
 })
 export class MessagesDemoComponent {
 

@@ -18,32 +18,32 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { InputTextModule } from 'primeng/inputtext';
 @NgModule({
-	imports: [
-		CommonModule,
-		BreadcrumbModule,
-		MenubarModule,
-		TabMenuModule,
-		StepsModule,
-		TieredMenuModule,
-		MenuModule,
-		ButtonModule,
-		ContextMenuModule,
-		MegaMenuModule,
-		PanelMenuModule,
-		InputTextModule,
-		RouterModule.forChild([
-			{
-				path: '', component: MenusComponent, children: [
-					{ path: '', redirectTo: 'personal', pathMatch: 'full' },
-					{ path: 'personal', component: PersonalComponent },
-					{ path: 'confirmation', component: ConfirmationComponent },
-					{ path: 'seat', component: SeatComponent },
-					{ path: 'payment', component: PaymentComponent }
-				]
-			}
-		])
-	],
-	declarations: [MenusComponent],
-	exports: [RouterModule]
+    imports: [
+        CommonModule,
+        BreadcrumbModule,
+        MenubarModule,
+        TabMenuModule,
+        StepsModule,
+        TieredMenuModule,
+        MenuModule,
+        ButtonModule,
+        ContextMenuModule,
+        MegaMenuModule,
+        PanelMenuModule,
+        InputTextModule,
+        RouterModule.forChild([
+            {
+                path: '', component: MenusComponent, children: [
+                    { path: '', redirectTo: 'personal', pathMatch: 'full' },
+                    { path: 'personal', component: PersonalComponent },
+                    { path: 'confirmation', component: ConfirmationComponent },
+                    { path: 'seat', component: SeatComponent },
+                    { path: 'payment', component: PaymentComponent }
+                ]
+            }
+        ]),
+        MenusComponent
+    ],
+    exports: [RouterModule]
 })
 export class MenusModule { }

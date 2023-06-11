@@ -20,8 +20,8 @@ import { DashboardsRoutingModule } from './dashboard-routing.module';
         StyleClassModule,
         PanelMenuModule,
         ButtonModule,
-        DashboardsRoutingModule
-    ],
-    declarations: [DashboardComponent]
+        DashboardsRoutingModule,
+        DashboardComponent
+    ]
 })
 export class DashboardModule { }

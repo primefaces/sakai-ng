@@ -1,8 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CountryService } from 'src/app/demo/service/country.service';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputMaskModule } from 'primeng/inputmask';
+import { PasswordModule } from 'primeng/password';
+import { ChipsModule } from 'primeng/chips';
+import { CalendarModule } from 'primeng/calendar';
+import { FormsModule } from '@angular/forms';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
-    templateUrl: './invalidstatedemo.component.html'
+    templateUrl: './invalidstatedemo.component.html',
+    standalone: true,
+    imports: [InputTextModule, AutoCompleteModule, FormsModule, CalendarModule, ChipsModule, PasswordModule, InputMaskModule, InputNumberModule, DropdownModule, MultiSelectModule, InputTextareaModule]
 })
 export class InvalidStateDemoComponent implements OnInit {
 

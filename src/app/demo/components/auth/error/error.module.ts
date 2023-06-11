@@ -8,8 +8,8 @@ import { ButtonModule } from 'primeng/button';
     imports: [
         CommonModule,
         ErrorRoutingModule,
-        ButtonModule
-    ],
-    declarations: [ErrorComponent]
+        ButtonModule,
+        ErrorComponent
+    ]
 })
 export class ErrorModule { }

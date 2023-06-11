@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { TooltipModule } from 'primeng/tooltip';
+import { NgIf, NgClass, NgStyle } from '@angular/common';
 
 enum BlockView {
     PREVIEW,
@@ -35,7 +37,9 @@ enum BlockView {
         </div>
     </div>
   `,
-    styleUrls: ['./blockviewer.component.scss']
+    styleUrls: ['./blockviewer.component.scss'],
+    standalone: true,
+    imports: [NgIf, NgClass, TooltipModule, NgStyle]
 })
 export class BlockViewerComponent {
 

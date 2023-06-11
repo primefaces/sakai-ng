@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NodeService } from 'src/app/demo/service/node.service';
-import { TreeNode} from 'primeng/api';
+import { TreeNode, SharedModule } from 'primeng/api';
+import { NgFor, NgIf } from '@angular/common';
+import { TreeTableModule } from 'primeng/treetable';
+import { TreeModule } from 'primeng/tree';
 
 @Component({
-    templateUrl: './treedemo.component.html'
+    templateUrl: './treedemo.component.html',
+    standalone: true,
+    imports: [TreeModule, TreeTableModule, SharedModule, NgFor, NgIf]
 })
 export class TreeDemoComponent implements OnInit {
 

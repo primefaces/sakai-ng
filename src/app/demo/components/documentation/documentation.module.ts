@@ -6,8 +6,8 @@ import { DocumentationComponent } from './documentation.component';
 @NgModule({
     imports: [
         CommonModule,
-        DocumentationRoutingModule
-    ],
-    declarations: [DocumentationComponent]
+        DocumentationRoutingModule,
+        DocumentationComponent
+    ]
 })
 export class DocumentationModule { }

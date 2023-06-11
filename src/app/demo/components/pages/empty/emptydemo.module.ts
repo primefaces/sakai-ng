@@ -6,8 +6,8 @@ import { EmptyDemoComponent } from './emptydemo.component';
 @NgModule({
     imports: [
         CommonModule,
-        EmptyDemoRoutingModule
-    ],
-    declarations: [EmptyDemoComponent]
+        EmptyDemoRoutingModule,
+        EmptyDemoComponent
+    ]
 })
 export class EmptyDemoModule { }

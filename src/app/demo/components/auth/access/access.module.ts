@@ -9,8 +9,8 @@ import { AccessComponent } from './access.component';
     imports: [
         CommonModule,
         AccessRoutingModule,
-        ButtonModule
-    ],
-    declarations: [AccessComponent]
+        ButtonModule,
+        AccessComponent
+    ]
 })
 export class AccessModule { }

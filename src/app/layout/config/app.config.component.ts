@@ -1,10 +1,18 @@
 import { Component, Input } from '@angular/core';
 import { LayoutService } from "../service/app.layout.service";
 import { MenuService } from "../app.menu.service";
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { FormsModule } from '@angular/forms';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { NgFor, NgClass, NgIf } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
+import { SidebarModule } from 'primeng/sidebar';
 
 @Component({
     selector: 'app-config',
-    templateUrl: './app.config.component.html'
+    templateUrl: './app.config.component.html',
+    standalone: true,
+    imports: [SidebarModule, ButtonModule, NgFor, NgClass, NgIf, RadioButtonModule, FormsModule, InputSwitchModule]
 })
 export class AppConfigComponent {
 

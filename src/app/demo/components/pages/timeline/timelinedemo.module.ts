@@ -12,8 +12,8 @@ import { CardModule } from 'primeng/card';
         TimelineModule,
         ButtonModule,
         CardModule,
-        TimelineDemoRoutingModule
-    ],
-    declarations: [TimelineDemoComponent]
+        TimelineDemoRoutingModule,
+        TimelineDemoComponent
+    ]
 })
 export class TimelineDemoModule { }

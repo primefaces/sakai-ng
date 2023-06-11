@@ -16,8 +16,8 @@ import { ButtonModule } from 'primeng/button';
         StyleClassModule,
         ChartModule,
         PanelModule,
-        ButtonModule
-    ],
-    declarations: [LandingComponent]
+        ButtonModule,
+        LandingComponent
+    ]
 })
 export class LandingModule { }

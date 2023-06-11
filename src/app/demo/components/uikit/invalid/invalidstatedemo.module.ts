@@ -16,22 +16,22 @@ import { InputTextModule } from "primeng/inputtext";
 import { PasswordModule } from "primeng/password";
 
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		InvalidStateDemoRoutingModule,
-		AutoCompleteModule,
-		CalendarModule,
-		ChipsModule,
-		DropdownModule,
-		InputMaskModule,
-		InputNumberModule,
-		CascadeSelectModule,
-		MultiSelectModule,
-		PasswordModule,
-		InputTextareaModule,
-		InputTextModule
-	],
-	declarations: [InvalidStateDemoComponent]
+    imports: [
+        CommonModule,
+        FormsModule,
+        InvalidStateDemoRoutingModule,
+        AutoCompleteModule,
+        CalendarModule,
+        ChipsModule,
+        DropdownModule,
+        InputMaskModule,
+        InputNumberModule,
+        CascadeSelectModule,
+        MultiSelectModule,
+        PasswordModule,
+        InputTextareaModule,
+        InputTextModule,
+        InvalidStateDemoComponent
+    ]
 })
 export class InvalidStateDemoModule { }

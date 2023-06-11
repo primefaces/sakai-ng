@@ -3,8 +3,20 @@ import { Customer, Representative } from 'src/app/demo/api/customer';
 import { CustomerService } from 'src/app/demo/service/customer.service';
 import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
-import { Table } from 'primeng/table';
-import { MessageService, ConfirmationService } from 'primeng/api';
+import { Table, TableModule } from 'primeng/table';
+import { MessageService, ConfirmationService, SharedModule } from 'primeng/api';
+import { RatingModule } from 'primeng/rating';
+import { RippleModule } from 'primeng/ripple';
+import { ToastModule } from 'primeng/toast';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { NgClass, NgIf, CurrencyPipe, DatePipe } from '@angular/common';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { SliderModule } from 'primeng/slider';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 interface expandedRows {
     [key: string]: boolean;
@@ -12,7 +24,9 @@ interface expandedRows {
 
 @Component({
     templateUrl: './tabledemo.component.html',
-    providers: [MessageService, ConfirmationService]
+    providers: [MessageService, ConfirmationService],
+    standalone: true,
+    imports: [TableModule, SharedModule, ButtonModule, InputTextModule, MultiSelectModule, FormsModule, DropdownModule, SliderModule, ProgressBarModule, NgClass, ToggleButtonModule, ToastModule, RippleModule, RatingModule, NgIf, CurrencyPipe, DatePipe]
 })
 export class TableDemoComponent implements OnInit {
 

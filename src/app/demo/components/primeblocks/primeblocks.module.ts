@@ -23,8 +23,8 @@ import { TooltipModule } from 'primeng/tooltip';
         InputTextModule,
         PasswordModule,
         TooltipModule,
-        PrimeBlocksRoutingModule
-    ],
-    declarations: [BlocksComponent, BlockViewerComponent]
+        PrimeBlocksRoutingModule,
+        BlocksComponent, BlockViewerComponent
+    ]
 })
 export class PrimeBlocksModule { }
