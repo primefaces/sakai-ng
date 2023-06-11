@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { ChartModule } from 'primeng/chart';
@@ -9,6 +9,8 @@ import { ChartModule } from 'primeng/chart';
     imports: [ChartModule]
 })
 export class ChartsDemoComponent implements OnInit, OnDestroy {
+
+    layoutService = inject(LayoutService);
 
     lineData: any;
 
@@ -32,7 +34,7 @@ export class ChartsDemoComponent implements OnInit, OnDestroy {
 
     subscription: Subscription;
 
-    constructor(public layoutService: LayoutService) {
+    constructor() {
         this.subscription = this.layoutService.configUpdate$.subscribe(config => {
             this.initCharts();
         });

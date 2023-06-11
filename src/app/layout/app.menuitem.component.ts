@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Host, HostBinding, Input, OnDestroy, OnInit, forwardRef } from '@angular/core';
+import { ChangeDetectorRef, Component, Host, HostBinding, Input, OnDestroy, OnInit, forwardRef, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterLinkActive, RouterLink } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs';
@@ -53,6 +53,12 @@ import { NgIf, NgClass, NgFor } from '@angular/common';
 })
 export class AppMenuitemComponent implements OnInit, OnDestroy {
 
+    private menuService = inject(MenuService);
+
+    layoutService = inject(LayoutService);
+    
+    router = inject(Router);
+
     @Input() item: any;
 
     @Input() index!: number;
@@ -69,7 +75,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     key: string = "";
 
-    constructor(public layoutService: LayoutService, private cd: ChangeDetectorRef, public router: Router, private menuService: MenuService) {
+    constructor() {
         this.menuSourceSubscription = this.menuService.menuSource$.subscribe(value => {
             Promise.resolve(null).then(() => {
                 if (value.routeEvent) {

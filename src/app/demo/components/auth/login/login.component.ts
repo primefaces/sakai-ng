@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -23,9 +23,9 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class LoginComponent {
 
+    layoutService = inject(LayoutService);
+
     valCheck: string[] = ['remember'];
 
     password!: string;
-
-    constructor(public layoutService: LayoutService) { }
 }

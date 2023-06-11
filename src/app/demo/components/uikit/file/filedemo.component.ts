@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MessageService, SharedModule } from 'primeng/api';
 import { NgIf, NgFor } from '@angular/common';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -11,9 +11,9 @@ import { FileUploadModule } from 'primeng/fileupload';
 })
 export class FileDemoComponent {
 
-    uploadedFiles: any[] = [];
+    private messageService = inject(MessageService);
 
-    constructor(private messageService: MessageService) {}
+    uploadedFiles: any[] = [];
 
     onUpload(event: any) {
         for (const file of event.files) {

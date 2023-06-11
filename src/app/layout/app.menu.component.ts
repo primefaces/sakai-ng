@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import { AppMenuitemComponent } from './app.menuitem.component';
 import { NgFor, NgIf } from '@angular/common';
@@ -12,9 +12,9 @@ import { NgFor, NgIf } from '@angular/common';
 })
 export class AppMenuComponent implements OnInit {
 
-    model: any[] = [];
+    layoutService = inject(LayoutService);
 
-    constructor(public layoutService: LayoutService) { }
+    model: any[] = [];
 
     ngOnInit() {
         this.model = [

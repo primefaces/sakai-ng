@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { LayoutService } from "../service/app.layout.service";
 import { MenuService } from "../app.menu.service";
 import { InputSwitchModule } from 'primeng/inputswitch';
@@ -16,11 +16,13 @@ import { SidebarModule } from 'primeng/sidebar';
 })
 export class AppConfigComponent {
 
+    layoutService = inject(LayoutService);
+    
+    menuService = inject(MenuService);
+
     @Input() minimal: boolean = false;
 
     scales: number[] = [12, 13, 14, 15, 16];
-
-    constructor(public layoutService: LayoutService, public menuService: MenuService) { }
 
     get visible(): boolean {
         return this.layoutService.state.configSidebarVisible;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { LayoutService } from "./service/app.layout.service";
 
 @Component({
@@ -7,5 +7,6 @@ import { LayoutService } from "./service/app.layout.service";
     standalone: true
 })
 export class AppFooterComponent {
-    constructor(public layoutService: LayoutService) { }
+
+    layoutService = inject(LayoutService);
 }

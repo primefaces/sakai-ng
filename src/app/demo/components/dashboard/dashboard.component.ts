@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { MenuItem, SharedModule } from 'primeng/api';
 import { Product } from '../../api/product';
 import { ProductService } from '../../service/product.service';
@@ -25,6 +25,10 @@ import { NgStyle, CurrencyPipe } from '@angular/common';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
+    private productService = inject(ProductService);
+    
+    layoutService = inject(LayoutService);
+
     items!: MenuItem[];
 
     products!: Product[];
@@ -35,7 +39,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     subscription!: Subscription;
 
-    constructor(private productService: ProductService, public layoutService: LayoutService) {
+    constructor() {
         this.subscription = this.layoutService.configUpdate$.subscribe(() => {
             this.initChart();
         });

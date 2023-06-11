@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Product } from 'src/app/demo/api/product';
 import { MessageService, SharedModule } from 'primeng/api';
 import { Table, TableModule } from 'primeng/table';
@@ -25,6 +25,11 @@ import { ToastModule } from 'primeng/toast';
     imports: [ToastModule, ToolbarModule, SharedModule, ButtonModule, RippleModule, FileUploadModule, TableModule, InputTextModule, RatingModule, FormsModule, DialogModule, NgIf, NgClass, InputTextareaModule, DropdownModule, RadioButtonModule, InputNumberModule, CurrencyPipe]
 })
 export class CrudComponent implements OnInit {
+    
+    private messageService = inject(MessageService);
+
+    private productService = inject(ProductService);
+    
 
     productDialog: boolean = false;
 
@@ -45,8 +50,6 @@ export class CrudComponent implements OnInit {
     statuses: any[] = [];
 
     rowsPerPageOptions = [5, 10, 20];
-
-    constructor(private productService: ProductService, private messageService: MessageService) { }
 
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);

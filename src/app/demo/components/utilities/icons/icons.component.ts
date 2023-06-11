@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { IconService } from 'src/app/demo/service/icon.service';
 import { NgFor } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
@@ -10,13 +10,13 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class IconsComponent implements OnInit {
 
+    private iconService = inject(IconService);
+
     icons: any[] = [];
 
     filteredIcons: any[] = [];
 
     selectedIcon: any;
-
-    constructor(private iconService: IconService) { }
 
     ngOnInit() {
         this.iconService.getIcons().subscribe(data => {

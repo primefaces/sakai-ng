@@ -41,7 +41,7 @@ Run 'ng help' for more options.</code></pre>
             initial scale is defined with the <span class="text-primary font-medium">$scale</span> at <strong class="font-semibold">layout.scss</strong>. When default theme or scale is changed at their files initially, it is required to configure the layout service with the matching values
             to avoid sync issues. </p>
     
-<pre class="app-code"><code>import &#123; Component, OnInit &#125; from '@angular/core';
+<pre class="app-code"><code>import &#123; Component, OnInit, inject &#125; from '@angular/core';
 import &#123; PrimeNGConfig &#125; from 'primeng/api';
 import &#123; LayoutService &#125; from './layout/service/app.layout.service';
 
@@ -51,7 +51,11 @@ import &#123; LayoutService &#125; from './layout/service/app.layout.service';
 &#125;)
 export class AppComponent implements OnInit &#123;
 
-    constructor(private primengConfig: PrimeNGConfig, private layoutService: LayoutService) &#123; &#125;
+    private primengConfig = inject(PrimeNGConfig);
+    
+    private layoutService = inject(LayoutService);
+
+    constructor() &#123; &#125;
 
     ngOnInit(): void &#123;
         this.primengConfig.ripple = true;       //enables core ripple functionality

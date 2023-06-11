@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { SelectItem, SharedModule } from 'primeng/api';
 import { CountryService } from 'src/app/demo/service/country.service';
 import { ButtonModule } from 'primeng/button';
@@ -29,6 +29,8 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class InputDemoComponent implements OnInit {
     
+    private countryService = inject(CountryService);
+
     countries: any[] = [];
 
     filteredCountries: any[] = [];
@@ -64,8 +66,6 @@ export class InputDemoComponent implements OnInit {
     valSelect2: string = "";
 
     valueKnob = 20;
-
-    constructor(private countryService: CountryService) { }
 
     ngOnInit() {
         this.countryService.getCountries().then(countries => {
