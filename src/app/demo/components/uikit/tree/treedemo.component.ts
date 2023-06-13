@@ -20,11 +20,11 @@ export class TreeDemoComponent implements OnInit {
 
     files3: TreeNode[] = [];
 
-    selectedFiles1: TreeNode<any> | TreeNode<any>[] | null = [];
+    selectedFiles1: TreeNode | TreeNode[] | null = [];
 
-    selectedFiles2: TreeNode<any> | TreeNode<any>[] | null = [];
+    selectedFiles2: TreeNode | TreeNode[] | null = [];
 
-    selectedFiles3: TreeNode<any> | TreeNode<any>[] | null = {};
+    selectedFiles3: TreeNode | TreeNode[] | null = {};
 
     cols: any[] = [];
 
