@@ -1,5 +1,11 @@
 # Changelog
 
+## 16.0.0
+**Migration Guide**
+- Upgrade to PrimeNG 16
+- Upgrade to Angular 16
+- Update theme files
+
 ## 15.0.0
 **Migration Guide**
 - Upgrade to PrimeNG 15
