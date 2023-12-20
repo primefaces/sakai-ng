@@ -170,32 +170,41 @@
 			<h5>InputGroup</h5>
 			<div class="grid">
 				<div class="col-12 md:col-6">
-					<div class="p-inputgroup">
-						<span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-						<input type="text" pInputText placeholder="Username">
-					</div>
-				</div>
+                    <p-inputGroup>
+                        <p-inputGroupAddon>
+                            <i class="pi pi-user"></i>
+                        </p-inputGroupAddon>
+                        <input pInputText type="text" placeholder="Username" />
+                    </p-inputGroup>
+                </div>
 				<div class="col-12 md:col-6">
-					<div class="p-inputgroup">
-						<span class="p-inputgroup-addon"><i class="pi pi-tags" style="line-height: 1.25;"></i></span>
-						<span class="p-inputgroup-addon"><i class="pi pi-shopping-cart" style="line-height: 1.25;"></i></span>
-						<input type="text" pInputText placeholder="Price">
-						<span class="p-inputgroup-addon">$</span>
-						<span class="p-inputgroup-addon">.00</span>
-					</div>
-				</div>
+                    <p-inputGroup class="w-full">
+                        <p-inputGroupAddon>
+                            <i class="pi pi-tags" style="line-height: 1.25"></i>
+                        </p-inputGroupAddon>
+
+                        <p-inputGroupAddon>
+                            <i class="pi pi-shopping-cart" style="line-height: 1.25"></i>
+                        </p-inputGroupAddon>
+
+                        <input type="text" pInputText placeholder="Price" />
+                        <p-inputGroupAddon>$</p-inputGroupAddon>
+                        <p-inputGroupAddon>.00</p-inputGroupAddon>
+                    </p-inputGroup>
+                </div>
 				<div class="col-12 md:col-6">
-					<div class="p-inputgroup">
-						<button type="button" pButton pRipple label="Search"></button>
-						<input type="text" pInputText placeholder="Keyword">
-					</div>
-				</div>
+                    <p-inputGroup>
+                        <button type="button" pButton label="Search"></button>
+                        <input type="text" pInputText placeholder="Keyword" />
+                    </p-inputGroup>
+                </div>
 				<div class="col-12 md:col-6">
-					<div class="p-inputgroup">
-						<span class="p-inputgroup-addon"><p-checkbox [(ngModel)]="valCheck2" [binary]="true"></p-checkbox></span>
-						<input type="text" pInputText placeholder="Username">
-					</div>
-				</div>
+                    <p-inputGroup>
+                        <p-inputGroupAddon><p-checkbox [(ngModel)]="valCheck2"
+                                [binary]="true"></p-checkbox></p-inputGroupAddon>
+                        <input type="text" pInputText placeholder="Username" />
+                    </p-inputGroup>
+                </div>
 			</div>
 		</div>
 	</div>

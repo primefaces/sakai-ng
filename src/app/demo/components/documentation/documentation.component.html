@@ -2,9 +2,9 @@
     <div>
         <h2>Documentation</h2>
         <h4>Getting Started</h4>
-        <p>Sakai is an application template for Angular and is distributed as a CLI project. Current versions is Angular v16 with PrimeNG v16. In case CLI is not installed already, use the command below to set it up.</p>
+        <p>Sakai is an application template for Angular and is distributed as a CLI project. Current versions is Angular v17 with PrimeNG v17. In case CLI is not installed already, use the command below to set it up.</p>
     
-<pre class="app-code"><code>npm install -g @angular/cli</code></pre>
+<pre class="app-code"><code>npm install -g &#64;angular/cli</code></pre>
         
         <p>Once CLI is ready in your system, extract the contents of the zip file distribution, cd to the directory,
             install the libraries from npm and then execute "ng serve" to run the application in your local environment.</p>
@@ -41,11 +41,11 @@ Run 'ng help' for more options.</code></pre>
             initial scale is defined with the <span class="text-primary font-medium">$scale</span> at <strong class="font-semibold">layout.scss</strong>. When default theme or scale is changed at their files initially, it is required to configure the layout service with the matching values
             to avoid sync issues. </p>
     
-<pre class="app-code"><code>import &#123; Component, OnInit &#125; from '@angular/core';
+<pre class="app-code"><code>import &#123; Component, OnInit &#125; from '&#64;angular/core';
 import &#123; PrimeNGConfig &#125; from 'primeng/api';
 import &#123; LayoutService &#125; from './layout/service/app.layout.service';
 
-@Component(&#123;
+&#64;Component(&#123;
     selector: 'app-root',
     templateUrl: './app.component.html'
 &#125;)
@@ -73,10 +73,10 @@ export class AppComponent implements OnInit &#123;
         <p>Menu is a separate component defined in <span class="text-primary font-medium">src/app/layout/app.menu.component.ts</span> file and based on PrimeNG MenuModel API. In order to define the menuitems,
             navigate to this file and define your own model as a nested structure.</p>
     
-<pre class="app-code"><code>import &#123; OnInit &#125; from '@angular/core';
-import &#123; Component &#125; from '@angular/core';
+<pre class="app-code"><code>import &#123; OnInit &#125; from '&#64;angular/core';
+import &#123; Component &#125; from '&#64;angular/core';
 
-@Component(&#123;
+&#64;Component(&#123;
     selector: 'app-menu',
     templateUrl: './app.menu.component.html'
 &#125;)

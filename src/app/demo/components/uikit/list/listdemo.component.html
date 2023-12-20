@@ -14,8 +14,8 @@
 					</div>
 				</ng-template>
 
-				<ng-template let-product pTemplate="listItem">
-					<div class="col-12">
+				<ng-template let-products pTemplate="listItem">
+					<div class="col-12" *ngFor="let product of products">
 						<div class="flex flex-column md:flex-row align-items-center p-3 w-full">
 							<img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" class="my-4 md:my-0 w-9 md:w-10rem shadow-2 mr-5"/>
 							<div class="flex-1 flex flex-column align-items-center text-center md:text-left">
@@ -36,8 +36,9 @@
 					</div>
 				</ng-template>
 
-				<ng-template let-product pTemplate="gridItem">
-					<div class="col-12 md:col-4">
+				<ng-template let-products pTemplate="gridItem">
+					<div class="grid grid-nogutter">
+					<div class="col-12 md:col-4" *ngFor="let product of products">
 						<div class="card m-3 border-1 surface-border">
 							<div class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
 								<div class="flex align-items-center">
@@ -57,6 +58,7 @@
 								<p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>
 							</div>
 						</div>
+					</div>
 					</div>
 				</ng-template>
 			</p-dataView>

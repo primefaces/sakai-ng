@@ -25,7 +25,6 @@
                         ],
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
-                        "aot": true,
                         "assets": [
                             "src/favicon.ico",
                             "src/assets"
@@ -33,29 +32,20 @@
                         "styles": [
                             "src/styles.scss"
                         ],
-                        "scripts": [
-                            "node_modules/prismjs/prism.js",
-                            "node_modules/prismjs/components/prism-typescript.js"
-                        ]
+                        "scripts": []
                     },
                     "configurations": {
                         "production": {
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "3mb",
+                                    "maximumWarning": "1mb",
                                     "maximumError": "5mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "6kb",
-                                    "maximumError": "10kb"
-                                }
-                            ],
-                            "fileReplacements": [
-                                {
-                                    "replace": "src/environments/environment.ts",
-                                    "with": "src/environments/environment.prod.ts"
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
                                 }
                             ],
                             "outputHashing": "all"
@@ -73,15 +63,12 @@
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
-                    "options": {
-                        "browserTarget": "sakai-ng:build"
-                    },
                     "configurations": {
                         "production": {
-                            "browserTarget": "sakai-ng:build:production"
+                            "buildTarget": "sakai-ng:build:production"
                         },
                         "development": {
-                            "browserTarget": "sakai-ng:build:development"
+                            "buildTarget": "sakai-ng:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -89,13 +76,12 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "sakai-ng:build"
+                        "buildTarget": "sakai-ng:build"
                     }
                 },
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "src/test.ts",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -103,33 +89,17 @@
                         "tsConfig": "tsconfig.spec.json",
                         "karmaConfig": "karma.conf.js",
                         "inlineStyleLanguage": "scss",
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
                         "styles": [
                             "src/styles.scss"
                         ],
-                        "scripts": [],
-                        "assets": [
-                            "src/favicon.ico",
-                            "src/upload.php",
-                            "src/assets"
-                        ]
-                    }
-                },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": [
-                            "tsconfig.app.json",
-                            "tsconfig.spec.json"
-                        ],
-                        "exclude": [
-                            "**/node_modules/**"
-                        ]
+                        "scripts": []
                     }
                 }
             }
         }
-    },
-    "cli": {
-      "analytics": false
     }
 }
