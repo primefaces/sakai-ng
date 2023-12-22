@@ -1,6 +1,6 @@
 {
     "name": "sakai-ng",
-    "version": "17.0.0",
+    "version": "17.2.0",
     "license": "PrimeNG Commercial",
     "scripts": {
         "ng": "ng",

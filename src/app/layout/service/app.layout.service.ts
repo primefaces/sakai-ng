@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, effect, signal } from '@angular/core';
 import { Subject } from 'rxjs';
 
 export interface AppConfig {
@@ -24,7 +24,7 @@ interface LayoutState {
 })
 export class LayoutService {
 
-    config: AppConfig = {
+    _config: AppConfig = {
         ripple: false,
         inputStyle: 'outlined',
         menuMode: 'static',
@@ -32,6 +32,8 @@ export class LayoutService {
         theme: 'lara-light-indigo',
         scale: 14,
     };
+
+    config = signal<AppConfig>(this._config);
 
     state: LayoutState = {
         staticMenuDesktopInactive: false,
@@ -82,7 +84,7 @@ export class LayoutService {
     }
 
     isOverlay() {
-        return this.config.menuMode === 'overlay';
+        return this.config().menuMode === 'overlay';
     }
 
     isDesktop() {
@@ -94,7 +96,58 @@ export class LayoutService {
     }
 
     onConfigUpdate() {
-        this.configUpdate.next(this.config);
+        this._config = { ...this.config() };
+        this.configUpdate.next(this.config());
+    }
+
+    constructor() {
+        effect(() => {
+            const config = this.config();
+            this.changeTheme();
+            this.changeScale(config.scale);
+            this.onConfigUpdate();
+        });
+    }
+
+    changeTheme() {
+        const config = this.config();
+        const themeLink = <HTMLLinkElement>(
+            document.getElementById('theme-css')
+        );
+        const themeLinkHref = themeLink.getAttribute('href')!;
+        const newHref = themeLinkHref
+            .split('/')
+            .map((el) =>
+                el == this._config.theme
+                    ? (el = config.theme)
+                    : el == `theme-${this._config.colorScheme}`
+                    ? (el = `theme-${config.colorScheme}`)
+                    : el
+            )
+            .join('/');
+
+        this.replaceThemeLink(newHref);
+    }
+    replaceThemeLink(href: string) {
+        const id = 'theme-css';
+        let themeLink = <HTMLLinkElement>document.getElementById(id);
+        const cloneLinkElement = <HTMLLinkElement>themeLink.cloneNode(true);
+
+        cloneLinkElement.setAttribute('href', href);
+        cloneLinkElement.setAttribute('id', id + '-clone');
+
+        themeLink.parentNode!.insertBefore(
+            cloneLinkElement,
+            themeLink.nextSibling
+        );
+        cloneLinkElement.addEventListener('load', () => {
+            themeLink.remove();
+            cloneLinkElement.setAttribute('id', id);
+        });
+    }
+
+    changeScale(value: number) {
+        document.documentElement.style.fontSize = `${value}px`;
     }
 
 }

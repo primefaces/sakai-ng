@@ -23,35 +23,44 @@ export class AppConfigComponent {
     }
 
     get scale(): number {
-        return this.layoutService.config.scale;
+        return this.layoutService.config().scale;
     }
 
     set scale(_val: number) {
-        this.layoutService.config.scale = _val;
+        this.layoutService.config.update((config) => ({
+            ...config,
+            scale: _val,
+        }));
     }
 
     get menuMode(): string {
-        return this.layoutService.config.menuMode;
+        return this.layoutService.config().menuMode;
     }
 
     set menuMode(_val: string) {
-        this.layoutService.config.menuMode = _val;
+        this.layoutService.config.update((config) => ({
+            ...config,
+            menuMode: _val,
+        }));
     }
 
     get inputStyle(): string {
-        return this.layoutService.config.inputStyle;
+        return this.layoutService.config().inputStyle;
     }
 
     set inputStyle(_val: string) {
-        this.layoutService.config.inputStyle = _val;
+        this.layoutService.config().inputStyle = _val;
     }
 
     get ripple(): boolean {
-        return this.layoutService.config.ripple;
+        return this.layoutService.config().ripple;
     }
 
     set ripple(_val: boolean) {
-        this.layoutService.config.ripple = _val;
+        this.layoutService.config.update((config) => ({
+            ...config,
+            ripple: _val,
+        }));
     }
 
     onConfigButtonClick() {
@@ -59,32 +68,9 @@ export class AppConfigComponent {
     }
 
     changeTheme(theme: string, colorScheme: string) {
-        const themeLink = <HTMLLinkElement>document.getElementById('theme-css');
-        const newHref = themeLink.getAttribute('href')!.replace(this.layoutService.config.theme, theme);
-        this.layoutService.config.colorScheme
-        this.replaceThemeLink(newHref, () => {
-            this.layoutService.config.theme = theme;
-            this.layoutService.config.colorScheme = colorScheme;
-            this.layoutService.onConfigUpdate();
-        });
+        this.layoutService.config.update((config) => ({ ...config, theme:theme,colorScheme:colorScheme }));
     }
 
-    replaceThemeLink(href: string, onComplete: Function) {
-        const id = 'theme-css';
-        const themeLink = <HTMLLinkElement>document.getElementById('theme-css');
-        const cloneLinkElement = <HTMLLinkElement>themeLink.cloneNode(true);
-
-        cloneLinkElement.setAttribute('href', href);
-        cloneLinkElement.setAttribute('id', id + '-clone');
-
-        themeLink.parentNode!.insertBefore(cloneLinkElement, themeLink.nextSibling);
-
-        cloneLinkElement.addEventListener('load', () => {
-            themeLink.remove();
-            cloneLinkElement.setAttribute('id', id);
-            onComplete();
-        });
-    }
 
     decrementScale() {
         this.scale--;
@@ -97,6 +83,9 @@ export class AppConfigComponent {
     }
 
     applyScale() {
-        document.documentElement.style.fontSize = this.scale + 'px';
+        this.layoutService.config.update((config) => ({
+            ...config,
+            scale: this.scale,
+        }));
     }
 }

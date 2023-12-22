@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, debounceTime } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 @Component({
@@ -28,11 +28,12 @@ export class ChartsDemoComponent implements OnInit, OnDestroy {
     radarOptions: any;
 
     subscription: Subscription;
-
-    constructor(public layoutService: LayoutService) {
-        this.subscription = this.layoutService.configUpdate$.subscribe(config => {
-            this.initCharts();
-        });
+    constructor(private layoutService: LayoutService) {
+        this.subscription = this.layoutService.configUpdate$
+            .pipe(debounceTime(25))
+            .subscribe((config) => {
+                this.initCharts();
+            });
     }
 
     ngOnInit() {
