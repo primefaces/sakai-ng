@@ -23,7 +23,6 @@ interface LayoutState {
     providedIn: 'root',
 })
 export class LayoutService {
-
     _config: AppConfig = {
         ripple: false,
         inputStyle: 'outlined',
@@ -41,7 +40,7 @@ export class LayoutService {
         profileSidebarVisible: false,
         configSidebarVisible: false,
         staticMenuMobileActive: false,
-        menuHoverActive: false
+        menuHoverActive: false,
     };
 
     private configUpdate = new Subject<AppConfig>();
@@ -52,6 +51,24 @@ export class LayoutService {
 
     overlayOpen$ = this.overlayOpen.asObservable();
 
+    constructor() {
+        effect(() => {
+            const config = this.config();
+            if (this.updateStyle(config)) {
+                this.changeTheme();
+            }
+            this.changeScale(config.scale);
+            this.onConfigUpdate();
+        });
+    }
+
+    updateStyle(config: AppConfig) {
+        return (
+            config.theme !== this._config.theme ||
+            config.colorScheme !== this._config.colorScheme
+        );
+    }
+
     onMenuToggle() {
         if (this.isOverlay()) {
             this.state.overlayMenuActive = !this.state.overlayMenuActive;
@@ -61,10 +78,11 @@ export class LayoutService {
         }
 
         if (this.isDesktop()) {
-            this.state.staticMenuDesktopInactive = !this.state.staticMenuDesktopInactive;
-        }
-        else {
-            this.state.staticMenuMobileActive = !this.state.staticMenuMobileActive;
+            this.state.staticMenuDesktopInactive =
+                !this.state.staticMenuDesktopInactive;
+        } else {
+            this.state.staticMenuMobileActive =
+                !this.state.staticMenuMobileActive;
 
             if (this.state.staticMenuMobileActive) {
                 this.overlayOpen.next(null);
@@ -100,20 +118,9 @@ export class LayoutService {
         this.configUpdate.next(this.config());
     }
 
-    constructor() {
-        effect(() => {
-            const config = this.config();
-            this.changeTheme();
-            this.changeScale(config.scale);
-            this.onConfigUpdate();
-        });
-    }
-
     changeTheme() {
         const config = this.config();
-        const themeLink = <HTMLLinkElement>(
-            document.getElementById('theme-css')
-        );
+        const themeLink = <HTMLLinkElement>document.getElementById('theme-css');
         const themeLinkHref = themeLink.getAttribute('href')!;
         const newHref = themeLinkHref
             .split('/')
@@ -149,5 +156,4 @@ export class LayoutService {
     changeScale(value: number) {
         document.documentElement.style.fontSize = `${value}px`;
     }
-
 }
