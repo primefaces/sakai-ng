@@ -1,7 +1,7 @@
 {
     "name": "sakai-ng",
     "version": "17.0.0",
-    "license": "PrimeNG Commercial",
+    "license": "MIT",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
