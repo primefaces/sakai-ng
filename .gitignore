@@ -38,6 +38,3 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Compiled files
-layout.css
-src/assets/demo/styles/badges.css
