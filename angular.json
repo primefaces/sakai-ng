@@ -17,6 +17,12 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "allowedCommonJsDependencies": [
+                            "lodash",
+                            "qrcode",
+                            "lodash",
+                            "style-dictionary"
+                        ],
                         "outputPath": "dist/sakai-ng",
                         "index": "src/index.html",
                         "main": "src/main.ts",
@@ -39,7 +45,7 @@
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "1mb",
+                                    "maximumWarning": "2mb",
                                     "maximumError": "5mb"
                                 },
                                 {
@@ -101,5 +107,8 @@
                 }
             }
         }
+    },
+    "cli": {
+      "analytics": false
     }
 }

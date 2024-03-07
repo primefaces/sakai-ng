@@ -1,0 +1,35 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-primengtemplate-dev-914d0-authRole",
+      "UnauthRoleArn": "arn:aws:iam::702805966406:role/amplify-primengtemplate-dev-914d0-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::702805966406:role/amplify-primengtemplate-dev-914d0-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-primengtemplate-dev-914d0-deployment",
+      "UnauthRoleName": "amplify-primengtemplate-dev-914d0-unauthRole",
+      "StackName": "amplify-primengtemplate-dev-914d0",
+      "StackId": "arn:aws:cloudformation:us-east-1:702805966406:stack/amplify-primengtemplate-dev-914d0/041f41f0-dbf2-11ee-ad76-12686b7bf0c1",
+      "AmplifyAppId": "d1hex31yv56y7x"
+    },
+    "categories": {
+      "function": {
+        "primengtemplate0cbc515bCustomMessage": {
+          "REDIRECTURL": "",
+          "EMAILSUBJECT": "Your account has been created.",
+          "EMAILMESSAGE": "Your account has been created.",
+          "deploymentBucketName": "amplify-primengtemplate-dev-914d0-deployment",
+          "s3Key": "amplify-builds/primengtemplate0cbc515bCustomMessage-465a566a6c58574c364f-build.zip"
+        }
+      },
+      "auth": {
+        "primengtemplate5708f28d": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1hex31yv56y7x",
+          "type": "cicd"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowPutBucketPolicyAndUploadFiles",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutBucketPolicy",
+                "s3:PutObject",
+                "s3:PutObjectAcl"
+            ],
+            "Resource": [
+                "arn:aws:s3:::primeng-template-bucket1",
+                "arn:aws:s3:::primeng-template-bucket1/*"
+            ]
+        }
+    ]
+}
