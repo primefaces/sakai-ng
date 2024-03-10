@@ -27,19 +27,16 @@ export class AppTopBarComponent implements OnInit {
     ngOnInit (){
         this.menuItem = [
             {
-                label: 'Save', icon: 'pi pi-fw pi-check'
+                label: 'Profile', icon: 'pi pi-fw pi-check'
             },
             {
-                label: 'Update', icon: 'pi pi-fw pi-refresh'
-            },
-            {
-                label: 'Delete', icon: 'pi pi-fw pi-trash'
+                label: 'Billing', icon: 'pi pi-fw pi-refresh'
             },
             {
                 separator: true
             },
             {
-                label: 'Home', icon: 'pi pi-fw pi-home'
+                label: 'Logout', icon: 'pi pi-fw pi-home'
             },
         ];
 
