@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LayoutService } from "./service/app.layout.service";
+import { signOut } from "@aws-amplify/auth"
 
 @Component({
     selector: 'app-topbar',
@@ -24,22 +25,30 @@ export class AppTopBarComponent implements OnInit {
 
     constructor(public layoutService: LayoutService) {}
 
-    ngOnInit (){
+    ngOnInit() {
         this.menuItem = [
             {
-                label: 'Profile', icon: 'pi pi-fw pi-check'
+                label: 'Profile', icon: 'pi pi-fw pi-user'
             },
             {
-                label: 'Billing', icon: 'pi pi-fw pi-refresh'
+                label: 'Billing', icon: 'pi pi-fw pi-credit-card'
             },
             {
                 separator: true
             },
             {
-                label: 'Logout', icon: 'pi pi-fw pi-home'
+                label: 'Logout', icon: 'pi pi-fw pi-power-off', command: async () => {
+                    await signOut();
+                }
             },
         ];
-
     }
+
+
+    logout (){
+        signOut();
+    }
+
+
 
 }
