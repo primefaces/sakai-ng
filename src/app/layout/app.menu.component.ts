@@ -38,13 +38,13 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message'] },
                     { label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file'] },
                     { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts'] },
-                    { label: 'Misc', icon: 'pi pi-fw pi-circle', routerLink: ['/uikit/misc'] }
+                    { label: 'Misc', icon: 'pi pi-fw pi-circle', routerLink: ['/uikit/misc'], badge: '88' }
                 ]
             },
             {
                 label: 'Prime Blocks',
                 items: [
-                    { label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks'], badge: 'NEW' },
+                    { label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks'], badge: 'NEW', badgeSeverity: 'success' },
                     { label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: ['https://www.primefaces.org/primeblocks-ng'], target: '_blank' },
                 ]
             },
@@ -112,11 +112,15 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     {
                         label: 'Submenu 1', icon: 'pi pi-fw pi-bookmark',
+                        badge: '77',
+                        badgeSeverity: 'info',
                         items: [
                             {
                                 label: 'Submenu 1.1', icon: 'pi pi-fw pi-bookmark',
+                                badge: '11',
+                                badgeSeverity: 'danger',
                                 items: [
-                                    { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark' },
+                                    { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark', badge: '111', badgeSeverity: 'warning' },
                                     { label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark' },
                                     { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark' },
                                 ]
