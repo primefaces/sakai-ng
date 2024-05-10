@@ -10,8 +10,6 @@ import { ButtonModule } from 'primeng/button';
 import { StyleClassModule } from 'primeng/styleclass';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { DashboardsRoutingModule } from './dashboard-routing.module';
-import { Component } from '@angular/core';
-
 
 
 @NgModule({
@@ -27,14 +25,6 @@ import { Component } from '@angular/core';
         ButtonModule,
         DashboardsRoutingModule
     ],
-
     declarations: [DashboardComponent]
 })
-@Component({
-    selector: 'app-dashboard',
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.css']
-  })
-export class DashboardModule {
-    display: boolean = false;
-}
+export class DashboardModule { }
