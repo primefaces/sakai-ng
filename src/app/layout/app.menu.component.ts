@@ -23,20 +23,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Chamados',
                 items: [
-                    { label: 'Abrir', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/crud'] },
-                    { label: 'Verificar pendentes', icon: 'pi pi-fw pi-check-square', routerLink: [''] },
-                ]
-            },
-            {
-               label:'CRM',
-                items: [
-                    { label: 'Acompanhar pedidos', icon: 'pi pi-fw pi-globe', routerLink: ['']}
-                ]
-            },
-            {
-                label: 'Chat',
-                items: [
-                    { label: 'Equipe', icon: 'pi pi-fw pi-users', routerLink: [] }
+                    { label: 'Abrir', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/crud'] }
                 ]
             }
             // {
