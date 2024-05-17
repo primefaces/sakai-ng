@@ -5,11 +5,9 @@
 			"code": "mbvjkgip5",
 			"name": "Galaxy Earrings",
 			"description": "Product Description",
-			"image": "galaxy-earrings.jpg",
-			"price": 34,
 			"category": "Accessories",
 			"quantity": 23,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 5
 		},
 		{
@@ -17,11 +15,9 @@
 			"code": "lm2tny2k4",
 			"name": "Shoes",
 			"description": "Product Description",
-			"image": "shoes.jpg",
-			"price": 64,
 			"category": "Clothing",
 			"quantity": 0,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 4
 		},
 		{
@@ -29,11 +25,9 @@
 			"code": "k8l6j58jl",
 			"name": "Lime Band",
 			"description": "Product Description",
-			"image": "lime-band.jpg",
-			"price": 79,
 			"category": "Fitness",
 			"quantity": 12,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 3
 		},
 		{
@@ -45,7 +39,7 @@
 			"price": 299,
 			"category": "Electronics",
 			"quantity": 63,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 3
 		},
 		{
@@ -57,7 +51,7 @@
 			"price": 79,
 			"category": "Fitness",
 			"quantity": 2,
-			"inventoryStatus": "LOWSTOCK",
+			"inventoryStatus": "PENDENTE",
 			"rating": 3
 		},
 		{
@@ -81,7 +75,7 @@
 			"price": 29,
 			"category": "Clothing",
 			"quantity": 25,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 5
 		},
 		{
@@ -93,7 +87,7 @@
 			"price": 79,
 			"category": "Fitness",
 			"quantity": 63,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 4
 		},
 		{
@@ -105,7 +99,7 @@
 			"price": 32,
 			"category": "Accessories",
 			"quantity": 5,
-			"inventoryStatus": "LOWSTOCK",
+			"inventoryStatus": "PENDENTE",
 			"rating": 3
 		},
 		{
@@ -117,7 +111,7 @@
 			"price": 78,
 			"category": "Clothing",
 			"quantity": 52,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 4
 		},
 		{
@@ -129,7 +123,7 @@
 			"price": 99,
 			"category": "Electronics",
 			"quantity": 2,
-			"inventoryStatus": "LOWSTOCK",
+			"inventoryStatus": "PENDENTE",
 			"rating": 4
 		},
 		{
@@ -153,7 +147,7 @@
 			"price": 89,
 			"category": "Electronics",
 			"quantity": 23,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 4
 		},
 		{
@@ -165,7 +159,7 @@
 			"price": 49,
 			"category": "Clothing",
 			"quantity": 34,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 4
 		},
 		{
@@ -177,7 +171,7 @@
 			"price": 49,
 			"category": "Clothing",
 			"quantity": 74,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 5
 		},
 		{
@@ -189,7 +183,7 @@
 			"price": 175,
 			"category": "Electronics",
 			"quantity": 8,
-			"inventoryStatus": "LOWSTOCK",
+			"inventoryStatus": "PENDENTE",
 			"rating": 5
 		},
 		{
@@ -201,7 +195,7 @@
 			"price": 85,
 			"category": "Clothing",
 			"quantity": 42,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 4
 		},
 		{
@@ -225,7 +219,7 @@
 			"price": 56,
 			"category": "Accessories",
 			"quantity": 41,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 5
 		},
 		{
@@ -249,7 +243,7 @@
 			"price": 79,
 			"category": "Fitness",
 			"quantity": 6,
-			"inventoryStatus": "LOWSTOCK",
+			"inventoryStatus": "PENDENTE",
 			"rating": 3
 		},
 		{
@@ -261,7 +255,7 @@
 			"price": 45,
 			"category": "Accessories",
 			"quantity": 62,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 4
 		},
 		{
@@ -273,7 +267,7 @@
 			"price": 49,
 			"category": "Clothing",
 			"quantity": 2,
-			"inventoryStatus": "LOWSTOCK",
+			"inventoryStatus": "PENDENTE",
 			"rating": 5
 		},
 		{
@@ -285,7 +279,7 @@
 			"price": 20,
 			"category": "Fitness",
 			"quantity": 15,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 5
 		},
 		{
@@ -297,7 +291,7 @@
 			"price": 89,
 			"category": "Electronics",
 			"quantity": 35,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 3
 		},
 		{
@@ -309,7 +303,7 @@
 			"price": 65,
 			"category": "Accessories",
 			"quantity": 24,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 5
 		},
 		{
@@ -333,7 +327,7 @@
 			"price": 49,
 			"category": "Clothing",
 			"quantity": 3,
-			"inventoryStatus": "LOWSTOCK",
+			"inventoryStatus": "PENDENTE",
 			"rating": 3
 		},
 		{
@@ -345,7 +339,7 @@
 			"price": 15,
 			"category": "Accessories",
 			"quantity": 73,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 4
 		},
 		{
@@ -357,7 +351,7 @@
 			"price": 20,
 			"category": "Fitness",
 			"quantity": 25,
-			"inventoryStatus": "INSTOCK",
+			"inventoryStatus": "DESENVOLVIMENTO",
 			"rating": 8
 		}
 	]

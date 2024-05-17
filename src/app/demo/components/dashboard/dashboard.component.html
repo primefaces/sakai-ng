@@ -49,8 +49,8 @@
             </div>
         </div>
 
-        <!-- <div class="col-12 xl:col-6">
-            <div class="card">
+        <div class="col-12 xl:col-6">
+            <!-- <div class="card">
                 <h5>Recent Sales</h5>
                 <p-table [value]="products" [paginator]="true" [rows]="5" responsiveLayout="scroll">
                     <ng-template pTemplate="header">
@@ -74,10 +74,10 @@
                         </tr>
                     </ng-template>
                 </p-table>
-            </div>
+            </div> -->
             <div class="card">
                 <div class="flex justify-content-between align-items-center mb-5">
-                    <h5>Best Selling Products</h5>
+                    <h5>Tarefas feitas</h5>
                     <div>
                         <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
                         <p-menu #menu [popup]="true" [model]="items"></p-menu>
@@ -158,15 +158,18 @@
                     </li>
                 </ul>
             </div>
-        </div> -->
+        </div> 
 
-        <!-- <div class="col-12 xl:col-6">
-            <div class="card">
+        <div class="col-12 xl:col-6"> 
+            <!-- <div class="card">
                 <h5>Sales Overview</h5>
                 <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
-            </div>
+            </div> -->
 
-            <div class="card">
+
+            
+
+            <!-- <div class="card">
                 <div class="flex align-items-center justify-content-between mb-4">
                     <h5>Notifications</h5>
                     <div>
@@ -210,9 +213,9 @@
                         <span class="text-900 line-height-3">Jane Davis<span class="text-700"> has posted a new questions about your product.</span></span>
                     </li>
                 </ul>
-            </div>
+            </div> -->
 
-            <div class="px-4 py-5 shadow-2 flex flex-column md:flex-row md:align-items-center justify-content-between mb-3" [ngStyle]="{borderRadius: '1rem', background: 'linear-gradient(0deg, rgba(0, 123, 255, 0.5), rgba(0, 123, 255, 0.5)), linear-gradient(92.54deg, #1C80CF 47.88%, #FFFFFF 100.01%)'}">
+            <!-- <div class="px-4 py-5 shadow-2 flex flex-column md:flex-row md:align-items-center justify-content-between mb-3" [ngStyle]="{borderRadius: '1rem', background: 'linear-gradient(0deg, rgba(0, 123, 255, 0.5), rgba(0, 123, 255, 0.5)), linear-gradient(92.54deg, #1C80CF 47.88%, #FFFFFF 100.01%)'}">
            <div>
                <div class="text-blue-100 font-medium text-xl mt-2 mb-3">TAKE THE NEXT STEP</div>
                <div class="text-white font-medium text-5xl">Try PrimeBlocks</div>
@@ -222,7 +225,14 @@
                    Get Started
                </a>
            </div>
-        </div>
-    </div> -->
+        </div> -->
+    </div>
+
+
+    		<div class="card">
+			<div class="flex flex-wrap gap-2">
+				<p-splitButton label="Adicionar tarefa" icon="pi pi-plus" [model]="items" styleClass="p-button-success"></p-splitButton>
+			</div>
+		</div>
 </div>
 

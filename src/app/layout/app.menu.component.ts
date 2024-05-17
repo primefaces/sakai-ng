@@ -23,7 +23,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Chamados',
                 items: [
-                    { label: 'Abrir', icon: 'pi pi-fw pi-id-card', routerLink: [''] },
+                    { label: 'Abrir', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/crud'] },
                     { label: 'Verificar pendentes', icon: 'pi pi-fw pi-check-square', routerLink: [''] },
                 ]
             },
@@ -36,12 +36,8 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Chat',
                 items: [
-
-                    { label: 'Equipe', icon: 'pi pi-fw pi-users', routerLink: [''] },
-                    { label: 'Solicitantes', icon: 'pi pi-fw pi-user', routerLink: ['']},
-                    { label: 'Suporte', icon: 'pi pi-fw pi-question-circle', routerLink: [''] }
+                    { label: 'Equipe', icon: 'pi pi-fw pi-users', routerLink: [] }
                 ]
-
             }
             // {
             //     label: 'Pages',
