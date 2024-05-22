@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    templateUrl: './formlayoutdemo.component.html'
+    templateUrl: './formlayoutdemo.component.html',
+    
 })
 export class FormLayoutDemoComponent {
 
@@ -16,9 +17,8 @@ export class FormLayoutDemoComponent {
     ];
 
     dropdownItems = [
-        { name: 'Option 1', code: 'Option 1' },
-        { name: 'Option 2', code: 'Option 2' },
-        { name: 'Option 3', code: 'Option 3' }
+        { name: 'Administrador', code: 'a' },
+        { name: 'Desenvolvedor', code: 'd' }
     ];
 
     cities1: any[] = [];

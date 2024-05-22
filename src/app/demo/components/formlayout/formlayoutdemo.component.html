@@ -1,6 +1,6 @@
 <div class="grid">
 	<div class="col-12 md:col-6">
-		<div class="card p-fluid">
+		<!-- <div class="card p-fluid">
 			<h5>Vertical</h5>
 			<div class="field">
 				<label htmlFor="name1">Name</label>
@@ -71,36 +71,33 @@
 				<small>Enter your username to reset your password.</small>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<div class="col-12">
 		<div class="card">
-			<h5>Advanced</h5>
+			<h5>Cadastro de usuário</h5>
 			<div class="p-fluid p-formgrid grid">
 				<div class="field col-12 md:col-6">
-					<label htmlFor="firstname2">Firstname</label>
-					<input pInputText id="firstname2" type="text" />
+					<label htmlFor="nome">Nome</label>
+					<input pInputText id="nome" type="text" />
 				</div>
 				<div class="field col-12 md:col-6">
-					<label htmlFor="lastname2">Lastname</label>
-					<input pInputText id="lastname2" type="text" />
+					<label htmlFor="sobrenome">Sobrenome</label>
+					<input pInputText id="sobrenome" type="text" />
 				</div>
 				<div class="field col-12">
-					<label htmlFor="address">Address</label>
-					<input pInputTextarea id="address" rows="4" />
+					<label htmlFor="email">E-mail</label>
+					<input pInputTextarea id="email" rows="4" />
 				</div>
 				<div class="field col-12 md:col-6">
-					<label htmlFor="city">City</label>
-					<input pInputText id="city" type="text" />
+					<label htmlFor="city">Senha</label>
+					<input pInputText id="senha" type="text" />
 				</div>
 				<div class="field col-12 md:col-3">
-					<label htmlFor="state">State</label>
+					<label htmlFor="tipo">Tipo</label>
 					<p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="selectedState"></p-dropdown>
 				</div>
-				<div class="field col-12 md:col-3">
-					<label htmlFor="zip">Zip</label>
-					<input pInputText id="zip" type="text" />
-				</div>
+				<button pButton label="Submit"></button>
 			</div>
 		</div>
 	</div>

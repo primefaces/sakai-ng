@@ -21,9 +21,9 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
-                label: 'Chamados',
+                label: 'Tarefas',
                 items: [
-                    { label: 'Abrir', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/crud'] }
+                    { label: 'Projeto A', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/crud'] }
                 ]
             }
             // {
