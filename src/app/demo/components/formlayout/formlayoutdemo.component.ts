@@ -29,4 +29,6 @@ export class FormLayoutDemoComponent {
 
     city2: any = null;
 
+    password!: string;
+
 }

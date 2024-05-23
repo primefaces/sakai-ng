@@ -10,7 +10,24 @@ import { ProductService } from 'src/app/demo/service/product.service';
 })
 export class CrudComponent implements OnInit {
 
-    productDialog: boolean = false;
+    projetoSelecionado: any = null;
+
+    projetos: any[] = [
+        {name: 'Projeto A', code: '1'},
+        {name: 'Projeto B', code: '2'},
+        {name: 'Projeto C', code: '3'},
+        {name: 'Projeto D', code: '4'},
+        {name: 'Projeto E', code: '5'}
+    ];
+
+    dropdownItems = [
+        { name: 'Administrador', code: 'a' },
+        { name: 'Desenvolvedor', code: 'd' }
+    ];
+
+    tarefaDialog: boolean = false;
+
+    impedimentoDialog: boolean = false;
 
     deleteProductDialog: boolean = false;
 
@@ -49,12 +66,18 @@ export class CrudComponent implements OnInit {
             { label: 'CONCLUIDO', value: 'concluido' },
             { label: 'AGUARDANDO', value: 'aguardando' }
         ];
+        
     }
 
-    openNew() {
+    openTarefa() {
         this.product = {};
         this.submitted = false;
-        this.productDialog = true;
+        this.tarefaDialog = true;
+    }
+    openImpedimento() {
+        this.product = {};
+        this.submitted = false;
+        this.impedimentoDialog = true;
     }
 
     deleteSelectedProducts() {
@@ -63,7 +86,7 @@ export class CrudComponent implements OnInit {
 
     editProduct(product: Product) {
         this.product = { ...product };
-        this.productDialog = true;
+        this.tarefaDialog = true;
     }
 
     deleteProduct(product: Product) {
@@ -86,7 +109,7 @@ export class CrudComponent implements OnInit {
     }
 
     hideDialog() {
-        this.productDialog = false;
+        this.tarefaDialog = false;
         this.submitted = false;
     }
 
@@ -110,7 +133,7 @@ export class CrudComponent implements OnInit {
             }
 
             this.products = [...this.products];
-            this.productDialog = false;
+            this.tarefaDialog = false;
             this.product = {};
         }
     }

@@ -23,7 +23,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Tarefas',
                 items: [
-                    { label: 'Projeto A', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/crud'] }
+                    { label: 'Seus projetos', icon: 'pi pi-fw pi-id-card', routerLink: ['/pages/crud'] }
                 ]
             }
             // {

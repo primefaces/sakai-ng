@@ -3,13 +3,23 @@
         <div class="card px-6 py-6">
             <p-toast></p-toast>
             <p-toolbar styleClass="mb-4">
-                <ng-template pTemplate="left">
+                <ng-template pTemplate="center">
                     <div class="my-2">
-                        <button pButton pRipple label="Adicionar tarefa" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                        <button pButton pRipple label="Adicionar impedimento" icon="pi pi-plus" class="p-button-warning mr-2" (click)="openImpedimento()"></button>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <div class="my-2">
+                        <button pButton pRipple label="Adicionar tarefa" icon="pi pi-plus" class="p-button-success mr-2" (click)="openTarefa()"></button>
                     </div>
                 </ng-template>
 
 
+                <p-dropdown 
+                [options]="projetos" 
+                [(ngModel)]="projetoSelecionado" 
+                optionLabel="name" 
+                placeholder="Selecione um projeto" />
             </p-toolbar>
 
             <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
@@ -27,10 +37,9 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th pSortableColumn="code">Código card <p-sortIcon field="code"></p-sortIcon></th>
                         <th pSortableColumn="name">Nome <p-sortIcon field="name"></p-sortIcon></th>
-                        <th pSortableColumn="category">Etiqueta <p-sortIcon field="category"></p-sortIcon></th>
-                        <th pSortableColumn="rating">Dificuldade <p-sortIcon field="rating"></p-sortIcon></th>
+                        <th pSortableColumn="category">Descrição <p-sortIcon field="category"></p-sortIcon></th>
+                        <th pSortableColumn="rating">Atribuído <p-sortIcon field="rating"></p-sortIcon></th>
                         <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
                         <th></th>
                     </tr>
@@ -39,9 +48,6 @@
                     <tr>
                         <td>
                             <p-tableCheckbox [value]="product"></p-tableCheckbox>
-                        </td>
-                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
-                            {{product.code || product.id}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Nome</span>
@@ -52,7 +58,7 @@
                             {{product.category}}
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Dificuldade</span>
-                            <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+                            {{product.category}}
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Status</span>
                             <span [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span>
@@ -60,7 +66,10 @@
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+                                <button pButton pRipple icon="pi pi-play" class="p-button-rounded p-button-text" ></button>
+                                <button pButton pRipple icon="pi pi-pause" class="p-button-rounded p-button-text" ></button>
+                                <button pButton pRipple class="p-button-rounded p-button-warning" >Concluir</button>
+                                <!-- <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button> -->
                             </div>
                         </td>
                     </tr>
@@ -68,20 +77,20 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" class="p-fluid">
+        <p-dialog [(visible)]="tarefaDialog" [style]="{width: '450px'}" header="Detalhes da tarefa" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
-                <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image">
+                <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
                 <div class="field">
-                    <label for="name">Name</label>
+                    <label for="name">Nome</label>
                     <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.name}"/>
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.name">Name is required.</small>
                 </div>
                 <div class="field">
-                    <label for="description">Description</label>
+                    <label for="description">Descrição</label>
                     <textarea id="description" pInputTextarea [(ngModel)]="product.description" required rows="3" cols="20"></textarea>
                 </div>
                 <div class="field">
-                    <label for="status">Inventory Status</label>
+                    <label for="status">Status</label>
                     <p-dropdown [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus" optionValue="label" [options]="statuses" placeholder="Select">
                         <ng-template pTemplate="selectedItem">
                             <span *ngIf="product && product.inventoryStatus" [class]="'product-badge status-' + product.inventoryStatus.toString().toLowerCase()">{{product.inventoryStatus}}</span>
@@ -93,35 +102,46 @@
                 </div>
 
                 <div class="field">
-                    <label class="mb-3">Etiqueta</label>
+                    <label class="mb-3">Prazo</label>
+                    
                     <div class="formgrid grid">
-                        <div class="field-radiobutton col-6">
-                            <p-radioButton id="category1" name="category" value="Frontend" [(ngModel)]="product.category"></p-radioButton>
-                            <label for="category1">Frontend</label>
-                        </div>
-                        <div class="field-radiobutton col-6">
-                            <p-radioButton id="category2" name="category" value="Backend" [(ngModel)]="product.category"></p-radioButton>
-                            <label for="category2">Backend</label>
-                        </div>
-                        <div class="field-radiobutton col-6">
-                            <p-radioButton id="category3" name="category" value="Infra" [(ngModel)]="product.category"></p-radioButton>
-                            <label for="category3">Infra</label>
-                        </div>
-                        <div class="field-radiobutton col-6">
-                            <p-radioButton id="category4" name="category" value="Dados" [(ngModel)]="product.category"></p-radioButton>
-                            <label for="category4">Dados</label>
+                        <div class="field col">
+                            <p-inputMask 
+                                [(ngModel)]="value" 
+                                mask="99/99/9999" 
+                                placeholder="99/99/9999" 
+                                slotChar="dd/mm/yyyy" />
                         </div>
                     </div>
+                </div>
+                <div class="field">
+                    <label class="mb-3">Atribuído à</label>
+
+                    
+                        <p-dropdown 
+                        [options]="projetos" 
+                        [(ngModel)]="projetoSelecionado" 
+                        optionLabel="name" 
+                        placeholder="Selecione membro da equipe" />
+ 
                 </div>
 
                 <div class="formgrid grid">
                     <div class="field col">
-                        <label for="price">Price</label>
-                        <p-inputNumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+                        <label for="price">Data início</label>
+                        <p-inputMask 
+                        [(ngModel)]="value" 
+                        mask="99/99/9999" 
+                        placeholder="99/99/9999" 
+                        slotChar="dd/mm/yyyy" />
                     </div>
                     <div class="field col">
-                        <label for="quantity">Quantity</label>
-                        <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
+                        <label for="quantity">Data término</label>
+                        <p-inputMask 
+                        [(ngModel)]="value" 
+                        mask="99/99/9999" 
+                        placeholder="99/99/9999" 
+                        slotChar="dd/mm/yyyy" />
                     </div>
                 </div>
             </ng-template>
@@ -131,6 +151,67 @@
                 <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
             </ng-template>
         </p-dialog>
+
+
+
+
+        <p-dialog [(visible)]="impedimentoDialog" [style]="{width: '450px'}" header="Detalhes do impedimento" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                <div class="field">
+                    <label for="name">Nome</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.name}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.name">Name is required.</small>
+                </div>
+                <div class="field">
+                    <label for="description">Descrição</label>
+                    <textarea id="description" pInputTextarea [(ngModel)]="product.description" required rows="3" cols="20"></textarea>
+                </div>
+        
+                <div class="field">
+                    <label class="mb-3">Relatado por</label>
+                        <p-dropdown 
+                        [options]="projetos" 
+                        [(ngModel)]="projetoSelecionado" 
+                        optionLabel="name" 
+                        placeholder="Selecione membro da equipe" />
+                </div>
+                <div class="field">
+                    <label class="mb-3">Tarefa</label>
+                        <p-dropdown 
+                        [options]="projetos" 
+                        [(ngModel)]="projetoSelecionado" 
+                        optionLabel="name" 
+                        placeholder="Selecione a tarefa" />
+                </div>
+               
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+            </ng-template>
+        </p-dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
             <div class="flex align-items-center justify-content-center">

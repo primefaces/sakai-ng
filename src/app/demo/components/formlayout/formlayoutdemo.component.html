@@ -1,104 +1,32 @@
-<div class="grid">
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
 	<div class="col-12 md:col-6">
-		<!-- <div class="card p-fluid">
-			<h5>Vertical</h5>
-			<div class="field">
-				<label htmlFor="name1">Name</label>
-				<input pInputText id="name1" type="text" />
+		<div style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+			<div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
+					<div class="text-900 text-3xl font-medium mb-6 text-center">Cadastro de usuário!</div>
+					<div class="border-radius:56px; padding:1.0rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+							<div class="p-fluid p-formgrid grid">
+								<div class="field col-12 md:col-6">
+									<label htmlFor="nome">Nome</label>
+									<input pInputText id="nome" type="text" />
+								</div>
+								<div class="field col-12 md:col-6">
+									<label htmlFor="sobrenome">Sobrenome</label>
+									<input pInputText id="sobrenome" type="text" />
+								</div>
+								<div class="field col-12">
+									<label htmlFor="email">E-mail</label>
+									<input pInputTextarea id="email" rows="4" />
+								</div>
+								<div class="field col-12 md:col-6">
+									<label htmlFor="city">Senha</label>
+									<p-password id="password1" [(ngModel)]="password" placeholder="Password" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"></p-password>
+								</div>
+								<div class="field col-12 md:col-6">
+									<label htmlFor="tipo">Tipo</label>
+									<p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="selectedState"></p-dropdown>
+								</div>
+								<button pButton label="Submit"></button>
+							</div>
+					</div>
 			</div>
-			<div class="field">
-				<label htmlFor="email1">Email</label>
-				<input pInputText id="email1" type="text" />
-			</div>
-			<div class="field">
-				<label htmlFor="age1">Age</label>
-				<input pInputText id="age1" type="text" />
-			</div>
-		</div>
-		
-		<div class="card p-fluid">
-			<h5>Vertical Grid</h5>
-			<div class="p-formgrid grid">
-				<div class="field col">
-					<label htmlFor="name2">Name</label>
-					<input pInputText id="name2" type="text" />
-				</div>
-				<div class="field col">
-					<label htmlFor="email2">Email</label>
-					<input pInputText id="email2" type="text" />
-				</div>
-			</div>
-		</div>
 	</div>
-
-	<div class="col-12 md:col-6">
-		<div class="card p-fluid">
-			<h5>Horizontal</h5>
-			<div class="field grid">
-				<label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0">Name</label>
-				<div class="col-12 md:col-10">
-					<input pInputText id="name3" type="text" />
-				</div>
-			</div>
-			<div class="field grid">
-				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email</label>
-				<div class="col-12 md:col-10">
-					<input pInputText id="email3" type="text" />
-				</div>
-			</div>
-		</div>
-
-		<div class="card">
-			<h5>Inline</h5>
-			<div class="formgroup-inline">
-				<div class="field">
-					<label htmlFor="firstname1" class="p-sr-only">Firstname</label>
-					<input pInputText id="firstname1" type="text" placeholder="Firstname" />
-				</div>
-				<div class="field">
-					<label htmlFor="lastname1" class="p-sr-only">Lastname</label>
-					<input pInputText id="lastname1" type="text" placeholder="Lastname" />
-				</div>
-				<button pButton label="Submit"></button>
-			</div>
-		</div>
-
-		<div class="card">
-			<h5>Help Text</h5>
-			<div class="field p-fluid">
-				<label htmlFor="username">Username</label>
-				<input pInputText id="username" type="text" />
-				<small>Enter your username to reset your password.</small>
-			</div>
-		</div>
-	</div> -->
-
-	<div class="col-12">
-		<div class="card">
-			<h5>Cadastro de usuário</h5>
-			<div class="p-fluid p-formgrid grid">
-				<div class="field col-12 md:col-6">
-					<label htmlFor="nome">Nome</label>
-					<input pInputText id="nome" type="text" />
-				</div>
-				<div class="field col-12 md:col-6">
-					<label htmlFor="sobrenome">Sobrenome</label>
-					<input pInputText id="sobrenome" type="text" />
-				</div>
-				<div class="field col-12">
-					<label htmlFor="email">E-mail</label>
-					<input pInputTextarea id="email" rows="4" />
-				</div>
-				<div class="field col-12 md:col-6">
-					<label htmlFor="city">Senha</label>
-					<input pInputText id="senha" type="text" />
-				</div>
-				<div class="field col-12 md:col-3">
-					<label htmlFor="tipo">Tipo</label>
-					<p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="selectedState"></p-dropdown>
-				</div>
-				<button pButton label="Submit"></button>
-			</div>
-		</div>
-	</div>
-</div>
