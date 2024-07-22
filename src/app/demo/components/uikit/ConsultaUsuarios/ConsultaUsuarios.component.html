@@ -1,0 +1,87 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+            <div class="flex justify-content-between flex-column sm:flex-row">
+                <h5>Consulta Usuarios</h5>
+                <div class="user-menu ">
+                    <p-image src="assets/demo/images/avatar/amyelsner.png" alt="User Image" width="40"></p-image>
+
+                    <span class="user-name">Amy Elsner</span>
+                    <p-menu [model]="items" popup="true" #menu></p-menu>
+                    <button pButton type="button" icon="pi pi-bars" (click)="menu.toggle($event)"></button>
+                </div>
+            </div>
+			<p-table #dt1 [value]="usuarios" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" responsiveLayout="scroll" [globalFilterFields]="['id', 'name', 'email', 'roles', 'campus', 'sede']">
+
+                <ng-template pTemplate="caption">
+					<div class="flex justify-content-between flex-column sm:flex-row">
+						<button *ngIf="userHasAdminRole" pButton label="Nuevo Usuario" class="p-button-outlined mb-2" (click)="NuevoUsuario()"></button>
+						<button pButton label="Limpiar" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                        <span class="p-input-icon-left mb-2">
+							<i class="pi pi-search"></i>
+							<input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Buscar" class="w-full"/>
+						</span>
+					</div>
+				</ng-template>
+
+				<ng-template pTemplate="header">
+					<tr>
+						<th >Nómina</th>
+                        <th >Nombre</th>
+						<th >Correo Electronico</th>
+                        <th >Roles</th>
+						<th >Campus</th>
+                        <th >Sede</th>
+
+						<th *ngIf="userHasAdminRole">acción</th>
+                    </tr>
+				</ng-template>
+
+				<ng-template pTemplate="body" let-usuarios>
+					<tr>
+
+						<td >{{usuarios.id}}</td>
+						<td >{{usuarios.name}}</td>
+                        <td >{{usuarios.email}}</td>
+                        <td >
+                            <span>{{usuarios.roles}}</span>
+                            <p-multiSelect class="mi-multiselect" *ngIf="userHasAdminRole" [options]="rols" [(ngModel)]="usuarios.roles" (onChange)="AsignarRol($event, usuarios)" placeholder="Seleccionar Rol"></p-multiSelect>
+                        </td>
+                        <td >
+                            {{ formatCampus(usuarios.campus) }}
+                            <p-multiSelect class="mi-multiselect" *ngIf="userHasAdminRole" [options]="camp" [(ngModel)]="usuarios.campus" (onChange)="AsignarCampus($event, usuarios)" placeholder="Seleccionar Campus"></p-multiSelect>
+                        </td>
+                        <td >
+                            {{usuarios.sede}}
+                            <p-dropdown class="mi-dropdown" *ngIf="userHasAdminRole" [options]="sed" [(ngModel)]="usuarios.sede" (onChange)="AsignarSede($event, usuarios)" placeholder="Seleccionar Sede"></p-dropdown>
+                        </td>
+
+                        <td *ngIf="userHasAdminRole">
+                            <button pButton type="button" icon="pi pi-pencil" (click)="editarCliente(usuarios)"></button>
+                            <button pButton type="button" icon="pi pi-trash" (click)="borrarCliente(usuarios)"></button>
+                        </td>
+
+					</tr>
+				</ng-template>
+
+				<ng-template pTemplate="emptymessage">
+					<tr>
+						<td colspan="8">No customers found.</td>
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="loadingbody">
+					<tr>
+						<td colspan="8">Loading customers data. Please wait.</td>
+					</tr>
+				</ng-template>
+    		</p-table>
+		</div>
+
+	</div>
+
+</div>
+
+<div>
+    <button pButton type="button" label="Toggle Admin Role" (click)="toggleAdminRole()"></button>
+    <p>Admin Role: {{ userHasAdminRole }}</p>
+</div>

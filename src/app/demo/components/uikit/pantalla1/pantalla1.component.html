@@ -1,0 +1,35 @@
+<div class="grid">
+	<div class="col-12">
+        <h5>
+            Listas Oficiales - Catalogo de Roles
+        </h5>
+        <button pButton label="Guardar Cambios" class="p-button-outlined mb-2" [disabled]="!selectedDrop" (click)="SaveChanges()"></button>
+		<div class="card">
+
+			<h5>Nombre del Rol</h5>
+			<p-dropdown [options]="roles" [(ngModel)]="selectedDrop" placeholder="Nombre del Rol" (onChange)="onRoleChange($event)"></p-dropdown>
+
+            <h5>Permitir acceso a: </h5>
+		    <div class="grid formgrid">
+			    <div class="col-12 md:col-4">
+				    <div class="field-checkbox">
+					    <p-checkbox name="group1" value="Consultas" [(ngModel)]="valCheck" id="Consultas"></p-checkbox>
+					    <label Consultas="ny">Consultas</label>
+				    </div>
+			    </div>
+			    <div class="col-12 md:col-4">
+				    <div class="field-checkbox">
+					    <p-checkbox name="group1" value="Reportes" [(ngModel)]="valCheck" id="Reportes"></p-checkbox>
+					    <label Reportes="sf">Reportes</label>
+				    </div>
+			    </div>
+			    <div class="col-12 md:col-4">
+				    <div class="field-checkbox">
+					    <p-checkbox name="group1" value="Roles y Usuarios" [(ngModel)]="valCheck" id="Roles y Usuarios"></p-checkbox>
+					    <label for="Roles y Usuarios">Roles y Usuarios</label>
+				    </div>
+			    </div>
+		    </div>
+		</div>
+	</div>
+</div>

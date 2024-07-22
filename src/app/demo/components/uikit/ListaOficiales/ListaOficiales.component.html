@@ -1,0 +1,123 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+            <div class="flex justify-content-between flex-column sm:flex-row">
+                <h5>Listas Oficiales - Catalogo de Roles</h5>
+                <div class="user-menu ">
+                    <p-image src="assets/demo/images/avatar/amyelsner.png" alt="User Image" width="40"></p-image>
+
+                    <span class="user-name">Amy Elsner</span>
+                    <p-menu [model]="items" popup="true" #menu></p-menu>
+                    <button pButton type="button" icon="pi pi-bars" (click)="menu.toggle($event)"></button>
+                </div>
+            </div>
+			<p-table #dt1 [value]="filteredRols" dataKey="rol" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['rol', 'usucreacion', 'status']" responsiveLayout="scroll">
+
+                <ng-template pTemplate="caption">
+					<div class="flex justify-content-between flex-column sm:flex-row">
+                        <div>
+                                <div class="field-radiobutton">
+                                    <p-radioButton name="rolvistos" value="opcion1" [(ngModel)]="selectedOption" id="opcion1" (onClick)="filterByStatus()"></p-radioButton>
+                                    <label for="opcion1">Mostrar todos los roles</label>
+                                </div>
+                                <div class="field-radiobutton">
+                                    <p-radioButton name="rolvistos" value="opcion2" [(ngModel)]="selectedOption" id="opcion2" (onClick)="filterByStatus()"></p-radioButton>
+                                    <label for="opcion2">No mostrar roles eliminados </label>
+                                </div>
+
+                        </div>
+
+                        <div>
+                            <button *ngIf="userHasAdminRole" pButton label="Crear Nuevo Rol" class="p-button-outlined mb-2" (click)="showNewRolDialog()"></button>
+                        </div>
+
+					    <div>
+                            <button pButton label="Limpiar" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                            <span class="p-input-icon-left mb-2">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Buscar" class="w-full"/>
+                            </span>
+                        </div>
+					</div>
+				</ng-template>
+
+				<ng-template pTemplate="header">
+					<tr>
+						<th >Rol</th>
+                        <th >Numeros de Usuarios</th>
+						<th >Fecha Creacion</th>
+						<th >Usuario Creador</th>
+						<th >Estatus</th>
+						<th *ngIf="userHasAdminRole">acción</th>
+                    </tr>
+				</ng-template>
+
+				<ng-template pTemplate="body" let-customer>
+					<tr>
+
+						<td >{{customer.rol}}</td>
+						<td >{{customer.numusu}}</td>
+                        <td >{{customer.fecreacion}}</td>
+                        <td >{{customer.usucreacion}}</td>
+                        <td >
+                            <span [class]="'customer-badge status-'+ customer.status">{{customer.status}}</span>
+                        </td>
+
+                        <td *ngIf="userHasAdminRole">
+                            <button pButton type="button" icon="pi pi-pencil" (click)="editarCliente(customer)"></button>
+                            <button pButton type="button" icon="pi pi-trash" (click)="borrarCliente(customer)"></button>
+                        </td>
+
+					</tr>
+				</ng-template>
+
+				<ng-template pTemplate="emptymessage">
+					<tr>
+						<td colspan="8">No customers found.</td>
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="loadingbody">
+					<tr>
+						<td colspan="8">Loading customers data. Please wait.</td>
+					</tr>
+				</ng-template>
+    		</p-table>
+
+            <p-dialog header="Crear Nuevo Rol" [(visible)]="newRolDialog" [modal]="true" [closable]="false" [style]="{width: '30vw'}">
+                <div class="p-fluid">
+                    <div class="p-field">
+                        <label for="rol">Rol</label>
+                        <input id="rol" type="text" pInputText [(ngModel)]="newRol.rol"/>
+                    </div>
+                    <div class="p-field">
+                        <label for="numusu">Número de Usuarios</label>
+                        <input id="numusu" type="number" pInputText [(ngModel)]="newRol.numusu"/>
+                    </div>
+                    <div class="p-field">
+                        <label for="fecreacion">Fecha de Creación</label>
+                        <input id="fecreacion" type="date" pInputText [(ngModel)]="newRol.fecreacion"/>
+                    </div>
+                    <div class="p-field">
+                        <label for="usucreacion">Usuario Creador</label>
+                        <input id="usucreacion" type="text" pInputText [(ngModel)]="newRol.usucreacion"/>
+                    </div>
+                    <div class="p-field">
+                        <label for="status">Estatus</label>
+                        <input id="status" type="text" pInputText [(ngModel)]="newRol.status"/>
+                    </div>
+                </div>
+                <p-footer>
+                    <button pButton label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideNewRolDialog()"></button>
+                    <button pButton label="Guardar" icon="pi pi-check" class="p-button-text" (click)="NewRol()"></button>
+                </p-footer>
+            </p-dialog>
+		</div>
+
+	</div>
+
+</div>
+
+<div>
+    <button pButton type="button" label="Toggle Admin Role" (click)="toggleAdminRole()"></button>
+    <p>Admin Role: {{ userHasAdminRole }}</p>
+</div>

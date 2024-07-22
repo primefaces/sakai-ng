@@ -1,0 +1,27 @@
+th,td
+{
+    width:200px;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+  }
+
+.user-name {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+.status-Activo{
+    background: #B3E5FC;
+    color: #23547B;
+}
+.status-Inactivo{
+    background: #FFCDD2;
+    color: #C63737;
+}
+.status-Eliminado{
+    background: gray;
+    color: rgb(57, 57, 57);
+}
