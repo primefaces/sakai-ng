@@ -21,19 +21,26 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
+                label: 'Customer',
+                items: [
+                    { label: 'View Customer', icon: 'pi pi-chart-bar', routerLink: ['/view/ViewDashboard'] },
+                    { label: 'Create Customer', icon: 'pi pi-plus-circle', routerLink: ['/view'] },
+                ]
+            },
+            {
                 label: 'Sales',
                 items: [
                     { label: 'Dashboard', icon: 'pi pi-chart-bar', routerLink: ['/uikit/formlayout'] },
                     { label: 'Create Sales', icon: 'pi pi-shopping-cart', routerLink: ['/uikit/input'] },
                 ]
             },
-            {
-                label: 'Customers',
-                items: [
-                    { label: 'View Customers', icon: 'pi pi-users', routerLink: ['/uikit/input'] },
-                    { label: 'Add New Customer', icon: 'pi pi-user-plus', routerLink: ['/uikit/formlayout'] },
-                ]
-            },
+            // {
+            //     label: 'Customers',
+            //     items: [
+            //         { label: 'View Customers', icon: 'pi pi-chart-bar', routerLink: ['/uikit/input'] },
+            //         { label: 'Add New Customer', icon: 'pi pi-shopping-cart', routerLink: ['/uikit/formlayout'] },
+            //     ]
+            // },
             {
                 label: 'Products',
                 items: [
