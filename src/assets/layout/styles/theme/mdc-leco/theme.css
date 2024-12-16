@@ -2,15 +2,23 @@
   font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   --font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica,
       Arial, "Lucida Grande", sans-serif;
+
+  --sys-color-primary-blue: #003361;
+  --sys-color-primary-orange: #F39200;
+  --sys-color-primary-white: #f4f4f4;
+  --sys-color-primary-red: #AD5353;
+  --sys-color-primary-grey: #A8A8A8;
+
   --surface-a: #ffffff;
-  --surface-b: #fafafa;
+  --surface-b: var(--sys-color-primary-white);
   --surface-c: rgba(0, 0, 0, 0.04);
   --surface-d: rgba(0, 0, 0, 0.12);
   --surface-e: #ffffff;
   --surface-f: #ffffff;
   --text-color: rgba(0, 0, 0, 0.87);
+  --header-text-hover: #ffffff;
   --text-color-secondary: rgba(0, 0, 0, 0.6);
-  --primary-color: #3F51B5;
+  --primary-color: var(--sys-color-primary-blue);
   --primary-color-text: #ffffff;
   --surface-0: #ffffff;
   --surface-50: #fafafa;
@@ -37,11 +45,11 @@
   --inline-spacing: 0.5rem;
   --border-radius: 4px;
   --surface-ground: #fafafa;
-  --surface-section: #ffffff;
-  --surface-card: #ffffff;
-  --surface-overlay: #ffffff;
+  --surface-section: var(--sys-color-primary-white);
+  --surface-card: var(--sys-color-primary-white);
+  --surface-overlay: var(--sys-color-primary-white);
   --surface-border: rgba(0, 0, 0, 0.12);
-  --surface-hover: rgba(0, 0, 0, 0.04);
+  --surface-hover: rgba(220, 217, 217, 0.34);
   --maskbg: rgba(0, 0, 0, 0.32);
   --highlight-bg: rgba(63, 81, 181, 0.12);
   --highlight-text-color: #3F51B5;

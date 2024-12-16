@@ -1,11 +1,15 @@
 <div class="layout-topbar">
     <a class="layout-topbar-logo" routerLink="">
-        <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">
-        <span>SAKAI</span>
+        <img src="assets/layout/images/uibk-grey.svg" alt="logo" style="background: var(--sys-color-primary-white)">
+        <span>Lecture Connect</span>
     </a>
 
     <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
         <i class="pi pi-bars"></i>
+    </button>
+    <button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
+        <i class="pi pi-desktop"></i>
+        <span>Settings</span>
     </button>
 
     <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
@@ -13,17 +17,28 @@
     </button>
 
     <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
-        <button class="p-link layout-topbar-button">
+        <div style="margin-right: 1rem">
+            <button class="p-link layout-topbar-button" routerLink="">
+                <i class="pi pi-table"></i>
+                <span>Calendar</span>
+            </button>
+            <button class="p-link layout-topbar-button">
+                <i class="pi pi-user"></i>
+                <span>Profile</span>
+            </button>
+        </div>
+
+        <button class="p-link layout-topbar-button" routerLink="">
             <i class="pi pi-calendar"></i>
             <span>Calendar</span>
         </button>
         <button class="p-link layout-topbar-button">
-            <i class="pi pi-user"></i>
+            <i class="pi pi-book"></i>
             <span>Profile</span>
         </button>
-        <button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
-            <i class="pi pi-cog"></i>
-            <span>Settings</span>
+        <button class="p-link layout-topbar-button" [routerLink]="'/auth/login'">
+            <i class="pi pi-sign-out"></i>
+            <span>Profile</span>
         </button>
     </div>
 </div>
