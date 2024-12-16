@@ -7,7 +7,7 @@
     <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
         <i class="pi pi-bars"></i>
     </button>
-    <button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
+    <button class="p-link layout-topbar-button" [routerLink]="'/documentation'" [pTooltip]="'Calendar View'" tooltipPosition="bottom">
         <i class="pi pi-desktop"></i>
         <span>Settings</span>
     </button>
@@ -18,25 +18,25 @@
 
     <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
         <div style="margin-right: 1rem">
-            <button class="p-link layout-topbar-button" routerLink="">
+            <button class="p-link layout-topbar-button" routerLink="" [pTooltip]="'Table Management'" tooltipPosition="bottom">
                 <i class="pi pi-table"></i>
                 <span>Calendar</span>
             </button>
-            <button class="p-link layout-topbar-button">
+            <button class="p-link layout-topbar-button" [pTooltip]="'Manage Users'" tooltipPosition="bottom">
                 <i class="pi pi-user"></i>
                 <span>Profile</span>
             </button>
         </div>
 
-        <button class="p-link layout-topbar-button" routerLink="">
+        <button class="p-link layout-topbar-button" routerLink="" [pTooltip]="'Edit Rooms'" tooltipPosition="bottom">
             <i class="pi pi-calendar"></i>
             <span>Calendar</span>
         </button>
-        <button class="p-link layout-topbar-button">
+        <button class="p-link layout-topbar-button" [pTooltip]="'Edit Courses'" tooltipPosition="bottom">
             <i class="pi pi-book"></i>
             <span>Profile</span>
         </button>
-        <button class="p-link layout-topbar-button" [routerLink]="'/auth/login'">
+        <button class="p-link layout-topbar-button" [routerLink]="'/auth/login'" [pTooltip]="'Logout'" tooltipPosition="bottom">
             <i class="pi pi-sign-out"></i>
             <span>Profile</span>
         </button>

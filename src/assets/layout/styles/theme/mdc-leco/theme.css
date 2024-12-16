@@ -19,8 +19,10 @@
   --header-text-hover: #ffffff;
   --text-color-secondary: rgba(0, 0, 0, 0.6);
   --primary-color: var(--sys-color-primary-blue);
-  --primary-color-text: #ffffff;
-  --surface-0: #ffffff;
+    --primary-color-trans: rgba(0, 51, 97, 0.75);
+    --primary-color-text: #ffffff;
+    --topbar-trans: rgba(243, 146, 0, 0.9);
+    --surface-0: #ffffff;
   --surface-50: #fafafa;
   --surface-100: #f5f5f5;
   --surface-200: #eeeeee;
