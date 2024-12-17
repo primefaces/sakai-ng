@@ -1,0 +1,11 @@
+{
+  "/": {
+    "target": " http://lecture-connect.ifi-tpt.uibk.ac.at:8080/",
+    "secure": false,
+    "pathRewrite": {
+      "^/proxy": ""
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

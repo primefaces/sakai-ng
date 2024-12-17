@@ -1,8 +1,8 @@
-import {Component, OnInit,} from '@angular/core';
-import {CalendarOptions} from "@fullcalendar/core";
+import {Component, OnInit, signal, WritableSignal,} from '@angular/core';
 import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import {CalendarOptions} from "@fullcalendar/core";
 
 class InfoBox {
     icon: string
@@ -16,7 +16,7 @@ class InfoBox {
     templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnInit{
-    calendarOptions :CalendarOptions = {
+    readonly calendarOptions: WritableSignal<CalendarOptions> = signal({
         plugins: [
             interactionPlugin,
             dayGridPlugin,
@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit{
         slotEventOverlap: true,
         nowIndicator: false,
         //eventClick: this.showHoverDialog.bind(this),
-    };
+    });
 
     infos!: InfoBox[];
 
@@ -73,7 +73,8 @@ export class DashboardComponent implements OnInit{
                 highlight : '520 ', fin: 'newly registered'
             },
             {
-                icon: '', header: 'Comments', value : '152 Unread',
+                icon: 'pi pi-inbox text-cyan-500 text-xl',
+                header: 'Comments', value : '152 Unread',
                 highlight : '85 ', fin: 'responded'
             }
         ]

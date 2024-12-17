@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AuthService} from "../api/auth.service";
+import {Router} from "@angular/router";
+import {LoginRequest} from "../../../../../assets/models/LoginObj";
+import {Subscription} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
+import {MessageService} from "primeng/api";
 
 @Component({
     selector: 'app-login',
@@ -13,11 +18,34 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
         }
     `]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy{
+    loginRequest: LoginRequest;
+    rememberMe: boolean = false;
+    _loginSub: Subscription | null = null;
 
-    valCheck: string[] = ['remember'];
+    constructor(
+        private authService: AuthService,
+        private messageService: MessageService,
+        private router: Router
+    ) { }
 
-    password!: string;
+    ngOnInit(): void {
+        this.loginRequest = {username: '', password: ''}
+    }
 
-    constructor(public layoutService: LayoutService) { }
+    ngOnDestroy():void{
+        if (this._loginSub) this._loginSub.unsubscribe();
+    }
+
+    login() {
+        this._loginSub = this.authService.loginUser(this.loginRequest, this.rememberMe)
+            .subscribe({
+                next: () => {
+                    if(this.authService.isLoggedIn())
+                        this.router.navigate(['/']);
+                },
+                error: (error:HttpErrorResponse) => { this.messageService
+                    .add({severity: 'error', summary: 'Error', detail: error.error}); }
+            });
+    }
 }

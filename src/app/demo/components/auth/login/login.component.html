@@ -5,19 +5,24 @@
         <div style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--sys-color-primary-orange) 10%, rgba(33, 150, 243, 0) 30%);">
             <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
                 <div>
-                    <label for="email1" class="block text-900 text-xl font-medium mb-2">Email</label>
-                    <input id="email1" type="text" placeholder="Email address" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
+                    <label for="uname" class="block text-900 text-xl font-medium mb-2">Email</label>
+                    <input id="uname" [ngModel]="loginRequest.username" type="text"
+                           placeholder="enter your username..." pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
 
                     <label for="password1" class="block text-900 font-medium text-xl mb-2">Password</label>
-                    <p-password id="password1" [(ngModel)]="password" placeholder="Password" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"/>
+                    <p-password id="password1" [ngModel]="loginRequest.password"
+                                placeholder="Password" [feedback]="false"
+                                styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"/>
 
                     <div class="flex align-items-center justify-content-between mb-5 gap-5">
                         <div class="flex align-items-center">
-                            <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"/>
+                            <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2" [ngModel]="rememberMe"/>
                             <label for="rememberme1">Remember me</label>
                         </div>
                     </div>
-                    <button pButton pRipple label="Sign In" class="w-full p-3 text-xl" style="background: var(--sys-color-primary-blue)" [routerLink]="['/']"></button>
+                    <button pButton pRipple label="Sign In" class="w-full p-3 text-xl"
+                            style="background: var(--sys-color-primary-blue)"
+                            (click)="login()"></button>
                 </div>
             </div>
         </div>
