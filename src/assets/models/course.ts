@@ -29,7 +29,7 @@ export class Course {
       {field: 'lecturer', header: 'Lecturer'},
       {field: 'semester', header: 'Semester'},
       {field: 'duration', header: 'Duration'},
-      {field: 'numberOfParticipants', header: '#Participants'},
+      {field: 'numberOfParticipants', header: 'Nr of Participants'},
       {field: 'computersNecessary', header: 'computer needed'},
       {field: 'createdAt', header: 'created at'},
       {field: 'updatedAt', header: 'updated at'}

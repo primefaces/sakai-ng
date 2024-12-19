@@ -6,6 +6,7 @@
                      [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
                      [value]="items" dataKey="id" [rows]="15"
                      [loading]="loading | async" [rowHover]="true" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+
                 <ng-template pTemplate="caption">
                     <div class="flex justify-content-between flex-column sm:flex-row">
                         <span class="p-input-icon-left mb-2">
@@ -14,43 +15,39 @@
 						</span>
                     </div>
                 </ng-template>
+
                 <ng-template pTemplate="header">
                     <tr>
                         <th id="check">
                             <p-tableHeaderCheckbox/>
                         </th>
                         <th class="flex-header"
-                            *ngFor="let col of selectedHeaders" [pSortableColumn]="col.field"
-                            pResizableColumn pReorderableColumn>
-          <span>
-            <p-sortIcon [field]="col.field"></p-sortIcon>
-              {{ col.header }}
-          </span>
-                            <p-columnFilter operator="or" [type]="!col.type ? 'text' : col.type" display="menu"
-                                            [field]="col.field"></p-columnFilter>
+                            *ngFor="let col of selectedHeaders" [pSortableColumn]="col.field" pReorderableColumn>
+                            <span><p-sortIcon [field]="col.field"/> {{ col.header }} </span>
                         </th>
-                        <th> Edit </th>
-                        <th> Delete </th>
+                        <th style="width: min-content"> Edit </th>
+                        <th style="width: min-content"> Delete </th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-u>
+                <ng-template pTemplate="body" let-i>
                     <tr>
                         <td>
-                            <p-tableCheckbox [value]="u"></p-tableCheckbox>
+                            <p-tableCheckbox [value]="i"/>
                         </td>
                         <td *ngFor="let col of selectedHeaders">
                             <ng-container>
-                                {{ u[col.field] }}
+                                {{ i[col.field] }}
                             </ng-container>
                         </td>
-                        <td>
-                            <p-button pButton pRipple
-                                      icon="pi pi-pencil" class="mr-2"
-                                      [rounded]="true" [outlined]="true" severity="success"/>
+                        <td style="width: min-content">
+                            <button pButton class="editButton" type="button" icon="pi pi-pencil"
+                                    pTooltip="Edit {{item}}" tooltipPosition="bottom">
+                            </button>
                         </td>
-                        <td>
-                            <p-button pButton pRipple icon="pi pi-trash" severity="danger"
-                                      [rounded]="true" [outlined]="true"/>
+                        <td style="width: min-content">
+                            <button pButton class="deleteButton" type="button" icon="pi pi-trash"
+                                    pTooltip="Delete {{item}}" tooltipPosition="bottom">
+                            </button>
                         </td>
                     </tr>
                 </ng-template>
