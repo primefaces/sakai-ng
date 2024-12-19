@@ -24,7 +24,7 @@ export class GenericViewComponent implements OnInit, OnDestroy{
 
     protected readonly headers: any[];
     protected selectedHeaders: any[];
-    protected items: Item[] = [new Course()];
+    protected items: Item[] = [new Course(), new Course()];
 
     protected selectedItem: Item | null = null;
     protected newItem: Item | null = null;

@@ -8,13 +8,26 @@
                      [loading]="loading | async" [rowHover]="true" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
 
                 <ng-template pTemplate="caption">
-                    <div class="flex justify-content-between flex-column sm:flex-row">
-                        <span class="p-input-icon-left mb-2">
-							<i class="pi pi-search"></i>
-							<input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Search Keyword" class="w-full"/>
-						</span>
+                    <div class="flex justify-content-between align-items-center">
+                        <div>
+                        <button pButton class="createButton" type="button" (click)="showCreateDialog()"
+                                label="CREATE NEW {{item.toUpperCase()}}">
+                        </button>
+                        <button pButton class="deleteButton" type="button"
+                                label="DELETE SELECTED {{item.toUpperCase()}}S">
+                        </button>
+                        </div>
+
+                        <div class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text"
+                                   (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                                   placeholder="Search Keyword"
+                                   class="w-full"/>
+                        </div>
                     </div>
                 </ng-template>
+
 
                 <ng-template pTemplate="header">
                     <tr>
@@ -25,8 +38,8 @@
                             *ngFor="let col of selectedHeaders" [pSortableColumn]="col.field" pReorderableColumn>
                             <span><p-sortIcon [field]="col.field"/> {{ col.header }} </span>
                         </th>
-                        <th style="width: min-content"> Edit </th>
-                        <th style="width: min-content"> Delete </th>
+                        <th style="width: 0"> Edit </th>
+                        <th style="width: 0"> Delete </th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-i>

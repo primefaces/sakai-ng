@@ -2,7 +2,7 @@ import {Type} from "@angular/core";
 
 export interface ItemService <T>{
     getTableHeader(): any[];
-    getItemDialog(): Type<T>;
+    getItemDialog(): any;
 
     getAllItems(): T[];
     createSingeItem(): T;

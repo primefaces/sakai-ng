@@ -1,6 +1,7 @@
 import {Injectable, Type} from '@angular/core';
 import { ItemService } from 'src/assets/models/interfaces/ItemServiceInterface';
 import {Userx} from "../../../../../../assets/models/userx";
+import {UserDialog} from "../../../dialogs/user-dialog/user-dialog.component";
 
 @Injectable({
     providedIn: 'root'
@@ -10,8 +11,8 @@ export class UserService implements ItemService<Userx> {
     constructor() {
     }
 
-    getItemDialog(): Type<Userx> {
-        throw new Error('Method not implemented.');
+    getItemDialog(): any {
+        return UserDialog;
     }
 
     getTableHeader(): any[] {
