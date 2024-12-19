@@ -13,6 +13,7 @@ import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
+import {LocalStorageService} from "ngx-webstorage";
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
@@ -20,7 +21,7 @@ import {ToastModule} from "primeng/toast";
     providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MessageService
+        PhotoService, ProductService, MessageService, LocalStorageService
     ],
     bootstrap: [AppComponent],
 })

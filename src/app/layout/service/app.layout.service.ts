@@ -17,6 +17,7 @@ interface LayoutState {
     configSidebarVisible: boolean;
     staticMenuMobileActive: boolean;
     menuHoverActive: boolean;
+    disableMenuButton: boolean;
 }
 
 @Injectable({
@@ -41,6 +42,7 @@ export class LayoutService {
         configSidebarVisible: false,
         staticMenuMobileActive: false,
         menuHoverActive: false,
+        disableMenuButton: false
     };
 
     private configUpdate = new Subject<AppConfig>();
@@ -155,5 +157,10 @@ export class LayoutService {
 
     changeScale(value: number) {
         document.documentElement.style.fontSize = `${value}px`;
+    }
+
+    handleMenuBar(disable: boolean){
+        this.onMenuToggle();
+        this.state.disableMenuButton = disable;
     }
 }

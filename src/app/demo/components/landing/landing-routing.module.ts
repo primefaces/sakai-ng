@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LandingComponent } from './landing.component';
+import {GenericViewComponent} from "./entries/user-view/generic-view.component";
 
 @NgModule({
     imports: [RouterModule.forChild([
-        { path: '', component: LandingComponent }
+        { path: 'userview', component: GenericViewComponent },
+        { path: 'roomview', component: GenericViewComponent },
+        { path: 'courseview', component: GenericViewComponent }
     ])],
     exports: [RouterModule]
 })

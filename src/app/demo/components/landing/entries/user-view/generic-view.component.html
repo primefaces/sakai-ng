@@ -1,0 +1,71 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <p-table #dt
+                     [(selection)]="selectedItem"
+                     [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
+                     [value]="items" dataKey="id" [rows]="15"
+                     [loading]="loading | async" [rowHover]="true" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                <ng-template pTemplate="caption">
+                    <div class="flex justify-content-between flex-column sm:flex-row">
+                        <span class="p-input-icon-left mb-2">
+							<i class="pi pi-search"></i>
+							<input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Search Keyword" class="w-full"/>
+						</span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th id="check">
+                            <p-tableHeaderCheckbox/>
+                        </th>
+                        <th class="flex-header"
+                            *ngFor="let col of selectedHeaders" [pSortableColumn]="col.field"
+                            pResizableColumn pReorderableColumn>
+          <span>
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+              {{ col.header }}
+          </span>
+                            <p-columnFilter operator="or" [type]="!col.type ? 'text' : col.type" display="menu"
+                                            [field]="col.field"></p-columnFilter>
+                        </th>
+                        <th> Edit </th>
+                        <th> Delete </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-u>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="u"></p-tableCheckbox>
+                        </td>
+                        <td *ngFor="let col of selectedHeaders">
+                            <ng-container>
+                                {{ u[col.field] }}
+                            </ng-container>
+                        </td>
+                        <td>
+                            <p-button pButton pRipple
+                                      icon="pi pi-pencil" class="mr-2"
+                                      [rounded]="true" [outlined]="true" severity="success"/>
+                        </td>
+                        <td>
+                            <p-button pButton pRipple icon="pi pi-trash" severity="danger"
+                                      [rounded]="true" [outlined]="true"/>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="8">No customers found.</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="loadingbody">
+                    <tr>
+                        <td colspan="{{selectedHeaders.length}}">Loading customers data. Please wait.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+

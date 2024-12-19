@@ -4,7 +4,8 @@
         <span>Lecture Connect</span>
     </a>
 
-    <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+    <button #menubutton class="p-link layout-menu-button layout-topbar-button"
+            (click)="layoutService.onMenuToggle()" [disabled]="layoutService.state.disableMenuButton">
         <i class="pi pi-bars"></i>
     </button>
     <button class="p-link layout-topbar-button" [routerLink]="'/documentation'" [pTooltip]="'Calendar View'" tooltipPosition="bottom">
@@ -22,17 +23,17 @@
                 <i class="pi pi-table"></i>
                 <span>Calendar</span>
             </button>
-            <button class="p-link layout-topbar-button" [pTooltip]="'Manage Users'" tooltipPosition="bottom">
+            <button class="p-link layout-topbar-button" routerLink="/factory/userview" [pTooltip]="'Manage Users'" tooltipPosition="bottom">
                 <i class="pi pi-user"></i>
                 <span>Profile</span>
             </button>
         </div>
 
-        <button class="p-link layout-topbar-button" routerLink="" [pTooltip]="'Edit Rooms'" tooltipPosition="bottom">
+        <button class="p-link layout-topbar-button" routerLink="/factory/roomview" [pTooltip]="'Edit Rooms'" tooltipPosition="bottom">
             <i class="pi pi-calendar"></i>
             <span>Calendar</span>
         </button>
-        <button class="p-link layout-topbar-button" [pTooltip]="'Edit Courses'" tooltipPosition="bottom">
+        <button class="p-link layout-topbar-button" routerLink="/factory/courseview" [pTooltip]="'Edit Courses'" tooltipPosition="bottom">
             <i class="pi pi-book"></i>
             <span>Profile</span>
         </button>

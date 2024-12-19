@@ -1,0 +1,32 @@
+.fc .fc-timegrid-slot-minor {
+    border-top-style: dashed;
+    border-width: .1rem;
+}
+
+.fc {
+    width: 100%;
+    margin: 0 auto;
+    padding: 5px 10px;
+    background: var(--sys-color-primary-white);
+    flex-direction: column-reverse;
+}
+
+.fc .fc-timegrid-slot-label-cushion {
+    display: inline-block;
+    white-space: nowrap;
+    color: var(--sys-color-primary-blue);
+}
+
+.fc .fc-col-header-cell-cushion {
+    display: inline-block;
+    padding: 2px 4px;
+    color: var(--sys-color-primary-white) !important;
+}
+
+.fc-theme-standard td, .fc-theme-standard th {
+    border: 2px solid var(--sys-color-primary-blue);
+}
+
+.th {
+    background: var(--sys-color-primary-blue);
+}

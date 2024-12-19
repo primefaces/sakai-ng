@@ -1,24 +1,24 @@
-    <div class="grid">
-            <div class="col-12 lg:col-6 xl:col-3" *ngFor="let i of infos">
-                <div class="card mb-0" style="height: 15vh">
-                    <div class="flex justify-content-between mb-3">
-                        <div>
-                            <span class="block text-500 font-medium mb-3">{{i.header}}</span>
-                            <div class="text-900 font-medium text-xl">{{i.value}}</div>
-                        </div>
-                        <div class="flex align-items-center justify-content-center bg-blue-100 border-round" [ngStyle]="{width: '2.5rem', height: '2rem'}">
-                            <i class="{{i.icon}}"></i>
-                        </div>
+<div class="grid">
+        <div class="col-12 lg:col-6 xl:col-3" *ngFor="let i of infos">
+            <div class="card mb-0" style="height: 12vh; padding: 20px">
+                <div class="flex justify-content-between mb-3">
+                    <div>
+                        <span class="block text-500 font-medium mb-3">{{i.header}}</span>
+                        <div class="text-900 font-medium text-xl">{{i.value}}</div>
                     </div>
-                    <span class="text-green-500 font-medium">{{i.highlight}}</span>
-                    <span class="text-500">{{i.fin}}</span>
+                    <div class="flex align-items-center justify-content-center bg-blue-100 border-round" [ngStyle]="{width: '2.5rem', height: '2rem'}">
+                        <i class="{{i.icon}}"></i>
+                    </div>
                 </div>
-            </div>
-
-        <div class="col-12 xl:col-12">
-            <div class="card">
-                <full-calendar [options]="calendarOptions()"/>
+                <span class="text-green-500 font-medium">{{i.highlight}}</span>
+                <span class="text-500">{{i.fin}}</span>
             </div>
         </div>
+
+    <div class="col-12 xl:col-12">
+        <div class="card" id="calendar">
+            <full-calendar [options]="calendarOptions()"/>
+        </div>
+    </div>
 </div>
 

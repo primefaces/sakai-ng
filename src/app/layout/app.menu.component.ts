@@ -2,19 +2,32 @@ import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import {PrimeIcons} from "primeng/api";
+import {LocalStorageService} from "ngx-webstorage";
 
 @Component({
     selector: 'app-menu',
     templateUrl: './app.menu.component.html'
 })
 export class AppMenuComponent implements OnInit {
+    options: any[] = [];
 
-    model: any[] = [];
+    constructor(
+        public layoutService: LayoutService,
+        private localStorage: LocalStorageService,
+    ) { }
 
-    constructor(public layoutService: LayoutService) { }
+    showTableDialog() {}
+
+    loadTmpTable() {}
+
+    deleteUnfinishedTable(){}
+
+    isTmpTableAvailable(): boolean {
+        return true;
+    }
 
     ngOnInit() {
-        this.model = [
+        this.options = [
             {
                 label: 'Editor',
                 items: [
