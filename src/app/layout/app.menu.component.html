@@ -1,25 +1,21 @@
 <ul class="layout-menu">
-    <ul class="flex justify-between items-center p-2">
-        <div>
-            <button pButton class="headerButton mr-8" type="button"
-                    icon="pi pi-calendar-plus"
-                    (click)="showTableDialog()"
-                    pTooltip="create new Table" tooltipPosition="bottom">
-            </button>
-        </div>
+    <li class="flex justify-center items-center p-2 space-x-4">
+        <button pButton class="headerButton" type="button"
+                icon="pi pi-calendar-plus"
+                (click)="showTableDialog()"
+                pTooltip="create new Table" tooltipPosition="bottom">
+        </button>
 
-        <div class="flex space-x-4">
-            <button pButton class="headerButton" type="button" icon="pi pi-asterisk"
-                    *ngIf="isTmpTableAvailable()" (click)="loadTmpTable()"
-                    pTooltip="load unfinished Table" tooltipPosition="bottom">
-            </button>
-            <button pButton class="headerButton" type="button" icon="pi pi-trash"
-                    *ngIf="isTmpTableAvailable()" (click)="deleteUnfinishedTable()"
-                    pTooltip="delete unfinished table" tooltipPosition="bottom">
-            </button>
-        </div>
-    </ul>
+        <button pButton class="headerButton" type="button" icon="pi pi-asterisk"
+                *ngIf="isTmpTableAvailable()" (click)="loadTmpTable()"
+                pTooltip="load unfinished Table" tooltipPosition="bottom">
+        </button>
 
+        <button pButton class="headerButton" type="button" icon="pi pi-trash"
+                *ngIf="isTmpTableAvailable()" (click)="deleteUnfinishedTable()"
+                pTooltip="delete unfinished table" tooltipPosition="bottom">
+        </button>
+    </li>
 
     <ng-container *ngFor="let item of options; let i = index;">
         <li app-menuitem *ngIf="!item.separator" [item]="item" [index]="i" [root]="true"></li>
