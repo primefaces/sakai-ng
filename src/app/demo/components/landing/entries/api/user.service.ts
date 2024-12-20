@@ -20,7 +20,9 @@ export class UserService implements ItemService<Userx> {
     }
 
     getAllItems(): Userx[] {
-        throw new Error('Method not implemented.');
+        return [{id: '1', username: 'Woida', email: 'w.e@g.c',
+            firstName: 'Elias', lastName: 'Walder', enabled: true,
+            new: true, role: ['ADMIN', 'USER']} as Userx]
     }
     createSingeItem(): Userx {
         throw new Error('Method not implemented.');

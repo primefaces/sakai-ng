@@ -10,7 +10,7 @@ export class Userx {
   lastName?: string;
   email?: string;
   enabled?: boolean;
-  role?: Role;
+  role?: string[];
   new? : boolean;
 
   static getTableColumns(): any[] {
@@ -22,8 +22,6 @@ export class Userx {
       {field: 'email', header: 'E-Mail'},
       {field: 'enabled', header: 'Enabled'},
       {field: 'role', header: 'Role'},
-      {field: 'createDate', header: 'Creation Date'},
-      {field: 'updateDate', header: 'last time updated'},
       {field: 'new', header: 'is New'}
     ]
   }

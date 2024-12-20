@@ -10,8 +10,6 @@ export class Course {
   duration?: number;
   numberOfParticipants?: number;
   computersNecessary?: boolean;
-  createdAt?: Date;
-  updatedAt?: Date;
 
   static getTableColumns(): any[] {
     return [
@@ -23,9 +21,7 @@ export class Course {
       {field: 'semester', header: 'Semester'},
       {field: 'duration', header: 'Duration'},
       {field: 'numberOfParticipants', header: 'Nr of Participants'},
-      {field: 'computersNecessary', header: 'computer needed'},
-      {field: 'createdAt', header: 'created at'},
-      {field: 'updatedAt', header: 'updated at'}
+      {field: 'computersNecessary', header: 'computer needed'}
     ]
   }
 }

@@ -12,7 +12,7 @@ export class RoomService implements ItemService<Room> {
     }
 
     getItemDialog(): any {
-        return RoomDialog
+        return RoomDialog;
     }
 
     getTableHeader(): any[] {
@@ -20,7 +20,7 @@ export class RoomService implements ItemService<Room> {
     }
 
     getAllItems(): Room[] {
-        throw new Error('Method not implemented.');
+        return [{id: '3W05', capacity: 45, computersAvailable: false} as Room]
     }
     createSingeItem(): Room {
         throw new Error('Method not implemented.');
