@@ -12,7 +12,6 @@ import {RippleModule} from "primeng/ripple";
         RippleModule
     ],
   templateUrl: './room-dialog.component.html',
-  styleUrl: './room-dialog.component.scss'
 })
 export class RoomDialog {
 

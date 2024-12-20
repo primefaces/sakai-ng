@@ -6,7 +6,6 @@
                 <ng-template pTemplate="left">
                     <div class="my-2">
                         <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
-                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
                     </div>
                 </ng-template>
 
@@ -94,7 +93,7 @@
                     <textarea id="description" pInputTextarea [(ngModel)]="product.description" required rows="3" cols="20"></textarea>
                 </div>
                 <div class="field">
-                    <label for="status">Inventory Status</label>
+                    <label>Inventory Status</label>
                     <p-dropdown [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus" optionValue="label" [options]="statuses" placeholder="Select">
                         <ng-template pTemplate="selectedItem">
                             <span *ngIf="product && product.inventoryStatus" [class]="'product-badge status-' + product.inventoryStatus.toString().toLowerCase()">{{product.inventoryStatus}}</span>

@@ -1,4 +1,4 @@
-import {Injectable, Type} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ItemService} from "../../../../../../assets/models/interfaces/ItemServiceInterface";
 import {Room} from "../../../../../../assets/models/room";
 import {RoomDialog} from "../../../dialogs/room-dialog/room-dialog.component";
@@ -28,10 +28,10 @@ export class RoomService implements ItemService<Room> {
     updateSingeItem(): Room {
         throw new Error('Method not implemented.');
     }
-    deleteSingleItem(): void {
+    deleteSingleItem(): boolean {
         throw new Error('Method not implemented.');
     }
-    deleteMultipleItem(): void {
+    deleteMultipleItem(): boolean {
         throw new Error('Method not implemented.');
     }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {GenericViewComponent} from "./entries/user-view/generic-view.component";
+import {GenericViewComponent} from "./entries/generic-view/generic-view.component";
 
 @NgModule({
     imports: [RouterModule.forChild([

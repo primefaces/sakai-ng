@@ -2,19 +2,20 @@
     <div class="col-12">
         <div class="card">
             <p-table #dt
-                     [(selection)]="selectedItem"
-                     [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
-                     [value]="items" dataKey="id" [rows]="15"
+                     [(selection)]="selectedItems" selectionMode="multiple"
+                     [paginator]="true" [globalFilterFields]="['']"
+                     [value]="items" dataKey="id" [rows]="15" [columns]="selectedHeaders"
                      [loading]="loading | async" [rowHover]="true" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
 
                 <ng-template pTemplate="caption">
                     <div class="flex justify-content-between align-items-center">
                         <div>
-                        <button pButton class="createButton" type="button" (click)="showCreateDialog()"
+                        <button pButton class="createButton" type="button" (click)="showCreateDialog(null)"
                                 label="CREATE NEW {{item.toUpperCase()}}">
                         </button>
-                        <button pButton class="deleteButton" type="button"
-                                label="DELETE SELECTED {{item.toUpperCase()}}S">
+                        <button pButton label="DELETE SELECTED {{item.toUpperCase()}}S" type="button"
+                                class="deleteButton" (click)="deleteSelection()"
+                                [disabled]="!selectedItems || !selectedItems.length">
                         </button>
                         </div>
 
@@ -25,13 +26,18 @@
                                    placeholder="Search Keyword"
                                    class="w-full"/>
                         </div>
+                        <div class="p-input-icon-left">
+                            <p-multiSelect [options]="headers" [ngModel]="selectedHeaders" optionLabel="header"
+                                           selectedItemsLabel="{0} columns selected"
+                                           placeholder="Choose Columns"/>
+                        </div>
                     </div>
                 </ng-template>
 
 
                 <ng-template pTemplate="header">
                     <tr>
-                        <th id="check">
+                        <th class="flex-header" style="width: 4rem">
                             <p-tableHeaderCheckbox/>
                         </th>
                         <th class="flex-header"
@@ -45,7 +51,7 @@
                 <ng-template pTemplate="body" let-i>
                     <tr>
                         <td>
-                            <p-tableCheckbox [value]="i"/>
+                            <p-tableCheckbox [value]="selectedItem"/>
                         </td>
                         <td *ngFor="let col of selectedHeaders">
                             <ng-container>
@@ -54,24 +60,24 @@
                         </td>
                         <td style="width: min-content">
                             <button pButton class="editButton" type="button" icon="pi pi-pencil"
-                                    pTooltip="Edit {{item}}" tooltipPosition="bottom">
+                                    (click)="showCreateDialog(i)">
                             </button>
                         </td>
                         <td style="width: min-content">
                             <button pButton class="deleteButton" type="button" icon="pi pi-trash"
-                                    pTooltip="Delete {{item}}" tooltipPosition="bottom">
+                                    (click)="deleteSingeItem(i)">
                             </button>
                         </td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">
                     <tr>
-                        <td colspan="8">No customers found.</td>
+                        <td colspan="14">No customers found.</td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="loadingbody">
                     <tr>
-                        <td colspan="{{selectedHeaders.length}}">Loading customers data. Please wait.</td>
+                        <td colspan="14">Loading customers data. Please wait.</td>
                     </tr>
                 </ng-template>
             </p-table>

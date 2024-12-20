@@ -7,6 +7,6 @@ export enum CourseType {
   PR
 }
 
-export function getRoleOptions() {
+export function getCourseOptions() {
   return Object.keys(CourseType).filter(k => isNaN(Number(k)));
 }

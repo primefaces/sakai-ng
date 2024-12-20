@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { LandingRoutingModule } from './landing-routing.module';
-import {GenericViewComponent} from "./entries/user-view/generic-view.component";
+import {GenericViewComponent} from "./entries/generic-view/generic-view.component";
 import {DialogService} from "primeng/dynamicdialog";
 import {ButtonModule} from "primeng/button";
 import {AsyncPipe, CurrencyPipe, DatePipe, NgForOf, NgIf} from "@angular/common";
@@ -13,9 +13,10 @@ import {SliderModule} from "primeng/slider";
 import {TableModule} from "primeng/table";
 import {RippleModule} from "primeng/ripple";
 import {TooltipModule} from "primeng/tooltip";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
-    imports: [LandingRoutingModule, ButtonModule, CurrencyPipe, DatePipe, DropdownModule, InputTextModule, MultiSelectModule, ProgressBarModule, SharedModule, SliderModule, TableModule, NgForOf, AsyncPipe, RippleModule, NgIf, TooltipModule,],
+    imports: [LandingRoutingModule, ButtonModule, CurrencyPipe, DatePipe, DropdownModule, InputTextModule, MultiSelectModule, ProgressBarModule, SharedModule, SliderModule, TableModule, NgForOf, AsyncPipe, RippleModule, NgIf, TooltipModule, FormsModule,],
     declarations: [GenericViewComponent],
     providers: [DialogService]
 })

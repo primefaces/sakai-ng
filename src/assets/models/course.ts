@@ -1,5 +1,3 @@
-import {CourseSession} from "./course-session";
-import {Timing} from "./timing";
 import {CourseType} from "./enums/course-type";
 
 export class Course {
@@ -12,11 +10,6 @@ export class Course {
   duration?: number;
   numberOfParticipants?: number;
   computersNecessary?: boolean;
-  courseSessions?: CourseSession[];
-  timingConstraints?: Timing[];
-  numberOfGroups: number = 0;
-  isSplit: boolean = false;
-  splitTimes: number[] = [];
   createdAt?: Date;
   updatedAt?: Date;
 

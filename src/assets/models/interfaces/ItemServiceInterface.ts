@@ -1,12 +1,11 @@
-import {Type} from "@angular/core";
 
 export interface ItemService <T>{
     getTableHeader(): any[];
     getItemDialog(): any;
 
     getAllItems(): T[];
-    createSingeItem(): T;
-    updateSingeItem(): T;
-    deleteSingleItem():void;
-    deleteMultipleItem():void;
+    createSingeItem(item: T): T;
+    updateSingeItem(item: T): T;
+    deleteSingleItem(item: T):boolean;
+    deleteMultipleItem(items: T[]):boolean;
 }

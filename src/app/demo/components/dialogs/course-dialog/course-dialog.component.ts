@@ -2,18 +2,46 @@ import { Component } from '@angular/core';
 import {ChipModule} from "primeng/chip";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
+import {DropdownModule} from "primeng/dropdown";
+import {InputTextModule} from "primeng/inputtext";
+import {Course} from "../../../../../assets/models/course";
+import {getCourseOptions} from "../../../../../assets/models/enums/course-type";
+import {FormsModule} from "@angular/forms";
+import {NgIf} from "@angular/common";
+import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
+import {getDegreeOptions} from "../../../../../assets/models/enums/study-type";
+import {ToggleButtonModule} from "primeng/togglebutton";
 
 @Component({
   selector: 'app-course-dialog',
   standalone: true,
     imports: [
-        ChipModule,
-        ButtonModule,
-        RippleModule
+        ChipModule, ButtonModule, RippleModule,
+        DropdownModule, InputTextModule,ToggleButtonModule,
+        FormsModule, NgIf
     ],
   templateUrl: './course-dialog.component.html',
-  styleUrl: './course-dialog.component.scss'
 })
-export class CourseDialog {
 
+export class CourseDialog {
+    protected course: Course;
+    courseOptions = getCourseOptions();
+    degreeOptions = getDegreeOptions();
+    semesterOptions = [1, 2, 3, 4, 5, 6]
+
+    constructor(
+        public config: DynamicDialogConfig,
+        public ref: DynamicDialogRef
+    ) {
+        this.course = this.data;
+    }
+
+    get data(): Course {
+        const noData =  this.config.data.initialValue;
+        return noData ? noData : new Course();
+    }
+
+    save() {
+        this.ref.close(this.course);
+    }
 }

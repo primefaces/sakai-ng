@@ -1,4 +1,4 @@
-import {Injectable, Type} from '@angular/core';
+import {Injectable} from '@angular/core';
 import { ItemService } from 'src/assets/models/interfaces/ItemServiceInterface';
 import {Userx} from "../../../../../../assets/models/userx";
 import {UserDialog} from "../../../dialogs/user-dialog/user-dialog.component";
@@ -28,10 +28,10 @@ export class UserService implements ItemService<Userx> {
     updateSingeItem(): Userx {
         throw new Error('Method not implemented.');
     }
-    deleteSingleItem(): void {
+    deleteSingleItem(): boolean {
         throw new Error('Method not implemented.');
     }
-    deleteMultipleItem(): void {
+    deleteMultipleItem(): boolean {
         throw new Error('Method not implemented.');
     }
 }

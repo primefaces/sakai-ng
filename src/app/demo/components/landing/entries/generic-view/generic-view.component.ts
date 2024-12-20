@@ -14,9 +14,8 @@ import {Observable, of} from "rxjs";
 type Item = Course | Room | Userx;
 
 @Component({
-  selector: 'app-user-view',
-  templateUrl: './generic-view.component.html',
-  styleUrl: './generic-view.component.scss'
+    selector: 'app-user-view',
+    templateUrl: './generic-view.component.html'
 })
 export class GenericViewComponent implements OnInit, OnDestroy{
     protected readonly item: string; //'user' | 'course | 'room'
@@ -24,10 +23,10 @@ export class GenericViewComponent implements OnInit, OnDestroy{
 
     protected readonly headers: any[];
     protected selectedHeaders: any[];
-    protected items: Item[] = [new Course(), new Course()];
 
-    protected selectedItem: Item | null = null;
-    protected newItem: Item | null = null;
+    protected items!: Item[];
+    protected selectedItems!: Item[];
+    protected selectedItem! : Item;
 
     protected loading: Observable<boolean> = of(false);
 
@@ -39,17 +38,6 @@ export class GenericViewComponent implements OnInit, OnDestroy{
         this.item = this.getItemType();
         this.itemService = this.assign();
         this.headers = this.getSpecificHeaders();
-    }
-
-    showCreateDialog(){
-        const dialog = this.itemService.getItemDialog();
-        this.dialogService.open(dialog, {
-            header: `Create ${this.item.toUpperCase()}`,
-            width: '50%',
-            contentStyle: { overflow: 'auto' },
-            baseZIndex: 10000,
-            maximizable: false
-        })
     }
 
     getItemType(): string{
@@ -75,8 +63,52 @@ export class GenericViewComponent implements OnInit, OnDestroy{
         return newHeaders;
     };
 
+    showCreateDialog(item: Item | null){
+        const dialog = this.itemService.getItemDialog();
+        const ref = this.dialogService.open(dialog, {
+            header: `Create ${this.item.toUpperCase()}`,
+            contentStyle: { overflow: 'auto' },
+            width: '50%',
+            baseZIndex: 10000,
+            maximizable: false,
+            data: { initialValue: item }
+        })
+
+        ref.onClose.subscribe((result) => {
+            //if an item is set I want to update it
+            if (result) this.saveItem(result, !!item)
+        });
+    }
+
+
+    private loadItemList(): Item[] {
+        return this.itemService.getAllItems();
+    }
+
+    private saveItem(item: Item, update: boolean): void {
+        if(update){
+            this.itemService.updateSingeItem(item);
+        } else {
+            this.itemService.createSingeItem(item);
+            this.items.push(item);
+        }
+    }
+
+    deleteSingeItem(item: Item):void{
+        const allow = this.itemService.deleteSingleItem(item);
+        if (allow) this.items = this.items.filter(i => i.id !== item.id)
+    }
+
+    deleteSelection(){
+        const ableToDelete = this.itemService.deleteMultipleItem(this.selectedItems);
+        if (ableToDelete){
+            this.items = this.items.filter(i => !this.selectedItems.includes(i));
+        }
+    }
+
     ngOnInit(): void {
         this.layoutService.handleMenuBar(true);
+        this.items = this.loadItemList();
     }
 
     ngOnDestroy(): void {

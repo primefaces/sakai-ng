@@ -11,8 +11,7 @@ import {RippleModule} from "primeng/ripple";
         ButtonModule,
         RippleModule
     ],
-  templateUrl: './user-dialog.component.html',
-  styleUrl: './user-dialog.component.scss'
+  templateUrl: './user-dialog.component.html'
 })
 export class UserDialog {
 
