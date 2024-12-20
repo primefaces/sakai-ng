@@ -10,10 +10,11 @@ class InfoBox {
     value: any
     highlight: string
     fin: string
+    color: string
 }
 
 @Component({
-    templateUrl: './dashboard.component.html',
+    templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit{
     readonly calendarOptions: WritableSignal<CalendarOptions> = signal({
@@ -59,22 +60,22 @@ export class DashboardComponent implements OnInit{
         this.infos = [
             {
                 icon: 'pi pi-shopping-cart text-blue-500 text-xl',
-                header: 'Orders', value : 152,
+                header: 'Orders', value : 152, color: 'bg-blue-100',
                 highlight : '24 new ', fin: 'since last visit'
             },
             {
                 icon: 'pi pi-map-marker text-orange-500 text-xl',
-                header: 'Revenue', value : '$2.100',
+                header: 'Revenue', value : '$2.100', color: 'bg-orange-100',
                 highlight : '%52+ ', fin: 'since last week'
             },
             {
                 icon: 'pi pi-inbox text-cyan-500 text-xl',
-                header: 'Customers', value : 28441,
+                header: 'Customers', value : 28441, color: 'bg-cyan-100',
                 highlight : '520 ', fin: 'newly registered'
             },
             {
-                icon: 'pi pi-inbox text-cyan-500 text-xl',
-                header: 'Comments', value : '152 Unread',
+                icon: 'pi pi-inbox text-purple-500 text-xl',
+                header: 'Comments', value : '152 Unread', color: 'bg-purple-100',
                 highlight : '85 ', fin: 'responded'
             }
         ]
