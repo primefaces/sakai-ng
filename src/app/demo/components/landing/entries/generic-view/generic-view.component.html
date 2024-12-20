@@ -2,9 +2,9 @@
     <div class="col-12">
         <div class="card">
             <p-table #dt
-                     [(selection)]="selectedItems" selectionMode="multiple"
+                     [(selection)]="selectedItems" [selectionMode]="'multiple'" [selectionPageOnly]="true"
                      [paginator]="true" [globalFilterFields]="['']"
-                     [value]="items" dataKey="id" [rows]="15" [columns]="selectedHeaders"
+                     [value]="items" dataKey="id" [rows]="15"
                      [loading]="loading | async" [rowHover]="true" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
 
                 <ng-template pTemplate="caption">
@@ -27,7 +27,7 @@
                                    class="w-full"/>
                         </div>
                         <div class="p-input-icon-left">
-                            <p-multiSelect [options]="headers" [ngModel]="selectedHeaders" optionLabel="header"
+                            <p-multiSelect [options]="headers" [(ngModel)]="selectedHeaders" optionLabel="header"
                                            selectedItemsLabel="{0} columns selected"
                                            placeholder="Choose Columns"/>
                         </div>
@@ -51,7 +51,7 @@
                 <ng-template pTemplate="body" let-i>
                     <tr>
                         <td>
-                            <p-tableCheckbox [value]="selectedItem"/>
+                            <p-tableCheckbox [value]="i"/>
                         </td>
                         <td *ngFor="let col of selectedHeaders">
                             <ng-container>

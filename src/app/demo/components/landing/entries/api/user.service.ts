@@ -22,6 +22,8 @@ export class UserService implements ItemService<Userx> {
     getAllItems(): Userx[] {
         return [{id: '1', username: 'Woida', email: 'w.e@g.c',
             firstName: 'Elias', lastName: 'Walder', enabled: true,
+            new: true, role: ['ADMIN', 'USER']} as Userx,{id: '2', username: 'Woida', email: 'w.e@g.c',
+            firstName: 'Elias', lastName: 'Walder', enabled: true,
             new: true, role: ['ADMIN', 'USER']} as Userx]
     }
     createSingeItem(): Userx {
