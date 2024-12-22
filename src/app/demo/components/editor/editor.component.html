@@ -14,5 +14,5 @@
     </div>
 </div>
 
-<p-contextMenu #cm [target]="selection" [model]="items" (onShow)="getItemMenuOptions()"/>
+<p-contextMenu #cm [global]="true" [model]="items" (onShow)="getItemMenuOptions()"/>
 

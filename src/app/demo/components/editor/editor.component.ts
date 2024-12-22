@@ -4,7 +4,7 @@ import {ContextMenu} from "primeng/contextmenu";
 import {MenuItem} from "primeng/api";
 import {EventMountArg} from "@fullcalendar/core";
 import {TimeTableDTO} from "../../../../assets/models/dto/time-table-dto";
-import {CourseSessionDTO} from "../../../../assets/models/dto/course-session-dto";
+import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 
 @Component({
   templateUrl: './editor.component.html',
@@ -41,7 +41,7 @@ export class EditorComponent  implements OnInit, OnDestroy{
         )
     }
 
-    private findSession():CourseSessionDTO  | undefined{
+    private findSession():CourseSession  | undefined{
         return this.timeTable.courseSessions.find(s => s.id.toString() === this.rightClickEvent!.event.id.toString());
     }
 
