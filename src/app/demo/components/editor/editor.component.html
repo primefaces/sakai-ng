@@ -1,7 +1,15 @@
 <div class="grid">
-    <div class="col-12 xl:col-12">
-        <div class="card" id="calendar">
-            <full-calendar #cal [options]="calendarOptions()" class="custom-calendar"/>
+    <div class="col-9" >
+        <div class="card" style="height: 84vh">
+            <app-editor-header/>
+            <app-editor-calendar/>
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="card" style="height: 84vh;">
+            <app-editor-selection style="width: 100%; height: 80vh; display: flex; flex-direction: column;">
+            </app-editor-selection>
         </div>
     </div>
 </div>

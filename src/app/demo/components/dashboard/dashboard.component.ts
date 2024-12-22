@@ -1,5 +1,5 @@
 import {
-    AfterViewChecked, AfterViewInit,
+    AfterViewInit,
     Component, OnDestroy, OnInit, signal,
     ViewChild, WritableSignal,
 } from '@angular/core';
@@ -18,7 +18,7 @@ class InfoBox {
     highlight: string
     fin: string
     color: string
-    width: number
+    width: string
 }
 
 @Component({
@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit{
         eventOverlap: true,
         slotEventOverlap: true,
         nowIndicator: false,
-        handleWindowResize: true
+        handleWindowResize: true,
         //eventClick: this.showHoverDialog.bind(this),
     });
 
@@ -67,8 +67,6 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit{
     constructor(
         private layoutService: LayoutService,
     ) {  }
-
-
 
     protected updateCalendarSize(){
         this.calendar.getApi().updateSize();
@@ -80,17 +78,17 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit{
             {
                 icon: 'pi pi-book text-green-500 text-xl',
                 header: 'Courses', value : 152, color: 'bg-green-100',
-                highlight : '24% ', fin: 'are assigned', width: 3
+                highlight : '24% ', fin: 'are assigned', width: 'lg:col-3 xl:col-3'
             },
             {
                 icon: 'pi pi-check-circle text-orange-500 text-xl',
                 header: 'Collisions', value : 5, color: 'bg-orange-100',
-                highlight : '3 ', fin: 'Courses are affected', width: 3
+                highlight : '3 ', fin: 'Courses are affected', width: 'lg:col-3 xl:col-3'
             },
             {
                 icon: 'pi pi-comments text-cyan-500 text-xl',
                 header: 'Last Change', value : 'Course PS Lineare Algebra - Group 3 was moved to room 3W04', color: 'bg-cyan-100',
-                highlight : 'Elias ', fin: 'made the change', width: 6
+                highlight : 'Elias ', fin: 'made the change', width: 'lg:col-6 xl:col-6'
             }
         ]
     }
