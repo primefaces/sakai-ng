@@ -33,9 +33,9 @@ export class UserService implements ItemService<Userx> {
         throw new Error('Method not implemented.');
     }
     deleteSingleItem(): boolean {
-        throw new Error('Method not implemented.');
+        return true;
     }
     deleteMultipleItem(): boolean {
-        throw new Error('Method not implemented.');
+        return true;
     }
 }

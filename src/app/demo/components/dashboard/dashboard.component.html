@@ -1,5 +1,9 @@
+<div class="layout-sidebar">
+    
+</div>
+
 <div class="grid">
-        <div class="col-12 lg:col-6 xl:col-3" *ngFor="let i of infos">
+        <div class="col-12 lg:col-6 xl:col-{{i.width}}" *ngFor="let i of infos">
             <div class="card mb-0">
                 <div class="flex justify-content-between mb-3">
                     <div>
@@ -17,7 +21,7 @@
 
     <div class="col-12 xl:col-12">
         <div class="card" id="calendar">
-            <full-calendar id="cal" [options]="calendarOptions()" class="custom-calendar"/>
+            <full-calendar #cal [options]="calendarOptions()" class="custom-calendar"/>
         </div>
     </div>
 

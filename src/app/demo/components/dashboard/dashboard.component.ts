@@ -1,8 +1,15 @@
-import {Component, OnInit, signal, WritableSignal,} from '@angular/core';
+import {
+    AfterViewChecked, AfterViewInit,
+    Component, OnDestroy, OnInit, signal,
+    ViewChild, WritableSignal,
+} from '@angular/core';
 import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import {CalendarOptions} from "@fullcalendar/core";
+import {FullCalendarComponent} from "@fullcalendar/angular";
+import {LayoutService} from "../../../layout/service/app.layout.service";
+import {Subscription} from "rxjs";
 
 class InfoBox {
     icon: string
@@ -11,12 +18,16 @@ class InfoBox {
     highlight: string
     fin: string
     color: string
+    width: number
 }
 
 @Component({
     templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent implements OnInit{
+export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit{
+    @ViewChild("cal") calendar!: FullCalendarComponent;
+    menuToggleSub!: Subscription;
+
     readonly calendarOptions: WritableSignal<CalendarOptions> = signal({
         plugins: [
             interactionPlugin,
@@ -47,38 +58,51 @@ export class DashboardComponent implements OnInit{
         eventOverlap: true,
         slotEventOverlap: true,
         nowIndicator: false,
+        handleWindowResize: true
         //eventClick: this.showHoverDialog.bind(this),
     });
 
     infos!: InfoBox[];
 
     constructor(
-    ) {
+        private layoutService: LayoutService,
+    ) {  }
+
+
+
+    protected updateCalendarSize(){
+        this.calendar.getApi().updateSize();
     }
 
     ngOnInit(): void {
+        //INFO: The Width of all combined boxed must sum up to 12
         this.infos = [
             {
-                icon: 'pi pi-shopping-cart text-blue-500 text-xl',
-                header: 'Orders', value : 152, color: 'bg-blue-100',
-                highlight : '24 new ', fin: 'since last visit'
+                icon: 'pi pi-book text-green-500 text-xl',
+                header: 'Courses', value : 152, color: 'bg-green-100',
+                highlight : '24% ', fin: 'are assigned', width: 3
             },
             {
-                icon: 'pi pi-map-marker text-orange-500 text-xl',
-                header: 'Revenue', value : '$2.100', color: 'bg-orange-100',
-                highlight : '%52+ ', fin: 'since last week'
+                icon: 'pi pi-check-circle text-orange-500 text-xl',
+                header: 'Collisions', value : 5, color: 'bg-orange-100',
+                highlight : '3 ', fin: 'Courses are affected', width: 3
             },
             {
-                icon: 'pi pi-inbox text-cyan-500 text-xl',
-                header: 'Customers', value : 28441, color: 'bg-cyan-100',
-                highlight : '520 ', fin: 'newly registered'
-            },
-            {
-                icon: 'pi pi-inbox text-purple-500 text-xl',
-                header: 'Comments', value : '152 Unread', color: 'bg-purple-100',
-                highlight : '85 ', fin: 'responded'
+                icon: 'pi pi-comments text-cyan-500 text-xl',
+                header: 'Last Change', value : 'Course PS Lineare Algebra - Group 3 was moved to room 3W04', color: 'bg-cyan-100',
+                highlight : 'Elias ', fin: 'made the change', width: 6
             }
         ]
     }
 
+    ngAfterViewInit(): void {
+        this.menuToggleSub = this.layoutService.updateSize$
+            .asObservable().subscribe(() => {
+                this.updateCalendarSize();
+        });
+    }
+
+    ngOnDestroy(): void {
+        if(this.menuToggleSub) this.menuToggleSub.unsubscribe();
+    }
 }

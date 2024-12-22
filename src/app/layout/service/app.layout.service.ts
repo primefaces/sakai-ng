@@ -1,5 +1,5 @@
 import { Injectable, effect, signal } from '@angular/core';
-import { Subject } from 'rxjs';
+import {Observable, Subject, of, BehaviorSubject} from 'rxjs';
 
 export interface AppConfig {
     inputStyle: string;
@@ -35,6 +35,7 @@ export class LayoutService {
 
     config = signal<AppConfig>(this._config);
 
+    updateSize$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     state: LayoutState = {
         staticMenuDesktopInactive: false,
         overlayMenuActive: false,
@@ -72,6 +73,9 @@ export class LayoutService {
     }
 
     onMenuToggle() {
+        setTimeout(() => {
+            this.updateSize$.next(null);
+        }, 200); //i know its not pretty but i dont know where to place the function
         if (this.isOverlay()) {
             this.state.overlayMenuActive = !this.state.overlayMenuActive;
             if (this.state.overlayMenuActive) {
