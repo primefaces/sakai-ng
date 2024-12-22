@@ -1,0 +1,35 @@
+<p-toolbar>
+    <div class="p-toolbar-group-start">
+        4 of 14 Events are shown
+    </div>
+
+    <div class="p-toolbar-group-center">
+        <p-dropdown id="all"
+                    scrollHeight="300px"
+                    placeholder="select room" optionLabel="roomId" filterBy="id"
+                    [filter]="true"
+                    [showClear]="false">
+            <ng-template let-item pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                    <div>{{ item.roomId }}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+    </div>
+
+    <div class="p-toolbar-group-end">
+        <p-dropdown [style]="{'margin-right': '.5rem', 'width': '28rem'}"
+                    [showClear]="true"
+                    [filter]="true"
+                    placeholder="Search for a Course">
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+                <div class="flex align-items-center gap-2">
+                </div>
+            </ng-template>
+            <ng-template let-course pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                </div>
+            </ng-template>
+        </p-dropdown>
+    </div>
+</p-toolbar>

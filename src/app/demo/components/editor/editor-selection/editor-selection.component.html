@@ -1,0 +1,19 @@
+<div style="display: flex; flex-direction: column; height: 100%;">
+    <div class="flex justify-content-center mb-4">
+        <button pButton label="Finished" class="createButton">
+        </button>
+    </div>
+
+    <div style="width: 100%; flex-grow: 1; display: flex; flex-direction: column;
+                align-items: center; text-align: center;
+                 gap: 10px; padding: 10px; overflow-y: auto;"  #external>
+        <div *ngFor="let event of dragTableEvents" class="drag-event"
+             style="box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px; width: 100%; padding: 10px; background-color: #f9f9f9; border-radius: 4px;"
+             [attr.data-id]="event['id']"
+             [attr.data-title]="event['title']"
+             [attr.data-duration]="event.extendedProps?.['duration']">
+            {{ event['title'] }}
+        </div>
+    </div>
+
+</div>
