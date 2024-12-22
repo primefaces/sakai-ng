@@ -7,10 +7,12 @@ import {Draggable} from "@fullcalendar/interaction";
   templateUrl: './editor-selection.component.html',
 })
 export class EditorSelectionComponent implements AfterViewInit, OnDestroy{
+    @ViewChild('external') external!: ElementRef;
+
     dragTableEvents: EventInput[] = [
-        {id: '123', title: 'eliakas das dnasoid asdn asdnasd pnn dasd nasd', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
+        {id: '123', title: 'this is quite a long text but not long enough so i type even more', extendedProps: {duration: 180}} as EventInput,
+        {id: '123', title: 'eli', extendedProps: {duration: 120}} as EventInput,
+        {id: '123', title: 'eli', extendedProps: {duration: 80}} as EventInput,
         {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
         {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
         {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
@@ -31,8 +33,6 @@ export class EditorSelectionComponent implements AfterViewInit, OnDestroy{
     ];
 
     draggable!: Draggable;
-    @ViewChild('external') external!: ElementRef;
-
 
     constructor() {
     }

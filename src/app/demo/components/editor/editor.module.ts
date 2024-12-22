@@ -11,6 +11,7 @@ import {EditorSelectionComponent} from "./editor-selection/editor-selection.comp
 import {EditorHeaderComponent} from "./editor-header/editor-header.component";
 import {EditorCalendarComponent} from "./editor-calendar/editor-calendar.component";
 import {SharedModule} from "primeng/api";
+import {ContextMenuModule} from "primeng/contextmenu";
 
 @NgModule({
     imports: [
@@ -22,6 +23,7 @@ import {SharedModule} from "primeng/api";
         FormsModule,
         ButtonModule,
         SharedModule,
+        ContextMenuModule,
     ],
     declarations: [EditorComponent, EditorSelectionComponent, EditorHeaderComponent, EditorCalendarComponent],
 })
