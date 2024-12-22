@@ -14,9 +14,7 @@ interface LayoutState {
     staticMenuDesktopInactive: boolean;
     overlayMenuActive: boolean;
     profileSidebarVisible: boolean;
-    configSidebarVisible: boolean;
     staticMenuMobileActive: boolean;
-    menuHoverActive: boolean;
     disableMenuButton: boolean;
 }
 
@@ -40,18 +38,14 @@ export class LayoutService {
         staticMenuDesktopInactive: false,
         overlayMenuActive: false,
         profileSidebarVisible: false,
-        configSidebarVisible: false,
         staticMenuMobileActive: false,
-        menuHoverActive: false,
         disableMenuButton: false
     };
 
     private configUpdate = new Subject<AppConfig>();
-
-    private overlayOpen = new Subject<any>();
-
     configUpdate$ = this.configUpdate.asObservable();
 
+    private overlayOpen = new Subject<any>();
     overlayOpen$ = this.overlayOpen.asObservable();
 
     constructor() {
@@ -103,20 +97,12 @@ export class LayoutService {
         }
     }
 
-    showConfigSidebar() {
-        this.state.configSidebarVisible = true;
-    }
-
     isOverlay() {
         return this.config().menuMode === 'overlay';
     }
 
     isDesktop() {
         return window.innerWidth > 991;
-    }
-
-    isMobile() {
-        return !this.isDesktop();
     }
 
     onConfigUpdate() {

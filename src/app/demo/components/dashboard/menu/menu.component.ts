@@ -1,14 +1,13 @@
-import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
-import { LayoutService } from './service/app.layout.service';
-import {PrimeIcons} from "primeng/api";
+import {Component, OnInit} from '@angular/core';
+import {LayoutService} from "../../../../layout/service/app.layout.service";
 import {LocalStorageService} from "ngx-webstorage";
+import {PrimeIcons} from "primeng/api";
 
 @Component({
-    selector: 'app-menu',
-    templateUrl: './app.menu.component.html'
+  selector: 'app-menu-dash',
+  templateUrl: './menu.component.html',
 })
-export class AppMenuComponent implements OnInit {
+export class MenuComponent implements OnInit{
     options: any[] = [];
 
     constructor(
@@ -34,7 +33,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Edit Mode',
                         icon: PrimeIcons.FILE_EDIT,
-                        routerLink: '/editor'
+                        routerLink: 'user/editor'
                         //command: () => this.redirectToSelection('/user/editor')
                     },
                     {
