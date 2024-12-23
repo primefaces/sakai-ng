@@ -9,7 +9,7 @@ import {UserService} from "../api/user.service";
 import {CourseService} from "../api/course.service";
 import {RoomService} from "../api/room.service";
 import {DialogService} from "primeng/dynamicdialog";
-import {Observable, of} from "rxjs";
+import {BehaviorSubject, firstValueFrom, Observable} from "rxjs";
 
 type Item = Course | Room | Userx;
 
@@ -23,12 +23,13 @@ export class GenericViewComponent implements OnInit, OnDestroy{
 
     protected readonly headers: any[];
     protected selectedHeaders: any[];
+    protected nrOfSkeletons: number;
 
     protected items!: Item[];
     protected selectedItems!: Item[];
-    protected selectedItem! : Item;
 
-    protected loading: Observable<boolean> = of(false);
+    protected loadingSub: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    protected loading$: Observable<boolean> = this.loadingSub.asObservable();
 
     constructor(
         private layoutService: LayoutService,
@@ -38,6 +39,7 @@ export class GenericViewComponent implements OnInit, OnDestroy{
         this.item = this.getItemType();
         this.itemService = this.assign();
         this.headers = this.getSpecificHeaders();
+        this.nrOfSkeletons = this.headers.length;
     }
 
     getItemType(): string{
@@ -81,8 +83,9 @@ export class GenericViewComponent implements OnInit, OnDestroy{
     }
 
 
-    private loadItemList(): Item[] {
-        return this.itemService.getAllItems();
+    private async loadItemList(): Promise<Item[]> {
+        this.loadingSub.next(true);
+        return firstValueFrom(this.itemService.getAllItems());
     }
 
     private saveItem(item: Item, update: boolean): void {
@@ -106,12 +109,15 @@ export class GenericViewComponent implements OnInit, OnDestroy{
         }
     }
 
-    ngOnInit(): void {
+    async ngOnInit() {
         this.layoutService.handleMenuBar(true);
-        this.items = this.loadItemList();
+        this.items = await this.loadItemList();
+        this.loadingSub.next(false);
     }
 
     ngOnDestroy(): void {
         this.layoutService.handleMenuBar(false);
     }
+
+    protected readonly Array = Array;
 }

@@ -5,7 +5,7 @@
                      [(selection)]="selectedItems" [selectionMode]="'multiple'" [selectionPageOnly]="true"
                      [paginator]="true" [globalFilterFields]="['']"
                      [value]="items" dataKey="id" [rows]="15"
-                     [loading]="loading | async" [rowHover]="true" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                     [loading]="loading$ | async" [rowHover]="true" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
 
                 <ng-template pTemplate="caption">
                     <div class="flex justify-content-between align-items-center">
@@ -77,7 +77,11 @@
                 </ng-template>
                 <ng-template pTemplate="loadingbody">
                     <tr>
-                        <td colspan="14">Loading customers data. Please wait.</td>
+                        <td><p-skeleton size="2rem" styleClass="mr-2"/></td>
+                        <td *ngFor="let _ of Array(nrOfSkeletons)">
+                            <p-skeleton/></td>
+                        <td><p-skeleton size="3rem" styleClass="mr-2"/></td>
+                        <td><p-skeleton size="3rem" styleClass="mr-2"/></td>
                     </tr>
                 </ng-template>
             </p-table>

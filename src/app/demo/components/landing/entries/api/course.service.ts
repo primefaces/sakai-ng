@@ -4,6 +4,7 @@ import {Course} from "../../../../../../assets/models/course";
 import {CourseDialog} from "../../../dialogs/course-dialog/course-dialog.component";
 import {CourseType} from "../../../../../../assets/models/enums/course-type";
 import {StudyType} from "../../../../../../assets/models/enums/study-type";
+import {Observable, of} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -41,12 +42,11 @@ export class CourseService implements ItemService<Course> {
         return true;
     }
 
-    getAllItems(): Course[] {
-        console.log('GET LIST OF ALL COURSES');
-        return [
+    getAllItems(): Observable<Course[]> {
+        return of([
             {id: 'tmp', semester: 1, courseType: CourseType.PS, name: 'tmpEli', lecturer: 'Eli',
             duration: 200, numberOfParticipants: 15, createdAt: new Date(), updatedAt: new Date(),
                 studyType: StudyType.BACHELOR_CS.toString(), computersNecessary: false} as Course
-        ];
+        ]);
     }
 }

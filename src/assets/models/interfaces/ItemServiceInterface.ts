@@ -1,9 +1,10 @@
+import {Observable} from "rxjs";
 
 export interface ItemService <T>{
     getTableHeader(): any[];
     getItemDialog(): any;
 
-    getAllItems(): T[];
+    getAllItems(): Observable<T[]>;
     createSingeItem(item: T): T;
     updateSingeItem(item: T): T;
     deleteSingleItem(item: T):boolean;

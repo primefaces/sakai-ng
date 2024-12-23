@@ -14,9 +14,10 @@ import {TableModule} from "primeng/table";
 import {RippleModule} from "primeng/ripple";
 import {TooltipModule} from "primeng/tooltip";
 import {FormsModule} from "@angular/forms";
+import {SkeletonModule} from "primeng/skeleton";
 
 @NgModule({
-    imports: [LandingRoutingModule, ButtonModule, CurrencyPipe, DatePipe, DropdownModule, InputTextModule, MultiSelectModule, ProgressBarModule, SharedModule, SliderModule, TableModule, NgForOf, AsyncPipe, RippleModule, NgIf, TooltipModule, FormsModule,],
+    imports: [LandingRoutingModule, ButtonModule, CurrencyPipe, DatePipe, DropdownModule, InputTextModule, MultiSelectModule, ProgressBarModule, SharedModule, SliderModule, TableModule, NgForOf, AsyncPipe, RippleModule, NgIf, TooltipModule, FormsModule, SkeletonModule,],
     declarations: [GenericViewComponent],
     providers: [DialogService]
 })
