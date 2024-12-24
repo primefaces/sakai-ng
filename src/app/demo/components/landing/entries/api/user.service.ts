@@ -25,7 +25,7 @@ export class UserService implements ItemService<Userx> {
             firstName: 'Elias', lastName: 'Walder', enabled: true,
             new: true, role: ['ADMIN', 'USER']} as Userx,{id: '2', username: 'Woida', email: 'w.e@g.c',
             firstName: 'Elias', lastName: 'Walder', enabled: true,
-            new: true, role: ['ADMIN', 'USER']} as Userx]).pipe(delay(2000));
+            new: true, role: ['ADMIN', 'USER']} as Userx]).pipe(delay(2000)); //simulate loading time
     }
 
     createSingeItem(): Userx {
