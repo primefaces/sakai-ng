@@ -10,14 +10,3 @@
 .layout-main {
     flex: 1 1 auto;
 }
-
-.row {
-    display: flex; /* Make the container a flexbox */
-    flex-wrap: wrap; /* Allow wrapping to multiple lines */
-}
-
-.card {
-    display: flex;
-    flex-direction: column; /* Ensures content stacks vertically */
-    height: 100%; /* Make all cards take full height */
-}

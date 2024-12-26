@@ -1,17 +1,16 @@
-import {AfterViewInit, Component, signal, ViewChild, WritableSignal} from '@angular/core';
-import {FullCalendarComponent, FullCalendarModule} from "@fullcalendar/angular";
+import {AfterViewChecked, Component, signal, ViewChild, WritableSignal} from '@angular/core';
+import {FullCalendarComponent} from "@fullcalendar/angular";
 import {Subscription} from "rxjs";
 import {CalendarOptions} from "@fullcalendar/core";
 import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import {LayoutService} from "../../../../layout/service/app.layout.service";
 
 @Component({
   selector: 'app-editor-calendar',
   templateUrl: './editor-calendar.component.html',
 })
-export class EditorCalendarComponent implements AfterViewInit{
+export class EditorCalendarComponent implements AfterViewChecked{
     @ViewChild("cal") calendar!: FullCalendarComponent;
     menuToggleSub!: Subscription;
 
@@ -53,18 +52,14 @@ export class EditorCalendarComponent implements AfterViewInit{
         //eventAllow: this.eventAllow.bind(this),
     });
 
-    constructor(
-        private layoutService: LayoutService
-    ) {}
+    constructor() {}
 
     protected updateCalendarSize(){
         this.calendar.getApi().updateSize();
     }
 
-    ngAfterViewInit(): void {
-        this.menuToggleSub = this.layoutService.updateSize$
-            .asObservable().subscribe(() => {
-                this.updateCalendarSize();
-            });
+    ngAfterViewChecked(): void {
+        this.updateCalendarSize();
     }
+
 }

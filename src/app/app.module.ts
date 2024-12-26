@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +13,7 @@ import {LocalStorageService} from "ngx-webstorage";
     imports: [AppRoutingModule, AppLayoutModule, ToastModule],
     providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },
-        MessageService, LocalStorageService
+        MessageService, LocalStorageService,
     ],
     bootstrap: [AppComponent],
 })

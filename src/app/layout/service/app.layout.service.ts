@@ -1,5 +1,5 @@
-import { Injectable, effect, signal } from '@angular/core';
-import {Subject, BehaviorSubject} from 'rxjs';
+import {Injectable, effect, signal, ApplicationRef} from '@angular/core';
+import {Subject} from 'rxjs';
 
 export interface AppConfig {
     inputStyle: string;
@@ -33,7 +33,6 @@ export class LayoutService {
 
     config = signal<AppConfig>(this._config);
 
-    updateSize$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     state: LayoutState = {
         staticMenuDesktopInactive: false,
         overlayMenuActive: false,
@@ -42,13 +41,12 @@ export class LayoutService {
         disableMenuButton: false
     };
 
-    private configUpdate = new Subject<AppConfig>();
-    configUpdate$ = this.configUpdate.asObservable();
-
     private overlayOpen = new Subject<any>();
     overlayOpen$ = this.overlayOpen.asObservable();
 
-    constructor() {
+    constructor(
+        private appRef: ApplicationRef
+    ) {
         effect(() => {
             const config = this.config();
             if (this.updateStyle(config)) {
@@ -67,9 +65,6 @@ export class LayoutService {
     }
 
     onMenuToggle() {
-        setTimeout(() => {
-            this.updateSize$.next(null);
-        }, 400); //i know its not pretty but i dont know where to place the function
         if (this.isOverlay()) {
             this.state.overlayMenuActive = !this.state.overlayMenuActive;
             if (this.state.overlayMenuActive) {
@@ -88,6 +83,7 @@ export class LayoutService {
                 this.overlayOpen.next(null);
             }
         }
+        this.appRef.tick();
     }
 
     showProfileSidebar() {
@@ -107,7 +103,6 @@ export class LayoutService {
 
     onConfigUpdate() {
         this._config = { ...this.config() };
-        this.configUpdate.next(this.config());
     }
 
     changeTheme() {
