@@ -13,7 +13,7 @@ import {Subscription} from "rxjs";
 
 class InfoBox {
     icon: string
-    header: string
+    header: string;
     value: any
     highlight: string
     fin: string

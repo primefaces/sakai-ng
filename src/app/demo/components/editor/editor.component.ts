@@ -46,7 +46,7 @@ export class EditorComponent  implements OnInit, OnDestroy{
     }
 
     ngOnInit(): void {
-        this.layoutService.handleMenuBar(true);
+        this.layoutService.handleMenuBar(false);
     }
 
     ngOnDestroy(): void {

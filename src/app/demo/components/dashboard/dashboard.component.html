@@ -1,6 +1,7 @@
 <div class="grid">
+    <div class="row d-flex">
         <div class="col-12 {{i.width}}" *ngFor="let i of infos">
-            <div class="card mb-0">
+            <div class="card mb-0 h-100">
                 <div class="flex justify-content-between mb-3">
                     <div>
                         <span class="block text-500 font-medium mb-3">{{i.header}}</span>
@@ -14,6 +15,8 @@
                 <span class="text-500">{{i.fin}}</span>
             </div>
         </div>
+    </div>
+
 
     <div class="col-12 xl:col-12">
         <div class="card" id="calendar">
