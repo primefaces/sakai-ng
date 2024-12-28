@@ -20,7 +20,7 @@ export class EditorComponent  implements OnInit{
     constructor(
         private layoutService: LayoutService
     ) {
-        this.layoutService.showSideBar.next(true);
+        this.layoutService.changeStyle(true);
     }
 
     getItemMenuOptions() : void {

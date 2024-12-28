@@ -68,6 +68,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewChecked {
         private cdr: ChangeDetectorRef,
         private layoutService: LayoutService,
     ) {
+        this.layoutService.hideSideBar.value
         this.layoutService.changeStyle(true);
     }
 

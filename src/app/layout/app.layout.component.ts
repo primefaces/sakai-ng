@@ -21,7 +21,7 @@ export class AppLayoutComponent implements OnDestroy {
 
 
     constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router) {
-        this.showMainSub = this.layoutService.showSideBar.subscribe(
+        this.showMainSub = this.layoutService.hideSideBar.subscribe(
             val => {this.showMainPlot = val}
         );
 

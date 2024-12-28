@@ -32,7 +32,7 @@ export class LayoutService {
     };
 
     config = signal<AppConfig>(this._config);
-    showSideBar: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+    hideSideBar: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
     state: LayoutState = {
         staticMenuDesktopInactive: false,
@@ -146,8 +146,9 @@ export class LayoutService {
     }
 
     changeStyle(hide: boolean){
-        console.log('change to: ', hide);
-        this.state.hide = hide;
-        this.showSideBar.next(this.state.hide);
+        if(this.state.hide != hide){
+            this.state.hide = hide;
+            this.hideSideBar.next(this.state.hide);
+        }
     }
 }
