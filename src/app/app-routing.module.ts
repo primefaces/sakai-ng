@@ -15,6 +15,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                     { path: 'editor', loadChildren: () => import('./demo/components/editor/editor.module').then(m => m.EditorModule) }
                 ]
             },
+            { path: 'wizard', loadChildren: () => import('./demo/components/wizard/wizard.module').then(m => m.WizardModule) },
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
             { path: 'notfound', component: NotfoundComponent },
             { path: '**', redirectTo: '/notfound' },
