@@ -16,9 +16,15 @@ export class AppLayoutComponent implements OnDestroy {
     overlayMenuOpenSubscription: Subscription;
     menuOutsideClickListener: any;
     profileMenuOutsideClickListener: any;
-    showMainPlot: Observable<boolean> = of(true);
+    showMainSub: Subscription;
+    showMainPlot: boolean;
+
 
     constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router) {
+        this.showMainSub = this.layoutService.showSideBar.subscribe(
+            val => {this.showMainPlot = val}
+        );
+
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
             if (!this.menuOutsideClickListener) {
                 this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {

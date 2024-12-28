@@ -17,4 +17,5 @@ import {LocalStorageService} from "ngx-webstorage";
     ],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}

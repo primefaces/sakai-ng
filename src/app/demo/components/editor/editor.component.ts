@@ -9,7 +9,7 @@ import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 @Component({
   templateUrl: './editor.component.html',
 })
-export class EditorComponent  implements OnInit, OnDestroy{
+export class EditorComponent  implements OnInit{
     @ViewChild('cm') contextMenu!: ContextMenu;
     timeTable!: TimeTableDTO;
 
@@ -19,7 +19,9 @@ export class EditorComponent  implements OnInit, OnDestroy{
 
     constructor(
         private layoutService: LayoutService
-    ) {}
+    ) {
+        this.layoutService.showSideBar.next(true);
+    }
 
     getItemMenuOptions() : void {
         this.items = [{label: 'add new Course', icon: 'pi pi-book', command: () => {} /* this.addNewCourse()*/ }];
@@ -46,10 +48,7 @@ export class EditorComponent  implements OnInit, OnDestroy{
     }
 
     ngOnInit(): void {
-        this.layoutService.handleMenuBar(false);
-    }
+        this.layoutService.changeStyle(true);
 
-    ngOnDestroy(): void {
-        this.layoutService.handleMenuBar(false);
     }
 }

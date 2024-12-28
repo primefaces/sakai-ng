@@ -1,8 +1,8 @@
 <div class="layout-wrapper" [ngClass]="containerClass">
     <app-topbar/>
-    <app-sidebar *ngIf="showMainPlot | async"/>
+    <app-sidebar *ngIf="showMainPlot"/>
 
-    <div class="{{(showMainPlot | async) ? 'layout-main-container' : 'layout-side-container'}}">
+    <div class="{{showMainPlot ? 'layout-main-container' : 'layout-side-container'}}">
         <div class="layout-main">
             <router-outlet/>
         </div>
@@ -10,3 +10,4 @@
     </div>
     <div class="layout-mask"></div>
 </div>
+

@@ -5,7 +5,7 @@
     </a>
 
     <button #menubutton class="p-link layout-menu-button layout-topbar-button"
-            (click)="layoutService.onMenuToggle()" [disabled]="layoutService.state.disableMenuButton">
+            (click)="layoutService.onMenuToggle()" [disabled]="layoutService.state.hide">
         <i class="pi pi-bars"></i>
     </button>
     <button class="p-link layout-topbar-button" [routerLink]="'/documentation'" [pTooltip]="'Calendar View'" tooltipPosition="bottom">

@@ -1,5 +1,5 @@
 import {Injectable, effect, signal, ApplicationRef} from '@angular/core';
-import {Subject} from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 
 export interface AppConfig {
     inputStyle: string;
@@ -15,7 +15,7 @@ interface LayoutState {
     overlayMenuActive: boolean;
     profileSidebarVisible: boolean;
     staticMenuMobileActive: boolean;
-    disableMenuButton: boolean;
+    hide: boolean;
 }
 
 @Injectable({
@@ -32,13 +32,14 @@ export class LayoutService {
     };
 
     config = signal<AppConfig>(this._config);
+    showSideBar: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
     state: LayoutState = {
         staticMenuDesktopInactive: false,
         overlayMenuActive: false,
         profileSidebarVisible: false,
         staticMenuMobileActive: false,
-        disableMenuButton: false
+        hide: false
     };
 
     private overlayOpen = new Subject<any>();
@@ -144,8 +145,9 @@ export class LayoutService {
         document.documentElement.style.fontSize = `${value}px`;
     }
 
-    handleMenuBar(disable: boolean){
-        this.onMenuToggle();
-        this.state.disableMenuButton = disable;
+    changeStyle(hide: boolean){
+        console.log('change to: ', hide);
+        this.state.hide = hide;
+        this.showSideBar.next(this.state.hide);
     }
 }

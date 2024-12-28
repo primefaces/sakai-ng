@@ -9,6 +9,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import {CalendarOptions} from "@fullcalendar/core";
 import {FullCalendarComponent} from "@fullcalendar/angular";
 import {Subscription} from "rxjs";
+import {LayoutService} from "../../../layout/service/app.layout.service";
 
 class InfoBox {
     icon: string
@@ -65,7 +66,9 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     constructor(
         private cdr: ChangeDetectorRef,
+        private layoutService: LayoutService,
     ) {
+        this.layoutService.changeStyle(true);
     }
 
     protected updateCalendarSize() {

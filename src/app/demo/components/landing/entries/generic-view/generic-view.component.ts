@@ -17,7 +17,7 @@ type Item = Course | Room | Userx;
     selector: 'app-user-view',
     templateUrl: './generic-view.component.html'
 })
-export class GenericViewComponent implements OnInit, OnDestroy{
+export class GenericViewComponent implements OnInit{
     protected readonly item: string; //'user' | 'course | 'room'
     private itemService!: ItemService<Item>;
 
@@ -110,13 +110,9 @@ export class GenericViewComponent implements OnInit, OnDestroy{
     }
 
     async ngOnInit() {
-        this.layoutService.handleMenuBar(true);
+        this.layoutService.changeStyle(false);
         this.items = await this.loadItemList();
         this.loadingSub.next(false);
-    }
-
-    ngOnDestroy(): void {
-        this.layoutService.handleMenuBar(false);
     }
 
     protected readonly Array = Array;
