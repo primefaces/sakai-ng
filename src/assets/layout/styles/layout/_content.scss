@@ -7,6 +7,15 @@
     transition: margin-left $transitionDuration;
 }
 
+.layout-side-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+    padding: 7rem 2rem 2rem 2rem;
+    transition: margin-left $transitionDuration;
+}
+
 .layout-main {
     flex: 1 1 auto;
 }
