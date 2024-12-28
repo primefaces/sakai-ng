@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {LayoutService} from "../../../layout/service/app.layout.service";
 import {ContextMenu} from "primeng/contextmenu";
 import {MenuItem} from "primeng/api";
@@ -19,9 +19,7 @@ export class EditorComponent  implements OnInit{
 
     constructor(
         private layoutService: LayoutService
-    ) {
-        this.layoutService.changeStyle(true);
-    }
+    ) {}
 
     getItemMenuOptions() : void {
         this.items = [{label: 'add new Course', icon: 'pi pi-book', command: () => {} /* this.addNewCourse()*/ }];
@@ -49,6 +47,5 @@ export class EditorComponent  implements OnInit{
 
     ngOnInit(): void {
         this.layoutService.changeStyle(true);
-
     }
 }

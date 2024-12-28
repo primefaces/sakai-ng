@@ -1,5 +1,4 @@
 import {
-    AfterViewChecked, ChangeDetectorRef,
     Component, OnDestroy, OnInit, signal,
     ViewChild, WritableSignal,
 } from '@angular/core';
@@ -24,7 +23,7 @@ class InfoBox {
 @Component({
     templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class DashboardComponent implements OnInit, OnDestroy {
     @ViewChild("cal") calendar!: FullCalendarComponent;
     menuToggleSub!: Subscription;
 
@@ -65,16 +64,12 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewChecked {
     infos!: InfoBox[];
 
     constructor(
-        private cdr: ChangeDetectorRef,
         private layoutService: LayoutService,
     ) {
         this.layoutService.hideSideBar.value
         this.layoutService.changeStyle(true);
     }
 
-    protected updateCalendarSize() {
-        this.calendar.getApi().updateSize();
-    }
 
     ngOnInit(): void {
         //INFO: The Width of all combined boxed must sum up to 12
@@ -99,11 +94,6 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewChecked {
                 width: 'lg:col-6 xl:col-6'
             }
         ]
-    }
-
-    ngAfterViewChecked(): void {
-        this.cdr.detectChanges();
-        this.updateCalendarSize();
     }
 
     ngOnDestroy(): void {

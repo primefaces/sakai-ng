@@ -18,6 +18,7 @@ import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
 import {TooltipModule} from "primeng/tooltip";
 import {ButtonModule} from "primeng/button";
+import {DialogService} from "primeng/dynamicdialog";
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import {ButtonModule} from "primeng/button";
         AppMenuComponent,
         AppSidebarComponent,
         AppLayoutComponent,
+
     ],
     imports: [
         BrowserModule,
@@ -43,6 +45,7 @@ import {ButtonModule} from "primeng/button";
         TooltipModule,
         ButtonModule,
     ],
-    exports: [AppLayoutComponent]
+    exports: [AppLayoutComponent],
+    providers: [DialogService]
 })
 export class AppLayoutModule { }
