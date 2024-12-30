@@ -15,6 +15,6 @@ export const routes: Routes = [
 
     ]
   },
-  { path: 'auth', loadChildren: () => import('./demo/components/auth/routes')},
+  { path: 'auth', loadChildren: () => import('../views/pages/auth/routes')},
   { path: '**', redirectTo: '/notfound' },
 ];

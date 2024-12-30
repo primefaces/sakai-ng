@@ -6,7 +6,8 @@ import { PasswordModule} from 'primeng/password';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { RippleModule} from 'primeng/ripple';
-import {LayoutService} from '../../../layout/service/app.layout.service';
+import {LayoutService} from '../../../app/layout/service/app.layout.service';
+
 
 @Component({
   selector: 'app-login',
