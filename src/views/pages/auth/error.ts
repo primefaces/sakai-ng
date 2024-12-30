@@ -4,7 +4,6 @@ import {RippleModule} from 'primeng/ripple';
 import {RouterModule} from '@angular/router';
 
 @Component({
-  selector: 'app-error',
   imports: [ButtonModule, RippleModule, RouterModule],
   standalone: true,
   template: `

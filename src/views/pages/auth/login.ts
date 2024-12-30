@@ -10,7 +10,6 @@ import {LayoutService} from '../../../app/layout/service/app.layout.service';
 
 
 @Component({
-  selector: 'app-login',
   standalone: true,
   imports: [
     ButtonModule,

@@ -4,7 +4,6 @@ import {RouterModule} from '@angular/router';
 import {RippleModule} from 'primeng/ripple';
 
 @Component({
-  selector: 'app-access',
   standalone: true,
   imports: [
     ButtonModule,
