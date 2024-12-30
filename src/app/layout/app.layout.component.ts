@@ -1,12 +1,17 @@
 import { Component, OnDestroy, Renderer2, ViewChild } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import {NavigationEnd, Router, RouterModule} from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { LayoutService } from "./service/app.layout.service";
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppTopBarComponent } from './app.topbar.component';
+import {AppConfigComponent} from './config/app.config.component';
+import {AppFooterComponent} from './app.footer.component';
+import {CommonModule} from '@angular/common';
 
 @Component({
     selector: 'app-layout',
+    standalone: true,
+    imports: [CommonModule, RouterModule, AppTopBarComponent, AppSidebarComponent, AppConfigComponent, AppFooterComponent],
     templateUrl: './app.layout.component.html'
 })
 export class AppLayoutComponent implements OnDestroy {
@@ -25,9 +30,9 @@ export class AppLayoutComponent implements OnDestroy {
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
             if (!this.menuOutsideClickListener) {
                 this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
-                    const isOutsideClicked = !(this.appSidebar.el.nativeElement.isSameNode(event.target) || this.appSidebar.el.nativeElement.contains(event.target) 
+                    const isOutsideClicked = !(this.appSidebar.el.nativeElement.isSameNode(event.target) || this.appSidebar.el.nativeElement.contains(event.target)
                         || this.appTopbar.menuButton.nativeElement.isSameNode(event.target) || this.appTopbar.menuButton.nativeElement.contains(event.target));
-                    
+
                     if (isOutsideClicked) {
                         this.hideMenu();
                     }
