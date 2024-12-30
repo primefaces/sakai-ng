@@ -37,6 +37,12 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.6.2"
+    "typescript": "~5.6.2",
+      "eslint-config-prettier": "^9.1.0",
+      "eslint-plugin-import": "^2.31.0",
+      "eslint-plugin-prefer-arrow": "^1.2.3",
+      "eslint-plugin-prettier": "^4.2.1",
+      "prettier": "^3.0.0",
+      "eslint": "^9.14.0"
   }
 }
