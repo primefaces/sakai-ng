@@ -72,8 +72,8 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
                 <h5>Sizes</h5>
                 <div class="flex flex-wrap gap-2 align-items-end">
                     <p-overlay-badge value="2"></p-overlay-badge>
-                    <p-overlay-badge value="4" size="large" severity="warn"></p-overlay-badge>
-                    <p-overlay-badge value="6" size="xlarge" severity="success"></p-overlay-badge>
+                    <p-overlay-badge value="4" badgeSize="large" severity="warn"></p-overlay-badge>
+                    <p-overlay-badge value="6" badgeSize="xlarge" severity="success"></p-overlay-badge>
                 </div>
             </div>
 
