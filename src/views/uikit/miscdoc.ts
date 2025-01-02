@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProgressBar, ProgressBarModule } from 'primeng/progressbar';
+import { ProgressBarModule } from 'primeng/progressbar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { CommonModule } from '@angular/common';
 import { ScrollTopModule } from 'primeng/scrolltop';
