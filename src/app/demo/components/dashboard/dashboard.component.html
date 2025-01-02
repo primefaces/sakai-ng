@@ -1,4 +1,9 @@
 <div class="grid">
+    <div class="col-12 xl:col-12">
+        <div class="menu-card mb-0">
+            <app-dashboard-header/>
+        </div>
+    </div>
     <div class="col-12 {{i.width}}" *ngFor="let i of infos">
         <div class="card mb-0">
             <div class="flex justify-content-between mb-3">
@@ -17,7 +22,8 @@
 
     <div class="col-12 xl:col-12">
         <div class="card" id="calendar">
-            <full-calendar #cal [options]="calendarOptions()" class="custom-calendar"/>
+            <full-calendar #cal class="custom-calendar"
+                           [options]="calendarOptions()" [events]="courseSessions"/>
         </div>
     </div>
 </div>

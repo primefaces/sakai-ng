@@ -10,6 +10,9 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { DashboardsRoutingModule } from './dashboard-routing.module';
 import {FullCalendarModule} from "@fullcalendar/angular";
+import {DashboardHeaderComponent} from "./dashboard-header/dashboard-header.component";
+import {DropdownModule} from "primeng/dropdown";
+import {ToolbarModule} from "primeng/toolbar";
 
 @NgModule({
     imports: [
@@ -22,8 +25,13 @@ import {FullCalendarModule} from "@fullcalendar/angular";
         PanelMenuModule,
         ButtonModule,
         DashboardsRoutingModule,
-        FullCalendarModule
+        FullCalendarModule,
+        DropdownModule,
+        ToolbarModule
     ],
-    declarations: [DashboardComponent]
+    declarations: [
+        DashboardComponent,
+        DashboardHeaderComponent,
+    ]
 })
 export class DashboardModule { }

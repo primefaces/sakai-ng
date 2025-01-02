@@ -16,7 +16,7 @@ export class AppMenuComponent implements OnInit {
     constructor(
         public layoutService: LayoutService,
         private dialogService: DialogService,
-        private localStorage: LocalStorageService,
+        private localStorage: LocalStorageService
     ) { }
 
     showTableDialog(){
@@ -41,6 +41,14 @@ export class AppMenuComponent implements OnInit {
 
     isTmpTableAvailable(): boolean {
         return true;
+    }
+
+    loadSpecificTable(){
+
+    }
+
+    unselectTable(){
+
     }
 
     ngOnInit() {

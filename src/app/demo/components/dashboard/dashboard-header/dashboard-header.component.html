@@ -1,0 +1,39 @@
+<p-toolbar [style]="{width: '100%'}">
+    <div class="p-toolbar-group-start">
+    </div>
+
+    <div class="p-toolbar-group-center">
+        <p-dropdown id="all" [options]="availableTables" [(ngModel)]="shownTableDD" scrollHeight="300px"
+                    placeholder="Choose your Year..." optionLabel="year" [filter]="true" filterBy="year"
+                    [showClear]="true">
+            <ng-template pTemplate="selectedItem">
+                <div class="item">
+                    <div>{{ shownTableDD!.name }} {{ shownTableDD!.semester }} {{ shownTableDD!.year }}</div>
+                </div>
+            </ng-template>
+            <ng-template let-item pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                    <div>{{ item.name }} {{ item.semester }} {{ item.year }}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+    </div>
+
+    <div class="p-toolbar-group-end">
+        <p-dropdown id="tmp" [options]="availableTables" [(ngModel)]="shownTableDD" scrollHeight="300px"
+                    placeholder="Choose your Year..." optionLabel="year" [filter]="true" filterBy="year"
+                    [showClear]="true">
+            <ng-template pTemplate="selectedItem">
+                <div class="item">
+                    <div>{{ shownTableDD!.name }} {{ shownTableDD!.semester }} {{ shownTableDD!.year }}</div>
+                </div>
+            </ng-template>
+            <ng-template let-item pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                    <div>{{ item.name }} {{ item.semester }} {{ item.year }}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+    </div>
+</p-toolbar>
+
