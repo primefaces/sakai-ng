@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy{
     ) { }
 
     ngOnInit(): void {
-        this.loginRequest = {username: '', password: ''}
+        this.loginRequest = {name: '', password: ''}
     }
 
     ngOnDestroy():void{
@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy{
     }
 
     login() {
+        console.log(this.loginRequest);
         this._loginSub = this.authService.loginUser(this.loginRequest, this.rememberMe)
             .subscribe({
                 next: () => {

@@ -12,7 +12,9 @@
              background-color: #f9f9f9; box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;"
              [attr.data-id]="event['id']"
              [attr.data-title]="event['title']"
-             [attr.data-duration]="event.extendedProps?.['duration']">
+             [attr.data-duration]="event.extendedProps?.['duration']"
+             [attr.data-participants]="event.extendedProps?.['nrOfParticipants']"
+             [attr.data-needscomputers]="event.extendedProps?.['computersNecessary']">
             {{ event['title'] }}
         </div>
     </div>

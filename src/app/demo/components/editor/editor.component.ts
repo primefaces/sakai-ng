@@ -15,11 +15,13 @@ export class EditorComponent  implements OnInit{
 
     rightClickEvent: EventMountArg | null = null;
     items: MenuItem[] = [];
-
+    private _dirtyData: boolean = false;
 
     constructor(
         private layoutService: LayoutService
-    ) {}
+    ) {
+        this.layoutService.changeStyle(true);
+    }
 
     getItemMenuOptions() : void {
         this.items = [{label: 'add new Course', icon: 'pi pi-book', command: () => {} /* this.addNewCourse()*/ }];
@@ -43,6 +45,10 @@ export class EditorComponent  implements OnInit{
 
     private findSession():CourseSession  | undefined{
         return this.timeTable.courseSessions.find(s => s.id.toString() === this.rightClickEvent!.event.id.toString());
+    }
+
+    setDirtyDataBit(bit: boolean){
+        this._dirtyData = bit;
     }
 
     ngOnInit(): void {

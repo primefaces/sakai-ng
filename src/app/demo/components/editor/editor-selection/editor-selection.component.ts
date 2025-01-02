@@ -11,25 +11,8 @@ export class EditorSelectionComponent implements AfterViewInit, OnDestroy{
 
     dragTableEvents: EventInput[] = [
         {id: '123', title: 'this is quite a long text but not long enough so i type even more', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 120}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 80}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'eli', extendedProps: {duration: 180}} as EventInput,
+        {id: '123', title: 'participants: 20, computersNecessary: false', extendedProps: {duration: 120, computersNecessary: false, nrOfParticipants: 20}} as EventInput,
+        {id: '123', title: 'participants: 0, computersNecessary: true', extendedProps: {duration: 180, computersNecessary: true, nrOfParticipants: 0}} as EventInput,
     ];
 
     draggable!: Draggable;
@@ -46,6 +29,10 @@ export class EditorSelectionComponent implements AfterViewInit, OnDestroy{
                     title: eventEl.getAttribute('data-title'),
                     duration: eventEl.getAttribute('data-duration'),
                     editable: true,
+                    extendedProps: {
+                        nrOfParticipants: eventEl.getAttribute('data-participants'),
+                        computersNecessary: eventEl.getAttribute('data-needscomputers')
+                    },
                 };
             }
         });

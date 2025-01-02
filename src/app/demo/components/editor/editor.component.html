@@ -2,14 +2,13 @@
     <div class="col-9" >
         <div class="card" style="height: 84vh">
             <app-editor-header/>
-            <app-editor-calendar/>
+            <app-editor-calendar (setDirtyBool)="setDirtyDataBit($event)"/>
         </div>
     </div>
 
     <div class="col-3">
         <div class="card" style="height: 84vh;">
-            <app-editor-selection #selection
-                                  style="width: 100%; height: 80vh; display: flex; flex-direction: column;"/>
+            <app-editor-selection style="width: 100%; height: 80vh; display: flex; flex-direction: column;"/>
         </div>
     </div>
 </div>

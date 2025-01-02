@@ -13,17 +13,17 @@
                 </div>
                 <div>
                     <label for="uname" class="block text-900 text-xl font-medium mb-2">Email</label>
-                    <input id="uname" [ngModel]="loginRequest.username" type="text"
+                    <input id="uname" [(ngModel)]="loginRequest.name" type="text"
                            placeholder="enter your username..." pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
 
                     <label for="password1" class="block text-900 font-medium text-xl mb-2">Password</label>
-                    <p-password id="password1" [ngModel]="loginRequest.password"
+                    <p-password id="password1" [(ngModel)]="loginRequest.password"
                                 placeholder="Password" [feedback]="false"
                                 styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"/>
 
                     <div class="flex align-items-center justify-content-between mb-5 gap-5">
                         <div class="flex align-items-center">
-                            <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2" [ngModel]="rememberMe"/>
+                            <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2" [(ngModel)]="rememberMe"/>
                             <label for="rememberme1">Remember me</label>
                         </div>
                     </div>

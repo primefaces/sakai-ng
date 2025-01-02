@@ -11,6 +11,7 @@ export class CourseSession {
     semester: number;
     studyType: string;
     numberOfParticipants: number;
+    computersNecessary?: boolean;
     timingConstraints: TimingDTO[];
     timing: TimingDTO | null;
     roomTable: RoomTableDTO | null;
