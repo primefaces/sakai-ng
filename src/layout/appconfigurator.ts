@@ -10,7 +10,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { SelectButton } from 'primeng/selectbutton';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { LayoutService } from '@/src/service/applayoutservice';
+import { LayoutService } from '@/src/service/layout.service';
 
 const presets = {
     Aura,

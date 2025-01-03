@@ -7,7 +7,7 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { AppConfigurator } from '@/src/layout/appconfigurator';
 import { AppFooter } from '@/src/layout/appfooter';
 import { filter, Subscription } from 'rxjs';
-import { LayoutService } from '@/src/service/applayoutservice';
+import { LayoutService } from '@/src/service/layout.service';
 
 @Component({
     selector: 'app-layout',
