@@ -23,22 +23,18 @@ export class CourseService implements ItemService<Course> {
     }
 
     createSingeItem(item: Course): Course {
-        console.log('CREATED COURSE: ', item);
         return undefined;
     }
 
     updateSingeItem(item: Course): Course {
-        console.log('UPDATED COURSE: ', item);
         return undefined;
     }
 
     deleteSingleItem(item: Course): boolean {
-        console.log('DELETED COURSE: ', item);
         return true;
     }
 
     deleteMultipleItem(items: Course[]): boolean {
-        console.log('DELETED COURSE LIST: ', items);
         return true;
     }
 

@@ -3,7 +3,7 @@ import {LayoutService} from "../../../layout/service/app.layout.service";
 import {ContextMenu} from "primeng/contextmenu";
 import {MenuItem} from "primeng/api";
 import {EventMountArg} from "@fullcalendar/core";
-import {TimeTableDTO} from "../../../../assets/models/dto/time-table-dto";
+import {TimeTable} from "../../../../assets/models/dto/time-table";
 import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 
 @Component({
@@ -11,7 +11,7 @@ import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 })
 export class EditorComponent  implements OnInit{
     @ViewChild('cm') contextMenu!: ContextMenu;
-    timeTable!: TimeTableDTO;
+    timeTable!: TimeTable;
 
     rightClickEvent: EventMountArg | null = null;
     items: MenuItem[] = [];

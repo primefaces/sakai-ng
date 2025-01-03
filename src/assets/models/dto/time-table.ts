@@ -1,7 +1,7 @@
 import { RoomTableDTO } from './room-table-dto';
 import { CourseSession } from './course-session-dto';
 
-export interface TimeTableDTO {
+export interface TimeTable {
   id: number;
   semester: string;
   year: number;

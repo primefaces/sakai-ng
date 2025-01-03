@@ -1,5 +1,6 @@
 import {
-    Component, OnDestroy, signal,
+    AfterViewInit,
+    Component, OnDestroy, OnInit, signal,
     ViewChild, WritableSignal,
 } from '@angular/core';
 import interactionPlugin from "@fullcalendar/interaction";
@@ -7,8 +8,10 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import {CalendarOptions, EventInput} from "@fullcalendar/core";
 import {FullCalendarComponent} from "@fullcalendar/angular";
-import {Subscription} from "rxjs";
+import {Observable} from "rxjs";
 import {LayoutService} from "../../../layout/service/app.layout.service";
+import {TimeTable} from "../../../../assets/models/dto/time-table";
+
 
 class InfoBox{
     icon: string;
@@ -24,35 +27,12 @@ class InfoBox{
 @Component({
     templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent implements OnDestroy {
-    infos!: InfoBox[];
-
-    ngOnInit(): void {
-        this.infos = [
-            {
-                icon: 'pi pi-book text-green-500 text-xl',
-                header: 'Courses', value: 152, color: 'bg-green-100',
-                highlight: '24% ', fin: 'are assigned', width: 'lg:col-3 xl:col-3'
-            },
-            {
-                icon: 'pi pi-check-circle text-orange-500 text-xl',
-                header: 'Collisions', value: 5, color: 'bg-orange-100',
-                highlight: '3 ', fin: 'Courses are affected', width: 'lg:col-3 xl:col-3'
-            },
-            {
-                icon: 'pi pi-comments text-cyan-500 text-xl',
-                header: 'Last Change',
-                value: 'Course PS Lineare Algebra - Group 3 was moved to room 3W04',
-                color: 'bg-cyan-100',
-                highlight: 'Elias ',
-                fin: 'made the change',
-                width: 'lg:col-6 xl:col-6'
-            }
-        ]
-    }
+export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit{
     @ViewChild("cal") calendar!: FullCalendarComponent;
-    courseSessions: EventInput[];
-    menuToggleSub!: Subscription;
+
+    selectedTimeTable$: Observable<TimeTable> | null = null;
+    currentCourseSessions: EventInput[];
+    infos!: InfoBox[];
 
     readonly calendarOptions: WritableSignal<CalendarOptions> = signal({
         plugins: [
@@ -95,7 +75,38 @@ export class DashboardComponent implements OnDestroy {
         this.layoutService.changeStyle(true);
     }
 
+    private clearCalendar(){
+        this.calendar.getApi().removeAllEvents();
+    }
+
+    ngOnInit(): void {
+        this.infos = [
+            {
+                icon: 'pi pi-book text-green-500 text-xl',
+                header: 'Courses', value: 152, color: 'bg-green-100',
+                highlight: '24% ', fin: 'are assigned', width: 'lg:col-3 xl:col-3'
+            },
+            {
+                icon: 'pi pi-check-circle text-orange-500 text-xl',
+                header: 'Collisions', value: 5, color: 'bg-orange-100',
+                highlight: '3 ', fin: 'Courses are affected', width: 'lg:col-3 xl:col-3'
+            },
+            {
+                icon: 'pi pi-comments text-cyan-500 text-xl',
+                header: 'Last Change',
+                value: 'Course PS Lineare Algebra - Group 3 was moved to room 3W04',
+                color: 'bg-cyan-100',
+                highlight: 'Elias ',
+                fin: 'made the change',
+                width: 'lg:col-6 xl:col-6'
+            }
+        ]
+    }
+
+    ngAfterViewInit(): void {
+        this.clearCalendar();
+    }
+
     ngOnDestroy(): void {
-        if (this.menuToggleSub) this.menuToggleSub.unsubscribe();
     }
 }

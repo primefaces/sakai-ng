@@ -1,0 +1,39 @@
+import { Injectable } from '@angular/core';
+import {environment} from "../../../../../environments/environment";
+import {HttpClient} from "@angular/common/http";
+import {firstValueFrom, Observable} from "rxjs";
+import {TimeTable} from "../../../../../assets/models/dto/time-table";
+import {TimeTableName} from "../../../../../assets/models/time-table-names";
+import {TmpTimeTableDTO} from "../../../../../assets/models/dto/tmp-time-table-dto";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class GlobalTableService {
+    static API_PATH = `${environment.baseUrl}/api/global`;
+
+    constructor(
+        private http: HttpClient,
+    ) {
+    }
+
+    getTimeTableByNames() {
+        const newUrl = `${GlobalTableService.API_PATH}/names`;
+        return this.http.get<TimeTableName[]>(newUrl);
+    }
+
+    getSpecificTimeTable(id: number):Observable<TimeTable> {
+        const newUrl = `${GlobalTableService.API_PATH}/${id}`;
+        return this.http.get<TimeTable>(newUrl)
+    }
+
+    pushTmpTableObject(table: TmpTimeTableDTO): Promise<string> {
+        const newUrl = `${GlobalTableService.API_PATH}/create`;
+        return firstValueFrom(this.http.post<any>(newUrl, table));
+    }
+
+    deleteTable(id: number){
+        const newUrl = `${GlobalTableService.API_PATH}/${id}`;
+        return this.http.delete(newUrl);
+    }
+}

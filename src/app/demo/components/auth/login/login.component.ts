@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit, OnDestroy{
     }
 
     login() {
-        console.log(this.loginRequest);
         this._loginSub = this.authService.loginUser(this.loginRequest, this.rememberMe)
             .subscribe({
                 next: () => {
