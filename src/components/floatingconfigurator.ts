@@ -2,7 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigurator } from '@/src/layout/appconfigurator';
-import { AppConfigService } from '@/src/service/appconfigservice';
+import { LayoutService } from '@/src/service/applayoutservice';
 
 @Component({
   selector: 'floating-configurator',
@@ -28,11 +28,11 @@ import { AppConfigService } from '@/src/service/appconfigservice';
   `,
 })
 export class FloatingConfigurator {
-    configService = inject(AppConfigService);
+    LayoutService = inject(LayoutService);
 
-    isDarkTheme = computed(() => this.configService.appState().darkTheme);
+    isDarkTheme = computed(() => this.LayoutService.layoutConfig().darkTheme);
 
     toggleDarkMode() {
-        this.configService.appState.update((state) => ({ ...state, darkTheme: !state.darkTheme }));
+        this.LayoutService.layoutConfig.update((state) => ({ ...state, darkTheme: !state.darkTheme }));
     }
 }

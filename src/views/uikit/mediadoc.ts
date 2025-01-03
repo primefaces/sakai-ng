@@ -126,7 +126,9 @@ export class MediaDoc implements OnInit {
                 return 'warn';
             case 'OUTOFSTOCK':
                 return 'danger';
+            default:
+                return 'success';
         }
     }
-    
+
 }

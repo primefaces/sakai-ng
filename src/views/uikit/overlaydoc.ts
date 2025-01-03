@@ -6,12 +6,15 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { DrawerModule } from 'primeng/drawer';
-import { PopoverModule } from 'primeng/popover';
+import { Popover, PopoverModule } from 'primeng/popover';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { OverlayPanel } from 'primeng/overlaypanel';
+import { InputText, InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     standalone: true,
-    imports:[ToastModule,DialogModule,ButtonModule,DrawerModule, PopoverModule, ConfirmPopupModule],
+    imports:[ToastModule, DialogModule, ButtonModule, DrawerModule, PopoverModule, ConfirmPopupModule, InputTextModule, FormsModule],
     template:`
        <div class="flex flex-col md:flex-row gap-8">
         <div class="md:w-1/2">
@@ -32,10 +35,10 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
             <div class="card">
                 <div class="font-semibold text-xl mb-4">Popover</div>
                 <div class="flex flex-wrap gap-2">
-                    <p-button type="button" label="Show" (click)="toggleDataTable()" />
-                    <p-popover ref="op2" id="overlay_panel" [style]="{width: '450px'}">
+                    <p-button type="button" label="Show" (click)="toggleDataTable(op2, $event)" />
+                    <p-popover #op2 id="overlay_panel" [style]="{width: '450px'}">
                         <!-- TABLE -->
-</p-popover>
+                    </p-popover>
                 </div>
             </div>
 
@@ -55,35 +58,35 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                         consequat.
                     </p>
-</p-drawer>
+                </p-drawer>
 
                 <p-drawer [(visible)]="visibleRight" header="Drawer" position="right">
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                         consequat.
                     </p>
-</p-drawer>
+                </p-drawer>
 
                 <p-drawer [(visible)]="visibleTop" header="Drawer" position="top">
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                         consequat.
                     </p>
-</p-drawer>
+                </p-drawer>
 
                 <p-drawer [(visible)]="visibleBottom" header="Drawer" position="bottom">
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                         consequat.
                     </p>
-</p-drawer>
+                </p-drawer>
 
                 <p-drawer [(visible)]="visibleFull" header="Drawer" position="full">
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                         consequat.
                     </p>
-</p-drawer>
+                </p-drawer>
 
                 <p-button icon="pi pi-arrow-right" (click)="visibleLeft = true" [style]="{marginRight: '0.25em'}" />
                 <p-button icon="pi pi-arrow-left" (click)="visibleRight = true" [style]="{marginRight: '0.25em'}" />
@@ -95,7 +98,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
             <div class="card">
                 <div class="font-semibold text-xl mb-4">ConfirmPopup</div>
                 <p-confirmpopup></p-confirmpopup>
-                <p-button ref="popup" (click)="confirm($event)" icon="pi pi-check" label="Confirm" class="mr-2"></p-button>
+                <p-button #popup (click)="confirm($event)" icon="pi pi-check" label="Confirm" class="mr-2"></p-button>
             </div>
 
             <div class="card">
@@ -123,8 +126,6 @@ export class OverlayDoc implements OnInit {
     display: boolean = false;
 
     products: Product[] = [];
-
-    selectedProduct: Product = {};
 
     visibleLeft: boolean = false;
 
@@ -162,14 +163,7 @@ export class OverlayDoc implements OnInit {
         });
     }
 
-    confirm1() {
-        this.confirmationService.confirm({
-            key: 'confirm1',
-            message: 'Are you sure to perform this action?'
-        });
-    }
-
-    confirm2(event: Event) {
+    confirm(event: Event) {
         this.confirmationService.confirm({
             key: 'confirm2',
             target: event.target || new EventTarget,
@@ -184,8 +178,28 @@ export class OverlayDoc implements OnInit {
         });
     }
 
-    formatCurrency(value: number) {
-        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    open() {
+        this.display = true;
     }
-    
+
+    close() {
+        this.display = false;
+    }
+
+    toggleDataTable(op: Popover, event: any) {
+        op.toggle(event);
+    }
+
+    onProductSelect(op, event: any) {
+        op.hide();
+        this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: event?.data.name, life: 3000 });
+    }
+
+    openConfirmation() {
+        this.displayConfirmation = true;
+    }
+
+    closeConfirmation() {
+        this.displayConfirmation = false;
+    }
 }
