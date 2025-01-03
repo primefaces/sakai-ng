@@ -1,5 +1,3 @@
-import { Product } from '@/src/app/demo/api/product';
-import { ProductService } from '@/src/app/demo/service/product.service';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -8,9 +6,9 @@ import { ToastModule } from 'primeng/toast';
 import { DrawerModule } from 'primeng/drawer';
 import { Popover, PopoverModule } from 'primeng/popover';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
-import { OverlayPanel } from 'primeng/overlaypanel';
-import { InputText, InputTextModule } from 'primeng/inputtext';
+import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { Product, ProductService } from '@/src/service/product.service';
 
 @Component({
     standalone: true,

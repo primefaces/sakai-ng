@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ProductService } from '@/src/app/demo/service/product.service';
-import { Product } from '@/src/app/demo/api/product';
+
 import { FormsModule } from '@angular/forms';
 import { DataViewModule } from 'primeng/dataview';
 import { CommonModule } from '@angular/common';
@@ -9,6 +8,7 @@ import { PickListModule } from 'primeng/picklist';
 import { OrderListModule } from 'primeng/orderlist';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
+import { Product, ProductService } from '@/src/service/product.service';
 
 @Component({
     standalone:true,

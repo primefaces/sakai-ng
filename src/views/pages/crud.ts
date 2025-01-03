@@ -15,8 +15,8 @@ import {SelectModule} from 'primeng/select';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {DialogModule} from 'primeng/dialog';
-import {Product} from '../../app/demo/api/product';
-import {ProductService} from '../../app/demo/service/product.service';
+import { Product, ProductService } from '@/src/service/product.service';
+
 
 @Component({
   standalone: true,

@@ -3,7 +3,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { Router, RouterModule } from '@angular/router';
 import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
-import { LayoutService } from '@/src/app/layout/service/app.layout.service';
+import { LayoutService } from '@/src/service/applayoutservice';
 
 @Component({
   selector: 'topbar-widget',
@@ -11,7 +11,7 @@ import { LayoutService } from '@/src/app/layout/service/app.layout.service';
   template: `
       <div id="home" class="py-4 px-4 mx-0 md:mx-6 lg:mx-8 lg:px-8 flex align-items-center justify-content-between relative lg:static mb-3">
           <a class="flex align-items-center" href="#">
-              <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="Sakai Logo" height="50" class="mr-0 lg:mr-2"><span class="text-900 font-medium text-2xl line-height-3 mr-8">SAKAI</span>
+              <img src="assets/layout/images/{{layoutService.isDarkTheme() ? 'logo-dark' : 'logo-white'}}.svg" alt="Sakai Logo" height="50" class="mr-0 lg:mr-2"><span class="text-900 font-medium text-2xl line-height-3 mr-8">SAKAI</span>
           </a>
           <a pRipple class="cursor-pointer block lg:hidden text-700" pStyleClass="@next" enterClass="hidden" leaveToClass="hidden" [hideOnOutsideClick]="true">
               <i class="pi pi-bars text-4xl"></i>

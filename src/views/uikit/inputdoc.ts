@@ -25,8 +25,8 @@ import {MultiSelectModule} from "primeng/multiselect";
 import {ListboxModule} from "primeng/listbox";
 import {InputGroupAddonModule} from "primeng/inputgroupaddon";
 import {TextareaModule} from "primeng/textarea";
-import {CountryService} from "../../app/demo/service/country.service";
-import {NodeService} from "../../app/demo/service/node.service";
+import { CountryService } from '@/src/service/country.service';
+import { NodeService } from '@/src/service/node.service';
 
 @Component({
     standalone: true,
@@ -234,7 +234,8 @@ import {NodeService} from "../../app/demo/service/node.service";
                     </p-inputgroup>
                 </div>
             </div>
-        </p-fluid>`
+        </p-fluid>`,
+    providers: [CountryService, NodeService]
 })
 export class InputDoc implements OnInit {
     floatValue: any = null;
