@@ -35,10 +35,10 @@ import { Product, ProductService } from '@/src/service/product.service';
                                      [ngClass]="{ 'border-t border-surface': i !== 0 }">
                                     <div class="md:w-40 relative">
                                         <img class="block xl:block mx-auto rounded w-full"
-                                             [src]="https://primefaces.org/cdn/primevue/images/product/{{item.image}}"
+                                             src="https://primefaces.org/cdn/primevue/images/product/{{item.image}}"
                                              [alt]="item.name" />
                                         <p-tag [value]="item.inventoryStatus" [severity]="getSeverity(item)"
-                                             class="absolute dark:!bg-surface-900" [style]="left: 4px; top: 4px"></p-tag>
+                                             class="absolute dark:!bg-surface-900" [style]="{left: '4px', top: '4px'}"></p-tag>
                                     </div>
                                     <div class="flex flex-col md:flex-row justify-between md:items-center flex-1 gap-6">
                                         <div class="flex flex-row md:flex-col justify-between items-start gap-2">
@@ -87,11 +87,11 @@ import { Product, ProductService } from '@/src/service/product.service';
                                     <div class="bg-surface-50 flex justify-center rounded p-4">
                                         <div class="relative mx-auto">
                                             <img class="rounded w-full"
-                                                 [src]="https://primefaces.org/cdn/primevue/images/product/{{item.image}}"
+                                                 src="https://primefaces.org/cdn/primevue/images/product/{{item.image}}"
                                                  [alt]="item.name" style="max-width: 300px" />
                                             <p-tag [value]="item.inventoryStatus" [severity]="getSeverity(item)"
                                                  class="absolute dark:!bg-surface-900"
-                                                 [style]="left: 4px; top: 4px"></p-tag>
+                                                 [style]="{left: '4px', top: '4px'}"></p-tag>
                                         </div>
                                     </div>
                                     <div class="pt-6">
@@ -151,7 +151,7 @@ import { Product, ProductService } from '@/src/service/product.service';
                         <div class="font-semibold text-xl mb-4">OrderList</div>
                         <p-orderList [value]="orderCities" header="Cities" [dragdrop]="true"
                                      [listStyle]="{'height':'250px'}">
-                            <ng-template let-city #item>
+                            <ng-template #item let-city>
                                 <div>{{ city.name }}</div>
                             </ng-template>
                         </p-orderList>
