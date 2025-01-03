@@ -6,7 +6,7 @@ import {
 import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import {CalendarOptions, EventInput} from "@fullcalendar/core";
+import {CalendarOptions} from "@fullcalendar/core";
 import {FullCalendarComponent} from "@fullcalendar/angular";
 import {Observable} from "rxjs";
 import {LayoutService} from "../../../layout/service/app.layout.service";
@@ -31,7 +31,6 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit{
     @ViewChild("cal") calendar!: FullCalendarComponent;
 
     selectedTimeTable$: Observable<TimeTable> | null = null;
-    currentCourseSessions: EventInput[];
     infos!: InfoBox[];
 
     readonly calendarOptions: WritableSignal<CalendarOptions> = signal({
@@ -73,6 +72,11 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit{
         private layoutService: LayoutService,
     ) {
         this.layoutService.changeStyle(true);
+    }
+
+    protected setNewTable(newTable: Observable<TimeTable>){
+        console.log("trigger")
+        this.selectedTimeTable$ = newTable;
     }
 
     private clearCalendar(){

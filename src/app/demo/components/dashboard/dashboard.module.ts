@@ -13,6 +13,7 @@ import {FullCalendarModule} from "@fullcalendar/angular";
 import {DashboardHeaderComponent} from "./dashboard-header/dashboard-header.component";
 import {DropdownModule} from "primeng/dropdown";
 import {ToolbarModule} from "primeng/toolbar";
+import {CalendarEventPipe} from "./api/calendar-event.pipe";
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import {ToolbarModule} from "primeng/toolbar";
         DashboardsRoutingModule,
         FullCalendarModule,
         DropdownModule,
-        ToolbarModule
+        ToolbarModule,
+        CalendarEventPipe
     ],
     declarations: [
         DashboardComponent,

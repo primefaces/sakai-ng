@@ -1,7 +1,7 @@
 <div class="grid">
     <div class="col-12 xl:col-12">
         <div class="menu-card mb-0">
-            <app-dashboard-header/>
+            <app-dashboard-header (setNewTimeTable)="setNewTable($event)"/>
         </div>
     </div>
     <div class="col-12 {{i.width}}" *ngFor="let i of infos">
@@ -22,8 +22,8 @@
 
     <div class="col-12 xl:col-12">
         <div class="card" id="calendar">
-            <full-calendar #cal class="custom-calendar"
-                           [options]="calendarOptions()" [events]="currentCourseSessions"/>
+            <full-calendar #cal class="custom-calendar" [options]="calendarOptions()"
+                           [events]="(selectedTimeTable$ | async)?.courseSessions | SessionToEvent: 'dashboard'"/>
         </div>
     </div>
 </div>

@@ -1,13 +1,14 @@
-import { RoomTableDTO } from './room-table-dto';
+import { RoomTable } from './room-table';
 import { CourseSession } from './course-session-dto';
 
 export interface TimeTable {
   id: number;
+  name: string;
   semester: string;
   year: number;
   status: string;
-  roomTables: RoomTableDTO[];
+  roomTables: RoomTable[];
   courseSessions: CourseSession[];
-  createdAt: string;  // Format: yyyy-MM-dd'T'HH:mm:ss
-  updatedAt: string;  // Format: yyyy-MM-dd'T'HH:mm:ss
+  createdAt: string;
+  updatedAt: string;
 }

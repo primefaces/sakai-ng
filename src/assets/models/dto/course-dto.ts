@@ -1,4 +1,4 @@
-import { TimingDTO } from './timing-dto';
+import { Timing } from './timing';
 
 export class CourseDTO {
   id!: string;
@@ -10,7 +10,7 @@ export class CourseDTO {
   duration?: number;
   numberOfParticipants?: number;
   computersNecessary?: boolean;
-  timingConstraints: TimingDTO[] = [];
+  timingConstraints: Timing[] = [];
   createdAt?: string;
   updatedAt?: string;
   numberOfGroups?: number;
@@ -18,7 +18,7 @@ export class CourseDTO {
   splitTimes?: number[];
 
 
-  constructor(id: string, courseType: string, studyType: string, name: string, lecturer: string, semester: number, duration: number, numberOfParticipants: number, computersNecessary: boolean, timingConstraints: TimingDTO[], createdAt: string, updatedAt: string, numberOfGroups: number, isSplit: boolean, splitTimes: number[]) {
+  constructor(id: string, courseType: string, studyType: string, name: string, lecturer: string, semester: number, duration: number, numberOfParticipants: number, computersNecessary: boolean, timingConstraints: Timing[], createdAt: string, updatedAt: string, numberOfGroups: number, isSplit: boolean, splitTimes: number[]) {
     this.id = id;
     this.courseType = courseType;
     this.studyType = studyType;

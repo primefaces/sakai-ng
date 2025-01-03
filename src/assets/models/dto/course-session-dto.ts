@@ -1,5 +1,5 @@
-import { TimingDTO } from './timing-dto';
-import {RoomTableDTO} from "./room-table-dto";
+import { Timing } from './timing';
+import {RoomTable} from "./room-table";
 
 export class CourseSession {
     id: number;
@@ -12,7 +12,7 @@ export class CourseSession {
     studyType: string;
     numberOfParticipants: number;
     computersNecessary?: boolean;
-    timingConstraints: TimingDTO[];
-    timing: TimingDTO | null;
-    roomTable: RoomTableDTO | null;
+    timingConstraints: Timing[];
+    timing: Timing | null;
+    roomTable: RoomTable | null;
 }

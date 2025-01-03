@@ -10,7 +10,7 @@ type Call = 'editor' | 'dashboard';
 })
 export class CalendarEventPipe implements PipeTransform {
   transform(values: CourseSession[], call: Call): EventInput[] {
-    return values.map(s => CalendarEventPipe.toEvent(s, call));
+      return values.map(s => CalendarEventPipe.toEvent(s, call));
   }
 
   static toEvent(session: CourseSession, call: Call): EventInput{
