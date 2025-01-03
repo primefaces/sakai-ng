@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { AppConfigService } from '@/src/service/appconfigservice';
 import { CommonModule } from '@angular/common';
 import { AppMenuItem } from '@/src/layout/appmenuitem';
 
 @Component({
+    selector: 'app-menu',
     standalone:true,
     imports: [
         CommonModule,
@@ -20,8 +20,6 @@ import { AppMenuItem } from '@/src/layout/appmenuitem';
 export class AppMenu {
 
     model: any[] = [];
-
-    configService = inject(AppConfigService);
 
     ngOnInit() {
         this.model = [

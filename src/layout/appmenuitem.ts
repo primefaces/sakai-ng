@@ -1,9 +1,8 @@
-import { ChangeDetectorRef, Component, Host, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { AppConfigService } from '@/src/service/appconfigservice';
 import { MenuService } from '@/src/app/layout/app.menu.service';
 import { CommonModule } from '@angular/common';
 import { RippleModule } from 'primeng/ripple';
@@ -53,7 +52,7 @@ import { MenuItem} from 'primeng/api';
 })
 export class AppMenuItem {
 
-    @Input() item: MenuItem;
+    @Input() item!: MenuItem;
 
     @Input() index!: number;
 
@@ -69,7 +68,7 @@ export class AppMenuItem {
 
     key: string = "";
 
-    constructor(public configService: AppConfigService , private cd: ChangeDetectorRef, public router: Router, private menuService: MenuService) {
+    constructor(public router: Router, private menuService: MenuService) {
         this.menuSourceSubscription = this.menuService.menuSource$.subscribe(value => {
             Promise.resolve(null).then(() => {
                 if (value.routeEvent) {

@@ -11,7 +11,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { SelectButton } from 'primeng/selectbutton';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { AppConfigService } from '@/src/service/appconfigservice';
+import { LayoutService } from '@/src/service/applayoutservice';
 
 const presets = {
     Aura,
@@ -21,6 +21,7 @@ const presets = {
 @Component({
     selector: 'app-configurator',
     standalone: true,
+    imports: [CommonModule, FormsModule, InputSwitchModule, ButtonModule, RadioButtonModule, SelectButton, ToggleSwitchModule],
     template: `
         <div class="config-panel-content">
             <div class="config-panel-colors">
@@ -48,7 +49,7 @@ const presets = {
                             type="button"
                             [title]="surface.name"
                             (click)="updateColors($event, 'surface', surface)"
-                            [ngClass]="{ 'active-color': selectedSurfaceColor() ? selectedSurfaceColor() === surface.name : configService.appState().darkTheme ? surface.name === 'zinc' : surface.name === 'slate' }"
+                            [ngClass]="{ 'active-color': selectedSurfaceColor() ? selectedSurfaceColor() === surface.name : layoutService.layoutConfig().darkTheme ? surface.name === 'zinc' : surface.name === 'slate' }"
                             [style]="{
                                 'background-color': surface.name === 'noir' ? 'var(--text-color)' : surface?.palette['500']
                             }"
@@ -62,17 +63,9 @@ const presets = {
                 <p-selectbutton [options]="presets" [ngModel]="selectedPreset()" (ngModelChange)="onPresetChange($event)" [allowEmpty]="false" size="small" />
             </div>
             <div class="flex">
-                <div class="flex-1">
-                    <div class="config-panel-settings">
-                        <span class="config-panel-label">Ripple</span>
-                        <p-toggleswitch [(ngModel)]="ripple" />
-                    </div>
-                </div>
-                <div class="flex-1">
-                    <div class="config-panel-settings items-end">
-                        <span class="config-panel-label">RTL</span>
-                        <p-toggleswitch [ngModel]="isRTL" (ngModelChange)="onRTLChange($event)" />
-                    </div>
+                <div class="config-panel-settings">
+                    <span class="config-panel-label">Ripple</span>
+                    <p-toggleswitch [(ngModel)]="ripple" />
                 </div>
             </div>
         </div>
@@ -80,7 +73,6 @@ const presets = {
     host: {
         class: 'config-panel hidden'
     },
-    imports: [CommonModule, FormsModule, InputSwitchModule, ButtonModule, RadioButtonModule, SelectButton, ToggleSwitchModule]
 })
 export class AppConfigurator {
     get ripple() {
@@ -91,20 +83,16 @@ export class AppConfigurator {
         this.config.ripple.set(value);
     }
 
-    get isRTL() {
-        return this.configService.appState().RTL;
-    }
-
     config: PrimeNG = inject(PrimeNG);
 
-    configService: AppConfigService = inject(AppConfigService);
+    layoutService: LayoutService = inject(LayoutService);
 
     platformId = inject(PLATFORM_ID);
 
     presets = Object.keys(presets);
 
     onRTLChange(value: boolean) {
-        this.configService.appState.update((state) => ({ ...state, RTL: value }));
+        this.layoutService.layoutConfig.update((state) => ({ ...state, RTL: value }));
         if (!(document as any).startViewTransition) {
             this.toggleRTL(value);
             return;
@@ -125,8 +113,8 @@ export class AppConfigurator {
 
     ngOnInit() {
         if (isPlatformBrowser(this.platformId)) {
-            this.onPresetChange(this.configService.appState().preset);
-            this.toggleRTL(this.configService.appState().RTL);
+            this.onPresetChange(this.layoutService.layoutConfig().preset);
+
         }
     }
 
@@ -270,15 +258,15 @@ export class AppConfigurator {
     ];
 
     selectedPrimaryColor = computed(() => {
-        return this.configService.appState().primary;
+        return this.layoutService.layoutConfig().primary;
     });
 
-    selectedSurfaceColor = computed(() => this.configService.appState().surface);
+    selectedSurfaceColor = computed(() => this.layoutService.layoutConfig().surface);
 
-    selectedPreset = computed(() => this.configService.appState().preset);
+    selectedPreset = computed(() => this.layoutService.layoutConfig().preset);
 
     primaryColors = computed(() => {
-        const presetPalette = presets[this.configService.appState().preset].primitive;
+        const presetPalette = presets[this.layoutService.layoutConfig().preset].primitive;
         const colors = ['emerald', 'green', 'lime', 'orange', 'amber', 'yellow', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose'];
         const palettes = [{ name: 'noir', palette: {} }];
 
@@ -344,7 +332,7 @@ export class AppConfigurator {
                 }
             };
         } else {
-            if (this.configService.appState().preset === 'Nora') {
+            if (this.layoutService.layoutConfig().preset === 'Nora') {
                 return {
                     semantic: {
                         primary: color.palette,
@@ -380,7 +368,7 @@ export class AppConfigurator {
                         }
                     }
                 };
-            } else if (this.configService.appState().preset === 'Material') {
+            } else if (this.layoutService.layoutConfig().preset === 'Material') {
                 return {
                     semantic: {
                         primary: color.palette,
@@ -458,9 +446,9 @@ export class AppConfigurator {
 
     updateColors(event: any, type: string, color: any) {
         if (type === 'primary') {
-            this.configService.appState.update((state) => ({ ...state, primary: color.name }));
+            this.layoutService.layoutConfig.update((state) => ({ ...state, primary: color.name }));
         } else if (type === 'surface') {
-            this.configService.appState.update((state) => ({ ...state, surface: color.name }));
+            this.layoutService.layoutConfig.update((state) => ({ ...state, surface: color.name }));
         }
         this.applyTheme(type, color);
 
@@ -476,10 +464,10 @@ export class AppConfigurator {
     }
 
     onPresetChange(event: any) {
-        this.configService.appState.update((state) => ({ ...state, preset: event }));
+        this.layoutService.layoutConfig.update((state) => ({ ...state, preset: event }));
         const preset = presets[event];
         const surfacePalette = this.surfaces.find((s) => s.name === this.selectedSurfaceColor())?.palette;
-        if (this.configService.appState().preset === 'Material') {
+        if (this.layoutService.layoutConfig().preset === 'Material') {
             document.body.classList.add('material');
             this.config.ripple.set(true);
         } else {
