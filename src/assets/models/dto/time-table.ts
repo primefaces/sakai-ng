@@ -8,7 +8,7 @@ export interface TimeTable {
   year: number;
   status: string;
   roomTables: RoomTable[];
-  courseSessions: CourseSession[];
+  courseSessions?: CourseSession[];
   createdAt: string;
   updatedAt: string;
 }

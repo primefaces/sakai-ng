@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {firstValueFrom, Observable} from "rxjs";
+import {firstValueFrom} from "rxjs";
 import {TimeTable} from "../../../../../assets/models/dto/time-table";
 import {TimeTableName} from "../../../../../assets/models/time-table-names";
 import {TmpTimeTableDTO} from "../../../../../assets/models/dto/tmp-time-table-dto";
@@ -22,9 +22,9 @@ export class GlobalTableService {
         return this.http.get<TimeTableName[]>(newUrl);
     }
 
-    getSpecificTimeTable(id: number):Observable<TimeTable> {
+    async getSpecificTimeTable(id: number):Promise<TimeTable> {
         const newUrl = `${GlobalTableService.API_PATH}/${id}`;
-        return this.http.get<TimeTable>(newUrl)
+        return firstValueFrom(this.http.get<TimeTable>(newUrl));
     }
 
     pushTmpTableObject(table: TmpTimeTableDTO): Promise<string> {

@@ -1,6 +1,6 @@
 import {
     AfterViewInit,
-    Component, OnDestroy, OnInit, signal,
+    Component, OnInit, signal,
     ViewChild, WritableSignal,
 } from '@angular/core';
 import interactionPlugin from "@fullcalendar/interaction";
@@ -8,10 +8,10 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import {CalendarOptions} from "@fullcalendar/core";
 import {FullCalendarComponent} from "@fullcalendar/angular";
-import {Observable} from "rxjs";
 import {LayoutService} from "../../../layout/service/app.layout.service";
 import {TimeTable} from "../../../../assets/models/dto/time-table";
-
+import {MessageService} from "primeng/api";
+import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 
 class InfoBox{
     icon: string;
@@ -23,14 +23,14 @@ class InfoBox{
     width: string;
 }
 
-
 @Component({
     templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit{
+export class DashboardComponent implements OnInit, AfterViewInit{
     @ViewChild("cal") calendar!: FullCalendarComponent;
 
-    selectedTimeTable$: Observable<TimeTable> | null = null;
+    selectedTimeTable: TimeTable | null = null;
+    currentSessions: CourseSession[] = [];
     infos!: InfoBox[];
 
     readonly calendarOptions: WritableSignal<CalendarOptions> = signal({
@@ -53,8 +53,8 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit{
         allDaySlot: false,
         height: "70vh",
         eventBackgroundColor: "#666666",
-        eventBorderColor: "#050505",
-        eventTextColor: "var(--system-color-primary-white)",
+        eventBorderColor: "var(--sys-color-primary-blue)",
+        eventTextColor: "var(--sys-color-primary-white)",
         slotMinTime: '08:00',
         slotMaxTime: '22:00',
         slotDuration: '00:15',
@@ -67,16 +67,22 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit{
         //eventClick: this.showHoverDialog.bind(this),
     });
 
-
     constructor(
         private layoutService: LayoutService,
+        private messageService: MessageService
     ) {
         this.layoutService.changeStyle(true);
     }
 
-    protected setNewTable(newTable: Observable<TimeTable>){
-        console.log("trigger")
-        this.selectedTimeTable$ = newTable;
+    protected setNewTable(newTable: TimeTable){
+        this.selectedTimeTable = newTable;
+        this.currentSessions = this.selectedTimeTable.courseSessions;
+
+        this.messageService.add({
+            severity: 'success',
+            summary: 'LOAD NEW TABLE',
+            detail: 'finished loading the new table'
+        });
     }
 
     private clearCalendar(){
@@ -109,8 +115,5 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit{
 
     ngAfterViewInit(): void {
         this.clearCalendar();
-    }
-
-    ngOnDestroy(): void {
     }
 }

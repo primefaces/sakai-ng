@@ -11,7 +11,7 @@ import {TimeTable} from "../../../../../assets/models/dto/time-table";
   templateUrl: './dashboard-header.component.html',
 })
 export class DashboardHeaderComponent implements OnInit{
-    @Output() setNewTimeTable = new EventEmitter<Observable<TimeTable>>();
+    @Output() setNewTimeTable = new EventEmitter<TimeTable>();
 
     protected availableTables: Observable<TimeTableName[]> = of([]);
     protected shownTableDD: TimeTableName | null = null;
@@ -22,12 +22,12 @@ export class DashboardHeaderComponent implements OnInit{
         private changeService: ChangeService
     ) {}
 
-    protected handleTableChange() {
+    protected async handleTableChange() {
         //this.collisionService.clearCollisions();
         //this.changeService.clearChanges();
         if(!this.shownTableDD!.id) return;
 
-        const newTable = this.globalTableService.getSpecificTimeTable(this.shownTableDD!.id);
+        const newTable = await this.globalTableService.getSpecificTimeTable(this.shownTableDD!.id);
         this.setNewTimeTable.emit(newTable);
     }
 

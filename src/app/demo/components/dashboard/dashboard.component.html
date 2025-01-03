@@ -23,7 +23,7 @@
     <div class="col-12 xl:col-12">
         <div class="card" id="calendar">
             <full-calendar #cal class="custom-calendar" [options]="calendarOptions()"
-                           [events]="(selectedTimeTable$ | async)?.courseSessions | SessionToEvent: 'dashboard'"/>
+                           [events]="currentSessions | SessionToEvent: 'dashboard'"/>
         </div>
     </div>
 </div>
