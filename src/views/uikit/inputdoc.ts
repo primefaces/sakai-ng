@@ -27,6 +27,7 @@ import {InputGroupAddonModule} from "primeng/inputgroupaddon";
 import {TextareaModule} from "primeng/textarea";
 import { CountryService } from '@/src/service/country.service';
 import { NodeService } from '@/src/service/node.service';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 @Component({
     standalone: true,
@@ -51,6 +52,7 @@ import { NodeService } from '@/src/service/node.service';
         KnobModule,
         SelectModule,
         DatePickerModule,
+        ToggleButtonModule,
         ToggleSwitchModule,
         TreeSelectModule,
         MultiSelectModule,
@@ -172,7 +174,7 @@ import { NodeService } from '@/src/service/node.service';
                     <p-multiselect [(ngModel)]="multiselectValue" [options]="multiselectValues" optionLabel="name" placeholder="Select Countries" [filter]="true">
                         <ng-template #selecteditems let-countries>
                             @for (country of countries; track country.code) {
-                                <div class="inline-flex items-center py-1 px-2 bg-primary text-primary-contrast text-primary-contrast rounded-border mr-2">
+                                <div class="inline-flex items-center py-1 px-2 bg-primary text-primary-contrast rounded-border mr-2">
                                     <span [class]="'mr-2 flag flag-' + country.code.toLowerCase()" style="width: 18px; height: 12px"></span>
                                     <div>{{ country.name }}</div>
                                 </div>
@@ -192,7 +194,7 @@ import { NodeService } from '@/src/service/node.service';
 
             <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">ToggleButton</div>
-                    <p-togglebutton [(ngModel)]="toggleValue" onLabel="Yes" offLabel="No" :style="{ width: '10em' }"/>
+                    <p-togglebutton [(ngModel)]="toggleValue" onLabel="Yes" offLabel="No" [style]="{ width: '10em' }"/>
 
                     <div class="font-semibold text-xl">SelectButton</div>
                     <p-selectbutton [(ngModel)]="selectButtonValue" [options]="selectButtonValues" optionLabel="name"/>

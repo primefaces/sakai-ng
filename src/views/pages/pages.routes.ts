@@ -1,10 +1,15 @@
 import { Routes } from '@angular/router';
+import { Documentation } from '@/src/views/pages/documentation';
+import { Crud } from '@/src/views/pages/crud';
+import { Landing } from '@/src/views/pages/landing';
+import { Empty } from '@/src/views/pages/empty';
+import { Notfound } from '@/src/views/pages/notfound';
 
 export default [
-  { path: 'documentation', loadComponent: () => import('./documentation').then(c => c.Documentation)},
-  { path: 'crud', loadComponent: () => import('./crud').then(c => c.Crud)},
-  { path: 'landing', loadComponent: () => import('./landing').then(c => c.Landing)},
-  { path: 'empty', loadComponent: () => import('./empty').then(c => c.Empty)},
-  { path: 'notfound', loadComponent: () => import('./notfound').then(c => c.Notfound)},
+  { path: 'documentation', component: Documentation},
+  { path: 'crud', component: Crud},
+  { path: 'landing', component: Landing},
+  { path: 'empty', component: Empty},
+  { path: 'notfound', component: Notfound},
   { path: '**', redirectTo: '/notfound' }
 ] as Routes;

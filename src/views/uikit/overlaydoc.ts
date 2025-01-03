@@ -116,7 +116,7 @@ import { TooltipModule } from 'primeng/tooltip';
             </div>
         </div>
     </div>`,
-    providers: [ConfirmationService, MessageService]
+    providers: [ConfirmationService, MessageService, ProductService]
 })
 export class OverlayDoc implements OnInit {
 

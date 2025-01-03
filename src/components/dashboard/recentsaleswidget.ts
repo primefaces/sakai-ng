@@ -40,6 +40,7 @@ import { Product, ProductService } from '@/src/service/product.service';
             </ng-template>
         </p-table>
     </div>`,
+    providers: [ProductService],
 })
 export class RecentSalesWidget {
     products!: Product[];

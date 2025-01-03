@@ -51,6 +51,7 @@ import { PhotoService } from '@/src/service/photo.service';
             </ng-template>
         </p-galleria>
     </div>`,
+    providers: [ProductService, PhotoService],
 })
 export class MediaDoc implements OnInit {
 

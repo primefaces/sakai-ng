@@ -159,6 +159,7 @@ import { Product, ProductService } from '@/src/service/product.service';
                 </div>
             </div>
         </div>`,
+    providers: [ProductService]
 })
 export class ListDoc {
 

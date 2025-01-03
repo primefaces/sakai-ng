@@ -237,7 +237,7 @@ import { Product, ProductService } from '@/src/service/product.service';
           </p-dialog>
       </div>
   `,
-  providers: [MessageService]
+  providers: [MessageService, ProductService],
 })
 export class Crud implements OnInit {
 

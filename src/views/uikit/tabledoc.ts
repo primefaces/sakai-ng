@@ -386,7 +386,7 @@ interface expandedRows {
                 </ng-template>
             </p-table>
         </div>`,
-    providers: [ConfirmationService, MessageService]
+    providers: [ConfirmationService, MessageService, CustomerService, ProductService],
 })
 export class TableDoc implements OnInit {
 

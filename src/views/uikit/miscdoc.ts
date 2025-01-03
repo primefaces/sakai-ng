@@ -28,7 +28,7 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
         ScrollTopModule,
         OverlayBadgeModule
     ],
-    template: `<template>
+    template: `
         <div class="card">
             <div class="font-semibold text-xl mb-4">ProgressBar</div>
             <div class="flex flex-col md:flex-row gap-4">
@@ -195,7 +195,6 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
                 </div>
             </div>
         </div>
-    </template>
     `,
 })
 export class MiscDoc {
