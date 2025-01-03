@@ -4,12 +4,13 @@ import { ApplicationConfig } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withEnabledBlockingInitialNavigation, withInMemoryScrolling } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }), withEnabledBlockingInitialNavigation()),
     provideHttpClient(withFetch()),
     provideAnimationsAsync(),
-    providePrimeNG({ ripple: false, inputStyle: 'outlined' })
+    providePrimeNG({ theme: {preset: Aura, options: {darkModeSelector: '.app-dark'}} ,ripple: false, inputStyle: 'outlined' })
   ]
 };
