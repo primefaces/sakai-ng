@@ -1,6 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Customer } from '../api/customer';
+
+export interface Country {
+    name?: string;
+    code?: string;
+}
+
+export interface Representative {
+    name?: string;
+    image?: string;
+}
+
+export interface Customer {
+    id?: number;
+    name?: string;
+    country?: Country;
+    company?: string;
+    date?: string;
+    status?: string;
+    activity?: number;
+    representative?: Representative;
+}
 
 @Injectable()
 export class CustomerService {
