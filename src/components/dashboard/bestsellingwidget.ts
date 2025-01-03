@@ -5,6 +5,7 @@ import { MenuModule } from 'primeng/menu';
 
 @Component({
   standalone:true,
+    selector: 'app-best-selling-widget',
   imports: [
     CommonModule,
     ButtonModule,

@@ -5,6 +5,7 @@ import { LayoutService } from '@/src/app/layout/service/app.layout.service';
 
 @Component({
     standalone:true,
+    selector: 'app-revenue-stream-widget',
     imports: [
         ChartModule,
     ],

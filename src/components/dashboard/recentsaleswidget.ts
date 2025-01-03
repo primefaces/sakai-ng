@@ -8,6 +8,7 @@ import { ProductService } from '@/src/app/demo/service/product.service';
 
 @Component({
     standalone:true,
+    selector: 'app-recent-sales-widget',
     imports: [
         CommonModule,
         TableModule,

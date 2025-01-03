@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
     standalone:true,
+    selector: 'app-stats-widget',
     imports: [CommonModule],
     template: `<div class="col-12 lg:col-6 xl:col-3">
         <div class="card mb-0">

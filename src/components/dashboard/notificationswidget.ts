@@ -4,6 +4,7 @@ import { MenuModule } from 'primeng/menu';
 
 @Component({
     standalone:true,
+    selector: 'app-notifications-widget',
     imports: [
         ButtonModule,
         MenuModule,
@@ -55,5 +56,8 @@ import { MenuModule } from 'primeng/menu';
     </div>`,
 })
 export class NotificationsWidget {
-
+    items = [
+        { label: 'Add New', icon: 'pi pi-fw pi-plus' },
+        { label: 'Remove', icon: 'pi pi-fw pi-trash' }
+    ];
 }
