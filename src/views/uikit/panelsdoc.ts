@@ -14,6 +14,8 @@ import { SplitterModule } from 'primeng/splitter';
 import { PanelModule } from 'primeng/panel';
 import { MenuItem } from 'primeng/api';
 import { TabsModule } from 'primeng/tabs';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 @Component({
     standalone:true,
@@ -32,6 +34,8 @@ import { TabsModule } from 'primeng/tabs';
         SplitterModule,
         PanelModule,
         TabsModule,
+        IconFieldModule,
+        InputIconModule
     ],
     template: `
             <div class="flex flex-col">
@@ -44,14 +48,14 @@ import { TabsModule } from 'primeng/tabs';
                             <p-button icon="pi pi-upload" severity="secondary" text />
                         </ng-template>
 
-                        <template #center>
+                        <ng-template #center>
                             <p-iconfield>
                                 <p-inputicon>
-                                    <i class="pi pi-search" />
+                                    <i class="pi pi-search" ></i>
                                 </p-inputicon>
                                 <input pInputText placeholder="Search" />
                             </p-iconfield>
-                        </template>
+                        </ng-template>
 
                         <ng-template #end><p-splitbutton label="Save" [model]="items"></p-splitbutton></ng-template>
                     </p-toolbar>
