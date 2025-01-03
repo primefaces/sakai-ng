@@ -9,10 +9,11 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { Product, ProductService } from '@/src/service/product.service';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
     standalone: true,
-    imports:[ToastModule, DialogModule, ButtonModule, DrawerModule, PopoverModule, ConfirmPopupModule, InputTextModule, FormsModule],
+    imports:[ToastModule, DialogModule, ButtonModule, DrawerModule, PopoverModule, ConfirmPopupModule, InputTextModule, FormsModule, TooltipModule],
     template:`
        <div class="flex flex-col md:flex-row gap-8">
         <div class="md:w-1/2">

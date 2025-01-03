@@ -63,7 +63,7 @@ import { Product, ProductService } from '@/src/service/product.service';
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="flex flex-col md:items-end gap-8">
+                                        <div class="flex flex-col md:items-end gap-20">
                                             <span class="text-xl font-semibold">{{ item.price }}</span>
                                             <div class="flex flex-row-reverse md:flex-row gap-2">
                                                 <p-button icon="pi pi-heart" [outlined]="true"></p-button>
@@ -84,7 +84,7 @@ import { Product, ProductService } from '@/src/service/product.service';
                                  class="col-span-12 sm:col-span-6 lg:col-span-4 p-2">
                                 <div
                                     class="p-6 border border-surface-200 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 rounded flex flex-col">
-                                    <div class="bg-surface-50 flex justify-center rounded p-4">
+                                    <div class="bg-surface-50 flex justify-center rounded p-6">
                                         <div class="relative mx-auto">
                                             <img class="rounded w-full"
                                                  src="https://primefaces.org/cdn/primevue/images/product/{{item.image}}"
@@ -94,7 +94,7 @@ import { Product, ProductService } from '@/src/service/product.service';
                                                  [style]="{left: '4px', top: '4px'}"></p-tag>
                                         </div>
                                     </div>
-                                    <div class="pt-6">
+                                    <div class="pt-12">
                                         <div class="flex flex-row justify-between items-start gap-2">
                                             <div>
                                                 <span
@@ -134,10 +134,10 @@ import { Product, ProductService } from '@/src/service/product.service';
                 </p-dataview>
             </div>
 
-            <div class="flex flex-col lg:flex-row gap-8">
+            <div class="flex flex-col lg:flex-row gap-20">
                 <div class="lg:w-2/3">
                     <div class="card">
-                        <div class="font-semibold text-xl mb-4">PickList</div>
+                        <div class="font-semibold text-xl mb-6">PickList</div>
                         <p-pick-list [source]="sourceCities"  [target]="targetCities" breakpoint="1400px">
                             <ng-template #item let-item>
                                 {{ item.name }}
@@ -148,7 +148,7 @@ import { Product, ProductService } from '@/src/service/product.service';
 
                 <div class="lg:w-1/3">
                     <div class="card">
-                        <div class="font-semibold text-xl mb-4">OrderList</div>
+                        <div class="font-semibold text-xl mb-6">OrderList</div>
                         <p-orderList [value]="orderCities" header="Cities" [dragdrop]="true"
                                      [listStyle]="{'height':'250px'}">
                             <ng-template #item let-city>

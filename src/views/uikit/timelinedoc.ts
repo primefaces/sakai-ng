@@ -12,40 +12,40 @@ import { ButtonModule } from 'primeng/button';
         ButtonModule,
         CardModule
     ],
-    template: `<div class="grid">
-        <div class="col-12 md:col-6">
+    template: `    <div class="grid grid-cols-12 gap-8">
+        <div class="col-span-6">
             <div class="card">
-                <h5>Left Align</h5>
+                <div class="font-semibold text-xl mb-4">Left Align</div>
                 <p-timeline [value]="events1">
-                    <ng-template pTemplate="content" let-event>
+                    <ng-template #content let-event>
                         {{event.status}}
                     </ng-template>
                 </p-timeline>
             </div>
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-span-6">
             <div class="card">
-                <h5>Right Align</h5>
+                <div class="font-semibold text-xl mb-4">Right Align</div>
                 <p-timeline [value]="events1" align="right">
-                    <ng-template pTemplate="content" let-event>
+                    <ng-template #content let-event>
                         {{event.status}}
                     </ng-template>
                 </p-timeline>
             </div>
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-span-6">
             <div class="card">
-                <h5>Alternate Align</h5>
+                <div class="font-semibold text-xl mb-4">Alternate Align</div>
                 <p-timeline [value]="events1" align="alternate">
-                    <ng-template pTemplate="content" let-event>
+                    <ng-template #content let-event>
                         {{event.status}}
                     </ng-template>
                 </p-timeline>
             </div>
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-span-6">
             <div class="card">
-                <h5>Opposite Content</h5>
+                <div class="font-semibold text-xl mb-4">Opposite Content</div>
                 <p-timeline [value]="events1">
                     <ng-template pTemplate="content" let-event>
                         <small class="p-text-secondary">{{event.date}}</small>
@@ -56,52 +56,54 @@ import { ButtonModule } from 'primeng/button';
                 </p-timeline>
             </div>
         </div>
-    </div>
-
-    <div class="card">
-        <h5>Customized</h5>
-        <p-timeline [value]="events1" align="alternate" styleClass="customized-timeline">
-            <ng-template pTemplate="marker" let-event>
+        <div class="col-span-full">
+            <div class="card">
+                <div class="font-semibold text-xl mb-4">Templating</div>
+                <p-timeline [value]="events1" align="alternate" styleClass="customized-timeline">
+                    <ng-template pTemplate="marker" let-event>
         <span class="flex z-1 w-2rem h-2rem align-items-center justify-content-center text-white border-circle shadow-2" [style.backgroundColor]="event.color">
             <i [ngClass]="event.icon"></i>
         </span>
-            </ng-template>
-            <ng-template pTemplate="content" let-event>
-                <p-card [header]="event.status" [subheader]="event.date">
-                    <img *ngIf="event.image" [src]="'assets/demo/images/product/' + event.image" [alt]="event.name" width="200" class="shadow-2" />
-                    <p class="line-height-3 my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-                        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
-                    <button pButton label="Read more" class="p-button-outlined mb-5"></button>
-                </p-card>
-            </ng-template>
-        </p-timeline>
-    </div>
+                    </ng-template>
+                    <ng-template pTemplate="content" let-event>
+                        <p-card [header]="event.status" [subheader]="event.date">
+                            <img *ngIf="event.image" [src]="'assets/demo/images/product/' + event.image" [alt]="event.name" width="200" class="shadow-2" />
+                            <p class="line-height-3 my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+                                quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+                            <button pButton label="Read more" class="p-button-outlined mb-5"></button>
+                        </p-card>
+                    </ng-template>
+                </p-timeline>
+            </div>
+        </div>
+        <div class="col-span-full">
+            <div class="card">
+                <div class="font-semibold text-xl mb-4">Horizontal</div>
+                <div class="font-semibold mb-2">Top Align</div>
+                <p-timeline [value]="events2" layout="horizontal" align="top">
+                    <ng-template pTemplate="content" let-event>
+                        {{event}}
+                    </ng-template>
+                </p-timeline>
 
-    <div class="card">
-        <h5>Horizontal</h5>
-        <h6>Top Align</h6>
-        <p-timeline [value]="events2" layout="horizontal" align="top">
-            <ng-template pTemplate="content" let-event>
-                {{event}}
-            </ng-template>
-        </p-timeline>
+                <div class="font-semibold mt-4 mb-2">Bottom Align</div>
+                <p-timeline [value]="events2" layout="horizontal" align="bottom">
+                    <ng-template pTemplate="content" let-event>
+                        {{event}}
+                    </ng-template>
+                </p-timeline>
 
-        <h6>Bottom Align</h6>
-        <p-timeline [value]="events2" layout="horizontal" align="bottom">
-            <ng-template pTemplate="content" let-event>
-                {{event}}
-            </ng-template>
-        </p-timeline>
-
-        <h6>Alternate Align</h6>
-        <p-timeline [value]="events2" layout="horizontal" align="alternate">
-            <ng-template pTemplate="content" let-event>
-                {{event}}
-            </ng-template>
-            <ng-template pTemplate="opposite" let-event>
-                &nbsp;
-            </ng-template>
-        </p-timeline>
+                <div class="font-semibold mt-4 mb-2">Alternate Align</div>
+                <p-timeline [value]="events2" layout="horizontal" align="alternate">
+                    <ng-template pTemplate="content" let-event>
+                        {{event}}
+                    </ng-template>
+                    <ng-template pTemplate="opposite" let-event>
+                        &nbsp;
+                    </ng-template>
+                </p-timeline>
+            </div>
+        </div>
     </div>`,
 })
 export class TimelineDoc {

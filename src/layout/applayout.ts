@@ -33,7 +33,7 @@ import { LayoutService } from '@/src/service/layout.service';
             <app-footer></app-footer>
         </div>
         <app-configurator></app-configurator>
-        <div class="layout-mask"></div>
+        <div class="layout-mask animate-fadein"></div>
     </div>
     `,
 })

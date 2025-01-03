@@ -8,7 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { PrimeNG } from 'primeng/config';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { SelectButton } from 'primeng/selectbutton';
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { LayoutService } from '@/src/service/layout.service';
 
@@ -20,51 +20,52 @@ const presets = {
 @Component({
     selector: 'app-configurator',
     standalone: true,
-    imports: [CommonModule, FormsModule, InputSwitchModule, ButtonModule, RadioButtonModule, SelectButton, ToggleSwitchModule],
+    imports: [CommonModule, FormsModule, InputSwitchModule, ButtonModule, RadioButtonModule, SelectButtonModule, ToggleSwitchModule],
     template: `
-        <div class="config-panel-content">
-            <div class="config-panel-colors">
-                <span class="config-panel-label">Primary</span>
+        <div
+            class="config-panel hidden absolute top-[3.25rem] right-0 w-64 p-4 bg-surface-0 dark:bg-surface-900 border border-surface rounded-border origin-top shadow-[0px_3px_5px_rgba(0,0,0,0.02),0px_0px_2px_rgba(0,0,0,0.05),0px_1px_4px_rgba(0,0,0,0.08)]"
+        >
+            <div class="flex flex-col gap-4">
                 <div>
-                    @for (primaryColor of primaryColors(); track primaryColor.name) {
-                        <button
-                            type="button"
-                            [title]="primaryColor.name"
-                            (click)="updateColors($event, 'primary', primaryColor)"
-                            [ngClass]="{ 'active-color': primaryColor.name === selectedPrimaryColor() }"
-                            [style]="{
+                    <span class="text-sm text-muted-color font-semibold">Primary</span>
+                    <div class="pt-2 flex gap-2 flex-wrap justify-between">
+                        @for (primaryColor of primaryColors(); track primaryColor.name) {
+                            <button
+                                type="button"
+                                [title]="primaryColor.name"
+                                (click)="updateColors($event, 'primary', primaryColor)"
+                                [ngClass]="{ 'active-color': primaryColor.name === selectedPrimaryColor() }"
+                                [style]="{
                                 'background-color': primaryColor.name === 'noir' ? 'var(--text-color)' : primaryColor?.palette['500']
                             }"
-                        ></button>
-                    }
+                            ></button>
+                        }
+                    </div>
                 </div>
-            </div>
-
-            <div class="config-panel-colors">
-                <span class="config-panel-label">Surface</span>
                 <div>
-                    @for (surface of surfaces; track surface.name) {
-                        <button
-                            type="button"
-                            [title]="surface.name"
-                            (click)="updateColors($event, 'surface', surface)"
-                            [ngClass]="{ 'active-color': selectedSurfaceColor() ? selectedSurfaceColor() === surface.name : layoutService.layoutConfig().darkTheme ? surface.name === 'zinc' : surface.name === 'slate' }"
-                            [style]="{
+                    <span class="text-sm text-muted-color font-semibold">Surface</span>
+                    <div class="pt-2 flex gap-2 flex-wrap justify-between">
+                        @for (surface of surfaces; track surface.name) {
+                            <button
+                                type="button"
+                                [title]="surface.name"
+                                (click)="updateColors($event, 'surface', surface)"
+                                [ngClass]="{ 'active-color': selectedSurfaceColor() ? selectedSurfaceColor() === surface.name : layoutService.layoutConfig().darkTheme ? surface.name === 'zinc' : surface.name === 'slate' }"
+                                [style]="{
                                 'background-color': surface.name === 'noir' ? 'var(--text-color)' : surface?.palette['500']
                             }"
-                        ></button>
-                    }
+                            ></button>
+                        }
+                    </div>
                 </div>
-            </div>
+                <div class="flex flex-col gap-2">
+                    <span class="text-sm text-muted-color font-semibold">Presets</span>
+                    <p-selectbutton [options]="presets" [ngModel]="selectedPreset()" (ngModelChange)="onPresetChange($event)" [allowEmpty]="false" />
 
-            <div class="config-panel-settings">
-                <span class="config-panel-label">Presets</span>
-                <p-selectbutton [options]="presets" [ngModel]="selectedPreset()" (ngModelChange)="onPresetChange($event)" [allowEmpty]="false" size="small" />
-            </div>
-            <div class="flex">
-                <div class="config-panel-settings">
-                    <span class="config-panel-label">Ripple</span>
-                    <p-toggleswitch [(ngModel)]="ripple" />
+                </div>
+                <div class="flex flex-col gap-2">
+                    <span class="text-sm text-muted-color font-semibold">Menu Mode</span>
+                    <p-selectbutton [ngModel]="menuMode()" (ngModelChange)="onMenuModeChange($event)" [options]="presets" [allowEmpty]="false"  />
                 </div>
             </div>
         </div>
@@ -74,14 +75,6 @@ const presets = {
     },
 })
 export class AppConfigurator {
-    get ripple() {
-        return this.config.ripple();
-    }
-
-    set ripple(value: boolean) {
-        this.config.ripple.set(value);
-    }
-
     config: PrimeNG = inject(PrimeNG);
 
     layoutService: LayoutService = inject(LayoutService);
@@ -89,26 +82,6 @@ export class AppConfigurator {
     platformId = inject(PLATFORM_ID);
 
     presets = Object.keys(presets);
-
-    onRTLChange(value: boolean) {
-        this.layoutService.layoutConfig.update((state) => ({ ...state, RTL: value }));
-        if (!(document as any).startViewTransition) {
-            this.toggleRTL(value);
-            return;
-        }
-
-        (document as any).startViewTransition(() => this.toggleRTL(value));
-    }
-
-    toggleRTL(value: boolean) {
-        const htmlElement = document.documentElement;
-
-        if (value) {
-            htmlElement.setAttribute('dir', 'rtl');
-        } else {
-            htmlElement.removeAttribute('dir');
-        }
-    }
 
     ngOnInit() {
         if (isPlatformBrowser(this.platformId)) {
@@ -263,6 +236,8 @@ export class AppConfigurator {
     selectedSurfaceColor = computed(() => this.layoutService.layoutConfig().surface);
 
     selectedPreset = computed(() => this.layoutService.layoutConfig().preset);
+
+    menuMode = computed(() => this.layoutService.layoutConfig().menuMode);
 
     primaryColors = computed(() => {
         const presetPalette = presets[this.layoutService.layoutConfig().preset].primitive;
@@ -474,5 +449,9 @@ export class AppConfigurator {
             this.config.ripple.set(false);
         }
         $t().preset(preset).preset(this.getPresetExt()).surfacePalette(surfacePalette).use({ useDefaultOptions: true });
+    }
+
+    onMenuModeChange(event: string) {
+        this.layoutService.layoutConfig.update((prev) => ({ ...prev, menuMode: event }));
     }
 }

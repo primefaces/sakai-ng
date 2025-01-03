@@ -11,56 +11,46 @@ import { PhotoService } from '@/src/service/photo.service';
 @Component({
     standalone:true,
     imports:[CommonModule, CarouselModule,ButtonModule,GalleriaModule, ImageModule, TagModule],
-    template: `<div class="grid p-fluid">
-    <div class="col-12">
-        <div class="card">
-            <h5>Carousel</h5>
-            <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="carouselResponsiveOptions">
-    <ng-template let-product #item>
-        <div class="border border-surface rounded-border m-2 p-4">
-            <div class="mb-4">
-                <div class="relative mx-auto">
-                <img src="assets/demo/images/product/{{product.image}}" [alt]="product.name" class="shadow-4" width="50%"/>
-                    <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" class="absolute" styleClass="dark:!bg-surface-900" [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
+    template: `<div class="card">
+        <div class="font-semibold text-xl mb-4">Carousel</div>
+        <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="carouselResponsiveOptions">
+            <ng-template let-product #item>
+                <div class="border border-surface rounded-border m-2 p-6">
+                    <div class="mb-6">
+                        <div class="relative mx-auto">
+                            <img src="assets/demo/images/product/{{product.image}}" [alt]="product.name" class="shadow-lg" width="50%"/>
+                            <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" class="absolute" styleClass="dark:!bg-surface-900" [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
+                        </div>
+                    </div>
+                    <div class="mb-6 font-medium">{{ product.name }}</div>
+                    <div class="flex justify-between items-center">
+                        <div class="mt-0 font-semibold text-xl">{{ '$' + product.price }}</div>
+                        <span>
+                                <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
+                                <p-button icon="pi pi-shopping-cart" styleClass="ml-2" />
+                            </span>
+                    </div>
                 </div>
-            </div>
-            <div class="mb-4 font-medium">{{ product.name }}</div>
-            <div class="flex justify-between items-center">
-                <div class="mt-0 font-semibold text-xl">{{ '$' + product.price }}</div>
-                <span>
-                    <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
-                    <p-button icon="pi pi-shopping-cart" styleClass="ml-2" />
-                </span>
-            </div>
-        </div>
-    </ng-template>
-</p-carousel>
-        </div>
+            </ng-template>
+        </p-carousel>
     </div>
 
-    <div class="col-12">
-        <div class="card">
-            <h5>Image</h5>
-            <div class="flex justify-content-center">
-                <p-image src="assets/demo/images/galleria/galleria10.jpg" alt="Image" width="250" [preview]="true"></p-image>
-            </div>
-        </div>
+    <div class="card">
+        <div class="font-semibold text-xl mb-4">Image</div>
+        <p-image src="assets/demo/images/galleria/galleria10.jpg" alt="Image" width="250" [preview]="true"></p-image>
     </div>
 
-    <div class="col-12">
-        <div class="card">
-            <h5>Galleria</h5>
-<p-galleria [value]="images" [responsiveOptions]="galleriaResponsiveOptions" [containerStyle]="{ 'max-width': '640px' }" [numVisible]="5">
-    <ng-template #item let-item>
-        <img [src]="item.itemImageSrc" style="width:100%" />
-    </ng-template>
-    <ng-template #thumbnail let-item>
-        <img [src]="item.thumbnailImageSrc" />
-    </ng-template>
-</p-galleria>
-        </div>
-    </div>
-</div>`,
+    <div class="card">
+        <div class="font-semibold text-xl mb-4">Galleria</div>
+        <p-galleria [value]="images" [responsiveOptions]="galleriaResponsiveOptions" [containerStyle]="{ 'max-width': '640px' }" [numVisible]="5">
+            <ng-template #item let-item>
+                <img [src]="item.itemImageSrc" style="width:100%" />
+            </ng-template>
+            <ng-template #thumbnail let-item>
+                <img [src]="item.thumbnailImageSrc" />
+            </ng-template>
+        </p-galleria>
+    </div>`,
 })
 export class MediaDoc implements OnInit {
 

@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
     imports: [CommonModule],
   template: `
-    <div class="card mb-3">
+    <div class="card mb-4">
       <div>
         <h2>Documentation</h2>
         <h4>Getting Started</h4>

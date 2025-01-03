@@ -14,7 +14,8 @@ import { TopbarWidget } from '@/src/components/landing/topbarwidget.component';
 @Component({
   standalone: true,
   imports: [RouterModule,TopbarWidget, HeroWidget, FeaturesWidget, HighlightsWidget, PricingWidget, FooterWidget, RippleModule, StyleClassModule, ButtonModule, DividerModule],
-  template:`<div class="bg-surface-0 dark:bg-surface-900">
+  template:`
+  <div class="bg-surface-0 dark:bg-surface-900">
       <div id="home" class="landing-wrapper overflow-hidden">
           <div class="py-6 px-6 mx-0 md:mx-12 lg:mx-20 lg:px-20 flex items-center justify-between relative lg:static">
               <topbar-widget />
@@ -25,6 +26,7 @@ import { TopbarWidget } from '@/src/components/landing/topbarwidget.component';
           <pricing-widget />
           <footer-widget />
       </div>
-  </div>`,
+  </div>
+  `,
 })
 export class Landing {}

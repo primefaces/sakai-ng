@@ -16,7 +16,7 @@ import { Product, ProductService } from '@/src/service/product.service';
         RippleModule,
     ],
     template: `<div class="card">
-        <h5>Recent Sales</h5>
+        <div class="font-semibold text-xl mb-4">Recent Sales</div>
         <p-table [value]="products" [paginator]="true" [rows]="5" responsiveLayout="scroll">
             <ng-template pTemplate="header">
                 <tr>
@@ -29,7 +29,7 @@ import { Product, ProductService } from '@/src/service/product.service';
             <ng-template pTemplate="body" let-product>
                 <tr>
                     <td style="width: 15%; min-width: 5rem;">
-                        <img src="assets/demo/images/product/{{product.image}}" class="shadow-4" alt="{{product.name}}" width="50">
+                        <img src="assets/demo/images/product/{{product.image}}" class="shadow-lg" alt="{{product.name}}" width="50">
                     </td>
                     <td style="width: 35%; min-width: 7rem;">{{product.name}}</td>
                     <td style="width: 35%; min-width: 8rem;">{{product.price | currency:'USD'}}</td>

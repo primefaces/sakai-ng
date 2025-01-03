@@ -30,7 +30,7 @@ import {TextareaModule} from "primeng/textarea";
 
                 <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">Vertical Grid</div>
-                    <div class="flex flex-wrap gap-4">
+                    <div class="flex flex-wrap gap-6">
                         <div class="flex flex-col grow basis-0 gap-2">
                             <label for="name2">Name</label>
                             <input pInputText id="name2" type="text" />
@@ -45,13 +45,13 @@ import {TextareaModule} from "primeng/textarea";
             <div class="md:w-1/2">
                 <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">Horizontal</div>
-                    <div class="grid grid-cols-12 gap-2">
+                    <div class="grid grid-cols-12 gap-4 grid-cols-12 gap-2">
                         <label for="name3" class="flex items-center col-span-12 mb-2 md:col-span-2 md:mb-0">Name</label>
                         <div class="col-span-12 md:col-span-10">
                             <input pInputText id="name3" type="text" />
                         </div>
                     </div>
-                    <div class="grid grid-cols-12 gap-2">
+                    <div class="grid grid-cols-12 gap-4 grid-cols-12 gap-2">
                         <label for="email3" class="flex items-center col-span-12 mb-2 md:col-span-2 md:mb-0">Email</label>
                         <div class="col-span-12 md:col-span-10">
                             <input pInputText id="email3" type="text" />
@@ -61,7 +61,7 @@ import {TextareaModule} from "primeng/textarea";
 
                 <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">Inline</div>
-                    <div class="flex flex-wrap items-start gap-4">
+                    <div class="flex flex-wrap items-start gap-6">
                         <div class="field">
                             <label for="firstname1" class="sr-only">Firstname</label>
                             <input pInputText id="firstname1" type="text" placeholder="Firstname" />
@@ -84,10 +84,10 @@ import {TextareaModule} from "primeng/textarea";
             </div>
         </div>
 
-        <div class="flex mt-8">
-            <div class="card flex flex-col gap-4 w-full">
+        <div class="flex mt-20">
+            <div class="card flex flex-col gap-6 w-full">
                 <div class="font-semibold text-xl">Advanced</div>
-                <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex flex-col md:flex-row gap-6">
                     <div class="flex flex-wrap gap-2 w-full">
                         <label for="firstname2">Firstname</label>
                         <input pInputText id="firstname2" type="text" />
@@ -103,7 +103,7 @@ import {TextareaModule} from "primeng/textarea";
                     <textarea pTextarea id="address" rows="4"></textarea>
                 </div>
 
-                <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex flex-col md:flex-row gap-6">
                     <div class="flex flex-wrap gap-2 w-full">
                         <label for="state">State</label>
                         <p-select id="state" [(ngModel)]="dropdownItem" [options]="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></p-select>

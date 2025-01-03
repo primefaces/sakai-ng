@@ -2,13 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   standalone: true,
-  template: `<div class="grid">
-    <div class="col-12">
-      <div class="card">
-        <h4>Empty Page</h4>
-        <p>This is your empty page template to start building beautiful applications.</p>
-      </div>
-    </div>
+  template: `
+  <div class="card">
+      <div class="font-semibold text-xl mb-4">Empty Page</div>
+      <p>Use this page to start from scratch and place your custom content.</p>
   </div>`
 })
 export class Empty { }

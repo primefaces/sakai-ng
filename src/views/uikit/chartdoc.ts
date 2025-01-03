@@ -3,47 +3,53 @@ import { ChartModule } from 'primeng/chart';
 import { CommonModule } from '@angular/common';
 import { debounceTime, Subscription } from 'rxjs';
 import { LayoutService } from '@/src/service/layout.service';
+import { FluidModule } from 'primeng/fluid';
 
 @Component({
     standalone:true,
     imports: [
         CommonModule,
-        ChartModule
+        ChartModule,
+        FluidModule
     ],
-    template: `<div class="grid p-fluid">
-        <div class="col-12 lg:col-6">
+    template: `    <p-fluid class="grid grid-cols-12 gap-8">
+        <div class="col-span-12 xl:col-span-6">
             <div class="card">
-                <h5>Linear Chart</h5>
+                <div class="font-semibold text-xl mb-4">Linear</div>
                 <p-chart type="line" [data]="lineData" [options]="lineOptions"></p-chart>
             </div>
-
-            <div class="card flex flex-column align-items-center">
-                <h5 class="text-left w-full">Pie Chart</h5>
+        </div>
+        <div class="col-span-12 xl:col-span-6">
+            <div class="card">
+                <div class="font-semibold text-xl mb-4">Bar</div>
+                <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
+            </div>
+        </div>
+        <div class="col-span-12 xl:col-span-6">
+            <div class="card flex flex-col items-center">
+                <div class="font-semibold text-xl mb-4">Pie</div>
                 <p-chart type="pie" [data]="pieData" [options]="pieOptions"></p-chart>
             </div>
-
-            <div class="card flex flex-column align-items-center">
-                <h5 class="text-left w-full">Polar Area Chart</h5>
+        </div>
+        <div class="col-span-12 xl:col-span-6">
+            <div class="card flex flex-col items-center">
+                <div class="font-semibold text-xl mb-4">Doughnut</div>
+                <p-chart type="doughnut" [data]="pieData" [options]="pieOptions"></p-chart>
+            </div>
+        </div>
+        <div class="col-span-12 xl:col-span-6">
+            <div class="card flex flex-col items-center">
+                <div class="font-semibold text-xl mb-4">Polar Area</div>
                 <p-chart type="polarArea" [data]="polarData" [options]="polarOptions"></p-chart>
             </div>
         </div>
-        <div class="col-12 lg:col-6">
-            <div class="card">
-                <h5>Bar Chart</h5>
-                <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
-            </div>
-
-            <div class="card flex flex-column align-items-center">
-                <h5 class="text-left w-full">Doughnut Chart</h5>
-                <p-chart type="doughnut" [data]="pieData" [options]="pieOptions"></p-chart>
-            </div>
-
-            <div class="card flex flex-column align-items-center">
-                <h5 class="text-left w-full">Radar Chart</h5>
+        <div class="col-span-12 xl:col-span-6">
+            <div class="card flex flex-col items-center">
+                <div class="font-semibold text-xl mb-4">Radar</div>
                 <p-chart type="radar" [data]="radarData" [options]="radarOptions"></p-chart>
             </div>
         </div>
-    </div>
+    </p-fluid>
     `,
 })
 export class ChartDoc {

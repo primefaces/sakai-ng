@@ -61,7 +61,7 @@ import { NodeService } from '@/src/service/node.service';
     template: `
         <p-fluid class="flex flex-col md:flex-row gap-8">
             <div class="md:w-1/2">
-                <div class="card flex flex-col gap-4">
+            <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">InputText</div>
                     <div class="flex flex-col md:flex-row gap-4">
                         <input pInputText type="text" placeholder="Default"/>
@@ -100,12 +100,13 @@ import { NodeService } from '@/src/service/node.service';
                     <p-inputnumber [(ngModel)]="inputNumberValue" showButtons mode="decimal"></p-inputnumber>
                 </div>
 
-                <div class="card flex flex-col gap-4">
+            <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">Slider</div>
                     <input pInputText [(ngModel)]="sliderValue" type="number"/>
                     <p-slider [(ngModel)]="sliderValue"/>
 
                     <div class="flex flex-row mt-6">
+
                         <div class="flex flex-col gap-4 w-1/2">
                             <div class="font-semibold text-xl">Rating</div>
                             <p-rating [(ngModel)]="ratingValue"/>
@@ -121,7 +122,7 @@ import { NodeService } from '@/src/service/node.service';
                 </div>
             </div>
             <div class="md:w-1/2">
-                <div class="card flex flex-col gap-4">
+            <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">RadioButton</div>
                     <div class="flex flex-col md:flex-row gap-4">
                         <div class="flex items-center">
@@ -159,7 +160,7 @@ import { NodeService } from '@/src/service/node.service';
                     <p-toggleswitch [(ngModel)]="switchValue"/>
                 </div>
 
-                <div class="card flex flex-col gap-4">
+            <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">Listbox</div>
                     <p-listbox [(ngModel)]="listboxValue" [options]="listboxValues" optionLabel="name" [filter]="true"/>
 
@@ -171,7 +172,7 @@ import { NodeService } from '@/src/service/node.service';
                     <p-multiselect [(ngModel)]="multiselectValue" [options]="multiselectValues" optionLabel="name" placeholder="Select Countries" [filter]="true">
                         <ng-template #selecteditems let-countries>
                             @for (country of countries; track country.code) {
-                                <div class="inline-flex items-center py-1 px-2 bg-primary text-primary-contrast rounded-border mr-2">
+                                <div class="inline-flex items-center py-1 px-2 bg-primary text-primary-contrast text-primary-contrast rounded-border mr-2">
                                     <span [class]="'mr-2 flag flag-' + country.code.toLowerCase()" style="width: 18px; height: 12px"></span>
                                     <div>{{ country.name }}</div>
                                 </div>
@@ -189,7 +190,7 @@ import { NodeService } from '@/src/service/node.service';
                     <p-treeselect [(ngModel)]="selectedNode" [options]="treeSelectNodes" placeholder="Select Item"></p-treeselect>
                 </div>
 
-                <div class="card flex flex-col gap-4">
+            <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">ToggleButton</div>
                     <p-togglebutton [(ngModel)]="toggleValue" onLabel="Yes" offLabel="No" :style="{ width: '10em' }"/>
 
@@ -199,10 +200,10 @@ import { NodeService } from '@/src/service/node.service';
             </div>
         </p-fluid>
 
-        <p-fluid class="flex mt-8">
-            <div class="card flex flex-col gap-4 w-full">
+        <p-fluid class="flex mt-20">
+            <div class="card flex flex-col gap-6 w-full">
                 <div class="font-semibold text-xl">InputGroup</div>
-                <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex flex-col md:flex-row gap-6">
                     <p-inputgroup>
                         <p-inputgroup-addon>
                             <i class="pi pi-user"></i>
@@ -221,7 +222,7 @@ import { NodeService } from '@/src/service/node.service';
                         <p-inputgroup-addon>.00</p-inputgroup-addon>
                     </p-inputgroup>
                 </div>
-                <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex flex-col md:flex-row gap-6">
                     <p-inputgroup>
                         <p-button label="Search"/>
                         <input pInputText placeholder="Keyword"/>
