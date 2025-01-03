@@ -37,6 +37,7 @@ export class DashboardHeaderComponent implements OnInit{
         //this.globalTableService.unselectTable();
         this.shownTableDD = null;
         //this.clearCalendar();
+        this.setNewTimeTable.emit(null);
     }
 
     ngOnInit(): void {

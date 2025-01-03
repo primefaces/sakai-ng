@@ -4,8 +4,9 @@
             <app-dashboard-header (setNewTimeTable)="setNewTable($event)"/>
         </div>
     </div>
+
     <div class="col-12 {{i.width}}" *ngFor="let i of infos">
-        <div class="card mb-0">
+        <div class="card mb-0" *ngIf="selectedTimeTable" [@slideDown]>
             <div class="flex justify-content-between mb-3">
                 <div>
                     <span class="block text-500 font-medium mb-3">{{i.header}}</span>
@@ -22,8 +23,14 @@
 
     <div class="col-12 xl:col-12">
         <div class="card" id="calendar">
-            <full-calendar #cal class="custom-calendar" [options]="calendarOptions()"
-                           [events]="currentSessions | SessionToEvent: 'dashboard'"/>
+            <div class="loading-spinner" *ngIf="loading$ | async">
+                <div class="spinner"></div>
+            </div>
+
+            <full-calendar #cal class="custom-calendar" [style]="{'position':'relative'}"
+                           [options]="calendarOptions()"
+                           [events]="currentSessions | SessionToEvent: 'dashboard'">
+            </full-calendar>
         </div>
     </div>
 </div>
