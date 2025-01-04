@@ -24,4 +24,8 @@ export class Course {
       {field: 'computersNecessary', header: 'computer needed'}
     ]
   }
+
+  static getFilterFields(): string[]{
+      return ['id', 'name', 'lecturer'];
+  }
 }

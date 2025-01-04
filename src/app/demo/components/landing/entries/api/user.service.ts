@@ -21,6 +21,10 @@ export class UserService implements ItemService<Userx> {
         return UserDialog;
     }
 
+    public getGlobalFilterFields(): string[] {
+        return Userx.getFilterFields();
+    }
+
     public getTableHeader(): any[] {
         return Userx.getTableColumns();
     }
@@ -33,8 +37,9 @@ export class UserService implements ItemService<Userx> {
         return firstValueFrom(this.http.post<Userx>(UserService.userApiPath, newUser));
     }
 
-    public updateSingeItem(): Userx {
-        throw new Error('Method not implemented.');
+    public updateSingeItem(updatedUser: Userx): Promise<Userx> {
+        let newUrl = `${UserService.userApiPath}/${updatedUser.id}`;
+        return firstValueFrom(this.http.put<Userx>(newUrl, updatedUser));
     }
 
     public deleteSingleItem(): boolean {

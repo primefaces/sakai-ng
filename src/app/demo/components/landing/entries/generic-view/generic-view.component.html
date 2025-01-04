@@ -3,7 +3,7 @@
         <div class="card">
             <p-table #dt
                      [(selection)]="selectedItems" [selectionMode]="'multiple'" [selectionPageOnly]="true"
-                     [paginator]="true" [globalFilterFields]="['']"
+                     [paginator]="true" [globalFilterFields]="filterFields"
                      [value]="items" dataKey="id" [rows]="15"
                      [loading]="loading$ | async" [rowHover]="true" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
 

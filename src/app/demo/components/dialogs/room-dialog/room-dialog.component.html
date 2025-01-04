@@ -4,8 +4,8 @@
             <div class="text-500 w-6 md:w-2 font-medium">Course Credentials</div>
             <div class="w-full flex flex-column gap-2">
                 <div class="flex gap-2 w-full">
-                    <input type="text" pInputText id="id" required
-                           [(ngModel)]="room.id" class="w-full" placeholder="ID" />
+                    <input type="text" pInputText id="id" required placeholder="ID"
+                           [(ngModel)]="room.id" class="w-full" [disabled]="inEditMode"/>
                 </div>
                 <small class="p-error mt-2" *ngIf="!room.id">Credentials are missing</small>
             </div>

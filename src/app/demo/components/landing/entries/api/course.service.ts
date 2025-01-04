@@ -2,9 +2,7 @@ import {Injectable} from '@angular/core';
 import {ItemService} from "../../../../../../assets/models/interfaces/ItemServiceInterface";
 import {Course} from "../../../../../../assets/models/course";
 import {CourseDialog} from "../../../dialogs/course-dialog/course-dialog.component";
-import {CourseType} from "../../../../../../assets/models/enums/course-type";
-import {StudyType} from "../../../../../../assets/models/enums/study-type";
-import {firstValueFrom, Observable, of} from "rxjs";
+import {firstValueFrom, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../environments/environment";
 
@@ -23,6 +21,10 @@ export class CourseService implements ItemService<Course> {
         return CourseDialog;
     }
 
+    public getGlobalFilterFields(): string[] {
+        return Course.getFilterFields();
+    }
+
     public getTableHeader(): any[] {
         return Course.getTableColumns();
     }
@@ -35,8 +37,9 @@ export class CourseService implements ItemService<Course> {
         return firstValueFrom(this.http.post<Course>(CourseService.courseApiPath, newCourse));
     }
 
-    public updateSingeItem(item: Course): Course {
-        return undefined;
+    public async updateSingeItem(updatedCourse: Course): Promise<Course> {
+        let newUrl = `${CourseService.courseApiPath}/${updatedCourse.id}`;
+        return firstValueFrom(this.http.put<Course>(newUrl, updatedCourse));
     }
 
     public deleteSingleItem(item: Course): boolean {

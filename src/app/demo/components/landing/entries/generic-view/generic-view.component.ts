@@ -23,6 +23,7 @@ export class GenericViewComponent implements OnInit{
     protected readonly item: string; //'user' | 'course | 'room'
     private itemService!: ItemService<Item>;
 
+    protected filterFields: string[] = [];
     protected readonly headers: any[];
     protected selectedHeaders: any[];
     protected nrOfSkeletons: number;
@@ -43,6 +44,7 @@ export class GenericViewComponent implements OnInit{
         this.item = this.getItemType();
         this.itemService = this.assign();
         this.headers = this.getSpecificHeaders();
+        this.filterFields = this.getGlobalFilterFields();
         this.nrOfSkeletons = this.headers.length;
     }
 
@@ -63,6 +65,10 @@ export class GenericViewComponent implements OnInit{
         }
     }
 
+    private getGlobalFilterFields(){
+        return this.itemService.getTableHeader();
+    };
+
     private getSpecificHeaders(){
         const newHeaders = this.itemService.getTableHeader()
         this.selectedHeaders = newHeaders;
@@ -77,12 +83,12 @@ export class GenericViewComponent implements OnInit{
             width: '50%',
             baseZIndex: 10000,
             maximizable: false,
-            data: { initialValue: item }
+            data: { initialValue: { ...item } } //copy the object so changes are not shown on table
         })
 
         ref.onClose.subscribe((result) => {
             //if an item is set I want to update it
-            if (result) this.saveItem(result, !!item)
+            if (result) this.saveItem(result, !!item).then();
         });
     }
 
@@ -94,13 +100,19 @@ export class GenericViewComponent implements OnInit{
 
     private async saveItem(item: Item, update: boolean): Promise<void> {
         if(update){
-            this.itemService.updateSingeItem(item);
+            const updatedItem = await this.itemService.updateSingeItem(item);
+            const oldItemIdx = this.items.findIndex(i => i.id = updatedItem['id'])
+            this.items[oldItemIdx] = updatedItem;
+            this.messageService.add({
+                severity: 'success',
+                summary: `UPDATED ${this.item.toUpperCase()}`,
+            });
         } else {
             const newItem = await this.itemService.createSingeItem(item);
             this.items.push(newItem);
             this.messageService.add({
                 severity: 'success',
-                summary: `ADDED NEW ${item}`,
+                summary: `ADDED NEW ${this.item.toUpperCase()}`,
             });
         }
     }

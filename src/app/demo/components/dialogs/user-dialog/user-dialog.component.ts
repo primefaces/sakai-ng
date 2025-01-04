@@ -28,6 +28,7 @@ import {PasswordModule} from "primeng/password";
 })
 export class UserDialog {
     protected user: Userx;
+    protected inEditMode: boolean = false;
     roleOptions = getRoleOptions();
 
     constructor(
@@ -39,6 +40,7 @@ export class UserDialog {
 
     get data(): Userx {
         const noData =  this.config.data.initialValue;
+        this.inEditMode = Object.keys(noData).length !== 0;
         return noData ? noData : new Userx();
     }
 
