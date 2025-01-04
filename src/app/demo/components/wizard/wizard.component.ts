@@ -5,5 +5,17 @@ import { Component } from '@angular/core';
   templateUrl: './wizard.component.html',
 })
 export class WizardComponent {
+    private _dirtyData: boolean = false;
+
+    constructor() {
+    }
+
+    protected setDirtyDataBit(bit: boolean){
+        this._dirtyData = bit;
+    }
+
+    canDeactivate(){
+        return this._dirtyData;
+    }
 
 }

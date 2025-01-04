@@ -2,12 +2,13 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from "./layout/app.layout.component";
+import {AuthGuardAdmin} from "./demo/guards/access-guards";
 
 @NgModule({
     imports: [
         RouterModule.forRoot([
             {
-                path: '', component: AppLayoutComponent,
+                path: '', component: AppLayoutComponent, canActivate: [AuthGuardAdmin],
                 children: [
                     { path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'editor', loadChildren: () => import('./demo/components/editor/editor.module').then(m => m.EditorModule) },

@@ -47,8 +47,12 @@ export class EditorComponent  implements OnInit{
         return this.timeTable.courseSessions.find(s => s.id.toString() === this.rightClickEvent!.event.id.toString());
     }
 
-    setDirtyDataBit(bit: boolean){
+    protected setDirtyDataBit(bit: boolean){
         this._dirtyData = bit;
+    }
+
+    canDeactivate(){
+        return this._dirtyData;
     }
 
     ngOnInit(): void {
