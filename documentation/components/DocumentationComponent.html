@@ -1,0 +1,457 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>sakai-ng documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">sakai-ng documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  DocumentationComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/demo/components/documentation/documentation.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./documentation.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./documentation.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+
+@Component({
+    templateUrl: &#x27;./documentation.component.html&#x27;,
+    styleUrls: [&#x27;./documentation.component.scss&#x27;]
+})
+export class DocumentationComponent { }</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;card mb-3&quot;&gt;
+    &lt;div&gt;
+        &lt;h2&gt;Documentation&lt;/h2&gt;
+        &lt;h4&gt;Getting Started&lt;/h4&gt;
+        &lt;p&gt;Sakai is an application template for Angular and is distributed as a CLI project. Current versions is Angular v17 with PrimeNG v17. In case CLI is not installed already, use the command below to set it up.&lt;/p&gt;
+    
+&lt;pre class&#x3D;&quot;app-code&quot;&gt;&lt;code&gt;npm install -g &amp;#64;angular/cli&lt;/code&gt;&lt;/pre&gt;
+        
+        &lt;p&gt;Once CLI is ready in your system, extract the contents of the zip file distribution, cd to the directory,
+            install the libraries from npm and then execute &quot;ng serve&quot; to run the application in your local environment.&lt;/p&gt;
+
+&lt;pre class&#x3D;&quot;app-code&quot;&gt;&lt;code&gt;cd sakai
+npm install
+ng serve&lt;/code&gt;&lt;/pre&gt;
+    
+        &lt;p&gt;The application should run at &lt;span class&#x3D;&quot;font-semibold&quot;&gt;http://localhost:4200/&lt;/span&gt;, you may now start with the development of your application.&lt;/p&gt;
+    
+        &lt;h5&gt;Important CLI Commands&lt;/h5&gt;
+        &lt;p&gt;Following commands are derived from CLI.&lt;/p&gt;
+
+&lt;pre class&#x3D;&quot;app-code&quot;&gt;&lt;code&gt;Run &#x27;ng serve&#x27; for a dev server. Navigate to &#x60;http://localhost:4200/&#x60;. The app will automatically reload if you change any of the source files.
+
+Run &#x27;ng generate component component-name&#x27; to generate a new component. You can also use &#x60;ng generate directive/pipe/service/class/module&#x60;.
+
+Run &#x27;ng build&#x27; to build the project. The build artifacts will be stored in the &#x60;dist/&#x60; directory. Use the &#x60;-prod&#x60; flag for a production build.
+
+Run &#x27;ng test&#x27; to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+Run &#x27;ng e2e&#x27; to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+Run &#x27;ng help&#x27; for more options.&lt;/code&gt;&lt;/pre&gt;
+    
+        &lt;h4&gt;Structure&lt;/h4&gt;
+        &lt;p&gt;Sakai consists of 3 main parts; the application layout, layout assets and PrimeNG component theme assets. Layout is placed inside the &lt;span class&#x3D;&quot;text-primary font-medium&quot;&gt;src/app/layout&lt;/span&gt; folder,
+            and the assets are in the &lt;span class&#x3D;&quot;text-primary font-medium&quot;&gt;src/assets/layout&lt;/span&gt; folder.
+        &lt;/p&gt;
+    
+        &lt;h5&gt;Default Configuration&lt;/h5&gt;
+        &lt;p&gt;Initial layout configuration can be defined at the main app component by injecting the &lt;span class&#x3D;&quot;text-primary font-medium&quot;&gt;LayoutService&lt;/span&gt;, this step is optional and only necessary when customizing the defaults. Note that &lt;span class&#x3D;&quot;text-primary font-medium&quot;&gt;theme&lt;/span&gt; and
+            &lt;span class&#x3D;&quot;text-primary font-medium&quot;&gt;scale&lt;/span&gt; are not reactive since theme is configured outside of Angular at &lt;strong class&#x3D;&quot;font-semibold&quot;&gt;index.html&lt;/strong&gt; by default and
+            initial scale is defined with the &lt;span class&#x3D;&quot;text-primary font-medium&quot;&gt;$scale&lt;/span&gt; at &lt;strong class&#x3D;&quot;font-semibold&quot;&gt;layout.scss&lt;/strong&gt;. When default theme or scale is changed at their files initially, it is required to configure the layout service with the matching values
+            to avoid sync issues. &lt;/p&gt;
+    
+&lt;pre class&#x3D;&quot;app-code&quot;&gt;&lt;code&gt;import &amp;#123; Component, OnInit &amp;#125; from &#x27;&amp;#64;angular/core&#x27;;
+import &amp;#123; PrimeNGConfig &amp;#125; from &#x27;primeng/api&#x27;;
+import &amp;#123; LayoutService, AppConfig &amp;#125; from &#x27;./layout/service/app.layout.service&#x27;;
+
+&amp;#64;Component(&amp;#123;
+    selector: &#x27;app-root&#x27;,
+    templateUrl: &#x27;./app.component.html&#x27;
+&amp;#125;)
+export class AppComponent implements OnInit &amp;#123;
+
+    constructor(private primengConfig: PrimeNGConfig, private layoutService: LayoutService) &amp;#123; &amp;#125;
+
+    ngOnInit(): void &amp;#123;
+        this.primengConfig.ripple &#x3D; true;       //enables core ripple functionality
+
+        //optional configuration with the default configuration
+        const config: AppConfig &#x3D; &amp;#123;
+            ripple: false,                      //toggles ripple on and off
+            inputStyle: &#x27;outlined&#x27;,             //default style for input elements
+            menuMode: &#x27;static&#x27;,                 //layout mode of the menu, valid values are &quot;static&quot; and &quot;overlay&quot;
+            colorScheme: &#x27;light&#x27;,               //color scheme of the template, valid values are &quot;light&quot; and &quot;dark&quot;
+            theme: &#x27;lara-light-indigo&#x27;,         //default component theme for PrimeNG
+            scale: 14                           //size of the body font size to scale the whole application
+        &amp;#125;;
+        this.layoutService.config.set(config);
+    &amp;#125;
+
+&amp;#125;&lt;/code&gt;&lt;/pre&gt;
+    
+        &lt;h5&gt;Menu&lt;/h5&gt;
+        &lt;p&gt;Menu is a separate component defined in &lt;span class&#x3D;&quot;text-primary font-medium&quot;&gt;src/app/layout/app.menu.component.ts&lt;/span&gt; file and based on PrimeNG MenuModel API. In order to define the menuitems,
+            navigate to this file and define your own model as a nested structure.&lt;/p&gt;
+    
+&lt;pre class&#x3D;&quot;app-code&quot;&gt;&lt;code&gt;import &amp;#123; OnInit &amp;#125; from &#x27;&amp;#64;angular/core&#x27;;
+import &amp;#123; Component &amp;#125; from &#x27;&amp;#64;angular/core&#x27;;
+
+&amp;#64;Component(&amp;#123;
+    selector: &#x27;app-menu&#x27;,
+    templateUrl: &#x27;./app.menu.component.html&#x27;
+&amp;#125;)
+export class AppMenuComponent implements OnInit &amp;#123;
+
+    model: any[] &#x3D; [];
+
+    ngOnInit() &amp;#123;
+        this.model &#x3D; [
+            &amp;#123;
+                label: &#x27;Home&#x27;,
+                items: [
+                    &amp;#123;
+                        label: &#x27;Dashboard&#x27;,
+                        icon: &#x27;pi pi-fw pi-home&#x27;,
+                        routerLink: [&#x27;/&#x27;]
+                    &amp;#125;
+                ]
+            &amp;#125;,
+            //...
+        ];
+    &amp;#125;
+&amp;#125;&lt;/code&gt;&lt;/pre&gt;
+    
+        &lt;h4&gt;Integration with Existing Angular CLI Projects&lt;/h4&gt;
+        &lt;p&gt;Sakai structure is designed in a modular way so that it can easily be integrated with your existing application. We&#x27;ve created a short tutorial with details.&lt;/p&gt;
+    
+        &lt;div class&#x3D;&quot;video-container&quot;&gt;
+            &lt;iframe width&#x3D;&quot;560&quot; height&#x3D;&quot;315&quot; src&#x3D;&quot;https://www.youtube.com/embed/yl2f8KKY204&quot; frameborder&#x3D;&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+        &lt;/div&gt;
+    
+        &lt;h4&gt;Theme&lt;/h4&gt;
+        &lt;p&gt;Sakai provides 34 PrimeNG themes out of the box. Setup of a theme is simple by including the css of theme
+            to your bundle that are located inside &lt;span class&#x3D;&quot;text-primary font-medium&quot;&gt;assets/layout/styles/theme/&lt;/span&gt;
+            folder such as &lt;span class&#x3D;&quot;text-primary font-medium&quot;&gt;assets/layout/styles/theme/lara-light-indigo/theme.css&lt;/span&gt;.&lt;/p&gt;
+
+        &lt;p&gt;Another alternative would be creating dynamic bundles, please see the &lt;a href&#x3D;&quot;https://www.youtube.com/watch?v&#x3D;5VOuUdDXRsE&quot; class&#x3D;&quot;font-medium text-primary hover:underline&quot;&gt;video tutorial&lt;/a&gt; for an example.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./documentation.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@media screen and (max-width: 991px) {
+    .video-container {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+    
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="card mb-3">    <div>        <h2>Documentation</h2>        <h4>Getting Started</h4>        <p>Sakai is an application template for Angular and is distributed as a CLI project. Current versions is Angular v17 with PrimeNG v17. In case CLI is not installed already, use the command below to set it up.</p>    <pre class="app-code"><code>npm install -g &#64;angular/cli</code></pre>                <p>Once CLI is ready in your system, extract the contents of the zip file distribution, cd to the directory,            install the libraries from npm and then execute "ng serve" to run the application in your local environment.</p><pre class="app-code"><code>cd sakainpm installng serve</code></pre>            <p>The application should run at <span class="font-semibold">http://localhost:4200/</span>, you may now start with the development of your application.</p>            <h5>Important CLI Commands</h5>        <p>Following commands are derived from CLI.</p><pre class="app-code"><code>Run \'ng serve\' for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.Run \'ng generate component component-name\' to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.Run \'ng build\' to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.Run \'ng test\' to execute the unit tests via [Karma](https://karma-runner.github.io).Run \'ng e2e\' to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).Run \'ng help\' for more options.</code></pre>            <h4>Structure</h4>        <p>Sakai consists of 3 main parts; the application layout, layout assets and PrimeNG component theme assets. Layout is placed inside the <span class="text-primary font-medium">src/app/layout</span> folder,            and the assets are in the <span class="text-primary font-medium">src/assets/layout</span> folder.        </p>            <h5>Default Configuration</h5>        <p>Initial layout configuration can be defined at the main app component by injecting the <span class="text-primary font-medium">LayoutService</span>, this step is optional and only necessary when customizing the defaults. Note that <span class="text-primary font-medium">theme</span> and            <span class="text-primary font-medium">scale</span> are not reactive since theme is configured outside of Angular at <strong class="font-semibold">index.html</strong> by default and            initial scale is defined with the <span class="text-primary font-medium">$scale</span> at <strong class="font-semibold">layout.scss</strong>. When default theme or scale is changed at their files initially, it is required to configure the layout service with the matching values            to avoid sync issues. </p>    <pre class="app-code"><code>import &#123; Component, OnInit &#125; from \'&#64;angular/core\';import &#123; PrimeNGConfig &#125; from \'primeng/api\';import &#123; LayoutService, AppConfig &#125; from \'./layout/service/app.layout.service\';&#64;Component(&#123;    selector: \'app-root\',    templateUrl: \'./app.component.html\'&#125;)export class AppComponent implements OnInit &#123;    constructor(private primengConfig: PrimeNGConfig, private layoutService: LayoutService) &#123; &#125;    ngOnInit(): void &#123;        this.primengConfig.ripple = true;       //enables core ripple functionality        //optional configuration with the default configuration        const config: AppConfig = &#123;            ripple: false,                      //toggles ripple on and off            inputStyle: \'outlined\',             //default style for input elements            menuMode: \'static\',                 //layout mode of the menu, valid values are "static" and "overlay"            colorScheme: \'light\',               //color scheme of the template, valid values are "light" and "dark"            theme: \'lara-light-indigo\',         //default component theme for PrimeNG            scale: 14                           //size of the body font size to scale the whole application        &#125;;        this.layoutService.config.set(config);    &#125;&#125;</code></pre>            <h5>Menu</h5>        <p>Menu is a separate component defined in <span class="text-primary font-medium">src/app/layout/app.menu.component.ts</span> file and based on PrimeNG MenuModel API. In order to define the menuitems,            navigate to this file and define your own model as a nested structure.</p>    <pre class="app-code"><code>import &#123; OnInit &#125; from \'&#64;angular/core\';import &#123; Component &#125; from \'&#64;angular/core\';&#64;Component(&#123;    selector: \'app-menu\',    templateUrl: \'./app.menu.component.html\'&#125;)export class AppMenuComponent implements OnInit &#123;    model: any[] = [];    ngOnInit() &#123;        this.model = [            &#123;                label: \'Home\',                items: [                    &#123;                        label: \'Dashboard\',                        icon: \'pi pi-fw pi-home\',                        routerLink: [\'/\']                    &#125;                ]            &#125;,            //...        ];    &#125;&#125;</code></pre>            <h4>Integration with Existing Angular CLI Projects</h4>        <p>Sakai structure is designed in a modular way so that it can easily be integrated with your existing application. We\'ve created a short tutorial with details.</p>            <div class="video-container">            <iframe width="560" height="315" src="https://www.youtube.com/embed/yl2f8KKY204" frameborder="0" allowfullscreen></iframe>        </div>            <h4>Theme</h4>        <p>Sakai provides 34 PrimeNG themes out of the box. Setup of a theme is simple by including the css of theme            to your bundle that are located inside <span class="text-primary font-medium">assets/layout/styles/theme/</span>            folder such as <span class="text-primary font-medium">assets/layout/styles/theme/lara-light-indigo/theme.css</span>.</p>        <p>Another alternative would be creating dynamic bundles, please see the <a href="https://www.youtube.com/watch?v=5VOuUdDXRsE" class="font-medium text-primary hover:underline">video tutorial</a> for an example.</p>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AccessComponent', 'selector': 'app-access'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppFooterComponent', 'selector': 'app-footer'},{'name': 'AppLayoutComponent', 'selector': 'app-layout'},{'name': 'AppMenuComponent', 'selector': 'app-menu'},{'name': 'AppMenuitemComponent', 'selector': '[app-menuitem]'},{'name': 'AppSidebarComponent', 'selector': 'app-sidebar'},{'name': 'AppTopBarComponent', 'selector': 'app-topbar'},{'name': 'CourseDetailComponent', 'selector': 'app-course-detail'},{'name': 'CourseDialog', 'selector': 'app-course-dialog'},{'name': 'CourseInfoDialog', 'selector': 'app-user-dialog'},{'name': 'DashboardComponent', 'selector': ''},{'name': 'DashboardHeaderComponent', 'selector': 'app-dashboard-header'},{'name': 'DocumentationComponent', 'selector': ''},{'name': 'EditorCalendarComponent', 'selector': 'app-editor-calendar'},{'name': 'EditorComponent', 'selector': ''},{'name': 'EditorHeaderComponent', 'selector': 'app-editor-header'},{'name': 'EditorSelectionComponent', 'selector': 'app-editor-selection'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'GenericViewComponent', 'selector': 'app-user-view'},{'name': 'ItemSelectionComponent', 'selector': ''},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NotfoundComponent', 'selector': 'app-notfound'},{'name': 'PreWizardComponent', 'selector': 'app-pre-wizard'},{'name': 'RoomDialog', 'selector': 'app-room-dialog'},{'name': 'RoomTimesComponent', 'selector': 'app-room-times'},{'name': 'TableDialogComponent', 'selector': 'app-user-dialog'},{'name': 'UserDialog', 'selector': 'app-user-dialog'},{'name': 'WizardComponent', 'selector': 'app-wizard'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DocumentationComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DocumentationComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
