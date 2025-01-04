@@ -4,10 +4,9 @@ import {AuthService} from "../components/auth/api/auth.service";
 
 export const AuthGuardRemember: CanActivateFn = () => {
   const userService: AuthService = inject(AuthService);
-  const router: Router = inject(Router);
   if (userService.isLoggedIn()) {
-    router.navigate(['']);
-    return false;
+      const router: Router = inject(Router);
+      router.navigate(['']);
   }
-  else { return true; }
+  return !userService.isLoggedIn();
 };

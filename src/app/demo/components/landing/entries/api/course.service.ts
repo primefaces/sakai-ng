@@ -4,45 +4,46 @@ import {Course} from "../../../../../../assets/models/course";
 import {CourseDialog} from "../../../dialogs/course-dialog/course-dialog.component";
 import {CourseType} from "../../../../../../assets/models/enums/course-type";
 import {StudyType} from "../../../../../../assets/models/enums/study-type";
-import {Observable, of} from "rxjs";
+import {firstValueFrom, Observable, of} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
 })
 export class CourseService implements ItemService<Course> {
+    static courseApiPath = `${environment.baseUrl}/api/courses`;
 
-    constructor() {
+    constructor(
+        private http: HttpClient,
+    ) {
     }
 
-    getItemDialog(): any {
+    public getItemDialog(): any {
         return CourseDialog;
     }
 
-    getTableHeader(): any[] {
+    public getTableHeader(): any[] {
         return Course.getTableColumns();
     }
 
-    createSingeItem(item: Course): Course {
+    public getAllItems(): Observable<Course[]> {
+        return this.http.get<Course[]>(CourseService.courseApiPath);
+    }
+
+    public async createSingeItem(newCourse: Course): Promise<Course> {
+        return firstValueFrom(this.http.post<Course>(CourseService.courseApiPath, newCourse));
+    }
+
+    public updateSingeItem(item: Course): Course {
         return undefined;
     }
 
-    updateSingeItem(item: Course): Course {
-        return undefined;
-    }
-
-    deleteSingleItem(item: Course): boolean {
+    public deleteSingleItem(item: Course): boolean {
         return true;
     }
 
-    deleteMultipleItem(items: Course[]): boolean {
+    public deleteMultipleItem(items: Course[]): boolean {
         return true;
-    }
-
-    getAllItems(): Observable<Course[]> {
-        return of([
-            {id: 'tmp', semester: 1, courseType: CourseType.PS, name: 'tmpEli', lecturer: 'Eli',
-            duration: 200, numberOfParticipants: 15, createdAt: new Date(), updatedAt: new Date(),
-                studyType: StudyType.BACHELOR_CS.toString(), computersNecessary: false} as Course
-        ]);
     }
 }

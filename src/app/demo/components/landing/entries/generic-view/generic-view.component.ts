@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LayoutService} from "../../../../../layout/service/app.layout.service";
 import {Router} from "@angular/router";
 import {Course} from "../../../../../../assets/models/course";
@@ -10,6 +10,8 @@ import {CourseService} from "../api/course.service";
 import {RoomService} from "../api/room.service";
 import {DialogService} from "primeng/dynamicdialog";
 import {BehaviorSubject, firstValueFrom, Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {MessageService} from "primeng/api";
 
 type Item = Course | Room | Userx;
 
@@ -32,9 +34,11 @@ export class GenericViewComponent implements OnInit{
     protected loading$: Observable<boolean> = this.loadingSub.asObservable();
 
     constructor(
+        private messageService: MessageService,
         private layoutService: LayoutService,
         private dialogService: DialogService,
-        protected router: Router
+        protected router: Router,
+        private http: HttpClient,
     ) {
         this.item = this.getItemType();
         this.itemService = this.assign();
@@ -49,11 +53,11 @@ export class GenericViewComponent implements OnInit{
     assign(): ItemService<Item> {
         switch (this.item) {
             case 'user':
-                return new UserService();
+                return new UserService(this.http);
             case 'course':
-                return new CourseService();
+                return new CourseService(this.http);
             case 'room':
-                return new RoomService();
+                return new RoomService(this.http);
             default:
                 throw new Error(`Unsupported item type: ${this.item}`);
         }
@@ -88,12 +92,16 @@ export class GenericViewComponent implements OnInit{
         return firstValueFrom(this.itemService.getAllItems());
     }
 
-    private saveItem(item: Item, update: boolean): void {
+    private async saveItem(item: Item, update: boolean): Promise<void> {
         if(update){
             this.itemService.updateSingeItem(item);
         } else {
-            this.itemService.createSingeItem(item);
-            this.items.push(item);
+            const newItem = await this.itemService.createSingeItem(item);
+            this.items.push(newItem);
+            this.messageService.add({
+                severity: 'success',
+                summary: `ADDED NEW ${item}`,
+            });
         }
     }
 

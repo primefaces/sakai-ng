@@ -5,7 +5,7 @@ export interface ItemService <T>{
     getItemDialog(): any;
 
     getAllItems(): Observable<T[]>;
-    createSingeItem(item: T): T;
+    createSingeItem(item: T): Promise<T>;
     updateSingeItem(item: T): T;
     deleteSingleItem(item: T):boolean;
     deleteMultipleItem(items: T[]):boolean;

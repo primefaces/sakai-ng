@@ -2,47 +2,46 @@ import {Injectable} from '@angular/core';
 import {ItemService} from "../../../../../../assets/models/interfaces/ItemServiceInterface";
 import {Room} from "../../../../../../assets/models/room";
 import {RoomDialog} from "../../../dialogs/room-dialog/room-dialog.component";
-import {delay, Observable, of} from "rxjs";
+import {delay, firstValueFrom, Observable, of} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
 })
 export class RoomService implements ItemService<Room> {
+    static roomsApiPath = `${environment.baseUrl}/api/rooms`;
 
-    constructor() {
+    constructor(
+        private http: HttpClient,
+    ) {
     }
 
-    getItemDialog(): any {
+    public getItemDialog(): any {
         return RoomDialog;
     }
 
-    getTableHeader(): any[] {
+    public getTableHeader(): any[] {
         return Room.getTableColumns();
     }
 
-    getAllItems(): Observable<Room[]> {
-        const rooms: Room[] = [
-            { id: '3W05', capacity: 45, computersAvailable: false },
-            { id: '3W06', capacity: 50, computersAvailable: true },
-            { id: '3W07', capacity: 30, computersAvailable: false },
-            { id: '3W08', capacity: 60, computersAvailable: true },
-            { id: '3W09', capacity: 25, computersAvailable: false },
-        ];
-
-        // Simulate a 2-second delay
-        return of(rooms).pipe(delay(2000));
+    public getAllItems(): Observable<Room[]> {
+        return this.http.get<Room[]>(RoomService.roomsApiPath);
     }
 
-    createSingeItem(): Room {
+    public async createSingeItem(newRoom: Room): Promise<Room> {
+       return firstValueFrom(this.http.post<Room>(RoomService.roomsApiPath, newRoom));
+    }
+
+    public updateSingeItem(): Room {
         throw new Error('Method not implemented.');
     }
-    updateSingeItem(): Room {
+
+    public deleteSingleItem(): boolean {
         throw new Error('Method not implemented.');
     }
-    deleteSingleItem(): boolean {
-        throw new Error('Method not implemented.');
-    }
-    deleteMultipleItem(): boolean {
+
+    public deleteMultipleItem(): boolean {
         throw new Error('Method not implemented.');
     }
 }

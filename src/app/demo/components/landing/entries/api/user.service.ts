@@ -2,45 +2,46 @@ import {Injectable} from '@angular/core';
 import { ItemService } from 'src/assets/models/interfaces/ItemServiceInterface';
 import {Userx} from "../../../../../../assets/models/userx";
 import {UserDialog} from "../../../dialogs/user-dialog/user-dialog.component";
-import {delay, Observable, of} from "rxjs";
+import {firstValueFrom, Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService implements ItemService<Userx> {
+    static userApiPath = `${environment.baseUrl}/api/users`;
 
-    constructor() {
+    constructor(
+        private http: HttpClient,
+    ) {
     }
 
-    getItemDialog(): any {
+    public getItemDialog(): any {
         return UserDialog;
     }
 
-    getTableHeader(): any[] {
+    public getTableHeader(): any[] {
         return Userx.getTableColumns();
     }
 
-    getAllItems(): Observable<Userx[]> {
-        return of([{id: '1', username: 'Woida', email: 'w.e@g.c',
-            firstName: 'Elias', lastName: 'Walder', enabled: true,
-            new: true, role: ['ADMIN', 'USER']} as Userx,{id: '2', username: 'Woida', email: 'w.e@g.c',
-            firstName: 'Elias', lastName: 'Walder', enabled: true,
-            new: true, role: ['ADMIN', 'USER']} as Userx]).pipe(delay(2000)); //simulate loading time
+    public getAllItems(): Observable<Userx[]> {
+        return this.http.get<Userx[]>(UserService.userApiPath);
     }
 
-    createSingeItem(): Userx {
+    public async createSingeItem(newUser: Userx): Promise<Userx> {
+        return firstValueFrom(this.http.post<Userx>(UserService.userApiPath, newUser));
+    }
+
+    public updateSingeItem(): Userx {
         throw new Error('Method not implemented.');
     }
 
-    updateSingeItem(): Userx {
-        throw new Error('Method not implemented.');
-    }
-
-    deleteSingleItem(): boolean {
+    public deleteSingleItem(): boolean {
         return true;
     }
 
-    deleteMultipleItem(): boolean {
+    public deleteMultipleItem(): boolean {
         return true;
     }
 }

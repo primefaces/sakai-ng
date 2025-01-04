@@ -9,6 +9,7 @@ import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {Userx} from "../../../../../assets/models/userx";
 import {getRoleOptions} from "../../../../../assets/models/enums/role";
 import {MultiSelectModule} from "primeng/multiselect";
+import {PasswordModule} from "primeng/password";
 
 @Component({
   selector: 'app-user-dialog',
@@ -20,7 +21,8 @@ import {MultiSelectModule} from "primeng/multiselect";
         DropdownModule,
         InputTextModule,
         FormsModule,
-        MultiSelectModule
+        MultiSelectModule,
+        PasswordModule
     ],
   templateUrl: './user-dialog.component.html'
 })
@@ -41,6 +43,8 @@ export class UserDialog {
     }
 
     save() {
+        this.user.enabled = true;
+        this.user.new = true;
         this.ref.close(this.user);
     }
 
