@@ -8,10 +8,11 @@
 
     <div class="col-3">
         <div class="card" style="height: 84vh;">
-            <app-editor-selection style="width: 100%; height: 80vh; display: flex; flex-direction: column;"/>
+            <app-editor-selection (triggerSave)="saveData()"
+                style="width: 100%; height: 80vh; display: flex; flex-direction: column;"/>
         </div>
     </div>
 </div>
 
 <p-contextMenu #cm [global]="true" [model]="items" (onShow)="getItemMenuOptions()"/>
-
+<p-confirmDialog [position]="'top'"/>

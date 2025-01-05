@@ -64,11 +64,17 @@ export class EditorCalendarComponent {
         const needsComputers = Boolean(arg.draggedEl.getAttribute('data-needscomputers'));
 
         if(this.checkNrOfParticipants(participants)){
-            this.messageService.add({severity: 'error', summary: 'ROOM CAPACITY  COLLISION', life: 5000, detail: `The selected course (${arg.draggedEl.getAttribute('data-title')}) has to many participants (${participants})
-         for the selected room(
-         ${this.selectedRoom?.capacity})`});
+            this.messageService.add({
+                severity: 'error',
+                summary: 'ROOM CAPACITY  COLLISION',
+                life: 5000,
+                detail: `The selected course (${arg.draggedEl.getAttribute('data-title')}) has to many participants (${participants}) for the selected room(${this.selectedRoom?.capacity})`});
         } else if (this.checkIfComputersNeeded(needsComputers)){
-            this.messageService.add({severity: 'error', summary: 'COMPUTER  COLLISION', life: 5000, detail: `The selected course (${arg.draggedEl.getAttribute('data-title')}) needs computers which are not supported by the current room`});
+            this.messageService.add({
+                severity: 'error',
+                summary: 'COMPUTER  COLLISION',
+                life: 5000,
+                detail: `The selected course (${arg.draggedEl.getAttribute('data-title')}) needs computers which are not supported by the current room`});
         } else {
             /*
             this.dragTableEvents = this.dragTableEvents.filter(

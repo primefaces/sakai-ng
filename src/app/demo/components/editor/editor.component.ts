@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {LayoutService} from "../../../layout/service/app.layout.service";
 import {ContextMenu} from "primeng/contextmenu";
 import {MenuItem} from "primeng/api";
@@ -9,7 +9,7 @@ import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 @Component({
   templateUrl: './editor.component.html',
 })
-export class EditorComponent  implements OnInit{
+export class EditorComponent  implements OnInit, OnDestroy{
     @ViewChild('cm') contextMenu!: ContextMenu;
     timeTable!: TimeTable;
 
@@ -19,9 +19,7 @@ export class EditorComponent  implements OnInit{
 
     constructor(
         private layoutService: LayoutService
-    ) {
-        this.layoutService.changeStyle(true);
-    }
+    ) {}
 
     getItemMenuOptions() : void {
         this.items = [{label: 'add new Course', icon: 'pi pi-book', command: () => {} /* this.addNewCourse()*/ }];
@@ -51,11 +49,19 @@ export class EditorComponent  implements OnInit{
         this._dirtyData = bit;
     }
 
+    protected saveData(){
+        this._dirtyData = false;
+    }
+
     canDeactivate(){
         return this._dirtyData;
     }
 
     ngOnInit(): void {
         this.layoutService.changeStyle(true);
+    }
+
+    ngOnDestroy(): void {
+        //this.layoutService.changeStyle(true);
     }
 }

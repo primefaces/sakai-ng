@@ -10,8 +10,9 @@ import {ButtonModule} from "primeng/button";
 import {EditorSelectionComponent} from "./editor-selection/editor-selection.component";
 import {EditorHeaderComponent} from "./editor-header/editor-header.component";
 import {EditorCalendarComponent} from "./editor-calendar/editor-calendar.component";
-import {SharedModule} from "primeng/api";
+import {ConfirmationService, SharedModule} from "primeng/api";
 import {ContextMenuModule} from "primeng/contextmenu";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 @NgModule({
     imports: [
@@ -24,7 +25,9 @@ import {ContextMenuModule} from "primeng/contextmenu";
         ButtonModule,
         SharedModule,
         ContextMenuModule,
+        ConfirmDialogModule,
     ],
     declarations: [EditorComponent, EditorSelectionComponent, EditorHeaderComponent, EditorCalendarComponent],
+    providers: [ConfirmationService]
 })
 export class EditorModule { }

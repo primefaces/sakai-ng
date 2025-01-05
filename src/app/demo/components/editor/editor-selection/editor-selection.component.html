@@ -1,6 +1,7 @@
 <div style="display: flex; flex-direction: column; height: 100%;">
     <div class="flex justify-content-center">
-        <button pButton label="Finished" class="createButton" [routerLink]="''">
+        <button pButton label="Finished" class="createButton"
+                [routerLink]="''" (click)="triggerFinish()">
         </button>
     </div>
 
@@ -18,5 +19,5 @@
             {{ event['title'] }}
         </div>
     </div>
-
 </div>
+
