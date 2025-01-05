@@ -85,7 +85,7 @@ export class DashboardComponent implements OnInit, AfterViewInit{
         private layoutService: LayoutService,
         private messageService: MessageService
     ) {
-        this.layoutService.changeStyle(false);
+        this.layoutService.changeStyle(true);
     }
 
     protected setNewTable(newTable: TimeTable){

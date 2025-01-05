@@ -42,6 +42,8 @@ export class GenericViewComponent implements OnInit{
         private http: HttpClient,
         private confirmationService: ConfirmationService
     ) {
+        this.layoutService.changeStyle(false);
+
         this.item = this.getItemType();
         this.itemService = this.assign();
         this.headers = this.getSpecificHeaders();
@@ -213,7 +215,6 @@ export class GenericViewComponent implements OnInit{
     }
 
     async ngOnInit() {
-        this.layoutService.changeStyle(false);
         this.items = await this.loadItemList();
         this.loadingSub.next(false);
     }

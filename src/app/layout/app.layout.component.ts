@@ -17,8 +17,7 @@ export class AppLayoutComponent implements OnDestroy {
     menuOutsideClickListener: any;
     profileMenuOutsideClickListener: any;
     showMainSub: Subscription;
-    showMainPlot: boolean;
-
+    showMainPlot: boolean = true;
 
     constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router) {
         this.showMainSub = this.layoutService.hideSideBar.subscribe(
@@ -112,12 +111,9 @@ export class AppLayoutComponent implements OnDestroy {
     }
 
     ngOnDestroy() {
-        if (this.overlayMenuOpenSubscription) {
-            this.overlayMenuOpenSubscription.unsubscribe();
-        }
+        if (this.overlayMenuOpenSubscription) this.overlayMenuOpenSubscription.unsubscribe();
+        if (this.showMainSub) this.showMainSub.unsubscribe();
 
-        if (this.menuOutsideClickListener) {
-            this.menuOutsideClickListener();
-        }
+        if (this.menuOutsideClickListener) this.menuOutsideClickListener();
     }
 }

@@ -146,9 +146,7 @@ export class LayoutService {
     }
 
     changeStyle(hide: boolean){
-        if(this.state.hide != hide){
-            this.state.hide = hide;
-            this.hideSideBar.next(this.state.hide);
-        }
+        this.state.hide = hide;
+        this.hideSideBar.next(this.state.hide);
     }
 }
