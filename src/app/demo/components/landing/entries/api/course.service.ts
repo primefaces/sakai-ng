@@ -42,11 +42,12 @@ export class CourseService implements ItemService<Course> {
         return firstValueFrom(this.http.put<Course>(newUrl, updatedCourse));
     }
 
-    public deleteSingleItem(item: Course): boolean {
-        return true;
+    public deleteSingleItem(course: Course): Promise<any> {
+        const newUrl = `${CourseService.courseApiPath}/${course.id}`;
+        return firstValueFrom(this.http.delete(newUrl));
     }
 
-    public deleteMultipleItem(items: Course[]): boolean {
-        return true;
+    public deleteMultipleItem(courses: Course[]): Promise<any> {
+        return firstValueFrom(this.http.delete(CourseService.courseApiPath));
     }
 }

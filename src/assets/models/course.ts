@@ -1,6 +1,6 @@
 import {CourseType} from "./enums/course-type";
 
-export class Course {
+export class Course{
   id!: string;
   courseType?: CourseType;
   studyType?: string;

@@ -10,7 +10,7 @@ import {environment} from "../../../../../../environments/environment";
     providedIn: 'root'
 })
 export class RoomService implements ItemService<Room> {
-    static roomsApiPath = `${environment.baseUrl}/api/rooms`;
+    static roomApiPath = `${environment.baseUrl}/api/rooms`;
 
     constructor(
         private http: HttpClient,
@@ -30,24 +30,25 @@ export class RoomService implements ItemService<Room> {
     }
 
     public getAllItems(): Observable<Room[]> {
-        return this.http.get<Room[]>(RoomService.roomsApiPath);
+        return this.http.get<Room[]>(RoomService.roomApiPath);
     }
 
     public async createSingeItem(newRoom: Room): Promise<Room> {
-       return firstValueFrom(this.http.post<Room>(RoomService.roomsApiPath, newRoom));
+       return firstValueFrom(this.http.post<Room>(RoomService.roomApiPath, newRoom));
     }
 
     public async updateSingeItem(updatedRoom: Room): Promise<Room> {
-        let newUrl = `${RoomService.roomsApiPath}/${updatedRoom.id}`;
+        let newUrl = `${RoomService.roomApiPath}/${updatedRoom.id}`;
         return firstValueFrom(this.http.put<Room>(newUrl, updatedRoom));
     }
 
-    public deleteSingleItem(): boolean {
-        throw new Error('Method not implemented.');
+    public deleteSingleItem(room: Room): Promise<any> {
+        const newUrl = `${RoomService.roomApiPath}/${room.id}`;
+        return firstValueFrom(this.http.delete(newUrl));
     }
 
-    public deleteMultipleItem(): boolean {
-        throw new Error('Method not implemented.');
+    public deleteMultipleItem(rooms: Room[]): Promise<any> {
+        return firstValueFrom(this.http.delete(RoomService.roomApiPath));
     }
 }
 

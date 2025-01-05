@@ -64,8 +64,9 @@
                             </button>
                         </td>
                         <td style="width: min-content">
+                            <p-confirmPopup/>
                             <button pButton class="deleteButton" type="button" icon="pi pi-trash"
-                                    (click)="deleteSingeItem(i)">
+                                    (click)="deleteSingeItem($event, i)">
                             </button>
                         </td>
                     </tr>
@@ -89,3 +90,4 @@
     </div>
 </div>
 
+<p-confirmDialog key="positionDialog" rejectButtonStyleClass="p-button-outlined" />

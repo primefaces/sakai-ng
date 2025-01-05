@@ -8,6 +8,6 @@ export interface ItemService <T>{
     getAllItems(): Observable<T[]>;
     createSingeItem(item: T): Promise<T>;
     updateSingeItem(item: T): Promise<T>;
-    deleteSingleItem(item: T):boolean;
-    deleteMultipleItem(items: T[]):boolean;
+    deleteSingleItem(item: T): Promise<T>;
+    deleteMultipleItem(items: T[]): Promise<T>;
 }

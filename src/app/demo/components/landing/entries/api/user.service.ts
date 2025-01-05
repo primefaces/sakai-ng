@@ -38,15 +38,17 @@ export class UserService implements ItemService<Userx> {
     }
 
     public updateSingeItem(updatedUser: Userx): Promise<Userx> {
-        let newUrl = `${UserService.userApiPath}/${updatedUser.id}`;
+        const newUrl = `${UserService.userApiPath}/${updatedUser.id}`;
         return firstValueFrom(this.http.put<Userx>(newUrl, updatedUser));
     }
 
-    public deleteSingleItem(): boolean {
-        return true;
+    public deleteSingleItem(user: Userx): Promise<any> {
+        const newUrl = `${UserService.userApiPath}/${user.id}`;
+        return firstValueFrom(this.http.delete(newUrl));
     }
 
-    public deleteMultipleItem(): boolean {
-        return true;
+    public deleteMultipleItem(users: Userx[]): Promise<any> {
+        //TODO implement logic to add the list of users to the header
+        return firstValueFrom(this.http.delete(UserService.userApiPath));
     }
 }

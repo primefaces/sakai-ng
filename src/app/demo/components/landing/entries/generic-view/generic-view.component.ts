@@ -11,7 +11,7 @@ import {RoomService} from "../api/room.service";
 import {DialogService} from "primeng/dynamicdialog";
 import {BehaviorSubject, firstValueFrom, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {MessageService} from "primeng/api";
+import {ConfirmationService, MessageService} from "primeng/api";
 
 type Item = Course | Room | Userx;
 
@@ -40,6 +40,7 @@ export class GenericViewComponent implements OnInit{
         private dialogService: DialogService,
         protected router: Router,
         private http: HttpClient,
+        private confirmationService: ConfirmationService
     ) {
         this.item = this.getItemType();
         this.itemService = this.assign();
@@ -99,34 +100,116 @@ export class GenericViewComponent implements OnInit{
     }
 
     private async saveItem(item: Item, update: boolean): Promise<void> {
-        if(update){
-            const updatedItem = await this.itemService.updateSingeItem(item);
-            const oldItemIdx = this.items.findIndex(i => i.id = updatedItem['id'])
-            this.items[oldItemIdx] = updatedItem;
-            this.messageService.add({
-                severity: 'success',
-                summary: `UPDATED ${this.item.toUpperCase()}`,
-            });
-        } else {
-            const newItem = await this.itemService.createSingeItem(item);
-            this.items.push(newItem);
-            this.messageService.add({
-                severity: 'success',
-                summary: `ADDED NEW ${this.item.toUpperCase()}`,
-            });
-        }
+        update ? this.updateItem(item) : this.saveNewItem(item);
     }
 
-    deleteSingeItem(item: Item):void{
-        const allow = this.itemService.deleteSingleItem(item);
-        if (allow) this.items = this.items.filter(i => i.id !== item.id)
+    private saveNewItem(item: Course | Room | Userx) {
+        this.itemService.createSingeItem(item)
+            .then(newItem => {
+                this.items.push(newItem);
+                this.messageService.add({
+                    severity: 'success',
+                    summary: `ADDED NEW ${this.item.toUpperCase()}`,
+                });
+            })
+            .catch(() => {
+                    this.messageService.add({
+                        severity: 'error',
+                        summary: 'Reject',
+                        detail: `We had problems by editing the ${this.item}`,
+                        life: 3000
+                    });
+                }
+            );
     }
 
-    deleteSelection(){
-        const ableToDelete = this.itemService.deleteMultipleItem(this.selectedItems);
-        if (ableToDelete){
-            this.items = this.items.filter(i => !this.selectedItems.includes(i));
-        }
+    private updateItem(item: Item) {
+        this.itemService.updateSingeItem(item)
+            .then(updatedItem => {
+                const oldItemIdx = this.items.findIndex(i => i.id = updatedItem['id'])
+                this.items[oldItemIdx] = updatedItem;
+                this.messageService.add({
+                    severity: 'success',
+                    summary: `UPDATED ${this.item.toUpperCase()}`,
+                });
+            })
+            .catch(() => {
+                    this.messageService.add({
+                        severity: 'error',
+                        summary: 'Reject',
+                        detail: `We had problems by editing the ${this.item}`,
+                        life: 3000
+                    });
+                }
+            );
+    }
+
+    protected deleteSingeItem(event: Event, item: Item):void{
+        this.confirmationService.confirm({
+            target: event.target as EventTarget,
+            message: `Are you sure you want to delete the ${this.item}?`,
+            icon: 'pi pi-exclamation-triangle',
+
+            accept: () => {
+                this.itemService.deleteSingleItem(item)
+                    .then(() => {
+                        this.items = this.items.filter(i => i.id !== item.id)
+                        this.messageService.add({
+                            severity: 'info',
+                            summary: `DELETED ${this.item.toUpperCase()}`,
+                            detail: `The selected ${this.item} was deleted`,
+                            life: 3000 });
+                    })
+                    .catch(() => {
+                        this.messageService.add({
+                            severity: 'error',
+                            summary: 'Reject',
+                            detail: `We had problems by deleting the ${this.item}`,
+                            life: 3000 });
+                    });
+
+            },
+            reject: () => {
+                this.messageService.add({
+                    severity: 'warn',
+                    summary: 'REJECT',
+                    detail: 'You have rejected',
+                    life: 3000 });
+            }
+        });
+    }
+
+    protected deleteSelection(){
+        this.confirmationService.confirm({
+            message: 'Are you sure you want to delete the selection?',
+            header: 'Confirmation',
+            icon: 'pi pi-info-circle',
+            acceptIcon:"none",
+            rejectIcon:"none",
+            rejectButtonStyleClass:"p-button-text",
+            accept: () => {
+                this.itemService.deleteMultipleItem(this.selectedItems)
+                    .then(() => {
+                            this.items = this.items.filter(i => !this.selectedItems.includes(i))
+                            this.messageService.add({
+                                severity: 'warning',
+                                summary: 'Confirmed',
+                                detail: 'Request submitted',
+                                life: 3000
+                            });
+                        }
+                    );
+
+            },
+            reject: () => {
+                this.messageService.add({
+                    severity: 'info',
+                    summary: 'Rejected',
+                    detail: 'Process incomplete',
+                    life: 3000 });
+            },
+            key: 'positionDialog'
+        });
     }
 
     async ngOnInit() {
