@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Output, signal, ViewChild, WritableSignal} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, signal, ViewChild, WritableSignal} from '@angular/core';
 import {FullCalendarComponent} from "@fullcalendar/angular";
-import {CalendarOptions} from "@fullcalendar/core";
+import {CalendarOptions, EventInput} from "@fullcalendar/core";
 import interactionPlugin, {DropArg} from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -11,10 +11,19 @@ import {RoomTable} from "../../../../../assets/models/room-table";
   selector: 'app-editor-calendar',
   templateUrl: './editor-calendar.component.html',
 })
-export class EditorCalendarComponent {
-    @ViewChild("cal") calendar!: FullCalendarComponent;
+export class EditorCalendarComponent implements OnInit{
+    @Input() set currentRoom(newRoom: RoomTable) {
+        this.selectedRoom = newRoom;
+        console.log(newRoom);
+    };
+    @Input() set currentShownEvents(newEvents: EventInput[]){
+        this.currentEvents = newEvents;
+    };
     @Output() setDirtyBool = new EventEmitter<boolean>();
-    selectedRoom: RoomTable;
+    @ViewChild("cal") calendar!: FullCalendarComponent;
+
+    protected selectedRoom: RoomTable = {roomId: 'tmp'} as RoomTable;
+    protected currentEvents: EventInput[] = [];
 
     protected calendarOptions: WritableSignal<CalendarOptions> = signal({
         plugins: [
@@ -56,7 +65,10 @@ export class EditorCalendarComponent {
     constructor(
         private messageService: MessageService
     ) {
-        this.selectedRoom = {capacity: 55, isComputersAvailable: false} as RoomTable;
+        this.selectedRoom = {roomId: 'test', capacity: 55, isComputersAvailable: false} as RoomTable;
+    }
+
+    ngOnInit(): void {
     }
 
     private drop(arg: DropArg) {
@@ -81,6 +93,11 @@ export class EditorCalendarComponent {
                 e => e.id !== arg.draggedEl.getAttribute('data-id'))
             this.nrOfEvents += 1;
              */
+            const draggedElement = arg.draggedEl;
+
+            if (draggedElement && draggedElement.parentNode) {
+                draggedElement.parentNode.removeChild(draggedElement);
+            }
             this.setDirtyBool.emit(true);
         }
     }
@@ -109,7 +126,6 @@ export class EditorCalendarComponent {
         return !(!hasComputers && needsComputers);
 
     }
-
 
     private eventChange(args: any){
         console.log('change: ', args);

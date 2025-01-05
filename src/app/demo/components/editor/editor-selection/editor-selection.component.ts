@@ -1,4 +1,14 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, Output, ViewChild} from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    ViewChild
+} from '@angular/core';
 import {EventInput} from "@fullcalendar/core";
 import {Draggable} from "@fullcalendar/interaction";
 
@@ -6,7 +16,8 @@ import {Draggable} from "@fullcalendar/interaction";
   selector: 'app-editor-selection',
   templateUrl: './editor-selection.component.html',
 })
-export class EditorSelectionComponent implements AfterViewInit, OnDestroy{
+export class EditorSelectionComponent implements OnInit, AfterViewInit, OnDestroy{
+    @Input() currentDragEvents!: EventInput[];
     @Output() triggerSave = new EventEmitter<void>;
     @ViewChild('external') external!: ElementRef;
 
@@ -19,6 +30,9 @@ export class EditorSelectionComponent implements AfterViewInit, OnDestroy{
     draggable!: Draggable;
 
     constructor() {
+    }
+
+    ngOnInit(): void {
     }
 
     protected triggerFinish(){

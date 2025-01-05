@@ -13,6 +13,9 @@ import {EditorCalendarComponent} from "./editor-calendar/editor-calendar.compone
 import {ConfirmationService, SharedModule} from "primeng/api";
 import {ContextMenuModule} from "primeng/contextmenu";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {CalendarEventPipe} from "../dashboard/api/calendar-event.pipe";
+import {EventFilterPipe} from "./api/event-filter.pipe";
+import {RoomFilterPipe} from "./api/room-filter.pipe";
 
 @NgModule({
     imports: [
@@ -26,6 +29,9 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
         SharedModule,
         ContextMenuModule,
         ConfirmDialogModule,
+        CalendarEventPipe,
+        EventFilterPipe,
+        RoomFilterPipe,
     ],
     declarations: [EditorComponent, EditorSelectionComponent, EditorHeaderComponent, EditorCalendarComponent],
     providers: [ConfirmationService]

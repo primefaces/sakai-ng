@@ -4,14 +4,12 @@
     </div>
 
     <div class="p-toolbar-group-center">
-        <p-dropdown id="all"
-                    scrollHeight="300px"
-                    placeholder="select room" optionLabel="roomId" filterBy="id"
-                    [filter]="true"
-                    [showClear]="false">
+        <p-dropdown id="all" [options]="currentRooms" [(ngModel)]="selectedRoom"
+                    scrollHeight="300px" placeholder="select room" optionLabel="roomId" filterBy="id"
+                    [filter]="true" [showClear]="false" (onChange)="triggerRoomChange()">
             <ng-template let-item pTemplate="item">
                 <div class="flex align-items-center gap-2">
-                    <div>{{ item.roomId }}</div>
+                    <div>{{ item.roomId }} | Seats: {{item.capacity}}</div>
                 </div>
             </ng-template>
         </p-dropdown>

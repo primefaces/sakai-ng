@@ -145,8 +145,8 @@ export class LayoutService {
         document.documentElement.style.fontSize = `${value}px`;
     }
 
-    changeStyle(hide: boolean){
-        this.state.hide = hide;
+    changeStyle(show: boolean){
+        this.state.hide = show;
         this.hideSideBar.next(this.state.hide);
     }
 }

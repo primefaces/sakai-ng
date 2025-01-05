@@ -1,5 +1,5 @@
-import { RoomTable } from './room-table';
 import { CourseSession } from './course-session-dto';
+import {RoomTable} from "../room-table";
 
 export interface TimeTable {
   id: number;

@@ -1,14 +1,16 @@
 <div class="grid">
     <div class="col-9" >
         <div class="card" style="height: 84vh">
-            <app-editor-header/>
-            <app-editor-calendar (setDirtyBool)="setDirtyDataBit($event)"/>
+            <app-editor-header (changeRoom)="setNewRoom($event)" [currentRooms]="timeTable.roomTables"/>
+            <app-editor-calendar (setDirtyBool)="setDirtyDataBit($event)" [currentRoom]="currentRoom"
+                [currentShownEvents]="timeTable.courseSessions | SessionToEvent: 'editor' | EventFilter: 'shown'"/>
         </div>
     </div>
 
     <div class="col-3">
         <div class="card" style="height: 84vh;">
             <app-editor-selection (triggerSave)="saveData()"
+                [currentDragEvents]="timeTable.courseSessions | SessionToEvent: 'editor' | EventFilter: 'drag'"
                 style="width: 100%; height: 80vh; display: flex; flex-direction: column;"/>
         </div>
     </div>

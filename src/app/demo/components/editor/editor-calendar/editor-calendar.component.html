@@ -1,3 +1,4 @@
 <div style="padding-top: 10px">
-    <full-calendar #cal [options]="calendarOptions()" class="custom-calendar"/>
+    <full-calendar #cal class="custom-calendar" [options]="calendarOptions()"
+                   [events]="currentEvents | RoomFilter: selectedRoom.roomId"/>
 </div>

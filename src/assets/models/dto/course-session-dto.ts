@@ -1,5 +1,5 @@
 import { Timing } from './timing';
-import {RoomTable} from "./room-table";
+import {RoomTable} from "../room-table";
 
 export class CourseSession {
     id: number;

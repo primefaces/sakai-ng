@@ -5,6 +5,8 @@ import {MenuItem} from "primeng/api";
 import {EventMountArg} from "@fullcalendar/core";
 import {TimeTable} from "../../../../assets/models/dto/time-table";
 import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
+import {TableShareService} from "../share services/table-share.service";
+import {RoomTable} from "../../../../assets/models/room-table";
 
 @Component({
   templateUrl: './editor.component.html',
@@ -12,15 +14,19 @@ import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 export class EditorComponent {
     @ViewChild('cm') contextMenu!: ContextMenu;
     timeTable!: TimeTable;
+    currentRoom: RoomTable;
 
     rightClickEvent: EventMountArg | null = null;
     items: MenuItem[] = [];
     private _dirtyData: boolean = false;
 
     constructor(
-        private layoutService: LayoutService
+        private layoutService: LayoutService,
+        private shareService: TableShareService
     ) {
         this.layoutService.changeStyle(false);
+        this.timeTable = this.shareService.sharedTable;
+        this.setNewRoom(this.timeTable.roomTables[0].id);
     }
 
     getItemMenuOptions() : void {
@@ -53,6 +59,10 @@ export class EditorComponent {
 
     protected saveData(){
         this._dirtyData = false;
+    }
+
+    protected setNewRoom(newID: number){
+        this.currentRoom = this.timeTable.roomTables.find(r => r.id = newID);
     }
 
     canDeactivate(){
