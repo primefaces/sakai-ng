@@ -9,7 +9,7 @@ import { LayoutService } from '@/src/service/layout.service';
     imports: [
         ChartModule,
     ],
-    template: `<div class="card">
+    template: `<div class="card !mb-8">
         <div class="font-semibold text-xl mb-4">Revenue Stream</div>
         <p-chart type="bar" [data]="chartData" [options]="chartOptions" class="h-80" />
     </div>`,
@@ -35,61 +35,68 @@ export class RevenueStreamWidget {
 
     initChart() {
         const documentStyle = getComputedStyle(document.documentElement);
-        const textColor = documentStyle.getPropertyValue('--text-color');
-        const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-        const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+        const borderColor = documentStyle.getPropertyValue('--surface-border');
+        const textMutedColor = documentStyle.getPropertyValue('--text-color-secondary');
 
         this.chartData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
             datasets: [
                 {
-                    label: 'First Dataset',
-                    data: [65, 59, 80, 81, 56, 55, 40],
-                    fill: false,
-                    backgroundColor: documentStyle.getPropertyValue('--bluegray-700'),
-                    borderColor: documentStyle.getPropertyValue('--bluegray-700'),
-                    tension: .4
+                    type: 'bar',
+                    label: 'Subscriptions',
+                    backgroundColor: documentStyle.getPropertyValue('--p-primary-400'),
+                    data: [4000, 10000, 15000, 4000],
+                    barThickness: 32
                 },
                 {
-                    label: 'Second Dataset',
-                    data: [28, 48, 40, 19, 86, 27, 90],
-                    fill: false,
-                    backgroundColor: documentStyle.getPropertyValue('--green-600'),
-                    borderColor: documentStyle.getPropertyValue('--green-600'),
-                    tension: .4
+                    type: 'bar',
+                    label: 'Advertising',
+                    backgroundColor: documentStyle.getPropertyValue('--p-primary-300'),
+                    data: [2100, 8400, 2400, 7500],
+                    barThickness: 32
+                },
+                {
+                    type: 'bar',
+                    label: 'Affiliate',
+                    backgroundColor: documentStyle.getPropertyValue('--p-primary-200'),
+                    data: [4100, 5200, 3400, 7400],
+                    borderRadius: {
+                        topLeft: 8,
+                        topRight: 8
+                    },
+                    borderSkipped: true,
+                    barThickness: 32
                 }
             ]
         };
 
         this.chartOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        color: textColor
-                    }
+        maintainAspectRatio: false,
+        aspectRatio: 0.8,
+        scales: {
+            x: {
+                stacked: true,
+                ticks: {
+                    color: textMutedColor
+                },
+                grid: {
+                    color: 'transparent',
+                    borderColor: 'transparent'
                 }
             },
-            scales: {
-                x: {
-                    ticks: {
-                        color: textColorSecondary
-                    },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
-                    }
+            y: {
+                stacked: true,
+                ticks: {
+                    color: textMutedColor
                 },
-                y: {
-                    ticks: {
-                        color: textColorSecondary
-                    },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
-                    }
+                grid: {
+                    color: borderColor,
+                    borderColor: 'transparent',
+                    drawTicks: false
                 }
             }
-        };
+        }
+    };
     }
 
     ngOnDestroy() {

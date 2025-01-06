@@ -15,7 +15,7 @@ import { Product, ProductService } from '@/src/service/product.service';
         ButtonModule,
         RippleModule,
     ],
-    template: `<div class="card">
+    template: `<div class="card !mb-8">
         <div class="font-semibold text-xl mb-4">Recent Sales</div>
         <p-table [value]="products" [paginator]="true" [rows]="5" responsiveLayout="scroll">
             <ng-template pTemplate="header">

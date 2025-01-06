@@ -84,7 +84,7 @@ import {TextareaModule} from "primeng/textarea";
             </div>
         </div>
 
-        <div class="flex mt-20">
+        <div class="flex mt-8">
             <div class="card flex flex-col gap-6 w-full">
                 <div class="font-semibold text-xl">Advanced</div>
                 <div class="flex flex-col md:flex-row gap-6">
