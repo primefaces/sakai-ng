@@ -179,7 +179,7 @@ import { InputIconModule } from 'primeng/inputicon';
                             <p-divider layout="horizontal" class="!flex md:!hidden" align="center"><b>OR</b></p-divider>
                         </div>
                         <div class="w-full md:w-5/12 flex items-center justify-center py-5">
-                            <p-button label="Sign Up" icon="pi pi-user-plus" severity="success" class="w-full max-w-[17.35rem] mx-auto"></p-button>
+                            <p-button label="Sign Up" icon="pi pi-user-plus" severity="success" class="w-full" styleClass="w-full max-w-[17.35rem] mx-auto"></p-button>
                         </div>
                     </div>
                 </div>
@@ -213,27 +213,23 @@ import { InputIconModule } from 'primeng/inputicon';
     `,
 })
 export class PanelsDoc {
-    items: MenuItem[] = [];
-
-    cardMenu: MenuItem[] = [];
-
-    ngOnInit() {
-        this.items = [
-            { label: 'Angular.io', icon: 'pi pi-external-link', url: 'http://angular.io' },
-            { label: 'Theming', icon: 'pi pi-bookmark', routerLink: ['/theming'] }
-        ];
-
-        this.cardMenu = [
-            {
-                label: 'Save', icon: 'pi pi-fw pi-check'
-            },
-            {
-                label: 'Update', icon: 'pi pi-fw pi-refresh'
-            },
-            {
-                label: 'Delete', icon: 'pi pi-fw pi-trash'
-            },
-        ];
-    }
+    items: MenuItem[] = [
+        {
+        label: 'Save',
+        icon: 'pi pi-check'
+        },
+        {
+            label: 'Update',
+            icon: 'pi pi-upload'
+        },
+        {
+            label: 'Delete',
+            icon: 'pi pi-trash'
+        },
+        {
+            label: 'Home Page',
+            icon: 'pi pi-home'
+        }
+    ];
 
 }
