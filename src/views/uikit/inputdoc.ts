@@ -25,8 +25,8 @@ import {MultiSelectModule} from "primeng/multiselect";
 import {ListboxModule} from "primeng/listbox";
 import {InputGroupAddonModule} from "primeng/inputgroupaddon";
 import {TextareaModule} from "primeng/textarea";
-import { CountryService } from '@/src/service/country.service';
-import { NodeService } from '@/src/service/node.service';
+import { CountryService } from '@/src/service/demo/country.service';
+import { NodeService } from '@/src/service/demo/node.service';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
 @Component({

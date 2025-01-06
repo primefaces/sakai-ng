@@ -1,8 +1,7 @@
-import { ChangeDetectorRef, Component, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, OnInit, signal, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import {Table, TableModule} from 'primeng/table';
 import {CommonModule} from '@angular/common';
-import {FileUploadModule} from 'primeng/fileupload';
 import {FormsModule} from '@angular/forms';
 import {ButtonModule} from 'primeng/button';
 import {RippleModule} from 'primeng/ripple';
@@ -15,11 +14,11 @@ import {SelectModule} from 'primeng/select';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {DialogModule} from 'primeng/dialog';
-import { Product, ProductService } from '@/src/service/product.service';
 import { TagModule } from 'primeng/tag';
 import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { Product, ProductService } from '@/src/service/demo/product.service';
 
 interface Column {
     field: string;

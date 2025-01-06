@@ -2,7 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigurator } from '@/src/layout/appconfigurator';
-import { LayoutService } from '@/src/service/layout.service';
+import { LayoutService } from '@/src/service/layout/layout.service';
 
 @Component({
   selector: 'floating-configurator',

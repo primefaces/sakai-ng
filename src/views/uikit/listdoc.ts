@@ -8,7 +8,7 @@ import { PickListModule } from 'primeng/picklist';
 import { OrderListModule } from 'primeng/orderlist';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
-import { Product, ProductService } from '@/src/service/product.service';
+import { Product, ProductService } from '@/src/service/demo/product.service';
 
 @Component({
     standalone: true,

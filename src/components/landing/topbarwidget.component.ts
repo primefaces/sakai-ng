@@ -3,7 +3,6 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { Router, RouterModule } from '@angular/router';
 import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
-import { LayoutService } from '@/src/service/layout.service';
 
 @Component({
     selector: 'topbar-widget',
