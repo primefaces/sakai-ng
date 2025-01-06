@@ -62,9 +62,11 @@ export class RevenueStreamWidget {
                     data: [4100, 5200, 3400, 7400],
                     borderRadius: {
                         topLeft: 8,
-                        topRight: 8
+                        topRight: 8,
+                        bottomLeft: 0,
+                        bottomRight: 0
                     },
-                    borderSkipped: true,
+                    borderSkipped: false,
                     barThickness: 32
                 }
             ]
