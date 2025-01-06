@@ -37,8 +37,7 @@ const presets = {
                                 [style]="{
                                     'background-color': primaryColor.name === 'noir' ? 'var(--text-color)' : primaryColor?.palette['500']
                                 }"
-                            >
-                        </button>
+                            ></button>
                         }
                     </div>
                 </div>
@@ -65,7 +64,7 @@ const presets = {
                 </div>
                 <div class="flex flex-col gap-2">
                     <span class="text-sm text-muted-color font-semibold">Menu Mode</span>
-                    <p-selectbutton [ngModel]="menuMode()" (ngModelChange)="onMenuModeChange($event)" [options]="presets" [allowEmpty]="false" />
+                    <p-selectbutton [ngModel]="menuMode()" (ngModelChange)="onMenuModeChange($event)" [options]="menuModeOptions" [allowEmpty]="false" />
                 </div>
             </div>
         </div>
@@ -82,6 +81,11 @@ export class AppConfigurator {
     platformId = inject(PLATFORM_ID);
 
     presets = Object.keys(presets);
+
+    menuModeOptions = [
+        { label: 'Static', value: 'static' },
+        { label: 'Overlay', value: 'overlay' }
+    ];
 
     ngOnInit() {
         if (isPlatformBrowser(this.platformId)) {
