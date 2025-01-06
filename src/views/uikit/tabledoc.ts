@@ -76,7 +76,7 @@ interface expandedRows {
                                             <ng-template let-option #item>
                                                 <div>
                                                     <img [alt]="option.label"
-                                                         src="https://primefaces.org/cdn/primevue/images/avatar/{{option.image}}" width="32"
+                                                         src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{option.image}}" width="32"
                                                          style="vertical-align: middle" />
                                                     <span class="ml-2">{{ option.name }}</span>
                                                 </div>
@@ -157,7 +157,7 @@ interface expandedRows {
                         <td>
                             <div class="flex items-center gap-2">
                                 <img [alt]="customer.representative.name"
-                                     src="https://primefaces.org/cdn/primevue/images/avatar/{{customer.representative.image}}" width="32"
+                                     src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{customer.representative.image}}" width="32"
                                      style="vertical-align: middle" />
                                 <span class="image-text">{{ customer.representative.name }}</span>
                             </div>
