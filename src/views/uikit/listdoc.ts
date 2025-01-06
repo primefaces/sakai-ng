@@ -164,7 +164,7 @@ export class ListDoc {
     constructor(private productService: ProductService) {}
 
     ngOnInit() {
-        this.productService.getProducts().then((data) => (this.products = data));
+        this.productService.getProductsSmall().then((data) => (this.products = data.slice(0, 6)));
 
         this.sourceCities = [
             { name: 'San Francisco', code: 'SF' },
