@@ -89,23 +89,23 @@ export class ChartDoc {
 
     initCharts() {
         const documentStyle = getComputedStyle(document.documentElement);
-        const textColor = documentStyle.getPropertyValue('--text-color');
-        const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-        const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+        const textColor = documentStyle.getPropertyValue('--p-text-color');
+        const textColorSecondary = documentStyle.getPropertyValue('--p-text-muted-color');
+        const surfaceBorder = documentStyle.getPropertyValue('--p-content-border-color');
 
         this.barData = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             datasets: [
                 {
                     label: 'My First dataset',
-                    backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-                    borderColor: documentStyle.getPropertyValue('--primary-500'),
+                    backgroundColor: documentStyle.getPropertyValue('--p-primary-500'),
+                    borderColor: documentStyle.getPropertyValue('--p-primary-500'),
                     data: [65, 59, 80, 81, 56, 55, 40]
                 },
                 {
                     label: 'My Second dataset',
-                    backgroundColor: documentStyle.getPropertyValue('--primary-200'),
-                    borderColor: documentStyle.getPropertyValue('--primary-200'),
+                    backgroundColor: documentStyle.getPropertyValue('--p-primary-200'),
+                    borderColor: documentStyle.getPropertyValue('--p-primary-200'),
                     data: [28, 48, 40, 19, 86, 27, 90]
                 }
             ]
@@ -150,14 +150,14 @@ export class ChartDoc {
                 {
                     data: [540, 325, 702],
                     backgroundColor: [
-                        documentStyle.getPropertyValue('--indigo-500'),
-                        documentStyle.getPropertyValue('--purple-500'),
-                        documentStyle.getPropertyValue('--teal-500')
+                        documentStyle.getPropertyValue('--p-indigo-500'),
+                        documentStyle.getPropertyValue('--p-purple-500'),
+                        documentStyle.getPropertyValue('--p-teal-500')
                     ],
                     hoverBackgroundColor: [
-                        documentStyle.getPropertyValue('--indigo-400'),
-                        documentStyle.getPropertyValue('--purple-400'),
-                        documentStyle.getPropertyValue('--teal-400')
+                        documentStyle.getPropertyValue('--p-indigo-400'),
+                        documentStyle.getPropertyValue('--p-purple-400'),
+                        documentStyle.getPropertyValue('--p-teal-400')
                     ]
                 }]
         };
@@ -180,16 +180,16 @@ export class ChartDoc {
                     label: 'First Dataset',
                     data: [65, 59, 80, 81, 56, 55, 40],
                     fill: false,
-                    backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-                    borderColor: documentStyle.getPropertyValue('--primary-500'),
+                    backgroundColor: documentStyle.getPropertyValue('--p-primary-500'),
+                    borderColor: documentStyle.getPropertyValue('--p-primary-500'),
                     tension: .4
                 },
                 {
                     label: 'Second Dataset',
                     data: [28, 48, 40, 19, 86, 27, 90],
                     fill: false,
-                    backgroundColor: documentStyle.getPropertyValue('--primary-200'),
-                    borderColor: documentStyle.getPropertyValue('--primary-200'),
+                    backgroundColor: documentStyle.getPropertyValue('--p-primary-200'),
+                    borderColor: documentStyle.getPropertyValue('--p-primary-200'),
                     tension: .4
                 }
             ]
@@ -234,10 +234,10 @@ export class ChartDoc {
                     3
                 ],
                 backgroundColor: [
-                    documentStyle.getPropertyValue('--indigo-500'),
-                    documentStyle.getPropertyValue('--purple-500'),
-                    documentStyle.getPropertyValue('--teal-500'),
-                    documentStyle.getPropertyValue('--orange-500')
+                    documentStyle.getPropertyValue('--p-indigo-500'),
+                    documentStyle.getPropertyValue('--p-purple-500'),
+                    documentStyle.getPropertyValue('--p-teal-500'),
+                    documentStyle.getPropertyValue('--p-orange-500')
                 ],
                 label: 'My dataset'
             }],
@@ -271,20 +271,20 @@ export class ChartDoc {
             datasets: [
                 {
                     label: 'My First dataset',
-                    borderColor: documentStyle.getPropertyValue('--indigo-400'),
-                    pointBackgroundColor: documentStyle.getPropertyValue('--indigo-400'),
-                    pointBorderColor: documentStyle.getPropertyValue('--indigo-400'),
+                    borderColor: documentStyle.getPropertyValue('--p-indigo-400'),
+                    pointBackgroundColor: documentStyle.getPropertyValue('--p-indigo-400'),
+                    pointBorderColor: documentStyle.getPropertyValue('--p-indigo-400'),
                     pointHoverBackgroundColor: textColor,
-                    pointHoverBorderColor: documentStyle.getPropertyValue('--indigo-400'),
+                    pointHoverBorderColor: documentStyle.getPropertyValue('--p-indigo-400'),
                     data: [65, 59, 90, 81, 56, 55, 40]
                 },
                 {
                     label: 'My Second dataset',
-                    borderColor: documentStyle.getPropertyValue('--purple-400'),
-                    pointBackgroundColor: documentStyle.getPropertyValue('--purple-400'),
-                    pointBorderColor: documentStyle.getPropertyValue('--purple-400'),
+                    borderColor: documentStyle.getPropertyValue('--p-purple-400'),
+                    pointBackgroundColor: documentStyle.getPropertyValue('--p-purple-400'),
+                    pointBorderColor: documentStyle.getPropertyValue('--p-purple-400'),
                     pointHoverBackgroundColor: textColor,
-                    pointHoverBorderColor: documentStyle.getPropertyValue('--purple-400'),
+                    pointHoverBorderColor: documentStyle.getPropertyValue('--p-purple-400'),
                     data: [28, 48, 40, 19, 96, 27, 100]
                 }
             ]
