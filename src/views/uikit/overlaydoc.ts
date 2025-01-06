@@ -8,8 +8,8 @@ import { Popover, PopoverModule } from 'primeng/popover';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
-import { Product, ProductService } from '@/src/service/product.service';
 import { TooltipModule } from 'primeng/tooltip';
+import { Product, ProductService } from '@/src/service/demo/product.service';
 
 @Component({
     standalone: true,

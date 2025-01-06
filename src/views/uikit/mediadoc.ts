@@ -5,8 +5,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { GalleriaModule } from 'primeng/galleria';
 import { ImageModule } from 'primeng/image';
 import { TagModule } from 'primeng/tag';
-import { Product, ProductService } from '@/src/service/product.service';
-import { PhotoService } from '@/src/service/photo.service';
+import { Product, ProductService } from '@/src/service/demo/product.service';
+import { PhotoService } from '@/src/service/demo/photo.service';
 
 @Component({
     standalone:true,

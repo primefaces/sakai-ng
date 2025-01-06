@@ -12,12 +12,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { RatingModule } from 'primeng/rating';
-import { Customer, CustomerService, Representative } from '@/src/service/customer.service';
-import { Product, ProductService } from '@/src/service/product.service';
 import { RippleModule } from 'primeng/ripple';
 import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
 import { TagModule } from 'primeng/tag';
+import { Customer, CustomerService, Representative } from '@/src/service/demo/customer.service';
+import { Product, ProductService } from '@/src/service/demo/product.service';
 
 interface expandedRows {
     [key: string]: boolean;
