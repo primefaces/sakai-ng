@@ -21,19 +21,19 @@
     "@primeng/themes": "^19.0.2",
     "chart.js": "4.4.2",
     "primeclt": "^0.1.5",
+    "primeicons": "^7.0.0",
     "primeng": "^19.0.2",
     "rxjs": "~7.8.0",
-    "tailwindcss": "^3.4.6",
     "tailwindcss-primeui": "^0.3.2",
     "tslib": "^2.3.0",
-    "zone.js": "~0.15.0",
-    "primeicons": "^7.0.0"
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.0.6",
     "@angular/cli": "^19.0.6",
     "@angular/compiler-cli": "^19.0.0",
     "@types/jasmine": "~5.1.0",
+    "autoprefixer": "^10.4.20",
     "eslint": "^9.14.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
@@ -45,7 +45,9 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "postcss": "^8.4.49",
     "prettier": "^3.0.0",
+    "tailwindcss": "^3.4.17",
     "typescript": "~5.6.2"
   }
 }
