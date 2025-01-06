@@ -21,8 +21,8 @@ import { Product, ProductService } from '@/src/service/product.service';
                     <ng-template #header>
                         <div class="flex justify-end">
                             <p-select-button [(ngModel)]="layout" [options]="options" [allowEmpty]="false">
-                                <ng-template #option let-option>
-                                    <i [ngClass]="{'pi pi-bars': option === 'list', 'pi pi-table': option === 'grid'}"></i>
+                                <ng-template #item let-option>
+                                    <i class="pi " [ngClass]="{'pi-bars': option === 'list', 'pi-table': option === 'grid'}"></i>
                                 </ng-template>
                             </p-select-button>
                         </div>
@@ -64,9 +64,9 @@ import { Product, ProductService } from '@/src/service/product.service';
                                             </div>
                                         </div>
                                         <div class="flex flex-col md:items-end gap-20">
-                                            <span class="text-xl font-semibold">{{ item.price }}</span>
+                                            <span class="text-xl font-semibold">$ {{ item.price }}</span>
                                             <div class="flex flex-row-reverse md:flex-row gap-2">
-                                                <p-button icon="pi pi-heart" [outlined]="true"></p-button>
+                                                <p-button icon="pi pi-heart" styleClass="h-full" [outlined]="true"></p-button>
                                                 <p-button icon="pi pi-shopping-cart" label="Buy Now"
                                                         [disabled]="item.inventoryStatus === 'OUTOFSTOCK'"
                                                         styleClass="flex-auto md:flex-initial whitespace-nowrap"></p-button>
@@ -118,12 +118,12 @@ import { Product, ProductService } from '@/src/service/product.service';
                                             </div>
                                         </div>
                                         <div class="flex flex-col gap-6 mt-6">
-                                            <span class="text-2xl font-semibold">{{ item.price }}</span>
+                                            <span class="text-2xl font-semibold">$ {{ item.price }}</span>
                                             <div class="flex gap-2">
                                                 <p-button icon="pi pi-shopping-cart" label="Buy Now"
                                                         [disabled]="item.inventoryStatus === 'OUTOFSTOCK'"
                                                         class="flex-auto whitespace-nowrap"></p-button>
-                                                <p-button icon="pi pi-heart" [outlined]="true"></p-button>
+                                                <p-button icon="pi pi-heart" styleClass="h-full" [outlined]="true"></p-button>
                                             </div>
                                         </div>
                                     </div>
@@ -137,7 +137,7 @@ import { Product, ProductService } from '@/src/service/product.service';
             <div class="flex flex-col lg:flex-row gap-20">
                 <div class="lg:w-2/3">
                     <div class="card">
-                        <div class="font-semibold text-xl mb-6">PickList</div>
+                        <div class="font-semibold text-xl mb-4">PickList</div>
                         <p-pick-list [source]="sourceCities"  [target]="targetCities" breakpoint="1400px">
                             <ng-template #item let-item>
                                 {{ item.name }}
@@ -148,17 +148,23 @@ import { Product, ProductService } from '@/src/service/product.service';
 
                 <div class="lg:w-1/3">
                     <div class="card">
-                        <div class="font-semibold text-xl mb-6">OrderList</div>
-                        <p-orderList [value]="orderCities" header="Cities" [dragdrop]="true"
-                                     [listStyle]="{'height':'250px'}">
-                            <ng-template #item let-city>
-                                <div>{{ city.name }}</div>
+                        <div class="font-semibold text-xl mb-4">OrderList</div>
+                        <p-orderlist [value]="orderCities" dataKey="id" breakpoint="575px">
+                            <ng-template #option let-option>
+                                {{ option.name }}
                             </ng-template>
-                        </p-orderList>
+                        </p-orderlist>
                     </div>
                 </div>
             </div>
         </div>`,
+    styles: `
+        ::ng-deep {
+            .p-orderlist-list-container{
+                width: 100%;
+            }
+        }
+      `,
     providers: [ProductService]
 })
 export class ListDoc {
