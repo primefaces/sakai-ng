@@ -63,7 +63,7 @@ import { FloatingConfigurator } from '@/src/components/floatingconfigurator';
                               </div>
                               <span class="font-medium no-underline ml-2 text-right cursor-pointer text-primary">Forgot password?</span>
                           </div>
-                          <p-button label="Sign In" class="w-full" routerLink="/"></p-button>
+                          <p-button label="Sign In" styleClass="w-full" routerLink="/"></p-button>
                       </div>
                   </div>
               </div>

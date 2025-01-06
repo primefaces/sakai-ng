@@ -286,19 +286,24 @@ interface expandedRows {
                                 <p-table [value]="product.orders" dataKey="id" responsiveLayout="scroll">
                                     <ng-template pTemplate="header">
                                         <tr>
-                                            <th pSortableColumn="id">Id
+                                            <th pSortableColumn="id">
+                                                Id
                                                 <p-sortIcon field="price"></p-sortIcon>
                                             </th>
-                                            <th pSortableColumn="customer">Customer
+                                            <th pSortableColumn="customer">
+                                                Customer
                                                 <p-sortIcon field="customer"></p-sortIcon>
                                             </th>
-                                            <th pSortableColumn="date">Date
+                                            <th pSortableColumn="date">
+                                                Date
                                                 <p-sortIcon field="date"></p-sortIcon>
                                             </th>
-                                            <th pSortableColumn="amount">Amount
+                                            <th pSortableColumn="amount">
+                                                Amount
                                                 <p-sortIcon field="amount"></p-sortIcon>
                                             </th>
-                                            <th pSortableColumn="stats">Status
+                                            <th pSortableColumn="stats">
+                                                Status
                                                 <p-sortIcon field="status"></p-sortIcon>
                                             </th>
                                             <th style="width: 4rem"></th>
@@ -309,9 +314,9 @@ interface expandedRows {
                                             <td>{{ order.id }}</td>
                                             <td>{{ order.customer }}</td>
                                             <td>{{ order.date }}</td>
-                                            <td>{{ order.amount | currency:'USD' }}</td>
-                                            <td><span
-                                                [class]="'order-badge order-' + order.status.toLowerCase()">{{ order.status }}</span>
+                                            <td>{{ order.amount | currency: 'USD' }}</td>
+                                            <td>
+                                                <span [class]="'order-badge order-' + order.status.toLowerCase()">{{ order.status }}</span>
                                             </td>
                                             <td>
                                                 <p-button type="button" icon="pi pi-search"></p-button>

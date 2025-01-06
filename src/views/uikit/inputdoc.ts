@@ -202,7 +202,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
             </div>
         </p-fluid>
 
-        <p-fluid class="flex mt-20">
+        <p-fluid class="flex mt-8">
             <div class="card flex flex-col gap-6 w-full">
                 <div class="font-semibold text-xl">InputGroup</div>
                 <div class="flex flex-col md:flex-row gap-6">
