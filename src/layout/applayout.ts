@@ -11,16 +11,8 @@ import { LayoutService } from '@/src/service/layout.service';
 
 @Component({
     selector: 'app-layout',
-    standalone:true,
-    imports: [
-        CommonModule,
-        ToastModule,
-        AppTopBar,
-        AppSidebar,
-        RouterModule,
-        AppFooter,
-        AppConfigurator
-    ],
+    standalone: true,
+    imports: [CommonModule, ToastModule, AppTopBar, AppSidebar, RouterModule, AppFooter, AppConfigurator],
     template: `<div class="layout-wrapper" [ngClass]="containerClass">
         <app-topbar></app-topbar>
         <div class="layout-sidebar">
@@ -34,8 +26,7 @@ import { LayoutService } from '@/src/service/layout.service';
         </div>
         <app-configurator></app-configurator>
         <div class="layout-mask animate-fadein"></div>
-    </div>
-    `,
+    </div> `
 })
 export class AppLayout {
     overlayMenuOpenSubscription: Subscription;
@@ -48,23 +39,28 @@ export class AppLayout {
 
     @ViewChild(AppTopBar) appTopBar!: AppTopBar;
 
-    constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router) {
+    constructor(
+        public layoutService: LayoutService,
+        public renderer: Renderer2,
+        public router: Router
+    ) {
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
             if (!this.menuOutsideClickListener) {
-                this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
-                    const isOutsideClicked = !(this.appSidebar.el.nativeElement.isSameNode(event.target) || this.appSidebar.el.nativeElement.contains(event.target)
-                        || this.appTopBar.menuButton.nativeElement.isSameNode(event.target) || this.appTopBar.menuButton.nativeElement.contains(event.target));
-
-                    if (isOutsideClicked) {
+                this.menuOutsideClickListener = this.renderer.listen('document', 'click', (event) => {
+                    if (this.isOutsideClicked(event)) {
                         this.hideMenu();
                     }
                 });
             }
 
             if (!this.profileMenuOutsideClickListener) {
-                this.profileMenuOutsideClickListener = this.renderer.listen('document', 'click', event => {
-                    const isOutsideClicked = !(this.appTopBar.menu.nativeElement.isSameNode(event.target) || this.appTopBar.menu.nativeElement.contains(event.target)
-                        || this.appTopBar.topbarMenuButton.nativeElement.isSameNode(event.target) || this.appTopBar.topbarMenuButton.nativeElement.contains(event.target));
+                this.profileMenuOutsideClickListener = this.renderer.listen('document', 'click', (event) => {
+                    const isOutsideClicked = !(
+                        this.appTopBar.menu.nativeElement.isSameNode(event.target) ||
+                        this.appTopBar.menu.nativeElement.contains(event.target) ||
+                        this.appTopBar.topbarMenuButton.nativeElement.isSameNode(event.target) ||
+                        this.appTopBar.topbarMenuButton.nativeElement.contains(event.target)
+                    );
 
                     if (isOutsideClicked) {
                     }
@@ -76,14 +72,20 @@ export class AppLayout {
             }
         });
 
-        this.router.events.pipe(filter(event => event instanceof NavigationEnd))
-            .subscribe(() => {
-                this.hideMenu();
-            });
+        this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+            this.hideMenu();
+        });
+    }
+
+    isOutsideClicked(event) {
+        const sidebarEl = document.querySelector('.layout-sidebar');
+        const topbarEl = document.querySelector('.layout-menu-button');
+
+        return !(sidebarEl.isSameNode(event.target) || sidebarEl.contains(event.target) || topbarEl.isSameNode(event.target) || topbarEl.contains(event.target));
     }
 
     hideMenu() {
-        this.layoutService.layoutState.update((prev) => ({...prev, overlayMenuActive:false, staticMenuMobileActive: false, menuHoverActive: false}))
+        this.layoutService.layoutState.update((prev) => ({ ...prev, overlayMenuActive: false, staticMenuMobileActive: false, menuHoverActive: false }));
         if (this.menuOutsideClickListener) {
             this.menuOutsideClickListener();
             this.menuOutsideClickListener = null;
@@ -94,8 +96,7 @@ export class AppLayout {
     blockBodyScroll(): void {
         if (document.body.classList) {
             document.body.classList.add('blocked-scroll');
-        }
-        else {
+        } else {
             document.body.className += ' blocked-scroll';
         }
     }
@@ -103,10 +104,8 @@ export class AppLayout {
     unblockBodyScroll(): void {
         if (document.body.classList) {
             document.body.classList.remove('blocked-scroll');
-        }
-        else {
-            document.body.className = document.body.className.replace(new RegExp('(^|\\b)' +
-                'blocked-scroll'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+        } else {
+            document.body.className = document.body.className.replace(new RegExp('(^|\\b)' + 'blocked-scroll'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
         }
     }
 
@@ -117,7 +116,7 @@ export class AppLayout {
             'layout-static-inactive': this.layoutService.layoutState().staticMenuDesktopInactive && this.layoutService.layoutConfig().menuMode === 'static',
             'layout-overlay-active': this.layoutService.layoutState().overlayMenuActive,
             'layout-mobile-active': this.layoutService.layoutState().staticMenuMobileActive
-        }
+        };
     }
 
     ngOnDestroy() {
