@@ -17,25 +17,21 @@ import { NodeService } from '@/src/service/node.service';
 
         <div class="card">
             <div class="font-semibold text-xl mb-4">TreeTable</div>
-            <p-treetable [value]="treeTableValue" [columns]="cols" selectionMode="checkbox" [(selection)]="selectedTreeTableValue">
+            <p-treetable [value]="treeTableValue" [columns]="cols" selectionMode="checkbox" [(selectionKeys)]="selectedTreeTableValue" dataKey="key" [scrollable]="true" [tableStyle]="{ 'min-width': '50rem' }">
                 <ng-template #header let-columns>
                     <tr>
-                        @for(col of columns; track col.header){
-                            <th>
-                                {{ col.header }}
-                            </th>
-                        }
+                        <th *ngFor="let col of columns">
+                            {{ col.header }}
+                        </th>
                     </tr>
                 </ng-template>
                 <ng-template #body let-rowNode let-rowData="rowData" let-columns="columns">
-                    <tr>
-                        @for(col of columns; track col.field; let i = $index){
-                            <td>
-                                <p-treetabletoggler [rowNode]="rowNode" *ngIf="i === 0"></p-treetabletoggler>
-                                <p-treeTableCheckbox [value]="rowNode" *ngIf="i === 0"></p-treeTableCheckbox>
-                                {{ rowData[col.field] }}
-                            </td>
-                        }
+                    <tr [ttRow]="rowNode" [ttSelectableRow]="rowNode">
+                        <td *ngFor="let col of columns; let i = index">
+                            <p-treeTableToggler [rowNode]="rowNode" *ngIf="i === 0" />
+                            <p-treeTableCheckbox [value]="rowNode" *ngIf="i === 0" />
+                            <span class="ml-2">{{ rowData[col.field] }}</span>
+                        </td>
                     </tr>
                 </ng-template>
             </p-treetable>
@@ -50,7 +46,7 @@ export class TreeDoc implements OnInit {
 
     selectedTreeValue: TreeNode[] = [];
 
-    selectedTreeTableValue: TreeNode[] = [];
+    selectedTreeTableValue: any[] = [];
 
     cols: any[] = [];
 
