@@ -11,21 +11,25 @@ import { TabsModule } from 'primeng/tabs';
 import { MenubarModule } from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
 import { StepperModule } from 'primeng/stepper';
+import { IconField, IconFieldModule } from 'primeng/iconfield';
+import { InputIcon, InputIconModule } from 'primeng/inputicon';
 
 
 @Component({
     standalone:true,
-    imports: [CommonModule, BreadcrumbModule, TieredMenuModule, MenuModule, ButtonModule, ContextMenuModule, MegaMenuModule, PanelMenuModule, TabsModule, MenubarModule, InputTextModule, TabsModule, StepperModule, TabsModule],
+    imports: [CommonModule, BreadcrumbModule, TieredMenuModule, IconFieldModule, InputIconModule, MenuModule, ButtonModule, ContextMenuModule, MegaMenuModule, PanelMenuModule, TabsModule, MenubarModule, InputTextModule, TabsModule, StepperModule, TabsModule, IconField, InputIcon],
     template: `
             <div class="card">
                 <div class="font-semibold text-xl mb-4">Menubar</div>
                 <p-menubar [model]="nestedMenuItems">
                     <ng-template #end>
-                    <span class="p-input-icon-right">
-                        <input type="text" pInputText placeholder="Search">
-                        <i class="pi pi-search"></i>
-                    </span>
+                        <p-iconfield>
+                            <p-inputicon class="pi pi-search"/>
+                            <input type="text" pInputText placeholder="Search">
+                        </p-iconfield>
                     </ng-template>
+
+
                 </p-menubar>
             </div>
 
