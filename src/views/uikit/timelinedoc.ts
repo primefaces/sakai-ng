@@ -5,20 +5,15 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
-    standalone:true,
-    imports: [
-        CommonModule,
-        TimelineModule,
-        ButtonModule,
-        CardModule
-    ],
-    template: `    <div class="grid grid-cols-12 gap-8">
+    standalone: true,
+    imports: [CommonModule, TimelineModule, ButtonModule, CardModule],
+    template: ` <div class="grid grid-cols-12 gap-8">
         <div class="col-span-6">
             <div class="card">
                 <div class="font-semibold text-xl mb-4">Left Align</div>
                 <p-timeline [value]="events1">
                     <ng-template #content let-event>
-                        {{event.status}}
+                        {{ event.status }}
                     </ng-template>
                 </p-timeline>
             </div>
@@ -28,7 +23,7 @@ import { ButtonModule } from 'primeng/button';
                 <div class="font-semibold text-xl mb-4">Right Align</div>
                 <p-timeline [value]="events1" align="right">
                     <ng-template #content let-event>
-                        {{event.status}}
+                        {{ event.status }}
                     </ng-template>
                 </p-timeline>
             </div>
@@ -38,7 +33,7 @@ import { ButtonModule } from 'primeng/button';
                 <div class="font-semibold text-xl mb-4">Alternate Align</div>
                 <p-timeline [value]="events1" align="alternate">
                     <ng-template #content let-event>
-                        {{event.status}}
+                        {{ event.status }}
                     </ng-template>
                 </p-timeline>
             </div>
@@ -48,10 +43,10 @@ import { ButtonModule } from 'primeng/button';
                 <div class="font-semibold text-xl mb-4">Opposite Content</div>
                 <p-timeline [value]="events1">
                     <ng-template pTemplate="content" let-event>
-                        <small class="p-text-secondary">{{event.date}}</small>
+                        <small class="p-text-secondary">{{ event.date }}</small>
                     </ng-template>
                     <ng-template pTemplate="opposite" let-event>
-                        {{event.status}}
+                        {{ event.status }}
                     </ng-template>
                 </p-timeline>
             </div>
@@ -60,17 +55,19 @@ import { ButtonModule } from 'primeng/button';
             <div class="card">
                 <div class="font-semibold text-xl mb-4">Templating</div>
                 <p-timeline [value]="events1" align="alternate" styleClass="customized-timeline">
-                    <ng-template pTemplate="marker" let-event>
-        <span class="flex z-1 w-2rem h-2rem align-items-center justify-content-center text-white border-circle shadow-2" [style.backgroundColor]="event.color">
-            <i [ngClass]="event.icon"></i>
-        </span>
+                    <ng-template #marker let-event>
+                        <span class="flex w-8 h-8 items-center justify-center text-white rounded-full z-10 shadow-sm" [style]="{ 'background-color': event.color }">
+                            <i [class]="event.icon"></i>
+                        </span>
                     </ng-template>
-                    <ng-template pTemplate="content" let-event>
+                    <ng-template #content let-event>
                         <p-card [header]="event.status" [subheader]="event.date">
-                            <img *ngIf="event.image" [src]="'assets/demo/images/product/' + event.image" [alt]="event.name" width="200" class="shadow-2" />
-                            <p class="line-height-3 my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-                                quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
-                            <button pButton label="Read more" class="p-button-outlined mb-5"></button>
+                            <img *ngIf="event.image" [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + event.image" [alt]="event.name" width="200" class="shadow" />
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse,
+                                cupiditate neque quas!
+                            </p>
+                            <p-button label="Read more" [text]="true" />
                         </p-card>
                     </ng-template>
                 </p-timeline>
@@ -81,33 +78,30 @@ import { ButtonModule } from 'primeng/button';
                 <div class="font-semibold text-xl mb-4">Horizontal</div>
                 <div class="font-semibold mb-2">Top Align</div>
                 <p-timeline [value]="events2" layout="horizontal" align="top">
-                    <ng-template pTemplate="content" let-event>
-                        {{event}}
+                    <ng-template #content let-event>
+                        {{ event }}
                     </ng-template>
                 </p-timeline>
 
                 <div class="font-semibold mt-4 mb-2">Bottom Align</div>
                 <p-timeline [value]="events2" layout="horizontal" align="bottom">
-                    <ng-template pTemplate="content" let-event>
-                        {{event}}
+                    <ng-template #content let-event>
+                        {{ event }}
                     </ng-template>
                 </p-timeline>
 
                 <div class="font-semibold mt-4 mb-2">Alternate Align</div>
                 <p-timeline [value]="events2" layout="horizontal" align="alternate">
-                    <ng-template pTemplate="content" let-event>
-                        {{event}}
+                    <ng-template #content let-event>
+                        {{ event }}
                     </ng-template>
-                    <ng-template pTemplate="opposite" let-event>
-                        &nbsp;
-                    </ng-template>
+                    <ng-template #opposite let-event> &nbsp; </ng-template>
                 </p-timeline>
             </div>
         </div>
-    </div>`,
+    </div>`
 })
 export class TimelineDoc {
-
     events1: any[] = [];
 
     events2: any[] = [];
@@ -141,9 +135,6 @@ export class TimelineDoc {
             }
         ];
 
-        this.events2 = [
-            "2020", "2021", "2022", "2023"
-        ];
+        this.events2 = ['2020', '2021', '2022', '2023'];
     }
-
 }
