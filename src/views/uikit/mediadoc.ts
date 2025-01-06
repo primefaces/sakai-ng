@@ -13,16 +13,16 @@ import { PhotoService } from '@/src/service/photo.service';
     imports:[CommonModule, CarouselModule,ButtonModule,GalleriaModule, ImageModule, TagModule],
     template: `<div class="card">
         <div class="font-semibold text-xl mb-4">Carousel</div>
-        <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="carouselResponsiveOptions">
+        <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="galleriaResponsiveOptions">
             <ng-template let-product #item>
-                <div class="border border-surface rounded-border m-2 p-6">
-                    <div class="mb-6">
+                <div class="border border-surface rounded-border m-2 p-4">
+                    <div class="mb-4">
                         <div class="relative mx-auto">
-                            <img src="assets/demo/images/product/{{product.image}}" [alt]="product.name" class="shadow-lg" width="50%"/>
+                            <img src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}" [alt]="product.name" class="w-full rounded-border" />
                             <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" class="absolute" styleClass="dark:!bg-surface-900" [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
                         </div>
                     </div>
-                    <div class="mb-6 font-medium">{{ product.name }}</div>
+                    <div class="mb-4 font-medium">{{ product.name }}</div>
                     <div class="flex justify-between items-center">
                         <div class="mt-0 font-semibold text-xl">{{ '$' + product.price }}</div>
                         <span>
@@ -37,7 +37,7 @@ import { PhotoService } from '@/src/service/photo.service';
 
     <div class="card">
         <div class="font-semibold text-xl mb-4">Image</div>
-        <p-image src="assets/demo/images/galleria/galleria10.jpg" alt="Image" width="250" [preview]="true"></p-image>
+        <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg" alt="Image" width="250" />
     </div>
 
     <div class="card">
