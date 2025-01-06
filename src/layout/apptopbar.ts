@@ -103,6 +103,6 @@ export class AppTopBar {
     constructor(public layoutService: LayoutService) {}
 
     toggleDarkMode() {
-        this.layoutService.toggleDarkMode();
+        this.layoutService.layoutConfig.update((state) => ({ ...state, darkTheme: !state.darkTheme }));
     }
 }
