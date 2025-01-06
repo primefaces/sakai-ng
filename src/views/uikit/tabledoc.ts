@@ -15,6 +15,8 @@ import { RatingModule } from 'primeng/rating';
 import { Customer, CustomerService, Representative } from '@/src/service/customer.service';
 import { Product, ProductService } from '@/src/service/product.service';
 import { RippleModule } from 'primeng/ripple';
+import { InputIconModule } from 'primeng/inputicon';
+import { IconField } from 'primeng/iconfield';
 
 interface expandedRows {
     [key: string]: boolean;
@@ -22,7 +24,7 @@ interface expandedRows {
 
 @Component({
     standalone: true,
-    imports:[TableModule, MultiSelectModule, SelectModule, InputTextModule, SliderModule,ProgressBarModule,ToggleButtonModule,ToastModule, CommonModule, FormsModule,ButtonModule,RatingModule, RippleModule],
+    imports: [TableModule, MultiSelectModule, InputIconModule, SelectModule, InputTextModule, SliderModule, ProgressBarModule, ToggleButtonModule, ToastModule, CommonModule, FormsModule, ButtonModule, RatingModule, RippleModule, IconField],
     template: `
         <div class="card">
             <div class="font-semibold text-xl mb-4">Filtering</div>
@@ -31,14 +33,14 @@ interface expandedRows {
                      [globalFilterFields]="['name','country.name','representative.name','status']"
                      responsiveLayout="scroll">
                 <ng-template pTemplate="caption">
-                    <div class="flex justify-content-between flex-column sm:flex-row">
-                        <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
-                                (click)="clear(dt1)"></button>
-                        <span class="p-input-icon-left mb-2">
-<i class="pi pi-search"></i>
-<input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Search Keyword"
-                     class="w-full" />
-</span>
+                    <div class="flex justify-between items-center flex-column sm:flex-row">
+                        <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                        <p-iconfield iconPosition="left" class="ml-auto">
+                            <p-inputicon>
+                                <i class="pi pi-search"></i>
+                            </p-inputicon>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt1, $event)" placeholder="Search keyword" />
+                        </p-iconfield>
                     </div>
                 </ng-template>
                 <ng-template #header>
@@ -367,9 +369,9 @@ interface expandedRows {
                     <tr>
                         <td style="min-width: 200px;">
                             {{ customer.name }}
-                        </td>
+                        </td>ƒ
                         <td style="min-width: 200px;">
-                            <img src="assets/demo/images/flag/flag_placeholder.png"
+                            <img src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
                                  [class]="'flag flag-' + customer.country.code" width="30">
                             <span class="image-text" style="margin-left: .5em">{{ customer.country.name }}</span>
                         </td>
