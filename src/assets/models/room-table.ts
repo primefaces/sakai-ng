@@ -4,6 +4,6 @@ export interface RoomTable {
   id: number;
   roomId: string;
   capacity: number;
-  isComputersAvailable: boolean;
+  computersAvailable: boolean;
   timingConstraints: Timing[];
 }

@@ -16,6 +16,7 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {CalendarEventPipe} from "../dashboard/api/calendar-event.pipe";
 import {EventFilterPipe} from "./api/event-filter.pipe";
 import {RoomFilterPipe} from "./api/room-filter.pipe";
+import {TimingToEventPipe} from "./api/timing-to-event.pipe";
 
 @NgModule({
     imports: [
@@ -32,6 +33,7 @@ import {RoomFilterPipe} from "./api/room-filter.pipe";
         CalendarEventPipe,
         EventFilterPipe,
         RoomFilterPipe,
+        TimingToEventPipe,
     ],
     declarations: [EditorComponent, EditorSelectionComponent, EditorHeaderComponent, EditorCalendarComponent],
     providers: [ConfirmationService]

@@ -6,18 +6,22 @@ import {EventMountArg} from "@fullcalendar/core";
 import {TimeTable} from "../../../../assets/models/dto/time-table";
 import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 import {TableShareService} from "../share services/table-share.service";
+import {EditorCalendarComponent} from "./editor-calendar/editor-calendar.component";
+import {EditorSelectionComponent} from "./editor-selection/editor-selection.component";
 import {RoomTable} from "../../../../assets/models/room-table";
 
 @Component({
   templateUrl: './editor.component.html',
 })
-export class EditorComponent {
+export class EditorComponent{
     @ViewChild('cm') contextMenu!: ContextMenu;
-    timeTable!: TimeTable;
-    currentRoom: RoomTable;
+    @ViewChild('cd') calendar: EditorCalendarComponent;
+    @ViewChild('st') selection: EditorSelectionComponent;
 
-    rightClickEvent: EventMountArg | null = null;
+    timeTable!: TimeTable;
     items: MenuItem[] = [];
+    rightClickEvent: EventMountArg | null = null;
+    protected selectedRoom: RoomTable;
     private _dirtyData: boolean = false;
 
     constructor(
@@ -26,7 +30,7 @@ export class EditorComponent {
     ) {
         this.layoutService.changeStyle(false);
         this.timeTable = this.shareService.sharedTable;
-        this.setNewRoom(this.timeTable.roomTables[0].id);
+        this.selectedRoom = this.timeTable.roomTables.find(r => r.roomId == 'HS F');
     }
 
     getItemMenuOptions() : void {
@@ -62,7 +66,7 @@ export class EditorComponent {
     }
 
     protected setNewRoom(newID: number){
-        this.currentRoom = this.timeTable.roomTables.find(r => r.id = newID);
+        this.calendar.selectedRoom = this.timeTable.roomTables.find(r => r.id = newID);
     }
 
     canDeactivate(){

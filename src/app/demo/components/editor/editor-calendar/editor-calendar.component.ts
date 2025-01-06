@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, signal, ViewChild, WritableSignal} from '@angular/core';
+import {Component, EventEmitter, Input, Output, signal, ViewChild, WritableSignal} from '@angular/core';
 import {FullCalendarComponent} from "@fullcalendar/angular";
 import {CalendarOptions, EventInput} from "@fullcalendar/core";
 import interactionPlugin, {DropArg} from "@fullcalendar/interaction";
@@ -11,19 +11,12 @@ import {RoomTable} from "../../../../../assets/models/room-table";
   selector: 'app-editor-calendar',
   templateUrl: './editor-calendar.component.html',
 })
-export class EditorCalendarComponent implements OnInit{
-    @Input() set currentRoom(newRoom: RoomTable) {
-        this.selectedRoom = newRoom;
-        console.log(newRoom);
-    };
-    @Input() set currentShownEvents(newEvents: EventInput[]){
-        this.currentEvents = newEvents;
-    };
+export class EditorCalendarComponent{
+    @Input() currentEvents: EventInput[] = [];
+    @Input() selectedRoom!: RoomTable;
+
     @Output() setDirtyBool = new EventEmitter<boolean>();
     @ViewChild("cal") calendar!: FullCalendarComponent;
-
-    protected selectedRoom: RoomTable = {roomId: 'tmp'} as RoomTable;
-    protected currentEvents: EventInput[] = [];
 
     protected calendarOptions: WritableSignal<CalendarOptions> = signal({
         plugins: [
@@ -64,35 +57,23 @@ export class EditorCalendarComponent implements OnInit{
 
     constructor(
         private messageService: MessageService
-    ) {
-        this.selectedRoom = {roomId: 'test', capacity: 55, isComputersAvailable: false} as RoomTable;
-    }
-
-    ngOnInit(): void {
-    }
+    ) { }
 
     private drop(arg: DropArg) {
         const participants = Number(arg.draggedEl.getAttribute('data-participants'));
-        const needsComputers = Boolean(arg.draggedEl.getAttribute('data-needscomputers'));
+        const needsComputers = Boolean(arg.draggedEl.getAttribute('data-hasComputers'));
 
         if(this.checkNrOfParticipants(participants)){
             this.messageService.add({
-                severity: 'error',
+                severity: 'error', life: 5000,
                 summary: 'ROOM CAPACITY  COLLISION',
-                life: 5000,
                 detail: `The selected course (${arg.draggedEl.getAttribute('data-title')}) has to many participants (${participants}) for the selected room(${this.selectedRoom?.capacity})`});
         } else if (this.checkIfComputersNeeded(needsComputers)){
             this.messageService.add({
-                severity: 'error',
+                severity: 'error', life: 5000,
                 summary: 'COMPUTER  COLLISION',
-                life: 5000,
                 detail: `The selected course (${arg.draggedEl.getAttribute('data-title')}) needs computers which are not supported by the current room`});
         } else {
-            /*
-            this.dragTableEvents = this.dragTableEvents.filter(
-                e => e.id !== arg.draggedEl.getAttribute('data-id'))
-            this.nrOfEvents += 1;
-             */
             const draggedElement = arg.draggedEl;
 
             if (draggedElement && draggedElement.parentNode) {
@@ -105,6 +86,7 @@ export class EditorCalendarComponent implements OnInit{
     private eventReceive(args: any){
         const participants = args.event.extendedProps['nrOfParticipants'];
         const needsComputers = args.event.extendedProps['computersNecessary'];
+        console.log(args)
 
         if(this.checkNrOfParticipants(participants) || this.checkIfComputersNeeded(needsComputers)){
             args.revert();
@@ -121,16 +103,16 @@ export class EditorCalendarComponent implements OnInit{
     }
 
     private checkIfComputersNeeded(needsComputers: boolean): boolean {
-        const hasComputers = this.selectedRoom.isComputersAvailable;
+        console.log('needs a computer: ', needsComputers);
+        const hasComputers = this.selectedRoom.computersAvailable;
 
+        console.log('has a computer: ', hasComputers);
+        console.log('allow drop: ', !(!hasComputers && needsComputers));
         return !(!hasComputers && needsComputers);
 
     }
 
-    private eventChange(args: any){
-        console.log('change: ', args);
-        //this.rightClickEvent = args;
-        //this.updateSession(args.event, true);
+    private eventChange(){
         this.setDirtyBool.emit(true);
     }
 

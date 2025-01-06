@@ -5,7 +5,6 @@ import {
     EventEmitter,
     Input,
     OnDestroy,
-    OnInit,
     Output,
     ViewChild
 } from '@angular/core';
@@ -16,30 +15,22 @@ import {Draggable} from "@fullcalendar/interaction";
   selector: 'app-editor-selection',
   templateUrl: './editor-selection.component.html',
 })
-export class EditorSelectionComponent implements OnInit, AfterViewInit, OnDestroy{
+export class EditorSelectionComponent implements AfterViewInit, OnDestroy{
     @Input() currentDragEvents!: EventInput[];
+    draggable!: Draggable;
+
     @Output() triggerSave = new EventEmitter<void>;
     @ViewChild('external') external!: ElementRef;
 
-    dragTableEvents: EventInput[] = [
-        {id: '123', title: 'this is quite a long text but not long enough so i type even more', extendedProps: {duration: 180}} as EventInput,
-        {id: '123', title: 'participants: 20, computersNecessary: false', extendedProps: {duration: 120, computersNecessary: false, nrOfParticipants: 20}} as EventInput,
-        {id: '123', title: 'participants: 0, computersNecessary: true', extendedProps: {duration: 180, computersNecessary: true, nrOfParticipants: 0}} as EventInput,
-    ];
-
-    draggable!: Draggable;
-
-    constructor() {
-    }
-
-    ngOnInit(): void {
-    }
+    constructor() {}
 
     protected triggerFinish(){
         this.triggerSave.emit();
     }
 
     ngAfterViewInit(): void {
+        console.log(this.currentDragEvents)
+
         this.draggable = new Draggable(this.external.nativeElement, {
             itemSelector: '.drag-event',
             eventData: (eventEl) => {
@@ -50,7 +41,7 @@ export class EditorSelectionComponent implements OnInit, AfterViewInit, OnDestro
                     editable: true,
                     extendedProps: {
                         nrOfParticipants: eventEl.getAttribute('data-participants'),
-                        computersNecessary: eventEl.getAttribute('data-needscomputers')
+                        computersNecessary: eventEl.getAttribute('data-hasComputers')
                     },
                 };
             }

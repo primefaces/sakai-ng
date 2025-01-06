@@ -7,9 +7,6 @@ import {EventInput} from "@fullcalendar/core";
 })
 export class RoomFilterPipe implements PipeTransform {
   transform(events: EventInput[], roomId: string): EventInput[] {
-      console.log('events: ',events);
-      console.log('room ID: ', roomId);
       return events.filter(e => e['description'] == roomId);
   }
-
 }
