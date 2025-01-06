@@ -13,21 +13,8 @@ import { ButtonModule } from 'primeng/button';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
 
 @Component({
-    standalone:true,
-    imports: [
-        CommonModule,
-        ProgressBarModule,
-        BadgeModule,
-        AvatarModule,
-        ScrollPanelModule,
-        TagModule,
-        ChipModule,
-        ButtonModule,
-        SkeletonModule,
-        AvatarGroupModule,
-        ScrollTopModule,
-        OverlayBadgeModule
-    ],
+    standalone: true,
+    imports: [CommonModule, ProgressBarModule, BadgeModule, AvatarModule, ScrollPanelModule, TagModule, ChipModule, ButtonModule, SkeletonModule, AvatarGroupModule, ScrollTopModule, OverlayBadgeModule],
     template: `
         <div class="card">
             <div class="font-semibold text-xl mb-4">ProgressBar</div>
@@ -69,14 +56,14 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
                     <div class="font-semibold my-4">Button</div>
                     <div class="flex gap-2">
                         <p-button label="Emails" badge="8"></p-button>
-                        <p-button label="Messages" icon="pi pi-users" styleClass="p-button-warning" badge="8" badgeClass="p-badge-danger"></p-button>
+                        <p-button label="Messages" icon="pi pi-users" severity="warn" badge="8" badgeSeverity="danger"></p-button>
                     </div>
 
                     <div class="font-semibold my-4">Sizes</div>
                     <div class="flex items-start gap-2">
                         <p-badge [value]="2"></p-badge>
-                        <p-badge [value]="4" size="large" severity="warn"></p-badge>
-                        <p-badge [value]="6" size="xlarge" severity="success"></p-badge>
+                        <p-badge [value]="4" badgeSize="large" severity="warn"></p-badge>
+                        <p-badge [value]="6" badgeSize="xlarge" severity="success"></p-badge>
                     </div>
                 </div>
 
@@ -88,14 +75,14 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
                         <p-avatar image="assets/demo/images/avatar/asiyajavayant.png" size="large" shape="circle"></p-avatar>
                         <p-avatar image="assets/demo/images/avatar/onyamalimba.png" size="large" shape="circle"></p-avatar>
                         <p-avatar image="assets/demo/images/avatar/ionibowcher.png" size="large" shape="circle"></p-avatar>
-                        <p-avatar image="assets/demo/images/avatar/xuxuefeng.png" size="large"shape="circle"></p-avatar>
-                        <p-avatar label="+2" shape="circle" size="large" [style]="{'background-color':'#9c27b0', 'color': '#ffffff'}"></p-avatar>
+                        <p-avatar image="assets/demo/images/avatar/xuxuefeng.png" size="large" shape="circle"></p-avatar>
+                        <p-avatar label="+2" shape="circle" size="large" [style]="{ 'background-color': '#9c27b0', color: '#ffffff' }"></p-avatar>
                     </p-avatarGroup>
 
                     <div class="font-semibold my-4">Label - Circle</div>
-                    <p-avatar label="P" size="xlarge" shape="circle"></p-avatar>
-                    <p-avatar label="V" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
-                    <p-avatar label="U" [style]="{'background-color': '#9c27b0', 'color': '#ffffff'}" shape="circle"></p-avatar>
+                    <p-avatar class="mr-2" label="P" size="xlarge" shape="circle"></p-avatar>
+                    <p-avatar class="mr-2" label="V" size="large" [style]="{ 'background-color': '#2196F3', color: '#ffffff' }" shape="circle"></p-avatar>
+                    <p-avatar class="mr-2" label="U" [style]="{ 'background-color': '#9c27b0', color: '#ffffff' }" shape="circle"></p-avatar>
 
                     <div class="font-semibold my-4">Icon - Badge</div>
                     <p-overlaybadge value="4" severity="danger" class="inline-flex">
@@ -105,16 +92,16 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
 
                 <div class="card">
                     <div class="font-semibold text-xl mb-4">ScrollTop</div>
-                    <p-scrollPanel [style]="{width: '250px', height: '200px'}">
+                    <p-scrollpanel [style]="{ width: '250px', height: '200px' }">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut diam. Ultricies mi quis hendrerit dolor magna eget est lorem. Amet consectetur
-                            adipiscing elit ut. Nam libero justo laoreet sit amet. Pharetra massa massa ultricies mi quis hendrerit dolor magna. Est ultricies integer quis auctor elit sed vulputate. Consequat ac felis donec et. Tellus orci ac auctor
-                            augue mauris. Semper feugiat nibh sed pulvinar proin gravida hendrerit lectus a. Tincidunt arcu non sodales neque sodales. Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices. Sodales ut etiam sit amet
-                            nisl purus. Cursus sit amet dictum sit amet. Tristique senectus et netus et malesuada fames ac turpis egestas. Et tortor consequat id porta nibh venenatis cras sed. Diam maecenas ultricies mi eget mauris. Eget egestas purus
-                            viverra accumsan in nisl nisi. Suscipit adipiscing bibendum est ultricies integer. Mattis aliquam faucibus purus in massa tempor nec.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut diam. Ultricies mi quis hendrerit dolor magna eget est lorem. Amet
+                            consectetur adipiscing elit ut. Nam libero justo laoreet sit amet. Pharetra massa massa ultricies mi quis hendrerit dolor magna. Est ultricies integer quis auctor elit sed vulputate. Consequat ac felis donec et. Tellus
+                            orci ac auctor augue mauris. Semper feugiat nibh sed pulvinar proin gravida hendrerit lectus a. Tincidunt arcu non sodales neque sodales. Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices. Sodales ut
+                            etiam sit amet nisl purus. Cursus sit amet dictum sit amet. Tristique senectus et netus et malesuada fames ac turpis egestas. Et tortor consequat id porta nibh venenatis cras sed. Diam maecenas ultricies mi eget mauris.
+                            Eget egestas purus viverra accumsan in nisl nisi. Suscipit adipiscing bibendum est ultricies integer. Mattis aliquam faucibus purus in massa tempor nec.
                         </p>
-                        <p-scrollTop target="parent" styleClass="custom-scrolltop" [threshold]="100" icon="pi pi-arrow-up"></p-scrollTop>
-                    </p-scrollPanel>
+                        <p-scrolltop target="parent" [threshold]="100" icon="pi pi-arrow-up"></p-scrolltop>
+                    </p-scrollpanel>
                 </div>
             </div>
             <div class="md:w-1/2">
@@ -195,7 +182,7 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
                 </div>
             </div>
         </div>
-    `,
+    `
 })
 export class MiscDoc {
     value = 0;
