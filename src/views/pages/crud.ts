@@ -1,5 +1,5 @@
-import {Component, inject, OnInit} from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ChangeDetectorRef, Component, OnInit, signal, ViewChild } from '@angular/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import {Table, TableModule} from 'primeng/table';
 import {CommonModule} from '@angular/common';
 import {FileUploadModule} from 'primeng/fileupload';
@@ -16,357 +16,374 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {DialogModule} from 'primeng/dialog';
 import { Product, ProductService } from '@/src/service/product.service';
+import { TagModule } from 'primeng/tag';
+import { InputIconModule } from 'primeng/inputicon';
+import { IconFieldModule } from 'primeng/iconfield';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
+interface Column {
+    field: string;
+    header: string;
+    customExportHeader?: string;
+}
+
+interface ExportColumn {
+    title: string;
+    dataKey: string;
+}
 
 @Component({
   standalone: true,
-  imports: [
-    CommonModule,
-    TableModule,
-    FileUploadModule,
-    FormsModule,
-    ButtonModule,
-    RippleModule,
-    ToastModule,
-    ToolbarModule,
-    RatingModule,
-    InputTextModule,
-    TextareaModule,
-    SelectModule,
-    RadioButtonModule,
-    InputNumberModule,
-    DialogModule
-  ],
+    imports: [
+        CommonModule,
+        TableModule,
+        FormsModule,
+        ButtonModule,
+        RippleModule,
+        ToastModule,
+        ToolbarModule,
+        RatingModule,
+        InputTextModule,
+        TextareaModule,
+        SelectModule,
+        RadioButtonModule,
+        InputNumberModule,
+        DialogModule,
+        TagModule,
+        InputIconModule,
+        IconFieldModule,
+        ConfirmDialogModule
+    ],
   template: `
-      <div>
-          <div class="card">
-              <p-toast></p-toast>
-              <p-toolbar styleClass="mb-6">
-                  <ng-template #left>
-                      <div class="my-2">
-                          <button pButton pRipple severity="success" class="mr-2" (click)="openNew()">
-                              <i pButtonIcon class="pi plus mr-2"></i>
-                              <span pButtonLabel>New</span>
-                          </button>
-                          <button pButton pRipple severity="danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length">
-                              <i pButtonIcon class="pi pi-trash mr-2"></i>
-                              <span pButtonLabel>Delete</span>
-                          </button>
-                      </div>
-                  </ng-template>
+      <p-toolbar styleClass="mb-6">
+          <ng-template #start>
+              <p-button label="New" icon="pi pi-plus" severity="secondary" class="mr-2" (onClick)="openNew()" />
+              <p-button severity="secondary" label="Delete" icon="pi pi-trash" outlined (onClick)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length" />
+          </ng-template>
 
-                  <ng-template #right>
-                      <p-fileupload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileupload>
-                      <button pButton pRipple severity="help" (click)="dt.exportCSV()">
-                          <i pButtonIcon class="pi upload"></i>
-                          <span pButtonLabel>Export</span>
-                      </button>
-                  </ng-template>
-              </p-toolbar>
-              <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
-                  <ng-template #caption>
-                      <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                          <h5 class="m-0">Manage Products</h5>
-                          <span class="block mt-2 md:mt-0 p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
-                        </span>
-                      </div>
-                  </ng-template>
-                  <ng-template #header>
-                      <tr>
-                          <th style="width: 3rem">
-                              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                          </th>
-                          <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th>
-                          <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-                          <th>Image</th>
-                          <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
-                          <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
-                          <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon></th>
-                          <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
-                          <th></th>
-                      </tr>
-                  </ng-template>
-                  <ng-template #body let-product>
-                      <tr>
-                          <td>
-                              <p-tableCheckbox [value]="product"></p-tableCheckbox>
-                          </td>
-                          <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
-                              {{product.code || product.id}}
-                          </td>
-                          <td style="width:14%; min-width:10rem;">
-                              <span class="p-column-title">Name</span>
-                              {{product.name}}
-                          </td>
-                          <td style="width:14%; min-width:10rem;"><span class="p-column-title">Image</span>
-                              <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" width="100" class="shadow-lg" />
-                          </td>
-                          <td style="width:14%; min-width:8rem;">
-                              <span class="p-column-title">Price</span>
-                              {{product.price | currency:'USD'}}
-                          </td>
-                          <td style="width:14%; min-width:10rem;">
-                              <span class="p-column-title">Category</span>
-                              {{product.category}}
-                          </td>
-                          <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Reviews</span>
-                              <p-rating [ngModel]="product.rating" [readonly]="true"></p-rating>
-                          </td>
-                          <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Status</span>
-                              <span [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span>
-                          </td>
-                          <td>
-                              <div class="flex">
-                                  <button pButton pRipple severity="success" [rounded]="true" class="mr-2" (click)="editProduct(product)">
-                                      <i pButtonIcon class="pi pi-pencil"></i>
-                                  </button>
-                                  <button pButton pRipple severity="warn" [rounded]="true" (click)="deleteProduct(product)">
-                                      <i pButtonIcon class="pi pi-trash"></i>
-                                  </button>
-                              </div>
-                          </td>
-                      </tr>
-                  </ng-template>
-              </p-table>
-          </div>
+          <ng-template #end>
+              <p-button label="Export" icon="pi pi-upload" severity="secondary" (onClick)="exportCSV()" />
+          </ng-template>
+      </p-toolbar>
 
-          <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" class="p-fluid">
-              <ng-template #content>
-                  <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-8 block shadow" *ngIf="product.image">
-                  <div class="field">
-                      <label for="name">Name</label>
-                      <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.name}"/>
-                      <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.name">Name is required.</small>
+      <p-table
+          #dt
+          [value]="products()"
+          [rows]="10"
+          [columns]="cols"
+          [paginator]="true"
+          [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+          [tableStyle]="{ 'min-width': '75rem' }"
+          [(selection)]="selectedProducts"
+          [rowHover]="true"
+          dataKey="id"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
+          [showCurrentPageReport]="true"
+          [rowsPerPageOptions]="[10, 20, 30]"
+      >
+          <ng-template #caption>
+              <div class="flex items-center justify-between">
+                  <h5 class="m-0">Manage Products</h5>
+                  <p-iconfield>
+                      <p-inputicon styleClass="pi pi-search" />
+                      <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..." />
+                  </p-iconfield>
+              </div>
+          </ng-template>
+          <ng-template #header>
+              <tr>
+                  <th style="width: 3rem">
+                      <p-tableHeaderCheckbox />
+                  </th>
+                  <th style="min-width: 16rem">Code</th>
+                  <th pSortableColumn="name" style="min-width:16rem">
+                      Name
+                      <p-sortIcon field="name" />
+                  </th>
+                  <th>Image</th>
+                  <th pSortableColumn="price" style="min-width: 8rem">
+                      Price
+                      <p-sortIcon field="price" />
+                  </th>
+                  <th pSortableColumn="category" style="min-width:10rem">
+                      Category
+                      <p-sortIcon field="category" />
+                  </th>
+                  <th pSortableColumn="rating" style="min-width: 12rem">
+                      Reviews
+                      <p-sortIcon field="rating" />
+                  </th>
+                  <th pSortableColumn="inventoryStatus" style="min-width: 12rem">
+                      Status
+                      <p-sortIcon field="inventoryStatus" />
+                  </th>
+                  <th style="min-width: 12rem"></th>
+              </tr>
+          </ng-template>
+          <ng-template #body let-product>
+              <tr>
+                  <td style="width: 3rem">
+                      <p-tableCheckbox [value]="product" />
+                  </td>
+                  <td style="min-width: 12rem">{{ product.code }}</td>
+                  <td style="min-width: 16rem">{{ product.name }}</td>
+                  <td>
+                      <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" style="width: 64px" class="rounded" />
+                  </td>
+                  <td>{{ product.price | currency: 'USD' }}</td>
+                  <td>{{ product.category }}</td>
+                  <td>
+                      <p-rating [(ngModel)]="product.rating" [readonly]="true" />
+                  </td>
+                  <td>
+                      <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" />
+                  </td>
+                  <td>
+                      <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true" (click)="editProduct(product)" />
+                      <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true" (click)="deleteProduct(product)" />
+                  </td>
+              </tr>
+          </ng-template>
+      </p-table>
+
+      <p-dialog [(visible)]="productDialog" [style]="{ width: '450px' }" header="Product Details" [modal]="true">
+          <ng-template #content>
+              <div class="flex flex-col gap-6">
+                  <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.image" class="block m-auto pb-4" *ngIf="product.image" />
+                  <div>
+                      <label for="name" class="block font-bold mb-3">Name</label>
+                      <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus fluid />
+                      <small class="text-red-500" *ngIf="submitted && !product.name">Name is required.</small>
                   </div>
-                  <div class="field">
-                      <label for="description">Description</label>
-                      <textarea id="description" pTextarea [(ngModel)]="product.description" required rows="3" cols="20"></textarea>
-                  </div>
-                  <div class="field">
-                      <label for="status">Inventory Status</label>
-                      <p-select [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus" optionValue="label" [options]="statuses" placeholder="Select">
-                          <ng-template #selectedItem>
-                              <span *ngIf="product && product.inventoryStatus" [class]="'product-badge status-' + product.inventoryStatus.toString().toLowerCase()">{{product.inventoryStatus}}</span>
-                          </ng-template>
-                          <ng-template let-option #item>
-                              <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
-                          </ng-template>
-                      </p-select>
+                  <div>
+                      <label for="description" class="block font-bold mb-3">Description</label>
+                      <textarea id="description" pTextarea [(ngModel)]="product.description" required rows="3" cols="20" fluid></textarea>
                   </div>
 
-                  <div class="field">
-                      <label class="mb-4">Category</label>
-                      <div class="formgrid grid grid-cols-12 gap-4">
-                          <div class="field-radiobutton col-span-6">
-                              <p-radiobutton id="category1" name="category" value="Accessories" [(ngModel)]="product.category"></p-radiobutton>
+                  <div>
+                      <label for="inventoryStatus" class="block font-bold mb-3">Inventory Status</label>
+                      <p-select [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus" [options]="statuses" optionLabel="label" placeholder="Select a Status" fluid />
+                  </div>
+
+                  <div>
+                      <span class="block font-bold mb-4">Category</span>
+                      <div class="grid grid-cols-12 gap-4">
+                          <div class="flex items-center gap-2 col-span-6">
+                              <p-radiobutton id="category1" name="category" value="Accessories" [(ngModel)]="product.category" />
                               <label for="category1">Accessories</label>
                           </div>
-                          <div class="field-radiobutton col-span-6">
-                              <p-radiobutton id="category2" name="category" value="Clothing" [(ngModel)]="product.category"></p-radiobutton>
+                          <div class="flex items-center gap-2 col-span-6">
+                              <p-radiobutton id="category2" name="category" value="Clothing" [(ngModel)]="product.category" />
                               <label for="category2">Clothing</label>
                           </div>
-                          <div class="field-radiobutton col-span-6">
-                              <p-radiobutton id="category3" name="category" value="Electronics" [(ngModel)]="product.category"></p-radiobutton>
+                          <div class="flex items-center gap-2 col-span-6">
+                              <p-radiobutton id="category3" name="category" value="Electronics" [(ngModel)]="product.category" />
                               <label for="category3">Electronics</label>
                           </div>
-                          <div class="field-radiobutton col-span-6">
-                              <p-radiobutton id="category4" name="category" value="Fitness" [(ngModel)]="product.category"></p-radiobutton>
+                          <div class="flex items-center gap-2 col-span-6">
+                              <p-radiobutton id="category4" name="category" value="Fitness" [(ngModel)]="product.category" />
                               <label for="category4">Fitness</label>
                           </div>
                       </div>
                   </div>
 
-                  <div class="formgrid grid grid-cols-12 gap-4">
-                      <div class="field col">
-                          <label for="price">Price</label>
-                          <p-inputnumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US"></p-inputnumber>
+                  <div class="grid grid-cols-12 gap-4">
+                      <div class="col-span-6">
+                          <label for="price" class="block font-bold mb-3">Price</label>
+                          <p-inputnumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US" fluid />
                       </div>
-                      <div class="field col">
-                          <label for="quantity">Quantity</label>
-                          <p-inputnumber id="quantity" [(ngModel)]="product.quantity"></p-inputnumber>
+                      <div class="col-span-6">
+                          <label for="quantity" class="block font-bold mb-3">Quantity</label>
+                          <p-inputnumber id="quantity" [(ngModel)]="product.quantity" fluid />
                       </div>
                   </div>
-              </ng-template>
-
-              <ng-template #footer>
-                  <button pButton pRipple [text]="true" (click)="hideDialog()">
-                      <i pButtonIcon class="pi times mr-2"></i>
-                      <span pButtonLabel>Cancel</span>
-                  </button>
-                  <button pButton pRipple [text]="true" (click)="saveProduct()">
-                      <i pButtonIcon class="pi pi-check mr-2"></i>
-                      <span pButtonLabel>Save</span>
-                  </button>
-              </ng-template>
-          </p-dialog>
-
-          <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-              <div class="flex items-center justify-center">
-                  <i class="pi pi-exclamation-triangle mr-4" style="font-size: 2rem"></i>
-                  <span *ngIf="product">Are you sure you want to delete <b>{{product.name}}</b>?</span>
               </div>
-              <ng-template #footer>
-                  <button pButton pRipple [text]="true" (click)="deleteProductDialog = false">
-                      <i pButtonIcon class="pi pi-times mr-2"></i>
-                      <span pButtonLabel>No</span>
-                  </button>
-                  <button pButton pRipple [text]="true" (click)="confirmDelete()">
-                      <i pButtonIcon class="pi pi-check mr-2"></i>
-                      <span pButtonLabel>Yes</span>
-                  </button>
-              </ng-template>
-          </p-dialog>
+          </ng-template>
 
-          <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-              <div class="flex items-center justify-center">
-                  <i class="pi pi-exclamation-triangle mr-4" style="font-size: 2rem"></i>
-                  <span>Are you sure you want to delete selected products?</span>
-              </div>
-              <ng-template #footer>
-                  <button pButton pRipple [text]="true" (click)="deleteProductsDialog = false">
-                      <i pButtonIcon class="pi pi-times mr-2"></i>
-                      <span pButtonLabel>No</span>
-                  </button>
-                  <button pButton pRipple [text]="true" (click)="confirmDeleteSelected()">
-                      <i pButtonIcon class="pi pi-check mr-2"></i>
-                      <span pButtonLabel>Yes</span>
-                  </button>
-              </ng-template>
-          </p-dialog>
-      </div>
+          <ng-template #footer>
+              <p-button label="Cancel" icon="pi pi-times" text (click)="hideDialog()" />
+              <p-button label="Save" icon="pi pi-check" (click)="saveProduct()" />
+          </ng-template>
+      </p-dialog>
+
+      <p-confirmDialog [style]="{ width: '450px' }" />
   `,
-  providers: [MessageService, ProductService],
+  providers: [MessageService, ProductService, ConfirmationService],
 })
 export class Crud implements OnInit {
+    productDialog: boolean = false;
 
-  productDialog: boolean = false;
+    products = signal<Product[]>([])
 
-  deleteProductDialog: boolean = false;
+    product!: Product;
 
-  deleteProductsDialog: boolean = false;
+    selectedProducts!: Product[] | null;
 
-  products: Product[] = [];
+    submitted: boolean = false;
 
-  product: Product = {};
+    statuses!: any[];
 
-  selectedProducts: Product[] = [];
+    @ViewChild('dt') dt!: Table;
 
-  submitted: boolean = false;
+    exportColumns!: ExportColumn[];
 
-  cols: any[] = [];
+    cols!: Column[];
 
-  statuses: any[] = [];
+    constructor(
+        private productService: ProductService,
+        private messageService: MessageService,
+        private confirmationService: ConfirmationService,
+    ) {}
 
-  private messageService = inject(MessageService);
-
-  private productService = inject(ProductService);
-
-  ngOnInit() {
-    this.productService.getProducts().then(data => this.products = data);
-
-    this.cols = [
-      { field: 'product', header: 'Product' },
-      { field: 'price', header: 'Price' },
-      { field: 'category', header: 'Category' },
-      { field: 'rating', header: 'Reviews' },
-      { field: 'inventoryStatus', header: 'Status' }
-    ];
-
-    this.statuses = [
-      { label: 'INSTOCK', value: 'instock' },
-      { label: 'LOWSTOCK', value: 'lowstock' },
-      { label: 'OUTOFSTOCK', value: 'outofstock' }
-    ];
-  }
-
-  openNew() {
-    this.product = {};
-    this.submitted = false;
-    this.productDialog = true;
-  }
-
-  deleteSelectedProducts() {
-    this.deleteProductsDialog = true;
-  }
-
-  editProduct(product: Product) {
-    this.product = { ...product };
-    this.productDialog = true;
-  }
-
-  deleteProduct(product: Product) {
-    this.deleteProductDialog = true;
-    this.product = { ...product };
-  }
-
-  confirmDeleteSelected() {
-    this.deleteProductsDialog = false;
-    this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-    this.selectedProducts = [];
-  }
-
-  confirmDelete() {
-    this.deleteProductDialog = false;
-    this.products = this.products.filter(val => val.id !== this.product.id);
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-    this.product = {};
-  }
-
-  hideDialog() {
-    this.productDialog = false;
-    this.submitted = false;
-  }
-
-  saveProduct() {
-    this.submitted = true;
-
-    if (this.product.name?.trim()) {
-      if (this.product.id) {
-        // @ts-ignore
-        this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-        this.products[this.findIndexById(this.product.id)] = this.product;
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-      } else {
-        this.product.id = this.createId();
-        this.product.code = this.createId();
-        this.product.image = 'product-placeholder.svg';
-        // @ts-ignore
-        this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-        this.products.push(this.product);
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-      }
-
-      this.products = [...this.products];
-      this.productDialog = false;
-      this.product = {};
-    }
-  }
-
-  findIndexById(id: string): number {
-    let index = -1;
-    for (let i = 0; i < this.products.length; i++) {
-      if (this.products[i].id === id) {
-        index = i;
-        break;
-      }
+    exportCSV() {
+        this.dt.exportCSV();
     }
 
-    return index;
-  }
-
-  createId(): string {
-    let id = '';
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < 5; i++) {
-      id += chars.charAt(Math.floor(Math.random() * chars.length));
+    ngOnInit() {
+        this.loadDemoData();
     }
-    return id;
-  }
 
-  onGlobalFilter(table: Table, event: Event) {
-    table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
-  }
+    loadDemoData() {
+        this.productService.getProducts().then((data) => {
+            this.products.set(data);
+        });
+
+        this.statuses = [
+            { label: 'INSTOCK', value: 'instock' },
+            { label: 'LOWSTOCK', value: 'lowstock' },
+            { label: 'OUTOFSTOCK', value: 'outofstock' }
+        ];
+
+        this.cols = [
+            { field: 'code', header: 'Code', customExportHeader: 'Product Code' },
+            { field: 'name', header: 'Name' },
+            { field: 'image', header: 'Image' },
+            { field: 'price', header: 'Price' },
+            { field: 'category', header: 'Category' }
+        ];
+
+        this.exportColumns = this.cols.map((col) => ({ title: col.header, dataKey: col.field }));
+    }
+
+    onGlobalFilter(table: Table, event: Event) {
+        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+    }
+
+    openNew() {
+        this.product = {};
+        this.submitted = false;
+        this.productDialog = true;
+    }
+
+    editProduct(product: Product) {
+        this.product = { ...product };
+        this.productDialog = true;
+    }
+
+    deleteSelectedProducts() {
+        this.confirmationService.confirm({
+            message: 'Are you sure you want to delete the selected products?',
+            header: 'Confirm',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.products.set(this.products().filter((val) => !this.selectedProducts?.includes(val)));
+                this.selectedProducts = null;
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'Products Deleted',
+                    life: 3000
+                });
+
+
+            }
+        });
+    }
+
+    hideDialog() {
+        this.productDialog = false;
+        this.submitted = false;
+    }
+
+    deleteProduct(product: Product) {
+        this.confirmationService.confirm({
+            message: 'Are you sure you want to delete ' + product.name + '?',
+            header: 'Confirm',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.products.set(this.products().filter((val) => val.id !== product.id));
+                this.product = {};
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'Product Deleted',
+                    life: 3000
+                });
+            }
+        });
+    }
+
+    findIndexById(id: string): number {
+        let index = -1;
+        for (let i = 0; i < this.products().length; i++) {
+            if (this.products()[i].id === id) {
+                index = i;
+                break;
+            }
+        }
+
+        return index;
+    }
+
+    createId(): string {
+        let id = '';
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        for (var i = 0; i < 5; i++) {
+            id += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return id;
+    }
+
+    getSeverity(status: string) {
+        switch (status) {
+            case 'INSTOCK':
+                return 'success';
+            case 'LOWSTOCK':
+                return 'warn';
+            case 'OUTOFSTOCK':
+                return 'danger';
+            default:
+                return 'info';
+        }
+    }
+
+    saveProduct() {
+        this.submitted = true;
+        let _products = this.products();
+        if (this.product.name?.trim()) {
+            if (this.product.id) {
+                _products[this.findIndexById(this.product.id)] = this.product;
+                this.products.set([..._products]);
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'Product Updated',
+                    life: 3000
+                });
+            } else {
+                this.product.id = this.createId();
+                this.product.image = 'product-placeholder.svg';
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'Product Created',
+                    life: 3000
+                });
+                this.products.set([..._products, this.product]);
+            }
+
+            this.productDialog = false;
+            this.product = {};
+        }
+    }
 }
