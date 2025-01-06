@@ -166,10 +166,10 @@ import {MenuItem} from "primeng/api";
           <div class="card flex flex-col gap-4">
               <div class="font-semibold text-xl">Loading</div>
               <div class="flex flex-wrap gap-2">
-                  <p-button type="button" label="Search" icon="pi pi-search" loading="loading[0]" (click)="load(0)" />
-                  <p-button type="button" label="Search" icon="pi pi-search" iconPos="right" [loading]="loading[1]" (click)="load(1)" />
-                  <p-button type="button" icon="pi pi-search" [loading]="loading[2]" (click)="load(2)" />
-                  <p-button type="button" label="Search" [loading]="loading[3]" (click)="load(3)" />
+                  <p-button type="button" class="mr-2 mb-2" label="Search" icon="pi pi-search" [loading]="loading[0]" (click)="load(0)" />
+                  <p-button type="button" class="mr-2 mb-2" label="Search" icon="pi pi-search" iconPos="right" [loading]="loading[1]" (click)="load(1)" />
+                  <p-button type="button" class="mr-2 mb-2" icon="pi pi-search" [loading]="loading[2]" (click)="load(2)" />
+                  <p-button type="button" class="mr-2 mb-2" label="Search" [loading]="loading[3]" (click)="load(3)" />
               </div>
           </div>
       </div>
