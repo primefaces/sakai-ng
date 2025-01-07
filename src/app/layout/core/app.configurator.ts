@@ -45,7 +45,7 @@ declare type SurfacesType = {
         <div class="flex flex-col gap-4">
             <div>
                 <span class="text-sm text-muted-color font-semibold">Primary</span>
-                <div class="pt-2 flex gap-2 flex-wrap justify-between">
+                <div class="pt-2 flex gap-2 flex-wrap justify-start">
                     @for (primaryColor of primaryColors(); track primaryColor.name) {
                         <button
                             type="button"
@@ -62,7 +62,7 @@ declare type SurfacesType = {
             </div>
             <div>
                 <span class="text-sm text-muted-color font-semibold">Surface</span>
-                <div class="pt-2 flex gap-2 flex-wrap justify-between">
+                <div class="pt-2 flex gap-2 flex-wrap justify-start">
                     @for (surface of surfaces; track surface.name) {
                         <button
                             type="button"
