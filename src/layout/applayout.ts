@@ -1,5 +1,4 @@
 import { Component, Renderer2, ViewChild } from '@angular/core';
-import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
 import { AppTopBar } from '@/src/layout/apptopbar';
 import { AppSidebar } from '@/src/layout/appsidebar';
@@ -11,7 +10,7 @@ import { LayoutService } from '@/src/service/layout/layout.service';
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, ToastModule, AppTopBar, AppSidebar, RouterModule, AppFooter],
+    imports: [CommonModule, AppTopBar, AppSidebar, RouterModule, AppFooter],
     template: `<div class="layout-wrapper" [ngClass]="containerClass">
         <app-topbar></app-topbar>
         <app-sidebar></app-sidebar>
