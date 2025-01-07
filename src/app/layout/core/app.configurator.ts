@@ -34,8 +34,8 @@ declare type SurfacesType = {
         800?: string;
         900?: string;
         950?: string;
-    }
-}
+    };
+};
 
 @Component({
     selector: 'app-configurator',
@@ -280,6 +280,14 @@ export class AppConfigurator {
     getPresetExt() {
         const color: SurfacesType = this.primaryColors().find((c) => c.name === this.selectedPrimaryColor()) || {};
 
+        const preset = this.layoutService.layoutConfig().preset;
+
+        if (preset === 'Material') {
+            this.primeng.inputVariant.set('filled');
+        } else {
+            this.primeng.inputVariant.set('outlined');
+        }
+
         if (color.name === 'noir') {
             return {
                 semantic: {
@@ -329,7 +337,7 @@ export class AppConfigurator {
                 }
             };
         } else {
-            if (this.layoutService.layoutConfig().preset === 'Nora') {
+            if (preset === 'Nora') {
                 return {
                     semantic: {
                         primary: color.palette,
@@ -365,9 +373,7 @@ export class AppConfigurator {
                         }
                     }
                 };
-            } else if (this.layoutService.layoutConfig().preset === 'Material') {
-                this.primeng.inputVariant.set('filled');
-
+            } else if (preset === 'Material') {
                 return {
                     semantic: {
                         primary: color.palette,
