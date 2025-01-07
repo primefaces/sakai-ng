@@ -189,7 +189,7 @@ export class ListDemo {
         ];
     }
 
-    getSeverity(product) {
+    getSeverity(product: Product) {
         switch (product.inventoryStatus) {
             case 'INSTOCK':
                 return 'success';
@@ -201,7 +201,7 @@ export class ListDemo {
                 return 'danger';
 
             default:
-                return null;
+                return 'info';
         }
     }
 }

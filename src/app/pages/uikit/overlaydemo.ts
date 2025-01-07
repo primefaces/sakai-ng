@@ -215,7 +215,7 @@ export class OverlayDemo implements OnInit {
         op.toggle(event);
     }
 
-    onProductSelect(op, event: any) {
+    onProductSelect(op: Popover, event: any) {
         op.hide();
         this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: event?.data.name, life: 3000 });
     }

@@ -53,7 +53,7 @@ import { LayoutService } from '../service/layout.service';
 })
 export class AppMenuitem {
 
-    @Input() item: MenuItem;
+    @Input() item!: MenuItem;
 
     @Input() index!: number;
 
