@@ -7,9 +7,7 @@ import Lara from '@primeng/themes/lara';
 import { ButtonModule } from 'primeng/button';
 import { PrimeNG } from 'primeng/config';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import { RadioButtonModule } from 'primeng/radiobutton';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { LayoutService } from '@/src/service/layout/layout.service';
 
 const presets = {
@@ -20,7 +18,7 @@ const presets = {
 @Component({
     selector: 'app-configurator',
     standalone: true,
-    imports: [CommonModule, FormsModule, InputSwitchModule, ButtonModule, RadioButtonModule, SelectButtonModule, ToggleSwitchModule],
+    imports: [CommonModule, FormsModule, InputSwitchModule, ButtonModule, SelectButtonModule],
     template: `
         <div class="absolute top-[3.25rem] right-0 w-64 p-4 bg-surface-0 dark:bg-surface-900 border border-surface rounded-border origin-top shadow-[0px_3px_5px_rgba(0,0,0,0.02),0px_0px_2px_rgba(0,0,0,0.05),0px_1px_4px_rgba(0,0,0,0.08)]">
             <div class="flex flex-col gap-4">
