@@ -17,7 +17,7 @@ import { Product, ProductService } from '../../service/product.service';
     template: `<div class="card !mb-8">
         <div class="font-semibold text-xl mb-4">Recent Sales</div>
         <p-table [value]="products" [paginator]="true" [rows]="5" responsiveLayout="scroll">
-            <ng-template pTemplate="header">
+            <ng-template #header>
                 <tr>
                     <th>Image</th>
                     <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
@@ -25,7 +25,7 @@ import { Product, ProductService } from '../../service/product.service';
                     <th>View</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-product>
+            <ng-template #body let-product>
                 <tr>
                     <td style="width: 15%; min-width: 5rem;">
                         <img src="https://primefaces.org/cdn/primevue/images/product/{{product.image}}" class="shadow-lg" alt="{{product.name}}" width="50">

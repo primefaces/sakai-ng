@@ -43,10 +43,10 @@ import { ButtonModule } from 'primeng/button';
             <div class="card">
                 <div class="font-semibold text-xl mb-4">Opposite Content</div>
                 <p-timeline [value]="events1">
-                    <ng-template pTemplate="content" let-event>
+                    <ng-template #content let-event>
                         <small class="p-text-secondary">{{ event.date }}</small>
                     </ng-template>
-                    <ng-template pTemplate="opposite" let-event>
+                    <ng-template #opposite let-event>
                         {{ event.status }}
                     </ng-template>
                 </p-timeline>
