@@ -26,6 +26,7 @@ export class AppMenuComponent implements OnInit {
             width: '30%',
             baseZIndex: 10000,
             maximizable: false,
+            position: 'topleft'
         })
 
         ref.onClose.subscribe((result) => {

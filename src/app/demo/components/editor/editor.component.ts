@@ -35,9 +35,8 @@ export class EditorComponent{
 
     getItemMenuOptions() : void {
         this.items = [{label: 'add new Course', icon: 'pi pi-book', command: () => {} /* this.addNewCourse()*/ }];
-        if(!this.rightClickEvent?.event.id){
-            return;
-        }
+        if(!this.rightClickEvent?.event.id) return;
+
 
         const session = this.findSession()
         this.items.push(
