@@ -4,13 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { $t, updatePreset, updateSurfacePalette } from '@primeng/themes';
 import Aura from '@primeng/themes/aura';
 import Lara from '@primeng/themes/lara';
+import Material from '@primeng/themes/material';
+import Nora from '@primeng/themes/nora';
 import { PrimeNG } from 'primeng/config';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { LayoutService } from '../service/layout.service';
 
 const presets = {
     Aura,
-    Lara
+    Material,
+    Lara,
+    Nora
 };
 
 @Component({
@@ -73,6 +77,8 @@ export class AppConfigurator {
     layoutService: LayoutService = inject(LayoutService);
 
     platformId = inject(PLATFORM_ID);
+
+    primeng = inject(PrimeNG);
 
     presets = Object.keys(presets);
 
@@ -340,6 +346,8 @@ export class AppConfigurator {
                     }
                 };
             } else if (this.layoutService.layoutConfig().preset === 'Material') {
+                this.primeng.inputVariant.set('filled');
+
                 return {
                     semantic: {
                         primary: color.palette,
