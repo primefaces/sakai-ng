@@ -3,10 +3,10 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { LayoutService } from '@/src/service/layout/layout.service';
 import { CommonModule } from '@angular/common';
 import { RippleModule } from 'primeng/ripple';
 import { MenuItem} from 'primeng/api';
+import { LayoutService } from '../service/layout/layout.service';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -51,7 +51,7 @@ import { MenuItem} from 'primeng/api';
     ],
     providers: [LayoutService],
 })
-export class AppMenuItem {
+export class AppMenuitem {
 
     @Input() item: MenuItem;
 

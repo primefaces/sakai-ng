@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {RouterModule} from '@angular/router';
-import { FloatingConfigurator } from '@/src/components/floatingconfigurator';
 import { ButtonModule } from 'primeng/button';
+import { FloatingConfigurator } from '../../components/floatingconfigurator';
 
 @Component({
   standalone: true,

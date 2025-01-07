@@ -6,7 +6,7 @@ import { PasswordModule} from 'primeng/password';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { RippleModule} from 'primeng/ripple';
-import { FloatingConfigurator } from '@/src/components/floatingconfigurator';
+import { FloatingConfigurator } from '../../../components/floatingconfigurator';
 
 
 @Component({

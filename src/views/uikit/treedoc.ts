@@ -4,7 +4,7 @@ import {TreeModule} from "primeng/tree";
 import {FormsModule} from "@angular/forms";
 import {TreeTableModule} from "primeng/treetable";
 import {CommonModule} from "@angular/common";
-import { NodeService } from '@/src/service/demo/node.service';
+import { NodeService } from '../../service/demo/node.service';
 
 @Component({
     standalone: true,

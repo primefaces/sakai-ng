@@ -1,10 +1,10 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { StyleClassModule } from 'primeng/styleclass';
-import { AppConfigurator } from '@/src/layout/appconfigurator';
-import { LayoutService } from '@/src/service/layout/layout.service';
+import { AppConfigurator } from './app.configurator';
+import { LayoutService } from '../service/layout/layout.service';
 
 @Component({
     selector: 'app-topbar',
@@ -89,7 +89,7 @@ import { LayoutService } from '@/src/service/layout/layout.service';
         </div>
     </div>`
 })
-export class AppTopBar {
+export class AppTopbar {
 
     items!: MenuItem[];
 

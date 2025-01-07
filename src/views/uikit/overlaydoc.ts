@@ -9,8 +9,8 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'primeng/tooltip';
-import { Product, ProductService } from '@/src/service/demo/product.service';
 import { TableModule } from 'primeng/table';
+import { Product, ProductService } from '../../service/demo/product.service';
 
 @Component({
     standalone: true,

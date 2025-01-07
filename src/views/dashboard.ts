@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { StatsWidget } from '@/src/components/dashboard/statswidget';
-import { RecentSalesWidget } from '@/src/components/dashboard/recentsaleswidget';
-import { BestSellingWidget } from '@/src/components/dashboard/bestsellingwidget';
-import { RevenueStreamWidget } from '@/src/components/dashboard/revenuestreamwidget';
-import { NotificationsWidget } from '@/src/components/dashboard/notificationswidget';
+import { StatsWidget } from '../components/dashboard/statswidget';
+import { RecentSalesWidget } from '../components/dashboard/recentsaleswidget';
+import { BestSellingWidget } from '../components/dashboard/bestsellingwidget';
+import { RevenueStreamWidget } from '../components/dashboard/revenuestreamwidget';
+import { NotificationsWidget } from '../components/dashboard/notificationswidget';
+
 
 @Component({
   selector: 'app-dashboard',

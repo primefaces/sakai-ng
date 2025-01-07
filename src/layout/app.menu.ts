@@ -1,15 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppMenuItem } from '@/src/layout/appmenuitem';
 import { RouterModule } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { AppMenuitem } from './app.menuitem';
 
 @Component({
     selector: 'app-menu',
     standalone:true,
     imports: [
         CommonModule,
-        AppMenuItem,
+        AppMenuitem,
         RouterModule
     ],
     template: `<ul class="layout-menu">

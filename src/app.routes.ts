@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { AppLayout } from '@/src/layout/applayout';
-import { Documentation } from '@/src/views/pages/documentation';
-import { Dashboard } from '@/src/views/dashboard';
 import { Landing } from './views/pages/landing';
 import { Notfound } from './views/pages/notfound';
+import { AppLayout } from './layout/app.layout';
+import { Dashboard } from './views/dashboard';
+import { Documentation } from './views/pages/documentation';
 
-export const routes: Routes = [
+export const appRoutes: Routes = [
     {
         path: '',
         component: AppLayout,

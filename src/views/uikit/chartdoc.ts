@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 import { CommonModule } from '@angular/common';
 import { debounceTime, Subscription } from 'rxjs';
-import { LayoutService } from '@/src/service/layout/layout.service';
 import { FluidModule } from 'primeng/fluid';
+import { LayoutService } from '../../service/layout/layout.service';
 
 @Component({
     standalone:true,

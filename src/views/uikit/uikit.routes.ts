@@ -1,19 +1,19 @@
 import { Routes } from '@angular/router';
-import { ButtonDoc } from '@/src/views/uikit/buttondoc';
-import { ChartDoc } from '@/src/views/uikit/chartdoc';
-import { FileDoc } from '@/src/views/uikit/filedoc';
-import { FormLayoutDoc } from '@/src/views/uikit/formlayoutdoc';
-import { InputDoc } from '@/src/views/uikit/inputdoc';
-import { ListDoc } from '@/src/views/uikit/listdoc';
-import { MediaDoc } from '@/src/views/uikit/mediadoc';
-import { MessagesDoc } from '@/src/views/uikit/messagesdoc';
-import { MiscDoc } from '@/src/views/uikit/miscdoc';
-import { PanelsDoc } from '@/src/views/uikit/panelsdoc';
-import { TableDoc } from '@/src/views/uikit/tabledoc';
-import { TreeDoc } from '@/src/views/uikit/treedoc';
-import { MenuDoc } from '@/src/views/uikit/menudoc';
-import { OverlayDoc } from '@/src/views/uikit/overlaydoc';
-import { TimelineDoc } from '@/src/views/uikit/timelinedoc';
+import { ButtonDoc } from './buttondoc';
+import { ChartDoc } from './chartdoc';
+import { FileDoc } from './filedoc';
+import { FormLayoutDoc } from './formlayoutdoc';
+import { InputDoc } from './inputdoc';
+import { ListDoc } from './listdoc';
+import { MediaDoc } from './mediadoc';
+import { MessagesDoc } from './messagesdoc';
+import { MiscDoc } from './miscdoc';
+import { PanelsDoc } from './panelsdoc';
+import { TimelineDoc } from './timelinedoc';
+import { TableDoc } from './tabledoc';
+import { OverlayDoc } from './overlaydoc';
+import { TreeDoc } from './treedoc';
+import { MenuDoc } from './menudoc';
 
 export default [
     { path: 'button', data: { breadcrumb: 'Button' }, component: ButtonDoc},
