@@ -44,7 +44,6 @@ import { LayoutService } from '@/src/service/layout/layout.service';
                 </button>
                 <div class="relative">
                     <button
-                        #menubutton
                         class="layout-topbar-action layout-topbar-action-highlight"
                         pStyleClass="@next"
                         enterFromClass="hidden"
@@ -60,7 +59,6 @@ import { LayoutService } from '@/src/service/layout/layout.service';
             </div>
 
             <button
-                #topbarmenubutton
                 class="layout-topbar-menu-button layout-topbar-action"
                 pStyleClass="@next"
                 enterFromClass="hidden"
@@ -72,7 +70,7 @@ import { LayoutService } from '@/src/service/layout/layout.service';
                 <i class="pi pi-ellipsis-v"></i>
             </button>
 
-            <div #topbarmenu class="layout-topbar-menu hidden lg:block">
+            <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
                     <button type="button" class="layout-topbar-action">
                         <i class="pi pi-calendar"></i>
@@ -92,17 +90,13 @@ import { LayoutService } from '@/src/service/layout/layout.service';
     </div>`
 })
 export class AppTopBar {
+
     items!: MenuItem[];
-
-    @ViewChild('menubutton') menuButton!: ElementRef;
-
-    @ViewChild('topbarmenubutton') topbarMenuButton!: ElementRef;
-
-    @ViewChild('topbarmenu') menu!: ElementRef;
 
     constructor(public layoutService: LayoutService) {}
 
     toggleDarkMode() {
         this.layoutService.layoutConfig.update((state) => ({ ...state, darkTheme: !state.darkTheme }));
     }
+
 }

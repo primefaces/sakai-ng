@@ -1,5 +1,4 @@
 import { Component, Renderer2, ViewChild } from '@angular/core';
-import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
 import { AppTopBar } from '@/src/layout/apptopbar';
 import { AppSidebar } from '@/src/layout/appsidebar';
@@ -11,12 +10,10 @@ import { LayoutService } from '@/src/service/layout/layout.service';
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, ToastModule, AppTopBar, AppSidebar, RouterModule, AppFooter],
+    imports: [CommonModule, AppTopBar, AppSidebar, RouterModule, AppFooter],
     template: `<div class="layout-wrapper" [ngClass]="containerClass">
         <app-topbar></app-topbar>
-        <div class="layout-sidebar">
-            <app-sidebar></app-sidebar>
-        </div>
+        <app-sidebar></app-sidebar>
         <div class="layout-main-container">
             <div class="layout-main">
                 <router-outlet></router-outlet>
@@ -51,20 +48,6 @@ export class AppLayout {
                 });
             }
 
-            if (!this.profileMenuOutsideClickListener) {
-                this.profileMenuOutsideClickListener = this.renderer.listen('document', 'click', (event) => {
-                    const isOutsideClicked = !(
-                        this.appTopBar.menu.nativeElement.isSameNode(event.target) ||
-                        this.appTopBar.menu.nativeElement.contains(event.target) ||
-                        this.appTopBar.topbarMenuButton.nativeElement.isSameNode(event.target) ||
-                        this.appTopBar.topbarMenuButton.nativeElement.contains(event.target)
-                    );
-
-                    if (isOutsideClicked) {
-                    }
-                });
-            }
-
             if (this.layoutService.layoutState().staticMenuMobileActive) {
                 this.blockBodyScroll();
             }
@@ -75,11 +58,12 @@ export class AppLayout {
         });
     }
 
-    isOutsideClicked(event) {
+    isOutsideClicked(event: MouseEvent) {
         const sidebarEl = document.querySelector('.layout-sidebar');
         const topbarEl = document.querySelector('.layout-menu-button');
+        const eventTarget = event.target as Node;
 
-        return !(sidebarEl.isSameNode(event.target) || sidebarEl.contains(event.target) || topbarEl.isSameNode(event.target) || topbarEl.contains(event.target));
+        return !(sidebarEl.isSameNode(eventTarget) || sidebarEl.contains(eventTarget) || topbarEl.isSameNode(eventTarget) || topbarEl.contains(eventTarget));
     }
 
     hideMenu() {
