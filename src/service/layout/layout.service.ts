@@ -2,7 +2,7 @@ import { Injectable, effect, signal, computed } from '@angular/core';
 import { Subject } from 'rxjs';
 
 export interface layoutConfig {
-    preset?: string,
+    preset?: string;
     primary?: string;
     surface?: string;
     darkTheme?: boolean;
@@ -18,7 +18,7 @@ interface LayoutState {
 }
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class LayoutService {
     _config: layoutConfig = {
@@ -34,12 +34,12 @@ export class LayoutService {
         overlayMenuActive: false,
         configSidebarVisible: false,
         staticMenuMobileActive: false,
-        menuHoverActive: false,
+        menuHoverActive: false
     };
 
     layoutConfig = signal<layoutConfig>(this._config);
 
-    layoutState = signal<LayoutState>(this._state)
+    layoutState = signal<LayoutState>(this._state);
 
     private configUpdate = new Subject<layoutConfig>();
 
@@ -49,7 +49,7 @@ export class LayoutService {
 
     overlayOpen$ = this.overlayOpen.asObservable();
 
-    theme = computed(() => this.layoutConfig()?.darkTheme ? 'light' : 'dark');
+    theme = computed(() => (this.layoutConfig()?.darkTheme ? 'light' : 'dark'));
 
     isSidebarActive = computed(() => this.layoutState().overlayMenuActive || this.layoutState().staticMenuMobileActive);
 
@@ -59,7 +59,7 @@ export class LayoutService {
 
     getSurface = computed(() => this.layoutConfig().surface);
 
-    isOverlay = computed(() => this.layoutConfig().menuMode === 'overlay')
+    isOverlay = computed(() => this.layoutConfig().menuMode === 'overlay');
 
     transitionComplete = signal<boolean>(false);
 
@@ -68,7 +68,7 @@ export class LayoutService {
     constructor() {
         effect(() => {
             const config = this.layoutConfig();
-            if(config) {
+            if (config) {
                 this.onConfigUpdate();
             }
         });
@@ -82,7 +82,7 @@ export class LayoutService {
             }
 
             this.handleDarkModeTransition(config);
-        })
+        });
     }
 
     private handleDarkModeTransition(config: layoutConfig): void {
@@ -99,11 +99,15 @@ export class LayoutService {
             this.toggleDarkMode(config);
         });
 
-        transition.ready.then(() => this.onTransitionEnd());
+        transition.ready
+            .then(() => {
+                this.onTransitionEnd();
+            })
+            .catch(() => {});
     }
 
     toggleDarkMode(config?: layoutConfig): void {
-        const _config = config || this.layoutConfig()
+        const _config = config || this.layoutConfig();
         if (_config.darkTheme) {
             document.documentElement.classList.add('app-dark');
         } else {
@@ -118,10 +122,9 @@ export class LayoutService {
         });
     }
 
-
     onMenuToggle() {
         if (this.isOverlay()) {
-            this.layoutState.update((prev) => ({...prev, overlayMenuActive: !this.layoutState().overlayMenuActive}));
+            this.layoutState.update((prev) => ({ ...prev, overlayMenuActive: !this.layoutState().overlayMenuActive }));
 
             if (this.layoutState().overlayMenuActive) {
                 this.overlayOpen.next(null);
@@ -129,9 +132,9 @@ export class LayoutService {
         }
 
         if (this.isDesktop()) {
-            this.layoutState.update((prev) => ({...prev, staticMenuDesktopInactive: !this.layoutState().staticMenuDesktopInactive}));
+            this.layoutState.update((prev) => ({ ...prev, staticMenuDesktopInactive: !this.layoutState().staticMenuDesktopInactive }));
         } else {
-            this.layoutState.update((prev) => ({...prev, staticMenuMobileActive: !this.layoutState().staticMenuMobileActive}));
+            this.layoutState.update((prev) => ({ ...prev, staticMenuMobileActive: !this.layoutState().staticMenuMobileActive }));
 
             if (this.layoutState().staticMenuMobileActive) {
                 this.overlayOpen.next(null);
