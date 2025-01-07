@@ -49,20 +49,6 @@ export class AppLayout {
                 });
             }
 
-            if (!this.profileMenuOutsideClickListener) {
-                this.profileMenuOutsideClickListener = this.renderer.listen('document', 'click', (event) => {
-                    const isOutsideClicked = !(
-                        this.appTopBar.menu.nativeElement.isSameNode(event.target) ||
-                        this.appTopBar.menu.nativeElement.contains(event.target) ||
-                        this.appTopBar.topbarMenuButton.nativeElement.isSameNode(event.target) ||
-                        this.appTopBar.topbarMenuButton.nativeElement.contains(event.target)
-                    );
-
-                    if (isOutsideClicked) {
-                    }
-                });
-            }
-
             if (this.layoutService.layoutState().staticMenuMobileActive) {
                 this.blockBodyScroll();
             }
@@ -73,11 +59,12 @@ export class AppLayout {
         });
     }
 
-    isOutsideClicked(event) {
+    isOutsideClicked(event: MouseEvent) {
         const sidebarEl = document.querySelector('.layout-sidebar');
         const topbarEl = document.querySelector('.layout-menu-button');
+        const eventTarget = event.target as Node;
 
-        return !(sidebarEl.isSameNode(event.target) || sidebarEl.contains(event.target) || topbarEl.isSameNode(event.target) || topbarEl.contains(event.target));
+        return !(sidebarEl.isSameNode(eventTarget) || sidebarEl.contains(eventTarget) || topbarEl.isSameNode(eventTarget) || topbarEl.contains(eventTarget));
     }
 
     hideMenu() {
