@@ -8,7 +8,7 @@ import { LayoutService } from '@/src/service/layout/layout.service';
   selector: 'floating-configurator',
   imports: [ButtonModule, StyleClassModule, AppConfigurator],
   template: `
-      <div class="fixed flex gap-6 top-8 right-8">
+      <div class="fixed flex gap-4 top-8 right-8">
           <p-button type="button" (onClick)="toggleDarkMode()" [rounded]="true" [icon]="isDarkTheme() ? 'pi pi-moon' : 'pi pi-sun'" severity="secondary" />
           <div class="relative">
               <p-button
@@ -17,7 +17,7 @@ import { LayoutService } from '@/src/service/layout/layout.service';
                   enterFromClass="hidden"
                   enterActiveClass="animate-scalein"
                   leaveToClass="hidden"
-                  leaveActiveClass="animate-scalein"
+                  leaveActiveClass="animate-fadeout"
                   [hideOnOutsideClick]="true"
                   type="button"
                   rounded
