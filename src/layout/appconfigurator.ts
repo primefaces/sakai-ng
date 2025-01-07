@@ -4,12 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { $t, updatePreset, updateSurfacePalette } from '@primeng/themes';
 import Aura from '@primeng/themes/aura';
 import Lara from '@primeng/themes/lara';
-import { ButtonModule } from 'primeng/button';
 import { PrimeNG } from 'primeng/config';
-import { InputSwitchModule } from 'primeng/inputswitch';
-import { RadioButtonModule } from 'primeng/radiobutton';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { LayoutService } from '@/src/service/layout/layout.service';
 
 const presets = {
@@ -20,7 +16,7 @@ const presets = {
 @Component({
     selector: 'app-configurator',
     standalone: true,
-    imports: [CommonModule, FormsModule, InputSwitchModule, ButtonModule, RadioButtonModule, SelectButtonModule, ToggleSwitchModule],
+    imports: [CommonModule, FormsModule, SelectButtonModule],
     template: `
         <div class="flex flex-col gap-4">
             <div>
