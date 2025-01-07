@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 export interface layoutConfig {
     preset?: string;
     primary?: string;
-    surface?: string;
+    surface?: string | undefined | null;
     darkTheme?: boolean;
     menuMode?: string;
 }

@@ -28,6 +28,7 @@ import {TextareaModule} from "primeng/textarea";
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { CountryService } from '../service/country.service';
 import { NodeService } from '../service/node.service';
+import { TreeNode } from 'primeng/api';
 
 @Component({
     selector: 'app-input-demo',
@@ -311,7 +312,7 @@ export class InputDemo implements OnInit {
 
     inputGroupValue: boolean = false;
 
-    treeSelectNodes: any[] = null;
+    treeSelectNodes!: TreeNode[];
 
     selectedNode: any = null;
 

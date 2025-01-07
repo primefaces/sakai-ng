@@ -61,7 +61,7 @@ export class AppLayout {
         const topbarEl = document.querySelector('.layout-menu-button');
         const eventTarget = event.target as Node;
 
-        return !(sidebarEl.isSameNode(eventTarget) || sidebarEl.contains(eventTarget) || topbarEl.isSameNode(eventTarget) || topbarEl.contains(eventTarget));
+        return !(sidebarEl?.isSameNode(eventTarget) || sidebarEl?.contains(eventTarget) || topbarEl?.isSameNode(eventTarget) || topbarEl?.contains(eventTarget));
     }
 
     hideMenu() {

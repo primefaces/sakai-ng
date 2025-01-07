@@ -7,8 +7,20 @@ import Lara from '@primeng/themes/lara';
 import { PrimeNG } from 'primeng/config';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { LayoutService } from '../service/layout.service';
+import { AuraBaseDesignTokens} from '@primeng/themes/aura/base';
+import { LaraBaseDesignTokens } from '@primeng/themes/lara/base';
+import { NoraBaseDesignTokens } from '@primeng/themes/nora/base';
+import { MaterialBaseDesignTokens } from '@primeng/themes/material/base';
 
-const presets = {
+export interface Preset {
+    Aura: AuraBaseDesignTokens;
+    Lara: LaraBaseDesignTokens;
+    Nora?: NoraBaseDesignTokens;
+    Material?: MaterialBaseDesignTokens
+
+}
+
+const presets: Preset = {
     Aura,
     Lara
 };
@@ -74,7 +86,7 @@ export class AppConfigurator {
 
     platformId = inject(PLATFORM_ID);
 
-    presets = Object.keys(presets);
+    presets: any = Object.keys(presets);
 
     menuModeOptions = [
         { label: 'Static', value: 'static' },
@@ -254,7 +266,7 @@ export class AppConfigurator {
     getPresetExt() {
         const color = this.primaryColors().find((c) => c.name === this.selectedPrimaryColor());
 
-        if (color.name === 'noir') {
+        if (color?.name === 'noir') {
             return {
                 semantic: {
                     primary: {
@@ -306,7 +318,7 @@ export class AppConfigurator {
             if (this.layoutService.layoutConfig().preset === 'Nora') {
                 return {
                     semantic: {
-                        primary: color.palette,
+                        primary: color?.palette,
                         colorScheme: {
                             light: {
                                 primary: {
@@ -342,7 +354,7 @@ export class AppConfigurator {
             } else if (this.layoutService.layoutConfig().preset === 'Material') {
                 return {
                     semantic: {
-                        primary: color.palette,
+                        primary: color?.palette,
                         colorScheme: {
                             light: {
                                 primary: {
@@ -378,7 +390,7 @@ export class AppConfigurator {
             } else {
                 return {
                     semantic: {
-                        primary: color.palette,
+                        primary: color?.palette,
                         colorScheme: {
                             light: {
                                 primary: {
@@ -437,7 +449,7 @@ export class AppConfigurator {
     onPresetChange(event: any) {
         this.layoutService.layoutConfig.update((state) => ({ ...state, preset: event }));
         const preset = presets[event];
-        const surfacePalette = this.surfaces.find((s) => s.name === this.selectedSurfaceColor())?.palette;
+        const surfacePalette = this.surfaces.find((s: any) => s.name === this.selectedSurfaceColor())?.palette;
         if (this.layoutService.layoutConfig().preset === 'Material') {
             document.body.classList.add('material');
             this.config.ripple.set(true);
