@@ -20,10 +20,10 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
             <div class="font-semibold text-xl mb-4">ProgressBar</div>
             <div class="flex flex-col md:flex-row gap-4">
                 <div class="md:w-1/2">
-                    <p-progressBar [value]="value" [showValue]="true"></p-progressBar>
+                    <p-progressbar [value]="value" [showValue]="true"></p-progressbar>
                 </div>
                 <div class="md:w-1/2">
-                    <p-progressBar [value]="50" [showValue]="false"></p-progressBar>
+                    <p-progressbar [value]="50" [showValue]="false"></p-progressbar>
                 </div>
             </div>
         </div>
@@ -70,14 +70,14 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
                 <div class="card">
                     <div class="font-semibold text-xl mb-4">Avatar</div>
                     <div class="font-semibold mb-4">Group</div>
-                    <p-avatarGroup styleClass="mb-4">
+                    <p-avatargroup styleClass="mb-4">
                         <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" size="large" shape="circle"></p-avatar>
                         <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png" size="large" shape="circle"></p-avatar>
                         <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png" size="large" shape="circle"></p-avatar>
                         <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/ionibowcher.png" size="large" shape="circle"></p-avatar>
                         <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/xuxuefeng.png" size="large" shape="circle"></p-avatar>
                         <p-avatar label="+2" shape="circle" size="large" [style]="{ 'background-color': '#9c27b0', color: '#ffffff' }"></p-avatar>
-                    </p-avatarGroup>
+                    </p-avatargroup>
 
                     <div class="font-semibold my-4">Label - Circle</div>
                     <p-avatar class="mr-2" label="P" size="xlarge" shape="circle"></p-avatar>

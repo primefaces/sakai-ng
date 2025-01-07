@@ -10,12 +10,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'primeng/tooltip';
 import { Product, ProductService } from '@/src/service/demo/product.service';
+import { TableModule } from 'primeng/table';
 
 @Component({
     standalone: true,
-    imports:[ToastModule, DialogModule, ButtonModule, DrawerModule, PopoverModule, ConfirmPopupModule, InputTextModule, FormsModule, TooltipModule],
-    template:`
-       <div class="flex flex-col md:flex-row gap-8">
+    imports: [ToastModule, DialogModule, ButtonModule, DrawerModule, PopoverModule, ConfirmPopupModule, InputTextModule, FormsModule, TooltipModule, TableModule, ToastModule],
+    template: ` <div class="flex flex-col md:flex-row gap-8">
         <div class="md:w-1/2">
             <div class="card">
                 <div class="font-semibold text-xl mb-4">Dialog</div>
@@ -28,16 +28,32 @@ import { Product, ProductService } from '@/src/service/demo/product.service';
                         <p-button label="Save" (click)="close()" />
                     </ng-template>
                 </p-dialog>
-                <p-button label="Show" [style]="{width: 'auto'}" (click)="open()" />
+                <p-button label="Show" [style]="{ width: 'auto' }" (click)="open()" />
             </div>
 
             <div class="card">
                 <div class="font-semibold text-xl mb-4">Popover</div>
                 <div class="flex flex-wrap gap-2">
                     <p-button type="button" label="Show" (click)="toggleDataTable(op2, $event)" />
-                    <p-popover #op2 id="overlay_panel" [style]="{width: '450px'}">
-                        <!-- TABLE -->
+                    <p-popover #op2 id="overlay_panel" [style]="{ width: '450px' }">
+                        <p-table [value]="products" selectionMode="single" [(selection)]="selectedProduct" dataKey="id" [rows]="5" [paginator]="true" (onRowSelect)="onProductSelect(op2, $event)">
+                            <ng-template #header>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Image</th>
+                                    <th>Price</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template #body let-product>
+                                <tr [pSelectableRow]="product">
+                                    <td>{{ product.name }}</td>
+                                    <td><img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" class="w-16 shadow-sm" /></td>
+                                    <td>{{ product.price }}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
                     </p-popover>
+                    <p-toast />
                 </div>
             </div>
 
@@ -87,10 +103,10 @@ import { Product, ProductService } from '@/src/service/demo/product.service';
                     </p>
                 </p-drawer>
 
-                <p-button icon="pi pi-arrow-right" (click)="visibleLeft = true" [style]="{marginRight: '0.25em'}" />
-                <p-button icon="pi pi-arrow-left" (click)="visibleRight = true" [style]="{marginRight: '0.25em'}" />
-                <p-button icon="pi pi-arrow-down" (click)="visibleTop = true" [style]="{marginRight: '0.25em'}" />
-                <p-button icon="pi pi-arrow-up" (click)="visibleBottom = true" [style]="{marginRight: '0.25em'}" />
+                <p-button icon="pi pi-arrow-right" (click)="visibleLeft = true" [style]="{ marginRight: '0.25em' }" />
+                <p-button icon="pi pi-arrow-left" (click)="visibleRight = true" [style]="{ marginRight: '0.25em' }" />
+                <p-button icon="pi pi-arrow-down" (click)="visibleTop = true" [style]="{ marginRight: '0.25em' }" />
+                <p-button icon="pi pi-arrow-up" (click)="visibleBottom = true" [style]="{ marginRight: '0.25em' }" />
                 <p-button icon="pi pi-external-link" (click)="visibleFull = true" />
             </div>
 
@@ -105,7 +121,7 @@ import { Product, ProductService } from '@/src/service/demo/product.service';
                 <p-button label="Delete" icon="pi pi-trash" severity="danger" [style]="{ width: 'auto' }" (click)="openConfirmation()" />
                 <p-dialog header="Confirmation" [(visible)]="displayConfirmation" [style]="{ width: '350px' }" [modal]="true">
                     <div class="flex items-center justify-center">
-                        <i class="pi pi-exclamation-triangle mr-4" style="font-size: 2rem" > </i>
+                        <i class="pi pi-exclamation-triangle mr-4" style="font-size: 2rem"> </i>
                         <span>Are you sure you want to proceed?</span>
                     </div>
                     <ng-template #footer>
@@ -119,7 +135,6 @@ import { Product, ProductService } from '@/src/service/demo/product.service';
     providers: [ConfirmationService, MessageService, ProductService]
 })
 export class OverlayDoc implements OnInit {
-
     images: any[] = [];
 
     display: boolean = false;
@@ -138,34 +153,44 @@ export class OverlayDoc implements OnInit {
 
     displayConfirmation: boolean = false;
 
-    constructor(private productService: ProductService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
+    selectedProduct!: Product;
+
+    constructor(
+        private productService: ProductService,
+        private confirmationService: ConfirmationService,
+        private messageService: MessageService
+    ) {}
 
     ngOnInit() {
-        this.productService.getProductsSmall().then(products => this.products = products);
+        this.productService.getProductsSmall().then((products) => (this.products = products));
 
         this.images = [];
         this.images.push({
             source: 'assets/demo/images/sopranos/sopranos1.jpg',
-            thumbnail: 'assets/demo/images/sopranos/sopranos1_small.jpg', title: 'Sopranos 1'
+            thumbnail: 'assets/demo/images/sopranos/sopranos1_small.jpg',
+            title: 'Sopranos 1'
         });
         this.images.push({
             source: 'assets/demo/images/sopranos/sopranos2.jpg',
-            thumbnail: 'assets/demo/images/sopranos/sopranos2_small.jpg', title: 'Sopranos 2'
+            thumbnail: 'assets/demo/images/sopranos/sopranos2_small.jpg',
+            title: 'Sopranos 2'
         });
         this.images.push({
             source: 'assets/demo/images/sopranos/sopranos3.jpg',
-            thumbnail: 'assets/demo/images/sopranos/sopranos3_small.jpg', title: 'Sopranos 3'
+            thumbnail: 'assets/demo/images/sopranos/sopranos3_small.jpg',
+            title: 'Sopranos 3'
         });
         this.images.push({
             source: 'assets/demo/images/sopranos/sopranos4.jpg',
-            thumbnail: 'assets/demo/images/sopranos/sopranos4_small.jpg', title: 'Sopranos 4'
+            thumbnail: 'assets/demo/images/sopranos/sopranos4_small.jpg',
+            title: 'Sopranos 4'
         });
     }
 
     confirm(event: Event) {
         this.confirmationService.confirm({
             key: 'confirm2',
-            target: event.target || new EventTarget,
+            target: event.target || new EventTarget(),
             message: 'Are you sure that you want to proceed?',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
