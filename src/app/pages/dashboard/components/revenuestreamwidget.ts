@@ -4,15 +4,13 @@ import { debounceTime, Subscription } from 'rxjs';
 import { LayoutService } from '../../../layout/service/layout.service';
 
 @Component({
-    standalone:true,
+    standalone: true,
     selector: 'app-revenue-stream-widget',
-    imports: [
-        ChartModule,
-    ],
+    imports: [ChartModule],
     template: `<div class="card !mb-8">
         <div class="font-semibold text-xl mb-4">Revenue Stream</div>
         <p-chart type="bar" [data]="chartData" [options]="chartOptions" class="h-80" />
-    </div>`,
+    </div>`
 })
 export class RevenueStreamWidget {
     chartData: any;
@@ -22,11 +20,9 @@ export class RevenueStreamWidget {
     subscription!: Subscription;
 
     constructor(public layoutService: LayoutService) {
-        this.subscription = this.layoutService.configUpdate$
-            .pipe(debounceTime(25))
-            .subscribe(() => {
-                this.initChart();
-            });
+        this.subscription = this.layoutService.configUpdate$.pipe(debounceTime(25)).subscribe(() => {
+            this.initChart();
+        });
     }
 
     ngOnInit() {
@@ -73,32 +69,32 @@ export class RevenueStreamWidget {
         };
 
         this.chartOptions = {
-        maintainAspectRatio: false,
-        aspectRatio: 0.8,
-        scales: {
-            x: {
-                stacked: true,
-                ticks: {
-                    color: textMutedColor
+            maintainAspectRatio: false,
+            aspectRatio: 0.8,
+            scales: {
+                x: {
+                    stacked: true,
+                    ticks: {
+                        color: textMutedColor
+                    },
+                    grid: {
+                        color: 'transparent',
+                        borderColor: 'transparent'
+                    }
                 },
-                grid: {
-                    color: 'transparent',
-                    borderColor: 'transparent'
-                }
-            },
-            y: {
-                stacked: true,
-                ticks: {
-                    color: textMutedColor
-                },
-                grid: {
-                    color: borderColor,
-                    borderColor: 'transparent',
-                    drawTicks: false
+                y: {
+                    stacked: true,
+                    ticks: {
+                        color: textMutedColor
+                    },
+                    grid: {
+                        color: borderColor,
+                        borderColor: 'transparent',
+                        drawTicks: false
+                    }
                 }
             }
-        }
-    };
+        };
     }
 
     ngOnDestroy() {

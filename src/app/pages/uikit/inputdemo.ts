@@ -1,30 +1,30 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {InputTextModule} from "primeng/inputtext";
-import {ButtonModule} from "primeng/button";
-import {CommonModule} from "@angular/common";
-import {FormsModule} from "@angular/forms";
-import {CheckboxModule} from "primeng/checkbox";
-import {RadioButtonModule} from "primeng/radiobutton";
-import {SelectButtonModule} from "primeng/selectbutton";
-import {InputGroupModule} from "primeng/inputgroup";
-import {FluidModule} from "primeng/fluid";
-import {IconFieldModule} from "primeng/iconfield";
-import {InputIconModule} from "primeng/inputicon";
-import {FloatLabelModule} from "primeng/floatlabel";
-import {AutoCompleteModule} from "primeng/autocomplete";
-import {InputNumberModule} from "primeng/inputnumber";
-import {SliderModule} from "primeng/slider";
-import {RatingModule} from "primeng/rating";
-import {ColorPickerModule} from "primeng/colorpicker";
-import {KnobModule} from "primeng/knob";
-import {SelectModule} from "primeng/select";
-import {DatePickerModule} from "primeng/datepicker";
-import {ToggleSwitchModule} from "primeng/toggleswitch";
-import {TreeSelectModule} from "primeng/treeselect";
-import {MultiSelectModule} from "primeng/multiselect";
-import {ListboxModule} from "primeng/listbox";
-import {InputGroupAddonModule} from "primeng/inputgroupaddon";
-import {TextareaModule} from "primeng/textarea";
+import { Component, inject, OnInit } from '@angular/core';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { FluidModule } from 'primeng/fluid';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { SliderModule } from 'primeng/slider';
+import { RatingModule } from 'primeng/rating';
+import { ColorPickerModule } from 'primeng/colorpicker';
+import { KnobModule } from 'primeng/knob';
+import { SelectModule } from 'primeng/select';
+import { DatePickerModule } from 'primeng/datepicker';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { TreeSelectModule } from 'primeng/treeselect';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ListboxModule } from 'primeng/listbox';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { TextareaModule } from 'primeng/textarea';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { CountryService } from '../service/country.service';
 import { NodeService } from '../service/node.service';
@@ -62,30 +62,29 @@ import { TreeNode } from 'primeng/api';
         InputGroupAddonModule,
         TextareaModule
     ],
-    template: `
-        <p-fluid class="flex flex-col md:flex-row gap-8">
+    template: ` <p-fluid class="flex flex-col md:flex-row gap-8">
             <div class="md:w-1/2">
-            <div class="card flex flex-col gap-4">
+                <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">InputText</div>
                     <div class="flex flex-col md:flex-row gap-4">
-                        <input pInputText type="text" placeholder="Default"/>
-                        <input pInputText type="text" placeholder="Disabled" [disabled]="true"/>
-                        <input pInputText type="text" placeholder="Invalid" class="ng-dirty ng-invalid"/>
+                        <input pInputText type="text" placeholder="Default" />
+                        <input pInputText type="text" placeholder="Disabled" [disabled]="true" />
+                        <input pInputText type="text" placeholder="Invalid" class="ng-dirty ng-invalid" />
                     </div>
 
                     <div class="font-semibold text-xl">Icons</div>
                     <p-iconfield>
-                        <p-inputicon class="pi pi-user"/>
-                        <input pInputText type="text" placeholder="Username"/>
+                        <p-inputicon class="pi pi-user" />
+                        <input pInputText type="text" placeholder="Username" />
                     </p-iconfield>
                     <p-iconfield iconPosition="left">
-                        <input pInputText type="text" placeholder="Search"/>
-                        <p-inputicon class="pi pi-search"/>
+                        <input pInputText type="text" placeholder="Search" />
+                        <p-inputicon class="pi pi-search" />
                     </p-iconfield>
 
                     <div class="font-semibold text-xl">Float Label</div>
                     <p-floatlabel>
-                        <input pInputText id="username" type="text" [(ngModel)]="floatValue"/>
+                        <input pInputText id="username" type="text" [(ngModel)]="floatValue" />
                         <label for="username">Username</label>
                     </p-floatlabel>
 
@@ -93,9 +92,7 @@ import { TreeNode } from 'primeng/api';
                     <textarea pTextarea placeholder="Your Message" [autoResize]="true" rows="3" cols="30"></textarea>
 
                     <div class="font-semibold text-xl">AutoComplete</div>
-                    <p-autocomplete [(ngModel)]="selectedAutoValue" [suggestions]="autoFilteredValue" optionLabel="name"
-                                    placeholder="Search" dropdown multiple display="chip"
-                                    (completeMethod)="searchCountry($event)"/>
+                    <p-autocomplete [(ngModel)]="selectedAutoValue" [suggestions]="autoFilteredValue" optionLabel="name" placeholder="Search" dropdown multiple display="chip" (completeMethod)="searchCountry($event)" />
 
                     <div class="font-semibold text-xl">DatePicker</div>
                     <p-datepicker [showIcon]="true" [showButtonBar]="true" [(ngModel)]="calendarValue"></p-datepicker>
@@ -104,41 +101,40 @@ import { TreeNode } from 'primeng/api';
                     <p-inputnumber [(ngModel)]="inputNumberValue" showButtons mode="decimal"></p-inputnumber>
                 </div>
 
-            <div class="card flex flex-col gap-4">
+                <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">Slider</div>
-                    <input pInputText [(ngModel)]="sliderValue" type="number"/>
-                    <p-slider [(ngModel)]="sliderValue"/>
+                    <input pInputText [(ngModel)]="sliderValue" type="number" />
+                    <p-slider [(ngModel)]="sliderValue" />
 
                     <div class="flex flex-row mt-6">
-
                         <div class="flex flex-col gap-4 w-1/2">
                             <div class="font-semibold text-xl">Rating</div>
-                            <p-rating [(ngModel)]="ratingValue"/>
+                            <p-rating [(ngModel)]="ratingValue" />
                         </div>
                         <div class="flex flex-col gap-4 w-1/2">
                             <div class="font-semibold text-xl">ColorPicker</div>
-                            <p-colorpicker [style]="{width: '2rem'}" [(ngModel)]="colorValue"/>
+                            <p-colorpicker [style]="{ width: '2rem' }" [(ngModel)]="colorValue" />
                         </div>
                     </div>
 
                     <div class="font-semibold text-xl">Knob</div>
-                    <p-knob [(ngModel)]="knobValue" [step]="10" [min]="-50" [max]="50" valueTemplate="{value}%"/>
+                    <p-knob [(ngModel)]="knobValue" [step]="10" [min]="-50" [max]="50" valueTemplate="{value}%" />
                 </div>
             </div>
             <div class="md:w-1/2">
-            <div class="card flex flex-col gap-4">
+                <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">RadioButton</div>
                     <div class="flex flex-col md:flex-row gap-4">
                         <div class="flex items-center">
-                            <p-radiobutton id="option1" name="option" value="Chicago" [(ngModel)]="radioValue"/>
+                            <p-radiobutton id="option1" name="option" value="Chicago" [(ngModel)]="radioValue" />
                             <label for="option1" class="leading-none ml-2">Chicago</label>
                         </div>
                         <div class="flex items-center">
-                            <p-radiobutton id="option2" name="option" value="Los Angeles" [(ngModel)]="radioValue"/>
+                            <p-radiobutton id="option2" name="option" value="Los Angeles" [(ngModel)]="radioValue" />
                             <label for="option2" class="leading-none ml-2">Los Angeles</label>
                         </div>
                         <div class="flex items-center">
-                            <p-radiobutton id="option3" name="option" value="New York" [(ngModel)]="radioValue"/>
+                            <p-radiobutton id="option3" name="option" value="New York" [(ngModel)]="radioValue" />
                             <label for="option3" class="leading-none ml-2">New York</label>
                         </div>
                     </div>
@@ -146,31 +142,29 @@ import { TreeNode } from 'primeng/api';
                     <div class="font-semibold text-xl">Checkbox</div>
                     <div class="flex flex-col md:flex-row gap-4">
                         <div class="flex items-center">
-                            <p-checkbox id="checkOption1" name="option" value="Chicago" [(ngModel)]="checkboxValue"/>
+                            <p-checkbox id="checkOption1" name="option" value="Chicago" [(ngModel)]="checkboxValue" />
                             <label for="checkOption1" class="ml-2">Chicago</label>
                         </div>
                         <div class="flex items-center">
-                            <p-checkbox id="checkOption2" name="option" value="Los Angeles"
-                                        [(ngModel)]="checkboxValue"/>
+                            <p-checkbox id="checkOption2" name="option" value="Los Angeles" [(ngModel)]="checkboxValue" />
                             <label for="checkOption2" class="ml-2">Los Angeles</label>
                         </div>
                         <div class="flex items-center">
-                            <p-checkbox id="checkOption3" name="option" value="New York" [(ngModel)]="checkboxValue"/>
+                            <p-checkbox id="checkOption3" name="option" value="New York" [(ngModel)]="checkboxValue" />
                             <label for="checkOption3" class="ml-2">New York</label>
                         </div>
                     </div>
 
                     <div class="font-semibold text-xl">ToggleSwitch</div>
-                    <p-toggleswitch [(ngModel)]="switchValue"/>
+                    <p-toggleswitch [(ngModel)]="switchValue" />
                 </div>
 
-            <div class="card flex flex-col gap-4">
+                <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">Listbox</div>
-                    <p-listbox [(ngModel)]="listboxValue" [options]="listboxValues" optionLabel="name" [filter]="true"/>
+                    <p-listbox [(ngModel)]="listboxValue" [options]="listboxValues" optionLabel="name" [filter]="true" />
 
                     <div class="font-semibold text-xl">Select</div>
-                    <p-select [(ngModel)]="dropdownValue" [options]="dropdownValues" optionLabel="name"
-                              placeholder="Select"/>
+                    <p-select [(ngModel)]="dropdownValue" [options]="dropdownValues" optionLabel="name" placeholder="Select" />
 
                     <div class="font-semibold text-xl">MultiSelect</div>
                     <p-multiselect [(ngModel)]="multiselectValue" [options]="multiselectValues" optionLabel="name" placeholder="Select Countries" [filter]="true">
@@ -194,12 +188,12 @@ import { TreeNode } from 'primeng/api';
                     <p-treeselect [(ngModel)]="selectedNode" [options]="treeSelectNodes" placeholder="Select Item"></p-treeselect>
                 </div>
 
-            <div class="card flex flex-col gap-4">
+                <div class="card flex flex-col gap-4">
                     <div class="font-semibold text-xl">ToggleButton</div>
-                    <p-togglebutton [(ngModel)]="toggleValue" onLabel="Yes" offLabel="No" [style]="{ width: '10em' }"/>
+                    <p-togglebutton [(ngModel)]="toggleValue" onLabel="Yes" offLabel="No" [style]="{ width: '10em' }" />
 
                     <div class="font-semibold text-xl">SelectButton</div>
-                    <p-selectbutton [(ngModel)]="selectButtonValue" [options]="selectButtonValues" optionLabel="name"/>
+                    <p-selectbutton [(ngModel)]="selectButtonValue" [options]="selectButtonValues" optionLabel="name" />
                 </div>
             </div>
         </p-fluid>
@@ -212,7 +206,7 @@ import { TreeNode } from 'primeng/api';
                         <p-inputgroup-addon>
                             <i class="pi pi-user"></i>
                         </p-inputgroup-addon>
-                        <input pInputText placeholder="Username"/>
+                        <input pInputText placeholder="Username" />
                     </p-inputgroup>
                     <p-inputgroup>
                         <p-inputgroup-addon>
@@ -221,21 +215,21 @@ import { TreeNode } from 'primeng/api';
                         <p-inputgroup-addon>
                             <i class="pi pi-star-fill"></i>
                         </p-inputgroup-addon>
-                        <p-inputnumber placeholder="Price"/>
+                        <p-inputnumber placeholder="Price" />
                         <p-inputgroup-addon>$</p-inputgroup-addon>
                         <p-inputgroup-addon>.00</p-inputgroup-addon>
                     </p-inputgroup>
                 </div>
                 <div class="flex flex-col md:flex-row gap-6">
                     <p-inputgroup>
-                        <p-button label="Search"/>
-                        <input pInputText placeholder="Keyword"/>
+                        <p-button label="Search" />
+                        <input pInputText placeholder="Keyword" />
                     </p-inputgroup>
                     <p-inputgroup>
                         <p-inputgroup-addon>
-                            <p-checkbox [(ngModel)]="inputGroupValue" [binary]="true"/>
+                            <p-checkbox [(ngModel)]="inputGroupValue" [binary]="true" />
                         </p-inputgroup-addon>
-                        <input pInputText placeholder="Confirm"/>
+                        <input pInputText placeholder="Confirm" />
                     </p-inputgroup>
                 </div>
             </div>
@@ -304,7 +298,7 @@ export class InputDemo implements OnInit {
 
     toggleValue: boolean = false;
 
-    selectButtonValue: any = null
+    selectButtonValue: any = null;
 
     selectButtonValues: any = [{ name: 'Option 1' }, { name: 'Option 2' }, { name: 'Option 3' }];
 
@@ -321,7 +315,7 @@ export class InputDemo implements OnInit {
     nodeService = inject(NodeService);
 
     ngOnInit() {
-        this.countryService.getCountries().then(countries => {
+        this.countryService.getCountries().then((countries) => {
             this.autoValue = countries;
         });
 

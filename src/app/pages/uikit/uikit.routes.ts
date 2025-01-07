@@ -16,7 +16,7 @@ import { TreeDemo } from './treedemo';
 import { MenuDemo } from './menudemo';
 
 export default [
-    { path: 'button', data: { breadcrumb: 'Button' }, component: ButtonDemo},
+    { path: 'button', data: { breadcrumb: 'Button' }, component: ButtonDemo },
     { path: 'charts', data: { breadcrumb: 'Charts' }, component: ChartDemo },
     { path: 'file', data: { breadcrumb: 'File' }, component: FileDemo },
     { path: 'formlayout', data: { breadcrumb: 'Form Layout' }, component: FormLayoutDemo },

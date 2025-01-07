@@ -3,12 +3,9 @@ import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 
 @Component({
-    standalone:true,
+    standalone: true,
     selector: 'app-notifications-widget',
-    imports: [
-        ButtonModule,
-        MenuModule,
-    ],
+    imports: [ButtonModule, MenuModule],
     template: `<div class="card">
         <div class="flex items-center justify-between mb-6">
             <div class="font-semibold text-xl">Notifications</div>
@@ -25,7 +22,7 @@ import { MenuModule } from 'primeng/menu';
                     <i class="pi pi-dollar !text-xl text-blue-500"></i>
                 </div>
                 <span class="text-surface-900 dark:text-surface-0 leading-normal"
-                >Richard Jones
+                    >Richard Jones
                     <span class="text-surface-700 dark:text-surface-100">has purchased a blue t-shirt for <span class="text-primary font-bold">$79.00</span></span>
                 </span>
             </li>
@@ -44,7 +41,7 @@ import { MenuModule } from 'primeng/menu';
                     <i class="pi pi-dollar !text-xl text-blue-500"></i>
                 </div>
                 <span class="text-surface-900 dark:text-surface-0 leading-normal"
-                >Keyser Wick
+                    >Keyser Wick
                     <span class="text-surface-700 dark:text-surface-100">has purchased a black jacket for <span class="text-primary font-bold">$59.00</span></span>
                 </span>
             </li>
@@ -53,7 +50,7 @@ import { MenuModule } from 'primeng/menu';
                     <i class="pi pi-question !text-xl text-pink-500"></i>
                 </div>
                 <span class="text-surface-900 dark:text-surface-0 leading-normal"
-                >Jane Davis
+                    >Jane Davis
                     <span class="text-surface-700 dark:text-surface-100">has posted a new questions about your product.</span>
                 </span>
             </li>
@@ -73,7 +70,7 @@ import { MenuModule } from 'primeng/menu';
                 <span class="text-surface-900 dark:text-surface-0 leading-normal"><span class="text-primary font-bold">12</span> users have added your products to their wishlist.</span>
             </li>
         </ul>
-    </div>`,
+    </div>`
 })
 export class NotificationsWidget {
     items = [

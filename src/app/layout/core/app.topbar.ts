@@ -58,15 +58,7 @@ import { LayoutService } from '../service/layout.service';
                 </div>
             </div>
 
-            <button
-                class="layout-topbar-menu-button layout-topbar-action"
-                pStyleClass="@next"
-                enterFromClass="hidden"
-                enterActiveClass="animate-scalein"
-                leaveToClass="hidden"
-                leaveActiveClass="animate-fadeout"
-                [hideOnOutsideClick]="true"
-            >
+            <button class="layout-topbar-menu-button layout-topbar-action" pStyleClass="@next" enterFromClass="hidden" enterActiveClass="animate-scalein" leaveToClass="hidden" leaveActiveClass="animate-fadeout" [hideOnOutsideClick]="true">
                 <i class="pi pi-ellipsis-v"></i>
             </button>
 
@@ -90,7 +82,6 @@ import { LayoutService } from '../service/layout.service';
     </div>`
 })
 export class AppTopbar {
-
     items!: MenuItem[];
 
     constructor(public layoutService: LayoutService) {}
@@ -98,5 +89,4 @@ export class AppTopbar {
     toggleDarkMode() {
         this.layoutService.layoutConfig.update((state) => ({ ...state, darkTheme: !state.darkTheme }));
     }
-
 }

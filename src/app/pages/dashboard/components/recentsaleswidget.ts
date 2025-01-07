@@ -6,14 +6,9 @@ import { CommonModule } from '@angular/common';
 import { Product, ProductService } from '../../service/product.service';
 
 @Component({
-    standalone:true,
+    standalone: true,
     selector: 'app-recent-sales-widget',
-    imports: [
-        CommonModule,
-        TableModule,
-        ButtonModule,
-        RippleModule,
-    ],
+    imports: [CommonModule, TableModule, ButtonModule, RippleModule],
     template: `<div class="card !mb-8">
         <div class="font-semibold text-xl mb-4">Recent Sales</div>
         <p-table [value]="products" [paginator]="true" [rows]="5" responsiveLayout="scroll">
@@ -28,10 +23,10 @@ import { Product, ProductService } from '../../service/product.service';
             <ng-template #body let-product>
                 <tr>
                     <td style="width: 15%; min-width: 5rem;">
-                        <img src="https://primefaces.org/cdn/primevue/images/product/{{product.image}}" class="shadow-lg" alt="{{product.name}}" width="50">
+                        <img src="https://primefaces.org/cdn/primevue/images/product/{{ product.image }}" class="shadow-lg" alt="{{ product.name }}" width="50" />
                     </td>
-                    <td style="width: 35%; min-width: 7rem;">{{product.name}}</td>
-                    <td style="width: 35%; min-width: 8rem;">{{product.price | currency:'USD'}}</td>
+                    <td style="width: 35%; min-width: 7rem;">{{ product.name }}</td>
+                    <td style="width: 35%; min-width: 8rem;">{{ product.price | currency: 'USD' }}</td>
                     <td style="width: 15%;">
                         <button pButton pRipple type="button" icon="pi pi-search" class="p-button p-component p-button-text p-button-icon-only"></button>
                     </td>
@@ -39,15 +34,14 @@ import { Product, ProductService } from '../../service/product.service';
             </ng-template>
         </p-table>
     </div>`,
-    providers: [ProductService],
+    providers: [ProductService]
 })
 export class RecentSalesWidget {
     products!: Product[];
 
-
     constructor(private productService: ProductService) {}
 
     ngOnInit() {
-        this.productService.getProductsSmall().then(data => this.products = data);
+        this.productService.getProductsSmall().then((data) => (this.products = data));
     }
 }

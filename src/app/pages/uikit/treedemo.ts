@@ -1,9 +1,9 @@
-import {Component, inject, OnInit} from '@angular/core';
-import { TreeNode} from 'primeng/api';
-import {TreeModule} from "primeng/tree";
-import {FormsModule} from "@angular/forms";
-import {TreeTableModule} from "primeng/treetable";
-import {CommonModule} from "@angular/common";
+import { Component, inject, OnInit } from '@angular/core';
+import { TreeNode } from 'primeng/api';
+import { TreeModule } from 'primeng/tree';
+import { FormsModule } from '@angular/forms';
+import { TreeTableModule } from 'primeng/treetable';
+import { CommonModule } from '@angular/common';
 import { NodeService } from '../service/node.service';
 
 @Component({
@@ -51,11 +51,11 @@ export class TreeDemo implements OnInit {
 
     cols: any[] = [];
 
-    nodeService = inject(NodeService)
+    nodeService = inject(NodeService);
 
     ngOnInit() {
-        this.nodeService.getFiles().then(files => this.treeValue = files);
-        this.nodeService.getFilesystem().then(files => this.treeTableValue = files);
+        this.nodeService.getFiles().then((files) => (this.treeValue = files));
+        this.nodeService.getFilesystem().then((files) => (this.treeTableValue = files));
 
         this.cols = [
             { field: 'name', header: 'Name' },
