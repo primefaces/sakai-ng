@@ -6,129 +6,50 @@ import { CommonModule } from '@angular/common';
     standalone: true,
     imports: [CommonModule],
     template: `
-        <div class="card mb-4">
-            <div>
-                <h2>Documentation</h2>
-                <h4>Getting Started</h4>
-                <p>Sakai is an application template for Angular and is distributed as a CLI project. Current versions is Angular v19 with PrimeNG v19. In case CLI is not installed already, use the command below to set it up.</p>
-
-                <pre class="app-code"><code>npm install -g &#64;angular/cli</code></pre>
-
-                <p>Once CLI is ready in your system, extract the contents of the zip file distribution, cd to the directory, install the libraries from npm and then execute "ng serve" to run the application in your local environment.</p>
-
-                <pre class="app-code"><code>cd sakai
+        <div class="card">
+            <div class="font-semibold text-2xl mb-4">Documentation</div>
+            <div class="font-semibold text-xl mb-4">Get Started</div>
+            <p class="text-lg mb-4">Sakai is an application template for Angular and is distributed as a CLI project. Current versions is Angular v19 with PrimeNG v19. In case CLI is not installed already, use the command below to set it up.</p>
+            <pre class="app-code">
+<code>npm install -g &#64;angular/cli</code></pre>
+            <p class="text-lg mb-4">
+                Once CLI is ready in your system, extract the contents of the zip file distribution, cd to the directory, install the libraries from npm and then execute "ng serve" to run the application in your local environment.
+            </p>
+            <pre class="app-code">
+<code>git clone https://github.com/primefaces/sakai-ng
 npm install
 ng serve</code></pre>
 
-                <p>The application should run at <span class="font-semibold">http://localhost:4200/</span>, you may now start with the development of your application.</p>
+            <p class="text-lg mb-4">The application should run at <i class="bg-highlight px-2 py-1 rounded-border not-italic text-base">http://localhost:4200/</i> to view the application in your local environment.</p>
 
-                <h5>Important CLI Commands</h5>
-                <p>Following commands are derived from CLI.</p>
+            <div class="font-semibold text-xl mb-4">Structure</div>
+            <p class="text-lg mb-4">Templates consists of a couple folders, demos and layout have been separated so that you can easily remove what is not necessary for your application.</p>
+            <ul class="leading-normal list-disc pl-8 text-lg mb-4">
+                <li><span class="text-primary font-medium">src/layout</span>: Main layout files, needs to be present.</li>
+                <li><span class="text-primary font-medium">src/pages</span>: Demo pages like Dashboard.</li>
+                <li><span class="text-primary font-medium">public/pages/images/landing</span>: Assets used in demos</li>
+                <li><span class="text-primary font-medium">src/assets/demo</span>: Styles used in demos</li>
+                <li><span class="text-primary font-medium">src/assets/layout</span>: SCSS files of the main layout</li>
+            </ul>
 
-                <pre class="app-code"><code>Run 'ng serve' for a dev server. Navigate to \`http://localhost:4200/\`. The app will automatically reload if you change any of the source files.
+            <div class="font-semibold text-xl mb-4">Menu</div>
+            <p class="text-lg mb-4">
+                Main menu is defined at <span class="bg-highlight px-2 py-1 rounded-border not-italic text-base">src/app/layout/core/app.menu.ts</span> file. Update the
+                <i class="bg-highlight px-2 py-1 rounded-border not-italic text-base">model</i> property to define your own menu items.
+            </p>
 
-Run 'ng generate component component-name' to generate a new component. You can also use \`ng generate directive/pipe/service/class/module\`.
+            <div class="font-semibold text-xl mb-4">Layout Service</div>
+            <p class="text-lg mb-4">
+                <span class="bg-highlight px-2 py-1 rounded-border not-italic text-base">src/app/layout/service/layout.service.ts</span> is a service that manages layout state changes, including dark mode, PrimeNG theme, menu modes, and states.
+            </p>
 
-Run 'ng build' to build the project. The build artifacts will be stored in the \`dist/\` directory. Use the \`-prod\` flag for a production build.
+            <div class="font-semibold text-xl mb-4">Tailwind CSS</div>
+            <p class="text-lg mb-4">The demo pages are developed with Tailwind CSS however the core application shell mainly uses custom CSS.</p>
 
-Run 'ng test' to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-Run 'ng e2e' to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-Run 'ng help' for more options.</code></pre>
-
-                <h4>Structure</h4>
-                <p>
-                    Sakai consists of 3 main parts; the application layout, layout assets and PrimeNG component theme assets. Layout is placed inside the <span class="text-primary font-medium">src/app/layout</span> folder, and the assets are in the
-                    <span class="text-primary font-medium">src/assets/layout</span> folder.
-                </p>
-
-                <h5>Default Configuration</h5>
-                <p>
-                    Initial layout configuration can be defined at the main app component by injecting the <span class="text-primary font-medium">LayoutService</span>, this step is optional and only necessary when customizing the defaults. Note that
-                    <span class="text-primary font-medium">theme</span> and <span class="text-primary font-medium">scale</span> are not reactive since theme is configured outside of Angular at <strong class="font-semibold">index.html</strong> by
-                    default and initial scale is defined with the <span class="text-primary font-medium">$scale</span> at <strong class="font-semibold">layout.scss</strong>. When default theme or scale is changed at their files initially, it is
-                    required to configure the layout service with the matching values to avoid sync issues.
-                </p>
-
-                <pre class="app-code"><code>import &#123; Component, OnInit &#125; from '&#64;angular/core';
-import &#123; PrimeNGConfig &#125; from 'primeng/api';
-import &#123; LayoutService, AppConfig &#125; from './layout/service/app.layout.service';
-
-&#64;Component(&#123;
-    selector: 'app-root',
-    templateUrl: './app.component.html'
-&#125;)
-export class AppComponent implements OnInit &#123;
-
-    constructor(private primengConfig: PrimeNGConfig, private layoutService: LayoutService) &#123; &#125;
-
-    ngOnInit(): void &#123;
-        this.primengConfig.ripple = true;       //enables core ripple functionality
-
-        //optional configuration with the default configuration
-        const config: AppConfig = &#123;
-            ripple: false,                      //toggles ripple on and off
-            inputStyle: 'outlined',             //default style for input elements
-            menuMode: 'static',                 //layout mode of the menu, valid values are "static" and "overlay"
-            colorScheme: 'light',               //color scheme of the template, valid values are "light" and "dark"
-            theme: 'lara-light-indigo',         //default component theme for PrimeNG
-            scale: 14                           //size of the body font size to scale the whole application
-        &#125;;
-        this.layoutService.config.set(config);
-    &#125;
-
-&#125;</code></pre>
-
-                <h5>Menu</h5>
-                <p>
-                    Menu is a separate component defined in <span class="text-primary font-medium">src/app/layout/app.menu.component.ts</span> file and based on PrimeNG MenuModel API. In order to define the menuitems, navigate to this file and define
-                    your own model as a nested structure.
-                </p>
-
-                <pre class="app-code"><code>import &#123; OnInit &#125; from '&#64;angular/core';
-import &#123; Component &#125; from '&#64;angular/core';
-
-&#64;Component(&#123;
-    selector: 'app-menu',
-    templateUrl: './app.menu.component.html'
-&#125;)
-export class AppMenuComponent implements OnInit &#123;
-
-    model: any[] = [];
-
-    ngOnInit() &#123;
-        this.model = [
-            &#123;
-                label: 'Home',
-                items: [
-                    &#123;
-                        label: 'Dashboard',
-                        icon: 'pi pi-fw pi-home',
-                        routerLink: ['/']
-                    &#125;
-                ]
-            &#125;,
-            //...
-        ];
-    &#125;
-&#125;</code></pre>
-
-                <h4>Integration with Existing Angular CLI Projects</h4>
-                <p>Sakai structure is designed in a modular way so that it can easily be integrated with your existing application. We've created a short tutorial with details.</p>
-
-                <div class="video-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/yl2f8KKY204" frameborder="0" allowfullscreen></iframe>
-                </div>
-
-                <h4>Theme</h4>
-                <p>
-                    Sakai provides 34 PrimeNG themes out of the box. Setup of a theme is simple by including the css of theme to your bundle that are located inside <span class="text-primary font-medium">assets/layout/styles/theme/</span> folder such
-                    as <span class="text-primary font-medium">assets/layout/styles/theme/lara-light-indigo/theme.css</span>.
-                </p>
-
-                <p>Another alternative would be creating dynamic bundles, please see the <a href="https://www.youtube.com/watch?v=5VOuUdDXRsE" class="font-medium text-primary hover:underline">video tutorial</a> for an example.</p>
-            </div>
+            <div class="font-semibold text-xl mb-4">Variables</div>
+            <p class="text-lg mb-4">
+                CSS variables used in the template are derived from the default theme. Customize them through the CSS variables in <span class="bg-highlight px-2 py-1 rounded-border not-italic text-base">src/assets/layout/variables</span>.
+            </p>
         </div>
     `,
     styles: `
