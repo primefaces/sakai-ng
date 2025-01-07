@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { AppTopBar } from '@/src/layout/apptopbar';
 import { AppSidebar } from '@/src/layout/appsidebar';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { AppConfigurator } from '@/src/layout/appconfigurator';
 import { AppFooter } from '@/src/layout/appfooter';
 import { filter, Subscription } from 'rxjs';
 import { LayoutService } from '@/src/service/layout/layout.service';
@@ -12,19 +11,16 @@ import { LayoutService } from '@/src/service/layout/layout.service';
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, ToastModule, AppTopBar, AppSidebar, RouterModule, AppFooter, AppConfigurator],
+    imports: [CommonModule, ToastModule, AppTopBar, AppSidebar, RouterModule, AppFooter],
     template: `<div class="layout-wrapper" [ngClass]="containerClass">
         <app-topbar></app-topbar>
-        <div class="layout-sidebar">
-            <app-sidebar></app-sidebar>
-        </div>
+        <app-sidebar></app-sidebar>
         <div class="layout-main-container">
             <div class="layout-main">
                 <router-outlet></router-outlet>
             </div>
             <app-footer></app-footer>
         </div>
-        <app-configurator></app-configurator>
         <div class="layout-mask animate-fadein"></div>
     </div> `
 })
