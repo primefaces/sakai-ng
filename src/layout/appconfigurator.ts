@@ -68,7 +68,7 @@ const presets = {
         </div>
     `,
     host: {
-        class: 'config-panel hidden'
+        class: 'hidden'
     }
 })
 export class AppConfigurator {
