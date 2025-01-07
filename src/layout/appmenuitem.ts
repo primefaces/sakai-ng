@@ -3,7 +3,7 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { MenuService } from '@/src/service/layout/menu.service';
+import { LayoutService } from '@/src/service/layout/layout.service';
 import { CommonModule } from '@angular/common';
 import { RippleModule } from 'primeng/ripple';
 import { MenuItem} from 'primeng/api';
@@ -49,7 +49,7 @@ import { MenuItem} from 'primeng/api';
             transition('collapsed <=> expanded', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'))
         ])
     ],
-    providers: [MenuService],
+    providers: [LayoutService],
 })
 export class AppMenuItem {
 
@@ -69,8 +69,8 @@ export class AppMenuItem {
 
     key: string = "";
 
-    constructor(public router: Router, private menuService: MenuService) {
-        this.menuSourceSubscription = this.menuService.menuSource$.subscribe(value => {
+    constructor(public router: Router, private layoutService: LayoutService) {
+        this.menuSourceSubscription = this.layoutService.menuSource$.subscribe(value => {
             Promise.resolve(null).then(() => {
                 if (value.routeEvent) {
                     this.active = (value.key === this.key || value.key.startsWith(this.key + '-')) ? true : false;
@@ -83,7 +83,7 @@ export class AppMenuItem {
             });
         });
 
-        this.menuResetSubscription = this.menuService.resetSource$.subscribe(() => {
+        this.menuResetSubscription = this.layoutService.resetSource$.subscribe(() => {
             this.active = false;
         });
 
@@ -107,7 +107,7 @@ export class AppMenuItem {
         let activeRoute = this.router.isActive(this.item.routerLink[0], { paths: 'exact', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' });
 
         if (activeRoute) {
-            this.menuService.onMenuStateChange({ key: this.key, routeEvent: true });
+            this.layoutService.onMenuStateChange({ key: this.key, routeEvent: true });
         }
     }
 
@@ -128,7 +128,7 @@ export class AppMenuItem {
             this.active = !this.active;
         }
 
-        this.menuService.onMenuStateChange({ key: this.key });
+        this.layoutService.onMenuStateChange({ key: this.key });
     }
 
     get submenuAnimation() {

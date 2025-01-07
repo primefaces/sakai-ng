@@ -17,6 +17,11 @@ interface LayoutState {
     menuHoverActive?: boolean;
 }
 
+interface MenuChangeEvent {
+    key: string;
+    routeEvent?: boolean;
+}
+
 @Injectable({
     providedIn: 'root',
 })
@@ -44,6 +49,14 @@ export class LayoutService {
     private configUpdate = new Subject<layoutConfig>();
 
     private overlayOpen = new Subject<any>();
+
+    private menuSource = new Subject<MenuChangeEvent>();
+
+    private resetSource = new Subject();
+
+    menuSource$ = this.menuSource.asObservable();
+
+    resetSource$ = this.resetSource.asObservable();
 
     configUpdate$ = this.configUpdate.asObservable();
 
@@ -150,5 +163,13 @@ export class LayoutService {
     onConfigUpdate() {
         this._config = { ...this.layoutConfig() };
         this.configUpdate.next(this.layoutConfig());
+    }
+
+    onMenuStateChange(event: MenuChangeEvent) {
+        this.menuSource.next(event);
+    }
+
+    reset() {
+        this.resetSource.next(true);
     }
 }
