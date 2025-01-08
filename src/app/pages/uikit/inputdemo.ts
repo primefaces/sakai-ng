@@ -11,7 +11,7 @@ import { FluidModule } from 'primeng/fluid';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { FloatLabelModule } from 'primeng/floatlabel';
-import { AutoCompleteModule } from 'primeng/autocomplete';
+import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
@@ -92,7 +92,7 @@ import { TreeNode } from 'primeng/api';
                     <textarea pTextarea placeholder="Your Message" [autoResize]="true" rows="3" cols="30"></textarea>
 
                     <div class="font-semibold text-xl">AutoComplete</div>
-                    <p-autocomplete [(ngModel)]="selectedAutoValue" [suggestions]="autoFilteredValue" optionLabel="name" placeholder="Search" dropdown multiple display="chip" (completeMethod)="searchCountry($event)" />
+                    <p-autocomplete [(ngModel)]="selectedAutoValue" [suggestions]="autoFilteredValue" optionLabel="name" placeholder="Search" dropdown multiple display="chip" (completeMethod)="filterCountry($event)" />
 
                     <div class="font-semibold text-xl">DatePicker</div>
                     <p-datepicker [showIcon]="true" [showButtonBar]="true" [(ngModel)]="calendarValue"></p-datepicker>
@@ -239,11 +239,11 @@ import { TreeNode } from 'primeng/api';
 export class InputDemo implements OnInit {
     floatValue: any = null;
 
-    autoValue: any = null;
-
-    selectedAutoValue: any = null;
+    autoValue: any[] | undefined;
 
     autoFilteredValue: any[] = [];
+
+    selectedAutoValue: any = null;
 
     calendarValue: any = null;
 
@@ -322,11 +322,12 @@ export class InputDemo implements OnInit {
         this.nodeService.getFiles().then((data) => (this.treeSelectNodes = data));
     }
 
-    searchCountry(event: any) {
+    filterCountry(event: AutoCompleteCompleteEvent) {
         const filtered: any[] = [];
         const query = event.query;
-        for (let i = 0; i < this.autoFilteredValue.length; i++) {
-            const country = this.autoFilteredValue[i];
+
+        for (let i = 0; i < (this.autoValue as any[]).length; i++) {
+            const country = (this.autoValue as any[])[i];
             if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
                 filtered.push(country);
             }
