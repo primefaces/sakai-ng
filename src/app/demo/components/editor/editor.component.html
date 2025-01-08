@@ -1,5 +1,5 @@
 <div class="grid">
-    <div class="col-9" >
+    <div class="col-9">
         <div class="card" style="height: 84vh">
             <app-editor-header #hd (changeRoom)="setNewRoom($event)" [currentRooms]="timeTable.roomTables"/>
             <app-editor-calendar #cd [selectedRoom]="selectedRoom" (setDirtyBool)="setDirtyDataBit($event)"

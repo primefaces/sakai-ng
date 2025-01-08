@@ -36,6 +36,7 @@ export class TableDialogComponent {
         public ref: DynamicDialogRef
     ) {
         this.creationTable = new TmpTimeTable();
+        this.creationTable.currentPageIndex = 0;
         this.creationTable.status = Status.NEW;
     }
 

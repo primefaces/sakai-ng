@@ -1,0 +1,221 @@
+.stepper-settings {
+    width: 70%;
+    position: absolute;
+    top: calc(5% + 5px);
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.p-stepper {
+    flex-basis: 40rem;
+}
+
+.box-around-text {
+    padding: .8rem;
+    text-align: center;
+    border-radius: 15px;
+    background-color: #E2E1DF;
+}
+
+.box {
+    width: 11rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-box {
+    padding: .8rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.PrevButton {
+    position: absolute;
+    left: 0;
+    top: 6%;
+}
+
+.NextButton {
+    position: absolute;
+    right: 0;
+    top: 6%;
+}
+
+.Context {
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    top: 14rem;
+    bottom: .5rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 98%;
+    background-color: #E2E1DF;
+    border-radius: 15px;
+}
+
+.float-item {
+    float: left; /* Float all items to the left by default */
+    margin-left: .5rem; /* Add some space between items if necessary */
+}
+
+.float-item:last-child {
+    float: right; /* Float the last item to the right */
+}
+
+#del {
+    background-color: var(--system-color-primary-red);
+    border-color: var(--system-color-primary-red);
+
+    height: 2.4rem;
+    padding: .35rem;
+    margin-right: .5rem;
+}
+
+#add {
+    background-color: var(--system-color-primary-blue);
+    border-color: var(--system-color-primary-blue);
+
+    height: 2.4rem;
+    padding: .35rem;
+    margin-right: .5rem;
+}
+
+.customSearchHeight {
+    height: 2.5rem;
+    padding-bottom: .2rem;
+}
+
+#buttonGrid {
+    position: absolute;
+    top: calc(7% + 5px);
+    width: 8%;
+    left: 90%;
+    padding-right: .5rem;
+    place-items: center;
+
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+}
+
+#changeButton {
+    grid-area: 1 / 1 / 3 / 2;
+    height: auto;
+    width: 3rem;
+}
+
+#saveButton {
+    grid-area: 1/2/2/3;
+    width: 6rem;
+    padding-bottom: .5rem;
+}
+
+#deleteButton {
+    grid-area: 2/2/3/3;
+    width: 6rem;
+}
+
+#infoGrid {
+    position: absolute;
+    top: calc(7% + 5px);
+    right: 90%;
+    background-color: #E2E1DF;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the child elements horizontally */
+    padding: 0.2rem;
+
+    min-width: 5rem;
+}
+
+p-tag#status {
+    padding-top: 0.2rem;
+    text-align: center; /* Ensure text inside is centered */
+}
+
+#info {
+    padding-bottom: 0.2rem;
+    text-align: center; /* Ensure text inside is centered */
+}
+
+.parent {
+    display: flex;
+    flex-direction: column;
+}
+
+.div-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.rand {
+    margin: .4rem .4rem .4rem .4rem;
+}
+
+#vertical-grid {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    gap: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#upperSection {
+    display: flex;
+    flex-direction: column;
+    grid-area: 1/1/2/2;
+    align-self: start;
+    padding: .5rem;
+}
+
+#lowerSection {
+    display: flex;
+    flex-direction: column;
+    grid-area: 2/1/3/2;
+    align-self: end;
+    padding: .5rem;
+}
+
+#scrollable-calendar {
+    overflow-y: auto; /* Add scrollbar if content overflows vertically */
+    max-height: 80vh; /* Set a maximum height for the container */
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.stepper-settings {
+    width: 70%;
+    position: absolute;
+    top: calc(5% + 5px);
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.col-left {
+    width:50%;
+    display: inline-table;
+    align-content: center;
+    height: 100%;
+    padding: .5rem;
+}
