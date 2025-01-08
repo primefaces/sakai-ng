@@ -5,6 +5,7 @@ import {PrimeIcons} from "primeng/api";
 import {LocalStorageService} from "ngx-webstorage";
 import {DialogService} from "primeng/dynamicdialog";
 import {TableDialogComponent} from "../demo/components/dialogs/table-dialog/table-dialog.component";
+import {TmpTimeTable} from "../../assets/models/tmp-time-table";
 
 @Component({
     selector: 'app-menu',
@@ -23,14 +24,14 @@ export class AppMenuComponent implements OnInit {
         const ref = this.dialogService.open(TableDialogComponent, {
             header: `Create new Table`,
             contentStyle: { overflow: 'auto' },
-            width: '30%',
+            width: '550px', height: '370px',
             baseZIndex: 10000,
             maximizable: false,
             position: 'topleft'
         })
 
-        ref.onClose.subscribe((result) => {
-            this.localStorage.store('wizard-table', result);
+        ref.onClose.subscribe((result: TmpTimeTable) => {
+            localStorage.setItem('wizard-table', JSON.stringify(result));
         });
     }
 

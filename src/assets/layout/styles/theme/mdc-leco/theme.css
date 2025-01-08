@@ -1967,8 +1967,8 @@
   }
 
   .p-button {
-    color: #ffffff;
-    background: #3F51B5;
+    color: var(--sys-color-primary-white);
+    background: var(--sys-color-primary-blue);
     border: 0 none;
     padding: 0.643rem 0.75rem;
     font-size: 1rem;
@@ -1976,8 +1976,8 @@
     border-radius: 4px;
   }
   .p-button:not(:disabled):hover {
-    background: rgba(63, 81, 181, 0.92);
-    color: #ffffff;
+    background: var(--primary-color-trans);
+    color: var(--sys-color-primary-white);
     border-color: transparent;
   }
   .p-button:not(:disabled):active {

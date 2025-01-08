@@ -7,11 +7,13 @@ import {RoomTimesComponent} from "./room-times/room-times.component";
 import {PreWizardComponent} from "./pre-wizard/pre-wizard.component";
 import {FullCalendarModule} from "@fullcalendar/angular";
 import {NgClass, NgForOf} from "@angular/common";
+import {ButtonDirective} from "primeng/button";
+import {Ripple} from "primeng/ripple";
 
 @NgModule({
     declarations: [
         WizardComponent, CourseDetailComponent, PreWizardComponent,
         ItemSelectionComponent, RoomTimesComponent],
-    imports: [WizardRoutingModule, FullCalendarModule, NgForOf, NgClass],
+    imports: [WizardRoutingModule, FullCalendarModule, NgForOf, NgClass, ButtonDirective, Ripple],
 })
 export class WizardModule {}

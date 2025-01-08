@@ -6,7 +6,11 @@ import {RouterLink} from "@angular/router";
 import {SharedModule} from "primeng/api";
 import {DropdownModule} from "primeng/dropdown";
 import {PaginatorModule} from "primeng/paginator";
-import {Semester} from "../../../../../assets/models/enums/semester";
+import {getSemesterOptions, Semester} from "../../../../../assets/models/enums/semester";
+import {NgIf} from "@angular/common";
+import {FloatLabelModule} from "primeng/floatlabel";
+import {ButtonDirective} from "primeng/button";
+import {Status} from "../../../../../assets/models/enums/status";
 
 @Component({
   selector: 'app-user-dialog',
@@ -16,20 +20,23 @@ import {Semester} from "../../../../../assets/models/enums/semester";
         RouterLink,
         SharedModule,
         DropdownModule,
-        PaginatorModule
+        PaginatorModule,
+        NgIf,
+        FloatLabelModule,
+        ButtonDirective
     ],
   templateUrl: './table-dialog.component.html'
 })
 export class TableDialogComponent {
     protected creationTable: TmpTimeTable;
-    protected semesterOptions: Semester[];
+    protected semesterOptions: Semester[] = getSemesterOptions();
 
     constructor(
         public config: DynamicDialogConfig,
         public ref: DynamicDialogRef
     ) {
         this.creationTable = new TmpTimeTable();
-        this.semesterOptions = [Semester.WS, Semester.SS];
+        this.creationTable.status = Status.NEW;
     }
 
     save() {

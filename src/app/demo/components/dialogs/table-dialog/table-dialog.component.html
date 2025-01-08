@@ -1,19 +1,30 @@
-<ng-template pTemplate="content" class="parent">
-    <div id="newCalendarGrid">
-        <div id="semester">
-            <label for="type">Semester Type</label>
-            <p-dropdown id="type" [options]="semesterOptions" [(ngModel)]="creationTable.semester" placeholder="select a Semester"/>
+<div id="newCalendarGrid" class="space-y-4">
+    <div class="flex space-x-4 pt-2">
+        <div id="semester" class="flex-1">
+            <p-floatLabel style="margin: 3px">
+                <p-dropdown id="type" [options]="semesterOptions" [(ngModel)]="creationTable.semester" placeholder="Select a Semester"></p-dropdown>
+                <label for="type">Semester Type</label>
+            </p-floatLabel>
             <small class="p-error" *ngIf="!creationTable.semester">for Simplification needed</small>
         </div>
-        <div id="tableYear">
-            <label for="year">Year</label>
-            <p-inputNumber type="number" id="year" required autofocus [(ngModel)]="creationTable.year"/>
+        <div id="tableYear" class="flex-1">
+            <p-floatLabel style="margin: 3px">
+                <p-inputNumber type="number" id="year" required autofocus [(ngModel)]="creationTable.year"></p-inputNumber>
+                <label for="year">Year</label>
+            </p-floatLabel>
             <small class="p-error" *ngIf="!creationTable.year">for Simplification needed</small>
         </div>
-        <div id="tableName">
-            <label for="name">Table Name</label>
-            <input pInputText type="text" id="name" required [(ngModel)]="creationTable.name"/>
-            <small class="p-error" *ngIf="!creationTable.name">for Simplification needed</small>
-        </div>
     </div>
-</ng-template>
+    <div id="tableName" class="w-full pt-4">
+        <p-floatLabel>
+            <input pInputText type="text" id="name" required [(ngModel)]="creationTable.name" class="w-full" />
+            <label for="name">Table Name</label>
+        </p-floatLabel>
+        <small class="p-error" *ngIf="!creationTable.name">for Simplification needed</small>
+    </div>
+    <div class="pt-4 flex justify-center" [style]="{'justify-content':'center'}">
+        <button pButton type="button" label="Save" class="p-button-primary"
+                [routerLink]="'/wizard/pre-selection'" (click)="save()"
+                [disabled]="!creationTable.semester || !creationTable.year || !creationTable.name" ></button>
+    </div>
+</div>
