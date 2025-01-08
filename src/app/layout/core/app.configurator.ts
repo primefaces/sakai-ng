@@ -9,7 +9,6 @@ import { PrimeNG } from 'primeng/config';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { LayoutService } from '../service/layout.service';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 
 const presets = {
     Aura,
