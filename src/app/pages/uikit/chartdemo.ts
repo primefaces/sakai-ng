@@ -275,6 +275,9 @@ export class ChartDemo {
             },
             scales: {
                 r: {
+                    pointLabels: {
+                        color: textColor
+                    },
                     grid: {
                         color: textColorSecondary
                     }
