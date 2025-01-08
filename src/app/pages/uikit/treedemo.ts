@@ -31,7 +31,7 @@ import { NodeService } from '../service/node.service';
                         <td *ngFor="let col of columns; let i = index">
                             <p-treeTableToggler [rowNode]="rowNode" *ngIf="i === 0" />
                             <p-treeTableCheckbox [value]="rowNode" *ngIf="i === 0" />
-                            <span class="ml-2">{{ rowData[col.field] }}</span>
+                            {{ rowData[col.field] }}
                         </td>
                     </tr>
                 </ng-template>
@@ -47,7 +47,7 @@ export class TreeDemo implements OnInit {
 
     selectedTreeValue: TreeNode[] = [];
 
-    selectedTreeTableValue: any[] = [];
+    selectedTreeTableValue = {};
 
     cols: any[] = [];
 
@@ -55,12 +55,19 @@ export class TreeDemo implements OnInit {
 
     ngOnInit() {
         this.nodeService.getFiles().then((files) => (this.treeValue = files));
-        this.nodeService.getFilesystem().then((files) => (this.treeTableValue = files));
+        this.nodeService.getTreeTableNodes().then((files: any) => (this.treeTableValue = files));
 
         this.cols = [
             { field: 'name', header: 'Name' },
             { field: 'size', header: 'Size' },
             { field: 'type', header: 'Type' }
         ];
+
+        this.selectedTreeTableValue = {
+            '0-0': {
+                partialChecked: false,
+                checked: true
+            }
+        };
     }
 }
