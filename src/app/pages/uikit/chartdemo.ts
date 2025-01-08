@@ -107,6 +107,8 @@ export class ChartDemo {
         };
 
         this.barOptions = {
+            maintainAspectRatio: false,
+            aspectRatio: 0.8,
             plugins: {
                 legend: {
                     labels: {
@@ -184,6 +186,8 @@ export class ChartDemo {
         };
 
         this.lineOptions = {
+            maintainAspectRatio: false,
+            aspectRatio: 0.8,
             plugins: {
                 legend: {
                     labels: {
