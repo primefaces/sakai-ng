@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ButtonGroupModule } from 'primeng/buttongroup';
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { MenuItem } from 'primeng/api';
 
 @Component({
     selector: 'app-button-demo',
@@ -97,7 +97,6 @@ import { MenuItem } from 'primeng/api';
             <div class="card flex flex-col gap-4">
                 <div class="font-semibold text-xl">Icons</div>
                 <div class="flex flex-wrap gap-2">
-                    <p-button icon="pi pi-star-fill"></p-button>
                     <p-button label="Bookmark" icon="pi pi-bookmark"></p-button>
                     <p-button label="Bookmark" icon="pi pi-bookmark" iconPos="right"></p-button>
                 </div>

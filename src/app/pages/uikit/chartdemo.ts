@@ -1,8 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
-import { CommonModule } from '@angular/common';
-import { debounceTime, Subscription } from 'rxjs';
 import { FluidModule } from 'primeng/fluid';
+import { debounceTime, Subscription } from 'rxjs';
 import { LayoutService } from '../../layout/service/layout.service';
 
 @Component({
@@ -110,7 +110,7 @@ export class ChartDemo {
             plugins: {
                 legend: {
                     labels: {
-                        fontColor: textColor
+                        color: textColor
                     }
                 }
             },
@@ -187,7 +187,7 @@ export class ChartDemo {
             plugins: {
                 legend: {
                     labels: {
-                        fontColor: textColor
+                        color: textColor
                     }
                 }
             },
@@ -269,7 +269,7 @@ export class ChartDemo {
             plugins: {
                 legend: {
                     labels: {
-                        fontColor: textColor
+                        color: textColor
                     }
                 }
             },
