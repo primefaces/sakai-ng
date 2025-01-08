@@ -19,3 +19,14 @@
 .layout-main {
     flex: 1 1 auto;
 }
+
+.disabled-block {
+    pointer-events: none;
+    opacity: 0.5;
+    filter: grayscale(20%);
+    transition: opacity $transitionDuration ease, filter $transitionDuration ease;
+}
+
+.enable-transition {
+    transition: opacity $transitionDuration ease, filter $transitionDuration ease;
+}
