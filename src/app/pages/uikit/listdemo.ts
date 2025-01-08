@@ -1,12 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DataViewModule } from 'primeng/dataview';
-import { CommonModule } from '@angular/common';
-import { SelectButtonModule } from 'primeng/selectbutton';
-import { PickListModule } from 'primeng/picklist';
-import { OrderListModule } from 'primeng/orderlist';
-import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
+import { DataViewModule } from 'primeng/dataview';
+import { OrderListModule } from 'primeng/orderlist';
+import { PickListModule } from 'primeng/picklist';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { TagModule } from 'primeng/tag';
 import { Product, ProductService } from '../service/product.service';
 
 @Component({
@@ -33,7 +33,9 @@ import { Product, ProductService } from '../service/product.service';
                             <div class="flex flex-col sm:flex-row sm:items-center p-6 gap-4" [ngClass]="{ 'border-t border-surface': i !== 0 }">
                                 <div class="md:w-40 relative">
                                     <img class="block xl:block mx-auto rounded w-full" src="https://primefaces.org/cdn/primevue/images/product/{{ item.image }}" [alt]="item.name" />
-                                    <p-tag [value]="item.inventoryStatus" [severity]="getSeverity(item)" class="absolute dark:!bg-surface-900" [style]="{ left: '4px', top: '4px' }"></p-tag>
+                                    <div class="absolute bg-black/70 rounded-border" [style]="{ left: '4px', top: '4px' }">
+                                        <p-tag [value]="item.inventoryStatus" [severity]="getSeverity(item)"></p-tag>
+                                    </div>
                                 </div>
                                 <div class="flex flex-col md:flex-row justify-between md:items-center flex-1 gap-6">
                                     <div class="flex flex-row md:flex-col justify-between items-start gap-2">
@@ -76,7 +78,9 @@ import { Product, ProductService } from '../service/product.service';
                                 <div class="bg-surface-50 flex justify-center rounded p-6">
                                     <div class="relative mx-auto">
                                         <img class="rounded w-full" src="https://primefaces.org/cdn/primevue/images/product/{{ item.image }}" [alt]="item.name" style="max-width: 300px" />
-                                        <p-tag [value]="item.inventoryStatus" [severity]="getSeverity(item)" class="absolute dark:!bg-surface-900" [style]="{ left: '4px', top: '4px' }"></p-tag>
+                                        <div class="absolute bg-black/70 rounded-border" [style]="{ left: '4px', top: '4px' }">
+                                            <p-tag [value]="item.inventoryStatus" [severity]="getSeverity(item)"></p-tag>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="pt-12">

@@ -5,8 +5,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { GalleriaModule } from 'primeng/galleria';
 import { ImageModule } from 'primeng/image';
 import { TagModule } from 'primeng/tag';
-import { Product, ProductService } from '../service/product.service';
 import { PhotoService } from '../service/photo.service';
+import { Product, ProductService } from '../service/product.service';
 
 @Component({
     selector: 'app-media-demo',
@@ -20,7 +20,9 @@ import { PhotoService } from '../service/photo.service';
                         <div class="mb-4">
                             <div class="relative mx-auto">
                                 <img src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}" [alt]="product.name" class="w-full rounded-border" />
-                                <p-tag [value]="product.inventoryStatus" styleClass="dark:!bg-surface-900 " [severity]="getSeverity(product.inventoryStatus)" class="absolute" [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
+                                <div class="absolute bg-black/70 rounded-border" [ngStyle]="{ 'left.px': 5, 'top.px': 5 }">
+                                    <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" />
+                                </div>
                             </div>
                         </div>
                         <div class="mb-4 font-medium">{{ product.name }}</div>
