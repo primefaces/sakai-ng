@@ -31,6 +31,7 @@ export class RevenueStreamWidget {
 
     initChart() {
         const documentStyle = getComputedStyle(document.documentElement);
+        const textColor = documentStyle.getPropertyValue('--text-color');
         const borderColor = documentStyle.getPropertyValue('--surface-border');
         const textMutedColor = documentStyle.getPropertyValue('--text-color-secondary');
 
@@ -71,6 +72,13 @@ export class RevenueStreamWidget {
         this.chartOptions = {
             maintainAspectRatio: false,
             aspectRatio: 0.8,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: textColor
+                    }
+                }
+            },
             scales: {
                 x: {
                     stacked: true,
