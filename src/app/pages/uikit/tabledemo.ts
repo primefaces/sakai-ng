@@ -95,9 +95,9 @@ interface expandedRows {
                                     <ng-template #filter let-value let-filter="filterCallback">
                                         <p-multiselect [ngModel]="value" [options]="representatives" placeholder="Any" (onChange)="filter($event.value)" optionLabel="name" styleClass="w-full">
                                             <ng-template let-option #item>
-                                                <div>
-                                                    <img [alt]="option.label" src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ option.image }}" width="32" style="vertical-align: middle" />
-                                                    <span class="ml-2">{{ option.name }}</span>
+                                                <div class="flex items-center gap-2 w-44">
+                                                    <img [alt]="option.label" src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ option.image }}" width="32" />
+                                                    <span>{{ option.name }}</span>
                                                 </div>
                                             </ng-template>
                                         </p-multiselect>
