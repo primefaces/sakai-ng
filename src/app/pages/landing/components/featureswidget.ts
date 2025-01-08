@@ -130,7 +130,7 @@ import { CommonModule } from '@angular/common';
                     <p class="text-gray-900 sm:line-height-2 md:line-height-4 text-2xl mt-6" style="max-width: 800px">
                         “Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.”
                     </p>
-                    <img src="/demo/images/landing/peak-logo.svg" class="mt-6" alt="Company logo" />
+                    <img src="https://primefaces.org/cdn/templates/sakai/landing/peak-logo.svg" class="mt-6" alt="Company logo" />
                 </div>
             </div>
         </div>

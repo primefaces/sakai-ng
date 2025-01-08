@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
             <div class="grid grid-cols-12 gap-4 mt-20 pb-2 md:pb-20">
                 <div class="flex justify-center col-span-12 lg:col-span-6 bg-purple-100 p-0 order-1 lg:order-none" style="border-radius: 8px">
-                    <img src="/demo/images/landing/mockup.svg" class="w-11/12" alt="mockup mobile" />
+                    <img src="https://primefaces.org/cdn/templates/sakai/landing/mockup.png" class="w-11/12" alt="mockup mobile" />
                 </div>
 
                 <div class="col-span-12 lg:col-span-6 my-auto flex flex-col lg:items-end text-center lg:text-right gap-4">
@@ -37,7 +37,7 @@ import { Component } from '@angular/core';
                 </div>
 
                 <div class="flex justify-end order-1 sm:order-2 col-span-12 lg:col-span-6 bg-yellow-100 p-0" style="border-radius: 8px">
-                    <img src="/demo/images/landing/mockup-desktop.svg" class="w-11/12" alt="mockup" />
+                    <img src="https://primefaces.org/cdn/templates/sakai/landing/mockup-desktop.png" class="w-11/12" alt="mockup" />
                 </div>
             </div>
         </div>
