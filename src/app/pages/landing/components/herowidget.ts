@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
 
 @Component({
     selector: 'hero-widget',
@@ -17,7 +17,7 @@ import { ButtonModule } from 'primeng/button';
                 <button pButton pRipple [rounded]="true" type="button" label="Get Started" class="!text-xl mt-8 !px-4"></button>
             </div>
             <div class="flex justify-center md:justify-end">
-                <img src="/demo/images/landing/screen-1.png" alt="Hero Image" class="w-9/12 md:w-auto" />
+                <img src="https://primefaces.org/cdn/templates/sakai/landing/screen-1.png" alt="Hero Image" class="w-9/12 md:w-auto" />
             </div>
         </div>
     `
