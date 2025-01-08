@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { $t, updatePreset, updateSurfacePalette } from '@primeng/themes';
 import Aura from '@primeng/themes/aura';
 import Lara from '@primeng/themes/lara';
-import Material from '@primeng/themes/material';
 import Nora from '@primeng/themes/nora';
 import { PrimeNG } from 'primeng/config';
 import { SelectButtonModule } from 'primeng/selectbutton';
@@ -12,7 +11,6 @@ import { LayoutService } from '../service/layout.service';
 
 const presets = {
     Aura,
-    Material,
     Lara,
     Nora
 } as const;
@@ -279,14 +277,7 @@ export class AppConfigurator {
 
     getPresetExt() {
         const color: SurfacesType = this.primaryColors().find((c) => c.name === this.selectedPrimaryColor()) || {};
-
         const preset = this.layoutService.layoutConfig().preset;
-
-        if (preset === 'Material') {
-            this.primeng.inputVariant.set('filled');
-        } else {
-            this.primeng.inputVariant.set('outlined');
-        }
 
         if (color.name === 'noir') {
             return {
@@ -373,42 +364,6 @@ export class AppConfigurator {
                         }
                     }
                 };
-            } else if (preset === 'Material') {
-                return {
-                    semantic: {
-                        primary: color.palette,
-                        colorScheme: {
-                            light: {
-                                primary: {
-                                    color: '{primary.500}',
-                                    contrastColor: '#ffffff',
-                                    hoverColor: '{primary.400}',
-                                    activeColor: '{primary.300}'
-                                },
-                                highlight: {
-                                    background: 'color-mix(in srgb, {primary.color}, transparent 88%)',
-                                    focusBackground: 'color-mix(in srgb, {primary.color}, transparent 76%)',
-                                    color: '{primary.700}',
-                                    focusColor: '{primary.800}'
-                                }
-                            },
-                            dark: {
-                                primary: {
-                                    color: '{primary.400}',
-                                    contrastColor: '{surface.900}',
-                                    hoverColor: '{primary.300}',
-                                    activeColor: '{primary.200}'
-                                },
-                                highlight: {
-                                    background: 'color-mix(in srgb, {primary.400}, transparent 84%)',
-                                    focusBackground: 'color-mix(in srgb, {primary.400}, transparent 76%)',
-                                    color: 'rgba(255,255,255,.87)',
-                                    focusColor: 'rgba(255,255,255,.87)'
-                                }
-                            }
-                        }
-                    }
-                };
             } else {
                 return {
                     semantic: {
@@ -472,13 +427,6 @@ export class AppConfigurator {
         this.layoutService.layoutConfig.update((state) => ({ ...state, preset: event }));
         const preset = presets[event as KeyOfType<typeof presets>];
         const surfacePalette = this.surfaces.find((s) => s.name === this.selectedSurfaceColor())?.palette;
-        if (this.layoutService.layoutConfig().preset === 'Material') {
-            document.body.classList.add('material');
-            this.config.ripple.set(true);
-        } else {
-            document.body.classList.remove('material');
-            this.config.ripple.set(false);
-        }
         $t().preset(preset).preset(this.getPresetExt()).surfacePalette(surfacePalette).use({ useDefaultOptions: true });
     }
 
