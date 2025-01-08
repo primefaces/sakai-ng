@@ -14,7 +14,7 @@ import { PhotoService } from '../service/photo.service';
     imports: [CommonModule, CarouselModule, ButtonModule, GalleriaModule, ImageModule, TagModule],
     template: `<div class="card">
             <div class="font-semibold text-xl mb-4">Carousel</div>
-            <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="galleriaResponsiveOptions">
+            <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="carouselResponsiveOptions">
                 <ng-template let-product #item>
                     <div class="border border-surface rounded-border m-2 p-4">
                         <div class="mb-4">
