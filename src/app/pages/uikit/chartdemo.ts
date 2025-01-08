@@ -236,6 +236,9 @@ export class ChartDemo {
                 r: {
                     grid: {
                         color: surfaceBorder
+                    },
+                    ticks: {
+                        display: false
                     }
                 }
             }
