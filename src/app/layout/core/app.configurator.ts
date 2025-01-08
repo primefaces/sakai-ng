@@ -2,13 +2,13 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, computed, inject, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { $t, updatePreset, updateSurfacePalette } from '@primeng/themes';
+import Aura from '@primeng/themes/aura';
+import Lara from '@primeng/themes/lara';
+import Material from '@primeng/themes/material';
+import Nora from '@primeng/themes/nora';
 import { PrimeNG } from 'primeng/config';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { LayoutService } from '../service/layout.service';
-import Aura from '@primeng/themes/aura';
-import Material from '@primeng/themes/material';
-import Lara from '@primeng/themes/lara';
-import Nora from '@primeng/themes/nora';
 
 const presets = {
     Aura,
