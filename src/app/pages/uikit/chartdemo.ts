@@ -84,9 +84,9 @@ export class ChartDemo {
 
     initCharts() {
         const documentStyle = getComputedStyle(document.documentElement);
-        const textColor = documentStyle.getPropertyValue('--p-text-color');
-        const textColorSecondary = documentStyle.getPropertyValue('--p-text-muted-color');
-        const surfaceBorder = documentStyle.getPropertyValue('--p-content-border-color');
+        const textColor = documentStyle.getPropertyValue('--text-color');
+        const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+        const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
         this.barData = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -235,10 +235,14 @@ export class ChartDemo {
             scales: {
                 r: {
                     grid: {
-                        color: surfaceBorder
-                    }
-                }
-            }
+                        color: surfaceBorder,
+                    },
+                    ticks: {
+                        display: false,
+                        color: textColorSecondary
+                    },
+                },
+            },
         };
 
         this.radarData = {
@@ -276,7 +280,7 @@ export class ChartDemo {
             scales: {
                 r: {
                     grid: {
-                        color: textColorSecondary
+                        color: surfaceBorder
                     }
                 }
             }
