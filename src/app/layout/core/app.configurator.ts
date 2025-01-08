@@ -1,5 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, computed, inject, PLATFORM_ID } from '@angular/core';
+import { Component, computed, inject, PLATFORM_ID, Signal, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { $t, updatePreset, updateSurfacePalette } from '@primeng/themes';
 import Aura from '@primeng/themes/aura';
@@ -8,6 +8,8 @@ import Nora from '@primeng/themes/nora';
 import { PrimeNG } from 'primeng/config';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { LayoutService } from '../service/layout.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 const presets = {
     Aura,
@@ -79,7 +81,7 @@ declare type SurfacesType = {
                 <span class="text-sm text-muted-color font-semibold">Presets</span>
                 <p-selectbutton [options]="presets" [ngModel]="selectedPreset()" (ngModelChange)="onPresetChange($event)" [allowEmpty]="false" size="small" />
             </div>
-            <div class="flex flex-col gap-2">
+            <div *ngIf="showMenuModeButton()" class="flex flex-col gap-2">
                 <span class="text-sm text-muted-color font-semibold">Menu Mode</span>
                 <p-selectbutton [ngModel]="menuMode()" (ngModelChange)="onMenuModeChange($event)" [options]="menuModeOptions" [allowEmpty]="false" size="small" />
             </div>
@@ -90,6 +92,9 @@ declare type SurfacesType = {
     }
 })
 export class AppConfigurator {
+
+    router = inject(Router);
+
     config: PrimeNG = inject(PrimeNG);
 
     layoutService: LayoutService = inject(LayoutService);
@@ -99,6 +104,8 @@ export class AppConfigurator {
     primeng = inject(PrimeNG);
 
     presets = Object.keys(presets);
+
+    showMenuModeButton = signal(!this.router.url.includes('auth'));
 
     menuModeOptions = [
         { label: 'Static', value: 'static' },
