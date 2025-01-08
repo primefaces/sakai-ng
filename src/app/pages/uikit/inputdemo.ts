@@ -29,6 +29,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { CountryService } from '../service/country.service';
 import { NodeService } from '../service/node.service';
 import { TreeNode } from 'primeng/api';
+import { Country } from '../service/customer.service';
 
 @Component({
     selector: 'app-input-demo',
@@ -167,7 +168,7 @@ import { TreeNode } from 'primeng/api';
                     <p-select [(ngModel)]="dropdownValue" [options]="dropdownValues" optionLabel="name" placeholder="Select" />
 
                     <div class="font-semibold text-xl">MultiSelect</div>
-                    <p-multiselect [(ngModel)]="multiselectValue" [options]="multiselectValues" optionLabel="name" placeholder="Select Countries" [filter]="true">
+                    <p-multiselect [options]="multiselectCountries" [(ngModel)]="multiselectSelectedCountries" placeholder="Select Countries" optionLabel="name" display="chip" [filter]="true">
                         <ng-template #selecteditems let-countries>
                             @for (country of countries; track country.code) {
                                 <div class="inline-flex items-center py-1 px-2 bg-primary text-primary-contrast rounded-border mr-2">
@@ -178,8 +179,8 @@ import { TreeNode } from 'primeng/api';
                         </ng-template>
                         <ng-template #item let-country>
                             <div class="flex items-center">
-                                <span [class]="'mr-2 flag flag-' + country.option.code.toLowerCase()" style="width: 18px; height: 12px"></span>
-                                <div>{{ country.option.name }}</div>
+                                <span [class]="'mr-2 flag flag-' + country.code.toLowerCase()" style="width: 18px; height: 12px"></span>
+                                <div>{{ country.name }}</div>
                             </div>
                         </ng-template>
                     </p-multiselect>
@@ -281,7 +282,7 @@ export class InputDemo implements OnInit {
 
     dropdownValue: any = null;
 
-    multiselectValues = [
+    multiselectCountries: Country[] = [
         { name: 'Australia', code: 'AU' },
         { name: 'Brazil', code: 'BR' },
         { name: 'China', code: 'CN' },
@@ -294,7 +295,7 @@ export class InputDemo implements OnInit {
         { name: 'United States', code: 'US' }
     ];
 
-    multiselectValue: any = null;
+    multiselectSelectedCountries!: Country[];
 
     toggleValue: boolean = false;
 
