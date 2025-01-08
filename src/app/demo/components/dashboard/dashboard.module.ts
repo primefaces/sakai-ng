@@ -14,6 +14,8 @@ import {DashboardHeaderComponent} from "./dashboard-header/dashboard-header.comp
 import {DropdownModule} from "primeng/dropdown";
 import {ToolbarModule} from "primeng/toolbar";
 import {CalendarEventPipe} from "./api/calendar-event.pipe";
+import {ConfirmationService} from "primeng/api";
+import {ConfirmPopupModule} from "primeng/confirmpopup";
 
 @NgModule({
     imports: [
@@ -29,11 +31,15 @@ import {CalendarEventPipe} from "./api/calendar-event.pipe";
         FullCalendarModule,
         DropdownModule,
         ToolbarModule,
-        CalendarEventPipe
+        CalendarEventPipe,
+        ConfirmPopupModule
     ],
     declarations: [
         DashboardComponent,
         DashboardHeaderComponent,
+    ],
+    providers: [
+        ConfirmationService
     ]
 })
 export class DashboardModule { }
