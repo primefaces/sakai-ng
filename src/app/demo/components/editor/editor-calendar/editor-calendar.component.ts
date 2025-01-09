@@ -10,26 +10,30 @@ import {
     WritableSignal
 } from '@angular/core';
 import {FullCalendarComponent} from "@fullcalendar/angular";
-import {CalendarOptions, EventInput} from "@fullcalendar/core";
+import {CalendarOptions, EventInput, EventMountArg} from "@fullcalendar/core";
 import interactionPlugin, {DropArg} from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import {MessageService} from "primeng/api";
+import {MenuItem, MessageService} from "primeng/api";
 import {RoomTable} from "../../../../../assets/models/room-table";
 import {Observable, Subscription} from "rxjs";
+import {CourseSession} from "../../../../../assets/models/dto/course-session-dto";
 
 @Component({
   selector: 'app-editor-calendar',
   templateUrl: './editor-calendar.component.html',
 })
 export class EditorCalendarComponent implements OnInit, OnDestroy{
+    @ViewChild("cal") calendar!: FullCalendarComponent;
+    @Output() setDirtyBool = new EventEmitter<boolean>();
     @Input() allEvents: EventInput[] = [];
+
     @Input() selectedRoom$!: Observable<RoomTable>;
     roomSub: Subscription;
     room: RoomTable;
 
-    @Output() setDirtyBool = new EventEmitter<boolean>();
-    @ViewChild("cal") calendar!: FullCalendarComponent;
+    items: MenuItem[] = [];
+    private rightClickEvent: EventMountArg | null;
 
     protected calendarOptions: WritableSignal<CalendarOptions> = signal({
         plugins: [
@@ -66,6 +70,7 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
         eventReceive: this.eventReceive.bind(this),
         eventChange: this.eventChange.bind(this),
         eventAllow: this.eventAllow.bind(this),
+        eventDidMount: this.eventDidMound.bind(this),
     });
 
     constructor(
@@ -106,13 +111,10 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
     private eventReceive(args: any){
         const participants = args.event.extendedProps['nrOfParticipants'];
         const needsComputers = args.event.extendedProps['computersNecessary'];
-        console.log(args)
 
         if(this.checkNrOfParticipants(participants) || this.checkIfComputersNeeded(needsComputers)){
             args.revert();
         } else {
-            //this.rightClickEvent = args;
-            //this.updateSession(args.event, true);
             this.setDirtyBool.emit(true);
         }
     }
@@ -147,8 +149,44 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
         return !isBefore815AM && !isAfter10PM;
     }
 
+    private eventDidMound(arg: EventMountArg){
+        arg.el.addEventListener("contextmenu", (jsEvent)=>{
+            jsEvent.preventDefault()
+            this.rightClickEvent = arg;
+        })
+    }
+
     private clearCalendar(){
         this.calendar?.getApi().removeAllEvents();
+    }
+
+    getItemMenuOptions() : void {
+        this.items = [{label: 'add new Course', icon: 'pi pi-book', command: () => {} /*this.addNewCourse()*/ }];
+        if(!this.rightClickEvent?.event.id){
+            return;
+        }
+
+        const session = this.findSession()
+        this.items.push(
+            { label: session!.fixed ? 'free Course' : 'fix Course', icon: session!.fixed ? 'pi pi-unlock':'pi pi-lock', command: () => { /*this.changeSessionBlockState()*/ }},
+            { label: 'unassign Course', icon: 'pi pi-reply', command: () => { /*this.unassignCourse()*/ } },
+            { label: 'remove Group', icon: 'pi pi-delete-left', command: ()=> { /*this.deleteCourse()*/}}
+        )
+
+        const tmp = session!.name.slice(0, 2);
+        this.items.push((tmp == 'PS' || tmp == 'SL') ?
+            { label: 'add Group', icon: 'pi pi-plus-circle', command: ()=> { /*this.addCourseWithPsCharacter()*/ } }
+            : { label: 'split Course', icon: 'pi pi-arrow-up-right-and-arrow-down-left-from-center', disabled: true }
+        )
+    }
+
+    onMenuHide(){
+        this.rightClickEvent = null;
+    }
+
+    private findSession():CourseSession  | undefined{
+        //return this.timeTable.courseSessions.find(s => s.id.toString() === this.rightClickEvent!.event.id.toString());
+        return undefined;
     }
 
     ngOnDestroy(): void {
