@@ -1,4 +1,14 @@
-import {Component, EventEmitter, Input, Output, signal, ViewChild, WritableSignal} from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    signal,
+    ViewChild,
+    WritableSignal
+} from '@angular/core';
 import {FullCalendarComponent} from "@fullcalendar/angular";
 import {CalendarOptions, EventInput} from "@fullcalendar/core";
 import interactionPlugin, {DropArg} from "@fullcalendar/interaction";
@@ -6,14 +16,17 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import {MessageService} from "primeng/api";
 import {RoomTable} from "../../../../../assets/models/room-table";
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-editor-calendar',
   templateUrl: './editor-calendar.component.html',
 })
-export class EditorCalendarComponent{
-    @Input() currentEvents: EventInput[] = [];
-    @Input() selectedRoom!: RoomTable;
+export class EditorCalendarComponent implements OnInit, OnDestroy{
+    @Input() allEvents: EventInput[] = [];
+    @Input() selectedRoom$!: Observable<RoomTable>;
+    roomSub: Subscription;
+    room: RoomTable;
 
     @Output() setDirtyBool = new EventEmitter<boolean>();
     @ViewChild("cal") calendar!: FullCalendarComponent;
@@ -56,8 +69,15 @@ export class EditorCalendarComponent{
     });
 
     constructor(
-        private messageService: MessageService
-    ) { }
+        private messageService: MessageService,
+    ) {}
+
+    ngOnInit(): void {
+        this.roomSub = this.selectedRoom$?.subscribe(r => {
+            this.clearCalendar();
+            this.room = r
+        })
+    }
 
     private drop(arg: DropArg) {
         const participants = Number(arg.draggedEl.getAttribute('data-participants'));
@@ -67,7 +87,7 @@ export class EditorCalendarComponent{
             this.messageService.add({
                 severity: 'error', life: 5000,
                 summary: 'ROOM CAPACITY  COLLISION',
-                detail: `The selected course (${arg.draggedEl.getAttribute('data-title')}) has to many participants (${participants}) for the selected room(${this.selectedRoom?.capacity})`});
+                detail: `The selected course (${arg.draggedEl.getAttribute('data-title')}) has to many participants (${participants}) for the selected room(${this.room?.capacity})`});
         } else if (this.checkIfComputersNeeded(needsComputers)){
             this.messageService.add({
                 severity: 'error', life: 5000,
@@ -98,13 +118,14 @@ export class EditorCalendarComponent{
     }
 
     private checkNrOfParticipants(nrOfParticipants: number):boolean{
-        const roomCapacity = this.selectedRoom.capacity;
+        const roomCapacity = this.room.capacity;
         return (nrOfParticipants >= roomCapacity);
     }
 
     private checkIfComputersNeeded(needsComputers: boolean): boolean {
+        //TODO fix allow drop of course
         console.log('needs a computer: ', needsComputers);
-        const hasComputers = this.selectedRoom.computersAvailable;
+        const hasComputers = this.room.computersAvailable;
 
         console.log('has a computer: ', hasComputers);
         console.log('allow drop: ', !(!hasComputers && needsComputers));
@@ -124,5 +145,13 @@ export class EditorCalendarComponent{
         const isAfter10PM = args.end.getHours() >= 22;
 
         return !isBefore815AM && !isAfter10PM;
+    }
+
+    private clearCalendar(){
+        this.calendar?.getApi().removeAllEvents();
+    }
+
+    ngOnDestroy(): void {
+        if(this.roomSub) this.roomSub.unsubscribe();
     }
 }

@@ -14,7 +14,6 @@ import {MessageService} from "primeng/api";
 import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 import {animate, style, transition, trigger} from "@angular/animations";
 import {BehaviorSubject, Observable} from "rxjs";
-import {TableShareService} from "../share services/table-share.service";
 
 class InfoBox{
     icon: string;
@@ -85,14 +84,13 @@ export class DashboardComponent implements OnInit, AfterViewInit{
     constructor(
         private layoutService: LayoutService,
         private messageService: MessageService,
-        private shareService: TableShareService
     ) {
         this.layoutService.changeStyle(true);
     }
 
     protected setNewTable(newTable: TimeTable){
         this.selectedTimeTable = newTable;
-        this.shareService.sharedTable = this.selectedTimeTable;
+        localStorage.setItem('current-table', JSON.stringify(this.selectedTimeTable));
         this.currentSessions = this.selectedTimeTable.courseSessions;
         this.updateInfoBoxes();
 

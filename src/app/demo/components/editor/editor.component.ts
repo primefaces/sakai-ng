@@ -5,10 +5,10 @@ import {MenuItem} from "primeng/api";
 import {EventMountArg} from "@fullcalendar/core";
 import {TimeTable} from "../../../../assets/models/dto/time-table";
 import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
-import {TableShareService} from "../share services/table-share.service";
 import {EditorCalendarComponent} from "./editor-calendar/editor-calendar.component";
 import {EditorSelectionComponent} from "./editor-selection/editor-selection.component";
 import {RoomTable} from "../../../../assets/models/room-table";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Component({
   templateUrl: './editor.component.html',
@@ -21,16 +21,21 @@ export class EditorComponent{
     timeTable!: TimeTable;
     items: MenuItem[] = [];
     rightClickEvent: EventMountArg | null = null;
-    protected selectedRoom: RoomTable;
+    protected selectedRoom: BehaviorSubject<RoomTable>;
+    protected selectedRoom$: Observable<RoomTable>;
     private _dirtyData: boolean = false;
 
     constructor(
         private layoutService: LayoutService,
-        private shareService: TableShareService
     ) {
         this.layoutService.changeStyle(false);
-        this.timeTable = this.shareService.sharedTable;
-        this.selectedRoom = this.timeTable.roomTables.find(r => r.roomId == 'HS F');
+        this.timeTable = EditorComponent.getTimeTable();
+        this.selectedRoom = new BehaviorSubject<RoomTable>(this.timeTable.roomTables[0]);
+        this.selectedRoom$ = this.selectedRoom.asObservable();
+    }
+
+    private static getTimeTable() {
+        return JSON.parse(localStorage.getItem('current-table'));
     }
 
     getItemMenuOptions() : void {
@@ -56,16 +61,16 @@ export class EditorComponent{
         return this.timeTable.courseSessions.find(s => s.id.toString() === this.rightClickEvent!.event.id.toString());
     }
 
+    protected setNewRoom(newRoom: RoomTable){
+        this.selectedRoom.next(newRoom);
+    }
+
     protected setDirtyDataBit(bit: boolean){
         this._dirtyData = bit;
     }
 
     protected saveData(){
         this._dirtyData = false;
-    }
-
-    protected setNewRoom(newID: number){
-        this.calendar.selectedRoom = this.timeTable.roomTables.find(r => r.id = newID);
     }
 
     canDeactivate(){

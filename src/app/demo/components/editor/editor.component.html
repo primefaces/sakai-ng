@@ -1,9 +1,9 @@
 <div class="grid">
     <div class="col-9">
         <div class="card" style="height: 84vh">
-            <app-editor-header #hd (changeRoom)="setNewRoom($event)" [currentRooms]="timeTable.roomTables"/>
-            <app-editor-calendar #cd [selectedRoom]="selectedRoom" (setDirtyBool)="setDirtyDataBit($event)"
-                [currentEvents]="timeTable.courseSessions | SessionToEvent: 'editor' | EventFilter: 'shown'"/>
+            <app-editor-header (changeRoom)="setNewRoom($event)" [currentRooms]="timeTable.roomTables"/>
+            <app-editor-calendar #cd [selectedRoom$]="selectedRoom$" (setDirtyBool)="setDirtyDataBit($event)"
+                [allEvents]="timeTable.courseSessions | SessionToEvent: 'editor' | EventFilter: 'shown'"/>
         </div>
     </div>
 
