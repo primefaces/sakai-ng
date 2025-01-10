@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
-import { ProgressBarModule } from 'primeng/progressbar';
-import { AvatarGroupModule } from 'primeng/avatargroup';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { BadgeModule } from 'primeng/badge';
+import { ButtonModule } from 'primeng/button';
+import { ChipModule } from 'primeng/chip';
+import { OverlayBadgeModule } from 'primeng/overlaybadge';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { SkeletonModule } from 'primeng/skeleton';
-import { BadgeModule } from 'primeng/badge';
-import { AvatarModule } from 'primeng/avatar';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { TagModule } from 'primeng/tag';
-import { ChipModule } from 'primeng/chip';
-import { ButtonModule } from 'primeng/button';
-import { OverlayBadgeModule } from 'primeng/overlaybadge';
 
 @Component({
     selector: 'app-misc-demo',
@@ -136,7 +136,7 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
                         <p-tag icon="pi pi-user" value="Primary"></p-tag>
                         <p-tag icon="pi pi-check" severity="success" value="Success"></p-tag>
                         <p-tag icon="pi pi-info-circle" severity="info" value="Info"></p-tag>
-                        <p-tag con="pi pi-exclamation-triangle" severity="warn" value="Warning"></p-tag>
+                        <p-tag icon="pi pi-exclamation-triangle" severity="warn" value="Warning"></p-tag>
                         <p-tag icon="pi pi-times" severity="danger" value="Danger"></p-tag>
                     </div>
                 </div>

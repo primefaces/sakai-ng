@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MessageService, ToastMessageOptions } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
-import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
     selector: 'app-messages-demo',
@@ -25,13 +25,13 @@ import { FormsModule } from '@angular/forms';
                     </div>
 
                     <div class="font-semibold text-xl mt-4 mb-4">Inline</div>
-                    <div class="flex flex-wrap mb-4 gap-2">
+                    <div class="flex flex-col mb-4 gap-1">
                         <input pInputText [(ngModel)]="username" placeholder="Username" aria-label="username" class="ng-dirty ng-invalid" />
-                        <p-message severity="error">Username is required</p-message>
+                        <p-message severity="error" variant="simple" size="small">Username is required</p-message>
                     </div>
-                    <div class="flex flex-wrap gap-2">
+                    <div class="flex flex-col flex-wrap gap-1">
                         <input pInputText [(ngModel)]="email" placeholder="Email" aria-label="email" class="ng-dirty ng-invalid" />
-                        <p-message severity="error" icon="pi pi-times-circle" />
+                        <p-message severity="error" variant="simple" size="small">Email is required</p-message>
                     </div>
                 </div>
             </div>
