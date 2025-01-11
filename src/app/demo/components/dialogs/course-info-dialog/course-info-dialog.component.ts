@@ -44,17 +44,13 @@ export class CourseInfoDialog implements OnDestroy{
     }
 
     private initColoring() {
-        this.hoverEventInfo!.event.setProp("backgroundColor", '#666666');
-        this.tmpPartners.forEach(e => e.setProp('backgroundColor', '#666666'));
         this.tmpPartners = this.colorPartnerEvents(this.hoverEventInfo.event, '#ad7353');
         this.hoverEventInfo.event.setProp("backgroundColor", 'var(--sys-color-primary-red)');
     }
 
     colorPartnerEvents(event: EventImpl, color: string): EventImpl[]{
-        let key = event.title!.replace(/ - (?:Group|Split) \d+$/, '');
-        let partner = this.calendar
-            .getApi().getEvents()
-            .filter(e => e.title.includes(key));
+        const key = event.extendedProps['groupId'];
+        const partner = this.calendar.getApi().getEvents().filter(e => e.extendedProps['groupId'] == key);
 
         partner.forEach(e => e.setProp('backgroundColor', color));
         return partner;

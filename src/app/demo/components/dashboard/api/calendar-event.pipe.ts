@@ -31,11 +31,15 @@ export class CalendarEventPipe implements PipeTransform {
               'studyType': session.studyType,
               'assigned': session.assigned,
               'duration': this.convertDurationToHours(session.duration),
-              'nrOfParticipants': session.numberOfParticipants
+              'nrOfParticipants': session.numberOfParticipants,
+              'groupId': this.getGroupId(session.name)
           }
       };
   }
 
+  static getGroupId(name: string){
+      return name.replace(/\s-\s.*/, '');
+  }
   static getValueBasedOnPage(session: CourseSession, call: Call): boolean {
     return (call == 'dashboard') ? false : !session.fixed;
   }
