@@ -1,36 +1,28 @@
-<div class="surface-section">
-    <ul class="list-none p-0 m-0">
-        <li class="flex align-items-center py-3 px-2 border-top-1 border-bottom-1 surface-border flex-wrap w-full">
-            <div class="text-500 w-6 md:w-2 font-medium">Lastname</div>
-            <div class="text-900 w-full md:w-4 flex">
-                <input type="text" pInputText id="lastname" [(ngModel)]="user.lastName" class="w-full"/>
-            </div>
-            <div class="text-500 w-6 md:w-2 font-medium">Firstname</div>
-            <div class="text-900 w-full md:w-4 flex">
-                <input type="text" pInputText id="firstname" [(ngModel)]="user.firstName" class="w-full"/>
-            </div>
-        </li>
-
-        <li class="flex align-items-center py-3 px-2 border-top-1 border-bottom-1 surface-border flex-wrap w-full">
-            <div class="text-500 w-6 md:w-2 font-medium">Username</div>
-            <div class="text-900 w-full md:w-4 flex">
-                <input type="text" pInputText id="allowed" [(ngModel)]="user.username" class="w-full"/>
-            </div>
-            <div class="text-500 w-6 md:w-2 font-medium">Mail</div>
-            <div class="text-900 w-full md:w-4 flex">
-                <p-multiSelect id="role" [(ngModel)]="user.role"
-                               placeholder="select Roles" [filter]="false"/>
-            </div>
-        </li>
-
-        <li class="flex align-items-center py-3 px-2 border-top-1 border-bottom-1 surface-border flex-wrap w-full">
-            <div class="text-500 w-6 md:w-2 font-medium">Roles</div>
-            <div class="text-900 w-full md:w-4 flex">
-                <input type="email" pInputText id="duration" [(ngModel)]="user.email" class="w-full"/>
-            </div>
-        </li>
-    </ul>
-    <div class="flex justify-content-center mt-3">
-        <button class="createButton p-button p-component" (click)="save()">Save</button>
+<div class="plan">
+    <div class="inner">
+			<span class="pricing">
+				<span>
+					Course
+				</span>
+			</span>
+        <p class="title">{{ hoverEventInfo?.event!.title }}</p>
+        <ul class="features">
+            <li>
+            <span> Time:
+                {{hoverEventInfo?.event!.start!.toLocaleTimeString()}}
+                -
+                {{hoverEventInfo?.event!.end!.toLocaleTimeString()}}
+            </span>
+            </li>
+            <li>
+                <span>Degree: {{ hoverEventInfo?.event!.extendedProps['studyType'] }}</span>
+            </li>
+            <li>
+                <span>Semester: {{hoverEventInfo?.event!.extendedProps['semester']}}</span>
+            </li>
+            <li>
+                <span>Room: {{hoverEventInfo?.event!.extendedProps['description'] ?? 'not assigned'}}</span>
+            </li>
+        </ul>
     </div>
 </div>

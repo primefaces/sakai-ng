@@ -6,7 +6,7 @@ import {
 import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import {CalendarOptions} from "@fullcalendar/core";
+import {CalendarOptions, EventClickArg} from "@fullcalendar/core";
 import {FullCalendarComponent} from "@fullcalendar/angular";
 import {LayoutService} from "../../../layout/service/app.layout.service";
 import {TimeTable} from "../../../../assets/models/dto/time-table";
@@ -15,6 +15,9 @@ import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 import {animate, style, transition, trigger} from "@angular/animations";
 import {BehaviorSubject, Observable} from "rxjs";
 import {TableShareService} from "../share services/table-share.service";
+import {CalendarContextMenuComponent} from "./calendar-context-menu/calendar-context-menu.component";
+import {DialogService} from "primeng/dynamicdialog";
+import {CourseInfoDialog} from "../dialogs/course-info-dialog/course-info-dialog.component";
 
 class InfoBox{
     icon: string;
@@ -38,6 +41,7 @@ class InfoBox{
     ]
 })
 export class DashboardComponent implements OnInit, AfterViewInit{
+    @ViewChild('cm') calendarContextMenu! : CalendarContextMenuComponent;
     @ViewChild("cal") calendar!: FullCalendarComponent;
 
     selectedTimeTable: TimeTable | null = null;
@@ -78,14 +82,17 @@ export class DashboardComponent implements OnInit, AfterViewInit{
         slotEventOverlap: true,
         nowIndicator: false,
         handleWindowResize: true,
-        //eventClick: this.showHoverDialog.bind(this),
-        loading: (isLoading: boolean) => this.setLoading(isLoading),
+        eventClick: this.showClickDialog.bind(this),
+        eventMouseEnter: this.handleMouseEnter.bind(this),
+        eventMouseLeave: this.handleMouseLeave.bind(this),
+        loading: (isLoading: boolean) => this.setLoading(isLoading)
     });
 
     constructor(
         private layoutService: LayoutService,
         private messageService: MessageService,
-        private shareService: TableShareService
+        private shareService: TableShareService,
+        private dialogService: DialogService
     ) {
         this.layoutService.changeStyle(true);
     }
@@ -107,6 +114,18 @@ export class DashboardComponent implements OnInit, AfterViewInit{
         this.calendar.getApi().removeAllEvents();
     }
 
+    showClickDialog(event: EventClickArg): void {
+        this.dialogService.open(CourseInfoDialog, {
+            header: `Course Info`,
+            contentStyle: { overflow: 'auto' },
+            width: '550px', height: '370px',
+            baseZIndex: 10000,
+            draggable: true,
+            modal: false,
+            data: {'event':event, 'calendar':this.calendar},
+        })
+    }
+
     private updateInfoBoxes(){
         const assignedSessions = this.currentSessions.filter(s => s.assigned).length;
         const allSessions = this.currentSessions.length;
@@ -116,6 +135,18 @@ export class DashboardComponent implements OnInit, AfterViewInit{
 
     private setLoading(state: boolean) {
         this.isLoading.next(state);
+    }
+
+    handleMouseEnter(eventInfo: any) {
+        const eventElement = eventInfo.el;
+        eventElement.style.zIndex = '100000000';
+        eventElement.classList.add('event-hover');
+    }
+
+    handleMouseLeave(eventInfo: any) {
+        const eventElement = eventInfo.el;
+        eventElement.style.zIndex = '';
+        eventElement.classList.remove('event-hover');
     }
 
     ngOnInit(): void {
@@ -141,5 +172,6 @@ export class DashboardComponent implements OnInit, AfterViewInit{
 
     ngAfterViewInit(): void {
         this.clearCalendar();
+        this.calendarContextMenu.calendarComponent = this.calendar;
     }
 }

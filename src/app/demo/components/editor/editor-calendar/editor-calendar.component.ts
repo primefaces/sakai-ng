@@ -86,13 +86,10 @@ export class EditorCalendarComponent{
     private eventReceive(args: any){
         const participants = args.event.extendedProps['nrOfParticipants'];
         const needsComputers = args.event.extendedProps['computersNecessary'];
-        console.log(args)
 
         if(this.checkNrOfParticipants(participants) || this.checkIfComputersNeeded(needsComputers)){
             args.revert();
         } else {
-            //this.rightClickEvent = args;
-            //this.updateSession(args.event, true);
             this.setDirtyBool.emit(true);
         }
     }

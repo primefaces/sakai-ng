@@ -35,6 +35,15 @@
     background: var(--sys-color-primary-blue);
 }
 
+.fc-event {
+    position: relative;
+    z-index: 1;
+}
+
+.fc-daygrid-day {
+    overflow: visible ;
+}
+
 .loading-spinner {
     position: absolute;
     top: 0;
@@ -66,3 +75,7 @@
     }
 }
 
+.event-hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
+}

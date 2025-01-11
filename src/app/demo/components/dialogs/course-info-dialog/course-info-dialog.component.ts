@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {ChipModule} from "primeng/chip";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
@@ -6,8 +6,10 @@ import {DropdownModule} from "primeng/dropdown";
 import {InputTextModule} from "primeng/inputtext";
 import {FormsModule} from "@angular/forms";
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
-import {Userx} from "../../../../../assets/models/userx";
 import {MultiSelectModule} from "primeng/multiselect";
+import {EventClickArg} from "@fullcalendar/core";
+import {EventImpl} from "@fullcalendar/core/internal";
+import {FullCalendarComponent} from "@fullcalendar/angular";
 
 @Component({
   selector: 'app-user-dialog',
@@ -23,23 +25,48 @@ import {MultiSelectModule} from "primeng/multiselect";
     ],
   templateUrl: './course-info.component.html'
 })
-export class CourseInfoDialog {
-    protected user: Userx;
+export class CourseInfoDialog implements OnDestroy{
+    protected hoverEventInfo: EventClickArg | null = null;
+    private tmpPartners : EventImpl[] = [];
+    private calendar: FullCalendarComponent;
 
     constructor(
         public config: DynamicDialogConfig,
         public ref: DynamicDialogRef
     ) {
-        this.user = this.data;
+        this.initData();
+        this.initColoring();
     }
 
-    get data(): Userx {
-        const noData =  this.config.data.initialValue;
-        return noData ? noData : new Userx();
+    private initData():void {
+        this.hoverEventInfo = this.config.data['event'];
+        this.calendar = this.config.data['calendar'];
     }
 
-    save() {
-        this.ref.close(this.user);
+    private initColoring() {
+        this.hoverEventInfo!.event.setProp("backgroundColor", '#666666');
+        this.tmpPartners.forEach(e => e.setProp('backgroundColor', '#666666'));
+        this.tmpPartners = this.colorPartnerEvents(this.hoverEventInfo.event, '#ad7353');
+        this.hoverEventInfo.event.setProp("backgroundColor", 'var(--sys-color-primary-red)');
     }
 
+    colorPartnerEvents(event: EventImpl, color: string): EventImpl[]{
+        let key = event.title!.replace(/ - (?:Group|Split) \d+$/, '');
+        let partner = this.calendar
+            .getApi().getEvents()
+            .filter(e => e.title.includes(key));
+
+        partner.forEach(e => e.setProp('backgroundColor', color));
+        return partner;
+    }
+
+    ngOnDestroy(): void {
+        if (this.hoverEventInfo) this.hoverEventInfo.event.setProp("backgroundColor", '#666666');
+        this.tmpPartners.forEach(e => e.setProp('backgroundColor', '#666666'));
+
+        this.hoverEventInfo = null;
+        this.tmpPartners = [];
+
+        if (this.ref) this.ref.close();
+    }
 }

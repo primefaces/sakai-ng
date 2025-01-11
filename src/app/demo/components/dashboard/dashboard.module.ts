@@ -14,6 +14,8 @@ import {DashboardHeaderComponent} from "./dashboard-header/dashboard-header.comp
 import {DropdownModule} from "primeng/dropdown";
 import {ToolbarModule} from "primeng/toolbar";
 import {CalendarEventPipe} from "./api/calendar-event.pipe";
+import {CalendarContextMenuComponent} from "./calendar-context-menu/calendar-context-menu.component";
+import {ContextMenuModule} from "primeng/contextmenu";
 
 @NgModule({
     imports: [
@@ -29,11 +31,13 @@ import {CalendarEventPipe} from "./api/calendar-event.pipe";
         FullCalendarModule,
         DropdownModule,
         ToolbarModule,
-        CalendarEventPipe
+        CalendarEventPipe,
+        ContextMenuModule
     ],
     declarations: [
         DashboardComponent,
         DashboardHeaderComponent,
+        CalendarContextMenuComponent,
     ]
 })
 export class DashboardModule { }
