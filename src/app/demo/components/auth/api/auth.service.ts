@@ -16,8 +16,9 @@ export class AuthService {
     ) { }
 
     loginUser(loginObj: LoginRequest, remember: boolean){
+        const key = btoa(`${loginObj.name}:${loginObj.password}`)
         const headers = new HttpHeaders({
-            Authorization: `Basic ${loginObj.name}:${loginObj.password}`
+            Authorization: `Basic ${key}`
         });
 
         return this.http.post(`${AuthService.API_PATH}`, loginObj, {headers})

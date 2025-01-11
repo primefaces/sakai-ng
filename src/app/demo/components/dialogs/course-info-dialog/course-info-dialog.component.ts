@@ -10,6 +10,7 @@ import {MultiSelectModule} from "primeng/multiselect";
 import {EventClickArg} from "@fullcalendar/core";
 import {EventImpl} from "@fullcalendar/core/internal";
 import {FullCalendarComponent} from "@fullcalendar/angular";
+import {TooltipModule} from "primeng/tooltip";
 
 @Component({
   selector: 'app-user-dialog',
@@ -21,7 +22,8 @@ import {FullCalendarComponent} from "@fullcalendar/angular";
         DropdownModule,
         InputTextModule,
         FormsModule,
-        MultiSelectModule
+        MultiSelectModule,
+        TooltipModule
     ],
   templateUrl: './course-info.component.html'
 })
@@ -56,6 +58,10 @@ export class CourseInfoDialog implements OnDestroy{
         return partner;
     }
 
+    closeDialog(){
+        if (this.ref) this.ref.close();
+    }
+
     ngOnDestroy(): void {
         if (this.hoverEventInfo) this.hoverEventInfo.event.setProp("backgroundColor", '#666666');
         this.tmpPartners.forEach(e => e.setProp('backgroundColor', '#666666'));
@@ -63,6 +69,6 @@ export class CourseInfoDialog implements OnDestroy{
         this.hoverEventInfo = null;
         this.tmpPartners = [];
 
-        if (this.ref) this.ref.close();
+        this.closeDialog();
     }
 }

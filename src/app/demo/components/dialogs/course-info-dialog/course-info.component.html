@@ -1,28 +1,31 @@
-<div class="plan">
-    <div class="inner">
-			<span class="pricing">
-				<span>
-					Course
-				</span>
-			</span>
-        <p class="title">{{ hoverEventInfo?.event!.title }}</p>
-        <ul class="features">
-            <li>
-            <span> Time:
-                {{hoverEventInfo?.event!.start!.toLocaleTimeString()}}
-                -
-                {{hoverEventInfo?.event!.end!.toLocaleTimeString()}}
-            </span>
+<div class="p-3 h-full">
+    <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
+        <div class="text-900 font-medium text-xl mb-2">Course Information</div>
+        <div class="text-600">{{ hoverEventInfo?.event!.title }}</div>
+        <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+        <div class="flex align-items-center">
+            <span class="font-bold text-2xl text-900">{{hoverEventInfo?.event!.start!.toLocaleTimeString()}} - {{hoverEventInfo?.event!.end!.toLocaleTimeString()}}</span>
+        </div>
+        <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+        <ul class="list-none p-0 m-0 flex-grow-1">
+            <li class="flex align-items-center mb-3">
+                <i class="pi pi-graduation-cap text-blue-500 mr-2"></i>
+                <span class="font-bold text-2l text-600 mr-2">Degree: </span>
+                <span class="text-900">{{ hoverEventInfo?.event!.extendedProps['studyType'] }}</span>
             </li>
-            <li>
-                <span>Degree: {{ hoverEventInfo?.event!.extendedProps['studyType'] }}</span>
+            <li class="flex align-items-center mb-3">
+                <i class="pi pi-flag text-blue-500 mr-2"></i>
+                <span class="font-bold text-2l text-600  mr-2">Semester: </span>
+                <span class="text-900">{{hoverEventInfo?.event!.extendedProps['semester']}}</span>
             </li>
-            <li>
-                <span>Semester: {{hoverEventInfo?.event!.extendedProps['semester']}}</span>
-            </li>
-            <li>
-                <span>Room: {{hoverEventInfo?.event!.extendedProps['description'] ?? 'not assigned'}}</span>
+            <li class="flex align-items-center mb-3">
+                <i class="pi pi-desktop text-blue-500 mr-2"></i>
+                <span class="font-bold text-2l text-600 mr-2">Room:</span>
+                <span class="text-900">{{hoverEventInfo?.event!.extendedProps['description'] ?? 'not assigned'}}</span>
             </li>
         </ul>
+        <hr class="mb-3 mx-0 border-top-1 border-none surface-border mt-auto" />
+        <button pButton pRipple label="Close" class="p-3 w-full mt-auto"
+                (click)="closeDialog()" [pTooltip]="'press ESC'"></button>
     </div>
 </div>

@@ -115,11 +115,11 @@ export class DashboardComponent implements OnInit, AfterViewInit{
     private showClickDialog(event: EventClickArg): void {
         const { clientX, clientY } = event.jsEvent;
         this.dialogService.open(CourseInfoDialog, {
-            header: 'Course Info',
-            width: '550px', height: '370px',
+            width: '400px', height: '450px',
             baseZIndex: 10000,
             modal: false,
             draggable: true,
+            showHeader: false,
             data: {'event':event, 'calendar':this.calendar},
             style: {position: 'absolute', top: `${clientY}px`, left: `${clientX}px`,}
         })
