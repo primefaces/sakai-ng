@@ -14,7 +14,6 @@ import {MessageService} from "primeng/api";
 import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 import {animate, style, transition, trigger} from "@angular/animations";
 import {BehaviorSubject, Observable} from "rxjs";
-import {TableShareService} from "../share services/table-share.service";
 import {CalendarContextMenuComponent} from "./calendar-context-menu/calendar-context-menu.component";
 import {DialogService} from "primeng/dynamicdialog";
 import {CourseInfoDialog} from "../dialogs/course-info-dialog/course-info-dialog.component";
@@ -91,7 +90,6 @@ export class DashboardComponent implements OnInit, AfterViewInit{
     constructor(
         private layoutService: LayoutService,
         private messageService: MessageService,
-        private shareService: TableShareService,
         private dialogService: DialogService
     ) {
         this.layoutService.changeStyle(true);
