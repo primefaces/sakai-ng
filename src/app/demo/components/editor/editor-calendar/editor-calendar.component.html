@@ -1,4 +1,6 @@
 <div style="padding-top: 10px">
     <full-calendar #cal class="custom-calendar" [options]="calendarOptions()"
-                   [events]="currentEvents | RoomFilter: selectedRoom.roomId | TimingToEvent: selectedRoom.timingConstraints"/>
+                   [events]="allEvents | RoomFilter:room.roomId | TimingToEvent: room.timingConstraints"/>
 </div>
+<p-contextMenu #cm [global]="true" [model]="items" (onShow)="getItemMenuOptions()" (onHide)="onMenuHide()"/>
+

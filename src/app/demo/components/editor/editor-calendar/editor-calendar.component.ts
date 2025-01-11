@@ -1,22 +1,39 @@
-import {Component, EventEmitter, Input, Output, signal, ViewChild, WritableSignal} from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    signal,
+    ViewChild,
+    WritableSignal
+} from '@angular/core';
 import {FullCalendarComponent} from "@fullcalendar/angular";
-import {CalendarOptions, EventInput} from "@fullcalendar/core";
+import {CalendarOptions, EventInput, EventMountArg} from "@fullcalendar/core";
 import interactionPlugin, {DropArg} from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import {MessageService} from "primeng/api";
+import {MenuItem, MessageService} from "primeng/api";
 import {RoomTable} from "../../../../../assets/models/room-table";
+import {Observable, Subscription} from "rxjs";
+import {CourseSession} from "../../../../../assets/models/dto/course-session-dto";
 
 @Component({
   selector: 'app-editor-calendar',
   templateUrl: './editor-calendar.component.html',
 })
-export class EditorCalendarComponent{
-    @Input() currentEvents: EventInput[] = [];
-    @Input() selectedRoom!: RoomTable;
-
-    @Output() setDirtyBool = new EventEmitter<boolean>();
+export class EditorCalendarComponent implements OnInit, OnDestroy{
     @ViewChild("cal") calendar!: FullCalendarComponent;
+    @Output() setDirtyBool = new EventEmitter<boolean>();
+    @Input() allEvents: EventInput[] = [];
+
+    @Input() selectedRoom$!: Observable<RoomTable>;
+    roomSub: Subscription;
+    room: RoomTable;
+
+    items: MenuItem[] = [];
+    private rightClickEvent: EventMountArg | null;
 
     protected calendarOptions: WritableSignal<CalendarOptions> = signal({
         plugins: [
@@ -53,11 +70,19 @@ export class EditorCalendarComponent{
         eventReceive: this.eventReceive.bind(this),
         eventChange: this.eventChange.bind(this),
         eventAllow: this.eventAllow.bind(this),
+        eventDidMount: this.eventDidMound.bind(this),
     });
 
     constructor(
-        private messageService: MessageService
-    ) { }
+        private messageService: MessageService,
+    ) {}
+
+    ngOnInit(): void {
+        this.roomSub = this.selectedRoom$?.subscribe(r => {
+            this.clearCalendar();
+            this.room = r
+        })
+    }
 
     private drop(arg: DropArg) {
         const participants = Number(arg.draggedEl.getAttribute('data-participants'));
@@ -67,7 +92,7 @@ export class EditorCalendarComponent{
             this.messageService.add({
                 severity: 'error', life: 5000,
                 summary: 'ROOM CAPACITY  COLLISION',
-                detail: `The selected course (${arg.draggedEl.getAttribute('data-title')}) has to many participants (${participants}) for the selected room(${this.selectedRoom?.capacity})`});
+                detail: `The selected course (${arg.draggedEl.getAttribute('data-title')}) has to many participants (${participants}) for the selected room(${this.room?.capacity})`});
         } else if (this.checkIfComputersNeeded(needsComputers)){
             this.messageService.add({
                 severity: 'error', life: 5000,
@@ -95,13 +120,14 @@ export class EditorCalendarComponent{
     }
 
     private checkNrOfParticipants(nrOfParticipants: number):boolean{
-        const roomCapacity = this.selectedRoom.capacity;
+        const roomCapacity = this.room.capacity;
         return (nrOfParticipants >= roomCapacity);
     }
 
     private checkIfComputersNeeded(needsComputers: boolean): boolean {
+        //TODO fix allow drop of course
         console.log('needs a computer: ', needsComputers);
-        const hasComputers = this.selectedRoom.computersAvailable;
+        const hasComputers = this.room.computersAvailable;
 
         console.log('has a computer: ', hasComputers);
         console.log('allow drop: ', !(!hasComputers && needsComputers));
@@ -121,5 +147,49 @@ export class EditorCalendarComponent{
         const isAfter10PM = args.end.getHours() >= 22;
 
         return !isBefore815AM && !isAfter10PM;
+    }
+
+    private eventDidMound(arg: EventMountArg){
+        arg.el.addEventListener("contextmenu", (jsEvent)=>{
+            jsEvent.preventDefault()
+            this.rightClickEvent = arg;
+        })
+    }
+
+    private clearCalendar(){
+        this.calendar?.getApi().removeAllEvents();
+    }
+
+    getItemMenuOptions() : void {
+        this.items = [{label: 'add new Course', icon: 'pi pi-book', command: () => {} /*this.addNewCourse()*/ }];
+        if(!this.rightClickEvent?.event.id){
+            return;
+        }
+
+        const session = this.findSession()
+        this.items.push(
+            { label: session!.fixed ? 'free Course' : 'fix Course', icon: session!.fixed ? 'pi pi-unlock':'pi pi-lock', command: () => { /*this.changeSessionBlockState()*/ }},
+            { label: 'unassign Course', icon: 'pi pi-reply', command: () => { /*this.unassignCourse()*/ } },
+            { label: 'remove Group', icon: 'pi pi-delete-left', command: ()=> { /*this.deleteCourse()*/}}
+        )
+
+        const tmp = session!.name.slice(0, 2);
+        this.items.push((tmp == 'PS' || tmp == 'SL') ?
+            { label: 'add Group', icon: 'pi pi-plus-circle', command: ()=> { /*this.addCourseWithPsCharacter()*/ } }
+            : { label: 'split Course', icon: 'pi pi-arrow-up-right-and-arrow-down-left-from-center', disabled: true }
+        )
+    }
+
+    onMenuHide(){
+        this.rightClickEvent = null;
+    }
+
+    private findSession():CourseSession  | undefined{
+        //return this.timeTable.courseSessions.find(s => s.id.toString() === this.rightClickEvent!.event.id.toString());
+        return undefined;
+    }
+
+    ngOnDestroy(): void {
+        if(this.roomSub) this.roomSub.unsubscribe();
     }
 }

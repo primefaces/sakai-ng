@@ -1,8 +1,8 @@
 import {LoggerType} from "../enums/logger-types";
 import {Course} from "../course";
 import {Room} from "../room";
-import {RoomTable} from "./room-table";
 import {CourseSession} from "./course-session-dto";
+import {RoomTable} from "../room-table";
 
 export class TableLogDto {
   eventDate?: string; //due to converting problems

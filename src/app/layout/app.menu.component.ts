@@ -2,10 +2,6 @@ import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import {PrimeIcons} from "primeng/api";
-import {LocalStorageService} from "ngx-webstorage";
-import {DialogService} from "primeng/dynamicdialog";
-import {TableDialogComponent} from "../demo/components/dialogs/table-dialog/table-dialog.component";
-import {TmpTimeTable} from "../../assets/models/tmp-time-table";
 
 @Component({
     selector: 'app-menu',
@@ -16,42 +12,7 @@ export class AppMenuComponent implements OnInit {
 
     constructor(
         public layoutService: LayoutService,
-        private dialogService: DialogService,
-        private localStorage: LocalStorageService
     ) { }
-
-    showTableDialog(){
-        const ref = this.dialogService.open(TableDialogComponent, {
-            header: `Create new Table`,
-            contentStyle: { overflow: 'auto' },
-            width: '550px', height: '370px',
-            baseZIndex: 10000,
-            maximizable: false,
-            position: 'topleft'
-        })
-
-        ref.onClose.subscribe((result: TmpTimeTable) => {
-            localStorage.setItem('wizard-table', JSON.stringify(result));
-        });
-    }
-
-    loadTmpTable(){}
-
-    deleteUnfinishedTable(){
-        this.localStorage.clear('wizard-table');
-    }
-
-    isTmpTableAvailable(): boolean {
-        return true;
-    }
-
-    loadSpecificTable(){
-
-    }
-
-    unselectTable(){
-
-    }
 
     ngOnInit() {
         this.options = [

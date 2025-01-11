@@ -99,7 +99,7 @@ export class DashboardComponent implements OnInit, AfterViewInit{
 
     protected setNewTable(newTable: TimeTable){
         this.selectedTimeTable = newTable;
-        this.shareService.sharedTable = this.selectedTimeTable;
+        localStorage.setItem('current-table', JSON.stringify(this.selectedTimeTable));
         this.currentSessions = this.selectedTimeTable.courseSessions;
         this.updateInfoBoxes();
 

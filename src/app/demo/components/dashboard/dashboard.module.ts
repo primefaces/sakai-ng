@@ -16,6 +16,8 @@ import {ToolbarModule} from "primeng/toolbar";
 import {CalendarEventPipe} from "./api/calendar-event.pipe";
 import {CalendarContextMenuComponent} from "./calendar-context-menu/calendar-context-menu.component";
 import {ContextMenuModule} from "primeng/contextmenu";
+import {ConfirmationService} from "primeng/api";
+import {ConfirmPopupModule} from "primeng/confirmpopup";
 
 @NgModule({
     imports: [
@@ -32,12 +34,17 @@ import {ContextMenuModule} from "primeng/contextmenu";
         DropdownModule,
         ToolbarModule,
         CalendarEventPipe,
-        ContextMenuModule
+        ContextMenuModule,
+        CalendarEventPipe,
+        ConfirmPopupModule
     ],
     declarations: [
         DashboardComponent,
         DashboardHeaderComponent,
         CalendarContextMenuComponent,
+    ],
+    providers: [
+        ConfirmationService
     ]
 })
 export class DashboardModule { }

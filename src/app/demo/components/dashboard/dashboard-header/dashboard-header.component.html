@@ -1,5 +1,19 @@
 <p-toolbar [style]="{width: '100%'}">
     <div class="p-toolbar-group-start">
+            <button pButton class="headerButton mr-4" type="button"
+                    icon="pi pi-calendar-plus" (click)="showTableDialog()"
+                    pTooltip="create new Table" tooltipPosition="bottom">
+            </button>
+
+            <button pButton class="headerButton" type="button" icon="pi pi-asterisk"
+                    *ngIf="isTmpTableAvailable()" (click)="loadTmpTable()"
+                    pTooltip="load unfinished Table" tooltipPosition="bottom">
+            </button>
+
+            <button pButton class="headerButton" type="button" icon="pi pi-trash"
+                    *ngIf="isTmpTableAvailable()" (click)="deleteUnfinishedTable($event)"
+                    pTooltip="delete unfinished table" tooltipPosition="bottom">
+            </button>
     </div>
 
     <div class="p-toolbar-group-center">
@@ -23,4 +37,5 @@
 
     </div>
 </p-toolbar>
+<p-confirmPopup/>
 
