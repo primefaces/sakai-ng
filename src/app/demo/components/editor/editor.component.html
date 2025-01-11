@@ -1,13 +1,14 @@
 <div class="grid">
-    <div class="col-9">
+    <div class="col-10">
         <div class="card" style="height: 84vh">
             <app-editor-header (changeRoom)="setNewRoom($event)" [currentRooms]="timeTable.roomTables"/>
-            <app-editor-calendar #cd [selectedRoom$]="selectedRoom$" (setDirtyBool)="setDirtyDataBit($event)"
+            <app-editor-calendar #cd [selectedRoom$]="selectedRoom$"
+                                 (setDirtyBool)="setDirtyDataBit($event)" (getCourse)="getSpecificSession()"
                 [allEvents]="timeTable.courseSessions | SessionToEvent: 'editor' | EventFilter: 'shown'"/>
         </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-2">
         <div class="card" style="height: 84vh;">
             <app-editor-selection #st (triggerSave)="saveData()"
                 [currentDragEvents]="timeTable.courseSessions | SessionToEvent: 'editor' | EventFilter: 'drag'"

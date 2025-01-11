@@ -26,6 +26,7 @@ import {CourseSession} from "../../../../../assets/models/dto/course-session-dto
 export class EditorCalendarComponent implements OnInit, OnDestroy{
     @ViewChild("cal") calendar!: FullCalendarComponent;
     @Output() setDirtyBool = new EventEmitter<boolean>();
+    @Output() getCourse = new EventEmitter<(id: string) => void>();
     @Input() allEvents: EventInput[] = [];
 
     @Input() selectedRoom$!: Observable<RoomTable>;
@@ -54,7 +55,7 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
         dayMaxEvents: true,
         allDaySlot: false,
         dragScroll: true,
-        height: '70vh',
+        height: '75vh',
         eventBackgroundColor: '#666666',
         eventBorderColor: '#050505',
         eventTextColor: 'var(--sys-color-primary-white)',
@@ -162,11 +163,9 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
 
     getItemMenuOptions() : void {
         this.items = [{label: 'add new Course', icon: 'pi pi-book', command: () => {} /*this.addNewCourse()*/ }];
-        if(!this.rightClickEvent?.event.id){
-            return;
-        }
+        if(!this.rightClickEvent?.event.id) return;
 
-        const session = this.findSession()
+        const session = this.findSession();
         this.items.push(
             { label: session!.fixed ? 'free Course' : 'fix Course', icon: session!.fixed ? 'pi pi-unlock':'pi pi-lock', command: () => { /*this.changeSessionBlockState()*/ }},
             { label: 'unassign Course', icon: 'pi pi-reply', command: () => { /*this.unassignCourse()*/ } },
@@ -184,8 +183,8 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
         this.rightClickEvent = null;
     }
 
-    private findSession():CourseSession  | undefined{
-        //return this.timeTable.courseSessions.find(s => s.id.toString() === this.rightClickEvent!.event.id.toString());
+    private findSession():CourseSession{
+        const id = this.rightClickEvent.event.title;
         return undefined;
     }
 

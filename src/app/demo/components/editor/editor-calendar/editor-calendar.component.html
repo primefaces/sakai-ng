@@ -3,4 +3,3 @@
                    [events]="allEvents | RoomFilter:room.roomId | TimingToEvent: room.timingConstraints"/>
 </div>
 <p-contextMenu #cm [global]="true" [model]="items" (onShow)="getItemMenuOptions()" (onHide)="onMenuHide()"/>
-

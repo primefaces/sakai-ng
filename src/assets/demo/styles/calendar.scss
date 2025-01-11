@@ -9,7 +9,6 @@
 .fc {
     width: 100%;
     margin: 0 auto;
-    padding: 5px 10px;
     background: var(--sys-color-primary-white);
     flex-direction: column-reverse;
 }
@@ -33,6 +32,10 @@
 .fc th {
     text-align: center;
     background: var(--sys-color-primary-blue);
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 0;
 }
 
 .loading-spinner {

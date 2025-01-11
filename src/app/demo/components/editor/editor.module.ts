@@ -17,6 +17,7 @@ import {CalendarEventPipe} from "../dashboard/api/calendar-event.pipe";
 import {EventFilterPipe} from "./api/event-filter.pipe";
 import {RoomFilterPipe} from "./api/room-filter.pipe";
 import {TimingToEventPipe} from "./api/timing-to-event.pipe";
+import {InputSwitchModule} from "primeng/inputswitch";
 
 @NgModule({
     imports: [
@@ -34,6 +35,7 @@ import {TimingToEventPipe} from "./api/timing-to-event.pipe";
         EventFilterPipe,
         RoomFilterPipe,
         TimingToEventPipe,
+        InputSwitchModule,
     ],
     declarations: [EditorComponent, EditorSelectionComponent, EditorHeaderComponent, EditorCalendarComponent],
     providers: [ConfirmationService]

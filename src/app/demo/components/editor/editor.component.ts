@@ -6,6 +6,7 @@ import {EditorCalendarComponent} from "./editor-calendar/editor-calendar.compone
 import {EditorSelectionComponent} from "./editor-selection/editor-selection.component";
 import {RoomTable} from "../../../../assets/models/room-table";
 import {BehaviorSubject, Observable} from "rxjs";
+import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 
 @Component({
   templateUrl: './editor.component.html',
@@ -31,6 +32,10 @@ export class EditorComponent{
 
     private static getTimeTable() {
         return JSON.parse(localStorage.getItem('current-table'));
+    }
+
+    protected getSpecificSession(callback: string):CourseSession{
+        return this.timeTable.courseSessions.find(s => s.name === callback);
     }
 
     protected setNewRoom(newRoom: RoomTable){
