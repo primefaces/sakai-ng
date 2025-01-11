@@ -53,8 +53,8 @@ export class DashboardComponent implements OnInit, AfterViewInit{
     readonly calendarOptions: WritableSignal<CalendarOptions> = signal({
         plugins: [
             interactionPlugin,
-            dayGridPlugin,
             timeGridPlugin,
+            dayGridPlugin,
         ],
         headerToolbar: {
             left: '',
@@ -62,13 +62,18 @@ export class DashboardComponent implements OnInit, AfterViewInit{
             right: ''
         },
         initialView: 'timeGridWeek',
+        height: "70vh",
+        dayHeaderFormat: {weekday: 'long'},
         weekends: false,
         editable: false,
         selectable: false,
         selectMirror: true,
         dayMaxEvents: true,
         allDaySlot: false,
-        height: "70vh",
+        eventOverlap: true,
+        nowIndicator: false,
+        slotEventOverlap: true,
+        handleWindowResize: true,
         eventBackgroundColor: "#666666",
         eventBorderColor: "var(--sys-color-primary-blue)",
         eventTextColor: "var(--sys-color-primary-white)",
@@ -76,11 +81,6 @@ export class DashboardComponent implements OnInit, AfterViewInit{
         slotMaxTime: '22:00',
         slotDuration: '00:15',
         slotLabelInterval: '00:30',
-        dayHeaderFormat: {weekday: 'long'},
-        eventOverlap: true,
-        slotEventOverlap: true,
-        nowIndicator: false,
-        handleWindowResize: true,
         eventClick: this.showClickDialog.bind(this),
         eventMouseEnter: this.handleMouseEnter.bind(this),
         eventMouseLeave: this.handleMouseLeave.bind(this),
@@ -112,15 +112,16 @@ export class DashboardComponent implements OnInit, AfterViewInit{
         this.calendar.getApi().removeAllEvents();
     }
 
-    showClickDialog(event: EventClickArg): void {
+    private showClickDialog(event: EventClickArg): void {
+        const { clientX, clientY } = event.jsEvent;
         this.dialogService.open(CourseInfoDialog, {
-            header: `Course Info`,
-            contentStyle: { overflow: 'auto' },
+            header: 'Course Info',
             width: '550px', height: '370px',
             baseZIndex: 10000,
-            draggable: true,
             modal: false,
+            draggable: true,
             data: {'event':event, 'calendar':this.calendar},
+            style: {position: 'absolute', top: `${clientY}px`, left: `${clientX}px`,}
         })
     }
 
@@ -137,7 +138,7 @@ export class DashboardComponent implements OnInit, AfterViewInit{
 
     handleMouseEnter(eventInfo: any) {
         const eventElement = eventInfo.el;
-        eventElement.style.zIndex = '100000000';
+        eventElement.style.zIndex = '100';
         eventElement.classList.add('event-hover');
     }
 
