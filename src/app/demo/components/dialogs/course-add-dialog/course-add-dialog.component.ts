@@ -45,7 +45,6 @@ export class CourseAddDialog {
         if (idx > -1) {
             this.newCourses.splice(idx, 1);
             this.newAddedCourses.push(newSession);
-            console.log(this.newAddedCourses);
             this.messageService.add({severity: 'info', summary: 'Added new course:', detail: `${newSession[0].name}`});
         }
     }
