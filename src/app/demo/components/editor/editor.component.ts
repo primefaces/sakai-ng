@@ -25,7 +25,8 @@ export class EditorComponent{
     ) {
         this.layoutService.changeStyle(false);
         this.timeTable = EditorComponent.getTimeTable();
-        this.courseHandlerService.courseSessions = this.timeTable.courseSessions; //copy sessions instead
+        this.courseHandlerService.courseSessions = this.timeTable.courseSessions;
+        this.courseHandlerService.tableID = this.timeTable.id;
 
         this.selectedRoom = new BehaviorSubject<RoomTable>(this.timeTable.roomTables[0]);
         this.selectedRoom$ = this.selectedRoom.asObservable();

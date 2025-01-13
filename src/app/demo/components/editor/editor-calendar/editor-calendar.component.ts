@@ -162,16 +162,14 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
     }
 
     getItemMenuOptions() : void {
-        this.items = [{label: 'add new Course', icon: 'pi pi-book', command: () => {} /*this.addNewCourse()*/ }];
+        this.items = [{label: 'add new Course', icon: 'pi pi-book', command: () => { this.courseHandler.addNewSession() } }];
         if(!this.rightClickEvent?.event.id) return;
-
         const title = this.rightClickEvent?.event.title;
         const session = this.courseHandler.findSessionsByName(title);
-        console.log(session);
         this.items.push(
-            { label: session!.fixed ? 'free Course' : 'fix Course', icon: session!.fixed ? 'pi pi-unlock':'pi pi-lock', command: () => { /*this.changeSessionBlockState()*/ }},
-            { label: 'unassign Course', icon: 'pi pi-reply', command: () => { /*this.unassignCourse()*/ } },
-            { label: 'remove Group', icon: 'pi pi-delete-left', command: ()=> { /*this.deleteCourse()*/}}
+            { label: session!.fixed ? 'free Course' : 'fix Course', icon: session!.fixed ? 'pi pi-unlock':'pi pi-lock', command: () => {this.courseHandler.fixSession(this.rightClickEvent) }},
+            { label: 'unassign Course', icon: 'pi pi-reply', command: () => { this.courseHandler.unassignCourse(this.rightClickEvent) } },
+            { label: 'remove Group', icon: 'pi pi-delete-left', command: ()=> { this.courseHandler.deleteCourse(this.rightClickEvent)}}
         )
 
         const tmp = session!.name.slice(0, 2);

@@ -29,8 +29,6 @@ export class EditorSelectionComponent implements AfterViewInit, OnDestroy{
     }
 
     ngAfterViewInit(): void {
-        console.log(this.currentDragEvents)
-
         this.draggable = new Draggable(this.external.nativeElement, {
             itemSelector: '.drag-event',
             eventData: (eventEl) => {
