@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     top = parseInt(getComputedStyle($prismHighlightLine)['top']);
                 $content.scrollTop = top;
             }, 500);
-        };
+        }
 
         window.onhashchange = function(event) {
             switch (window.location.hash) {

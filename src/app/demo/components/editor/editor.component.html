@@ -2,15 +2,14 @@
     <div class="col-10">
         <div class="card" style="height: 84vh">
             <app-editor-header (changeRoom)="setNewRoom($event)" [currentRooms]="timeTable.roomTables"/>
-            <app-editor-calendar #cd [selectedRoom$]="selectedRoom$"
-                                 (setDirtyBool)="setDirtyDataBit($event)" (getCourse)="getSpecificSession()"
+            <app-editor-calendar #cd [selectedRoom$]="selectedRoom$" (setDirtyBool)="setDirtyDataBit($event)"
                 [allEvents]="timeTable.courseSessions | SessionToEvent: 'editor' | EventFilter: 'shown'"/>
         </div>
     </div>
 
     <div class="col-2">
         <div class="card" style="height: 84vh;">
-            <app-editor-selection #st (triggerSave)="saveData()"
+            <app-editor-selection (triggerSave)="saveData()"
                 [currentDragEvents]="timeTable.courseSessions | SessionToEvent: 'editor' | EventFilter: 'drag'"
                 style="width: 100%; height: 80vh; display: flex; flex-direction: column;"/>
         </div>

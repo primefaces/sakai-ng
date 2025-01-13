@@ -17,7 +17,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import {MenuItem, MessageService} from "primeng/api";
 import {RoomTable} from "../../../../../assets/models/room-table";
 import {Observable, Subscription} from "rxjs";
-import {CourseSession} from "../../../../../assets/models/dto/course-session-dto";
+import {CourseHandlerService} from "../api/course-handler.service";
 
 @Component({
   selector: 'app-editor-calendar',
@@ -26,7 +26,6 @@ import {CourseSession} from "../../../../../assets/models/dto/course-session-dto
 export class EditorCalendarComponent implements OnInit, OnDestroy{
     @ViewChild("cal") calendar!: FullCalendarComponent;
     @Output() setDirtyBool = new EventEmitter<boolean>();
-    @Output() getCourse = new EventEmitter<(id: string) => void>();
     @Input() allEvents: EventInput[] = [];
 
     @Input() selectedRoom$!: Observable<RoomTable>;
@@ -55,7 +54,7 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
         dayMaxEvents: true,
         allDaySlot: false,
         dragScroll: true,
-        height: '75vh',
+        height: '72vh',
         eventBackgroundColor: '#666666',
         eventBorderColor: '#050505',
         eventTextColor: 'var(--sys-color-primary-white)',
@@ -76,6 +75,7 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
 
     constructor(
         private messageService: MessageService,
+        private courseHandler: CourseHandlerService,
     ) {}
 
     ngOnInit(): void {
@@ -165,7 +165,9 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
         this.items = [{label: 'add new Course', icon: 'pi pi-book', command: () => {} /*this.addNewCourse()*/ }];
         if(!this.rightClickEvent?.event.id) return;
 
-        const session = this.findSession();
+        const title = this.rightClickEvent?.event.title;
+        const session = this.courseHandler.findSessionsByName(title);
+        console.log(session);
         this.items.push(
             { label: session!.fixed ? 'free Course' : 'fix Course', icon: session!.fixed ? 'pi pi-unlock':'pi pi-lock', command: () => { /*this.changeSessionBlockState()*/ }},
             { label: 'unassign Course', icon: 'pi pi-reply', command: () => { /*this.unassignCourse()*/ } },
@@ -181,11 +183,6 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
 
     onMenuHide(){
         this.rightClickEvent = null;
-    }
-
-    private findSession():CourseSession{
-        const id = this.rightClickEvent.event.title;
-        return undefined;
     }
 
     ngOnDestroy(): void {
