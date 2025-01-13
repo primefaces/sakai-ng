@@ -24,15 +24,19 @@ export class CourseHandlerService {
     }
 
     public addNewSession(){
-        this.dialogService.open(CourseAddDialog, {
+        const ref = this.dialogService.open(CourseAddDialog, {
             width: '50rem', height: '650px',
             position: 'center',
             baseZIndex: 10000,
-            modal: false,
+            modal: true,
             draggable: true,
             showHeader: false,
             data: {'tableID': this.tableID}
         })
+
+        ref.onClose.subscribe((result) => {
+            if (result) this.addSessions(result);
+        });
     }
 
     public fixSession(el: EventMountArg){
@@ -68,6 +72,10 @@ export class CourseHandlerService {
 
     set courseSessions(value: CourseSession[]) {
         this._courseSessions = value;
+    }
+
+    private addSessions(newSessions: CourseSession[]){
+        this.courseSessions.concat(newSessions);
     }
 
     get tableID(): number | null {

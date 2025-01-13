@@ -39,9 +39,9 @@ export class CourseAddDialog {
     }
 
     async receiveNewSession(course: Course){
-        const newSession = await this.editorRequest.getNewSession(this.currentTableId, course);
+        const newSession:CourseSession = await this.editorRequest.getNewSession(this.currentTableId, course);
+        const idx = this.newCourses.findIndex(s => s.id == course.id);
 
-        const idx = this.newCourses.findIndex(s => s.id === newSession.id.toString());
         if (idx > -1) {
             this.newCourses.splice(idx, 1);
             this.newAddedCourses.push(newSession);

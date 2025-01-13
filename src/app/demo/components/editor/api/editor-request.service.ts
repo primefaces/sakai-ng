@@ -19,7 +19,6 @@ export class EditorRequestService {
 
     public async getNewSession(tableID: number, newCourse: Course): Promise<CourseSession> {
         const newUrl = `/proxy/api/global/add-courses-to-timetable/${tableID}`;
-        //TODO fix request due to a current 500 error
-        return firstValueFrom(this.http.post<CourseSession>(newUrl, newCourse));
+        return firstValueFrom(this.http.post<CourseSession>(newUrl, [newCourse]));
     }
 }
