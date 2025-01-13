@@ -6,6 +6,7 @@ import { RoomTable } from "../../../../assets/models/room-table";
 import { Component, ViewChild } from '@angular/core';
 import { BehaviorSubject, Observable } from "rxjs";
 import { ContextMenu } from "primeng/contextmenu";
+import {EditorRequestService} from "./api/editor-request.service";
 
 @Component({
   templateUrl: './editor.component.html',
@@ -22,6 +23,7 @@ export class EditorComponent{
     constructor(
         private layoutService: LayoutService,
         private courseHandlerService: CourseHandlerService,
+        private editorRequest: EditorRequestService
     ) {
         this.layoutService.changeStyle(false);
         this.timeTable = EditorComponent.getTimeTable();
@@ -36,16 +38,17 @@ export class EditorComponent{
         return JSON.parse(localStorage.getItem('current-table'));
     }
 
+    saveChanges(){
+        this._dirtyData = false;
+        this.editorRequest.pushSessionChanges(this.timeTable.id, this.timeTable.courseSessions).subscribe();
+    }
+
     protected setNewRoom(newRoom: RoomTable){
         this.selectedRoom.next(newRoom);
     }
 
     protected setDirtyDataBit(bit: boolean){
         this._dirtyData = bit;
-    }
-
-    protected saveData(){
-        this._dirtyData = false;
     }
 
     canDeactivate(){

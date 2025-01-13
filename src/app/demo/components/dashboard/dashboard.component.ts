@@ -129,7 +129,8 @@ export class DashboardComponent implements OnInit, AfterViewInit{
         const assignedSessions = this.currentSessions.filter(s => s.assigned).length;
         const allSessions = this.currentSessions.length;
         this.infos[0].value = allSessions;
-        this.infos[0].highlight = assignedSessions/allSessions*100;
+        this.infos[0].highlight = Math.round(assignedSessions/allSessions * 100).toFixed(1);
+
     }
 
     private setLoading(state: boolean) {

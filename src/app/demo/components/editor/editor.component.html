@@ -9,7 +9,7 @@
 
     <div class="col-2">
         <div class="card" style="height: 84vh;">
-            <app-editor-selection (triggerSave)="saveData()"
+            <app-editor-selection (triggerSave)="saveChanges()"
                 [currentDragEvents]="timeTable.courseSessions | SessionToEvent: 'editor' | EventFilter: 'drag'"
                 style="width: 100%; height: 80vh; display: flex; flex-direction: column;"/>
         </div>

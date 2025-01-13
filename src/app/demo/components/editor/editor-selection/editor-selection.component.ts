@@ -19,13 +19,13 @@ export class EditorSelectionComponent implements AfterViewInit, OnDestroy{
     @Input() currentDragEvents!: EventInput[];
     draggable!: Draggable;
 
-    @Output() triggerSave = new EventEmitter<void>;
+    @Output() triggerSave = new EventEmitter<boolean>;
     @ViewChild('external') external!: ElementRef;
 
     constructor() {}
 
     protected triggerFinish(){
-        this.triggerSave.emit();
+        this.triggerSave.emit(true);
     }
 
     ngAfterViewInit(): void {
