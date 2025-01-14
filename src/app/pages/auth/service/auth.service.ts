@@ -13,7 +13,7 @@ export class AuthService {
     private tokenSignal = signal<string | null>(localStorage.getItem('token'));
     private isAuthenticatedSignal = signal<boolean>(!!this.tokenSignal());
 
-    constructor(private http: HttpClient, private router: Router) {
+    constructor(private http: HttpClient) {
         effect(() => {
             const token = this.tokenSignal();
             if (token) {
