@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, of, switchMap, tap } from 'rxjs';
 import { environment } from '../../../../environment/environment';
 import { map } from 'rxjs/operators';
-import { Token } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
