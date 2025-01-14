@@ -1,8 +1,9 @@
 import { effect, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, of, tap } from 'rxjs';
+import { catchError, of, switchMap, tap } from 'rxjs';
 import { environment } from '../../../../environment/environment';
 import { map } from 'rxjs/operators';
+import { Token } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +24,45 @@ export class AuthService {
         });
     }
 
-    logout(): void {
-        this.setToken(null);
-        // this.router.navigate(['/login']);
+    get isAuthenticated() {
+        return this.isAuthenticatedSignal.asReadonly();
     }
 
     getToken(): string | null {
         return this.tokenSignal();
+    }
+
+    login(email: string, password: string): void {
+        console.log('email: ', email);
+        console.log('password: ', password);
+        this.http
+            .post<{ token: string }>(`${this.apiURL}/login`, { email, password })
+            .pipe(
+                tap((response) => {
+                    if (response?.token) {
+                        this.setToken(response.token); // Store the token
+                        console.log('token: ', this.getToken())
+                    }
+                }),
+                switchMap(() => this.validateToken()) // Validate the token after storing it
+            )
+            .subscribe({
+                next: (isValid) => {
+                    if (isValid) {
+                        console.log('Navigating to /workouts');
+                        // this.router.navigate(['/workouts']);
+                    }
+                },
+                error: (err) => {
+                    console.error('Login failed:', err);
+                    this.logout();
+                },
+            });
+    }
+
+    logout(): void {
+        this.setToken(null);
+        // this.router.navigate(['/login']);
     }
 
     private setToken(token: string | null): void {
