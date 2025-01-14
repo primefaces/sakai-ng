@@ -1,6 +1,5 @@
 import { effect, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { catchError, of, tap } from 'rxjs';
 import { environment } from '../../../../environment/environment';
 import { map } from 'rxjs/operators';
