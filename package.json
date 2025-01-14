@@ -1,6 +1,6 @@
 {
-    "name": "sakai-ng",
-    "version": "19.0.0",
+    "name": "crossfit-tracker",
+    "version": "1.0.0",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
