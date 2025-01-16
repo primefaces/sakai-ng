@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
@@ -10,7 +10,6 @@ import { AppFloatingConfigurator } from '../../layout/component/app.floatingconf
 import { AuthService } from '../../core/services/auth.service';
 import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';
-import { Toast } from 'primeng/toast';
 
 @Component({
     selector: 'app-login',
@@ -58,7 +57,6 @@ export class Login {
         private fb: FormBuilder,
         private authService: AuthService,
         private router: Router,
-        private messageService: MessageService
     ) {
         this.loginForm = this.fb.group({
             username: ['', [Validators.required]],
