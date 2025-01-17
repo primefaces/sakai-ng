@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
-import { NotificationsWidget } from './components/notificationswidget';
-import { StatsWidget } from './components/statswidget';
-import { RecentSalesWidget } from './components/recentsaleswidget';
-import { BestSellingWidget } from './components/bestsellingwidget';
-import { RevenueStreamWidget } from './components/revenuestreamwidget';
+import { Contentwidget } from './components/contentwidget';
+import { AuthService } from '../../core/services/auth.service';
+import { Button } from 'primeng/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-dashboard',
-    imports: [StatsWidget, RecentSalesWidget, BestSellingWidget, RevenueStreamWidget, NotificationsWidget],
+    imports: [Contentwidget, Button, RouterLink],
     template: `
-        <div class="grid grid-cols-12 gap-8">
-            <app-stats-widget class="contents" />
-            <div class="col-span-12 xl:col-span-6">
-                <app-recent-sales-widget />
-                <app-best-selling-widget />
+        @if (authService.isAuthenticated()) {
+            <div class="grid grid-cols-6 gap-8">
+                <app-content-widget class="contents" />
             </div>
-            <div class="col-span-12 xl:col-span-6">
-                <app-revenue-stream-widget />
-                <app-notifications-widget />
+        } @else {
+            <div>
+                <span>Nicht eingeloggt! Hier gehts zum Login: </span>
+                <p-button routerLink="/auth/login" icon="pi pi-sign-in" text raised rounded class="ml-1" />
             </div>
-        </div>
+        }
     `
 })
-export class Dashboard {}
+export class Dashboard {
+    constructor(public authService: AuthService) {}
+}

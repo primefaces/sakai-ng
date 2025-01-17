@@ -335,5 +335,6 @@ export class InputDemo implements OnInit {
         }
 
         this.autoFilteredValue = filtered;
+        console.log(this.selectedAutoValue);
     }
 }

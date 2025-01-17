@@ -47,7 +47,7 @@ import { Tooltip } from 'primeng/tooltip';
             <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
                     @if (this.authService.isAuthenticated()) {
-                        <button type="button" class="layout-topbar-action" pTooltip="Meine Workouts" showDelay="300" hideDelay="300" tooltipPosition="bottom">
+                        <button type="button" class="layout-topbar-action" pTooltip="Meine Workouts" showDelay="300" hideDelay="300" tooltipPosition="bottom" routerLink="/workouts">
                             <i class="pi pi-home"></i>
                             <span>Meine Workouts</span>
                         </button>
