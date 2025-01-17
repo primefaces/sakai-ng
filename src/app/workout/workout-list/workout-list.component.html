@@ -14,14 +14,45 @@
     header="Neues Workout"
     [modal]="true">
     <ng-template #content>
-        <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-4">
             <div>
-                <div class="block font-bold mb-3">Datum</div>
+                <div class="block font-bold mb-2">Datum</div>
                 <p-datepicker [showIcon]="true" [showButtonBar]="true" [(ngModel)]="calendarValue" fluid ></p-datepicker>
             </div>
             <div>
-                <div class="block font-bold mb-3">Workout Type</div>
+                <div class="block font-bold mb-2">Workout Type</div>
                 <p-autocomplete fluid [(ngModel)]="selectedWorkoutType" [suggestions]="autoFilteredWorkoutType" optionLabel="label" placeholder="Search" dropdown (completeMethod)="filterWorkoutTypes($event)" />
+            </div>
+            <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-6">
+                    <div class="block font-bold mb-2">Zeit (Minuten)</div>
+                    <p-inputNumber [(ngModel)]="totalTime" [min]="0" [max]="120" mode="decimal" [showButtons]="true" ></p-inputNumber>
+                </div>
+                <div class="col-span-6">
+                    <div class="block font-bold mb-2">Runden</div>
+                    <p-inputNumber [(ngModel)]="totalRounds" [min]="0" mode="decimal" [showButtons]="true" ></p-inputNumber>
+                </div>
+            </div>
+            <div>
+                <label for="notes" class="block font-bold mb-1">Notes</label>
+                <textarea id="notes" pTextarea [(ngModel)]="notes" required rows="3" cols="20" fluid></textarea>
+            </div>
+            <!-- EXERCISES -->
+            <div>
+                <div class="flex justify-between items-center">
+                    <label for="exercises" class="block font-bold mb-3">Übungen</label>
+                    <p-button icon="pi pi-plus" [rounded]="true" [text]="true" severity="secondary" (click)="createExerciseGroup()" />
+                </div>
+                <p-accordion id="exercises">
+                    <p-accordion-panel value="0">
+                        <p-accordion-header>Header I</p-accordion-header>
+                        <p-accordion-content>
+                            <p class="m-0">
+                            </p>
+                        </p-accordion-content>
+                    </p-accordion-panel>
+                    <p-button icon="pi pi-plus" [rounded]="true" [text]="true" severity="secondary" (click)="removeExerciseGroup()" />
+                </p-accordion>
             </div>
         </div>
     </ng-template>

@@ -4,4 +4,5 @@ export interface WorkoutExercise {
     isStrength: boolean;
     reps?: number;
     weight?: number;
+    duration?: number;
 }
