@@ -2,93 +2,120 @@ import { Component, OnInit } from '@angular/core';
 import { Toolbar } from 'primeng/toolbar';
 import { Button } from 'primeng/button';
 import { Dialog } from 'primeng/dialog';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+    AbstractControl,
+    FormArray,
+    FormBuilder,
+    FormGroup,
+    FormsModule,
+    ReactiveFormsModule, ValidationErrors,
+    ValidatorFn,
+    Validators
+} from '@angular/forms';
 import { DatePicker } from 'primeng/datepicker';
-import { AutoComplete, AutoCompleteCompleteEvent } from 'primeng/autocomplete';
-import { FloatLabel } from 'primeng/floatlabel';
-import { IconField } from 'primeng/iconfield';
-import { InputIcon } from 'primeng/inputicon';
+import { AutoComplete } from 'primeng/autocomplete';
 import { InputNumber } from 'primeng/inputnumber';
-import { InputText } from 'primeng/inputtext';
 import { Textarea } from 'primeng/textarea';
-import { JsonPipe, NgIf } from '@angular/common';
-import { RadioButton } from 'primeng/radiobutton';
-import { Select } from 'primeng/select';
+import { NgForOf, NgIf } from '@angular/common';
 import { CountryService } from '../../pages/service/country.service';
 import { WorkoutService } from '../service/workout.service';
+import { Exercise } from '../../core/models/exercises/Exercise';
 import { Accordion, AccordionContent, AccordionHeader, AccordionPanel } from 'primeng/accordion';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
     selector: 'app-workout-list',
-    imports: [Toolbar, Button, Dialog, ReactiveFormsModule, DatePicker, FormsModule, AutoComplete, InputNumber, NgIf, InputText, Textarea, Accordion, AccordionContent, AccordionHeader, AccordionPanel],
+    imports: [InputTextModule, Toolbar, Button, Dialog, ReactiveFormsModule, DatePicker, FormsModule, AutoComplete, InputNumber, Textarea, NgForOf, Accordion, AccordionPanel, AccordionHeader, AccordionContent],
     templateUrl: './workout-list.component.html',
     styleUrl: './workout-list.component.scss',
     providers: [CountryService]
 })
 export class WorkoutListComponent implements OnInit {
-    newDialogVisible!: boolean;
-    calendarValue: any;
-    totalTime: any;
-    totalRounds: any;
-    notes: any;
-
+    newDialogVisible = false;
     workoutForm!: FormGroup;
-    workoutTypes: any[] | undefined;
-    selectedWorkoutType: any = null;
+    workoutTypes: any[] = [];
     autoFilteredWorkoutType: any[] = [];
+    exercises: Exercise[] = [];
+    autoFilteredExercises: Exercise[] = [];
 
     constructor(
-        private workoutService: WorkoutService,
         private fb: FormBuilder,
+        private workoutService: WorkoutService
     ) {}
 
     ngOnInit() {
-        this.initializeForm()
+        this.initializeForm();
+        this.fetchExercises();
         this.fetchWorkoutTypes();
-        this.selectedWorkoutType = null;
     }
 
     openNew() {
         this.newDialogVisible = true;
     }
 
-    saveWorkout() {}
-
-    hideDialog() {
-        this.newDialogVisible = false;
+    get exercisesArray(): FormArray {
+        return this.workoutForm.get('exercises') as FormArray;
     }
 
-    filterWorkoutTypes(event: AutoCompleteCompleteEvent) {
-        const query = event.query.toLowerCase(); // Convert query to lowercase for comparison
-        this.autoFilteredWorkoutType = this.workoutTypes?.filter((type) => type.label.toLowerCase().includes(query)) || [];
-        console.log('Filtered Workout Types:', this.autoFilteredWorkoutType);
-        console.log('Selected Workout Type:', this.selectedWorkoutType);
-    }
-
-    createExerciseGroup(): FormGroup {
-        return this.fb.group({
-            exercise: this.fb.group({
-                name: ['', Validators.required],
-            }),
+    addExerciseGroup(): void {
+        const exerciseGroup = this.fb.group({
+            exercise: [null, Validators.required], // Default value is null
             reps: [null],
             weight: [null],
             duration: [null],
         });
+        this.exercisesArray.push(exerciseGroup);
     }
 
-    removeExerciseGroup() {
-
+    removeExerciseGroup(index: number): void {
+        this.exercisesArray.removeAt(index);
     }
 
-    private initializeForm(): void {
-        this.workoutForm = this.fb.group({
-            date: ['', Validators.required],
-            workoutType: ['', Validators.required],
-            totalTime: [null],
-            totalRounds: [null],
-            notes: [''],
-            exercises: this.fb.array([this.createExerciseGroup()]),
-        });
+    filterWorkoutTypes(event: any): void {
+        const query = event.query.toLowerCase();
+        this.autoFilteredWorkoutType = this.workoutTypes.filter((type) => type.label.toLowerCase().includes(query));
+    }
+
+    filterExercises(event: any): void {
+        const query = event.query.toLowerCase();
+        this.autoFilteredExercises = this.exercises.filter((exercise) => exercise.name.toLowerCase().includes(query));
+    }
+
+    saveWorkout(): void {
+        if (this.workoutForm.valid) {
+            const workout = this.mapWorkoutToBackendFormat(this.workoutForm.value);
+
+            this.workoutService.saveWorkout(workout).subscribe({
+                next: (response) => {
+                    console.log('Workout saved successfully:', response);
+                    this.hideDialog(); // Close the dialog after saving
+                },
+                error: (err) => {
+                    console.error('Error saving workout:', err);
+                },
+            });
+        } else {
+            console.error('Workout form is invalid');
+        }
+    }
+
+    hideDialog(): void {
+        this.newDialogVisible = false;
+        this.workoutForm.reset();
+    }
+
+    onTotalTimeInput(event: Event): void {
+        const input = (event.target as HTMLInputElement).value;
+        const sanitizedInput = input.replace(/[^0-9:]/g, ''); // Allow only numbers and colon
+        this.workoutForm.get('totalTime')?.setValue(sanitizedInput);
+    }
+
+    private timeFormatValidator(): ValidatorFn {
+        return (control: AbstractControl): ValidationErrors | null => {
+            const value = control.value;
+            const timeRegex = /^[0-5]?[0-9]:[0-5][0-9]$/; // Matches MM:SS
+            return value && !timeRegex.test(value) ? { invalidTimeFormat: true } : null;
+        };
     }
 
     private fetchWorkoutTypes(): void {
@@ -105,4 +132,41 @@ export class WorkoutListComponent implements OnInit {
         });
     }
 
+    private fetchExercises(): void {
+        this.workoutService.getExercises().subscribe((exercises) => {
+            this.exercises = exercises;
+        });
+    }
+
+    private initializeForm(): void {
+        this.workoutForm = this.fb.group({
+            date: ['', Validators.required],
+            workoutType: ['', Validators.required],
+            totalTime: ['', this.timeFormatValidator()],
+            totalRounds: [null],
+            notes: [''],
+            exercises: this.fb.array([])
+        });
+    }
+
+    private mapWorkoutToBackendFormat(formData: any): any {
+        const convertTimeToSeconds = (time: string): number | null => {
+            if (!time) return null;
+            const [minutes, seconds] = time.split(':').map(Number);
+            return minutes * 60 + seconds;
+        };
+
+        return {
+            workoutDate: formData.date,
+            workoutType: formData.workoutType,
+            totalRounds: formData.totalRounds || null,
+            totalTimeInSeconds: convertTimeToSeconds(formData.totalTime),
+            notes: formData.notes || '',
+            exercises: formData.exercises.map((exercise: any) => ({
+                exerciseName: exercise.exercise.name,
+                reps: exercise.reps || null,
+                weight: exercise.weight || null,
+            })),
+        };
+    }
 }

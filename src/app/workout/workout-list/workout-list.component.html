@@ -12,52 +12,154 @@
     [(visible)]="newDialogVisible"
     [style]="{ width: '450px', height: '800px' }"
     header="Neues Workout"
-    [modal]="true">
+    [modal]="true"
+>
     <ng-template #content>
-        <div class="flex flex-col gap-4">
-            <div>
-                <div class="block font-bold mb-2">Datum</div>
-                <p-datepicker [showIcon]="true" [showButtonBar]="true" [(ngModel)]="calendarValue" fluid ></p-datepicker>
-            </div>
-            <div>
-                <div class="block font-bold mb-2">Workout Type</div>
-                <p-autocomplete fluid [(ngModel)]="selectedWorkoutType" [suggestions]="autoFilteredWorkoutType" optionLabel="label" placeholder="Search" dropdown (completeMethod)="filterWorkoutTypes($event)" />
-            </div>
-            <div class="grid grid-cols-12 gap-4">
-                <div class="col-span-6">
-                    <div class="block font-bold mb-2">Zeit (Minuten)</div>
-                    <p-inputNumber [(ngModel)]="totalTime" [min]="0" [max]="120" mode="decimal" [showButtons]="true" ></p-inputNumber>
+        <form [formGroup]="workoutForm">
+            <div class="flex flex-col gap-4">
+                <!-- Date -->
+                <div>
+                    <div class="block font-bold mb-2">Datum</div>
+                    <p-datepicker
+                        formControlName="date"
+                        [showIcon]="true"
+                        [showButtonBar]="true"
+                        fluid
+                    ></p-datepicker>
                 </div>
-                <div class="col-span-6">
-                    <div class="block font-bold mb-2">Runden</div>
-                    <p-inputNumber [(ngModel)]="totalRounds" [min]="0" mode="decimal" [showButtons]="true" ></p-inputNumber>
+
+                <!-- Workout Type -->
+                <div>
+                    <div class="block font-bold mb-2">Workout Type</div>
+                    <p-autocomplete
+                        formControlName="workoutType"
+                        fluid
+                        [suggestions]="autoFilteredWorkoutType"
+                        optionLabel="label"
+                        placeholder="Search"
+                        dropdown
+                        (completeMethod)="filterWorkoutTypes($event)"
+                    ></p-autocomplete>
+                </div>
+
+                <!-- Time and Rounds -->
+                <div class="grid grid-cols-12 gap-4">
+                    <div class="col-span-6">
+                        <div class="block font-bold mb-2">Zeit (Minuten)</div>
+                        <input
+                            pInputText
+                            formControlName="totalTime"
+                            placeholder="MM:SS"
+                            (input)="onTotalTimeInput($event)" />
+                    </div>
+                    <div class="col-span-6">
+                        <div class="block font-bold mb-2">Runden</div>
+                        <p-inputNumber
+                            formControlName="totalRounds"
+                            [min]="0"
+                            mode="decimal"
+                            [showButtons]="true"
+                        ></p-inputNumber>
+                    </div>
+                </div>
+                <!-- Notes -->
+                <div>
+                    <label for="notes" class="block font-bold mb-1">Notes</label>
+                    <textarea
+                        id="notes"
+                        pTextarea
+                        formControlName="notes"
+                        required
+                        rows="3"
+                        cols="20"
+                        fluid
+                    ></textarea>
+                </div>
+
+                <!-- Exercises -->
+                <div>
+                    <div class="flex justify-between items-center">
+                        <label class="block font-bold mb-3">Übungen</label>
+                        <p-button
+                            icon="pi pi-plus"
+                            [rounded]="true"
+                            [text]="true"
+                            severity="secondary"
+                            (click)="addExerciseGroup()"
+                        ></p-button>
+                    </div>
+
+                    <div formArrayName="exercises">
+                        <p-accordion id="exercises">
+                            <p-accordion-panel
+                                *ngFor="let exercise of exercisesArray.controls; let i = index"
+                                [formGroupName]="i"
+                                class="flex flex-col gap-2"
+                                [value]="i"
+                            >
+                                <!-- Accordion Header -->
+                                <p-accordion-header>
+                                    {{ exercise.get('exercise')?.value?.name || 'Übungsname'}}
+                                </p-accordion-header>
+
+                                <!-- Accordion Content -->
+                                <p-accordion-content>
+                                    <!-- Exercise Autocomplete -->
+                                    <div class="block font-bold mb-2">Übung</div>
+                                    <p-autocomplete
+                                        formControlName="exercise"
+                                        [suggestions]="autoFilteredExercises"
+                                        optionLabel="name"
+                                        placeholder="Wähle Übung"
+                                        dropdown
+                                        (completeMethod)="filterExercises($event)"
+                                        class="mb-3"
+                                    ></p-autocomplete>
+
+                                    <!-- Exercise Details -->
+                                    <div class="grid grid-cols-12 gap-4 mt-3">
+                                        <!-- Reps -->
+                                        <div class="col-span-6">
+                                            <div class="block font-bold mb-2">Wiederholungen</div>
+                                            <p-inputNumber formControlName="reps" placeholder="Reps" ></p-inputNumber>
+                                        </div>
+
+                                        <!-- Weight -->
+                                        <div class="col-span-6">
+                                            <div class="block font-bold mb-2">Gewicht</div>
+                                            <p-inputNumber formControlName="weight" placeholder="Weight"></p-inputNumber>
+                                        </div>
+
+                                        <!-- Duration -->
+                                        <div class="col-span-9 ">
+                                            <div class="block font-bold mb-2">Zeit (Minuten)</div>
+                                            <p-inputNumber formControlName="duration" placeholder="Duration"></p-inputNumber>
+                                        </div>
+
+                                        <!-- Remove Exercise Button -->
+                                        <div class="col-span-3 flex items-center">
+                                            <p-button
+                                                icon="pi pi-trash"
+                                                [rounded]="true"
+                                                [text]="true"
+                                                severity="danger"
+                                                (click)="removeExerciseGroup(i)"
+                                            ></p-button>
+                                        </div>
+                                    </div>
+                                </p-accordion-content>
+                            </p-accordion-panel>
+                        </p-accordion>
+                    </div>
+
                 </div>
             </div>
-            <div>
-                <label for="notes" class="block font-bold mb-1">Notes</label>
-                <textarea id="notes" pTextarea [(ngModel)]="notes" required rows="3" cols="20" fluid></textarea>
-            </div>
-            <!-- EXERCISES -->
-            <div>
-                <div class="flex justify-between items-center">
-                    <label for="exercises" class="block font-bold mb-3">Übungen</label>
-                    <p-button icon="pi pi-plus" [rounded]="true" [text]="true" severity="secondary" (click)="createExerciseGroup()" />
-                </div>
-                <p-accordion id="exercises">
-                    <p-accordion-panel value="0">
-                        <p-accordion-header>Header I</p-accordion-header>
-                        <p-accordion-content>
-                            <p class="m-0">
-                            </p>
-                        </p-accordion-content>
-                    </p-accordion-panel>
-                    <p-button icon="pi pi-plus" [rounded]="true" [text]="true" severity="secondary" (click)="removeExerciseGroup()" />
-                </p-accordion>
-            </div>
-        </div>
+        </form>
     </ng-template>
+
     <ng-template #footer>
         <p-button label="Abbrechen" icon="pi pi-times" text (click)="hideDialog()" />
         <p-button label="Speichern" icon="pi pi-check" (click)="saveWorkout()" />
     </ng-template>
 </p-dialog>
+
