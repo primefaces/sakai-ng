@@ -16,12 +16,13 @@ import { DatePicker } from 'primeng/datepicker';
 import { AutoComplete } from 'primeng/autocomplete';
 import { InputNumber } from 'primeng/inputnumber';
 import { Textarea } from 'primeng/textarea';
-import { NgForOf, NgIf } from '@angular/common';
+import { NgForOf } from '@angular/common';
 import { CountryService } from '../../pages/service/country.service';
 import { WorkoutService } from '../service/workout.service';
 import { Exercise } from '../../core/models/exercises/Exercise';
 import { Accordion, AccordionContent, AccordionHeader, AccordionPanel } from 'primeng/accordion';
 import { InputTextModule } from 'primeng/inputtext';
+import { Workout } from '../../core/models/workout/Workout';
 
 @Component({
     selector: 'app-workout-list',
@@ -37,6 +38,7 @@ export class WorkoutListComponent implements OnInit {
     autoFilteredWorkoutType: any[] = [];
     exercises: Exercise[] = [];
     autoFilteredExercises: Exercise[] = [];
+    workouts: Workout[] = [];
 
     constructor(
         private fb: FormBuilder,
@@ -47,6 +49,7 @@ export class WorkoutListComponent implements OnInit {
         this.initializeForm();
         this.fetchExercises();
         this.fetchWorkoutTypes();
+        this.fetchWorkouts();
     }
 
     openNew() {
@@ -84,7 +87,6 @@ export class WorkoutListComponent implements OnInit {
     saveWorkout(): void {
         if (this.workoutForm.valid) {
             const workout = this.mapWorkoutToBackendFormat(this.workoutForm.value);
-
             this.workoutService.saveWorkout(workout).subscribe({
                 next: (response) => {
                     console.log('Workout saved successfully:', response);
@@ -97,6 +99,17 @@ export class WorkoutListComponent implements OnInit {
         } else {
             console.error('Workout form is invalid');
         }
+    }
+
+    fetchWorkouts(): void {
+        this.workoutService.getWorkouts().subscribe({
+            next: (data) => {
+                this.workouts = data;
+            },
+            error: (err) => {
+                console.error('Failed to fetch workouts:', err);
+            },
+        });
     }
 
     hideDialog(): void {
@@ -152,6 +165,7 @@ export class WorkoutListComponent implements OnInit {
     private mapWorkoutToBackendFormat(formData: any): any {
         const convertTimeToSeconds = (time: string): number | null => {
             if (!time) return null;
+            console.log(time);
             const [minutes, seconds] = time.split(':').map(Number);
             return minutes * 60 + seconds;
         };
