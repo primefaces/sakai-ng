@@ -40,7 +40,7 @@ import { MessageService } from 'primeng/api';
                                 <div class="flex items-center justify-between mt-2 mb-8 gap-8">
                                     <span class="font-medium no-underline ml-2 text-right cursor-pointer text-primary">Passwort vergessen?</span>
                                 </div>
-                                <p-button type="submit" label="Sign In" styleClass="w-full" [disabled]="loginForm.invalid"></p-button>
+                                <p-button [loading]="loading" type="submit" label="Sign In" styleClass="w-full" [disabled]="loginForm.invalid"></p-button>
                             </div>
                         </form>
                     </div>
@@ -52,6 +52,7 @@ import { MessageService } from 'primeng/api';
 })
 export class Login {
     loginForm: FormGroup;
+    loading: boolean = false;
 
     constructor(
         private fb: FormBuilder,
@@ -66,9 +67,12 @@ export class Login {
 
     onSubmit(): void {
         if (this.loginForm.valid) {
+            this.loading = true;
             const { username, password } = this.loginForm.value;
+            setTimeout(() => 1000);
             this.authService.login(username, password).subscribe({
                 next: () => {
+                    this.loading = false;
                     this.router.navigate(['/']);
                 },
                 error: (err) => {
