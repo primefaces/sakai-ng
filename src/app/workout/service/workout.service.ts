@@ -25,6 +25,10 @@ export class WorkoutService {
             );
     }
 
+    getWorkouts(): Observable<Workout[]> {
+        return this.http.get<Workout[]>(this.apiUrlWorkout);
+    }
+
     getExercises(): Observable<Exercise[]> {
         return this.http.get<Exercise[]>(`${this.apiUrlExercises}`).pipe(
             catchError((error) => {
