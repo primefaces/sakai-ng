@@ -6,6 +6,7 @@ import { Landing } from './app/pages/landing/landing';
 import { Notfound } from './app/pages/notfound/notfound';
 import { DashboardOld } from './app/pages/_archiv/dashboard/dashboard';
 import { WorkoutListComponent } from './app/workout/workout-list/workout-list.component';
+import { ProfileComponent } from './app/profile/profile/profile.component';
 
 export const appRoutes: Routes = [
     {
@@ -14,6 +15,7 @@ export const appRoutes: Routes = [
         children: [
             { path: '', component: Dashboard },
             { path: 'workouts', component: WorkoutListComponent },
+            { path: 'profile', component: ProfileComponent },
             { path: 'old', component: DashboardOld },
             { path: 'uikit', loadChildren: () => import('./app/pages/uikit/uikit.routes') },
             { path: 'documentation', component: Documentation },
