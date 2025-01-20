@@ -76,7 +76,6 @@ export class CourseHandlerService {
     }
 
     private addSessions(newSessions: CourseSession[]){
-        console.log(newSessions);
         this._courseSessions.next(this.courseSessions.concat(newSessions));
     }
 

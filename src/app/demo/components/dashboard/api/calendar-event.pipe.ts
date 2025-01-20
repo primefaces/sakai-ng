@@ -14,7 +14,6 @@ export class CalendarEventPipe implements PipeTransform {
   }
 
   static toEvent(session: CourseSession, call: Call): EventInput{
-      console.log(session);
       return {
           id: session.id.toString(),
           title: session.name,

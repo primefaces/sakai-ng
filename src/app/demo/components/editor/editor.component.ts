@@ -52,7 +52,6 @@ export class EditorComponent{
 
     protected setNewRoom(newRoom: RoomTable){
         this.selectedRoom.next(newRoom);
-        console.log(this.timeTable.courseSessions);
     }
 
     protected setDirtyDataBit(bit: boolean){

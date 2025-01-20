@@ -38,7 +38,6 @@ export class RoomDialog {
 
     get data(): Room {
         const noData = this.config.data.initialValue;
-        console.log(noData);
         this.inEditMode = Object.keys(noData).length !== 0;
         return noData ? noData : new Room();
     }
