@@ -75,3 +75,12 @@
     transform: scale(1.1);
     transition: transform 0.2s ease-in-out;
 }
+
+.hover-event{
+    width: 98%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #666666;
+    color: var(--sys-color-primary-white);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}

@@ -3,10 +3,11 @@ import { LayoutService } from "../../../layout/service/app.layout.service";
 import { TimeTable } from "../../../../assets/models/dto/time-table";
 import { CourseHandlerService } from "./api/course-handler.service";
 import { RoomTable } from "../../../../assets/models/room-table";
-import { Component, ViewChild } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { BehaviorSubject, Observable } from "rxjs";
 import { ContextMenu } from "primeng/contextmenu";
 import {EditorRequestService} from "./api/editor-request.service";
+import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 
 @Component({
   templateUrl: './editor.component.html',
@@ -16,6 +17,9 @@ export class EditorComponent{
     @ViewChild('cd') calendar: EditorCalendarComponent;
 
     timeTable!: TimeTable;
+    private readonly courseSessions: BehaviorSubject<CourseSession[]>;
+    protected sessions$: Observable<CourseSession[]>;
+
     protected selectedRoom: BehaviorSubject<RoomTable>;
     protected selectedRoom$: Observable<RoomTable>;
     private _dirtyData: boolean = false;
@@ -27,7 +31,10 @@ export class EditorComponent{
     ) {
         this.layoutService.changeStyle(false);
         this.timeTable = EditorComponent.getTimeTable();
-        this.courseHandlerService.courseSessions = this.timeTable.courseSessions;
+
+        this.courseSessions = new BehaviorSubject<CourseSession[]>(this.timeTable.courseSessions);
+        this.courseHandlerService.courseSessions = this.courseSessions;
+        this.sessions$ = this.courseSessions.asObservable();
         this.courseHandlerService.tableID = this.timeTable.id;
 
         this.selectedRoom = new BehaviorSubject<RoomTable>(this.timeTable.roomTables[0]);
@@ -45,6 +52,7 @@ export class EditorComponent{
 
     protected setNewRoom(newRoom: RoomTable){
         this.selectedRoom.next(newRoom);
+        console.log(this.timeTable.courseSessions);
     }
 
     protected setDirtyDataBit(bit: boolean){

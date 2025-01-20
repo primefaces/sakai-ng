@@ -39,12 +39,12 @@ export class CourseAddDialog {
     }
 
     async receiveNewSession(course: Course){
-        const newSession:CourseSession = await this.editorRequest.getNewSession(this.currentTableId, course);
+        const newSession:CourseSession[] = await this.editorRequest.getNewSession(this.currentTableId, course);
         const idx = this.newCourses.findIndex(s => s.id == course.id);
 
         if (idx > -1) {
             this.newCourses.splice(idx, 1);
-            this.newAddedCourses.push(newSession);
+            this.newAddedCourses.push(newSession[0]);
             this.messageService.add({severity: 'info', summary: 'Added new course:', detail: `${newSession[0].name}`});
         }
     }

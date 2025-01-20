@@ -20,9 +20,9 @@ export class EditorRequestService {
         return firstValueFrom(this.http.get<Course[]>(newUrl));
     }
 
-    public async getNewSession(tableID: number, newCourse: Course): Promise<CourseSession> {
+    public async getNewSession(tableID: number, newCourse: Course): Promise<CourseSession[]> {
         const newUrl = `${EditorRequestService.API_PATH}/add-courses-to-timetable/${tableID}`;
-        return firstValueFrom(this.http.post<CourseSession>(newUrl, [newCourse]));
+        return firstValueFrom(this.http.post<CourseSession[]>(newUrl, [newCourse]));
     }
 
     public pushSessionChanges(tableID : number, changedSessions: CourseSession[]) {

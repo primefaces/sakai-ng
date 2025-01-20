@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import {EditorComponent} from "./editor.component";
 import {EditorsRoutingModule} from "./editor-routing.module";
 import {FullCalendarModule} from "@fullcalendar/angular";
-import {NgForOf} from "@angular/common";
+import {AsyncPipe, NgForOf} from "@angular/common";
 import {ToolbarModule} from "primeng/toolbar";
 import {DropdownModule} from "primeng/dropdown";
 import {FormsModule} from "@angular/forms";
@@ -36,6 +36,7 @@ import {InputSwitchModule} from "primeng/inputswitch";
         RoomFilterPipe,
         TimingToEventPipe,
         InputSwitchModule,
+        AsyncPipe,
     ],
     declarations: [EditorComponent, EditorSelectionComponent, EditorHeaderComponent, EditorCalendarComponent],
     providers: [ConfirmationService]

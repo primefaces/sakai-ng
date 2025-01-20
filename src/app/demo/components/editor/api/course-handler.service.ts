@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import {CourseSession} from "../../../../../assets/models/dto/course-session-dto";
 import {EventMountArg} from "@fullcalendar/core";
 import {DialogService} from "primeng/dynamicdialog";
+import {CourseSession} from "../../../../../assets/models/dto/course-session-dto";
 import {CourseAddDialog} from "../../dialogs/course-add-dialog/course-add-dialog.component";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseHandlerService {
-    private _courseSessions: CourseSession[] = [];
+    private _courseSessions: BehaviorSubject<CourseSession[]> = new BehaviorSubject<CourseSession[]>([]);
     private _tableID: number | null = null;
 
     constructor(
@@ -67,15 +68,16 @@ export class CourseHandlerService {
     }
 
     get courseSessions(): CourseSession[] {
-        return this._courseSessions;
+        return this._courseSessions.value;
     }
 
-    set courseSessions(value: CourseSession[]) {
+    set courseSessions(value: BehaviorSubject<CourseSession[]>) {
         this._courseSessions = value;
     }
 
     private addSessions(newSessions: CourseSession[]){
-        this.courseSessions.concat(newSessions);
+        console.log(newSessions);
+        this._courseSessions.next(this.courseSessions.concat(newSessions));
     }
 
     get tableID(): number | null {
