@@ -4,7 +4,7 @@ import {
     ElementRef,
     EventEmitter,
     Input,
-    OnDestroy,
+    OnDestroy, OnInit,
     Output,
     ViewChild
 } from '@angular/core';
@@ -15,9 +15,11 @@ import {Draggable} from "@fullcalendar/interaction";
   selector: 'app-editor-selection',
   templateUrl: './editor-selection.component.html',
 })
-export class EditorSelectionComponent implements AfterViewInit, OnDestroy{
-    @Input() currentDragEvents!: EventInput[];
-    draggable!: Draggable;
+export class EditorSelectionComponent implements OnInit, AfterViewInit, OnDestroy{
+    @Input() private currentDragEvents!: EventInput[];
+    protected filteredDragEvents;
+    private draggable!: Draggable;
+    protected searchTerm: string = '';
 
     @Output() triggerSave = new EventEmitter<boolean>;
     @ViewChild('external') external!: ElementRef;
@@ -26,6 +28,18 @@ export class EditorSelectionComponent implements AfterViewInit, OnDestroy{
 
     protected triggerFinish(){
         this.triggerSave.emit(true);
+    }
+
+    filterEvents(): void {
+        const term = this.searchTerm.toLowerCase();
+        this.filteredDragEvents = this.currentDragEvents.filter(event =>
+            event.title.toLowerCase().includes(term)
+        );
+    }
+
+
+    ngOnInit(): void {
+        this.filteredDragEvents = [...this.currentDragEvents];
     }
 
     ngAfterViewInit(): void {

@@ -18,6 +18,7 @@ import {EventFilterPipe} from "./api/event-filter.pipe";
 import {RoomFilterPipe} from "./api/room-filter.pipe";
 import {TimingToEventPipe} from "./api/timing-to-event.pipe";
 import {InputSwitchModule} from "primeng/inputswitch";
+import {InputTextModule} from "primeng/inputtext";
 
 @NgModule({
     imports: [
@@ -37,6 +38,7 @@ import {InputSwitchModule} from "primeng/inputswitch";
         TimingToEventPipe,
         InputSwitchModule,
         AsyncPipe,
+        InputTextModule,
     ],
     declarations: [EditorComponent, EditorSelectionComponent, EditorHeaderComponent, EditorCalendarComponent],
     providers: [ConfirmationService]

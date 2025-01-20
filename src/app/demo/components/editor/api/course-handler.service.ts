@@ -52,7 +52,14 @@ export class CourseHandlerService {
     }
 
     public unassignCourse(el: EventMountArg){
-
+        const title = el.event.title;
+        const session = this._courseSessions.value.find(s => s.name == title);
+        if(session) {
+            session.timing = null;
+            session.roomTable = null;
+            session.assigned = false;
+        }
+        console.log(session);
     }
 
     public deleteCourse(el: EventMountArg){

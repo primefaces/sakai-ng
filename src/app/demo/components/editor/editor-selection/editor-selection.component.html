@@ -5,10 +5,15 @@
         </button>
     </div>
 
+    <div style="margin: 10px; display: flex; justify-content: center;">
+        <input type="text" pInputText placeholder="Search events" [(ngModel)]="searchTerm"
+               (input)="filterEvents()" style="width: 80%;">
+    </div>
+
     <div style="width: 100%; flex-grow: 1; display: flex; flex-direction: column;
                 align-items: center; text-align: center;
-                 gap: 10px; padding: 10px; overflow-y: auto;"  #external>
-        <div *ngFor="let event of currentDragEvents" class="drag-event hover-event"
+                gap: 10px; padding: 10px; overflow-y: auto;"  #external>
+        <div *ngFor="let event of filteredDragEvents" class="drag-event hover-event"
              [attr.data-id]="event['id']"
              [attr.data-title]="event['title']"
              [attr.data-duration]="event.extendedProps?.['duration']"
@@ -18,4 +23,3 @@
         </div>
     </div>
 </div>
-
