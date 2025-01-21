@@ -121,8 +121,8 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
         if(this.checkNrOfParticipants(participants) || this.checkIfComputersNeeded(needsComputers)){
             args.revert();
         } else {
-            //const assignment: Assignment = {roomTable: this.room, start: args.event.start, end: args.event.end};
-            //this.courseHandler.changeAssignment(args, true, assignment);
+            const assignment: Assignment = {roomTable: this.room, start: args.event.start, end: args.event.end};
+            this.courseHandler.changeAssignment(args.event.title, true, assignment);
             this.setDirtyBool.emit(true);
         }
     }

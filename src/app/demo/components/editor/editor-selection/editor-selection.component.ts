@@ -16,8 +16,8 @@ import {Draggable} from "@fullcalendar/interaction";
   templateUrl: './editor-selection.component.html',
 })
 export class EditorSelectionComponent implements OnInit, AfterViewInit, OnDestroy{
-    @Input() private currentDragEvents!: EventInput[];
-    protected filteredDragEvents;
+    @Input() currentDragEvents!: EventInput[];
+    protected filteredDragEvents: EventInput[];
     private draggable!: Draggable;
     protected searchTerm: string = '';
 

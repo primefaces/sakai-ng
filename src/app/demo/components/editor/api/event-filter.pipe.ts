@@ -9,8 +9,11 @@ export class EventFilterPipe implements PipeTransform {
 
   transform(value: EventInput[], place: 'drag' | 'shown'): EventInput[] {
     switch (place){
-        case "drag": return value.filter(v => !v.extendedProps['assigned']);
-        case "shown": return value.filter(v => v.extendedProps['assigned']);
+        case "shown": return value.filter((v:EventInput) => v.extendedProps['assigned']);
+        case "drag": {
+            console.log(value.filter((v: EventInput) => !v.extendedProps['assigned']));
+                return value.filter((v: EventInput) => !v.extendedProps['assigned'])
+        }
     }
   }
 }

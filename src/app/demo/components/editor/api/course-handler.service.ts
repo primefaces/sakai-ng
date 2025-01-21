@@ -37,9 +37,15 @@ export class CourseHandlerService {
             data: {'tableID': this.tableID}
         })
 
-        ref.onClose.subscribe((result) => {
+        ref.onClose.subscribe((result: CourseSession[]) => {
             if (result) this.addSessions(result);
         });
+    }
+
+    private addSessions(newSessions: CourseSession[]){
+        console.log(newSessions);
+        this._courseSessions.next(this.courseSessions.concat(newSessions));
+        console.log(this.courseSessions);
     }
 
     public fixSession(el: EventMountArg){
@@ -57,8 +63,9 @@ export class CourseHandlerService {
         this._courseSessions.next(
             this.courseSessions.map(
                 (session: CourseSession, idx:number) => {
-                    if(session.name === courseTitle)
-                        return assign ? this.assignData(idx, assignment): this.unassignData(idx)
+                    if(session.name === courseTitle) {
+                        return assign ? this.assignData(idx, assignment) : this.unassignData(idx)
+                    }
 
                     return session
                 }
@@ -77,12 +84,14 @@ export class CourseHandlerService {
     }
 
     private unassignData(idx: number):CourseSession{
-        const session = this.courseSessions.at(idx);
+        const session = this.courseSessions[idx];
+        console.log('unassignCourse', session);
         session.timing = null;
         session.roomTable = null;
         session.assigned = false;
         session.fixed = false;
-        return session
+        console.log('unassignCourse', session);
+        return session;
     }
 
     public deleteCourse(el: EventMountArg){
@@ -103,10 +112,6 @@ export class CourseHandlerService {
 
     set courseSessions(value: BehaviorSubject<CourseSession[]>) {
         this._courseSessions = value;
-    }
-
-    private addSessions(newSessions: CourseSession[]){
-        this._courseSessions.next(this.courseSessions.concat(newSessions));
     }
 
     get tableID(): number | null {
