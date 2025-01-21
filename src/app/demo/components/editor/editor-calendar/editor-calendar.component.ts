@@ -19,6 +19,12 @@ import {RoomTable} from "../../../../../assets/models/room-table";
 import {Observable, Subscription} from "rxjs";
 import {CourseHandlerService} from "../api/course-handler.service";
 
+export interface Assignment{
+    roomTable: RoomTable;
+    start: Date;
+    end: Date;
+}
+
 @Component({
   selector: 'app-editor-calendar',
   templateUrl: './editor-calendar.component.html',
@@ -101,11 +107,10 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
                 detail: `The selected course (${arg.draggedEl.getAttribute('data-title')}) needs computers which are not supported by the current room`});
         } else {
             const draggedElement = arg.draggedEl;
-
             if (draggedElement && draggedElement.parentNode) {
                 draggedElement.parentNode.removeChild(draggedElement);
+                this.setDirtyBool.emit(true);
             }
-            this.setDirtyBool.emit(true);
         }
     }
 
@@ -116,6 +121,8 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
         if(this.checkNrOfParticipants(participants) || this.checkIfComputersNeeded(needsComputers)){
             args.revert();
         } else {
+            //const assignment: Assignment = {roomTable: this.room, start: args.event.start, end: args.event.end};
+            //this.courseHandler.changeAssignment(args, true, assignment);
             this.setDirtyBool.emit(true);
         }
     }
@@ -136,7 +143,11 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
 
     }
 
-    private eventChange(){
+    private eventChange(args: any){
+        if(this.differentEvent(args.event.start, args.oldEvent.start)){
+            const assignment: Assignment = {roomTable: this.room, start: args.event.start, end: args.event.end};
+            this.courseHandler.changeAssignment(args.event.title, true, assignment);
+        }
         this.setDirtyBool.emit(true);
     }
 
@@ -168,7 +179,7 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
         const session = this.courseHandler.findSessionsByName(title);
         this.items.push(
             { label: session!.fixed ? 'free Course' : 'fix Course', icon: session!.fixed ? 'pi pi-unlock':'pi pi-lock', command: () => {this.courseHandler.fixSession(this.rightClickEvent) }},
-            { label: 'unassign Course', icon: 'pi pi-reply', command: () => { this.courseHandler.unassignCourse(this.rightClickEvent) } },
+            { label: 'unassign Course', icon: 'pi pi-reply', command: () => { this.courseHandler.changeAssignment(this.rightClickEvent.event.title, false) } },
             { label: 'remove Group', icon: 'pi pi-delete-left', command: ()=> { this.courseHandler.deleteCourse(this.rightClickEvent)}}
         )
 
@@ -177,6 +188,10 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
             { label: 'add Group', icon: 'pi pi-plus-circle', command: ()=> { /*this.addCourseWithPsCharacter()*/ } }
             : { label: 'split Course', icon: 'pi pi-arrow-up-right-and-arrow-down-left-from-center', disabled: true }
         )
+    }
+
+    differentEvent(newEvent: Date, oldEvent: Date): boolean {
+        return newEvent.toISOString() !== oldEvent.toISOString();
     }
 
     onMenuHide(){
