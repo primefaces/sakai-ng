@@ -45,9 +45,10 @@ export class EditorComponent{
         return JSON.parse(localStorage.getItem('current-table'));
     }
 
-    saveChanges(){
+    async saveChanges(){
         this._dirtyData = false;
-        this.editorRequest.pushSessionChanges(this.timeTable.id, this.timeTable.courseSessions).subscribe();
+        this.editorRequest.pushSessionChanges(this.timeTable.id, this.courseHandlerService.courseSessions).subscribe();
+        //TODO show updated array on home page
     }
 
     protected setNewRoom(newRoom: RoomTable){

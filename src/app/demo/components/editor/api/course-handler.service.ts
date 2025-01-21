@@ -43,9 +43,7 @@ export class CourseHandlerService {
     }
 
     private addSessions(newSessions: CourseSession[]){
-        console.log(newSessions);
         this._courseSessions.next(this.courseSessions.concat(newSessions));
-        console.log(this.courseSessions);
     }
 
     public fixSession(el: EventMountArg){
@@ -73,7 +71,7 @@ export class CourseHandlerService {
     }
 
     private assignData(idx: number, assignment: Assignment):CourseSession{
-        const session = this.courseSessions.at(idx);
+        const session = this.courseSessions[idx];
         session.roomTable = assignment.roomTable;
         session.assigned = true;
         session.timing = new Timing();
@@ -85,13 +83,22 @@ export class CourseHandlerService {
 
     private unassignData(idx: number):CourseSession{
         const session = this.courseSessions[idx];
-        console.log('unassignCourse', session);
         session.timing = null;
         session.roomTable = null;
         session.assigned = false;
         session.fixed = false;
-        console.log('unassignCourse', session);
         return session;
+    }
+
+    private copyNewGroup(course: CourseSession, newTitle: string):CourseSession{
+        const copySession = JSON.parse(JSON.stringify(course));
+        copySession.id = Math.floor(Math.random() * 10000000);
+        copySession.name = newTitle;
+        copySession.timing = null;
+        copySession.roomTable = null;
+        copySession.assigned = false;
+        copySession.fixed = false;
+        return copySession;
     }
 
     public deleteCourse(el: EventMountArg){
@@ -102,8 +109,19 @@ export class CourseHandlerService {
         }
     }
 
-    public addGroup(el: EventMountArg, groupsToAdd: number){
-        //TODO implement methods to add N Groups
+    public addGroup(el: EventMountArg){
+        console.log(this.courseSessions);
+        const courseId = el.event.title.replace(/[0-9]/g, '');
+        const course = this.courseSessions
+            .filter(s => s.name.includes(courseId))
+            .sort((b, a) => a.name.localeCompare(b.name))[0];
+
+        const highestNumber = Number(course.name.replace(courseId, ''));
+        const newSession = this.copyNewGroup(course, `${courseId}${highestNumber+1}`);
+
+        this.courseSessions.push(newSession)
+        this._courseSessions.next(this.courseSessions);
+        console.log(this.courseSessions);
     }
 
     get courseSessions(): CourseSession[] {

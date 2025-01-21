@@ -185,7 +185,7 @@ export class EditorCalendarComponent implements OnInit, OnDestroy{
 
         const tmp = session!.name.slice(0, 2);
         this.items.push((tmp == 'PS' || tmp == 'SL') ?
-            { label: 'add Group', icon: 'pi pi-plus-circle', command: ()=> { /*this.addCourseWithPsCharacter()*/ } }
+            { label: 'add Group', icon: 'pi pi-plus-circle', command: ()=> { this.courseHandler.addGroup(this.rightClickEvent) } }
             : { label: 'split Course', icon: 'pi pi-arrow-up-right-and-arrow-down-left-from-center', disabled: true }
         )
     }
