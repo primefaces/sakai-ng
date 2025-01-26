@@ -286,7 +286,7 @@ interface expandedRows {
                         </td>
                     </tr>
                 </ng-template>
-                <ng-template #rowexpansion let-product>
+                <ng-template #expandedrow let-product>
                     <tr>
                         <td colspan="7">
                             <div class="p-3">
