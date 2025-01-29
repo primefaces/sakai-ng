@@ -1,30 +1,19 @@
-import { Component, Renderer2, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { filter, Subscription } from 'rxjs';
-
-import { AppFooter } from './app.footer';
-import { LayoutService } from '../service/layout.service';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { Component, Renderer2, ViewChild } from '@angular/core';
+import { RouterModule, Router, NavigationEnd } from '@angular/router';
+import { Subscription, filter } from 'rxjs';
+import { LayoutService } from '../../service/layout.service';
+import { FooterComponent } from '../footer/footer.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { TopBarComponent } from '../top-bar/top-bar.component';
 
 @Component({
     selector: 'app-layout',
-    standalone: true,
-    imports: [CommonModule, TopBarComponent, SidebarComponent, RouterModule, AppFooter],
-    template: `<div class="layout-wrapper" [ngClass]="containerClass">
-        <app-topbar></app-topbar>
-        <app-sidebar></app-sidebar>
-        <div class="layout-main-container">
-            <div class="layout-main">
-                <router-outlet></router-outlet>
-            </div>
-            <app-footer></app-footer>
-        </div>
-        <div class="layout-mask animate-fadein"></div>
-    </div> `
+    imports: [CommonModule, TopBarComponent, SidebarComponent, RouterModule, FooterComponent],
+    templateUrl: './layout.component.html',
+    styleUrl: './layout.component.scss'
 })
-export class AppLayout {
+export class LayoutComponent {
     overlayMenuOpenSubscription: Subscription;
 
     menuOutsideClickListener: any;
