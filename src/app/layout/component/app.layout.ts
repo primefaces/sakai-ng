@@ -3,15 +3,15 @@ import { CommonModule } from '@angular/common';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 
-import { AppSidebar } from './app.sidebar';
 import { AppFooter } from './app.footer';
 import { LayoutService } from '../service/layout.service';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, TopBarComponent, AppSidebar, RouterModule, AppFooter],
+    imports: [CommonModule, TopBarComponent, SidebarComponent, RouterModule, AppFooter],
     template: `<div class="layout-wrapper" [ngClass]="containerClass">
         <app-topbar></app-topbar>
         <app-sidebar></app-sidebar>
@@ -29,7 +29,7 @@ export class AppLayout {
 
     menuOutsideClickListener: any;
 
-    @ViewChild(AppSidebar) appSidebar!: AppSidebar;
+    @ViewChild(SidebarComponent) appSidebar!: SidebarComponent;
 
     @ViewChild(TopBarComponent) appTopBar!: TopBarComponent;
 
