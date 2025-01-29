@@ -1,9 +1,8 @@
 import { Component, ElementRef } from '@angular/core';
-import { AppMenu } from '../app.menu';
-
+import { MenuComponent } from '../menu/menu.component';
 @Component({
     selector: 'app-sidebar',
-    imports: [AppMenu],
+    imports: [MenuComponent],
     templateUrl: './sidebar.component.html',
     styleUrl: './sidebar.component.scss'
 })
