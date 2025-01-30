@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './app/layout/component/layout/layout.component';
-import { Dashboard } from './app/pages/dashboard/dashboard';
-
+import { DashboardComponent } from './app/pages/dashboard/dashboard/dashboard.component';
 import { Landing } from './app/pages/landing/landing';
 import { NotFoundComponent } from './app/pages/not-found/not-found.component';
 import { DocumentationComponent } from './app/pages/documentation/documentation.component';
@@ -11,7 +10,7 @@ export const appRoutes: Routes = [
         path: '',
         component: LayoutComponent,
         children: [
-            { path: '', component: Dashboard },
+            { path: '', component: DashboardComponent },
             { path: 'uikit', loadChildren: () => import('./app/pages/uikit/uikit.routes') },
             { path: 'documentation', component: DocumentationComponent },
             { path: 'pages', loadChildren: () => import('./app/pages/pages.routes') }
