@@ -1,18 +1,15 @@
 import { Component } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
-import { debounceTime, Subscription } from 'rxjs';
-import { LayoutService } from '../../../layout/service/layout.service';
+import { Subscription, debounceTime } from 'rxjs';
+import { LayoutService } from '../../../../layout/service/layout.service';
 
 @Component({
-    standalone: true,
     selector: 'app-revenue-stream-widget',
     imports: [ChartModule],
-    template: `<div class="card !mb-8">
-        <div class="font-semibold text-xl mb-4">Revenue Stream</div>
-        <p-chart type="bar" [data]="chartData" [options]="chartOptions" class="h-80" />
-    </div>`
+    templateUrl: './revenue-stream-widget.component.html',
+    styleUrl: './revenue-stream-widget.component.scss'
 })
-export class RevenueStreamWidget {
+export class RevenueStreamWidgetComponent {
     chartData: any;
 
     chartOptions: any;

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { NotificationsWidget } from '../components/notificationswidget';
-import { RecentSalesWidget } from '../components/recentsaleswidget';
-import { RevenueStreamWidget } from '../components/revenuestreamwidget';
-import { StatsWidget } from '../components/statswidget';
+import { RecentSalesWidgetComponent } from '../components/recent-sales-widget/recent-sales-widget.component';
 import { BestsellingWidgetComponent } from '../components/bestselling-widget/bestselling-widget.component';
+import { NotificationsWidgetComponent } from '../components/notifications-widget/notifications-widget.component';
+import { RevenueStreamWidgetComponent } from '../components/revenue-stream-widget/revenue-stream-widget.component';
+import { StatsWidgetComponent } from '../components/stats-widget/stats-widget.component';
 
 @Component({
     selector: 'app-dashboard',
-    imports: [StatsWidget, RecentSalesWidget, BestsellingWidgetComponent, RevenueStreamWidget, NotificationsWidget],
+    imports: [StatsWidgetComponent, RecentSalesWidgetComponent, BestsellingWidgetComponent, RevenueStreamWidgetComponent, NotificationsWidgetComponent],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.scss'
 })
