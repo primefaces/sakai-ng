@@ -18,6 +18,12 @@ import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { CustomerService } from '../service/customer.service';
 import { ProductService } from '../service/product.service';
+import { Dialog, DialogModule } from 'primeng/dialog';
+import { ServicesFormComponent } from './services-form/services-form.component';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { DrawerModule } from 'primeng/drawer';
+import { PopoverModule } from 'primeng/popover';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
     selector: 'app-services',
@@ -37,7 +43,9 @@ import { ProductService } from '../service/product.service';
         ButtonModule,
         RatingModule,
         RippleModule,
-        IconFieldModule
+        IconFieldModule,
+        DialogModule,
+        ServicesFormComponent
     ],
     templateUrl: './services.component.html',
     styleUrl: './services.component.scss',
@@ -70,6 +78,8 @@ export class ServicesComponent implements OnInit {
         { name: 'Stephen Shaw', image: 'stephenshaw.png' },
         { name: 'XuXue Feng', image: 'xuxuefeng.png' }
     ];
+
+    isDialogVisible = false;
 
     ngOnInit(): void {
         this.customerService.getCustomersLarge().then((customers) => {
@@ -116,5 +126,11 @@ export class ServicesComponent implements OnInit {
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+    }
+    showDialog() {
+        this.isDialogVisible = true;
+    }
+    hideDialog() {
+        this.isDialogVisible = false;
     }
 }
