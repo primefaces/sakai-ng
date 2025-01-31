@@ -1,11 +1,9 @@
-import { WorkoutExerciseResponse } from './WorkoutExerciseResponse';
-
 export interface Workout {
     id: string;
-    date: string;
-    workoutType: string;
-    totalTime?: number;
-    totalRounds?: number;
-    notes?: string;
-    exercises: WorkoutExerciseResponse[];
+    user_id: string,
+    workout_date: string;
+    workout_type: string;
+    total_time: number | null;
+    total_rounds: number | null;
+    notes: string | null;
 }

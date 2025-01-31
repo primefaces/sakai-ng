@@ -1,0 +1,45 @@
+<p-toast></p-toast>
+<p-toolbar styleClass="mb-6">
+    <ng-template #start>
+    </ng-template>
+    <ng-template #center>
+        <p-button label="Neues Workout" icon="pi pi-plus" severity="secondary" class="mr-2" (onClick)="openNewWorkoutDialog()" />
+    </ng-template>
+    <ng-template #end>
+    </ng-template>
+</p-toolbar>
+
+<app-workout-create
+    [visible] = "createWorkoutDialog"
+    (closeDialog)="closeNewWorkoutDialog()"
+    (saveWorkout)="saveWorkout($event)"
+></app-workout-create>
+
+
+<p-table [value]="workoutService.workouts()" [paginator]="true" [rows]="10" responsiveLayout="scroll">
+    <ng-template #header>
+        <tr>
+            <th>Datum</th>
+            <th>Workout Typ</th>
+            <th>Übungen</th>
+            <th>Details</th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-item>
+        <tr>
+            <td style="width: 35%; min-width: 7rem;">{{ item.workout.workout_date | date: 'dd.MM.yyyy' }}</td>
+            <td style="width: 35%; min-width: 8rem;">{{ item.workout.workout_type }}</td>
+            <td style="width: 35%; min-width: 8rem;">{{ getExerciseNames(item.exercises) }}</td>
+            <td style="width: 15%;">
+                <button pButton pRipple type="button" icon="pi pi-search" class="p-button p-component p-button-text p-button-icon-only" (click)="openWorkoutDetailsDialog(item)"></button>
+                <button pButton pRipple severity="danger" type="button" icon="pi pi-trash" class="p-button p-component p-button-text p-button-icon-only" (click)="deleteWorkout(item.workout.id)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<app-workout-detail
+    [visible]="detailWorkoutDialog"
+    [workout]="selectedWorkout"
+    (closeDialog)="closeWorkoutDetailDialog()">
+</app-workout-detail>

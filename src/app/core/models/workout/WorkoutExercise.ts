@@ -1,8 +1,8 @@
 export interface WorkoutExercise {
-    exerciseName: string;
-    category: string;
-    isStrength: boolean;
-    reps?: number;
-    weight?: number;
-    duration?: number;
+    id: string,
+    workout_id: string,
+    exercise_id: string
+    reps: number | null;
+    weight: number | null;
+    duration: number | null;
 }

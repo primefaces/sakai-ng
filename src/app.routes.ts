@@ -5,17 +5,20 @@ import { Documentation } from './app/pages/documentation/documentation';
 import { Landing } from './app/pages/landing/landing';
 import { Notfound } from './app/pages/notfound/notfound';
 import { DashboardOld } from './app/pages/_archiv/dashboard/dashboard';
-import { WorkoutListComponent } from './app/workout/workout-list/workout-list.component';
+import { WorkoutListComponent } from './app/workout/components/workout-list/workout-list.component';
 import { ProfileComponent } from './app/profile/profile/profile.component';
+import { authGuard } from './app/auth/service/auth.guard';
+import { ExerciseListComponent } from './app/exercise/exercise-list/exercise-list.component';
 
 export const appRoutes: Routes = [
     {
         path: '',
         component: AppLayout,
         children: [
-            { path: '', component: Dashboard },
-            { path: 'workouts', component: WorkoutListComponent },
-            { path: 'profile', component: ProfileComponent },
+            { path: '', component: Dashboard, canActivate: [authGuard] },
+            { path: 'workouts', component: WorkoutListComponent, canActivate: [authGuard]},
+            { path: 'exercises', component: ExerciseListComponent, canActivate: [authGuard]},
+            { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
             { path: 'old', component: DashboardOld },
             { path: 'uikit', loadChildren: () => import('./app/pages/uikit/uikit.routes') },
             { path: 'documentation', component: Documentation },
@@ -24,6 +27,6 @@ export const appRoutes: Routes = [
     },
     { path: 'landing', component: Landing },
     { path: 'notfound', component: Notfound },
-    { path: 'auth', loadChildren: () => import('./app/auth/auth.routes') },
+    { path: 'auth', loadChildren: () => import('./app/auth/components/auth.routes') },
     { path: '**', redirectTo: '/notfound' }
 ];

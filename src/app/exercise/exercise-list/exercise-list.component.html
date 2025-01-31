@@ -1,0 +1,34 @@
+<p-table #dt [globalFilterFields]="['name']" [value]="exerciseService.exercises()" [paginator]="true" [rows]="15" responsiveLayout="scroll">
+    <ng-template #caption>
+        <div class="flex items-center justify-between">
+            <h5 class="m-0">Fortschritt Übungen</h5>
+            <p-iconfield>
+                <p-inputicon styleClass="pi pi-search" />
+                <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Suche..." />
+            </p-iconfield>
+        </div>
+    </ng-template>
+    <ng-template #header>
+        <tr>
+            <th>Name</th>
+            <th>Kategorie</th>
+            <th>Details</th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-exercise>
+        <tr>
+            <td style="width: 35%; min-width: 7rem;">{{ exercise.name }}</td>
+            <td style="width: 35%; min-width: 8rem;">{{ exercise.category }}</td>
+            <td style="width: 15%; min-width: 7rem;">
+                <button pButton pRipple type="button" icon="pi pi-search" class="p-button p-component p-button-text p-button-icon-only" (click)="openExerciseDetailsDialog(exercise)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<app-exercise-detail
+    [visible]="exerciseDialogVisible"
+    [exercise]="selectedExercise"
+    (closeDialog)="closeExerciseDialog()"
+>
+</app-exercise-detail>

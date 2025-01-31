@@ -1,14 +1,13 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app.config';
 import { AppComponent } from './app.component';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { AuthInterceptor } from './app/core/services/auth.interceptor';
+import { MessageService } from 'primeng/api';
 
 const updatedAppConfig = {
     ...appConfig,
     providers: [
         ...(appConfig.providers || []), // Preserve existing providers from appConfig
-        provideHttpClient(withInterceptors([AuthInterceptor])), // Add the interceptor
+        MessageService
     ],
 };
 

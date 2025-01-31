@@ -1,31 +1,15 @@
-<p-toolbar styleClass="mb-6">
-    <ng-template #start>
-    </ng-template>
-    <ng-template #center>
-        <p-button label="Neues Workout" icon="pi pi-plus" severity="secondary" class="mr-2" (onClick)="openNew()" />
-    </ng-template>
-    <ng-template #end>
-    </ng-template>
-</p-toolbar>
-
-<p-dialog
-    [(visible)]="newDialogVisible"
-    [style]="{ width: '450px', height: '800px' }"
-    header="Neues Workout"
-    [modal]="true"
->
+<p-dialog [(visible)]="visible"
+          [style]="{ width: '600px', height: '800px' }"
+          header="Neues Workout"
+          [modal]="true"
+          (onHide)="hideDialog()">
     <ng-template #content>
         <form [formGroup]="workoutForm">
             <div class="flex flex-col gap-4">
                 <!-- Date -->
                 <div>
                     <div class="block font-bold mb-2">Datum</div>
-                    <p-datepicker
-                        formControlName="date"
-                        [showIcon]="true"
-                        [showButtonBar]="true"
-                        fluid
-                    ></p-datepicker>
+                    <p-datepicker formControlName="date" [showIcon]="true" [showButtonBar]="true" fluid></p-datepicker>
                 </div>
 
                 <!-- Workout Type -->
@@ -46,47 +30,25 @@
                 <div class="grid grid-cols-12 gap-4">
                     <div class="col-span-6">
                         <div class="block font-bold mb-2">Zeit (Minuten)</div>
-                        <input
-                            pInputText
-                            formControlName="totalTime"
-                            placeholder="MM:SS"
-                            (input)="onTotalTimeInput($event)" />
+                        <input pInputText formControlName="totalTime" placeholder="MM:SS" />
                     </div>
                     <div class="col-span-6">
                         <div class="block font-bold mb-2">Runden</div>
-                        <p-inputNumber
-                            formControlName="totalRounds"
-                            [min]="0"
-                            mode="decimal"
-                            [showButtons]="true"
-                        ></p-inputNumber>
+                        <p-inputNumber formControlName="totalRounds" [min]="0" mode="decimal" [showButtons]="true"></p-inputNumber>
                     </div>
                 </div>
+
                 <!-- Notes -->
                 <div>
                     <label for="notes" class="block font-bold mb-1">Notes</label>
-                    <textarea
-                        id="notes"
-                        pTextarea
-                        formControlName="notes"
-                        required
-                        rows="3"
-                        cols="20"
-                        fluid
-                    ></textarea>
+                    <textarea id="notes" pTextarea formControlName="notes" required rows="3" cols="20" fluid></textarea>
                 </div>
 
                 <!-- Exercises -->
                 <div>
                     <div class="flex justify-between items-center">
                         <label class="block font-bold mb-3">Übungen</label>
-                        <p-button
-                            icon="pi pi-plus"
-                            [rounded]="true"
-                            [text]="true"
-                            severity="secondary"
-                            (click)="addExerciseGroup()"
-                        ></p-button>
+                        <p-button icon="pi pi-plus" [rounded]="true" [text]="true" severity="secondary" (click)="addExerciseGroup()"></p-button>
                     </div>
 
                     <div formArrayName="exercises">
@@ -97,12 +59,9 @@
                                 class="flex flex-col gap-2"
                                 [value]="i"
                             >
-                                <!-- Accordion Header -->
                                 <p-accordion-header>
-                                    {{ exercise.get('exercise')?.value?.name || 'Übungsname'}}
+                                    {{ exercise.get('exercise')?.value?.name || 'Übungsname' }}
                                 </p-accordion-header>
-
-                                <!-- Accordion Content -->
                                 <p-accordion-content>
                                     <!-- Exercise Autocomplete -->
                                     <div class="block font-bold mb-2">Übung</div>
@@ -116,27 +75,20 @@
                                         class="mb-3"
                                     ></p-autocomplete>
 
-                                    <!-- Exercise Details -->
+                                    <!-- Reps -->
                                     <div class="grid grid-cols-12 gap-4 mt-3">
-                                        <!-- Reps -->
                                         <div class="col-span-6">
                                             <div class="block font-bold mb-2">Wiederholungen</div>
-                                            <p-inputNumber formControlName="reps" placeholder="Reps" ></p-inputNumber>
+                                            <p-inputNumber formControlName="reps" placeholder="Reps"></p-inputNumber>
                                         </div>
-
-                                        <!-- Weight -->
                                         <div class="col-span-6">
                                             <div class="block font-bold mb-2">Gewicht</div>
                                             <p-inputNumber formControlName="weight" placeholder="Weight"></p-inputNumber>
                                         </div>
-
-                                        <!-- Duration -->
-                                        <div class="col-span-9 ">
+                                        <div class="col-span-9">
                                             <div class="block font-bold mb-2">Zeit (Minuten)</div>
                                             <p-inputNumber formControlName="duration" placeholder="Duration"></p-inputNumber>
                                         </div>
-
-                                        <!-- Remove Exercise Button -->
                                         <div class="col-span-3 flex items-center">
                                             <p-button
                                                 icon="pi pi-trash"
@@ -151,15 +103,13 @@
                             </p-accordion-panel>
                         </p-accordion>
                     </div>
-
                 </div>
             </div>
         </form>
     </ng-template>
-
     <ng-template #footer>
         <p-button label="Abbrechen" icon="pi pi-times" text (click)="hideDialog()" />
-        <p-button label="Speichern" icon="pi pi-check" (click)="saveWorkout()" />
+        <p-button label="Speichern" icon="pi pi-check" (click)="save()" />
     </ng-template>
 </p-dialog>
 

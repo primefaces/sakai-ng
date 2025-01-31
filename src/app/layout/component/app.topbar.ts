@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigurator } from './app.configurator';
 import { LayoutService } from '../service/layout.service';
-import { AuthService } from '../../core/services/auth.service';
+import { AuthService } from '../../auth/service/auth.service';
 import { Tooltip } from 'primeng/tooltip';
 
 @Component({
@@ -46,10 +46,14 @@ import { Tooltip } from 'primeng/tooltip';
 
             <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
-                    @if (this.authService.isAuthenticated()) {
+                    @if (authService.currentUser()) {
                         <button type="button" class="layout-topbar-action" pTooltip="Meine Workouts" showDelay="300" hideDelay="300" tooltipPosition="bottom" routerLink="/workouts">
-                            <i class="pi pi-home"></i>
+                            <i class="fas fa-scroll"></i>
                             <span>Meine Workouts</span>
+                        </button>
+                        <button type="button" class="layout-topbar-action" pTooltip="Zu den Übungen" showDelay="300" hideDelay="300" tooltipPosition="bottom" routerLink="/exercises">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Übungen</span>
                         </button>
                         <button type="button" class="layout-topbar-action" pTooltip="Mein Profil" showDelay="300" hideDelay="300" tooltipPosition="bottom">
                             <i class="pi pi-user"></i>
@@ -59,7 +63,7 @@ import { Tooltip } from 'primeng/tooltip';
                             <i class="pi pi-sign-out"></i>
                             <span>Abmelden</span>
                         </button>
-                    } @else {
+                    } @if (authService.currentUser() === null) {
                         <button type="button" class="layout-topbar-action" routerLink="/auth/login" pTooltip="Einloggen" showDelay="300" hideDelay="300" tooltipPosition="bottom">
                             <i class="pi pi-sign-in"></i>
                             <span>Anmelden</span>
@@ -72,11 +76,8 @@ import { Tooltip } from 'primeng/tooltip';
 })
 export class AppTopbar {
     items!: MenuItem[];
-
-    constructor(
-        public layoutService: LayoutService,
-        public authService: AuthService
-    ) {}
+    layoutService = inject(LayoutService);
+    authService = inject(AuthService);
 
     toggleDarkMode() {
         this.layoutService.layoutConfig.update((state) => ({ ...state, darkTheme: !state.darkTheme }));

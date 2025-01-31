@@ -1,49 +1,54 @@
-import { Injectable } from '@angular/core';
-import { catchError, Observable, of, pipe, throwError } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environment/environment';
+import { inject, Injectable, signal } from '@angular/core';
 import { Workout } from '../../core/models/workout/Workout';
-import { Exercise } from '../../core/models/exercises/Exercise';
+import { WorkoutExercise } from '../../core/models/workout/WorkoutExercise';
+import { DataService } from '../../core/services/data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorkoutService {
-    private apiUrlWorkout = `${environment.apiUrl}/workouts`;
-    private apiUrlExercises = `${environment.apiUrl}/exercises`;
+    workouts = signal<{ workout: Workout; exercises: WorkoutExercise[] }[]>([]);
+    selectedWorkout = signal<{ workout: Workout; exercises: WorkoutExercise[] } | null>(null);
 
-    constructor(private http: HttpClient) { }
+    dataService = inject(DataService);
 
-    getWorkoutTypes(): Observable<string[]> {
-        return this.http
-            .get<string[]>(`${this.apiUrlWorkout}/workout-types`)
-            .pipe(
-                catchError((error) => {
-                    console.error('Error fetching workout types:', error);
-                    return of([]); // Return an empty array if there's an error
-                })
-            );
-    }
-
-    getWorkouts(): Observable<Workout[]> {
-        return this.http.get<Workout[]>(this.apiUrlWorkout);
-    }
-
-    getExercises(): Observable<Exercise[]> {
-        return this.http.get<Exercise[]>(`${this.apiUrlExercises}`).pipe(
-            catchError((error) => {
-                console.error('Error fetching exercises:', error);
-                return of([]); // Return an empty array in case of error
-            })
-        );
-    }
-
-    saveWorkout(workout: any): Observable<any> {
-        return this.http.post(`${this.apiUrlWorkout}`, workout).pipe(
-            catchError((error) => {
+    // Add a new workout to the state
+    addWorkout(newWorkout: { workout: Workout; exercises: WorkoutExercise[] }): void {
+        this.dataService.addWorkout(newWorkout.workout, newWorkout.exercises).subscribe(
+            () => {
+                // Only update the state when the backend call succeeds
+                this.workouts.update((workouts) => [...workouts, newWorkout]);
+            },
+            (error) => {
                 console.error('Error saving workout:', error);
-                return throwError(error);
-            })
+            }
         );
+    }
+
+    // Update a workout in the state
+    updateWorkout(workout: Workout, exercises: WorkoutExercise[]): void {
+        this.workouts.update((workouts) =>
+            workouts.map((w) =>
+                w.workout.id === workout.id
+                    ? { workout, exercises } // Replace with updated workout and exercises
+                    : w
+            )
+        );
+    }
+
+    // Remove a workout from the state
+    removeWorkout(workoutId: string): void {
+        this.workouts.update((workouts) => workouts.filter((w) => w.workout.id !== workoutId));
+    }
+
+    // Set the selected workout
+    selectWorkout(workoutId: string): void {
+        const selected = this.workouts().find((w) => w.workout.id === workoutId) || null;
+        this.selectedWorkout.set(selected);
+    }
+
+    // Clear the selected workout
+    clearSelectedWorkout(): void {
+        this.selectedWorkout.set(null);
     }
 }

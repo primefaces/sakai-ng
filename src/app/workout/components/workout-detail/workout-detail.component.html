@@ -1,0 +1,101 @@
+<p-dialog [(visible)]="visible"
+          [style]="{ width: '600px', height: '800px' }"
+          header="Workout Details"
+          [modal]="true"
+          (onHide)="hideDialog()">
+    <ng-template #content>
+        <form [formGroup]="workoutForm">
+            <div class="flex flex-col gap-4">
+                <!-- Date -->
+                <div>
+                    <div class="block font-bold mb-2">Datum</div>
+                    @if (workoutForm.disabled) {
+                        <input pInputText formControlName="date" fluid />
+                    } @else if (!workoutForm.disabled) {
+                        <p-datepicker formControlName="date" [showIcon]="true" [showButtonBar]="true" fluid placeholder="{{workoutForm.getRawValue().date}}" ></p-datepicker>
+                    }
+                </div>
+
+                <!-- Workout Type -->
+                <div>
+                    <div class="block font-bold mb-2">Workout Type</div>
+                    <p-autocomplete
+                        formControlName="workoutType"
+                        fluid
+                        [suggestions]="[]"
+                        optionLabel="label"
+                        placeholder="Search"
+                        dropdown
+                    ></p-autocomplete>
+                </div>
+
+                <!-- Time and Rounds -->
+                <div class="grid grid-cols-12 gap-4">
+                    <div class="col-span-6">
+                        <div class="block font-bold mb-2">Zeit (Minuten)</div>
+                        <input pInputText formControlName="totalTime" placeholder="MM:SS" />
+                    </div>
+                    <div class="col-span-6">
+                        <div class="block font-bold mb-2">Runden</div>
+                        <p-inputNumber formControlName="totalRounds" [min]="0" mode="decimal" [showButtons]="true" ></p-inputNumber>
+                    </div>
+                </div>
+
+                <!-- Notes -->
+                <div>
+                    <label for="notes" class="block font-bold mb-1">Notes</label>
+                    <textarea id="notes" pTextarea formControlName="notes"  rows="3" cols="20" fluid></textarea>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-center">
+                        <label class="block font-bold mb-3">Übungen</label>
+                    </div>
+
+                    <div formArrayName="exercises">
+                        <p-accordion id="exercises">
+                            <p-accordion-panel
+                                *ngFor="let exercise of exercisesArray.controls; let i = index"
+                                [formGroupName]="i"
+                                class="flex flex-col gap-2"
+                                [value]="i"
+                            >
+                                <p-accordion-header>
+                                    {{ exercise.get('exercise_name')?.value || 'Übungsname' }}
+                                </p-accordion-header>
+                                <p-accordion-content>
+                                    <!-- Exercise Details -->
+                                    <div class="grid grid-cols-12 gap-4 mt-3">
+                                        <!-- Reps -->
+                                        <div class="col-span-6">
+                                            <div class="block font-bold mb-2">Wiederholungen</div>
+                                            <p-inputNumber formControlName="reps" placeholder="Reps" ></p-inputNumber>
+                                        </div>
+                                        <!-- Weight -->
+                                        <div class="col-span-6">
+                                            <div class="block font-bold mb-2">Gewicht</div>
+                                            <p-inputNumber formControlName="weight" placeholder="Weight" ></p-inputNumber>
+                                        </div>
+                                        <!-- Duration -->
+                                        <div class="col-span-12">
+                                            <div class="block font-bold mb-2">Zeit (Minuten)</div>
+                                            <p-inputNumber formControlName="duration" placeholder="Duration" ></p-inputNumber>
+                                        </div>
+                                    </div>
+                                </p-accordion-content>
+                            </p-accordion-panel>
+                        </p-accordion>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+    <ng-template #footer>
+        <p-button label="Schließen" icon="pi pi-times" text (click)="hideDialog()" />
+        @if (workoutForm.disabled) {
+            <p-button label="Bearbeiten" icon="pi pi-pencil" (click)="edit()" />
+        } @else if (!workoutForm.disabled) {
+            <p-button label="Save" icon="pi pi-check" (click)="save()" />
+        }
+    </ng-template>
+</p-dialog>

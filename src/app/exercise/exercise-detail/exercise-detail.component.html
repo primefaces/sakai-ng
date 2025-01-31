@@ -1,0 +1,17 @@
+
+<p-dialog [(visible)]="visible"
+          [style]="{ width: '600px', height: '800px' }"
+          header="{{exercise?.name}}"
+          [modal]="true"
+          (onHide)="hideDialog()">
+    <ng-template #content>
+        <p-fluid class="grid grid-cols-12 gap-8">
+            <div class="col-span-12">
+                <p-chart type="line" [data]="chartData" [options]="lineOptions"></p-chart>
+            </div>
+        </p-fluid>
+    </ng-template>
+    <ng-template #footer>
+        <p-button label="Schließen" icon="pi pi-times" text (click)="hideDialog()" />
+    </ng-template>
+</p-dialog>
