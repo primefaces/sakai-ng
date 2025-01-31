@@ -6,7 +6,7 @@
     <p-table #dt1 [value]="customers" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']" responsiveLayout="scroll">
         <ng-template #caption>
             <div class="flex justify-between items-center flex-column sm:flex-row">
-                <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
                 <p-iconfield iconPosition="left" class="ml-auto">
                     <p-inputicon>
                         <i class="pi pi-search"></i>
@@ -48,7 +48,7 @@
         </ng-template>
         <ng-template #body let-customer>
             <tr>
-                <td>
+                <td contentEditable="true">
                     {{ customer.name }}
                 </td>
 
