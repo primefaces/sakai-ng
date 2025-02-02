@@ -73,13 +73,10 @@
     </p-table>
 </div>
 
-<div class="card">
-    <div class="font-semibold text-xl mb-4">Dialog</div>
-    <p-dialog header="Create Service" [(visible)]="isDialogVisible" [position]="'top'" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '25vw' }" [modal]="true">
-        <app-services-form></app-services-form>
-        <ng-template #footer>
-            <p-button p-ripple p-button p-component p-button-secondary p-button-text label="Cancel" [text]="true" severity="secondary" (click)="hideDialog()" />
-            <p-button label="Save" (click)="hideDialog()" />
-        </ng-template>
-    </p-dialog>
-</div>
+<p-dialog header="Create Service" [(visible)]="isDialogVisible" [position]="'top'" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '25vw' }" [modal]="true">
+    <app-services-form></app-services-form>
+    <ng-template #footer>
+        <p-button p-ripple p-button p-component p-button-secondary p-button-text label="Cancel" [text]="true" severity="secondary" (click)="hideDialog()" />
+        <p-button label="Save" (click)="hideDialog()" />
+    </ng-template>
+</p-dialog>

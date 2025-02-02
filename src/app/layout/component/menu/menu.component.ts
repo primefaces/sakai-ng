@@ -20,6 +20,11 @@ export class MenuComponent {
                 items: [
                     { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
                     {
+                        label: 'Sales',
+                        icon: 'pi pi-fw pi-dollar',
+                        routerLink: ['/sales']
+                    },
+                    {
                         label: 'Services',
                         icon: 'pi pi-fw pi-hammer',
                         routerLink: ['/services']

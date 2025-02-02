@@ -1,0 +1,9 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    i {
+        font-size: 16px;
+        cursor: pointer;
+    }
+}

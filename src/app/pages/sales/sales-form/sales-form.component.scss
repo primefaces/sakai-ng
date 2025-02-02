@@ -1,0 +1,33 @@
+main {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 25px;
+    margin-bottom: 35px;
+}
+
+.input-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    padding-inline: 20px;
+
+    label {
+        width: 170px;
+    }
+
+    input,
+    .input {
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr; /* Single-column layout */
+    }
+}
+
+::ng-deep .p-datepicker {
+    width: 100%;
+}

@@ -16,8 +16,11 @@ export const appRoutes: Routes = [
             { path: 'pages', loadChildren: () => import('./app/pages/pages.routes') },
             {
                 path: 'services',
-                data: { breadcrumb: 'Overlay' },
                 loadComponent: () => import('./app/pages/services/services.component').then((c) => c.ServicesComponent)
+            },
+            {
+                path: 'sales',
+                loadComponent: () => import('./app/pages/sales/sales.component').then((c) => c.SalesComponent)
             }
         ]
     },

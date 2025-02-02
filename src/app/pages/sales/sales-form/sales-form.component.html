@@ -1,0 +1,42 @@
+<main class="p-fluid">
+    <div class="input-container">
+        <label for="date">Date</label>
+        <p-datepicker class="input" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" [(ngModel)]="date" />
+    </div>
+    <div class="input-container">
+        <label for="carRegNo">Car RegNo</label>
+        <input pInputText id="carRegNo" [(ngModel)]="value3" autocomplete="off" />
+    </div>
+    <div class="input-container">
+        <label for="timeStart">Time Start</label>
+        <p-datepicker class="input" inputId="timeStart" [(ngModel)]="timeStart" [timeOnly]="true" />
+    </div>
+    <div class="input-container">
+        <label for="timeEnd">Time End</label>
+        <p-datepicker [responsiveOptions]="responsiveOptions" class="input" inputId="timeEnd" [(ngModel)]="timeEnd" [timeOnly]="true" />
+    </div>
+
+    <div class="input-container">
+        <label for="serviceType">Service Type</label>
+        <input pInputText id="carMake" [(ngModel)]="value3" autocomplete="off" />
+    </div>
+
+    <div class="input-container">
+        <label for="price">Price</label>
+        <input pInputText id="price" [(ngModel)]="value3" autocomplete="off" />
+    </div>
+
+    <div class="input-container">
+        <label for="status">Status</label>
+        <input pInputText id="status" [(ngModel)]="value3" autocomplete="off" />
+    </div>
+
+    <div class="input-container">
+        <label for="paymentMethod">Payment Method</label>
+        <input pInputText id="paymentMethod" [(ngModel)]="value3" autocomplete="off" />
+    </div>
+    <div class="input-container">
+        <label for="comments">Comments</label>
+        <input pInputText id="comments" [(ngModel)]="value3" autocomplete="off" />
+    </div>
+</main>
