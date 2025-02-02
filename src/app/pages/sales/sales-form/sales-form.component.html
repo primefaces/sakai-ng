@@ -13,12 +13,12 @@
     </div>
     <div class="input-container">
         <label for="timeEnd">Time End</label>
-        <p-datepicker [responsiveOptions]="responsiveOptions" class="input" inputId="timeEnd" [(ngModel)]="timeEnd" [timeOnly]="true" />
+        <p-datepicker class="input" inputId="timeEnd" [(ngModel)]="timeEnd" [timeOnly]="true" />
     </div>
 
     <div class="input-container">
         <label for="serviceType">Service Type</label>
-        <input pInputText id="carMake" [(ngModel)]="value3" autocomplete="off" />
+        <p-select class="input" [options]="services" [(ngModel)]="selectedService" optionLabel="label" placeholder="Select a Service" class="w-full md:w-56" />
     </div>
 
     <div class="input-container">
@@ -28,7 +28,7 @@
 
     <div class="input-container">
         <label for="status">Status</label>
-        <input pInputText id="status" [(ngModel)]="value3" autocomplete="off" />
+        <p-select class="input" [options]="statuses" [(ngModel)]="selectedStatus" optionLabel="name" placeholder="Select a Status" class="w-full md:w-56" />
     </div>
 
     <div class="input-container">

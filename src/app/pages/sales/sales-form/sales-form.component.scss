@@ -28,6 +28,13 @@ main {
     }
 }
 
-::ng-deep .p-datepicker {
+@media (max-width: 411px) {
+    ::ng-deep .p-datepicker .p-datepicker-panel {
+        left: -69px !important;
+    }
+}
+
+::ng-deep .p-datepicker,
+.p-select {
     width: 100%;
 }

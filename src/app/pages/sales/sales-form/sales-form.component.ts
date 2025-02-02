@@ -26,4 +26,21 @@ export class SalesFormComponent {
     date = new Date();
     timeStart = '13:00';
     timeEnd = '17:00';
+    selectedService = 'Full wash';
+    services = [
+        { label: 'Full wash', value: 'Full wash', price: 100 },
+        {
+            label: 'Interior wash',
+            value: 'Interior wash',
+            price: 50
+        },
+        { label: 'Exterior wash', value: 'Exterior wash', price: 50 },
+        { label: 'Engine wash', value: 'Engine wash', price: 50 }
+    ];
+
+    statuses = [
+        { name: 'Paid', code: 'paid' },
+        { name: 'Due', code: 'due' }
+    ];
+    selectedStatus = 'Paid  ';
 }

@@ -83,7 +83,7 @@ export class SalesComponent {
             this.loading = false;
 
             // @ts-ignore
-            this.customers1.forEach((customer) => (customer.date = new Date(customer.date)));
+            this.customers.forEach((customer) => (customer.date = new Date(customer.date)));
         });
     }
 
