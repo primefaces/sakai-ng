@@ -10,13 +10,13 @@ import {CalendarOptions, EventClickArg} from "@fullcalendar/core";
 import {FullCalendarComponent} from "@fullcalendar/angular";
 import {LayoutService} from "../../../layout/service/app.layout.service";
 import {TimeTable} from "../../../../assets/models/dto/time-table";
-import {MessageService} from "primeng/api";
 import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 import {animate, style, transition, trigger} from "@angular/animations";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
 import {CalendarContextMenuComponent} from "./calendar-context-menu/calendar-context-menu.component";
 import {DialogService} from "primeng/dynamicdialog";
 import {CourseInfoDialog} from "../dialogs/course-info-dialog/course-info-dialog.component";
+import {InvokerService} from "./commands/invoker.service";
 
 class InfoBox{
     icon: string;
@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit, AfterViewInit{
     @ViewChild("cal") calendar!: FullCalendarComponent;
 
     selectedTimeTable: TimeTable | null = null;
-    currentSessions: CourseSession[] = [];
+    currentSessions: Observable<CourseSession[]> = of([]);
     infos!: InfoBox[];
 
     isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -89,23 +89,18 @@ export class DashboardComponent implements OnInit, AfterViewInit{
 
     constructor(
         private layoutService: LayoutService,
-        private messageService: MessageService,
-        private dialogService: DialogService
+        private dialogService: DialogService,
+        private invoker: InvokerService
     ) {
         this.layoutService.changeStyle(true);
+        this.invoker.receiver = this;
     }
 
-    protected setNewTable(newTable: TimeTable){
+    public setNewTable(newTable: TimeTable){
         this.selectedTimeTable = newTable;
         localStorage.setItem('current-table', JSON.stringify(this.selectedTimeTable));
-        this.currentSessions = this.selectedTimeTable.courseSessions;
-        this.updateInfoBoxes();
-
-        this.messageService.add({
-            severity: 'success',
-            summary: 'LOAD NEW TABLE',
-            detail: 'finished loading the new table'
-        });
+        this.updateInfoBoxes(this.selectedTimeTable.courseSessions);
+        this.currentSessions = of(this.selectedTimeTable.courseSessions);
     }
 
     private clearCalendar(){
@@ -125,9 +120,9 @@ export class DashboardComponent implements OnInit, AfterViewInit{
         })
     }
 
-    private updateInfoBoxes(){
-        const assignedSessions = this.currentSessions.filter(s => s.assigned).length;
-        const allSessions = this.currentSessions.length;
+    private updateInfoBoxes(sessions: CourseSession[]){
+        const assignedSessions = sessions.filter(s => s.assigned).length;
+        const allSessions = sessions.length;
         this.infos[0].value = allSessions;
         this.infos[0].highlight = Math.round(assignedSessions/allSessions * 100).toFixed(1);
 

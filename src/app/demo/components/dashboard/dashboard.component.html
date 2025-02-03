@@ -27,9 +27,8 @@
                 <div class="spinner"></div>
             </div>
 
-            <full-calendar #cal class="custom-calendar" [style]="{'position':'relative'}"
-                           [options]="calendarOptions()"
-                           [events]="currentSessions | SessionToEvent: 'dashboard'">
+            <full-calendar #cal class="custom-calendar" [style]="{'position':'relative'}" [options]="calendarOptions()"
+                           [events]="currentSessions | async | SessionToEvent: 'dashboard'">
             </full-calendar>
         </div>
     </div>
