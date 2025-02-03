@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import {PrimeIcons} from "primeng/api";
 import {InvokerService} from "../demo/components/dashboard/commands/invoker.service";
+import {ComplexInvokerService} from "../demo/components/dashboard/commands/complex-invoker.service";
 
 @Component({
     selector: 'app-menu',
@@ -13,8 +14,9 @@ export class AppMenuComponent implements OnInit {
 
     constructor(
         public layoutService: LayoutService,
-        private invoker: InvokerService
-    ) { }
+        private invoker: InvokerService,
+        private complexInvoker: ComplexInvokerService
+) { }
 
     ngOnInit() {
         this.options = [
@@ -44,7 +46,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Collision Check',
                         icon: 'pi pi-check-circle',
-                        //command: () => this.applyCollisionCheck()
+                        command: () => this.complexInvoker.applyCollisionCheck()
                     },
                     {
                         label: 'Remove Collisions',

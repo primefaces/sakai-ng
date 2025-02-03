@@ -67,10 +67,6 @@ export class InvokerService {
         );
     }
 
-    public applyCollisionCheck(){
-
-    }
-
     public removeAll(){
         this.command = new SimpleRemoveAll(this.httpClient);
         this.applyCommand()
