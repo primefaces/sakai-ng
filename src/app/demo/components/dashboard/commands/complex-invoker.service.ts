@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {DashboardComponent} from "../dashboard.component";
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "primeng/api";
 import {ComplexCommand} from "./ComplexCommandInterface";
 import {SimpleCalculateCollision} from "./impl/CalculateCollisionCommand";
+import {DialogService} from "primeng/dynamicdialog";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class ComplexInvokerService {
 
     constructor(
         private httpClient: HttpClient,
-        private messageService: MessageService
+        private messageService: MessageService,
+        private dialogService: DialogService
     ) {
     }
 
@@ -31,15 +33,19 @@ export class ComplexInvokerService {
 
         this.command.execute(tableID)
             .catch( err => {
-                this.messageService.add({severity: 'error', summary: 'ERROR', detail: err.error});
+                this.messageService.add({severity: 'success', summary: 'NO COLLISIONS', detail: err});
             })
             .finally( () => this.receiver.isLoading.next(false));
     }
 
-
     public applyCollisionCheck(){
-        this.command = new SimpleCalculateCollision(this.httpClient);
-        this.applyCommand().then(() => {})
+        this.command = new SimpleCalculateCollision(this.httpClient, this.dialogService);
+        this.applyCommand().then()
+    }
+
+    public showLastChanges(){
+        this.command = new SimpleCalculateCollision(this.httpClient, this.dialogService);
+        this.applyCommand().then()
     }
 
     get receiver(): DashboardComponent {

@@ -1,5 +1,5 @@
 <p-table [globalFilterFields]="['changeType']"
-         [value]="collisions"
+         [value]="collisions | keyvalue"
          [columns]="cols"
          styleClass="p-datatable-striped">
     <ng-template pTemplate="header" let-columns>

@@ -4,7 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {CollisionType, getCollisionTypes} from "../../../../../../assets/models/enums/collision-type";
 import {TableModule} from "primeng/table";
-import {NgForOf} from "@angular/common";
+import {KeyValuePipe, NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-user-dialog',
@@ -13,7 +13,9 @@ import {NgForOf} from "@angular/common";
         TableModule,
         DropdownModule,
         NgForOf,
-        FormsModule
+        FormsModule,
+        KeyValuePipe,
+        NgIf
 
     ],
   templateUrl: './course-info.component.html'
@@ -31,6 +33,7 @@ export class CollisionInfoDialog implements OnInit, OnDestroy{
 
     private initData():void {
         this.collisions = this.config.data['collisions'];
+        console.log(this.collisions)
     }
 
     closeDialog(){

@@ -4,26 +4,30 @@ import {firstValueFrom} from "rxjs";
 import {ComplexCommand} from "../ComplexCommandInterface";
 import {CollisionType} from "../../../../../../assets/models/enums/collision-type";
 import {DialogService} from "primeng/dynamicdialog";
-import {inject} from "@angular/core";
 import {CollisionInfoDialog} from "../../../dialogs/HomeDialogs/collision-info-dialog/course-info-dialog.component";
 
 export class SimpleCalculateCollision implements ComplexCommand {
-    constructor(
-        private http: HttpClient
-    ) {}
 
-    async execute(tableID: string): Promise<void> {
+    constructor(
+        private http: HttpClient,
+        private dialogService: DialogService,
+        ) {}
+
+    public async execute(tableID: string): Promise<void> {
         const newUrl = `${GlobalTableService.API_PATH}/collision/${tableID}`;
-        const data = firstValueFrom(this.http.post<Record<string, CollisionType[]>>(newUrl, {}));
-        this.showDialog(data);
+        const data = await firstValueFrom(this.http.post<Record<string, CollisionType[]>>(newUrl, {}));
+
+        if (Object.keys(data).length === 0)
+            throw "no collisions found";
+        else
+            this.showDialog(data);
     }
 
     showDialog(data: any): void {
-        const dialogService: DialogService = inject(DialogService);
-        dialogService.open(CollisionInfoDialog, {
+        this.dialogService.open(CollisionInfoDialog, {
             header: `Create new Table`,
             contentStyle: { overflow: 'auto' },
-            width: '550px', height: '370px',
+            width: '550px',
             baseZIndex: 10000,
             maximizable: false,
             showHeader: false,

@@ -17,6 +17,7 @@ import {CalendarContextMenuComponent} from "./calendar-context-menu/calendar-con
 import {DialogService} from "primeng/dynamicdialog";
 import {CourseInfoDialog} from "../dialogs/course-info-dialog/course-info-dialog.component";
 import {InvokerService} from "./commands/invoker.service";
+import {ComplexInvokerService} from "./commands/complex-invoker.service";
 
 class InfoBox{
     icon: string;
@@ -49,6 +50,17 @@ export class DashboardComponent implements OnInit, AfterViewInit{
 
     isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     loading$: Observable<boolean> = this.isLoading.asObservable();
+
+    constructor(
+        private layoutService: LayoutService,
+        private dialogService: DialogService,
+        private complexInvoker: ComplexInvokerService,
+        private invoker: InvokerService,
+    ) {
+        this.layoutService.changeStyle(true);
+        this.complexInvoker.receiver = this;
+        this.invoker.receiver = this;
+    }
 
     readonly calendarOptions: WritableSignal<CalendarOptions> = signal({
         plugins: [
@@ -86,15 +98,6 @@ export class DashboardComponent implements OnInit, AfterViewInit{
         eventMouseLeave: this.handleMouseLeave.bind(this),
         loading: (isLoading: boolean) => this.setLoading(isLoading)
     });
-
-    constructor(
-        private layoutService: LayoutService,
-        private dialogService: DialogService,
-        private invoker: InvokerService
-    ) {
-        this.layoutService.changeStyle(true);
-        this.invoker.receiver = this;
-    }
 
     public setNewTable(newTable: TimeTable){
         this.selectedTimeTable = newTable;
