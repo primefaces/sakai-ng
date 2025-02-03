@@ -61,7 +61,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Last Changes',
                         icon: 'pi pi-comments',
-                        //command: () => { this.loadChanges() }
+                        command: () => { this.complexInvoker.showLastChanges() }
                     }
                 ]
             },

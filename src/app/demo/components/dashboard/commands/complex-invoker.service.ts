@@ -5,6 +5,7 @@ import {MessageService} from "primeng/api";
 import {ComplexCommand} from "./ComplexCommandInterface";
 import {SimpleCalculateCollision} from "./impl/CalculateCollisionCommand";
 import {DialogService} from "primeng/dynamicdialog";
+import {SimpleChanges} from "./impl/ChangesCommand";
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +45,7 @@ export class ComplexInvokerService {
     }
 
     public showLastChanges(){
-        this.command = new SimpleCalculateCollision(this.httpClient, this.dialogService);
+        this.command = new SimpleChanges(this.httpClient, this.dialogService);
         this.applyCommand().then()
     }
 

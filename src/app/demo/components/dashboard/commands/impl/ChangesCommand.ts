@@ -2,37 +2,36 @@ import {GlobalTableService} from "../../api/global-table.service";
 import {HttpClient} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {ComplexCommand} from "../ComplexCommandInterface";
-import {CollisionType} from "../../../../../../assets/models/enums/collision-type";
 import {DialogService} from "primeng/dynamicdialog";
-import {CollisionInfoDialog} from "../../../dialogs/HomeDialogs/collision-info-dialog/collision-info-dialog.component";
+import {GlobalTableChangeDTO} from "../../../../../../assets/models/dto/global-table-change-dto";
+import {ChangesDialog} from "../../../dialogs/HomeDialogs/changes-dialog/changes-dialog.component";
 
-export class SimpleCalculateCollision implements ComplexCommand {
-
+export class SimpleChanges implements ComplexCommand {
     constructor(
         private http: HttpClient,
         private dialogService: DialogService,
         ) {}
 
     public async execute(tableID: string): Promise<void> {
-        const newUrl = `${GlobalTableService.API_PATH}/collision/${tableID}`;
-        const data = await firstValueFrom(this.http.post<Record<string, CollisionType[]>>(newUrl, {}));
+        const newUrl = `${GlobalTableService.API_PATH}/changes/${tableID}`;
+        const data = await firstValueFrom(this.http.get<GlobalTableChangeDTO[]>(newUrl));
 
-        if (Object.keys(data).length === 0)
-            throw "no collisions found";
-        else
+        if (data.length !== 0)
             this.showDialog(data);
+        else
+            throw "no changes so far";
     }
 
     showDialog(data: any): void {
-        this.dialogService.open(CollisionInfoDialog, {
+        this.dialogService.open(ChangesDialog, {
             header: `Create new Table`,
             contentStyle: { overflow: 'auto' },
-            width: '550px',
+            width: '700px',
             baseZIndex: 10000,
             maximizable: false,
             showHeader: false,
             position: 'left',
-            data: {'collisions': data}
+            data: {'changes' : data}
         })
     }
 }
