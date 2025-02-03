@@ -1,4 +1,4 @@
-export interface GlobalTableChangeDTO {
+export interface GlobalTableChange {
   id: number;
   description: string;
   changeType: string;

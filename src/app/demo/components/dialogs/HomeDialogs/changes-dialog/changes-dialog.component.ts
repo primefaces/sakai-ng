@@ -5,7 +5,7 @@ import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {TableModule} from "primeng/table";
 import {KeyValuePipe, NgForOf, NgIf} from "@angular/common";
 import {getChangeTypes} from "../../../../../../assets/models/enums/change-type";
-import {GlobalTableChangeDTO} from "../../../../../../assets/models/dto/global-table-change-dto";
+import {GlobalTableChange} from "../../../../../../assets/models/dto/global-table-change";
 
 @Component({
   selector: 'app-user-dialog',
@@ -21,7 +21,7 @@ import {GlobalTableChangeDTO} from "../../../../../../assets/models/dto/global-t
   templateUrl: './changes-dialog.component.html'
 })
 export class ChangesDialog implements OnInit, OnDestroy{
-    protected changes: GlobalTableChangeDTO[] = [];
+    protected changes: GlobalTableChange[] = [];
     protected cols: any[] = [];
 
     constructor(

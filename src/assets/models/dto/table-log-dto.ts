@@ -4,7 +4,7 @@ import {Room} from "../room";
 import {CourseSession} from "./course-session-dto";
 import {RoomTable} from "../room-table";
 
-export class TableLogDto {
+export class TableLog {
   eventDate?: string; //due to converting problems
   logType!: LoggerType;
   logObject: Room | Course | RoomTable | CourseSession | undefined;

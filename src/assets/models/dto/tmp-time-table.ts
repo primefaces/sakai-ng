@@ -3,7 +3,7 @@ import {Status} from "../enums/status";
 import {Room} from "../room";
 import {Course} from "../course";
 
-export class TmpTimeTableDTO {
+export class TmpTimeTable {
   name?: string;
   semester?: Semester;
   year?: number;

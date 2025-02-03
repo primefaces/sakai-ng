@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {TimeTable} from "../../../../../assets/models/dto/time-table";
 import {TimeTableName} from "../../../../../assets/models/time-table-names";
-import {TmpTimeTableDTO} from "../../../../../assets/models/dto/tmp-time-table-dto";
+import {TmpTimeTable} from "../../../../../assets/models/dto/tmp-time-table";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class GlobalTableService {
         return firstValueFrom(this.http.get<TimeTable>(newUrl));
     }
 
-    pushTmpTableObject(table: TmpTimeTableDTO): Promise<string> {
+    pushTmpTableObject(table: TmpTimeTable): Promise<string> {
         const newUrl = `${GlobalTableService.API_PATH}/create`;
         return firstValueFrom(this.http.post<any>(newUrl, table));
     }

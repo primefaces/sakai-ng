@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {ComplexCommand} from "../ComplexCommandInterface";
 import {DialogService} from "primeng/dynamicdialog";
-import {GlobalTableChangeDTO} from "../../../../../../assets/models/dto/global-table-change-dto";
+import {GlobalTableChange} from "../../../../../../assets/models/dto/global-table-change";
 import {ChangesDialog} from "../../../dialogs/HomeDialogs/changes-dialog/changes-dialog.component";
 
 export class SimpleChanges implements ComplexCommand {
@@ -14,7 +14,7 @@ export class SimpleChanges implements ComplexCommand {
 
     public async execute(tableID: string): Promise<void> {
         const newUrl = `${GlobalTableService.API_PATH}/changes/${tableID}`;
-        const data = await firstValueFrom(this.http.get<GlobalTableChangeDTO[]>(newUrl));
+        const data = await firstValueFrom(this.http.get<GlobalTableChange[]>(newUrl));
 
         if (data.length !== 0)
             this.showDialog(data);
