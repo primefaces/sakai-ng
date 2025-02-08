@@ -18,7 +18,7 @@
 
     <div class="input-container">
         <label for="serviceType">Service Type</label>
-        <p-select class="input" [options]="services" [(ngModel)]="selectedService" optionLabel="label" placeholder="Select a Service" class="w-full md:w-56" />
+        <p-select class="input" [options]="servicesSignal()()" [(ngModel)]="selectedService" optionLabel="name" placeholder="Select a Service" class="w-full md:w-56" />
     </div>
 
     <div class="input-container">

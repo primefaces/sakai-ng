@@ -88,15 +88,7 @@ export class ServicesComponent implements OnInit {
         this.services = toSignal(this.httpService.getServiceTypes());
     }
 
-    ngOnInit(): void {
-        this.customerService.getCustomersLarge().then((customers) => {
-            this.customers = customers;
-            this.loading = false;
-
-            // @ts-ignore
-            this.customers1.forEach((customer) => (customer.date = new Date(customer.date)));
-        });
-    }
+    ngOnInit(): void {}
 
     clear(table: Table) {
         table.clear();
