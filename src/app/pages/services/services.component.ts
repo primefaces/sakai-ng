@@ -145,15 +145,18 @@ export class ServicesComponent implements OnInit {
     }
 
     updateService(service: any, field: any, event: any) {
-        const value = event.target.innerText;
+        const newValue = event.target.innerText.trim();
 
-        service[field] = value;
+        const processedValue = field === 'price' ? parseFloat(newValue.replace(/[^\d.-]/g, '')) : newValue;
 
-        if (field === 'price') {
-            const numericValue = parseFloat(value.replace(/[^\d.-]/g, ''));
-            service[field] = numericValue;
+        if (service[field] === processedValue) {
+            return;
         }
 
-        this.httpService.updateServiceType(service).subscribe((data: any) => {});
+        service[field] = processedValue;
+
+        this.httpService.updateServiceType(service).subscribe((data: any) => {
+            console.log('Service updated successfully');
+        });
     }
 }
