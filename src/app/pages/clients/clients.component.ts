@@ -17,9 +17,9 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { DigitOnlyDirective } from '../../shared/directives/digit-only.directive';
 import { MurCurrencyPipe } from '../../shared/pipes/mur-currency.pipe';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
-import { ServicesFormComponent } from '../services/services-form/services-form.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { HttpService } from '../../shared/services/http.service';
+import { ClientFormComponent } from './client-form/client-form.component';
 
 @Component({
     selector: 'app-clients',
@@ -39,6 +39,7 @@ import { HttpService } from '../../shared/services/http.service';
         RippleModule,
         IconFieldModule,
         DialogModule,
+        ClientFormComponent,
         MurCurrencyPipe,
         DigitOnlyDirective,
         DeleteConfirmationDialogComponent
@@ -64,6 +65,8 @@ export class ClientsComponent {
 
     contactNumber: any;
 
+    isCreateClientDialogVisible = false;
+
     constructor() {
         this.clients = toSignal(this.httpService.getClients());
     }
@@ -81,6 +84,13 @@ export class ClientsComponent {
         throw new Error('Method not implemented.');
     }
     showNewClientDialog() {
+        this.isCreateClientDialogVisible = true;
+    }
+    hideCreateClientDialog() {
+        this.isCreateClientDialogVisible = false;
+    }
+
+    createClient() {
         throw new Error('Method not implemented.');
     }
 }

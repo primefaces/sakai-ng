@@ -1,6 +1,6 @@
 <div class="card">
     <div class="header-container mb-4">
-        <div class="font-semibold text-xl">Services</div>
+        <div class="font-semibold text-xl">Clients</div>
         <i (click)="showNewClientDialog()" class="pi pi-plus"></i>
     </div>
     <p-table #dt1 [value]="clientsSignal()()" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'price']" responsiveLayout="scroll">
@@ -91,3 +91,11 @@
         </ng-template>
     </p-table>
 </div>
+
+<p-dialog header="Create Client" [(visible)]="isCreateClientDialogVisible" [position]="'top'" [breakpoints]="{ '1590px': '75vw', '1036px': '100vw' }" [style]="{ width: '50vw' }" [modal]="true">
+    <client-form></client-form>
+    <ng-template #footer>
+        <p-button p-ripple p-button p-component p-button-secondary p-button-text label="Cancel" [text]="true" severity="secondary" (click)="hideCreateClientDialog()" />
+        <p-button label="Save" (click)="createClient()" />
+    </ng-template>
+</p-dialog>

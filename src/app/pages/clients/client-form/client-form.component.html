@@ -11,7 +11,7 @@
 
     <div class="input-container">
         <label for="year">Year</label>
-        <p-datepicker [(ngModel)]="year" placeholder="Select Year" view="year" dateFormat="yy" />
+        <p-datepicker class="input" [(ngModel)]="year" placeholder="Select Year" view="year" dateFormat="yy" />
     </div>
 
     <div class="input-container">
@@ -21,7 +21,7 @@
 
     <div class="input-container">
         <label for="type">Type</label>
-        <p-select class="input" [options]="vehicleTypes" [(ngModel)]="type" optionLabel="name" placeholder="Select a Type" class="w-full md:w-56"></p-select>
+        <p-select class="input" [options]="vehicleTypes" [(ngModel)]="type" optionLabel="label" placeholder="Select a Type" class="w-full md:w-56"></p-select>
     </div>
 
     <div class="input-container">
