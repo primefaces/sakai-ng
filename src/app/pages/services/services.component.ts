@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, computed, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -21,6 +21,7 @@ import { ProductService } from '../service/product.service';
 import { DialogModule } from 'primeng/dialog';
 import { ServicesFormComponent } from './services-form/services-form.component';
 import { HttpService } from '../../shared/services/http.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-services',
@@ -52,13 +53,14 @@ export class ServicesComponent implements OnInit {
     @ViewChild('filter') filter!: ElementRef;
     customerService = inject(CustomerService);
     httpService = inject(HttpService);
-    newServiceName = 'yoyo';
+    newServiceName = '';
     newServicePrice = 0;
 
     customers: any = [];
     loading = false;
     activityValues: number[] = [0, 100];
-    services: any[] = [];
+    services: any = [];
+    servicesSignal = computed(() => signal(this.services()));
 
     statuses = [
         { label: 'Unqualified', value: 'unqualified' },
@@ -82,12 +84,11 @@ export class ServicesComponent implements OnInit {
     ];
 
     isDialogVisible = false;
+    constructor() {
+        this.services = toSignal(this.httpService.getServiceTypes());
+    }
 
     ngOnInit(): void {
-        this.httpService.getServiceTypes().subscribe((data: any) => {
-            this.services = data;
-            console.log('data: ', data);
-        });
         this.customerService.getCustomersLarge().then((customers) => {
             this.customers = customers;
             this.loading = false;
@@ -144,6 +145,7 @@ export class ServicesComponent implements OnInit {
         console.log(this.newServiceName, this.newServicePrice);
         this.httpService.createServiceType({ name: this.newServiceName, price: this.newServicePrice }).subscribe((data: any) => {
             console.log(data);
+            this.servicesSignal().update((s: any) => [...s, data].sort((a: any, b: any) => a.name - b.name));
         });
         this.isDialogVisible = false;
     }
