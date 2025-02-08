@@ -70,27 +70,6 @@ export class ServicesComponent implements OnInit {
     showDeleteConfirmationDialog = false;
     serviceToDeleteId = '';
 
-    statuses = [
-        { label: 'Unqualified', value: 'unqualified' },
-        { label: 'Qualified', value: 'qualified' },
-        { label: 'New', value: 'new' },
-        { label: 'Negotiation', value: 'negotiation' },
-        { label: 'Renewal', value: 'renewal' },
-        { label: 'Proposal', value: 'proposal' }
-    ];
-    representatives = [
-        { name: 'Amy Elsner', image: 'amyelsner.png' },
-        { name: 'Anna Fali', image: 'annafali.png' },
-        { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
-        { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
-        { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
-        { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
-        { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
-        { name: 'Onyama Limba', image: 'onyamalimba.png' },
-        { name: 'Stephen Shaw', image: 'stephenshaw.png' },
-        { name: 'XuXue Feng', image: 'xuxuefeng.png' }
-    ];
-
     isDialogVisible = false;
     constructor() {
         this.services = toSignal(this.httpService.getServiceTypes());
@@ -101,34 +80,6 @@ export class ServicesComponent implements OnInit {
     clear(table: Table) {
         table.clear();
         this.filter.nativeElement.value = '';
-    }
-
-    getSeverity(status: string) {
-        switch (status) {
-            case 'qualified':
-            case 'instock':
-            case 'INSTOCK':
-            case 'DELIVERED':
-            case 'delivered':
-                return 'success';
-
-            case 'negotiation':
-            case 'lowstock':
-            case 'LOWSTOCK':
-            case 'PENDING':
-            case 'pending':
-                return 'warn';
-
-            case 'unqualified':
-            case 'outofstock':
-            case 'OUTOFSTOCK':
-            case 'CANCELLED':
-            case 'cancelled':
-                return 'danger';
-
-            default:
-                return 'info';
-        }
     }
 
     onGlobalFilter(table: Table, event: Event) {

@@ -1,0 +1,19 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    i {
+        font-size: 16px;
+        cursor: pointer;
+    }
+}
+
+.delete-icon {
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.service-row:hover i {
+    opacity: 1;
+    cursor: pointer;
+}

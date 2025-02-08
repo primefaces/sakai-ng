@@ -29,4 +29,24 @@ export class HttpService {
     deleteServiceType(id: string) {
         return this.http.delete(`${this.url}/service-types/${id}`);
     }
+
+    getClients() {
+        return this.http.get(`${this.url}/clients`);
+    }
+
+    getClient(id: string) {
+        return this.http.get(`${this.url}/clients/${id}`);
+    }
+
+    createClient(client: any) {
+        return this.http.post(`${this.url}/clients`, client);
+    }
+
+    updateClient(client: any) {
+        return this.http.patch(`${this.url}/clients/${client._id}`, client);
+    }
+
+    deleteClient(id: string) {
+        return this.http.delete(`${this.url}/clients/${id}`);
+    }
 }

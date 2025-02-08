@@ -1,1 +1,93 @@
+<div class="card">
+    <div class="header-container mb-4">
+        <div class="font-semibold text-xl">Services</div>
+        <i (click)="showNewClientDialog()" class="pi pi-plus"></i>
+    </div>
+    <p-table #dt1 [value]="clientsSignal()()" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'price']" responsiveLayout="scroll">
+        <ng-template #caption>
+            <div class="flex justify-between items-center flex-column sm:flex-row">
+                <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                <p-iconfield iconPosition="left" class="ml-auto">
+                    <p-inputicon>
+                        <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input pInputText type="text" (input)="onGlobalFilter(dt1, $event)" placeholder="Search keyword" />
+                </p-iconfield>
+            </div>
+        </ng-template>
+        <ng-template #header>
+            <tr>
+                <th style="min-width: 12rem">
+                    <div class="flex justify-between items-center">Make</div>
+                </th>
 
+                <th style="min-width: 10rem">
+                    <div class="flex justify-between items-center">Model</div>
+                </th>
+                <th style="min-width: 10rem">
+                    <div class="flex justify-between items-center">Year</div>
+                </th>
+                <th style="min-width: 10rem">
+                    <div class="flex justify-between items-center">Color</div>
+                </th>
+                <th style="min-width: 10rem">
+                    <div class="flex justify-between items-center">Type</div>
+                </th>
+                <th style="min-width: 10rem">
+                    <div class="flex justify-between items-center">RegNo.</div>
+                </th>
+                <th style="min-width: 10rem">
+                    <div class="flex justify-between items-center">Owner</div>
+                </th>
+                <th style="min-width: 10rem">
+                    <div class="flex justify-between items-center">Tel.</div>
+                </th>
+                <th style="min-width: 40px">
+                    <div class="flex justify-center items-center"></div>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-client>
+            <tr class="service-row">
+                <td (blur)="updateClient(client, 'make', $event)" contenteditable="true">
+                    {{ client.make }}
+                </td>
+                <td (blur)="updateClient(client, 'model', $event)" contenteditable="true">
+                    {{ client.model }}
+                </td>
+                <td (blur)="updateClient(client, 'year', $event)" contenteditable="true">
+                    {{ client.year }}
+                </td>
+                <td (blur)="updateClient(client, 'color', $event)" contenteditable="true">
+                    {{ client.color }}
+                </td>
+                <td (blur)="updateClient(client, 'type', $event)" contenteditable="true">
+                    {{ client.type }}
+                </td>
+                <td (blur)="updateClient(client, 'regNo', $event)" contenteditable="true">
+                    {{ client.regNo }}
+                </td>
+                <td (blur)="updateClient(client, 'owner', $event)" contenteditable="true">
+                    {{ client.owner }}
+                </td>
+                <td (blur)="updateClient(client, 'tel', $event)" contenteditable="true">
+                    {{ client.tel }}
+                </td>
+
+                <td class="flex justify-center items-center">
+                    <i (click)="onDeleteClientCLick(client._id)" class="delete-icon pi pi-trash" style="color: #db0202"></i>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="9">No clients found.</td>
+            </tr>
+        </ng-template>
+        <ng-template #loadingbody>
+            <tr>
+                <td colspan="9">Loading clients data. Please wait.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
