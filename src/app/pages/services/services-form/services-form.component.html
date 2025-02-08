@@ -1,10 +1,10 @@
 <div class="card flex flex-col gap-4">
     <div class="flex flex-col gap-2">
         <label for="name1">Name</label>
-        <input pInputText id="name1" type="text" />
+        <input required [(ngModel)]="name" pInputText id="name1" type="text" />
     </div>
     <div class="flex flex-col gap-2">
-        <label for="email1">Price</label>
-        <input pInputText id="email1" type="text" />
+        <label for="price">Price</label>
+        <p-inputnumber required [(ngModel)]="price" inputId="minmaxfraction" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="5" />
     </div>
 </div>

@@ -18,12 +18,9 @@ import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { CustomerService } from '../service/customer.service';
 import { ProductService } from '../service/product.service';
-import { Dialog, DialogModule } from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
 import { ServicesFormComponent } from './services-form/services-form.component';
-import { ConfirmPopupModule } from 'primeng/confirmpopup';
-import { DrawerModule } from 'primeng/drawer';
-import { PopoverModule } from 'primeng/popover';
-import { TooltipModule } from 'primeng/tooltip';
+import { HttpService } from '../../shared/services/http.service';
 
 @Component({
     selector: 'app-services',
@@ -54,10 +51,15 @@ import { TooltipModule } from 'primeng/tooltip';
 export class ServicesComponent implements OnInit {
     @ViewChild('filter') filter!: ElementRef;
     customerService = inject(CustomerService);
+    httpService = inject(HttpService);
+    newServiceName = 'yoyo';
+    newServicePrice = 0;
 
     customers: any = [];
     loading = false;
     activityValues: number[] = [0, 100];
+    services: any[] = [];
+
     statuses = [
         { label: 'Unqualified', value: 'unqualified' },
         { label: 'Qualified', value: 'qualified' },
@@ -82,6 +84,10 @@ export class ServicesComponent implements OnInit {
     isDialogVisible = false;
 
     ngOnInit(): void {
+        this.httpService.getServiceTypes().subscribe((data: any) => {
+            this.services = data;
+            console.log('data: ', data);
+        });
         this.customerService.getCustomersLarge().then((customers) => {
             this.customers = customers;
             this.loading = false;
@@ -131,6 +137,14 @@ export class ServicesComponent implements OnInit {
         this.isDialogVisible = true;
     }
     hideDialog() {
+        this.isDialogVisible = false;
+    }
+
+    createService() {
+        console.log(this.newServiceName, this.newServicePrice);
+        this.httpService.createServiceType({ name: this.newServiceName, price: this.newServicePrice }).subscribe((data: any) => {
+            console.log(data);
+        });
         this.isDialogVisible = false;
     }
 }

@@ -7,7 +7,7 @@ import { inject, Injectable } from '@angular/core';
 export class HttpService {
     http = inject(HttpClient);
 
-    url = 'http://localhost:5000/api/';
+    url = 'http://localhost:5000/api';
 
     getServiceTypes() {
         return this.http.get(`${this.url}/service-types`);

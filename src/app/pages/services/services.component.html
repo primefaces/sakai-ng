@@ -3,7 +3,7 @@
         <div class="font-semibold text-xl">Services</div>
         <i (click)="showDialog()" class="pi pi-plus"></i>
     </div>
-    <p-table #dt1 [value]="customers" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']" responsiveLayout="scroll">
+    <p-table #dt1 [value]="services" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'price']" responsiveLayout="scroll">
         <ng-template #caption>
             <div class="flex justify-between items-center flex-column sm:flex-row">
                 <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
@@ -27,7 +27,7 @@
                 <th style="min-width: 10rem">
                     <div class="flex justify-between items-center">
                         Price
-                        <p-columnFilter type="numeric" field="balance" display="menu" currency="USD"></p-columnFilter>
+                        <p-columnFilter type="numeric" field="balance" display="menu" currency="Rs"></p-columnFilter>
                     </div>
                 </th>
                 <!-- <th style="min-width: 12rem">
@@ -46,14 +46,14 @@
                 </th> -->
             </tr>
         </ng-template>
-        <ng-template #body let-customer>
+        <ng-template #body let-service>
             <tr>
                 <td contentEditable="true">
-                    {{ customer.name }}
+                    {{ service.name }}
                 </td>
 
                 <td>
-                    {{ customer.balance | currency: 'USD' : 'symbol' }}
+                    {{ service.price | currency: 'Rs' : 'symbol' }}
                 </td>
                 <!-- <td>
                     <p-tag [value]="customer.status.toLowerCase()" [severity]="getSeverity(customer.status.toLowerCase())" styleClass="dark:!bg-surface-900" />
@@ -62,21 +62,21 @@
         </ng-template>
         <ng-template #emptymessage>
             <tr>
-                <td colspan="8">No customers found.</td>
+                <td colspan="8">No services found.</td>
             </tr>
         </ng-template>
         <ng-template #loadingbody>
             <tr>
-                <td colspan="8">Loading customers data. Please wait.</td>
+                <td colspan="8">Loading services data. Please wait.</td>
             </tr>
         </ng-template>
     </p-table>
 </div>
 
 <p-dialog header="Create Service" [(visible)]="isDialogVisible" [position]="'top'" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '25vw' }" [modal]="true">
-    <app-services-form></app-services-form>
+    <app-services-form [(name)]="newServiceName" [(price)]="newServicePrice"> </app-services-form>
     <ng-template #footer>
         <p-button p-ripple p-button p-component p-button-secondary p-button-text label="Cancel" [text]="true" severity="secondary" (click)="hideDialog()" />
-        <p-button label="Save" (click)="hideDialog()" />
+        <p-button label="Save" (click)="createService()" />
     </ng-template>
 </p-dialog>
