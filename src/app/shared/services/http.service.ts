@@ -23,7 +23,7 @@ export class HttpService {
     }
 
     updateServiceType(serviceType: any) {
-        return this.http.patch(`${this.url}/service-types/${serviceType.id}`, serviceType);
+        return this.http.patch(`${this.url}/service-types/${serviceType._id}`, serviceType);
     }
 
     deleteServiceType(id: number) {

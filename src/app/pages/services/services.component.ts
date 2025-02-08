@@ -22,6 +22,8 @@ import { DialogModule } from 'primeng/dialog';
 import { ServicesFormComponent } from './services-form/services-form.component';
 import { HttpService } from '../../shared/services/http.service';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { MurCurrencyPipe } from '../../shared/pipes/mur-currency.pipe';
+import { DigitOnlyDirective } from '../../shared/directives/digit-only.directive';
 
 @Component({
     selector: 'app-services',
@@ -43,7 +45,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
         RippleModule,
         IconFieldModule,
         DialogModule,
-        ServicesFormComponent
+        ServicesFormComponent,
+        MurCurrencyPipe,
+        DigitOnlyDirective
     ],
     templateUrl: './services.component.html',
     styleUrl: './services.component.scss',
@@ -134,11 +138,22 @@ export class ServicesComponent implements OnInit {
     }
 
     createService() {
-        console.log(this.newServiceName, this.newServicePrice);
         this.httpService.createServiceType({ name: this.newServiceName, price: this.newServicePrice }).subscribe((data: any) => {
-            console.log(data);
             this.servicesSignal().update((s: any) => [...s, data].sort((a: any, b: any) => a.name - b.name));
         });
         this.isDialogVisible = false;
+    }
+
+    updateService(service: any, field: any, event: any) {
+        const value = event.target.innerText;
+
+        service[field] = value;
+
+        if (field === 'price') {
+            const numericValue = parseFloat(value.replace(/[^\d.-]/g, ''));
+            service[field] = numericValue;
+        }
+
+        this.httpService.updateServiceType(service).subscribe((data: any) => {});
     }
 }

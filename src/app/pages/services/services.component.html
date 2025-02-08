@@ -48,12 +48,12 @@
         </ng-template>
         <ng-template #body let-service>
             <tr>
-                <td contentEditable="true">
+                <td (blur)="updateService(service, 'name', $event)" contenteditable="true">
                     {{ service.name }}
                 </td>
 
-                <td>
-                    {{ service.price | currency: 'Rs' : 'symbol' }}
+                <td digitOnly (blur)="updateService(service, 'price', $event)" contenteditable="true">
+                    {{ service.price | mur }}
                 </td>
                 <!-- <td>
                     <p-tag [value]="customer.status.toLowerCase()" [severity]="getSeverity(customer.status.toLowerCase())" styleClass="dark:!bg-surface-900" />
