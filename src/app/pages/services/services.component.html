@@ -30,24 +30,13 @@
                         <p-columnFilter type="numeric" field="balance" display="menu" currency="Rs"></p-columnFilter>
                     </div>
                 </th>
-                <!-- <th style="min-width: 12rem">
-                    <div class="flex justify-between items-center">
-                        Status
-                        <p-columnFilter field="status" matchMode="equals" display="menu">
-                            <ng-template #filter let-value let-filter="filterCallback">
-                                <p-select [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any" [style]="{ 'min-width': '12rem' }">
-                                    <ng-template let-option #item>
-                                        <span [class]="'customer-badge status-' + option.value">{{ option.label }}</span>
-                                    </ng-template>
-                                </p-select>
-                            </ng-template>
-                        </p-columnFilter>
-                    </div>
-                </th> -->
+                <th style="min-width: 40px">
+                    <div class="flex justify-center items-center"></div>
+                </th>
             </tr>
         </ng-template>
         <ng-template #body let-service>
-            <tr>
+            <tr class="service-row">
                 <td (blur)="updateService(service, 'name', $event)" contenteditable="true">
                     {{ service.name }}
                 </td>
@@ -55,9 +44,9 @@
                 <td digitOnly (blur)="updateService(service, 'price', $event)" contenteditable="true">
                     {{ service.price | mur }}
                 </td>
-                <!-- <td>
-                    <p-tag [value]="customer.status.toLowerCase()" [severity]="getSeverity(customer.status.toLowerCase())" styleClass="dark:!bg-surface-900" />
-                </td> -->
+                <td class="flex justify-center items-center">
+                    <i class="delete-icon pi pi-trash" style="color: #db0202"></i>
+                </td>
             </tr>
         </ng-template>
         <ng-template #emptymessage>
