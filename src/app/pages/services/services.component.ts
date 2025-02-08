@@ -159,4 +159,10 @@ export class ServicesComponent implements OnInit {
             console.log('Service updated successfully');
         });
     }
+
+    deleteService(serviceId: string) {
+        this.httpService.deleteServiceType(serviceId).subscribe((data: any) => {
+            this.servicesSignal().update((s: any) => s.filter((service: any) => service._id !== serviceId));
+        });
+    }
 }

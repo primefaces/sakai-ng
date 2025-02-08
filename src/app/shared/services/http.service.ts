@@ -26,7 +26,7 @@ export class HttpService {
         return this.http.patch(`${this.url}/service-types/${serviceType._id}`, serviceType);
     }
 
-    deleteServiceType(id: number) {
+    deleteServiceType(id: string) {
         return this.http.delete(`${this.url}/service-types/${id}`);
     }
 }
