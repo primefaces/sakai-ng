@@ -24,6 +24,7 @@ import { HttpService } from '../../shared/services/http.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MurCurrencyPipe } from '../../shared/pipes/mur-currency.pipe';
 import { DigitOnlyDirective } from '../../shared/directives/digit-only.directive';
+import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @Component({
     selector: 'app-services',
@@ -47,7 +48,8 @@ import { DigitOnlyDirective } from '../../shared/directives/digit-only.directive
         DialogModule,
         ServicesFormComponent,
         MurCurrencyPipe,
-        DigitOnlyDirective
+        DigitOnlyDirective,
+        DeleteConfirmationDialogComponent
     ],
     templateUrl: './services.component.html',
     styleUrl: './services.component.scss',
@@ -65,6 +67,8 @@ export class ServicesComponent implements OnInit {
     activityValues: number[] = [0, 100];
     services: any = [];
     servicesSignal = computed(() => signal(this.services()));
+    showDeleteConfirmationDialog = false;
+    serviceToDeleteId = '';
 
     statuses = [
         { label: 'Unqualified', value: 'unqualified' },
@@ -160,9 +164,14 @@ export class ServicesComponent implements OnInit {
         });
     }
 
-    deleteService(serviceId: string) {
-        this.httpService.deleteServiceType(serviceId).subscribe((data: any) => {
-            this.servicesSignal().update((s: any) => s.filter((service: any) => service._id !== serviceId));
+    deleteService() {
+        this.httpService.deleteServiceType(this.serviceToDeleteId).subscribe((data: any) => {
+            this.servicesSignal().update((s: any) => s.filter((service: any) => service._id !== this.serviceToDeleteId));
         });
+    }
+
+    onDeleteServiceCLick(serviceId: string) {
+        this.showDeleteConfirmationDialog = true;
+        this.serviceToDeleteId = serviceId;
     }
 }
