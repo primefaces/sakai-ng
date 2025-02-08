@@ -21,6 +21,10 @@ export const appRoutes: Routes = [
             {
                 path: 'sales',
                 loadComponent: () => import('./app/pages/sales/sales.component').then((c) => c.SalesComponent)
+            },
+            {
+                path: 'clients',
+                loadComponent: () => import('./app/pages/clients/clients.component').then((c) => c.ClientsComponent)
             }
         ]
     },

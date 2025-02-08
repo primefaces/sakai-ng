@@ -25,6 +25,11 @@ export class MenuComponent {
                         routerLink: ['/sales']
                     },
                     {
+                        label: 'Clients',
+                        icon: 'pi pi-fw pi-users',
+                        routerLink: ['/clients']
+                    },
+                    {
                         label: 'Services',
                         icon: 'pi pi-fw pi-hammer',
                         routerLink: ['/services']
