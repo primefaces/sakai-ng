@@ -1,43 +1,43 @@
 <main class="p-fluid">
     <div class="input-container">
         <label for="date">Date</label>
-        <p-datepicker class="input" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" [(ngModel)]="date" />
+        <p-datepicker class="input" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" [(ngModel)]="sale().date" />
     </div>
     <div class="input-container">
         <label for="carRegNo">Car RegNo</label>
 
-        <p-autocomplete class="input" [(ngModel)]="value3" [suggestions]="filteredClients" (completeMethod)="searchClient($event)" />
+        <p-autocomplete class="input" [(ngModel)]="sale().vehicleName" (onSelect)="onVehicleSelect()" [suggestions]="filteredClients" (completeMethod)="searchClient($event)" />
     </div>
     <div class="input-container">
         <label for="timeStart">Time Start</label>
-        <p-datepicker class="input" inputId="timeStart" [(ngModel)]="timeStart" [timeOnly]="true" />
+        <p-datepicker class="input" inputId="timeStart" (onBlur)="getFormattedTime('timeStart')" [(ngModel)]="sale().timeStart" [timeOnly]="true" />
     </div>
     <div class="input-container">
         <label for="timeEnd">Time End</label>
-        <p-datepicker class="input" inputId="timeEnd" [(ngModel)]="timeEnd" [timeOnly]="true" />
+        <p-datepicker class="input" inputId="timeEnd" (onBlur)="getFormattedTime('timeEnd')" [showSeconds]="false" hourFormat="'24'" [(ngModel)]="sale().timeEnd" [timeOnly]="true" />
     </div>
 
     <div class="input-container">
         <label for="serviceType">Service Type</label>
-        <p-select class="input" [options]="servicesSignal()()" [(ngModel)]="selectedService" optionLabel="name" placeholder="Select a Service" class="w-full md:w-56" />
+        <p-select class="input" (onChange)="onServiceTypeSelect()" [options]="servicesSignal()()" [(ngModel)]="sale().serviceType" optionLabel="name" placeholder="Select a Service" class="w-full md:w-56" />
     </div>
 
     <div class="input-container">
         <label for="price">Price</label>
-        <input pInputText id="price" [(ngModel)]="value3" autocomplete="off" />
+        <input pInputText id="price" [(ngModel)]="sale().price" autocomplete="off" />
     </div>
 
     <div class="input-container">
         <label for="status">Status</label>
-        <p-select class="input" [options]="statuses" [(ngModel)]="selectedStatus" optionLabel="name" placeholder="Select a Status" class="w-full md:w-56" />
+        <p-select class="input" [options]="statuses" [(ngModel)]="sale().status" placeholder="Select a Status" class="w-full md:w-56" />
     </div>
 
     <div class="input-container">
         <label for="paymentMethod">Payment Method</label>
-        <input pInputText id="paymentMethod" [(ngModel)]="value3" autocomplete="off" />
+        <p-select class="input" [options]="paymentMethods" [(ngModel)]="sale().paymentMethod" placeholder="Select a Payment Method" class="w-full md:w-56" />
     </div>
     <div class="input-container">
         <label for="comments">Comments</label>
-        <input pInputText id="comments" [(ngModel)]="value3" autocomplete="off" />
+        <input pInputText id="comments" [(ngModel)]="sale().comments" autocomplete="off" />
     </div>
 </main>

@@ -96,18 +96,18 @@
                     </div>
                 </td>
                 <td>
-                    {{ sale.serviceType.name }}
+                    {{ sale.vehicle.color }}
                 </td>
 
                 <td>
-                    <p-tag [value]="sale.status.toLowerCase()" [severity]="getSeverity(sale.status.toLowerCase())" styleClass="dark:!bg-surface-900" />
+                    <p-tag [value]="sale.serviceType.name.toLowerCase()" [severity]="getSeverity(sale.serviceType.name.toLowerCase())" styleClass="dark:!bg-surface-900" />
                 </td>
 
                 <td>
-                    {{ sale.startTime }}
+                    {{ sale.timeStart }}
                 </td>
                 <td>
-                    {{ sale.endTime }}
+                    {{ sale.timeEnd }}
                 </td>
                 <td>
                     {{ sale.price }}
@@ -120,10 +120,6 @@
                 </td>
                 <td>
                     {{ sale.comments }}
-                </td>
-
-                <td class="text-center">
-                    <p-tag [value]="sale.status.toLowerCase()" [severity]="getSeverity(sale.status.toLowerCase())" styleClass="dark:!bg-surface-900" />
                 </td>
             </tr>
         </ng-template>
@@ -141,9 +137,9 @@
 </div>
 
 <p-dialog header="New Sale" [(visible)]="isDialogVisible" [position]="'top'" [breakpoints]="{ '1590px': '75vw', '1036px': '100vw' }" [style]="{ width: '50vw' }" [modal]="true">
-    <app-sales-form></app-sales-form>
+    <app-sales-form [(sale)]="sale"></app-sales-form>
     <ng-template #footer>
         <p-button p-ripple p-button p-component p-button-secondary p-button-text label="Cancel" [text]="true" severity="secondary" (click)="hideDialog()" />
-        <p-button label="Save" (click)="hideDialog()" />
+        <p-button label="Save" (click)="createSale()" />
     </ng-template>
 </p-dialog>

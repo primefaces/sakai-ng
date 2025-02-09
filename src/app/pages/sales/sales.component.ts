@@ -57,6 +57,18 @@ export class SalesComponent {
     loading = false;
 
     isDialogVisible = false;
+    sale = {
+        date: new Date(),
+        vehicleName: '',
+        vehicleId: '',
+        timeStart: '',
+        timeEnd: '',
+        serviceType: null,
+        price: '',
+        status: '',
+        paymentMethod: '',
+        comments: ''
+    };
 
     constructor() {
         this.sales = toSignal(this.httpService.getSales());
@@ -91,5 +103,14 @@ export class SalesComponent {
     }
     hideDialog() {
         this.isDialogVisible = false;
+    }
+
+    createSale() {
+        const serviceTypeSelected: any = this.sale.serviceType;
+        this.sale.serviceType = serviceTypeSelected._id;
+        this.httpService.createSale(this.sale).subscribe((response: any) => {
+            this.sales = toSignal(this.httpService.getSales());
+        });
+        this.hideDialog();
     }
 }

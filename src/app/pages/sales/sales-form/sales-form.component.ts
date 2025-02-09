@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, model, ModelSignal, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
@@ -19,6 +19,7 @@ export class SalesFormComponent {
     filteredClients: any = [];
 
     httpService = inject(HttpService);
+    sale: ModelSignal<any> = model.required();
 
     dropdownItems = [
         { name: 'Option 1', code: 'Option 1' },
@@ -29,18 +30,15 @@ export class SalesFormComponent {
     dropdownItem = null;
     value3 = '';
     date = new Date();
-    timeStart = '13:00';
-    timeEnd = '17:00';
-    selectedService = 'Full wash';
+    timeStart = '';
+    timeEnd = '';
     services: any = [];
     servicesSignal = computed(() => signal(this.services()));
     clients: any = [];
     clientsSignal = computed(() => signal(this.clients()));
-    statuses = [
-        { name: 'Paid', code: 'paid' },
-        { name: 'Due', code: 'due' }
-    ];
-    selectedStatus = 'Paid  ';
+    statuses = ['Paid', 'Due'];
+
+    paymentMethods = ['Cash', 'Card', 'Mobile', 'Cheque'];
 
     constructor() {
         this.services = toSignal(this.httpService.getServiceTypes());
@@ -59,5 +57,25 @@ export class SalesFormComponent {
 
     onClientSelected() {
         throw new Error('Method not implemented.');
+    }
+
+    getFormattedTime(timeType: string) {
+        if (this.sale()[timeType]) {
+            const hours = this.sale()[timeType].getHours().toString().padStart(2, '0');
+            const minutes = this.sale()[timeType].getMinutes().toString().padStart(2, '0');
+            const time = hours + ':' + minutes;
+            this.sale()[timeType] = time;
+        }
+    }
+    onVehicleSelect() {
+        const regNo = this.sale().vehicleName.split(' - ')[0];
+
+        const vehicleSelected = this.clients().find((client: any) => client.regNo === regNo);
+        console.log('vehicleSelected: ', vehicleSelected);
+        this.sale().vehicle = vehicleSelected._id;
+    }
+
+    onServiceTypeSelect() {
+        const serviceTypeSelected = this.sale().serviceType;
     }
 }
