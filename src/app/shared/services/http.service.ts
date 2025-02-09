@@ -49,4 +49,24 @@ export class HttpService {
     deleteClient(id: string) {
         return this.http.delete(`${this.url}/clients/${id}`);
     }
+
+    getSales() {
+        return this.http.get(`${this.url}/sales`);
+    }
+
+    getSale(id: string) {
+        return this.http.get(`${this.url}/sales/${id}`);
+    }
+
+    createSale(sale: any) {
+        return this.http.post(`${this.url}/sales`, sale);
+    }
+
+    updateSale(sale: any) {
+        return this.http.patch(`${this.url}/sales/${sale._id}`, sale);
+    }
+
+    deleteSale(id: string) {
+        return this.http.delete(`${this.url}/sales/${id}`);
+    }
 }

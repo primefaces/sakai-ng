@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, computed, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { Table, TableModule } from 'primeng/table';
 import { CustomerService } from '../service/customer.service';
 import { CommonModule } from '@angular/common';
@@ -20,6 +20,8 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ProductService } from '../service/product.service';
 import { SalesFormComponent } from './sales-form/sales-form.component';
+import { HttpService } from '../../shared/services/http.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-sales',
@@ -49,70 +51,31 @@ import { SalesFormComponent } from './sales-form/sales-form.component';
 })
 export class SalesComponent {
     @ViewChild('filter') filter!: ElementRef;
-    customerService = inject(CustomerService);
-
-    customers: any = [];
+    httpService = inject(HttpService);
+    sales: any = [];
+    salesSignal = computed(() => signal(this.sales()));
     loading = false;
-    activityValues: number[] = [0, 100];
-    statuses = [
-        { label: 'Unqualified', value: 'unqualified' },
-        { label: 'Qualified', value: 'qualified' },
-        { label: 'New', value: 'new' },
-        { label: 'Negotiation', value: 'negotiation' },
-        { label: 'Renewal', value: 'renewal' },
-        { label: 'Proposal', value: 'proposal' }
-    ];
-    representatives = [
-        { name: 'Amy Elsner', image: 'amyelsner.png' },
-        { name: 'Anna Fali', image: 'annafali.png' },
-        { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
-        { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
-        { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
-        { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
-        { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
-        { name: 'Onyama Limba', image: 'onyamalimba.png' },
-        { name: 'Stephen Shaw', image: 'stephenshaw.png' },
-        { name: 'XuXue Feng', image: 'xuxuefeng.png' }
-    ];
 
     isDialogVisible = false;
 
-    ngOnInit(): void {
-        this.customerService.getCustomersLarge().then((customers) => {
-            this.customers = customers;
-            this.loading = false;
-
-            // @ts-ignore
-            this.customers.forEach((customer) => (customer.date = new Date(customer.date)));
-        });
+    constructor() {
+        this.sales = toSignal(this.httpService.getSales());
     }
+    ngOnInit(): void {}
 
     clear(table: Table) {
         table.clear();
         this.filter.nativeElement.value = '';
     }
 
+    getSales() {}
+
     getSeverity(status: string) {
         switch (status) {
-            case 'qualified':
-            case 'instock':
-            case 'INSTOCK':
-            case 'DELIVERED':
-            case 'delivered':
+            case 'Paid':
                 return 'success';
 
-            case 'negotiation':
-            case 'lowstock':
-            case 'LOWSTOCK':
-            case 'PENDING':
-            case 'pending':
-                return 'warn';
-
-            case 'unqualified':
-            case 'outofstock':
-            case 'OUTOFSTOCK':
-            case 'CANCELLED':
-            case 'cancelled':
+            case 'Due':
                 return 'danger';
 
             default:
