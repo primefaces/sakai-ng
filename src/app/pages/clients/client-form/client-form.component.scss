@@ -24,7 +24,7 @@ main {
 }
 @media (max-width: 768px) {
     main {
-        grid-template-columns: 1fr; /* Single-column layout */
+        grid-template-columns: 1fr;
     }
 }
 
@@ -35,6 +35,16 @@ main {
 }
 
 ::ng-deep .p-datepicker,
-.p-select {
-    width: 100%;
+.p-select,
+.p-inputtext,
+.p-autocomplete,
+.p-autocomplete-input {
+    width: 100% !important;
+}
+
+::ng-deep .p-autocomplete-input {
+    width: 100% !important;
+}
+::ng-deep .p-autocomplete {
+    width: 100% !important;
 }
