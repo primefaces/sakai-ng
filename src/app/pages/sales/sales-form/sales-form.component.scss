@@ -38,3 +38,10 @@ main {
 .p-select {
     width: 100%;
 }
+
+::ng-deep .p-autocomplete-input {
+    width: 100% !important;
+}
+::ng-deep .p-autocomplete {
+    width: 100% !important;
+}

@@ -7,14 +7,17 @@ import { SelectModule } from 'primeng/select';
 import { TextareaModule } from 'primeng/textarea';
 import { HttpService } from '../../../shared/services/http.service';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @Component({
     selector: 'app-sales-form',
-    imports: [SelectModule, FormsModule, InputTextModule, TextareaModule, ButtonModule, DatePickerModule],
+    imports: [SelectModule, FormsModule, InputTextModule, TextareaModule, ButtonModule, DatePickerModule, AutoCompleteModule],
     templateUrl: './sales-form.component.html',
     styleUrl: './sales-form.component.scss'
 })
 export class SalesFormComponent {
+    filteredClients: any = [];
+
     httpService = inject(HttpService);
 
     dropdownItems = [
@@ -24,13 +27,15 @@ export class SalesFormComponent {
     ];
 
     dropdownItem = null;
-    value3 = 'some text';
+    value3 = '';
     date = new Date();
     timeStart = '13:00';
     timeEnd = '17:00';
     selectedService = 'Full wash';
     services: any = [];
     servicesSignal = computed(() => signal(this.services()));
+    clients: any = [];
+    clientsSignal = computed(() => signal(this.clients()));
     statuses = [
         { name: 'Paid', code: 'paid' },
         { name: 'Due', code: 'due' }
@@ -39,12 +44,20 @@ export class SalesFormComponent {
 
     constructor() {
         this.services = toSignal(this.httpService.getServiceTypes());
-        console.log('this.services: ', this.services());
+        this.clients = toSignal(this.httpService.getClients());
     }
 
-    ngOnInit() {
-        setTimeout(() => {
-            console.log('this.services: ', this.services());
-        }, 5000);
+    ngOnInit() {}
+
+    searchClient($event: any) {
+        const query = $event.query.toLowerCase();
+
+        this.filteredClients = this.clients()
+            .map((client: any) => client.regNo + ' - ' + client.make + ' ' + client.model + ' ' + client.color)
+            .filter((client: any) => client?.toLowerCase().includes(query));
+    }
+
+    onClientSelected() {
+        throw new Error('Method not implemented.');
     }
 }

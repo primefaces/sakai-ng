@@ -5,7 +5,8 @@
     </div>
     <div class="input-container">
         <label for="carRegNo">Car RegNo</label>
-        <input pInputText id="carRegNo" [(ngModel)]="value3" autocomplete="off" />
+
+        <p-autocomplete class="input" [(ngModel)]="value3" [suggestions]="filteredClients" (completeMethod)="searchClient($event)" />
     </div>
     <div class="input-container">
         <label for="timeStart">Time Start</label>
