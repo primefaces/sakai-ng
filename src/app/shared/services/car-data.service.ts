@@ -2072,17 +2072,36 @@ export class CarDataService {
         { make: 'Chery', models: ['Tiggo', 'Arrizo', 'QQ', 'Orinoco', 'Fulwin', 'A1', 'A3', 'A5', 'A9', 'A13', 'A19', 'A21', 'A25', 'A35', 'A44', 'A55', 'A66', 'A88', 'A100', 'A200', 'A500', 'A520', 'A600', 'A800', 'A900', 'A1100'] },
         { make: 'BYD', models: ['Tang', 'Song', 'Yuan', 'Qin', 'Han', 'F3', 'F5', 'F6', 'F7', 'F8', 'F9', 'F0', 'F1', 'F2', 'F3R', 'F6DM', 'G3', 'G5', 'G6', 'G9', 'G6R', 'G6PHEV'] },
         { make: 'Great Wall', models: ['Haval', 'Wingle', 'Coolbear', 'Deer', 'Hover', 'Pegasus', 'Peri', 'Safe', 'Sailor', 'Sing', 'Socool', 'Voleex', 'Wey', 'X200', 'X240', 'Xylo', 'Zotye'] },
-        { make: 'JAC', models: ['S2', 'S3', 'S4'] }
+        { make: 'JAC', models: ['S2', 'S3', 'S4'] },
+        {
+            make: 'Perodua',
+            models: [
+                // Hatchbacks and Sedans
+                'Myvi',
+                'Axia',
+                'Bezza',
+                'Viva',
+                'Kelisa',
+                'Naza Sutera',
+
+                // SUVs and Crossovers
+                'Aruz',
+                'Alza',
+                'Ativa',
+
+                // Commercial Vehicles
+                'Staria',
+                'N1',
+                'Rusa',
+
+                // Special Editions and Variants
+                'Myvi 1.5 Advance',
+                'Bezza X',
+                'Alza SE',
+                'Aruz X',
+                'Ativa X'
+            ]
+        }
     ];
-    vehicleTypes = [
-        { label: 'Small Car', value: 'Small Car' },
-        { label: 'Sedan', value: 'Sedan' },
-        { label: 'SUV', value: 'SUV' },
-        { label: 'Pickup', value: 'PickUp' },
-        { label: 'Coupe', value: 'Coupe' },
-        { label: 'Motorcycle', value: 'Motorcycle' },
-        { label: 'Van', value: 'Van' },
-        { label: 'Truck', value: 'Truck' },
-        { label: 'Other', value: 'Other' }
-    ];
+    vehicleTypes = ['Small Car', 'Sedan', 'SUV', 'Pickup', 'Coupe', 'Motorcycle', 'Van', 'Truck', 'Other'];
 }

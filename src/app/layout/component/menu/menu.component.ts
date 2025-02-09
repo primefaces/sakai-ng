@@ -25,6 +25,42 @@ export class MenuComponent {
                         routerLink: ['/sales']
                     },
                     {
+                        label: 'Expenses',
+                        icon: 'pi pi-fw pi-wallet',
+                        items: [
+                            {
+                                label: 'All',
+                                icon: 'pi pi-fw pi-amazon',
+                                routerLink: ['/auth/login']
+                            },
+                            {
+                                label: 'Stock',
+                                icon: 'pi pi-fw pi-box',
+                                routerLink: ['/auth/error']
+                            },
+                            {
+                                label: 'Utilities',
+                                icon: 'pi pi-fw pi-bolt',
+                                routerLink: ['/auth/access']
+                            },
+                            {
+                                label: 'Salary',
+                                icon: 'pi pi-fw pi-user',
+                                routerLink: ['/auth/access']
+                            },
+                            {
+                                label: 'Assets',
+                                icon: 'pi pi-fw pi-building-columns',
+                                routerLink: ['/auth/access']
+                            },
+                            {
+                                label: 'Cleaning Supplies',
+                                icon: 'pi pi-fw pi-sparkles',
+                                routerLink: ['/auth/access']
+                            }
+                        ]
+                    },
+                    {
                         label: 'Clients',
                         icon: 'pi pi-fw pi-users',
                         routerLink: ['/clients']

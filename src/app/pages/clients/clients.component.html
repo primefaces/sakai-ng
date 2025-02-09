@@ -68,10 +68,10 @@
                     {{ client.regNo }}
                 </td>
                 <td (blur)="updateClient(client, 'owner', $event)" contenteditable="true">
-                    {{ client.owner }}
+                    {{ client.ownerName }}
                 </td>
                 <td (blur)="updateClient(client, 'tel', $event)" contenteditable="true">
-                    {{ client.tel }}
+                    {{ client.contactNumber }}
                 </td>
 
                 <td class="flex justify-center items-center">
@@ -93,7 +93,7 @@
 </div>
 
 <p-dialog header="Create Client" [(visible)]="isCreateClientDialogVisible" [position]="'top'" [breakpoints]="{ '1590px': '75vw', '1036px': '100vw' }" [style]="{ width: '50vw' }" [modal]="true">
-    <client-form></client-form>
+    <client-form [(client)]="client"></client-form>
     <ng-template #footer>
         <p-button p-ripple p-button p-component p-button-secondary p-button-text label="Cancel" [text]="true" severity="secondary" (click)="hideCreateClientDialog()" />
         <p-button label="Save" (click)="createClient()" />

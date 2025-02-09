@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, model, ModelSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ButtonModule } from 'primeng/button';
@@ -25,17 +25,7 @@ export class ClientFormComponent {
     regNo = '';
     ownerName = '';
     contactNumber = '';
-    client = {
-        name: '',
-        make: '',
-        model: '',
-        year: '',
-        color: '',
-        type: '',
-        regNo: '',
-        ownerName: '',
-        contactNumber: ''
-    };
+    client: ModelSignal<any> = model.required();
     vehicleTypes = this.carDataService.vehicleTypes;
     filteredMakes: string[] = [];
     filteredModels: string[] = [];
@@ -44,18 +34,14 @@ export class ClientFormComponent {
     searchMake(event: any) {
         const query = event.query.toLowerCase();
 
-        // Filter makes based on the search query
         this.filteredMakes = this.makes.map((item) => item.make).filter((make) => make.toLowerCase().includes(query));
     }
 
     onMakeSelected() {
-        // Find the selected make
         this.models = [];
-        this.client.model = '';
-        const selectedMake = this.makes.find((item) => item.make === this.client.make);
+        this.client().model = '';
+        const selectedMake = this.makes.find((item) => item.make === this.client().make);
         console.log('selectedMake: ', selectedMake);
-
-        // Set the models of the selected make
 
         if (selectedMake) {
             this.models = selectedMake?.models;
@@ -65,7 +51,6 @@ export class ClientFormComponent {
     searchModel(event: any) {
         const query = event.query.toLowerCase();
 
-        // Filter models based on the search query
         this.filteredModels = this.models.filter((model) => model.toLowerCase().includes(query));
     }
 }

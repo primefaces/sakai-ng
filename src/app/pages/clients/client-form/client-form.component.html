@@ -2,41 +2,41 @@
     <div class="input-container">
         <label for="make">Make</label>
 
-        <p-autocomplete class="input" [(ngModel)]="client.make" [suggestions]="filteredMakes" (onBlur)="onMakeSelected()" (completeMethod)="searchMake($event)" />
+        <p-autocomplete class="input" [(ngModel)]="client().make" [suggestions]="filteredMakes" (onBlur)="onMakeSelected()" (completeMethod)="searchMake($event)" />
     </div>
 
     <div class="input-container">
         <label for="model">Model</label>
-        <p-autocomplete class="input" [(ngModel)]="client.model" [suggestions]="filteredModels" (completeMethod)="searchModel($event)" />
+        <p-autocomplete class="input" [(ngModel)]="client().model" [suggestions]="filteredModels" (completeMethod)="searchModel($event)" />
     </div>
 
     <div class="input-container">
         <label for="year">Year</label>
-        <p-datepicker class="input" [(ngModel)]="client.year" placeholder="Select Year" view="year" dateFormat="yy" />
+        <p-datepicker class="input" [(ngModel)]="client().year" placeholder="Select Year" view="year" dateFormat="yy" />
     </div>
 
     <div class="input-container">
         <label for="color">Color</label>
-        <input pInputText id="color" [(ngModel)]="client.color" autocomplete="off" />
+        <input pInputText id="color" [(ngModel)]="client().color" autocomplete="off" />
     </div>
 
     <div class="input-container">
         <label for="type">Type</label>
-        <p-select class="input" [options]="vehicleTypes" [(ngModel)]="client.type" optionLabel="label" placeholder="Select a Type" class="w-full md:w-56"></p-select>
+        <p-select class="input" [options]="vehicleTypes" [(ngModel)]="client().type" placeholder="Select a Type" class="w-full md:w-56"></p-select>
     </div>
 
     <div class="input-container">
         <label for="regNo">RegNo</label>
-        <input pInputText id="regNo" [(ngModel)]="client.regNo" autocomplete="off" />
+        <input pInputText id="regNo" [(ngModel)]="client().regNo" autocomplete="off" />
     </div>
 
     <div class="input-container">
         <label for="ownerName">Owner Name</label>
-        <input pInputText id="ownerName" [(ngModel)]="client.ownerName" autocomplete="off" />
+        <input pInputText id="ownerName" [(ngModel)]="client().ownerName" autocomplete="off" />
     </div>
 
     <div class="input-container">
         <label for="contactNumber">Tel.</label>
-        <input pInputText id="contactNumber" [(ngModel)]="client.contactNumber" autocomplete="off" />
+        <input pInputText id="contactNumber" [(ngModel)]="client().contactNumber" autocomplete="off" />
     </div>
 </main>

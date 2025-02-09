@@ -67,6 +67,17 @@ export class ClientsComponent {
 
     isCreateClientDialogVisible = false;
 
+    client = {
+        make: '',
+        model: '',
+        year: '',
+        color: '',
+        type: '',
+        regNo: '',
+        ownerName: '',
+        contactNumber: ''
+    };
+
     constructor() {
         this.clients = toSignal(this.httpService.getClients());
     }
@@ -91,6 +102,26 @@ export class ClientsComponent {
     }
 
     createClient() {
-        throw new Error('Method not implemented.');
+        this.isCreateClientDialogVisible = false;
+        this.client.year = String(new Date(this.client.year).getFullYear());
+        this.clientsSignal().update((c) => [...c, this.client]);
+        this.httpService.createClient(this.client).subscribe((response) => {
+            this.resetClient();
+            console.log(response);
+        });
+        console.log(this.client);
+    }
+
+    resetClient() {
+        this.client = {
+            make: '',
+            model: '',
+            year: '',
+            color: '',
+            type: '',
+            regNo: '',
+            ownerName: '',
+            contactNumber: ''
+        };
     }
 }
