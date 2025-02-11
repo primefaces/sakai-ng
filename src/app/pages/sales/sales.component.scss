@@ -7,3 +7,20 @@
         cursor: pointer;
     }
 }
+
+.icons-box {
+    i {
+        opacity: 0;
+        transition: 0.2s ease;
+    }
+}
+
+.icons-box {
+    i {
+        cursor: pointer;
+    }
+}
+
+.sales-row:hover .icons-box i {
+    opacity: 1;
+}

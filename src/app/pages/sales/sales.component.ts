@@ -50,6 +50,9 @@ import { rxResource, toSignal } from '@angular/core/rxjs-interop';
     providers: [ConfirmationService, MessageService, CustomerService, ProductService]
 })
 export class SalesComponent {
+    onDeleteServiceCLick(arg0: any) {
+        throw new Error('Method not implemented.');
+    }
     @ViewChild('filter') filter!: ElementRef;
     httpService = inject(HttpService);
     sales: any = [];
@@ -73,14 +76,14 @@ export class SalesComponent {
     constructor() {
         this.sales = toSignal(this.httpService.getSales());
     }
-    ngOnInit(): void { }
+    ngOnInit(): void {}
 
     clear(table: Table) {
         table.clear();
         this.filter.nativeElement.value = '';
     }
 
-    getSales() { }
+    getSales() {}
 
     getSeverity(status: string) {
         switch (status) {
@@ -114,6 +117,6 @@ export class SalesComponent {
                 this.salesSignal().set(sales);
             });
             this.hideDialog();
-        })
-}
+        });
+    }
 }

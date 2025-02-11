@@ -75,10 +75,11 @@
                 <th style="min-width: 10rem">
                     <div class="flex justify-between items-center">Comments</div>
                 </th>
+                <th></th>
             </tr>
         </ng-template>
         <ng-template #body let-sale>
-            <tr>
+            <tr class="sales-row">
                 <td>
                     {{ sale.date | date: 'MM/dd/yyyy' }}
                 </td>
@@ -100,8 +101,7 @@
                 </td>
 
                 <td>
-                
-                {{sale.serviceType?.name}}
+                    {{ sale.serviceType?.name }}
                 </td>
 
                 <td>
@@ -121,6 +121,12 @@
                 </td>
                 <td>
                     {{ sale.comments }}
+                </td>
+                <td>
+                    <div class="flex justify-between items-center gap-4 icons-box">
+                        <i (click)="onDeleteServiceCLick(sale._id)" class="action-icon pi pi-pencil"></i>
+                        <i (click)="onDeleteServiceCLick(sale._id)" class="action-icon pi pi-trash" style="color: var(--p-button-danger-background)"></i>
+                    </div>
                 </td>
             </tr>
         </ng-template>
