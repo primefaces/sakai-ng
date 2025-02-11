@@ -107,32 +107,26 @@ export class SalesComponent {
     }
 
     createSale() {
-        const serviceTypeSelected: any = this.sale.serviceType;
-        this.sale.serviceType = serviceTypeSelected._id;
-        console.log(' this.sale : ', this.sale);
-
-        // this.httpService.createSale(this.sale).subscribe((response: any) => {
-        //     this.httpService.getSales().subscribe((sales: any) => {
-        //         this.sales = sales;
-        //         this.salesSignal().set(sales);
-        //     });
-        //     this.hideDialog();
-        // });
+        this.httpService.createSale(this.sale).subscribe((response: any) => {
+            this.httpService.getSales().subscribe((sales: any) => {
+                this.sales = sales;
+                this.salesSignal().set(sales);
+            });
+            this.hideDialog();
+        });
     }
 
     onEditSaleClick(sale: any) {
         this.sale = sale;
-
         this.sale.date = new Date(sale.date);
         this.sale.vehicleName = sale.vehicle.regNo + ' - ' + sale.vehicle.make + ' ' + sale.vehicle.model + ' ' + sale.vehicle.color;
         this.sale.vehicleId = sale.vehicle._id;
+        this.sale.serviceTypeName = sale.serviceType;
         this.showDialog();
     }
 
     onDeleteSaleClick(saleId: any) {
         this.salesSignal().update((s) => s.filter((s: any) => s._id !== saleId));
-        this.httpService.deleteSale(saleId).subscribe((response: any) => {
-            console.log('response: ', response);
-        });
+        this.httpService.deleteSale(saleId).subscribe((response: any) => {});
     }
 }

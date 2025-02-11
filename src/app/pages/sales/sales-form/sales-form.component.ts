@@ -77,6 +77,7 @@ export class SalesFormComponent {
 
     onServiceTypeSelect() {
         const serviceTypeSelected = this.sale().serviceTypeName;
+
         this.sale().serviceType = serviceTypeSelected._id;
     }
 }
