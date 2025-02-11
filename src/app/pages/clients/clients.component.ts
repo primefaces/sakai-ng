@@ -123,8 +123,19 @@ export class ClientsComponent {
         this.clientsSignal().update((c) => c.filter((c: any) => c._id !== this.clientToDeleteId));
         this.httpService.deleteClient(this.clientToDeleteId).subscribe((response) => {});
     }
-    updateClient(_t34: any, arg1: string, $event: FocusEvent) {
-        throw new Error('Method not implemented.');
+    updateClient(client: any, field: string, event: any) {
+        const newValue = event.target.innerText.trim();
+
+        const processedValue = field === 'price' ? parseFloat(newValue.replace(/[^\d.-]/g, '')) : newValue;
+
+        if (client[field] === processedValue) {
+            return;
+        }
+
+        client[field] = processedValue;
+        this.httpService.updateClient(client).subscribe((data: any) => {
+            console.log('Client updated successfully');
+        });
     }
     onGlobalFilter(_t15: Table, $event: Event) {
         throw new Error('Method not implemented.');
