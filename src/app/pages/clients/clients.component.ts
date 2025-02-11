@@ -77,23 +77,13 @@ export class ClientsComponent {
         ownerName: '',
         contactNumber: ''
     };
+    showDeleteConfirmationDialog = false;
+    clientToDeleteId = '';
 
     constructor() {
         this.clients = toSignal(this.httpService.getClients());
     }
 
-    onDeleteClientCLick(arg0: any) {
-        throw new Error('Method not implemented.');
-    }
-    updateClient(_t34: any, arg1: string, $event: FocusEvent) {
-        throw new Error('Method not implemented.');
-    }
-    onGlobalFilter(_t15: Table, $event: Event) {
-        throw new Error('Method not implemented.');
-    }
-    clear(_t15: Table) {
-        throw new Error('Method not implemented.');
-    }
     showNewClientDialog() {
         this.isCreateClientDialogVisible = true;
     }
@@ -123,5 +113,23 @@ export class ClientsComponent {
             ownerName: '',
             contactNumber: ''
         };
+    }
+
+    onDeleteClientCLick(clientId: string) {
+        this.showDeleteConfirmationDialog = true;
+        this.clientToDeleteId = clientId;
+    }
+    deleteClient() {
+        this.clientsSignal().update((c) => c.filter((c: any) => c._id !== this.clientToDeleteId));
+        this.httpService.deleteClient(this.clientToDeleteId).subscribe((response) => {});
+    }
+    updateClient(_t34: any, arg1: string, $event: FocusEvent) {
+        throw new Error('Method not implemented.');
+    }
+    onGlobalFilter(_t15: Table, $event: Event) {
+        throw new Error('Method not implemented.');
+    }
+    clear(_t15: Table) {
+        throw new Error('Method not implemented.');
     }
 }

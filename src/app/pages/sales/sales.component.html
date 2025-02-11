@@ -84,20 +84,20 @@
                     {{ sale.date | date: 'MM/dd/yyyy' }}
                 </td>
                 <td>
-                    {{ sale.vehicle.regNo }}
+                    {{ sale.vehicle?.regNo }}
                 </td>
                 <td>
                     <div class="flex items-center gap-2">
-                        <span>{{ sale.vehicle.make }}</span>
+                        <span>{{ sale.vehicle?.make }}</span>
                     </div>
                 </td>
                 <td>
                     <div class="flex items-center gap-2">
-                        <span class="image-text">{{ sale.vehicle.model }}</span>
+                        <span class="image-text">{{ sale.vehicle?.model }}</span>
                     </div>
                 </td>
                 <td>
-                    {{ sale.vehicle.color }}
+                    {{ sale.vehicle?.color }}
                 </td>
 
                 <td>
@@ -132,12 +132,12 @@
         </ng-template>
         <ng-template #emptymessage>
             <tr>
-                <td colspan="12">No Sales found.</td>
+                <td colspan="13">No Sales found.</td>
             </tr>
         </ng-template>
         <ng-template #loadingbody>
             <tr>
-                <td colspan="12">Loading Sales data. Please wait.</td>
+                <td colspan="13">Loading Sales data. Please wait.</td>
             </tr>
         </ng-template>
     </p-table>

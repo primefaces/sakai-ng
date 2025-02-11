@@ -50,28 +50,28 @@
         <ng-template #body let-client>
             <tr class="service-row">
                 <td (blur)="updateClient(client, 'make', $event)" contenteditable="true">
-                    {{ client.make }}
+                    {{ client?.make }}
                 </td>
                 <td (blur)="updateClient(client, 'model', $event)" contenteditable="true">
-                    {{ client.model }}
+                    {{ client?.model }}
                 </td>
                 <td (blur)="updateClient(client, 'year', $event)" contenteditable="true">
-                    {{ client.year }}
+                    {{ client?.year }}
                 </td>
                 <td (blur)="updateClient(client, 'color', $event)" contenteditable="true">
-                    {{ client.color }}
+                    {{ client?.color }}
                 </td>
                 <td (blur)="updateClient(client, 'type', $event)" contenteditable="true">
-                    {{ client.type }}
+                    {{ client?.type }}
                 </td>
                 <td (blur)="updateClient(client, 'regNo', $event)" contenteditable="true">
-                    {{ client.regNo }}
+                    {{ client?.regNo }}
                 </td>
                 <td (blur)="updateClient(client, 'owner', $event)" contenteditable="true">
-                    {{ client.ownerName }}
+                    {{ client?.ownerName }}
                 </td>
                 <td (blur)="updateClient(client, 'tel', $event)" contenteditable="true">
-                    {{ client.contactNumber }}
+                    {{ client?.contactNumber }}
                 </td>
 
                 <td class="flex justify-center items-center">
@@ -99,3 +99,5 @@
         <p-button label="Save" (click)="createClient()" />
     </ng-template>
 </p-dialog>
+
+<delete-confirmation-dialog (onDeleteConfirmation)="deleteClient()" [(showDialog)]="showDeleteConfirmationDialog"></delete-confirmation-dialog>

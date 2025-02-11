@@ -71,7 +71,7 @@ export class AppComponent implements OnInit {
         if (type === 'primary') {
             updatePreset(this.getPresetExt());
         } else if (type === 'surface') {
-            updateSurfacePalette(color.palette);
+            updateSurfacePalette(color);
         }
     }
 
