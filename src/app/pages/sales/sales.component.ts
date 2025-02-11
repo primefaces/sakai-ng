@@ -21,7 +21,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ProductService } from '../service/product.service';
 import { SalesFormComponent } from './sales-form/sales-form.component';
 import { HttpService } from '../../shared/services/http.service';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-sales',
@@ -73,14 +73,14 @@ export class SalesComponent {
     constructor() {
         this.sales = toSignal(this.httpService.getSales());
     }
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 
     clear(table: Table) {
         table.clear();
         this.filter.nativeElement.value = '';
     }
 
-    getSales() {}
+    getSales() { }
 
     getSeverity(status: string) {
         switch (status) {
@@ -109,8 +109,11 @@ export class SalesComponent {
         const serviceTypeSelected: any = this.sale.serviceType;
         this.sale.serviceType = serviceTypeSelected._id;
         this.httpService.createSale(this.sale).subscribe((response: any) => {
-            this.sales = toSignal(this.httpService.getSales());
-        });
-        this.hideDialog();
-    }
+            this.httpService.getSales().subscribe((sales: any) => {
+                this.sales = sales;
+                this.salesSignal().set(sales);
+            });
+            this.hideDialog();
+        })
+}
 }

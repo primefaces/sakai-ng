@@ -12,7 +12,7 @@
         [rowHover]="true"
         [showGridlines]="true"
         [paginator]="true"
-        [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+        [globalFilterFields]="['date ', 'vehicle.regNo', 'vehicle.make ', 'vehicle.model', 'vehicle.color', 'serviceType.name', 'timeStart', 'timeEnd', 'price', 'status', 'paymentMethod', 'comments']"
         responsiveLayout="scroll"
     >
         <ng-template #caption>
@@ -100,7 +100,8 @@
                 </td>
 
                 <td>
-                    <p-tag [value]="sale.serviceType.name.toLowerCase()" [severity]="getSeverity(sale.serviceType.name.toLowerCase())" styleClass="dark:!bg-surface-900" />
+                
+                {{sale.serviceType?.name}}
                 </td>
 
                 <td>
@@ -113,7 +114,7 @@
                     {{ sale.price }}
                 </td>
                 <td>
-                    <p-tag [value]="sale.status.toLowerCase()" [severity]="getSeverity(sale.status.toLowerCase())" styleClass="dark:!bg-surface-900" />
+                    <p-tag [value]="sale.status" [severity]="getSeverity(sale.status)" styleClass="dark:!bg-surface-900" />
                 </td>
                 <td>
                     {{ sale.paymentMethod }}
