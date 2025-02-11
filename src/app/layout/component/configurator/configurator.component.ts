@@ -364,17 +364,22 @@ export class ConfiguratorComponent {
     }
 
     updateColors(event: any, type: string, color: any) {
+        console.log('color: ', color);
+        console.log('type: ', type);
         if (type === 'primary') {
-            this.layoutService.layoutConfig.update((state) => ({ ...state, primary: color.name }));
+            this.layoutService.layoutConfig.update((state) => ({ ...state, primary: color.name, palette: color.palette }));
         } else if (type === 'surface') {
-            this.layoutService.layoutConfig.update((state) => ({ ...state, surface: color.name }));
+            this.layoutService.layoutConfig.update((state) => ({ ...state, surface: color.name, palette: color.palette }));
         }
+        localStorage.setItem('layoutConfig', JSON.stringify(this.layoutService.layoutConfig()));
+
         this.applyTheme(type, color);
 
         event.stopPropagation();
     }
 
     applyTheme(type: string, color: any) {
+        console.log('type: ', type);
         if (type === 'primary') {
             updatePreset(this.getPresetExt());
         } else if (type === 'surface') {

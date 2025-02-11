@@ -19,5 +19,6 @@ export class TopBarComponent {
 
     toggleDarkMode() {
         this.layoutService.layoutConfig.update((state) => ({ ...state, darkTheme: !state.darkTheme }));
+        localStorage.setItem('layoutConfig', JSON.stringify(this.layoutService.layoutConfig()));
     }
 }

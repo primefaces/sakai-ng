@@ -16,6 +16,8 @@ export class FloatingConfiguratorComponent {
     isDarkTheme = computed(() => this.LayoutService.layoutConfig().darkTheme);
 
     toggleDarkMode() {
+        console.log('toggleDarkMode: ');
         this.LayoutService.layoutConfig.update((state) => ({ ...state, darkTheme: !state.darkTheme }));
+        localStorage.setItem('layoutConfig', JSON.stringify(this.LayoutService.layoutConfig()));
     }
 }
