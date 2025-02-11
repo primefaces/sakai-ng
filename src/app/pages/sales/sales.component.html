@@ -125,7 +125,7 @@
                 <td>
                     <div class="flex justify-between items-center gap-4 icons-box">
                         <i (click)="onEditSaleClick(sale)" class="action-icon pi pi-pencil"></i>
-                        <i (click)="onDeleteSaleClick(sale._id)" class="action-icon pi pi-trash" style="color: var(--p-button-danger-background)"></i>
+                        <i (click)="onDeleteClick(sale._id)" class="action-icon pi pi-trash" style="color: var(--p-button-danger-background)"></i>
                     </div>
                 </td>
             </tr>
@@ -150,3 +150,5 @@
         <p-button label="Save" (click)="createSale()" />
     </ng-template>
 </p-dialog>
+
+<delete-confirmation-dialog (onDeleteConfirmation)="deleteSale()" [(showDialog)]="showDeleteConfirmationDialog"></delete-confirmation-dialog>

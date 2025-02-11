@@ -22,6 +22,7 @@ import { ProductService } from '../service/product.service';
 import { SalesFormComponent } from './sales-form/sales-form.component';
 import { HttpService } from '../../shared/services/http.service';
 import { rxResource, toSignal } from '@angular/core/rxjs-interop';
+import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @Component({
     selector: 'app-sales',
@@ -43,11 +44,12 @@ import { rxResource, toSignal } from '@angular/core/rxjs-interop';
         RippleModule,
         IconFieldModule,
         DialogModule,
-        SalesFormComponent
+        SalesFormComponent,
+        DeleteConfirmationDialogComponent
     ],
     templateUrl: './sales.component.html',
     styleUrl: './sales.component.scss',
-    providers: [ConfirmationService, MessageService, CustomerService, ProductService]
+    providers: [ConfirmationService, MessageService, CustomerService, ProductService, DeleteConfirmationDialogComponent]
 })
 export class SalesComponent {
     @ViewChild('filter') filter!: ElementRef;
@@ -70,7 +72,8 @@ export class SalesComponent {
         paymentMethod: '',
         comments: ''
     };
-
+    showDeleteConfirmationDialog = false;
+    serviceToDeleteId = '';
     constructor() {
         this.sales = toSignal(this.httpService.getSales());
     }
@@ -103,7 +106,25 @@ export class SalesComponent {
         this.isDialogVisible = true;
     }
     hideDialog() {
+        this.resetSale();
         this.isDialogVisible = false;
+    }
+
+    resetSale() {
+        this.sale = {
+            date: new Date(),
+            vehicleName: '',
+            vehicleId: '',
+            timeStart: '',
+            timeEnd: '',
+            serviceTypeName: '',
+            serviceType: null,
+            price: '',
+            status: '',
+            paymentMethod: '',
+            comments: ''
+        };
+        this.serviceToDeleteId = '';
     }
 
     createSale() {
@@ -125,8 +146,13 @@ export class SalesComponent {
         this.showDialog();
     }
 
-    onDeleteSaleClick(saleId: any) {
-        this.salesSignal().update((s) => s.filter((s: any) => s._id !== saleId));
-        this.httpService.deleteSale(saleId).subscribe((response: any) => {});
+    deleteSale() {
+        this.salesSignal().update((s) => s.filter((s: any) => s._id !== this.serviceToDeleteId));
+        this.httpService.deleteSale(this.serviceToDeleteId).subscribe((response: any) => {});
+    }
+
+    onDeleteClick(saleId: string) {
+        this.showDeleteConfirmationDialog = true;
+        this.serviceToDeleteId = saleId;
     }
 }
