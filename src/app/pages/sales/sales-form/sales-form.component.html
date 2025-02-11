@@ -19,7 +19,7 @@
 
     <div class="input-container">
         <label for="serviceType">Service Type</label>
-        <p-select class="input" (onChange)="onServiceTypeSelect()" [options]="servicesSignal()()" [(ngModel)]="sale().serviceType" optionLabel="name" placeholder="Select a Service" class="w-full md:w-56" />
+        <p-select class="input" (onChange)="onServiceTypeSelect()" [options]="servicesSignal()()" [(ngModel)]="sale().serviceTypeName" optionLabel="name" placeholder="Select a Service" class="w-full md:w-56" />
     </div>
 
     <div class="input-container">

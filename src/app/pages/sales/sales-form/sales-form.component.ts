@@ -71,11 +71,12 @@ export class SalesFormComponent {
         const regNo = this.sale().vehicleName.split(' - ')[0];
 
         const vehicleSelected = this.clients().find((client: any) => client.regNo === regNo);
-        console.log('vehicleSelected: ', vehicleSelected);
+
         this.sale().vehicle = vehicleSelected._id;
     }
 
     onServiceTypeSelect() {
-        const serviceTypeSelected = this.sale().serviceType;
+        const serviceTypeSelected = this.sale().serviceTypeName;
+        this.sale().serviceType = serviceTypeSelected._id;
     }
 }
