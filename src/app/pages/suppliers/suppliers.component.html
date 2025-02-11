@@ -1,9 +1,9 @@
 <div class="card">
     <div class="global-header-container mb-4">
-        <div class="font-semibold text-xl">Services</div>
+        <div class="font-semibold text-xl">Suppliers</div>
         <i (click)="showDialog()" class="pi pi-plus"></i>
     </div>
-    <p-table #dt1 [value]="servicesSignal()()" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'price']" responsiveLayout="scroll">
+    <p-table #dt1 [value]="[]" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'price']" responsiveLayout="scroll">
         <ng-template #caption>
             <div class="flex justify-between items-center flex-column sm:flex-row">
                 <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
@@ -18,11 +18,11 @@
         <ng-template #header>
             <tr>
                 <th style="min-width: 12rem">
-                    <div class="flex justify-between items-center">Service Name</div>
+                    <div class="flex justify-between items-center">Supplier Name</div>
                 </th>
 
                 <th style="min-width: 10rem">
-                    <div class="flex justify-between items-center">Price</div>
+                    <div class="flex justify-between items-center">Expense Type</div>
                 </th>
                 <th style="min-width: 40px">
                     <div class="flex justify-center items-center"></div>
@@ -45,18 +45,18 @@
         </ng-template>
         <ng-template #emptymessage>
             <tr>
-                <td colspan="8">No services found.</td>
+                <td colspan="8">No suppliers found.</td>
             </tr>
         </ng-template>
         <ng-template #loadingbody>
             <tr>
-                <td colspan="8">Loading services data. Please wait.</td>
+                <td colspan="8">Loading suppliers data. Please wait.</td>
             </tr>
         </ng-template>
     </p-table>
 </div>
 
-<p-dialog header="Create Service" [(visible)]="isDialogVisible" [position]="'top'" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '25vw' }" [modal]="true">
+<p-dialog header="Create Supplier" [(visible)]="isDialogVisible" [position]="'top'" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '25vw' }" [modal]="true">
     <app-services-form [(name)]="newServiceName" [(price)]="newServicePrice"> </app-services-form>
     <ng-template #footer>
         <p-button p-ripple p-button p-component p-button-secondary p-button-text label="Cancel" [text]="true" severity="secondary" (click)="hideDialog()" />

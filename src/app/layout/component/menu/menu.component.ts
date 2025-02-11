@@ -41,7 +41,7 @@ export class MenuComponent {
                             {
                                 label: 'Utilities',
                                 icon: 'pi pi-fw pi-bolt',
-                                routerLink: ['/auth/access']
+                                routerLink: ['/expenses/utilities']
                             },
                             {
                                 label: 'Salary',
@@ -69,6 +69,11 @@ export class MenuComponent {
                         label: 'Services',
                         icon: 'pi pi-fw pi-hammer',
                         routerLink: ['/services']
+                    },
+                    {
+                        label: 'Suppliers',
+                        icon: 'pi pi-fw pi-truck',
+                        routerLink: ['/suppliers']
                     }
                 ]
             },

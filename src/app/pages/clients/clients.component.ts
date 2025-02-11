@@ -40,7 +40,6 @@ import { ClientFormComponent } from './client-form/client-form.component';
         IconFieldModule,
         DialogModule,
         ClientFormComponent,
-        MurCurrencyPipe,
         DigitOnlyDirective,
         DeleteConfirmationDialogComponent
     ],
@@ -137,8 +136,8 @@ export class ClientsComponent {
             console.log('Client updated successfully');
         });
     }
-    onGlobalFilter(_t15: Table, $event: Event) {
-        throw new Error('Method not implemented.');
+    onGlobalFilter(table: Table, event: Event) {
+        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
     }
     clear(_t15: Table) {
         throw new Error('Method not implemented.');

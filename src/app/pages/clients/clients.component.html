@@ -1,9 +1,20 @@
 <div class="card">
-    <div class="header-container mb-4">
+    <div class="global-header-container mb-4">
         <div class="font-semibold text-xl">Clients</div>
         <i (click)="showNewClientDialog()" class="pi pi-plus"></i>
     </div>
-    <p-table #dt1 [value]="clientsSignal()()" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'price']" responsiveLayout="scroll">
+    <p-table
+        #dt1
+        [value]="clientsSignal()()"
+        dataKey="id"
+        [rows]="20"
+        [loading]="loading"
+        [rowHover]="true"
+        [showGridlines]="true"
+        [paginator]="true"
+        [globalFilterFields]="['make', 'model', 'year', 'color', 'regNo', 'ownerName', 'contactNumber']"
+        responsiveLayout="scroll"
+    >
         <ng-template #caption>
             <div class="flex justify-between items-center flex-column sm:flex-row">
                 <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
@@ -70,7 +81,7 @@
                 <td (blur)="updateClient(client, 'ownerName', $event)" contenteditable="true">
                     {{ client?.ownerName }}
                 </td>
-                <td (blur)="updateClient(client, 'contactNumber', $event)" contenteditable="true">
+                <td digitOnly (blur)="updateClient(client, 'contactNumber', $event)" contenteditable="true">
                     {{ client?.contactNumber }}
                 </td>
 
