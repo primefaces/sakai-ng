@@ -55,13 +55,3 @@
         </ng-template>
     </p-table>
 </div>
-
-<p-dialog header="Create Service" [(visible)]="isDialogVisible" [position]="'top'" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '25vw' }" [modal]="true">
-    <app-services-form [(name)]="newServiceName" [(price)]="newServicePrice"> </app-services-form>
-    <ng-template #footer>
-        <p-button p-ripple p-button p-component p-button-secondary p-button-text label="Cancel" [text]="true" severity="secondary" (click)="hideDialog()" />
-        <p-button label="Save" (click)="createService()" />
-    </ng-template>
-</p-dialog>
-
-<delete-confirmation-dialog (onDeleteConfirmation)="deleteService()" [(showDialog)]="showDeleteConfirmationDialog"></delete-confirmation-dialog>

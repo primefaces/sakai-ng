@@ -1,6 +1,5 @@
 import { Component, inject, model } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
-import { HttpService } from '../../../shared/services/http.service';
 import { FormsModule } from '@angular/forms';
 import { InputNumber } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
@@ -14,7 +13,6 @@ import { TableModule } from 'primeng/table';
     styleUrl: './services-form.component.scss'
 })
 export class ServicesFormComponent {
-    httpService = inject(HttpService);
     name = model();
     price = model();
 }

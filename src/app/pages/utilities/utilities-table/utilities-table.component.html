@@ -1,0 +1,81 @@
+<div class="global-header-container mb-4">
+    <div class="font-semibold text-xl">Utilities</div>
+    <i (click)="showDialog()" class="pi pi-plus"></i>
+</div>
+<p-table #dt1 [value]="[]" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'price']" responsiveLayout="scroll">
+    <ng-template #caption>
+        <div class="flex justify-between items-center flex-column sm:flex-row">
+            <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+            <p-iconfield iconPosition="left" class="ml-auto">
+                <p-inputicon>
+                    <i class="pi pi-search"></i>
+                </p-inputicon>
+                <input pInputText type="text" (input)="onGlobalFilter(dt1, $event)" placeholder="Search keyword" />
+            </p-iconfield>
+        </div>
+    </ng-template>
+    <ng-template #header>
+        <tr>
+            <th style="min-width: 12rem">
+                <div class="flex justify-between items-center">Date</div>
+            </th>
+
+            <th style="min-width: 12rem">
+                <div class="flex justify-between items-center">Utility</div>
+            </th>
+
+            <th style="min-width: 10rem">
+                <div class="flex justify-between items-center">Provider</div>
+            </th>
+
+            <th style="min-width: 10rem">
+                <div class="flex justify-between items-center">Amount</div>
+            </th>
+
+            <th style="min-width: 10rem">
+                <div class="flex justify-between items-center">Status</div>
+            </th>
+
+            <th style="min-width: 10rem">
+                <div class="flex justify-between items-center">Paid On</div>
+            </th>
+
+            <th style="min-width: 40px">
+                <div class="flex justify-center items-center"></div>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-service>
+        <tr class="service-row">
+            <td (blur)="updateService(service, 'name', $event)" contenteditable="true">
+                {{ service.name }}
+            </td>
+
+            <td digitOnly (blur)="updateService(service, 'price', $event)" contenteditable="true">
+                {{ service.price | mur }}
+            </td>
+            <td class="flex justify-center items-center">
+                <i (click)="onDeleteServiceCLick(service._id)" class="delete-icon pi pi-trash" style="color: var(--p-button-danger-background)"></i>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+        <tr>
+            <td colspan="8">No services found.</td>
+        </tr>
+    </ng-template>
+    <ng-template #loadingbody>
+        <tr>
+            <td colspan="8">Loading services data. Please wait.</td>
+        </tr>
+    </ng-template>
+</p-table>
+<p-dialog header="Create Service" [(visible)]="isDialogVisible" [position]="'top'" [breakpoints]="{ '1590px': '75vw', '1036px': '100vw' }" [style]="{ width: '50vw' }" [modal]="true">
+    <app-utility-form [utility]="utility"></app-utility-form>
+    <ng-template #footer>
+        <p-button p-ripple p-button p-component p-button-secondary p-button-text label="Cancel" [text]="true" severity="secondary" (click)="hideDialog()" />
+        <p-button label="Save" (click)="createService()" />
+    </ng-template>
+</p-dialog>
+
+<delete-confirmation-dialog (onDeleteConfirmation)="deleteService()" [(showDialog)]="showDeleteConfirmationDialog"></delete-confirmation-dialog>

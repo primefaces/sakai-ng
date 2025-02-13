@@ -1,0 +1,51 @@
+main {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 25px;
+    margin-bottom: 135px;
+}
+
+.input-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    padding-inline: 20px;
+
+    label {
+        width: 170px;
+    }
+
+    input,
+    .input {
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 411px) {
+    ::ng-deep .p-datepicker .p-datepicker-panel {
+        left: -69px !important;
+    }
+}
+
+::ng-deep .p-datepicker,
+.p-select,
+.p-inputtext,
+.p-autocomplete,
+.p-autocomplete-input,
+.p-inputnumber {
+    width: 100% !important;
+}
+
+::ng-deep .p-autocomplete-input {
+    width: 100% !important;
+}
+::ng-deep .p-autocomplete {
+    width: 100% !important;
+}
