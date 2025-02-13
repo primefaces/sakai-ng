@@ -1,0 +1,45 @@
+<p-table [globalFilterFields]="['changeType']"
+         [value]="collisions | keyvalue"
+         [columns]="cols"
+         styleClass="p-datatable-striped">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{ col.header }}
+            </th>
+        </tr>
+        <th>
+            <p-columnFilter
+                field="value" matchMode="contains" [showMenu]="false">
+                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                    <p-dropdown
+                        [ngModel]="value"
+                        [options]="getCollisionTypes()"
+                        (onChange)="filter($event.value)"
+                        placeholder="Select Type"
+                        [showClear]="true">
+                    </p-dropdown>
+                </ng-template>
+            </p-columnFilter>
+        </th>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                <div *ngIf="col.field === 'value'; else defaultCell">
+                    <div *ngFor="let item of rowData[col.field]">
+                        {{ item }}
+                    </div>
+                </div>
+                <ng-template #defaultCell>
+                    {{ rowData[col.field] }}
+                </ng-template>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="2">No Collisions with your settings!</td>
+        </tr>
+    </ng-template>
+</p-table>

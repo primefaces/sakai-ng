@@ -1,17 +1,18 @@
-import { TimingDTO } from './timing-dto';
-import {RoomTableDTO} from "./room-table-dto";
+import { Timing } from './timing';
+import {RoomTable} from "../room-table";
 
-export interface CourseSessionDTO {
-  id: number;
-  name: string;
-  assigned: boolean;
-  fixed: boolean;
-  duration: number;
-  courseId: number;
-  semester: number;
-  studyType: string;
-  numberOfParticipants: number;
-  timingConstraints: TimingDTO[];
-  timing: TimingDTO | null;
-  roomTable: RoomTableDTO | null;
+export class CourseSession {
+    id: number;
+    name: string;
+    assigned: boolean;
+    fixed: boolean;
+    duration: number;
+    courseId: number;
+    semester: number;
+    studyType: string;
+    numberOfParticipants: number;
+    computersNecessary?: boolean;
+    timingConstraints: Timing[];
+    timing: Timing | null;
+    roomTable: RoomTable | null;
 }

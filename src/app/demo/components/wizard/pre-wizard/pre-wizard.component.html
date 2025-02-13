@@ -1,0 +1,110 @@
+<ng-container class="surface-card p-4 shadow-2 border-round">
+    <div class="text-3xl font-medium text-900 mb-3">Card Title</div>
+    <div class="font-medium text-500 mb-3">Vivamus id nisl interdum, blandit augue sit amet, eleifend mi.</div>
+    <div style="height: 70vh; padding-top: 7rem">
+        <div class="grid" style="display: flex; justify-content: center; align-items: center">
+            <div class="col-12 lg:col-3">
+                <div class="p-3 h-full enable-transition" [ngClass]="{'disabled-block': options.preselect}">
+                    <div class="shadow-5 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
+                        <div class="text-900 font-medium text-xl mb-2">Pre-select Data</div>
+                        <div class="text-600">Plan description</div>
+                        <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                        <div class="flex align-items-center justify-content-center flex-grow-1">
+                            <span class="font-bold text-xl text-900">do you want to preselect data?</span>
+                        </div>
+                        <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                        <ul class="list-none p-0 m-0 flex-grow-1">
+                            <li>
+                                <button pButton pRipple class="p-3 w-full d-flex align-items-center justify-content-center"
+                                        (click)="setOption('preselect', true, $event)">yes</button>
+                            </li>
+                            <li>
+                                <button pButton pRipple class="p-3 mt-2 w-full d-flex align-items-center justify-content-center"
+                                        style="transform: scale(0.8);" [routerLink]="'/wizard/selection'">no</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 lg:col-3">
+                <div class="p-3 h-full enable-transition" [ngClass]="{'disabled-block': options.preselect == null || options.semesterCourses != null}">
+                    <div class="shadow-5 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
+                        <div class="text-900 font-medium text-xl mb-2">Semester Courses</div>
+                        <div class="text-600">Plan description</div>
+                        <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                        <div class="flex align-items-center justify-content-center">
+                            <span class="font-bold text-xl text-900">Do you want to only include the courses of you selected semester? ({{currentTable.semester}})</span>
+                        </div>
+                        <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                        <ul class="list-none p-0 m-0 flex-grow-1">
+                            <li>
+                                <button pButton pRipple class="p-3 w-full d-flex align-items-center justify-content-center"
+                                        (click)="setOption('semesterCourses', true, $event)">yes</button>
+                            </li>
+                            <li>
+                                <button pButton pRipple class="p-3 mt-2 w-full d-flex align-items-center justify-content-center" style="transform: scale(0.8);"
+                                        (click)="setOption('semesterCourses', false, $event)">no</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 lg:col-3">
+                <div class="p-3 h-full enable-transition" [ngClass]="{'disabled-block': options.semesterCourses == null}">
+                    <div class="shadow-5 p-3 flex flex-column surface-card" style="border-radius: 6px">
+                        <div class="text-900 font-medium text-xl mb-2">Course Degree</div>
+                        <div class="text-600">Plan description</div>
+                        <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                        <div class="flex align-items-center justify-content-center">
+                            <span class="font-bold text-xl text-900">Select the study degrees you want to include.</span>
+                        </div>
+                        <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                        <ul class="list-none p-0 m-0 flex-grow-1">
+                            <li>
+                                <button pButton pRipple class="p-3 w-full d-flex align-items-center justify-content-center"
+                                        (click)="changeDegree(0, 'Bachelor Computer Science', $event)">Bachelor Computer Science</button>
+                            </li>
+                            <li>
+                                <button pButton pRipple class="p-3 mt-2 w-full d-flex align-items-center justify-content-center"
+                                        (click)="changeDegree(1, 'Master Computer Science', $event)">Master Computer Science</button>
+                            </li>
+                            <li>
+                                <button pButton pRipple class="p-3 mt-2 w-full d-flex align-items-center justify-content-center"
+                                        (click)="changeDegree(2, 'Master Software Engineer', $event)">Master Software Engineering</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 lg:col-3">
+                <div class="p-3 h-full enable-transition" [ngClass]="{'disabled-block': options.degree[0] == null && options.degree[1] == null && options.degree[2] == null}">
+                    <div class="shadow-5 p-3 flex flex-column surface-card" style="border-radius: 6px">
+                        <div class="text-900 font-medium text-xl mb-2">Room Import</div>
+                        <div class="text-600">Plan description</div>
+                        <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                        <div class="flex align-items-center justify-content-center">
+                            <span class="font-bold text-xl text-900">Should all rooms be automatically included?</span>
+                        </div>
+                        <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                        <ul class="list-none p-0 m-0 flex-grow-1">
+                            <li>
+                                <button pButton pRipple label="yes" class="p-3 w-full"
+                                        (click)="setOption('roomImport', true, $event)"
+                                        [routerLink]="'/wizard/selection'"></button>
+                            </li>
+                            <li>
+                                <button pButton pRipple label="no" class="p-3 w-full mt-2" style="transform: scale(0.8);"
+                                        (click)="setOption('roomImport', false, $event)"
+                                        [routerLink]="'/wizard/selection'"></button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+

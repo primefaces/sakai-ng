@@ -1,0 +1,26 @@
+<button class="createButton p-button p-component" (click)="save()">Save</button>
+<p-table [value]="newCourses"
+         [tableStyle]="{ 'min-width': '42rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Course Nr</th>
+            <th>Course Type</th>
+            <th>Name</th>
+            <th>Study Type</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-course>
+        <tr>
+            <td>{{ course.id }}</td>
+            <td>{{ course.courseType }}</td>
+            <td>{{course.name}}</td>
+            <td>{{ course.studyType }}</td>
+            <td>
+                <button pButton icon="pi pi-plus" style="width: 0"
+                        (click)="receiveNewSession(course)">
+                </button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

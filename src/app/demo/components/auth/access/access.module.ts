@@ -4,12 +4,14 @@ import { ButtonModule } from 'primeng/button';
 
 import { AccessRoutingModule } from './access-routing.module';
 import { AccessComponent } from './access.component';
+import {RippleModule} from "primeng/ripple";
 
 @NgModule({
     imports: [
         CommonModule,
         AccessRoutingModule,
-        ButtonModule
+        ButtonModule,
+        RippleModule
     ],
     declarations: [AccessComponent]
 })

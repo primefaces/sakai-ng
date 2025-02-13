@@ -1,3 +1,6 @@
+:root {
+    --fc-today-bg-color: #ffffff !important;
+}
 .fc .fc-timegrid-slot-minor {
     border-top-style: dashed;
     border-width: .1rem;
@@ -6,7 +9,6 @@
 .fc {
     width: 100%;
     margin: 0 auto;
-    padding: 5px 10px;
     background: var(--sys-color-primary-white);
     flex-direction: column-reverse;
 }
@@ -30,4 +32,55 @@
 .fc th {
     text-align: center;
     background: var(--sys-color-primary-blue);
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 0;
+}
+
+.loading-spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent overlay */
+    z-index: 1000; /* Ensure it overlays the calendar */
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1); /* Light grey */
+    border-top: 4px solid #666666; /* Spinner color */
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.event-hover {
+    position: absolute;
+    z-index: 10000000;
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.hover-event{
+    width: 98%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #666666;
+    color: var(--sys-color-primary-white);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }

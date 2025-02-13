@@ -1,0 +1,41 @@
+<p-toolbar [style]="{width: '100%'}">
+    <div class="p-toolbar-group-start">
+            <button pButton class="headerButton mr-4" type="button"
+                    icon="pi pi-calendar-plus" (click)="showTableDialog()"
+                    pTooltip="create new Table" tooltipPosition="bottom">
+            </button>
+
+            <button pButton class="headerButton" type="button" icon="pi pi-asterisk"
+                    *ngIf="isTmpTableAvailable()" (click)="loadTmpTable()"
+                    pTooltip="load unfinished Table" tooltipPosition="bottom">
+            </button>
+
+            <button pButton class="headerButton" type="button" icon="pi pi-trash"
+                    *ngIf="isTmpTableAvailable()" (click)="deleteUnfinishedTable($event)"
+                    pTooltip="delete unfinished table" tooltipPosition="bottom">
+            </button>
+    </div>
+
+    <div class="p-toolbar-group-center">
+        <p-dropdown id="all" [options]="availableTables | async" [(ngModel)]="shownTableDD" scrollHeight="300px"
+                    placeholder="Choose your Year..." optionLabel="year" [filter]="true" filterBy="year"
+                    [showClear]="true" (onChange)="handleTableChange()" (onClear)="unselectTable()">
+            <ng-template pTemplate="selectedItem">
+                <div class="item">
+                    <div>{{ shownTableDD?.name }} {{ shownTableDD?.semester }} {{ shownTableDD?.year }}</div>
+                </div>
+            </ng-template>
+            <ng-template let-item pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                    <div>{{ item.name }} {{ item.semester }} {{ item.year }}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+    </div>
+
+    <div class="p-toolbar-group-end">
+
+    </div>
+</p-toolbar>
+<p-confirmPopup/>
+

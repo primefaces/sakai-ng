@@ -1,8 +1,8 @@
-import { TimingDTO } from './timing-dto';
+import { Timing } from './timing';
 
 export class CandidateDTO {
   roomTable!: String;
-  timing!: TimingDTO;
+  timing!: Timing;
   day!: number;
   slot!: number;
   duration!: number;

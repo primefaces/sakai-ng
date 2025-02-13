@@ -1,0 +1,38 @@
+<p-table sortField="date" [sortOrder]="-1"
+         [globalFilterFields]="['changeType']" [style]="{'min-height':'15rem'}"
+         [value]="changes" [columns]="cols"
+         styleClass="p-datatable-striped">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{ col.header }}
+            </th>
+        </tr>
+        <th>
+            <p-columnFilter
+                field="changeType" matchMode="equals" [showMenu]="false">
+                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                    <p-dropdown
+                        [ngModel]="value"
+                        [options]="getChangeTypes()"
+                        (onChange)="filter($event.value)"
+                        placeholder="Select Type"
+                        [showClear]="true">
+                    </p-dropdown>
+                </ng-template>
+            </p-columnFilter>
+        </th>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                {{ rowData[col.field] }}
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="4">No changes so far!</td>
+        </tr>
+    </ng-template>
+</p-table>

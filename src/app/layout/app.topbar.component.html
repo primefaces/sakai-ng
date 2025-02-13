@@ -4,8 +4,8 @@
         <span>Lecture Connect</span>
     </a>
 
-    <button #menubutton class="p-link layout-menu-button layout-topbar-button"
-            (click)="layoutService.onMenuToggle()" [disabled]="layoutService.state.disableMenuButton">
+    <button *ngIf="layoutService.state.hide" #menubutton class="p-link layout-menu-button layout-topbar-button"
+            (click)="layoutService.onMenuToggle()">
         <i class="pi pi-bars"></i>
     </button>
     <button class="p-link layout-topbar-button" [routerLink]="'/documentation'" [pTooltip]="'Calendar View'" tooltipPosition="bottom">
@@ -37,7 +37,8 @@
             <i class="pi pi-book"></i>
             <span>Profile</span>
         </button>
-        <button class="p-link layout-topbar-button" [routerLink]="'/auth/login'" [pTooltip]="'Logout'" tooltipPosition="bottom">
+        <button class="p-link layout-topbar-button" [routerLink]="'/auth/login'" [pTooltip]="'Logout'" tooltipPosition="bottom"
+                (click)="authService.clearCache()">
             <i class="pi pi-sign-out"></i>
             <span>Profile</span>
         </button>

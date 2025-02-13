@@ -1,4 +1,3 @@
-import {Role} from "./enums/role";
 
 export class Userx {
   id!: string;
@@ -10,7 +9,7 @@ export class Userx {
   lastName?: string;
   email?: string;
   enabled?: boolean;
-  role?: string[];
+  roles?: string[];
   new? : boolean;
 
   static getTableColumns(): any[] {
@@ -21,23 +20,14 @@ export class Userx {
       {field: 'lastName', header: 'Last Name'},
       {field: 'email', header: 'E-Mail'},
       {field: 'enabled', header: 'Enabled'},
-      {field: 'role', header: 'Role'},
+      {field: 'roles', header: 'Roles'},
       {field: 'new', header: 'is New'}
     ]
   }
+
+    static getFilterFields(): string[] {
+        return ['id', 'username', 'email']
+    }
 }
 
-export class UserxDTO {
-  username?: string;
-  createDate?: Date;
-  updateDate?: Date;
-  password!: string;
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  enabled?: boolean;
-  roles?: Role[];
-  id?: string;
-  new?: boolean;
-}
 

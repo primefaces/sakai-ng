@@ -2,37 +2,53 @@ import {Injectable} from '@angular/core';
 import {ItemService} from "../../../../../../assets/models/interfaces/ItemServiceInterface";
 import {Room} from "../../../../../../assets/models/room";
 import {RoomDialog} from "../../../dialogs/room-dialog/room-dialog.component";
+import {firstValueFrom, Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
 })
 export class RoomService implements ItemService<Room> {
+    static roomApiPath = `${environment.baseUrl}/api/rooms`;
 
-    constructor() {
+    constructor(
+        private http: HttpClient,
+    ) {
     }
 
-    getItemDialog(): any {
+    public getItemDialog(): any {
         return RoomDialog;
     }
 
-    getTableHeader(): any[] {
+    public getGlobalFilterFields(): string[] {
+        return Room.getFilterFields();
+    }
+
+    public getTableHeader(): any[] {
         return Room.getTableColumns();
     }
 
-    getAllItems(): Room[] {
-        return [{id: '3W05', capacity: 45, computersAvailable: false} as Room]
+    public getAllItems(): Observable<Room[]> {
+        return this.http.get<Room[]>(RoomService.roomApiPath);
     }
-    createSingeItem(): Room {
-        throw new Error('Method not implemented.');
+
+    public async createSingeItem(newRoom: Room): Promise<Room> {
+       return firstValueFrom(this.http.post<Room>(RoomService.roomApiPath, newRoom));
     }
-    updateSingeItem(): Room {
-        throw new Error('Method not implemented.');
+
+    public async updateSingeItem(updatedRoom: Room): Promise<Room> {
+        let newUrl = `${RoomService.roomApiPath}/${updatedRoom.id}`;
+        return firstValueFrom(this.http.put<Room>(newUrl, updatedRoom));
     }
-    deleteSingleItem(): boolean {
-        throw new Error('Method not implemented.');
+
+    public deleteSingleItem(room: Room): Promise<any> {
+        const newUrl = `${RoomService.roomApiPath}/${room.id}`;
+        return firstValueFrom(this.http.delete(newUrl));
     }
-    deleteMultipleItem(): boolean {
-        throw new Error('Method not implemented.');
+
+    public deleteMultipleItem(rooms: Room[]): Promise<any> {
+        return firstValueFrom(this.http.delete(RoomService.roomApiPath));
     }
 }
 

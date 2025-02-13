@@ -1,8 +1,19 @@
 <div class="grid">
-    <div class="col-12 xl:col-12">
-        <div class="card" id="calendar">
-            <full-calendar #cal [options]="calendarOptions()" class="custom-calendar"/>
+    <div class="col-10">
+        <div class="card" style="height: 84vh">
+            <app-editor-header (changeRoom)="setNewRoom($event)" [currentRooms]="timeTable.roomTables"/>
+            <app-editor-calendar #cd [selectedRoom$]="selectedRoom$" (setDirtyBool)="setDirtyDataBit($event)"
+                [allEvents]="sessions$ | async | SessionToEvent: 'editor' | EventFilter: 'shown'"/>
+        </div>
+    </div>
+
+    <div class="col-2">
+        <div class="card" style="height: 84vh;">
+            <app-editor-selection (triggerSave)="saveChanges()"
+                [currentDragEvents]="sessions$ | async | SessionToEvent: 'editor' | EventFilter: 'drag'"
+                style="width: 100%; height: 80vh; display: flex; flex-direction: column;"/>
         </div>
     </div>
 </div>
 
+<p-confirmDialog [position]="'top'"/>

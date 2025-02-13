@@ -1,50 +1,65 @@
-import {Component, signal, ViewChild, WritableSignal} from '@angular/core';
-import {FullCalendarComponent} from "@fullcalendar/angular";
-import {Subscription} from "rxjs";
-import {CalendarOptions} from "@fullcalendar/core";
-import interactionPlugin from "@fullcalendar/interaction";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
+import { EditorCalendarComponent } from "./editor-calendar/editor-calendar.component";
+import { LayoutService } from "../../../layout/service/app.layout.service";
+import { TimeTable } from "../../../../assets/models/dto/time-table";
+import { CourseHandlerService } from "./api/course-handler.service";
+import { RoomTable } from "../../../../assets/models/room-table";
+import {Component, ViewChild} from '@angular/core';
+import { BehaviorSubject, Observable } from "rxjs";
+import { ContextMenu } from "primeng/contextmenu";
+import {EditorRequestService} from "./api/editor-request.service";
+import {CourseSession} from "../../../../assets/models/dto/course-session-dto";
 
 @Component({
-  selector: 'app-editor',
   templateUrl: './editor.component.html',
 })
-export class EditorComponent {
-    @ViewChild("cal") calendar!: FullCalendarComponent;
-    menuToggleSub!: Subscription;
+export class EditorComponent{
+    @ViewChild('cm') contextMenu!: ContextMenu;
+    @ViewChild('cd') calendar: EditorCalendarComponent;
 
-    readonly calendarOptions: WritableSignal<CalendarOptions> = signal({
-        plugins: [
-            interactionPlugin,
-            dayGridPlugin,
-            timeGridPlugin,
-        ],
-        headerToolbar: {
-            left: '',
-            center: '',
-            right: ''
-        },
-        initialView: 'timeGridWeek',
-        weekends: false,
-        editable: false,
-        selectable: false,
-        selectMirror: true,
-        dayMaxEvents: true,
-        allDaySlot: false,
-        height: "85vh",
-        eventBackgroundColor: "#666666",
-        eventBorderColor: "#050505",
-        eventTextColor: "var(--system-color-primary-white)",
-        slotMinTime: '08:00',
-        slotMaxTime: '22:00',
-        slotDuration: '00:15',
-        slotLabelInterval: '00:30',
-        dayHeaderFormat: {weekday: 'long'},
-        eventOverlap: true,
-        slotEventOverlap: true,
-        nowIndicator: false,
-        handleWindowResize: true
-        //eventClick: this.showHoverDialog.bind(this),
-    });
+    timeTable!: TimeTable;
+    private readonly courseSessions: BehaviorSubject<CourseSession[]>;
+    protected sessions$: Observable<CourseSession[]>;
+
+    protected selectedRoom: BehaviorSubject<RoomTable>;
+    protected selectedRoom$: Observable<RoomTable>;
+    private _dirtyData: boolean = false;
+
+    constructor(
+        private layoutService: LayoutService,
+        private courseHandlerService: CourseHandlerService,
+        private editorRequest: EditorRequestService
+    ) {
+        this.layoutService.changeStyle(false);
+        this.timeTable = EditorComponent.getTimeTable();
+
+        this.courseSessions = new BehaviorSubject<CourseSession[]>(this.timeTable.courseSessions);
+        this.courseHandlerService.courseSessions = this.courseSessions;
+        this.sessions$ = this.courseSessions.asObservable();
+        this.courseHandlerService.tableID = this.timeTable.id;
+
+        this.selectedRoom = new BehaviorSubject<RoomTable>(this.timeTable.roomTables[0]);
+        this.selectedRoom$ = this.selectedRoom.asObservable();
+    }
+
+    private static getTimeTable() {
+        return JSON.parse(localStorage.getItem('current-table'));
+    }
+
+    async saveChanges(){
+        this._dirtyData = false;
+        this.editorRequest.pushSessionChanges(this.timeTable.id, this.courseHandlerService.courseSessions).subscribe();
+        //TODO show updated array on home page
+    }
+
+    protected setNewRoom(newRoom: RoomTable){
+        this.selectedRoom.next(newRoom);
+    }
+
+    protected setDirtyDataBit(bit: boolean){
+        this._dirtyData = bit;
+    }
+
+    canDeactivate(){
+        return this._dirtyData;
+    }
 }

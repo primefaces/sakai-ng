@@ -2,7 +2,8 @@ import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import {PrimeIcons} from "primeng/api";
-import {LocalStorageService} from "ngx-webstorage";
+import {InvokerService} from "../demo/components/dashboard/commands/invoker.service";
+import {ComplexInvokerService} from "../demo/components/dashboard/commands/complex-invoker.service";
 
 @Component({
     selector: 'app-menu',
@@ -13,18 +14,9 @@ export class AppMenuComponent implements OnInit {
 
     constructor(
         public layoutService: LayoutService,
-        private localStorage: LocalStorageService,
-    ) { }
-
-    showTableDialog() {}
-
-    loadTmpTable() {}
-
-    deleteUnfinishedTable(){}
-
-    isTmpTableAvailable(): boolean {
-        return true;
-    }
+        private invoker: InvokerService,
+        private complexInvoker: ComplexInvokerService
+) { }
 
     ngOnInit() {
         this.options = [
@@ -35,12 +27,11 @@ export class AppMenuComponent implements OnInit {
                         label: 'Edit Mode',
                         icon: PrimeIcons.FILE_EDIT,
                         routerLink: '/editor'
-                        //command: () => this.redirectToSelection('/user/editor')
                     },
                     {
                         label: 'Auto Fill',
                         icon: PrimeIcons.CALCULATOR,
-                        //command: () => this.applyAlgorithm(),
+                        command: () => this.invoker.applyAlgorithm(),
                     },
                     {
                         label: 'Semi-Automatic Assignment',
@@ -50,17 +41,17 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Remove All',
                         icon: 'pi pi-delete-left',
-                        //command: () => this.removeAll()
+                        command: () => this.invoker.removeAll(),
                     },
                     {
                         label: 'Collision Check',
                         icon: 'pi pi-check-circle',
-                        //command: () => this.applyCollisionCheck()
+                        command: () => this.complexInvoker.applyCollisionCheck()
                     },
                     {
                         label: 'Remove Collisions',
                         icon: 'pi pi-eraser',
-                        //command: () => this.removeCollisions()
+                        command: () => this.invoker.removeCollisions()
                     },
                 ]
             },
@@ -70,7 +61,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Last Changes',
                         icon: 'pi pi-comments',
-                        //command: () => { this.loadChanges() }
+                        command: () => { this.complexInvoker.showLastChanges() }
                     }
                 ]
             },

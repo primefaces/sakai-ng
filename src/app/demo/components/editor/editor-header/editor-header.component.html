@@ -1,0 +1,33 @@
+<p-toolbar>
+    <div class="p-toolbar-group-start">
+        Course Edit Mode <p-inputSwitch class="mr-2 ml-2"/> Constraints Edit Mode
+    </div>
+
+    <div class="p-toolbar-group-center">
+        <p-dropdown id="all" [options]="currentRooms" [(ngModel)]="selectedRoom"
+                    scrollHeight="300px" placeholder="select room" optionLabel="roomId" filterBy="id"
+                    [filter]="true" [showClear]="false" (onChange)="triggerRoomChange()">
+            <ng-template let-item pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                    <div>{{ item.roomId }} | Seats: {{item.capacity}}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+    </div>
+
+    <div class="p-toolbar-group-end">
+        <p-dropdown [style]="{'margin-right': '.5rem', 'width': '28rem'}"
+                    [showClear]="true"
+                    [filter]="true"
+                    placeholder="Search for a Course">
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+                <div class="flex align-items-center gap-2">
+                </div>
+            </ng-template>
+            <ng-template let-course pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                </div>
+            </ng-template>
+        </p-dropdown>
+    </div>
+</p-toolbar>

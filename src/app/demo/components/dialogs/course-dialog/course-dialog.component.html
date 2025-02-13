@@ -7,7 +7,7 @@
                     <p-dropdown [options]="courseOptions" [(ngModel)]="course.courseType"
                                 id="type" placeholder="select a Type" class="w-full"></p-dropdown>
                     <input type="text" pInputText id="id" required
-                           [(ngModel)]="course.id" class="w-full" placeholder="ID" />
+                           [(ngModel)]="course.id" class="w-full" placeholder="ID" [disabled]="inEditMode"/>
                     <input type="text" pInputText id="name" required autofocus
                            [(ngModel)]="course.name" class="w-full" placeholder="Name" />
                 </div>

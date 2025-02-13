@@ -64,16 +64,16 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
-                        "production": {
-                            "proxyConfig": "proxy.prod.conf.json",
-                            "buildTarget": "sakai-ng:build:production"
-                        },
                         "development": {
+                            "proxyConfig": "proxy.uibk.conf.json",
+                            "buildTarget": "sakai-ng:build:development"
+                        },
+                        "local": {
                             "proxyConfig": "proxy.conf.json",
                             "buildTarget": "sakai-ng:build:development"
                         }
                     },
-                    "defaultConfiguration": "development"
+                    "defaultConfiguration": "local"
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",

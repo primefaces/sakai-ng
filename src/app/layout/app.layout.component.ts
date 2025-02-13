@@ -1,6 +1,6 @@
 import { Component, OnDestroy, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter, Subscription } from 'rxjs';
+import {filter, Subscription} from 'rxjs';
 import { LayoutService } from "./service/app.layout.service";
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppTopBarComponent } from './app.topbar.component';
@@ -16,8 +16,14 @@ export class AppLayoutComponent implements OnDestroy {
     overlayMenuOpenSubscription: Subscription;
     menuOutsideClickListener: any;
     profileMenuOutsideClickListener: any;
+    showMainSub: Subscription;
+    showMainPlot: boolean = true;
 
     constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router) {
+        this.showMainSub = this.layoutService.hideSideBar.subscribe(
+            val => {this.showMainPlot = val}
+        );
+
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
             if (!this.menuOutsideClickListener) {
                 this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
@@ -105,12 +111,9 @@ export class AppLayoutComponent implements OnDestroy {
     }
 
     ngOnDestroy() {
-        if (this.overlayMenuOpenSubscription) {
-            this.overlayMenuOpenSubscription.unsubscribe();
-        }
+        if (this.overlayMenuOpenSubscription) this.overlayMenuOpenSubscription.unsubscribe();
+        if (this.showMainSub) this.showMainSub.unsubscribe();
 
-        if (this.menuOutsideClickListener) {
-            this.menuOutsideClickListener();
-        }
+        if (this.menuOutsideClickListener) this.menuOutsideClickListener();
     }
 }

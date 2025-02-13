@@ -1,7 +1,7 @@
 import {CourseType} from "./enums/course-type";
 
-export class Course {
-  id!: string;
+export class Course{
+  id!: number;
   courseType?: CourseType;
   studyType?: string;
   name?: string;
@@ -23,5 +23,9 @@ export class Course {
       {field: 'numberOfParticipants', header: 'Nr of Participants'},
       {field: 'computersNecessary', header: 'computer needed'}
     ]
+  }
+
+  static getFilterFields(): string[]{
+      return ['id', 'name', 'lecturer'];
   }
 }

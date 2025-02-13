@@ -16,4 +16,8 @@ export class Room implements RoomInterface {
       {field: 'computersAvailable', header: 'Room has PCs'}
     ]
   }
+
+  static getFilterFields(): string[]{
+      return ['id'];
+  };
 }

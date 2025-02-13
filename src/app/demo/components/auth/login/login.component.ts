@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy{
     ) { }
 
     ngOnInit(): void {
-        this.loginRequest = {username: '', password: ''}
+        this.loginRequest = {name: '', password: ''}
     }
 
     ngOnDestroy():void{

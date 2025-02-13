@@ -1,5 +1,5 @@
-import { Injectable, effect, signal } from '@angular/core';
-import {Observable, Subject, of, BehaviorSubject} from 'rxjs';
+import {Injectable, effect, signal, ApplicationRef} from '@angular/core';
+import {BehaviorSubject, Subject} from 'rxjs';
 
 export interface AppConfig {
     inputStyle: string;
@@ -15,7 +15,7 @@ interface LayoutState {
     overlayMenuActive: boolean;
     profileSidebarVisible: boolean;
     staticMenuMobileActive: boolean;
-    disableMenuButton: boolean;
+    hide: boolean;
 }
 
 @Injectable({
@@ -32,23 +32,22 @@ export class LayoutService {
     };
 
     config = signal<AppConfig>(this._config);
+    hideSideBar: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
-    updateSize$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     state: LayoutState = {
         staticMenuDesktopInactive: false,
         overlayMenuActive: false,
         profileSidebarVisible: false,
         staticMenuMobileActive: false,
-        disableMenuButton: false
+        hide: false
     };
-
-    private configUpdate = new Subject<AppConfig>();
-    configUpdate$ = this.configUpdate.asObservable();
 
     private overlayOpen = new Subject<any>();
     overlayOpen$ = this.overlayOpen.asObservable();
 
-    constructor() {
+    constructor(
+        private appRef: ApplicationRef
+    ) {
         effect(() => {
             const config = this.config();
             if (this.updateStyle(config)) {
@@ -67,9 +66,6 @@ export class LayoutService {
     }
 
     onMenuToggle() {
-        setTimeout(() => {
-            this.updateSize$.next(null);
-        }, 200); //i know its not pretty but i dont know where to place the function
         if (this.isOverlay()) {
             this.state.overlayMenuActive = !this.state.overlayMenuActive;
             if (this.state.overlayMenuActive) {
@@ -88,6 +84,7 @@ export class LayoutService {
                 this.overlayOpen.next(null);
             }
         }
+        this.appRef.tick();
     }
 
     showProfileSidebar() {
@@ -107,7 +104,6 @@ export class LayoutService {
 
     onConfigUpdate() {
         this._config = { ...this.config() };
-        this.configUpdate.next(this.config());
     }
 
     changeTheme() {
@@ -149,8 +145,8 @@ export class LayoutService {
         document.documentElement.style.fontSize = `${value}px`;
     }
 
-    handleMenuBar(disable: boolean){
-        this.onMenuToggle();
-        this.state.disableMenuButton = disable;
+    changeStyle(show: boolean){
+        this.state.hide = show;
+        this.hideSideBar.next(this.state.hide);
     }
 }

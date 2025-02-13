@@ -25,9 +25,10 @@ import {ToggleButtonModule} from "primeng/togglebutton";
 
 export class CourseDialog {
     protected course: Course;
-    courseOptions = getCourseOptions();
-    degreeOptions = getDegreeOptions();
-    semesterOptions = [1, 2, 3, 4, 5, 6]
+    protected inEditMode: boolean = false;
+    protected courseOptions = getCourseOptions();
+    protected degreeOptions = getDegreeOptions();
+    protected semesterOptions = [1, 2, 3, 4, 5, 6];
 
     constructor(
         public config: DynamicDialogConfig,
@@ -38,6 +39,7 @@ export class CourseDialog {
 
     get data(): Course {
         const noData =  this.config.data.initialValue;
+        this.inEditMode = Object.keys(noData).length !== 0;
         return noData ? noData : new Course();
     }
 
