@@ -1,8 +1,8 @@
 <div class="global-header-container mb-4">
-    <div class="font-semibold text-xl">Suppliers</div>
+    <div class="font-semibold text-xl">Providers</div>
     <i (click)="showDialog()" class="pi pi-plus"></i>
 </div>
-<p-table #dt1 [value]="suppliersSignal()()" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'price']" responsiveLayout="scroll">
+<p-table #dt1 [value]="suppliersSignal()()" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'expenseName', 'tel']" responsiveLayout="scroll">
     <ng-template #caption>
         <div class="flex justify-between items-center flex-column sm:flex-row">
             <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
@@ -21,7 +21,7 @@
             </th>
 
             <th style="min-width: 10rem">
-                <div class="flex justify-between items-center">Expense Type</div>
+                <div class="flex justify-between items-center">Utility</div>
             </th>
             <th style="min-width: 10rem">
                 <div class="flex justify-between items-center">Tel.</div>
@@ -32,15 +32,15 @@
         </tr>
     </ng-template>
     <ng-template #body let-supplier>
-        <tr class="service-row">
+        <tr class="supplier-row">
             <td (blur)="updateSupplier(supplier, 'name', $event)" contenteditable="true">
                 {{ supplier.name }}
             </td>
 
-            <td digitOnly (blur)="updateSupplier(supplier, 'price', $event)" contenteditable="true">
-                {{ supplier.expenseType }}
+            <td (blur)="updateSupplier(supplier, 'expenseName', $event)" contenteditable="true">
+                {{ supplier.expenseName }}
             </td>
-            <td digitOnly (blur)="updateSupplier(supplier, 'price', $event)" contenteditable="true">
+            <td digitOnly (blur)="updateSupplier(supplier, 'tel', $event)" contenteditable="true">
                 {{ supplier.tel }}
             </td>
             <td class="flex justify-center items-center">

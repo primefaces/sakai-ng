@@ -4,10 +4,11 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
+import { CapitalizeDirective } from '../../../shared/directives/capitalize.directive';
 
 @Component({
     selector: 'app-supplier-form',
-    imports: [InputTextModule, FormsModule, TableModule, FormsModule, ButtonModule, RippleModule],
+    imports: [InputTextModule, FormsModule, TableModule, FormsModule, ButtonModule, RippleModule, CapitalizeDirective],
     templateUrl: './supplier-form.component.html',
     styleUrl: './supplier-form.component.scss'
 })

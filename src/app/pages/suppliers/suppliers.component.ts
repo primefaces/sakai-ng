@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, model, ModelSignal, signal } from '@angular/core';
+import { Component, computed, ElementRef, inject, model, ModelSignal, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -17,7 +17,6 @@ import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { DigitOnlyDirective } from '../../shared/directives/digit-only.directive';
-import { MurCurrencyPipe } from '../../shared/pipes/mur-currency.pipe';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { SupplierFormComponent } from './supplier-form/supplier-form.component';
 import { HttpService } from '../../shared/services/http.service';
@@ -44,7 +43,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
         IconFieldModule,
         DialogModule,
         SupplierFormComponent,
-        MurCurrencyPipe,
         DigitOnlyDirective,
         DeleteConfirmationDialogComponent
     ],
@@ -52,6 +50,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
     styleUrl: './suppliers.component.scss'
 })
 export class SuppliersComponent {
+    @ViewChild('filter') filter!: ElementRef;
+
     httpService = inject(HttpService);
     expenseType: ModelSignal<string> = model.required();
     supplier = {
@@ -67,6 +67,7 @@ export class SuppliersComponent {
     supplierToDeleteId = '';
     suppliers: any = [];
     suppliersSignal = computed(() => signal(this.suppliers()));
+    loading: unknown;
 
     constructor() {
         this.suppliers = toSignal(this.httpService.getSuppliers());
@@ -75,21 +76,28 @@ export class SuppliersComponent {
     showDialog() {
         this.isDialogVisible = true;
     }
-    servicesSignal() {
-        throw new Error('Method not implemented.');
+
+    clear(table: Table) {
+        table.clear();
+        this.filter.nativeElement.value = '';
     }
-    loading: unknown;
-    clear(_t15: Table) {
-        throw new Error('Method not implemented.');
+
+    onGlobalFilter(table: Table, event: Event) {
+        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
     }
-    onGlobalFilter(_t15: Table, $event: Event) {
-        throw new Error('Method not implemented.');
+    updateSupplier(supplier: any, field: string, event: any) {
+        const newValue = event.target.innerText.trim();
+        if (supplier[field] === newValue) {
+            return;
+        }
+        supplier[field] = newValue;
+
+        this.httpService.updateSupplier(supplier).subscribe();
     }
-    updateSupplier(_t34: any, arg1: string, $event: FocusEvent) {
-        throw new Error('Method not implemented.');
-    }
-    onDeleteSupplierCLick(arg0: any) {
-        throw new Error('Method not implemented.');
+
+    onDeleteSupplierCLick(id: string) {
+        this.supplierToDeleteId = id;
+        this.showDeleteConfirmationDialog = true;
     }
     hideDialog() {
         this.isDialogVisible = false;
@@ -98,11 +106,25 @@ export class SuppliersComponent {
     createSupplier() {
         this.supplier.expenseType = this.expenseType();
         this.httpService.createSupplier(this.supplier).subscribe(() => {
+            this.suppliersSignal().update((s: any) => [...s, this.supplier]);
             this.isDialogVisible = false;
+            this.resetSupplier();
         });
     }
 
+    resetSupplier() {
+        this.supplier = {
+            name: '',
+            expenseName: '',
+            expenseType: this.expenseType(),
+            tel: ''
+        };
+    }
+
     deleteService() {
-        this.httpService.deleteSupplier(this.supplierToDeleteId).subscribe(() => {});
+        this.httpService.deleteSupplier(this.supplierToDeleteId).subscribe(() => {
+            this.suppliersSignal().update((s: any) => s.filter((supplier: any) => supplier.id !== this.supplierToDeleteId));
+            this.resetSupplier();
+        });
     }
 }
