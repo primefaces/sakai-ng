@@ -2,7 +2,7 @@
     <div class="font-semibold text-xl">Utilities</div>
     <i (click)="showDialog()" class="pi pi-plus"></i>
 </div>
-<p-table #dt1 [value]="[]" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'price']" responsiveLayout="scroll">
+<p-table #dt1 [value]="utilityExpensesSignal()()" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'price']" responsiveLayout="scroll">
     <ng-template #caption>
         <div class="flex justify-between items-center flex-column sm:flex-row">
             <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
@@ -45,17 +45,17 @@
             </th>
         </tr>
     </ng-template>
-    <ng-template #body let-service>
+    <ng-template #body let-utility>
         <tr class="service-row">
-            <td (blur)="updateService(service, 'name', $event)" contenteditable="true">
-                {{ service.name }}
-            </td>
+            <td>{{ utility.date | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ utility.supplier.name }}</td>
+            <td>{{ utility.expenseName }}</td>
+            <td>{{ utility.amount | mur }}</td>
+            <td>{{ utility.status }}</td>
+            <td>{{ utility.paidOn | date: 'dd/MM/yyyy' }}</td>
 
-            <td digitOnly (blur)="updateService(service, 'price', $event)" contenteditable="true">
-                {{ service.price | mur }}
-            </td>
             <td class="flex justify-center items-center">
-                <i (click)="onDeleteServiceCLick(service._id)" class="delete-icon pi pi-trash" style="color: var(--p-button-danger-background)"></i>
+                <i (click)="onDeleteServiceCLick(utility._id)" class="delete-icon pi pi-trash" style="color: var(--p-button-danger-background)"></i>
             </td>
         </tr>
     </ng-template>

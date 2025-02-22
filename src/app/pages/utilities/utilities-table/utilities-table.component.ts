@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -20,8 +20,9 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { DigitOnlyDirective } from '../../../shared/directives/digit-only.directive';
 import { MurCurrencyPipe } from '../../../shared/pipes/mur-currency.pipe';
 import { DeleteConfirmationDialogComponent } from '../../delete-confirmation-dialog/delete-confirmation-dialog.component';
-import { ServicesFormComponent } from '../../services/services-form/services-form.component';
 import { UtilityFormComponent } from '../utility-form/utility-form.component';
+import { HttpService } from '../../../shared/services/http.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-utilities-table',
@@ -44,18 +45,19 @@ import { UtilityFormComponent } from '../utility-form/utility-form.component';
         IconFieldModule,
         DialogModule,
         MurCurrencyPipe,
-        DigitOnlyDirective,
         DeleteConfirmationDialogComponent,
         TabsModule,
-        UtilityFormComponent
+        UtilityFormComponent,
+        DatePipe
     ],
     templateUrl: './utilities-table.component.html',
     styleUrl: './utilities-table.component.scss'
 })
 export class UtilitiesTableComponent {
-    utility = {
+    http = inject(HttpService);
+    utility: any = {
         date: new Date(),
-        provider: '',
+        provider: null,
         utility: '',
         amount: 0,
         status: '',
@@ -67,6 +69,11 @@ export class UtilitiesTableComponent {
     newServiceName: any;
     newServicePrice: any;
     showDeleteConfirmationDialog: any;
+    utilityExpenses: any = [];
+    utilityExpensesSignal = computed(() => signal(this.utilityExpenses()));
+    constructor() {
+        this.utilityExpenses = toSignal(this.http.getExpenses({}));
+    }
 
     showDialog() {
         this.isDialogVisible = true;
@@ -97,7 +104,14 @@ export class UtilitiesTableComponent {
     }
 
     createExpense() {
-        console.log('this.utility: ', this.utility);
+        const body = { ...this.utility };
+        body.supplier = body.provider?._id;
+        body.expenseName = body.utility;
+        body.expenseType = 'utility';
+        delete body.utility;
+        delete body.provider;
+        console.log({ body });
+        this.http.createExpense(body).subscribe((res) => {});
     }
 
     deleteService() {

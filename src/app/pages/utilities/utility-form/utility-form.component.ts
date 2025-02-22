@@ -20,7 +20,7 @@ export class UtilityFormComponent {
     utilityTypes: any = [];
     providers: any = [];
 
-    statusOptions: any[] | undefined;
+    statusOptions = ['Paid', 'Due'];
     http = inject(HttpService);
 
     constructor() {
@@ -33,13 +33,11 @@ export class UtilityFormComponent {
     }
 
     onProviderSelect(event: any) {
-        console.log('event: ', event);
         const expenseName = event.value.expenseName;
         this.utility().utility = expenseName;
     }
 
     onProviderBlur() {
-        console.log('this.utility().provider: ', this.utility().provider);
         if (!this.utility().provider) {
             this.utility().utility = '';
         }
