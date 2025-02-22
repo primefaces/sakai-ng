@@ -9,4 +9,13 @@ import { UtilitiesTableComponent } from './utilities-table/utilities-table.compo
     templateUrl: './utilities.component.html',
     styleUrl: './utilities.component.scss'
 })
-export class UtilitiesComponent {}
+export class UtilitiesComponent {
+    utility = {
+        date: new Date(),
+        type: '',
+        provider: ' ',
+        amount: 0,
+        status: '',
+        paidOn: new Date()
+    };
+}

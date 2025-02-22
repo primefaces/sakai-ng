@@ -93,4 +93,24 @@ export class HttpService {
     deleteSupplier(id: string) {
         return this.http.delete(`${this.url}/suppliers/${id}`);
     }
+
+    getExpenses(params: any) {
+        return this.http.get(`${this.url}/expenses`, { params });
+    }
+
+    getExpense(id: string) {
+        return this.http.get(`${this.url}/expenses/${id}`);
+    }
+
+    createExpense(expense: any) {
+        return this.http.post(`${this.url}/expenses`, expense);
+    }
+
+    updateExpense(expense: any) {
+        return this.http.patch(`${this.url}/expenses/${expense._id}`, expense);
+    }
+
+    deleteExpense(id: string) {
+        return this.http.delete(`${this.url}/expenses/${id}`);
+    }
 }

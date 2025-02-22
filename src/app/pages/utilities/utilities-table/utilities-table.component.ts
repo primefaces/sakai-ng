@@ -61,35 +61,42 @@ export class UtilitiesTableComponent {
         status: '',
         paidOn: new Date()
     };
-    showDialog() {
-        this.isDialogVisible = true;
-    }
-    servicesSignal() {
-        throw new Error('Method not implemented.');
-    }
     loading: unknown;
-    clear(_t15: Table) {
-        throw new Error('Method not implemented.');
-    }
-    onGlobalFilter(_t15: Table, $event: Event) {
-        throw new Error('Method not implemented.');
-    }
-    updateService(_t34: any, arg1: string, $event: FocusEvent) {
-        throw new Error('Method not implemented.');
-    }
-    onDeleteServiceCLick(arg0: any) {
-        throw new Error('Method not implemented.');
-    }
     isDialogVisible: any;
     newServiceName: any;
     newServicePrice: any;
+    showDeleteConfirmationDialog: any;
+
+    showDialog() {
+        this.isDialogVisible = true;
+    }
+
+    servicesSignal() {
+        throw new Error('Method not implemented.');
+    }
+
+    clear(_t15: Table) {
+        throw new Error('Method not implemented.');
+    }
+
+    onGlobalFilter(_t15: Table, $event: Event) {
+        throw new Error('Method not implemented.');
+    }
+
+    updateService(_t34: any, arg1: string, $event: FocusEvent) {
+        throw new Error('Method not implemented.');
+    }
+
+    onDeleteServiceCLick(arg0: any) {
+        throw new Error('Method not implemented.');
+    }
+
     hideDialog() {
         this.isDialogVisible = false;
     }
-    createService() {
-        throw new Error('Method not implemented.');
-    }
-    showDeleteConfirmationDialog: any;
+
+    createExpense() {}
+
     deleteService() {
         throw new Error('Method not implemented.');
     }
