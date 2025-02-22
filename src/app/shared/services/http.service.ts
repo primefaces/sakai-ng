@@ -61,9 +61,8 @@ export class HttpService {
     createSale(sale: any) {
         if (sale._id) {
             return this.http.patch(`${this.url}/sales/${sale._id}`, sale);
-        } else {
-            return this.http.post(`${this.url}/sales`, sale);
         }
+        return this.http.post(`${this.url}/sales`, sale);
     }
 
     updateSale(sale: any) {
@@ -103,6 +102,9 @@ export class HttpService {
     }
 
     createExpense(expense: any) {
+        if (expense._id) {
+            return this.http.patch(`${this.url}/expenses/${expense._id}`, expense);
+        }
         return this.http.post(`${this.url}/expenses`, expense);
     }
 

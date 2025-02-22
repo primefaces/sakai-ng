@@ -46,7 +46,7 @@
         </tr>
     </ng-template>
     <ng-template #body let-utility>
-        <tr class="service-row">
+        <tr class="utility-row">
             <td>{{ utility.date | date: 'dd/MM/yyyy' }}</td>
             <td>{{ utility.supplier.name }}</td>
             <td>{{ utility.expenseName }}</td>
@@ -54,8 +54,9 @@
             <td>{{ utility.status }}</td>
             <td>{{ utility.paidOn | date: 'dd/MM/yyyy' }}</td>
 
-            <td class="flex justify-center items-center">
-                <i (click)="onDeleteServiceCLick(utility._id)" class="delete-icon pi pi-trash" style="color: var(--p-button-danger-background)"></i>
+            <td class="flex justify-center gap-4 icons-box items-center">
+                <i (click)="onEditExpense(utility)" class="action-icon pi pi-pencil"></i>
+                <i (click)="onDeleteClick(utility._id)" class="delete-icon pi pi-trash" style="color: var(--p-button-danger-background)"></i>
             </td>
         </tr>
     </ng-template>
@@ -78,4 +79,4 @@
     </ng-template>
 </p-dialog>
 
-<delete-confirmation-dialog (onDeleteConfirmation)="deleteService()" [(showDialog)]="showDeleteConfirmationDialog"></delete-confirmation-dialog>
+<delete-confirmation-dialog (onDeleteConfirmation)="deleteExpense()" [(showDialog)]="showDeleteConfirmationDialog"></delete-confirmation-dialog>

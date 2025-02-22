@@ -71,6 +71,7 @@ export class UtilitiesTableComponent {
     showDeleteConfirmationDialog: any;
     utilityExpenses: any = [];
     utilityExpensesSignal = computed(() => signal(this.utilityExpenses()));
+    expenseToDeleteId = '';
     constructor() {
         this.utilityExpenses = toSignal(this.http.getExpenses({}));
     }
@@ -112,9 +113,26 @@ export class UtilitiesTableComponent {
         delete body.provider;
         console.log({ body });
         this.http.createExpense(body).subscribe((res) => {});
+        this.hideDialog();
     }
 
-    deleteService() {
-        throw new Error('Method not implemented.');
+    onEditExpense(expense: any) {
+        this.utility = expense;
+        this.utility.date = new Date(expense.date);
+        this.utility.paidOn = new Date(expense.paidOn);
+        this.utility.utility = expense.expenseName;
+        this.utility.provider = expense.supplier;
+        console.log('this.utility : ', this.utility);
+        this.showDialog();
+    }
+
+    deleteExpense() {
+        this.utilityExpensesSignal().update((s) => s.filter((s: any) => s._id !== this.expenseToDeleteId));
+        this.http.deleteExpense(this.expenseToDeleteId).subscribe((response: any) => {});
+    }
+
+    onDeleteClick(expenseId: string) {
+        this.showDeleteConfirmationDialog = true;
+        this.expenseToDeleteId = expenseId;
     }
 }
