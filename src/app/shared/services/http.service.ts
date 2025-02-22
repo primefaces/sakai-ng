@@ -74,8 +74,8 @@ export class HttpService {
         return this.http.delete(`${this.url}/sales/${id}`);
     }
 
-    getSuppliers() {
-        return this.http.get(`${this.url}/suppliers`);
+    getSuppliers(params: any) {
+        return this.http.get(`${this.url}/suppliers`, { params });
     }
 
     getSupplier(id: string) {

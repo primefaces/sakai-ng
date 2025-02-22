@@ -70,7 +70,7 @@
         </tr>
     </ng-template>
 </p-table>
-<p-dialog header="Create Service" [(visible)]="isDialogVisible" [position]="'top'" [breakpoints]="{ '1590px': '75vw', '1036px': '100vw' }" [style]="{ width: '50vw' }" [modal]="true">
+<p-dialog header="Create Utility Expense" [(visible)]="isDialogVisible" [position]="'top'" [breakpoints]="{ '1590px': '75vw', '1036px': '100vw' }" [style]="{ width: '50vw' }" [modal]="true">
     <app-utility-form [utility]="utility"></app-utility-form>
     <ng-template #footer>
         <p-button p-ripple p-button p-component p-button-secondary p-button-text label="Cancel" [text]="true" severity="secondary" (click)="hideDialog()" />

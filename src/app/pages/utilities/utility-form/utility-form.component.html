@@ -5,13 +5,28 @@
     </div>
 
     <div class="input-container">
+        <label for="date">Paid On</label>
+        <p-datepicker class="input" [(ngModel)]="utility().date" placeholder="Select Date" dateFormat="yy-mm-dd" />
+    </div>
+
+    <div class="input-container">
         <label for="provider">Provider</label>
-        <p-autocomplete class="input" [(ngModel)]="utility().provider" [suggestions]="filteredProviders" (completeMethod)="searchProvider($event)" />
+        <p-autocomplete
+            class="input"
+            [field]="'name'"
+            (onSelect)="onProviderSelect($event)"
+            [forceSelection]="true"
+            [dataKey]="'_id'"
+            [(ngModel)]="utility().provider"
+            (onBlur)="onProviderBlur()"
+            [suggestions]="filteredProviders"
+            (completeMethod)="searchProvider($event)"
+        />
     </div>
 
     <div class="input-container">
         <label for="utility">Utility</label>
-        <p-select class="input" [options]="utilityTypes" [(ngModel)]="utility().utility" placeholder="Select a Utility" class="w-full md:w-56"></p-select>
+        <input class="input" pInputText [(ngModel)]="utility().utility" placeholder="Select a Utility" class="w-full md:w-56" />
     </div>
 
     <div class="input-container">
@@ -22,9 +37,5 @@
     <div class="input-container">
         <label for="status">Status</label>
         <p-select class="input" [options]="statusOptions" [(ngModel)]="utility().status" placeholder="Select Status" class="w-full md:w-56"></p-select>
-    </div>
-    <div class="input-container">
-        <label for="date">Paid On</label>
-        <p-datepicker class="input" [(ngModel)]="utility().date" placeholder="Select Date" dateFormat="yy-mm-dd" />
     </div>
 </main>

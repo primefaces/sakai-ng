@@ -70,7 +70,7 @@ export class SuppliersComponent {
     loading: unknown;
 
     constructor() {
-        this.suppliers = toSignal(this.httpService.getSuppliers());
+        this.suppliers = toSignal(this.httpService.getSuppliers({}));
     }
 
     showDialog() {

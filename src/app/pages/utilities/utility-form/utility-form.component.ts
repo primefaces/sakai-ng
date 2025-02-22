@@ -1,22 +1,47 @@
-import { Component, model, ModelSignal } from '@angular/core';
+import { Component, inject, model, ModelSignal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SelectModule } from 'primeng/select';
+import { HttpService } from '../../../shared/services/http.service';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
     selector: 'app-utility-form',
-    imports: [DatePickerModule, AutoCompleteModule, SelectModule, FormsModule, InputNumberModule],
+    imports: [DatePickerModule, AutoCompleteModule, SelectModule, FormsModule, InputNumberModule, InputTextModule],
     templateUrl: './utility-form.component.html',
     styleUrl: './utility-form.component.scss'
 })
 export class UtilityFormComponent {
-    searchProvider($event: AutoCompleteCompleteEvent) {
-        throw new Error('Method not implemented.');
-    }
     utility: ModelSignal<any> = model.required();
     filteredProviders!: any[];
-    utilityTypes: any[] | undefined;
+    utilityTypes: any = [];
+    providers: any = [];
+
     statusOptions: any[] | undefined;
+    http = inject(HttpService);
+
+    constructor() {
+        this.providers = toSignal(this.http.getSuppliers({ expenseType: 'utility' }));
+    }
+
+    searchProvider($event: AutoCompleteCompleteEvent) {
+        const query = $event.query.toLowerCase();
+        this.filteredProviders = this.providers().filter((provider: any) => provider.name.toLowerCase().includes(query));
+    }
+
+    onProviderSelect(event: any) {
+        console.log('event: ', event);
+        const expenseName = event.value.expenseName;
+        this.utility().utility = expenseName;
+    }
+
+    onProviderBlur() {
+        console.log('this.utility().provider: ', this.utility().provider);
+        if (!this.utility().provider) {
+            this.utility().utility = '';
+        }
+    }
 }

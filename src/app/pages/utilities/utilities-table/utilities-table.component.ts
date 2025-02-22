@@ -61,6 +61,7 @@ export class UtilitiesTableComponent {
         status: '',
         paidOn: new Date()
     };
+
     loading: unknown;
     isDialogVisible: any;
     newServiceName: any;
@@ -95,7 +96,9 @@ export class UtilitiesTableComponent {
         this.isDialogVisible = false;
     }
 
-    createExpense() {}
+    createExpense() {
+        console.log('this.utility: ', this.utility);
+    }
 
     deleteService() {
         throw new Error('Method not implemented.');
