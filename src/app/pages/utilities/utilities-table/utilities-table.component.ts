@@ -72,15 +72,11 @@ export class UtilitiesTableComponent {
     utilityExpensesSignal = computed(() => signal(this.utilityExpenses()));
     expenseToDeleteId = '';
     constructor() {
-        this.utilityExpenses = toSignal(this.http.getExpenses({}));
+        this.utilityExpenses = toSignal(this.http.getExpenses({ expenseType: 'utility' }));
     }
 
     showDialog() {
         this.isDialogVisible = true;
-    }
-
-    servicesSignal() {
-        throw new Error('Method not implemented.');
     }
 
     clear(_t15: Table) {
@@ -88,14 +84,6 @@ export class UtilitiesTableComponent {
     }
 
     onGlobalFilter(_t15: Table, $event: Event) {
-        throw new Error('Method not implemented.');
-    }
-
-    updateService(_t34: any, arg1: string, $event: FocusEvent) {
-        throw new Error('Method not implemented.');
-    }
-
-    onDeleteServiceCLick(arg0: any) {
         throw new Error('Method not implemented.');
     }
 

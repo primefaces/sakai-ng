@@ -127,9 +127,9 @@ export class SuppliersComponent {
         };
     }
 
-    deleteService() {
+    deleteSupplier() {
         this.httpService.deleteSupplier(this.supplierToDeleteId).subscribe(() => {
-            this.suppliersSignal().update((s: any) => s.filter((supplier: any) => supplier.id !== this.supplierToDeleteId));
+            this.suppliersSignal().update((s: any) => s.filter((supplier: any) => supplier._id !== this.supplierToDeleteId));
             this.resetSupplier();
         });
     }

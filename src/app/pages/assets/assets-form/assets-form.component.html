@@ -10,8 +10,13 @@
     </div>
 
     <div class="input-container">
+        <label for="utility">Asset</label>
+        <input class="input" pInputText [(ngModel)]="asset().asset" class="w-full md:w-56" />
+    </div>
+
+    <div class="input-container">
         <label for="provider">Provider</label>
-        <p-autocomplete class="input" [field]="'name'" [forceSelection]="true" [dataKey]="'_id'" [(ngModel)]="asset().provider" [suggestions]="filteredProviders" (completeMethod)="searchProvider($event)" />
+        <p-autocomplete class="input" [field]="'name'" [forceSelection]="true" [dataKey]="'_id'" [(ngModel)]="asset().supplier" [suggestions]="filteredProviders" (completeMethod)="searchProvider($event)" />
     </div>
 
     <div class="input-container">

@@ -2,7 +2,18 @@
     <div class="font-semibold text-xl">Assets</div>
     <i (click)="showDialog()" class="pi pi-plus"></i>
 </div>
-<p-table #dt1 [value]="assetExpenseSignal()()" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'price']" responsiveLayout="scroll">
+<p-table
+    #dt1
+    [value]="assetExpenseSignal()()"
+    dataKey="id"
+    [rows]="20"
+    [loading]="loading"
+    [rowHover]="true"
+    [showGridlines]="true"
+    [paginator]="true"
+    [globalFilterFields]="['date', 'expenseName', 'supplier.name', 'amount', 'status', 'paidOn']"
+    responsiveLayout="scroll"
+>
     <ng-template #caption>
         <div class="flex justify-between items-center flex-column sm:flex-row">
             <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
@@ -48,8 +59,8 @@
     <ng-template #body let-utility>
         <tr class="utility-row">
             <td>{{ utility.date | date: 'dd/MM/yyyy' }}</td>
-            <td>{{ utility.supplier.name }}</td>
             <td>{{ utility.expenseName }}</td>
+            <td>{{ utility.supplier?.name }}</td>
             <td>{{ utility.amount | mur }}</td>
             <td>{{ utility.status }}</td>
             <td>{{ utility.paidOn | date: 'dd/MM/yyyy' }}</td>
@@ -62,12 +73,12 @@
     </ng-template>
     <ng-template #emptymessage>
         <tr>
-            <td colspan="8">No services found.</td>
+            <td colspan="8">No assets found.</td>
         </tr>
     </ng-template>
     <ng-template #loadingbody>
         <tr>
-            <td colspan="8">Loading services data. Please wait.</td>
+            <td colspan="8">Loading assets data. Please wait.</td>
         </tr>
     </ng-template>
 </p-table>
