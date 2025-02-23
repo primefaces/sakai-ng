@@ -5,11 +5,6 @@
     </div>
 
     <div class="input-container">
-        <label for="date">Paid On</label>
-        <p-datepicker class="input" [(ngModel)]="utility().date" placeholder="Select Date" dateFormat="yy-mm-dd" />
-    </div>
-
-    <div class="input-container">
         <label for="provider">Provider</label>
         <p-autocomplete
             class="input"
@@ -37,5 +32,10 @@
     <div class="input-container">
         <label for="status">Status</label>
         <p-select class="input" [options]="statusOptions" [(ngModel)]="utility().status" placeholder="Select Status" class="w-full md:w-56"></p-select>
+    </div>
+
+    <div class="input-container">
+        <label for="date">Paid On</label>
+        <p-datepicker class="input" [(ngModel)]="utility().date" placeholder="Select Date" dateFormat="yy-mm-dd" />
     </div>
 </main>

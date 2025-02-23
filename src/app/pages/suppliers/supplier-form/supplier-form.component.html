@@ -3,7 +3,7 @@
         <label for="name1">Provider Name</label>
         <input required capitalize [(ngModel)]="supplier().name" pInputText id="name" type="text" />
     </div>
-    <div class="flex flex-col gap-2">
+    <div *ngIf="showUtility" class="flex flex-col gap-2">
         <label for="name1">Utility </label>
         <input required [(ngModel)]="supplier().expenseName" pInputText id="expenseName" type="text" />
     </div>

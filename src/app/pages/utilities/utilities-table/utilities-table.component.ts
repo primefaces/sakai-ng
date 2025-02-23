@@ -17,7 +17,6 @@ import { TabsModule } from 'primeng/tabs';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-import { DigitOnlyDirective } from '../../../shared/directives/digit-only.directive';
 import { MurCurrencyPipe } from '../../../shared/pipes/mur-currency.pipe';
 import { DeleteConfirmationDialogComponent } from '../../delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { UtilityFormComponent } from '../utility-form/utility-form.component';

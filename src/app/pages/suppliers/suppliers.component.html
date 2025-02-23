@@ -20,7 +20,7 @@
                 <div class="flex justify-between items-center">Supplier Name</div>
             </th>
 
-            <th style="min-width: 10rem">
+            <th *ngIf="showUtility" style="min-width: 10rem">
                 <div class="flex justify-between items-center">Utility</div>
             </th>
             <th style="min-width: 10rem">
@@ -37,7 +37,7 @@
                 {{ supplier.name }}
             </td>
 
-            <td (blur)="updateSupplier(supplier, 'expenseName', $event)" contenteditable="true">
+            <td *ngIf="showUtility" (blur)="updateSupplier(supplier, 'expenseName', $event)" contenteditable="true">
                 {{ supplier.expenseName }}
             </td>
             <td digitOnly (blur)="updateSupplier(supplier, 'tel', $event)" contenteditable="true">
@@ -61,7 +61,7 @@
 </p-table>
 
 <p-dialog header="Create Provider" [(visible)]="isDialogVisible" [position]="'top'" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '25vw' }" [modal]="true">
-    <app-supplier-form [supplier]="supplier"></app-supplier-form>
+    <app-supplier-form [showUtility]="showUtility" [supplier]="supplier"></app-supplier-form>
     <ng-template #footer>
         <p-button p-ripple p-button p-component p-button-secondary p-button-text label="Cancel" [text]="true" severity="secondary" (click)="hideDialog()" />
         <p-button label="Save" (click)="createSupplier()" />

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, ElementRef, inject, model, ModelSignal, signal, ViewChild } from '@angular/core';
+import { Component, computed, ElementRef, inject, Input, model, ModelSignal, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -20,7 +20,6 @@ import { DigitOnlyDirective } from '../../shared/directives/digit-only.directive
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { SupplierFormComponent } from './supplier-form/supplier-form.component';
 import { HttpService } from '../../shared/services/http.service';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-suppliers',
@@ -51,6 +50,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class SuppliersComponent {
     @ViewChild('filter') filter!: ElementRef;
+    @Input() showUtility: boolean = true;
 
     httpService = inject(HttpService);
     expenseType: ModelSignal<string> = model.required();
