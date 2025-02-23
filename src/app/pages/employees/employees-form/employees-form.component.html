@@ -1,1 +1,18 @@
-<p>employees-form works!</p>
+<div class="card flex flex-col gap-4">
+    <div class="flex flex-col gap-2">
+        <label for="name1">Name</label>
+        <input required capitalize [(ngModel)]="employee().name" pInputText id="name" type="text" />
+    </div>
+    <div class="flex flex-col gap-2">
+        <label for="name1">Adress</label>
+        <input required [(ngModel)]="employee().address" pInputText id="expenseName" type="text" />
+    </div>
+    <div class="flex flex-col gap-2">
+        <label for="name1">E-mail</label>
+        <input required [(ngModel)]="employee().email" pInputText id="expenseName" type="text" />
+    </div>
+    <div class="flex flex-col gap-2">
+        <label for="name1">Tel. </label>
+        <input required [(ngModel)]="employee().tel" pInputText id="tel" type="text" />
+    </div>
+</div>

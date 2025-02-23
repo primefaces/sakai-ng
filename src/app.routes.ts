@@ -32,6 +32,10 @@ export const appRoutes: Routes = [
             {
                 path: 'suppliers',
                 loadComponent: () => import('./app/pages/suppliers/suppliers.component').then((c) => c.SuppliersComponent)
+            },
+            {
+                path: 'employees',
+                loadComponent: () => import('./app/pages/employees/employees.component').then((c) => c.EmployeesComponent)
             }
         ]
     },

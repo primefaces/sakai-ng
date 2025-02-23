@@ -1,5 +1,5 @@
 <div class="global-header-container mb-4">
-    <div class="font-semibold text-xl">Providers</div>
+    <div class="font-semibold text-xl">Employees</div>
     <i (click)="showDialog()" class="pi pi-plus"></i>
 </div>
 <p-table #dt1 [value]="employeesSignal()()" dataKey="id" [rows]="20" [loading]="loading" [rowHover]="true" [showGridlines]="true" [paginator]="true" [globalFilterFields]="['name', 'expenseName', 'tel']" responsiveLayout="scroll">
@@ -21,7 +21,10 @@
             </th>
 
             <th style="min-width: 10rem">
-                <div class="flex justify-between items-center">Utility</div>
+                <div class="flex justify-between items-center">Email</div>
+            </th>
+            <th style="min-width: 10rem">
+                <div class="flex justify-between items-center">Address</div>
             </th>
             <th style="min-width: 10rem">
                 <div class="flex justify-between items-center">Tel.</div>
@@ -31,20 +34,25 @@
             </th>
         </tr>
     </ng-template>
-    <ng-template #body let-supplier>
+    <ng-template #body let-employee>
         <tr class="supplier-row">
             <td>
-                {{ supplier.name }}
+                {{ employee.name }}
             </td>
 
             <td>
-                {{ supplier.expenseName }}
+                {{ employee.address }}
             </td>
+
+            <td>
+                {{ employee.email }}
+            </td>
+
             <td digitOnly>
-                {{ supplier.tel }}
+                {{ employee.tel }}
             </td>
             <td class="flex justify-center items-center">
-                <i (click)="onDeleteEmployeeCLick(supplier._id)" class="delete-icon pi pi-trash" style="color: var(--p-button-danger-background)"></i>
+                <i (click)="onDeleteEmployeeCLick(employee._id)" class="delete-icon pi pi-trash" style="color: var(--p-button-danger-background)"></i>
             </td>
         </tr>
     </ng-template>
@@ -60,8 +68,8 @@
     </ng-template>
 </p-table>
 
-<p-dialog header="Create Provider" [(visible)]="isDialogVisible" [position]="'top'" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '25vw' }" [modal]="true">
-    <app-employees-form></app-employees-form>
+<p-dialog header="Create Employee" [(visible)]="isDialogVisible" [position]="'top'" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '25vw' }" [modal]="true">
+    <app-employees-form [(employee)]="employee"></app-employees-form>
     <ng-template #footer>
         <p-button p-ripple p-button p-component p-button-secondary p-button-text label="Cancel" [text]="true" severity="secondary" (click)="hideDialog()" />
         <p-button label="Save" (click)="createEmployee()" />

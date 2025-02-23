@@ -62,7 +62,7 @@ export class MenuComponent {
                     },
                     {
                         label: 'Clients',
-                        icon: 'pi pi-fw pi-users',
+                        icon: 'pi pi-fw pi-user',
                         routerLink: ['/clients']
                     },
                     {
@@ -74,6 +74,11 @@ export class MenuComponent {
                         label: 'Suppliers',
                         icon: 'pi pi-fw pi-truck',
                         routerLink: ['/suppliers']
+                    },
+                    {
+                        label: 'Employees',
+                        icon: 'pi pi-fw pi-users',
+                        routerLink: ['/employees']
                     }
                 ]
             },

@@ -18,7 +18,6 @@ import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { DigitOnlyDirective } from '../../shared/directives/digit-only.directive';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
-import { SupplierFormComponent } from '../suppliers/supplier-form/supplier-form.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { HttpService } from '../../shared/services/http.service';
 import { EmployeesFormComponent } from './employees-form/employees-form.component';
@@ -54,15 +53,22 @@ export class EmployeesComponent {
     @ViewChild('filter') filter!: ElementRef;
     httpService = inject(HttpService);
     showDeleteConfirmationDialog = false;
-
     employeeToDeleteId = '';
-    employees: any = [];
+    employees = signal<any>([]);
     employeesSignal = computed(() => signal(this.employees()));
     isDialogVisible = false;
     loading: unknown;
+    employee = {
+        name: '',
+        address: '',
+        email: '',
+        tel: ''
+    };
 
     ngOnInit(): void {
-        this.employees = toSignal(this.httpService.getEmployees());
+        this.httpService.getEmployees().subscribe((res: any) => {
+            this.employees.set(res);
+        });
     }
 
     showDialog() {
@@ -84,7 +90,11 @@ export class EmployeesComponent {
 
     createEmployee() {
         this.isDialogVisible = false;
-        this.employeeToDeleteId = '';
+        console.log('this.employee: ', this.employee);
+        this.httpService.createEmployee(this.employee).subscribe((response: any) => {
+            this.employeesSignal().update((s: any) => [...s, response].sort((a, b) => a.name - b.name));
+            this.hideDialog();
+        });
     }
 
     deleteEmployee() {
