@@ -27,8 +27,8 @@ export class UtilityFormComponent {
         this.providers = toSignal(this.http.getSuppliers({ expenseType: 'utility' }));
     }
 
-    searchProvider($event: AutoCompleteCompleteEvent) {
-        const query = $event.query.toLowerCase();
+    searchProvider(event: AutoCompleteCompleteEvent) {
+        const query = event.query.toLowerCase();
         this.filteredProviders = this.providers().filter((provider: any) => provider.name.toLowerCase().includes(query));
     }
 

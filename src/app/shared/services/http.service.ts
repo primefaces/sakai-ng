@@ -115,4 +115,24 @@ export class HttpService {
     deleteExpense(id: string) {
         return this.http.delete(`${this.url}/expenses/${id}`);
     }
+
+    getEmployees() {
+        return this.http.get(`${this.url}/employees`);
+    }
+
+    getEmployee(id: string) {
+        return this.http.get(`${this.url}/employees/${id}`);
+    }
+
+    createEmployee(employee: any) {
+        return this.http.post(`${this.url}/employees`, employee);
+    }
+
+    updateEmployee(employee: any) {
+        return this.http.patch(`${this.url}/employees/${employee._id}`, employee);
+    }
+
+    deleteEmployee(id: string) {
+        return this.http.delete(`${this.url}/employees/${id}`);
+    }
 }

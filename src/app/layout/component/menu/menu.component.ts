@@ -46,7 +46,7 @@ export class MenuComponent {
                             {
                                 label: 'Salary',
                                 icon: 'pi pi-fw pi-user',
-                                routerLink: ['/auth/access']
+                                routerLink: ['/expenses/salary']
                             },
                             {
                                 label: 'Assets',
