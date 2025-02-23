@@ -65,12 +65,18 @@ export class SuppliersComponent {
     newServicePrice: any;
     showDeleteConfirmationDialog: any;
     supplierToDeleteId = '';
-    suppliers: any = [];
+    suppliers: any = signal([]);
     suppliersSignal = computed(() => signal(this.suppliers()));
     loading: unknown;
 
     constructor() {
-        this.suppliers = toSignal(this.httpService.getSuppliers({}));
+        // this.suppliers = toSignal(this.httpService.getSuppliers({}));
+    }
+
+    ngOnInit(): void {
+        this.httpService.getSuppliers({ expenseType: this.expenseType() }).subscribe((res) => {
+            this.suppliers.set(res);
+        });
     }
 
     showDialog() {

@@ -51,7 +51,7 @@ export class MenuComponent {
                             {
                                 label: 'Assets',
                                 icon: 'pi pi-fw pi-building-columns',
-                                routerLink: ['/auth/access']
+                                routerLink: ['/expenses/assets']
                             },
                             {
                                 label: 'Cleaning Supplies',

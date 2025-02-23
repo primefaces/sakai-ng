@@ -27,6 +27,7 @@ export const appRoutes: Routes = [
                 loadComponent: () => import('./app/pages/clients/clients.component').then((c) => c.ClientsComponent)
             },
             { path: 'expenses/utilities', loadComponent: () => import('./app/pages/utilities/utilities.component').then((c) => c.UtilitiesComponent) },
+            { path: 'expenses/assets', loadComponent: () => import('./app/pages/assets/assets.component').then((c) => c.AssetsComponent) },
             {
                 path: 'suppliers',
                 loadComponent: () => import('./app/pages/suppliers/suppliers.component').then((c) => c.SuppliersComponent)

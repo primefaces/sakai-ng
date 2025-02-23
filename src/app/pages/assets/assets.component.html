@@ -1,0 +1,18 @@
+<!-- Date name Supplier Price Status | Active |in Repair | Retired | Sold -->
+<div class="card">
+    <p-tabs value="0">
+        <p-tablist>
+            <p-tab value="0">Utilities</p-tab>
+            <p-tab value="1">Providers</p-tab>
+        </p-tablist>
+        <p-tabpanels>
+            <p-tabpanel value="0">
+                <app-assets-table></app-assets-table>
+            </p-tabpanel>
+            <p-tabpanel value="1">
+                <app-suppliers [expenseType]="'assets'"></app-suppliers>
+            </p-tabpanel>
+            <p-tabpanel value="2"> </p-tabpanel>
+        </p-tabpanels>
+    </p-tabs>
+</div>
