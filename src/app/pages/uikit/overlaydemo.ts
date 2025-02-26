@@ -113,7 +113,7 @@ import { Product, ProductService } from '../service/product.service';
 
             <div class="card">
                 <div class="font-semibold text-xl mb-4">ConfirmPopup</div>
-                <p-confirmpopup></p-confirmpopup>
+                <p-confirmpopup key="confirm2"></p-confirmpopup>
                 <p-button #popup (click)="confirm($event)" icon="pi pi-check" label="Confirm" class="mr-2"></p-button>
             </div>
 
