@@ -1,0 +1,41 @@
+<main class="p-fluid">
+    <div class="input-container">
+        <label for="date">Date</label>
+        <p-datepicker class="input" [(ngModel)]="utility().date" placeholder="Select Date" dateFormat="yy-mm-dd" />
+    </div>
+
+    <div class="input-container">
+        <label for="provider">Provider</label>
+        <p-autocomplete
+            class="input"
+            [field]="'name'"
+            (onSelect)="onProviderSelect($event)"
+            [forceSelection]="true"
+            [dataKey]="'_id'"
+            [(ngModel)]="utility().provider"
+            (onBlur)="onProviderBlur()"
+            [suggestions]="filteredProviders"
+            (completeMethod)="searchProvider($event)"
+        />
+    </div>
+
+    <div class="input-container">
+        <label for="utility">Utility</label>
+        <input class="input" pInputText readonly [(ngModel)]="utility().utility" placeholder="Select a Utility" class="w-full md:w-56" />
+    </div>
+
+    <div class="input-container">
+        <label for="amount">Amount</label>
+        <p-inputnumber required [(ngModel)]="utility().amount" inputId="minmaxfraction" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="5" />
+    </div>
+
+    <div class="input-container">
+        <label for="status">Status</label>
+        <p-select class="input" [options]="statusOptions" [(ngModel)]="utility().status" placeholder="Select Status" class="w-full md:w-56"></p-select>
+    </div>
+
+    <div class="input-container">
+        <label for="date">Paid On</label>
+        <p-datepicker class="input" [(ngModel)]="utility().date" placeholder="Select Date" dateFormat="yy-mm-dd" />
+    </div>
+</main>

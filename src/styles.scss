@@ -3,3 +3,13 @@
 @use './assets/layout/layout.scss';
 @use 'primeicons/primeicons.css';
 @use './assets/demo/demo.scss';
+
+.global-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    i {
+        font-size: 16px;
+        cursor: pointer;
+    }
+}
