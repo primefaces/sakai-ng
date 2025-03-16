@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { MurCurrencyPipe } from '../../../shared/pipes/mur-currency.pipe';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
@@ -54,6 +54,7 @@ import { UtilityFormComponent } from '../../utilities/utility-form/utility-form.
     styleUrl: './salary-table.component.scss'
 })
 export class SalaryTableComponent {
+    @ViewChild('filter') filter!: ElementRef;
     httpService = inject(HttpService);
     isDialogVisible = false;
     showDeleteConfirmationDialog = false;
@@ -62,40 +63,57 @@ export class SalaryTableComponent {
     salaryToDeleteId = '';
     salary = {
         date: new Date(),
-        employee: null,
+        employee: null as any,
         amount: 0,
         status: '',
         paidOn: new Date()
     };
+    loading: any;
 
     constructor() {
         this.salaryExpense = toSignal(this.httpService.getExpenses({ expenseType: 'salary' }));
     }
 
-    loading: any;
     showDialog() {
-        throw new Error('Method not implemented.');
+        this.isDialogVisible = true;
     }
 
     clear(table: Table) {
+        table.clear();
+        this.filter.nativeElement.value = '';
+    }
+
+    onGlobalFilter(table: Table, event: Event) {
+        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+    }
+
+    onEditSalaryClick(salary: any) {
         throw new Error('Method not implemented.');
     }
-    onGlobalFilter(table: Table, $event: Event) {
-        throw new Error('Method not implemented.');
+
+    onDeleteClick(id: string) {
+        this.salaryToDeleteId = id;
+        this.showDeleteConfirmationDialog = true;
     }
-    onEditSalaryClick(arg0: any) {
-        throw new Error('Method not implemented.');
-    }
-    onDeleteClick(arg0: any) {
-        throw new Error('Method not implemented.');
-    }
+
     hideDialog() {
-        throw new Error('Method not implemented.');
+        this.isDialogVisible = false;
     }
+
     createSalary() {
-        throw new Error('Method not implemented.');
+        this.isDialogVisible = false;
+        const body: any = { ...this.salary };
+        body.employee = this.salary.employee._id;
+        body.expenseType = 'salary';
+
+        this.httpService.createExpense(body).subscribe((response: any) => {
+            this.salaryExpenseSignal().update((s: any) => [...s, response].sort((a, b) => a.date - b.date));
+            this.hideDialog();
+        });
     }
+
     deleteSalary() {
-        throw new Error('Method not implemented.');
+        this.salaryExpenseSignal().update((s) => s.filter((s: any) => s._id !== this.salaryToDeleteId));
+        this.httpService.deleteExpense(this.salaryToDeleteId).subscribe(() => {});
     }
 }

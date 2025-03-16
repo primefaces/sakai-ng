@@ -5,18 +5,19 @@
     </div>
 
     <div class="input-container">
-        <label for="provider">Provider</label>
-        <p-autocomplete class="input" [field]="'name'" [forceSelection]="true" [dataKey]="'_id'" [(ngModel)]="salary().provider" [suggestions]="filteredEmployees" (completeMethod)="searchEmployee($event)" />
-    </div>
-
-    <div class="input-container">
-        <label for="utility">Utility</label>
-        <input class="input" pInputText readonly [(ngModel)]="salary().utility" placeholder="Select a Utility" class="w-full md:w-56" />
+        <label for="provider">Employee</label>
+        <p-autocomplete class="input" [field]="'name'" [forceSelection]="true" [dataKey]="'_id'" [(ngModel)]="salary().employee" [suggestions]="filteredEmployees" (completeMethod)="searchEmployee($event)" />
     </div>
 
     <div class="input-container">
         <label for="amount">Amount</label>
         <p-inputnumber required [(ngModel)]="salary().amount" inputId="minmaxfraction" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="5" />
+    </div>
+
+    <div class="input-container">
+        <label for="comment">Salary For</label>
+        <!-- <input class="input" pInputText readonly [(ngModel)]="salary().comment" placeholder="Add a Comment" class="w-full md:w-56" /> -->
+        <p-datepicker class="input" [(ngModel)]="salary().salaryFor" view="month" dateFormat="MM yy" [readonlyInput]="true" />
     </div>
 
     <div class="input-container">

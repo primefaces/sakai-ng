@@ -26,6 +26,7 @@ export class SalaryFormComponent {
         this.employees = toSignal(this.httpService.getEmployees());
     }
 
+    ngOnInit(): void {}
     searchEmployee(event: AutoCompleteCompleteEvent) {
         const query = event.query.toLowerCase();
         this.filteredEmployees = this.employees().filter((employee: any) => employee.name.toLowerCase().includes(query));

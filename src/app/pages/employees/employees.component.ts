@@ -107,5 +107,17 @@ export class EmployeesComponent {
         this.showDeleteConfirmationDialog = true;
     }
 
-    updateEmployee(employees: any) {}
+    updateEmployee(employees: any, field: string, event: any) {
+        
+        const newValue = event.target.innerText.trim();
+
+        if(employees[field] === newValue) {
+            return;
+        }
+
+        employees[field] = newValue;
+        this.httpService.updateEmployee(employees).subscribe((data: any) => {
+            console.log('Employee updated successfully');
+        });
+    }
 }

@@ -17,15 +17,15 @@
     <ng-template #header>
         <tr>
             <th style="min-width: 12rem">
-                <div class="flex justify-between items-center">Supplier Name</div>
-            </th>
-
-            <th style="min-width: 10rem">
-                <div class="flex justify-between items-center">Email</div>
+                <div class="flex justify-between items-center">Employee Name</div>
             </th>
             <th style="min-width: 10rem">
                 <div class="flex justify-between items-center">Address</div>
             </th>
+            <th style="min-width: 10rem">
+                <div class="flex justify-between items-center">Email</div>
+            </th>
+           
             <th style="min-width: 10rem">
                 <div class="flex justify-between items-center">Tel.</div>
             </th>
@@ -36,19 +36,27 @@
     </ng-template>
     <ng-template #body let-employee>
         <tr class="supplier-row">
-            <td>
+            <td
+            (blur)="updateEmployee(employee, 'name', $event)" contenteditable="true"
+            >
                 {{ employee.name }}
             </td>
 
-            <td>
+            <td
+            (blur)="updateEmployee(employee, 'address', $event)" contenteditable="true"
+            >
                 {{ employee.address }}
             </td>
 
-            <td>
+            <td
+            (blur)="updateEmployee(employee, 'email', $event)" contenteditable="true"
+            >
                 {{ employee.email }}
             </td>
 
-            <td digitOnly>
+            <td
+            (blur)="updateEmployee(employee, 'tel', $event)" contenteditable="true"
+            digitOnly>
                 {{ employee.tel }}
             </td>
             <td class="flex justify-center items-center">

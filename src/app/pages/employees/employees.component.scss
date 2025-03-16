@@ -1,7 +1,9 @@
-.fix-width {
-    width: 170px;
+.delete-icon {
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.2s;
 }
-
-.other-input {
-    margin-left: 15px;
+.supplier-row:hover i {
+    opacity: 1;
+    cursor: pointer;
 }
