@@ -1,0 +1,157 @@
+<div class="card">
+    <div class="global-header-container mb-4">
+        <div class="font-semibold text-xl">Sales</div>
+        <i (click)="showDialog()" class="pi pi-plus"></i>
+    </div>
+    <p-table
+        #dt1
+        [value]="salesSignal()()"
+        dataKey="id"
+        [rows]="10"
+        [loading]="loading"
+        [rowHover]="true"
+        [showGridlines]="true"
+        [paginator]="true"
+        [globalFilterFields]="['date ', 'vehicle.regNo', 'vehicle.make ', 'vehicle.model', 'vehicle.color', 'serviceType.name', 'timeStart', 'timeEnd', 'price', 'status', 'paymentMethod', 'comments']"
+        responsiveLayout="scroll"
+    >
+        <ng-template #caption>
+            <div class="flex justify-between items-center flex-column sm:flex-row">
+                <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+
+                <p-datepicker (onSelect)="onDateChange($event)" class="range-datepicker" dateFormat="dd/mm/yy" [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" />
+
+                <p-iconfield iconPosition="left" class="">
+                    <p-inputicon>
+                        <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input pInputText type="text" (input)="onGlobalFilter(dt1, $event)" placeholder="Search keyword" />
+                </p-iconfield>
+            </div>
+        </ng-template>
+        <ng-template #header>
+            <tr>
+                <th style="min-width: 10rem">
+                    <div class="flex justify-between items-center">Date</div>
+                </th>
+
+                <th style="min-width: 12rem">
+                    <div class="flex justify-between items-center">RegNo</div>
+                </th>
+
+                <th style="min-width: 12rem">
+                    <div class="flex justify-between items-center">Make</div>
+                </th>
+
+                <th style="min-width: 12rem">
+                    <div class="flex justify-between items-center">Model</div>
+                </th>
+
+                <th style="min-width: 12rem">
+                    <div class="flex justify-between items-center">Color</div>
+                </th>
+
+                <th style="min-width: 14rem">
+                    <div class="flex justify-between items-center">Service Type</div>
+                </th>
+
+                <th style="min-width: 10rem">
+                    <div class="flex justify-between items-center">Start</div>
+                </th>
+
+                <th style="min-width: 10rem">
+                    <div class="flex justify-between items-center">End</div>
+                </th>
+
+                <th style="min-width: 10rem">
+                    <div class="flex justify-between items-center">Price</div>
+                </th>
+
+                <th style="min-width: 12rem">
+                    <div class="flex justify-between items-center">Status</div>
+                </th>
+
+                <th style="min-width: 10rem">
+                    <div class="flex justify-between items-center">Payment Method</div>
+                </th>
+
+                <th style="min-width: 10rem">
+                    <div class="flex justify-between items-center">Comments</div>
+                </th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-sale>
+            <tr class="sales-row">
+                <td>
+                    {{ sale.date | date: 'dd/MM/yyyy' }}
+                </td>
+                <td>
+                    {{ sale.vehicle?.regNo }}
+                </td>
+                <td>
+                    <div class="flex items-center gap-2">
+                        <span>{{ sale.vehicle?.make }}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="flex items-center gap-2">
+                        <span class="image-text">{{ sale.vehicle?.model }}</span>
+                    </div>
+                </td>
+                <td>
+                    {{ sale.vehicle?.color }}
+                </td>
+
+                <td>
+                    {{ sale.serviceType?.name }}
+                </td>
+
+                <td>
+                    {{ sale.timeStart }}
+                </td>
+                <td>
+                    {{ sale.timeEnd }}
+                </td>
+                <td>
+                    {{ sale.price }}
+                </td>
+                <td>
+                    <p-tag [value]="sale.status" [severity]="getSeverity(sale.status)" styleClass="dark:!bg-surface-900" />
+                </td>
+                <td>
+                    {{ sale.paymentMethod }}
+                </td>
+                <td>
+                    {{ sale.comments }}
+                </td>
+                <td>
+                    <div class="flex justify-between items-center gap-4 icons-box">
+                        <i (click)="onEditSaleClick(sale)" class="action-icon pi pi-pencil"></i>
+                        <i (click)="onDeleteClick(sale._id)" class="action-icon pi pi-trash" style="color: var(--p-button-danger-background)"></i>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="13">No Sales found.</td>
+            </tr>
+        </ng-template>
+        <ng-template #loadingbody>
+            <tr>
+                <td colspan="13">Loading Sales data. Please wait.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog header="New Sale" [(visible)]="isDialogVisible" [position]="'top'" [breakpoints]="{ '1590px': '75vw', '1036px': '100vw' }" [style]="{ width: '50vw' }" [modal]="true">
+    <app-sales-form [(sale)]="sale"></app-sales-form>
+    <ng-template #footer>
+        <p-button p-ripple p-button p-component p-button-secondary p-button-text label="Cancel" [text]="true" severity="secondary" (click)="hideDialog()" />
+        <p-button label="Save" (click)="createSale()" />
+    </ng-template>
+</p-dialog>
+
+<delete-confirmation-dialog (onDeleteConfirmation)="deleteSale()" [(showDialog)]="showDeleteConfirmationDialog"></delete-confirmation-dialog>

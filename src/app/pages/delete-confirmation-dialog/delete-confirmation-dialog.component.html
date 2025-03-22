@@ -1,0 +1,10 @@
+<p-dialog header="Confirmation" [(visible)]="showDialog" [style]="{ width: '350px' }" [modal]="true">
+    <div class="flex items-center justify-center">
+        <i class="pi pi-exclamation-triangle mr-4" style="font-size: 2rem"> </i>
+        <span>Are you sure you want to proceed?</span>
+    </div>
+    <ng-template #footer>
+        <p-button label="No" icon="pi pi-times" (click)="closeDialog()" text severity="secondary" />
+        <p-button label="Yes" icon="pi pi-check" (click)="confirmDelete()" severity="danger" outlined autofocus />
+    </ng-template>
+</p-dialog>

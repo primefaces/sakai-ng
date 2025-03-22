@@ -1,0 +1,17 @@
+.icons-box {
+    i {
+        opacity: 0;
+        transition: 0.2s ease;
+    }
+}
+
+.icons-box {
+    i {
+        cursor: pointer;
+        padding: 2px;
+    }
+}
+
+.utility-row:hover .icons-box i {
+    opacity: 1;
+}

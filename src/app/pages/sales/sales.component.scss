@@ -1,0 +1,24 @@
+.icons-box {
+    i {
+        opacity: 0;
+        transition: 0.2s ease;
+    }
+}
+
+.icons-box {
+    i {
+        cursor: pointer;
+    }
+}
+
+.sales-row:hover .icons-box i {
+    opacity: 1;
+}
+
+::ng-deep .range-datepicker .p-inputtext {
+    min-width: 250px;
+    font-size: 1.4rem;
+    background: transparent !important;
+    border: none;
+    cursor: pointer;
+}
