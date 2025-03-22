@@ -23,6 +23,7 @@ import { SalesFormComponent } from './sales-form/sales-form.component';
 import { HttpService } from '../../shared/services/http.service';
 import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { DatePicker } from 'primeng/datepicker';
 
 @Component({
     selector: 'app-sales',
@@ -45,7 +46,8 @@ import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog
         IconFieldModule,
         DialogModule,
         SalesFormComponent,
-        DeleteConfirmationDialogComponent
+        DeleteConfirmationDialogComponent,
+        DatePicker
     ],
     templateUrl: './sales.component.html',
     styleUrl: './sales.component.scss',
@@ -57,7 +59,7 @@ export class SalesComponent {
     sales: any = [];
     salesSignal = computed(() => signal(this.sales()));
     loading = false;
-
+    rangeDates: Date[] = [];
     isDialogVisible = false;
     sale = {
         date: new Date(),
@@ -75,8 +77,14 @@ export class SalesComponent {
     showDeleteConfirmationDialog = false;
     serviceToDeleteId = '';
     constructor() {
-        this.sales = toSignal(this.httpService.getSales());
+        const now = new Date();
+        const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+        const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+
+        this.rangeDates = [firstDay, lastDay];
+        this.sales = toSignal(this.httpService.getSales(this.rangeDates));
     }
+
     ngOnInit(): void {}
 
     clear(table: Table) {
@@ -84,7 +92,19 @@ export class SalesComponent {
         this.filter.nativeElement.value = '';
     }
 
-    getSales() {}
+    onDateChange(event: any) {
+        console.log(this.rangeDates);
+        const [start, end] = this.rangeDates;
+        if (start && end) {
+            this.getSales();
+        }
+    }
+
+    getSales() {
+        this.sales = this.httpService.getSales(this.rangeDates).subscribe((sales: any) => {
+            this.salesSignal().set(sales);
+        });
+    }
 
     getSeverity(status: string) {
         switch (status) {
@@ -129,7 +149,7 @@ export class SalesComponent {
 
     createSale() {
         this.httpService.createSale(this.sale).subscribe((response: any) => {
-            this.httpService.getSales().subscribe((sales: any) => {
+            this.httpService.getSales(this.rangeDates).subscribe((sales: any) => {
                 this.sales = sales;
                 this.salesSignal().set(sales);
             });

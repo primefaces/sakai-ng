@@ -66,6 +66,7 @@ export class SalaryTableComponent {
         employee: null as any,
         amount: 0,
         status: '',
+        comment: '',
         paidOn: new Date()
     };
     loading: any;
@@ -88,7 +89,10 @@ export class SalaryTableComponent {
     }
 
     onEditSalaryClick(salary: any) {
-        throw new Error('Method not implemented.');
+        this.salary = salary;
+        this.salary.date = new Date(salary.date);
+        this.salary.paidOn = new Date(salary.paidOn);
+        this.showDialog();
     }
 
     onDeleteClick(id: string) {
@@ -98,6 +102,14 @@ export class SalaryTableComponent {
 
     hideDialog() {
         this.isDialogVisible = false;
+        this.salary = {
+            date: new Date(),
+            employee: null as any,
+            amount: 0,
+            status: '',
+            comment: '',
+            paidOn: new Date()
+        };
     }
 
     createSalary() {
@@ -106,8 +118,9 @@ export class SalaryTableComponent {
         body.employee = this.salary.employee._id;
         body.expenseType = 'salary';
 
+        console.log('body: ', body);
         this.httpService.createExpense(body).subscribe((response: any) => {
-            this.salaryExpenseSignal().update((s: any) => [...s, response].sort((a, b) => a.date - b.date));
+            this.salaryExpenseSignal().set(response);
             this.hideDialog();
         });
     }

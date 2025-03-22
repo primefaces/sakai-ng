@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 
@@ -50,8 +50,11 @@ export class HttpService {
         return this.http.delete(`${this.url}/clients/${id}`);
     }
 
-    getSales() {
-        return this.http.get(`${this.url}/sales`);
+    getSales(dateRange: any) {
+        const [start, end] = dateRange;
+
+        const params = new HttpParams().set('start', start).set('end', end);
+        return this.http.get(`${this.url}/sales`, { params });
     }
 
     getSale(id: string) {
@@ -59,6 +62,8 @@ export class HttpService {
     }
 
     createSale(sale: any) {
+        sale.date = new Date(sale.date).setHours(0, 0, 0, 0);
+
         if (sale._id) {
             return this.http.patch(`${this.url}/sales/${sale._id}`, sale);
         }

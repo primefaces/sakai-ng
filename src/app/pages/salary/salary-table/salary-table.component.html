@@ -25,6 +25,10 @@
             </th>
 
             <th style="min-width: 10rem">
+                <div class="flex justify-between items-center">Comment</div>
+            </th>
+
+            <th style="min-width: 10rem">
                 <div class="flex justify-between items-center">Amount</div>
             </th>
 
@@ -45,6 +49,7 @@
         <tr class="utility-row">
             <td>{{ salary.date | date: 'dd/MM/yyyy' }}</td>
             <td>{{ salary.employee?.name }}</td>
+            <td>{{ salary.comment }}</td>
             <td>{{ salary.amount | mur }}</td>
             <td>{{ salary.status }}</td>
             <td>{{ salary.paidOn | date: 'dd/MM/yyyy' }}</td>

@@ -18,7 +18,10 @@
         <ng-template #caption>
             <div class="flex justify-between items-center flex-column sm:flex-row">
                 <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
-                <p-iconfield iconPosition="left" class="ml-auto">
+
+                <p-datepicker (onSelect)="onDateChange($event)" class="range-datepicker" dateFormat="dd/mm/yy" [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" />
+
+                <p-iconfield iconPosition="left" class="">
                     <p-inputicon>
                         <i class="pi pi-search"></i>
                     </p-inputicon>
