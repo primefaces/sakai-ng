@@ -12,7 +12,7 @@
         [rowHover]="true"
         [showGridlines]="true"
         [paginator]="true"
-        [globalFilterFields]="['make', 'model', 'year', 'color', 'regNo', 'ownerName', 'contactNumber']"
+        [globalFilterFields]="['make', 'model', 'year', 'color', 'regNo', 'type', 'ownerName', 'contactNumber']"
         responsiveLayout="scroll"
     >
         <ng-template #caption>
@@ -28,27 +28,50 @@
         </ng-template>
         <ng-template #header>
             <tr>
-                <th style="min-width: 12rem">
-                    <div class="flex justify-between items-center">Make</div>
+                <th pSortableColumn="make" style="min-width: 12rem">
+                    <div class="flex justify-between items-center">
+                        Make
+                        <p-sortIcon field="make"></p-sortIcon>
+                    </div>
                 </th>
 
-                <th style="min-width: 10rem">
-                    <div class="flex justify-between items-center">Model</div>
+                <th pSortableColumn="model" style="min-width: 10rem">
+                    <div class="flex justify-between items-center">
+                        Model
+
+                        <p-sortIcon field="model"></p-sortIcon>
+                    </div>
                 </th>
-                <th style="min-width: 10rem">
-                    <div class="flex justify-between items-center">Year</div>
+                <th pSortableColumn="year" style="min-width: 10rem">
+                    <div class="flex justify-between items-center">
+                        Year
+                        <p-sortIcon field="year"></p-sortIcon>
+                    </div>
                 </th>
-                <th style="min-width: 10rem">
-                    <div class="flex justify-between items-center">Color</div>
+                <th pSortableColumn="color" style="min-width: 10rem">
+                    <div class="flex justify-between items-center">
+                        Color
+                        <p-sortIcon field="color"></p-sortIcon>
+                    </div>
                 </th>
-                <th style="min-width: 10rem">
-                    <div class="flex justify-between items-center">Type</div>
+                <th pSortableColumn="type" style="min-width: 10rem">
+                    <div class="flex justify-between items-center">
+                        Type
+                        <p-sortIcon field="type"></p-sortIcon>
+                    </div>
                 </th>
-                <th style="min-width: 10rem">
-                    <div class="flex justify-between items-center">RegNo.</div>
+                <th pSortableColumn="regNo" style="min-width: 10rem">
+                    <div class="flex justify-between items-center">
+                        RegNo.
+
+                        <p-sortIcon field="regNo"></p-sortIcon>
+                    </div>
                 </th>
-                <th style="min-width: 10rem">
-                    <div class="flex justify-between items-center">Owner</div>
+                <th pSortableColumn="ownerName" style="min-width: 10rem">
+                    <div class="flex justify-between items-center">
+                        Owner
+                        <p-sortIcon field="ownerName"></p-sortIcon>
+                    </div>
                 </th>
                 <th style="min-width: 10rem">
                     <div class="flex justify-between items-center">Tel.</div>
