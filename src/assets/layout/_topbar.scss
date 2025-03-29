@@ -4,12 +4,12 @@
     position: fixed;
     height: 4rem;
     z-index: 997;
-    left: 0;
+    inset-inline-start: 0;
     top: 0;
     width: 100%;
     padding: 0 2rem;
     background-color: var(--surface-card);
-    transition: left var(--layout-section-transition-duration);
+    transition: inset-inline-start var(--layout-section-transition-duration);
     display: flex;
     align-items: center;
 
@@ -73,7 +73,7 @@
     }
 
     .layout-menu-button {
-        margin-right: 0.5rem;
+        margin-inline-end: 0.5rem;
     }
 
     .layout-topbar-menu-button {
@@ -81,7 +81,7 @@
     }
 
     .layout-topbar-actions {
-        margin-left: auto;
+        margin-inline-start: auto;
         display: flex;
         gap: 1rem;
     }
@@ -106,8 +106,8 @@
         }
 
         .layout-menu-button {
-            margin-left: 0;
-            margin-right: 0.5rem;
+            margin-inline-start: 0;
+            margin-inline-end: 0.5rem;
         }
 
         .layout-topbar-menu-button {
@@ -124,7 +124,7 @@
                 0px 1px 4px rgba(0, 0, 0, 0.08);
             border-radius: var(--content-border-radius);
             padding: 1rem;
-            right: 2rem;
+            inset-inline-end: 2rem;
             top: 4rem;
             min-width: 15rem;
             border: 1px solid var(--surface-border);
@@ -143,7 +143,7 @@
 
                 i {
                     font-size: 1rem;
-                    margin-right: 0.5rem;
+                    margin-inline-end: 0.5rem;
                 }
 
                 span {

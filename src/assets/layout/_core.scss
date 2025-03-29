@@ -22,3 +22,11 @@ a {
 .layout-wrapper {
     min-height: 100vh;
 }
+
+:root {
+    --direction: 1;
+}
+
+[dir='rtl'] {
+    --direction: -1;
+}
