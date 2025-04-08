@@ -19,6 +19,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { Product, ProductService } from '../service/product.service';
+import { LedgerComponent } from '../ledger/ledger.component';
 
 interface Column {
     field: string;
@@ -52,7 +53,7 @@ interface ExportColumn {
         TagModule,
         InputIconModule,
         IconFieldModule,
-        ConfirmDialogModule
+        ConfirmDialogModule, LedgerComponent
     ],
     template: `
         <p-toolbar styleClass="mb-6">
@@ -66,6 +67,7 @@ interface ExportColumn {
             </ng-template>
         </p-toolbar>
 
+        <app-ledger></app-ledger>
         <p-table
             #dt
             [value]="products()"
