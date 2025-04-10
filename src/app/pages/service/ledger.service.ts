@@ -30,6 +30,7 @@ export interface Ledger {
     other: number;
     focId: string;
     date: string;
+    captureDate: string;
 }
 export interface Product {
     id?: string;
@@ -66,6 +67,7 @@ export class GetDataService {
           // Submit the report to the 'reports' subcollection
           const reportDoc = {
             date: data.date,
+            captureDate: data.captureDate,
             attendanceChildren: data.attendanceChildren,
             attendanceAdults: data.attendanceAdults,
             tithe: data.tithe,

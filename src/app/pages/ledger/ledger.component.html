@@ -19,6 +19,11 @@
                     <small class="text-red-500" *ngIf="submitted && !focId">Name is required.</small>
                 </div>
                 <div>
+                    <label for="name" class="block font-bold mb-3">Date</label>
+                    <input type="date" pInputText id="captureDate" [(ngModel)]="stat.captureDate" required autofocus fluid />
+                    <small class="text-red-500"  *ngIf="submitted && !stat.captureDate">Date is required.</small>
+                </div>
+                <div>
                     <label for="province" class="block font-bold mb-3">Province</label>
                     <input type="text" pInputText id="province" [(ngModel)]="stat.province" required autofocus fluid />
                     <small class="text-red-500" *ngIf="submitted && !focId">Province is required.</small>
