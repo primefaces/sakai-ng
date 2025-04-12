@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, collectionGroup, doc, docData, DocumentReference, Firestore, getDocs, setDoc } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, collectionGroup, doc, docData, DocumentReference, Firestore, getDocs, query, setDoc, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 interface InventoryStatus {
@@ -82,26 +82,49 @@ export class GetDataService {
           console.error('Error submitting report:', error);
         }
       }
-        async getAllReports() {
-          try {
-            // Use the `collectionGroup` query to fetch all documents from subcollections named 'reports'
-            const reportsSnapshot = await getDocs(collectionGroup(this.firestore, 'reports'));
-      
-            // Map through each document to extract data
-            const allReports = reportsSnapshot.docs.map(doc => ({
-              id: doc.id, // The document ID
-              ...doc.data() // The report data
-            }));
-      
-            console.log('All Reports:', allReports);
-            return allReports;
-          } catch (error) {
-            console.error('Error retrieving reports:', error);
-            throw error; // Optionally rethrow the error for higher-level handling
-          }
+      async getAllReports() {
+        try {
+          // Use the `collectionGroup` query to fetch all documents from subcollections named 'reports'
+          const reportsSnapshot = await getDocs(collectionGroup(this.firestore, 'reports'));
+    
+          // Map through each document to extract data
+          const allReports = reportsSnapshot.docs.map(doc => ({
+            id: doc.id, // The document ID
+            ...doc.data() // The report data
+          }));
+    
+          console.log('All Reports:', allReports);
+          return allReports;
+        } catch (error) {
+          console.error('Error retrieving reports:', error);
+          throw error; // Optionally rethrow the error for higher-level handling
         }
+    }
+    
+
+    async getFilteredReports(focId: string, date: string) {
+      try {
+        const filterDate = new Date(date);
+        const q = query(
+          collection(this.firestore, 'reports'),
+         // where("date", "==", filterDate),
+          where("MaronderaFocId", "==", focId),
+        );
+        const reportsSnapshot = await getDocs(q);
+        const allReports = reportsSnapshot.docs.map(doc => ({
+          id: doc.id, // The document ID
+          ...doc.data() // The report data
+        }));
+        return allReports;
+      }
+      catch (error) {
+        console.error('Error retrieving reports:', error);
+        throw error; // Optionally rethrow the error for higher-level handling
+      }
+    }
+
+
     getAll(str: string): Observable<any[]> {
-        
       const offeringCollection = collection(this.firestore, str);
       return collectionData(offeringCollection);
     }
