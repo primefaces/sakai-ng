@@ -1,0 +1,31 @@
+<p-toolbar styleClass="mb-6">
+    <ng-template #start>
+        <p-button label="New" icon="pi pi-plus" severity="secondary" class="mr-2"  />
+        <p-button severity="secondary" label="Delete" icon="pi pi-trash" outlined  />
+    </ng-template>
+
+    <ng-template #end>
+        <p-button label="Export" icon="pi pi-upload" severity="secondary"  />
+    </ng-template>
+</p-toolbar>
+
+<p-dialog [(visible)]="statDialog" [style]="{ width: '450px' }" header="Product Details" [modal]="true">
+    <ng-template #content>
+        <div class="flex flex-col gap-6">
+            <div class="grid grid-cols-12 gap-4">
+               
+                <div class="col-span-6">
+                    <label for="price" class="block font-bold mb-3">Tithes</label>
+                </div>
+                <div class="col-span-6">
+                    <label for="price" class="block font-bold mb-3">Offering</label>
+                </div>
+            </div>            
+        </div>
+    </ng-template>
+
+    <ng-template #footer>
+        <p-button label="Cancel" icon="pi pi-times" text (click)="hideDialog()" />
+        <p-button label="Save" icon="pi pi-check" (click)="saveStat()" />
+    </ng-template>
+</p-dialog>

@@ -1,0 +1,112 @@
+<div class="flex flex-col">
+    <div class="card">
+        <div class="font-semibold text-xl mb-4">Filter Reports</div>
+        <p-toolbar>
+            <div class="flex flex-wrap items-start gap-6">
+                <div class="field">
+                    <label for="firstname1" class="sr-only">FOC</label>
+                    <p-listbox [(ngModel)]="focValue" [options]="focValues" optionLabel="name" [filter]="true" />
+                </div>
+                <div class="field">
+                    <label for="lastname1" class="sr-only">Date</label>
+                    <input type="date" pInputText id="reportDate"  required autofocus fluid />
+                </div>
+                <p-button label="Filter" [fluid]="false" (onClick)="getFilteredData()"></p-button>
+            </div>
+        </p-toolbar>
+    </div>
+</div>
+<div style="width:100%; height:40px;"></div>
+
+<div class="card">
+    <p-toolbar styleClass="mb-6">
+        <ng-template #start>
+            <p-button label="New" icon="pi pi-plus" severity="secondary" class="mr-2" (onClick)="openNew()" />
+            <!-- <p-button severity="secondary" label="Delete" icon="pi pi-trash" outlined (onClick)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length" /> -->
+        </ng-template>
+
+        <ng-template #end>
+            <p-button label="Export" icon="pi pi-upload" severity="secondary"  />
+        </ng-template>
+    </p-toolbar>
+    <!-- <p-togglebutton  [onIcon]="'pi pi-lock'" offIcon="pi pi-lock-open" [onLabel]="'Balance'" offLabel="Balance" /> -->
+    <p-dialog [(visible)]="statDialog" [style]="{ width: '450px' }" header="Product Details" [modal]="true">
+        <ng-template #content>
+            <div class="flex flex-col gap-6">
+                <div>
+                    <label for="name" class="block font-bold mb-3">FOC</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="focId" required autofocus fluid />
+                    <small class="text-red-500" *ngIf="submitted && !focId">Name is required.</small>
+                </div>
+                <div>
+                    <label for="name" class="block font-bold mb-3">Date</label>
+                    <input type="date" pInputText id="captureDate" [(ngModel)]="stat.captureDate" required autofocus fluid />
+                    <small class="text-red-500"  *ngIf="submitted && !stat.captureDate">Date is required.</small>
+                </div>
+                <div>
+                    <label for="province" class="block font-bold mb-3">Province</label>
+                    <input type="text" pInputText id="province" [(ngModel)]="stat.province" required autofocus fluid />
+                    <small class="text-red-500" *ngIf="submitted && !focId">Province is required.</small>
+                </div>
+                 
+                <div class="grid grid-cols-12 gap-4">
+                   
+                    <div class="col-span-6">
+                        <label for="quantity" class="block font-bold mb-3">Adults</label>
+                        <p-inputnumber id="quantity" [(ngModel)]="stat.attendanceAdults" fluid />
+                    </div>
+                    <div class="col-span-6">
+                        <label for="quantity" class="block font-bold mb-3">Children</label>
+                        <p-inputnumber id="quantity" [(ngModel)]="stat.attendanceChildren" fluid />
+                    </div>
+                </div>
+                <div class="grid grid-cols-12 gap-4">
+                   
+                    <div class="col-span-6">
+                        <label for="price" class="block font-bold mb-3">Tithes</label>
+                        <p-inputnumber id="price" [(ngModel)]="stat.tithe" mode="currency" currency="USD" locale="en-US" fluid />
+                    </div>
+                    <div class="col-span-6">
+                        <label for="price" class="block font-bold mb-3">Offering</label>
+                        <p-inputnumber id="price" [(ngModel)]="stat.offeringSeed" mode="currency" currency="USD" locale="en-US" fluid />
+                    </div>
+                </div>
+
+                
+                
+            </div>
+        </ng-template>
+
+        <ng-template #footer>
+            <p-button label="Cancel" icon="pi pi-times" text (click)="hideDialog()" />
+            <p-button label="Save" icon="pi pi-check" (click)="saveStat()" />
+        </ng-template>
+    </p-dialog>
+    <p-table [value]="stats" [scrollable]="true" scrollHeight="400px" styleClass="mt-4">
+        <ng-template #header>
+            <tr>
+                <th style="min-width:200px" pFrozenColumn class="font-bold">FOC</th>
+                <th style="min-width:100px" >Province</th>
+                <th style="min-width:100px" >Date</th>
+                <th style="min-width:100px; text-align:right">Adults</th>
+                <th style="min-width:200px; text-align:right">Children</th>
+                <th style="min-width:200px; text-align:right">Tithes</th>
+                <th style="min-width:200px; text-align:right">Offering</th>
+                <!-- <th style="min-width:200px">Other</th>  -->
+            </tr>
+        </ng-template>
+        <ng-template #body let-stat>
+            <tr>
+                <td pFrozenColumn class="font-bold">{{ stat.location }}</td>
+                <td>{{ stat.province }}</td>
+                <td>{{ stat.date }}</td>
+                <td style="min-width:100px" style="text-align:right">{{ stat.attendanceAdults }}</td>
+                <td style="min-width:100px" style="text-align:right">{{ stat.attendanceChildren }}</td>
+                <td style="text-align:right">{{ stat.tithe | currency }}</td>
+                <td style="text-align:right">{{ stat.offeringSeed | currency }}</td>
+                <!-- <td style="text-align:right">{{ stat.other }}</td>  -->
+               
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -25,6 +25,14 @@ export class AppMenu {
                 items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
             },
             {
+                label: 'Financials',
+                items: [
+                    { label: 'Ledger', icon: 'pi pi-fw pi-home', routerLink: ['/ledger'] },
+                    { label: 'Provinces', icon: 'pi pi-fw pi-home', routerLink: ['/provinces'] },
+                    { label: 'FOCs', icon: 'pi pi-fw pi-home', routerLink: ['/foc'] }
+                ]
+            },
+            {
                 label: 'UI Components',
                 items: [
                     { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
