@@ -26,7 +26,11 @@ export class AppMenu {
             },
             {
                 label: 'Financials',
-                items: [{ label: 'Ledger', icon: 'pi pi-fw pi-home', routerLink: ['/ledger'] }]
+                items: [
+                    { label: 'Ledger', icon: 'pi pi-fw pi-home', routerLink: ['/ledger'] },
+                    { label: 'Provinces', icon: 'pi pi-fw pi-home', routerLink: ['/provinces'] },
+                    { label: 'FOCs', icon: 'pi pi-fw pi-home', routerLink: ['/foc'] }
+                ]
             },
             {
                 label: 'UI Components',
