@@ -176,8 +176,8 @@ import { ToolbarModule } from 'primeng/toolbar';
                         </div>
                     </div>
                     <div class="w-full md:w-2/12">
-                        <p-divider layout="vertical" class="!hidden md:!flex"><b>OR</b></p-divider>
-                        <p-divider layout="horizontal" class="!flex md:!hidden" align="center"><b>OR</b></p-divider>
+                        <p-divider layout="vertical" class="hidden! md:flex!"><b>OR</b></p-divider>
+                        <p-divider layout="horizontal" class="flex! md:hidden!" align="center"><b>OR</b></p-divider>
                     </div>
                     <div class="w-full md:w-5/12 flex items-center justify-center py-5">
                         <p-button label="Sign Up" icon="pi pi-user-plus" severity="success" class="w-full" styleClass="w-full max-w-[17.35rem] mx-auto"></p-button>
@@ -194,7 +194,7 @@ import { ToolbarModule } from 'primeng/toolbar';
                     <ng-template #panel>
                         <p-splitter layout="vertical" [panelSizes]="[50, 50]">
                             <ng-template #panel>
-                                <div style="flex-grow: 1;" class="flex items-center justify-center">Panel 2</div>
+                                <div style="grow: 1;" class="flex items-center justify-center">Panel 2</div>
                             </ng-template>
                             <ng-template #panel>
                                 <p-splitter [panelSizes]="[20, 80]">

@@ -34,7 +34,7 @@ import { AppFloatingConfigurator } from '../../layout/component/app.floatingconf
                         <div class="text-surface-600 dark:text-surface-200 mb-8">Requested resource is not available.</div>
                         <a routerLink="/" class="w-full flex items-center py-8 border-surface-300 dark:border-surface-500 border-b">
                             <span class="flex justify-center items-center border-2 border-primary text-primary rounded-border" style="height: 3.5rem; width: 3.5rem">
-                                <i class="pi pi-fw pi-table !text-2xl"></i>
+                                <i class="pi pi-fw pi-table text-2xl!"></i>
                             </span>
                             <span class="ml-6 flex flex-col">
                                 <span class="text-surface-900 dark:text-surface-0 lg:text-xl font-medium mb-0 block">Frequently Asked Questions</span>
@@ -43,7 +43,7 @@ import { AppFloatingConfigurator } from '../../layout/component/app.floatingconf
                         </a>
                         <a routerLink="/" class="w-full flex items-center py-8 border-surface-300 dark:border-surface-500 border-b">
                             <span class="flex justify-center items-center border-2 border-primary text-primary rounded-border" style="height: 3.5rem; width: 3.5rem">
-                                <i class="pi pi-fw pi-question-circle !text-2xl"></i>
+                                <i class="pi pi-fw pi-question-circle text-2xl!"></i>
                             </span>
                             <span class="ml-6 flex flex-col">
                                 <span class="text-surface-900 dark:text-surface-0 lg:text-xl font-medium mb-0">Solution Center</span>
@@ -52,7 +52,7 @@ import { AppFloatingConfigurator } from '../../layout/component/app.floatingconf
                         </a>
                         <a routerLink="/" class="w-full flex items-center mb-8 py-8 border-surface-300 dark:border-surface-500 border-b">
                             <span class="flex justify-center items-center border-2 border-primary text-primary rounded-border" style="height: 3.5rem; width: 3.5rem">
-                                <i class="pi pi-fw pi-unlock !text-2xl"></i>
+                                <i class="pi pi-fw pi-unlock text-2xl!"></i>
                             </span>
                             <span class="ml-6 flex flex-col">
                                 <span class="text-surface-900 dark:text-surface-0 lg:text-xl font-medium mb-0">Permission Manager</span>
