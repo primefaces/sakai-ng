@@ -34,6 +34,7 @@
         "@angular-devkit/build-angular": "^19.0.6",
         "@angular/cli": "^19.0.6",
         "@angular/compiler-cli": "^19.0.0",
+        "@tailwindcss/postcss": "^4.1.7",
         "@types/jasmine": "~5.1.0",
         "autoprefixer": "^10.4.20",
         "eslint": "^9.14.0",
