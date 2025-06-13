@@ -8,8 +8,9 @@ import {TableDialogComponent} from "../../dialogs/table-dialog/table-dialog.comp
 import {TmpTimeTable} from "../../../../../assets/models/tmp-time-table";
 import {DialogService} from "primeng/dynamicdialog";
 import {ConfirmationService, MessageService} from "primeng/api";
-import {ActivatedRoute, Event, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {DropdownChangeEvent} from "primeng/dropdown";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-dashboard-header',
@@ -21,14 +22,14 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy{
     protected availableTables: TimeTableName[] = [];
     protected shownTableDD: TimeTableName | null = null;
 
-    private querySub;
+    private querySub: Subscription = null;
 
     constructor(
         private confirmationService: ConfirmationService,
         private globalTableService: GlobalTableService,
-        private collisionService: CollisionService,
+        private collisionService: CollisionService, //TODO implement service
         private messageService: MessageService,
-        private changeService: ChangeService,
+        private changeService: ChangeService,  //TODO implement service
         private dialogService: DialogService,
         private route: ActivatedRoute,
         private router: Router
@@ -38,7 +39,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy{
         this.initializeTables()
             .finally(() => {
                 this.shownTableDD = this.availableTables[0];
-                this.handleTableChange({value: this.availableTables[0]} as DropdownChangeEvent).finally();
+                this.handleTableChange({value: this.availableTables[0]} as DropdownChangeEvent).finally()
             })
     }
 
@@ -46,8 +47,9 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy{
         if(this.querySub) this.querySub.unsubscribe();
     }
 
-    private async initializeTables(): Promise<void> {
+    private async initializeTables(): Promise<void>{
         this.availableTables = await this.globalTableService.getTimeTableByNames();
+
         this.querySub = this.route.queryParams.subscribe(params => {
             const selectedTable = this.availableTables.find(t => t.id === params['tableID']);
             if (selectedTable) this.shownTableDD = selectedTable;
@@ -69,7 +71,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy{
     private setHeaderParameter(newID: number): void{
         this.router.navigate([], {
             queryParams: { tableID: newID }
-        });
+        }).finally();
     }
 
     private async loadNewTable(){
