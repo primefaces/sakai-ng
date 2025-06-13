@@ -18,6 +18,7 @@ import {DialogService} from "primeng/dynamicdialog";
 import {CourseInfoDialog} from "../dialogs/course-info-dialog/course-info-dialog.component";
 import {InvokerService} from "./commands/invoker.service";
 import {ComplexInvokerService} from "./commands/complex-invoker.service";
+import {ActivatedRoute} from "@angular/router";
 
 class InfoBox{
     icon: string;

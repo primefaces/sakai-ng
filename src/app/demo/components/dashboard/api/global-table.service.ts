@@ -17,9 +17,9 @@ export class GlobalTableService {
     ) {
     }
 
-    getTimeTableByNames() {
+    async getTimeTableByNames() {
         const newUrl = `${GlobalTableService.API_PATH}/names`;
-        return this.http.get<TimeTableName[]>(newUrl);
+        return firstValueFrom(this.http.get<TimeTableName[]>(newUrl));
     }
 
     async getSpecificTimeTable(id: number):Promise<TimeTable> {

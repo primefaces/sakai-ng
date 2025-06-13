@@ -1,7 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {TimeTableName} from "../../../../../assets/models/time-table-names";
 import {GlobalTableService} from "../api/global-table.service";
-import {Observable, of} from "rxjs";
 import {CollisionService} from "../api/collision.service";
 import {ChangeService} from "../api/change.service";
 import {TimeTable} from "../../../../../assets/models/dto/time-table";
@@ -9,16 +8,20 @@ import {TableDialogComponent} from "../../dialogs/table-dialog/table-dialog.comp
 import {TmpTimeTable} from "../../../../../assets/models/tmp-time-table";
 import {DialogService} from "primeng/dynamicdialog";
 import {ConfirmationService, MessageService} from "primeng/api";
+import {ActivatedRoute, Event, Router} from "@angular/router";
+import {DropdownChangeEvent} from "primeng/dropdown";
 
 @Component({
   selector: 'app-dashboard-header',
   templateUrl: './dashboard-header.component.html',
 })
-export class DashboardHeaderComponent implements OnInit{
+export class DashboardHeaderComponent implements OnInit, OnDestroy{
     @Output() setNewTimeTable = new EventEmitter<TimeTable>();
 
-    protected availableTables: Observable<TimeTableName[]> = of([]);
+    protected availableTables: TimeTableName[] = [];
     protected shownTableDD: TimeTableName | null = null;
+
+    private querySub;
 
     constructor(
         private confirmationService: ConfirmationService,
@@ -27,15 +30,51 @@ export class DashboardHeaderComponent implements OnInit{
         private messageService: MessageService,
         private changeService: ChangeService,
         private dialogService: DialogService,
-) {}
+        private route: ActivatedRoute,
+        private router: Router
+    ) {}
 
-    protected async handleTableChange() {
+    ngOnInit(): void {
+        this.initializeTables()
+            .finally(() => {
+                this.shownTableDD = this.availableTables[0];
+                this.handleTableChange({value: this.availableTables[0]} as DropdownChangeEvent).finally();
+            })
+    }
+
+    ngOnDestroy(): void {
+        if(this.querySub) this.querySub.unsubscribe();
+    }
+
+    private async initializeTables(): Promise<void> {
+        this.availableTables = await this.globalTableService.getTimeTableByNames();
+        this.querySub = this.route.queryParams.subscribe(params => {
+            const selectedTable = this.availableTables.find(t => t.id === params['tableID']);
+            if (selectedTable) this.shownTableDD = selectedTable;
+        });
+    }
+
+    protected async handleTableChange(change: DropdownChangeEvent) {
         //this.collisionService.clearCollisions();
         //this.changeService.clearChanges();
         if(!this.shownTableDD!.id) return;
 
-        const newTable = await this.globalTableService.getSpecificTimeTable(this.shownTableDD!.id);
-        this.setNewTimeTable.emit(newTable);
+        const newTable = await this.loadNewTable();
+        if(newTable) {
+            this.setHeaderParameter(change.value.id);
+            this.setNewTimeTable.emit(newTable);
+        }
+    }
+
+    private setHeaderParameter(newID: number): void{
+        this.router.navigate([], {
+            queryParams: { tableID: newID }
+        });
+    }
+
+    private async loadNewTable(){
+        return await this.globalTableService.getSpecificTimeTable(this.shownTableDD!.id);
+
     }
 
     showTableDialog(){
@@ -64,7 +103,7 @@ export class DashboardHeaderComponent implements OnInit{
 
     loadTmpTable(){}
 
-    deleteUnfinishedTable(event: Event){
+    deleteUnfinishedTable(event: MouseEvent){
         this.confirmationService.confirm({
             target: event.target as EventTarget,
             message: 'Are you sure you want to delete the unfinished table?',
@@ -78,13 +117,5 @@ export class DashboardHeaderComponent implements OnInit{
 
     isTmpTableAvailable(): boolean {
         return !!localStorage.getItem('wizard-table');
-    }
-
-    loadSpecificTable(){
-
-    }
-
-    ngOnInit(): void {
-        this.availableTables = this.globalTableService.getTimeTableByNames();
     }
 }

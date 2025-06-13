@@ -9,10 +9,11 @@ import {ToastModule} from "primeng/toast";
 import {LocalStorageService} from "ngx-webstorage";
 import {AuthInterceptor} from "./demo/Interceptor/auth-interceptor";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
-    imports: [AppRoutingModule, AppLayoutModule, ToastModule],
+    imports: [AppRoutingModule, AppLayoutModule, ToastModule, RouterModule.forRoot([])],
     providers: [
         MessageService, LocalStorageService,
         {
