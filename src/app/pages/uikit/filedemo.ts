@@ -18,11 +18,6 @@ import { ToastModule } from 'primeng/toast';
                         <ng-template #empty>
                             <div>Drag and drop files to here to upload.</div>
                         </ng-template>
-                        <ng-template #content>
-                            <ul *ngIf="uploadedFiles.length">
-                                <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
-                            </ul>
-                        </ng-template>
                     </p-fileupload>
                 </div>
             </div>
