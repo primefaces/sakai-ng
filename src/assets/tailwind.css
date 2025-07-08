@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@import "tailwindcss-primeui";
+@custom-variant dark (&:where(.app-dark, .app-dark *));
 
 @layer base {
     button:not(:disabled),
