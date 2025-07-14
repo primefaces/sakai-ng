@@ -1,0 +1,110 @@
+<p-dialog 
+  [(visible)]="visible" 
+  [style]="{ width: '600px' }" 
+  [modal]="true" 
+  [closable]="false"
+  [draggable]="false"
+  [resizable]="false"
+  [breakpoints]="{ '960px': '90vw', '640px': '95vw' }"
+>
+  <!-- HEADER CON ÍCONO -->
+  <ng-template #header>
+    <strong><h2 class="text-xl font-bold">Formulario Producto</h2></strong>
+  </ng-template>
+
+  <!-- CUERPO -->
+  <ng-template #content>
+    <p-fluid>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Nombre -->
+        <div class="flex flex-col">
+          <label for="nombre" class="font-semibold mb-1">Nombre</label>
+          <p-inputgroup>
+            <p-inputgroup-addon><i class="pi pi-pencil"></i></p-inputgroup-addon>
+            <input id="nombre" type="text" pInputText [(ngModel)]="producto.nombre" placeholder="Ej: Fertilizante X" />
+          </p-inputgroup>
+        </div>
+
+        <!-- Dosis -->
+        <div class="flex flex-col">
+          <label for="dosis" class="font-semibold mb-1">Dosis</label>
+          <p-inputgroup>
+            <p-inputgroup-addon><i class="pi pi-percentage"></i></p-inputgroup-addon>
+            <input id="dosis" type="text" pInputText [(ngModel)]="producto.dosis" placeholder="Ej: 10 ml / hec" />
+          </p-inputgroup>
+        </div>
+      </div>
+
+      <!-- Descripción -->
+      <div class="mt-4">
+        <label for="descripcion" class="font-semibold mb-1">Descripción</label>
+        <p-inputgroup>
+          <p-inputgroup-addon><i class="pi pi-align-left"></i></p-inputgroup-addon>
+          <textarea 
+            id="descripcion" 
+            pTextarea 
+            rows="3" 
+            placeholder="Descripción del producto" 
+            [(ngModel)]="producto.descripcion"
+            class="w-full"
+          ></textarea>
+        </p-inputgroup>
+      </div>
+
+      <!-- Selects: Categoría y Tipo Producto -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+        <!-- Categoría -->
+        <div class="flex flex-col">
+          <label for="categoria_id" class="font-semibold mb-1">Categoría</label>
+          <p-dropdown 
+            [appendTo]="'body'" 
+            [filter]="true" 
+            filterBy="nombre" 
+            inputId="categoria_id" 
+            [(ngModel)]="producto.categoria" 
+            [options]="categorias" 
+            optionLabel="nombre" 
+            placeholder="Seleccione una categoría"
+            class="w-full"
+          ></p-dropdown>
+        </div>
+
+        <!-- Tipo Producto -->
+        <div class="flex flex-col">
+          <label for="tipo_producto_id" class="font-semibold mb-1">Tipo de Producto (formulación)</label>
+          <p-dropdown 
+            [appendTo]="'body'" 
+            [filter]="true" 
+            filterBy="nombre" 
+            inputId="tipo_producto_id" 
+            [(ngModel)]="producto.tipo_producto" 
+            [options]="tiposProductos" 
+            optionLabel="nombre" 
+            placeholder="Seleccione un tipo"
+            class="w-full"
+          ></p-dropdown>
+        </div>
+      </div>
+    </p-fluid>
+  </ng-template>
+
+  <!-- FOOTER -->
+  <ng-template #footer>
+    <div class="flex justify-end gap-3">
+      <p-button 
+        label="Cancelar" 
+        severity="secondary" 
+        icon="pi pi-times" 
+        class="p-button-outlined" 
+        (click)="closeDialog()" 
+      />
+      <p-button 
+        [label]="producto.id ? 'Actualizar' : 'Guardar'" 
+        severity="info" 
+        [icon]="saving ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
+        [disabled]="saving"
+        (click)="saveProducto()" 
+      />
+    </div>
+  </ng-template>
+</p-dialog>

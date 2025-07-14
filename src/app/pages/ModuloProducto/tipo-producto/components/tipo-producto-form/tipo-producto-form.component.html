@@ -1,0 +1,60 @@
+<p-dialog 
+  [(visible)]="visible" 
+  [style]="{ width: '450px' }" 
+  [modal]="true" 
+  [closable]="false"
+  [draggable]="false"
+  [resizable]="false"
+  [breakpoints]="{ '960px': '90vw', '640px': '95vw' }"
+>
+  <!-- HEADER CON ICONO -->
+  <ng-template #header>
+    <strong><h2 class="text-xl font-bold">Formulario Tipo Producto</h2></strong>
+  </ng-template>
+
+  <!-- CUERPO -->
+  <ng-template #content>
+    <p-fluid>
+      <div class="flex flex-col gap-4 w-full">
+        <div class="flex flex-col md:flex-row gap-6">
+          <div class="flex flex-wrap gap-2 w-full">
+            <label for="nombre" class="block font-semibold mb-1">Nombre</label>
+            <p-inputgroup>
+              <p-inputgroup-addon>
+                <i class="pi pi-pencil"></i>
+              </p-inputgroup-addon>
+              <input 
+                pInputText 
+                id="nombre" 
+                type="text" 
+                [(ngModel)]="TipoProducto.nombre" 
+                class="w-full"
+                placeholder="Ej: Granulado,liquido,etc"
+              />
+            </p-inputgroup>
+          </div>
+        </div>
+      </div>
+    </p-fluid>
+  </ng-template>
+
+  <!-- FOOTER -->
+  <ng-template #footer>
+    <div class="flex justify-end gap-3">
+      <p-button 
+        label="Cancelar" 
+        severity="secondary" 
+        icon="pi pi-times" 
+        class="p-button-outlined"
+        (click)="closeDialog()" 
+      />
+      <p-button 
+        [label]="TipoProducto.id ? 'Actualizar' : 'Guardar'" 
+        severity="info" 
+        [icon]="saving ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
+        [disabled]="saving"
+        (click)="saveTipoProducto()" 
+      />
+    </div>
+  </ng-template>
+</p-dialog>

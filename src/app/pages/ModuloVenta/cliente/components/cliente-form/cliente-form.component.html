@@ -1,0 +1,107 @@
+<p-dialog [(visible)]="visible" [style]="{ width: '950px' }" [modal]="true" [closable]="false">
+    <ng-template #header>
+      <strong><h2 class="text-xl font-bold">Formulario Cliente</h2></strong>
+    </ng-template>
+    <ng-template #content>
+      <p-fluid>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Columna Izquierda: Datos del cliente -->
+          <div class="flex flex-col gap-4">
+  
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label class="block font-semibold mb-1">Nombre</label>
+                <p-inputgroup>
+                  <p-inputgroup-addon><i class="pi pi-user"></i></p-inputgroup-addon>
+                  <input pInputText [(ngModel)]="cliente.nombre" class="w-full" />
+                </p-inputgroup>
+              </div>
+  
+              <div>
+                <label class="block font-semibold mb-1">Paterno</label>
+                <p-inputgroup>
+                  <p-inputgroup-addon><i class="pi pi-user-edit"></i></p-inputgroup-addon>
+                  <input pInputText [(ngModel)]="cliente.paterno" class="w-full" />
+                </p-inputgroup>
+              </div>
+  
+              <div>
+                <label class="block font-semibold mb-1">Materno</label>
+                <p-inputgroup>
+                  <p-inputgroup-addon><i class="pi pi-user-edit"></i></p-inputgroup-addon>
+                  <input pInputText [(ngModel)]="cliente.materno" class="w-full" />
+                </p-inputgroup>
+              </div>
+            </div>
+  
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-semibold mb-1">C.I</label>
+                <p-inputgroup>
+                  <p-inputgroup-addon><i class="pi pi-id-card"></i></p-inputgroup-addon>
+                  <p-inputnumber [(ngModel)]="cliente.ci" mode="decimal" [useGrouping]="false" placeholder="Nro: carnet" class="w-full" />
+                </p-inputgroup>
+              </div>
+  
+              <div>
+                <label class="block font-semibold mb-1">Teléfono</label>
+                <p-inputgroup>
+                  <p-inputgroup-addon><i class="pi pi-phone"></i></p-inputgroup-addon>
+                  <p-inputnumber [(ngModel)]="cliente.telefono" mode="decimal" [useGrouping]="false" placeholder="Nro: celular" class="w-full" />
+                </p-inputgroup>
+              </div>
+            </div>
+  
+            <div>
+              <label class="block font-semibold mb-1">Dirección</label>
+              <textarea pTextarea [(ngModel)]="cliente.direccion" rows="3" placeholder="Ej: Av. Santa cruz - barrio 24" class="w-full"></textarea>
+            </div>
+          </div>
+          <!-- Columna Derecha: Imagen -->
+          <div class="flex flex-col gap-3">
+            <label class="block font-semibold mb-1">Subir Imagen (recomendado)</label>
+  
+            <p-fileupload
+              name="image"
+              [auto]="false"
+              [multiple]="false"
+              accept="image/*"
+              maxFileSize="1000000"
+              mode="advanced"
+              (onSelect)="onFileSelected($event)">
+              <ng-template #empty>
+                <div>Arrastre y suelte archivos aquí para cargarlos.</div>
+              </ng-template>
+              <ng-template #content>
+                <ul *ngIf="uploadedFiles.length">
+                  <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                </ul>
+                <div *ngIf="!uploadedFiles.length && cliente?.image">
+                  <p>Imagen actual:</p>
+                  <p-image 
+                  [src]="utils.getImageUrl(cliente.image,'Cliente/Cliente.png')" 
+                  alt="Imagen actual" 
+                  width="200" 
+                  [preview]="true" 
+                  [appendTo]="'body'"
+                  />
+                </div>
+              </ng-template>
+            </p-fileupload>
+          </div>
+        </div>
+      </p-fluid>
+    </ng-template>
+  
+    <ng-template #footer>
+      <p-button label="Cancelar" severity="secondary" icon="pi pi-times" (click)="closeDialog()" />
+      <p-button 
+        label="{{ cliente.id ? 'Actualizar' : 'Guardar' }}" 
+        severity="info" 
+        [icon]="saving ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
+        [disabled]="saving"
+        (click)="saveCliente()" 
+      />
+    </ng-template>
+  </p-dialog>
+  

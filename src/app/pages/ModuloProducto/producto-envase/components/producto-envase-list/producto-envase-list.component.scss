@@ -1,0 +1,13 @@
+.p-dataview {
+    position: relative; /* Asegura que el overlay se posicione dentro */
+}
+
+:host ::ng-deep .p-dataview-loading-overlay {
+   // background-color: rgba(255, 255, 255, 0.7);  /* Ajusta la opacidad si es necesario */
+    box-shadow: none;                            /* Elimina la sombra del overlay */
+    border-radius: 8px;                          /* Si es necesario, puedes darle un borde redondeado */
+}
+.card {
+    box-shadow: none !important;
+    border: none !important;
+}

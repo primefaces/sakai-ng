@@ -1,0 +1,153 @@
+<p-dialog [(visible)]="visible" [style]="{ width: '700px' }" [modal]="true" [closable]="false">
+    <ng-template #header>
+      <strong><h2 class="text-xl font-bold">Formulario Nota de Compra</h2></strong>
+    </ng-template>
+  
+    <ng-template #content>
+      <p-fluid>
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-col md:flex-row gap-4">
+            <!-- Proveedor -->
+            <div class="w-full">
+              <label class="block font-bold mb-1">Proveedor : </label>
+              <div style="text-transform: uppercase;" class="font-bold text-xl" *ngIf="nota_compra.proveedor" > 
+                {{nota_compra.proveedor.razon_social}}
+              </div>
+              <p-autoComplete  
+                [(ngModel)]="nota_compra.proveedor" 
+                [suggestions]="proveedores()"
+                (completeMethod)="onGlobalFilter($event)"
+                field="codigo"
+                [forceSelection]="true"
+                [dropdown]="true"
+                [appendTo]="'body'"
+                placeholder="Seleccione un proveedor"
+                class="w-full"
+                [disabled]="nota_compra.id != null"
+              >
+              <ng-template let-proveedor pTemplate="item">
+                {{ proveedor.razon_social }}
+              </ng-template>
+            </p-autoComplete>
+            </div>
+  
+            <!-- Gestión -->
+            <div class="w-full">
+                <label class="block font-bold mb-1">Gestión</label>
+                <p-select 
+                    [appendTo]="'body'" 
+                    [filter]="true" 
+                    filterBy="nombre_campania,anio"
+                    [(ngModel)]="nota_compra.gestion"
+                    [options]="gestiones" optionLabel="nombre_campania"  
+                    placeholder="Seleccione la gestion" 
+                    class="w-full"
+                    [disabled]="nota_compra.id != null"
+                >
+                <ng-template let-gestion pTemplate="item">
+                    {{ gestion.nombre_campania }} - {{ gestion.anio }}
+                </ng-template>
+                <ng-template let-gestion pTemplate="selectedItem">
+                    {{ gestion?.nombre_campania }} - {{ gestion?.anio }}
+                </ng-template>
+                </p-select>
+            </div>
+          </div>
+  
+          <div class="flex flex-col md:flex-row gap-4">
+            <!-- Fecha -->
+            <div class="w-full">
+              <label class="block font-bold mb-1">Fecha</label>
+              <p-datepicker 
+                [appendTo]="'body'"  
+                [showIcon]="true" 
+                [showButtonBar]="true" 
+                [(ngModel)]="nota_compra.fecha"
+                class="w-full"
+                >
+               </p-datepicker>
+            </div>
+          </div>
+  
+          <div class="flex flex-col md:flex-row gap-4">
+            <!-- Lugar -->
+            <div class="w-full">
+              <label class="block font-bold mb-1">Lugar</label>
+              <input pInputText [(ngModel)]="nota_compra.lugar" class="w-full" placeholder="Lugar de la venta" />
+            </div>
+  
+            <!-- Recibido por -->
+            <div class="w-full">
+              <label class="block font-bold mb-1">Recibido por</label>
+              <input pInputText [(ngModel)]="nota_compra.recibido" class="w-full" placeholder="Nombre de quien recibe" />
+            </div>
+          </div>
+  
+          <div class="flex flex-col md:flex-row gap-4">
+            <!-- Venta al crédito -->
+            <div class="w-full">
+                <label class="block font-bold mb-2">Venta</label>
+              
+                <div class="flex gap-4">
+                  <label class="flex items-center cursor-pointer">
+                    <span 
+                      class="w-5 h-5 border-2 rounded-md flex items-center justify-center mr-2"
+                      [ngClass]="{
+                        'border-blue-500 text-blue-500 font-bold': nota_compra.compra_credito === false,
+                        'border-gray-400 text-transparent': nota_compra.compra_credito !== false
+                      }"
+                    >
+                      ✕
+                    </span>
+                    <input 
+                      type="radio" 
+                      name="compra_credito" 
+                      [value]="false" 
+                      [(ngModel)]="nota_compra.compra_credito" 
+                      class="hidden"
+                    />
+                    Contado
+                  </label>
+              
+                  <label class="flex items-center cursor-pointer">
+                    <span 
+                      class="w-5 h-5 border-2 rounded-md flex items-center justify-center mr-2"
+                      [ngClass]="{
+                        'border-blue-500 text-blue-500 font-bold': nota_compra.compra_credito === true,
+                        'border-gray-400 text-transparent': nota_compra.compra_credito !== true
+                      }"
+                    >
+                      ✕
+                    </span>
+                    <input 
+                      type="radio" 
+                      name="compra_credito" 
+                      [value]="true" 
+                      [(ngModel)]="nota_compra.compra_credito" 
+                      class="hidden"
+                    />
+                    Crédito
+                  </label>
+                </div>
+            </div>
+            <!-- Código de factura -->
+            <div class="w-full">
+              <label class="block font-bold mb-1">Código Factura</label>
+              <input pInputText [(ngModel)]="nota_compra.codigo_factura" class="w-full" placeholder="Código de la factura" />
+            </div>
+          </div>
+        </div>
+      </p-fluid>
+    </ng-template>
+  
+    <ng-template #footer>
+      <p-button label="Cancelar" icon="pi pi-times" severity="secondary" (click)="closeDialog()" />
+      <p-button  
+      severity="info" 
+      label="{{ nota_compra.id ? 'Modificar' : 'Guardar' }}"  
+      [icon]="saving ? 'pi pi-spin pi-spinner' : 'pi pi-check'" 
+      [disabled]="saving"
+      (click)="saveNotaCompra()" />
+    </ng-template>
+  </p-dialog>
+  

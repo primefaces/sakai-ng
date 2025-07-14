@@ -1,0 +1,179 @@
+<p-dialog 
+  [(visible)]="visible" 
+  [style]="{ width: '600px' }" 
+  [modal]="false" 
+  [closable]="false"
+  [draggable]="false"
+  [resizable]="false"
+  [breakpoints]="{ '960px': '90vw', '640px': '95vw' }"
+>
+  <!-- HEADER -->
+  <ng-template #header>
+    <h2 class="text-xl font-bold">Perfil de Usuario</h2>
+  </ng-template>
+
+  <!-- CUERPO -->
+  <ng-template #content>
+    <p-fluid>
+      <ng-container *ngIf="!modoCambioPassword; else cambiarPassword">
+        <!-- Aquí va TODO tu contenido actual del perfil -->
+        <p-fluid>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            <!-- FOTO -->
+            <div class="flex justify-center md:justify-start">
+              <div class="flex flex-col items-center gap-3">
+                <img 
+                  [src]="imagePreview ? imagePreview : utils.getImageUrl(user.image,'User/User.png')" 
+                  alt="Foto de usuario"
+                  class="rounded-full w-32 h-32 object-cover border shadow-md"
+                />
+                <!-- Botón para seleccionar imagen -->
+                <p-button 
+                  label="Cambiar foto" 
+                  icon="pi pi-camera" 
+                  size="small"
+                  severity="secondary"
+                  (click)="fileInput.click()"
+                ></p-button>
+    
+                <!-- Input file oculto -->
+                <input 
+                  #fileInput 
+                  type="file" 
+                  accept="image/*" 
+                  hidden 
+                  (change)="onFileSelected($event)"
+                />
+              </div>
+            </div>
+    
+            <!-- FORMULARIO -->
+            <div class="flex flex-col gap-4">
+              <!-- Nombre -->
+              <div>
+                <label class="block font-semibold mb-1">Nombre</label>
+                <p-inputgroup>
+                  <p-inputgroup-addon>
+                    <i class="pi pi-user"></i>
+                  </p-inputgroup-addon>
+                  <input 
+                    pInputText 
+                    type="text" 
+                    [(ngModel)]="user.name" 
+                    class="w-full" 
+                    placeholder="Ej: Juan Pérez" 
+                  />
+                </p-inputgroup>
+              </div>
+    
+              <!-- Email -->
+              <div>
+                <label class="block font-semibold mb-1">Email</label>
+                <p-inputgroup>
+                  <p-inputgroup-addon>
+                    <i class="pi pi-envelope"></i>
+                  </p-inputgroup-addon>
+                  <input 
+                    pInputText 
+                    type="email" 
+                    [(ngModel)]="user.email" 
+                    class="w-full" 
+                    placeholder="ejemplo@email.com" 
+                    disabled="true"
+                  />
+                </p-inputgroup>
+              </div>
+    
+              <!-- Roles -->
+              <div>
+                <label class="block font-semibold mb-1">Roles</label>
+                <p-multiSelect 
+                  appendTo="body"
+                  [options]="user.roles" 
+                  optionLabel="name" 
+                  [(ngModel)]="user.roles"
+                  placeholder="Seleccione roles"
+                  display="chip"
+                  class="w-full"
+                  disabled="true"
+                />
+              </div>
+            </div>
+          </div>
+        </p-fluid>
+      </ng-container>
+  
+      <ng-template #cambiarPassword>
+        <div class="flex flex-col gap-4">
+          <!-- Password actual -->
+          <div>
+            <label class="block font-semibold mb-1">Contraseña actual</label>
+            <p-password 
+              [(ngModel)]="passwordData.actual" 
+              [feedback]="false" 
+              class="w-full" 
+              toggleMask
+              placeholder="Ingrese contraseña actual"
+            />
+          </div>
+  
+          <!-- Nueva contraseña -->
+          <div>
+            <label class="block font-semibold mb-1">Nueva contraseña</label>
+            <p-password 
+              [(ngModel)]="passwordData.nueva" 
+              class="w-full"
+              toggleMask
+              promptLabel="Fuerza"
+              weakLabel="Débil"
+              mediumLabel="Media"
+              strongLabel="Fuerte"
+              placeholder="Nueva contraseña"
+            />
+          </div>
+  
+          <!-- Confirmar contraseña -->
+          <div>
+            <label class="block font-semibold mb-1">Confirmar nueva contraseña</label>
+            <p-password 
+              [(ngModel)]="passwordData.confirmar" 
+              [feedback]="false" 
+              class="w-full" 
+              toggleMask
+              placeholder="Confirmar contraseña"
+            />
+          </div>
+        </div>
+      </ng-template>
+    </p-fluid>
+  </ng-template>
+
+  <!-- FOOTER -->
+  <ng-template #footer>
+    <div class="flex justify-end gap-3">
+      <p-button 
+        [label]="modoCambioPassword ? 'Ver perfil' : 'Cambiar contraseña'" 
+        severity="danger"
+        [icon]="modoCambioPassword ? 'pi pi-user' : 'pi pi-pencil'"
+        class="p-button-outlined"
+        (click)="togglePasswordMode()"
+      />
+      <p-button 
+        label="Cancelar" 
+        severity="secondary" 
+        icon="pi pi-times" 
+        class="p-button-outlined"
+        (click)="closeDialog()" 
+      />
+      <p-button 
+        [label]="modoCambioPassword ? 'Actualizar Password' : 'Actualizar Perfil'" 
+        severity="info" 
+        [icon]="saving ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
+        [disabled]="saving"
+        (click)="modoCambioPassword ? savePassword() : saveUser()" 
+      />
+    </div>
+  </ng-template>
+</p-dialog>
+<p-toast position="top-right"></p-toast>
+

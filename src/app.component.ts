@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { UtilsService } from './shared/utils.service';
+//import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-root',
-    standalone: true,
-    imports: [RouterModule],
-    template: `<router-outlet></router-outlet>`
+    standalone: false,
+    //imports: [RouterModule],
+    template: `<router-outlet></router-outlet>
+    <p-toast></p-toast>`,
+    providers: [UtilsService]
 })
-export class AppComponent {}
+export class AppComponent {
+
+}

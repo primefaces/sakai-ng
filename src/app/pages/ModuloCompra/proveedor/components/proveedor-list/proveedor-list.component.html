@@ -1,0 +1,78 @@
+<p-toolbar styleClass="mb-6">
+    <ng-template #start>
+        <p-button label="Nuevo" icon="pi pi-plus" severity="primary" class="mr-2" (click)="openNew()" />
+    </ng-template>
+</p-toolbar>
+<p-table
+        #dt
+        [value]="proveedores()"
+        [rows]="perPage"
+        [paginator]="true"
+        [tableStyle]="{ 'min-width': '50rem'}"
+        [rowHover]="true"
+        dataKey="id"
+        currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[5, 10, 25]"
+      
+        (onSort)="onSortChange($event)"
+        [totalRecords]="totalRecords"
+        [loading]="loading"
+        [lazy]="true"
+        (onPage)="onPageChange($event)"
+        [(first)]="firstRecord"
+    >
+    <ng-template #caption>
+        <div class="flex items-center justify-between">
+            <h5 class="m-0">Modulo Proveedor</h5>
+            <p-iconfield>
+                <p-inputicon styleClass="pi pi-search" />
+                <input pInputText type="text" (input)="onGlobalFilter($event)" placeholder="Search..." />
+            </p-iconfield>
+        </div>
+    </ng-template>
+    <ng-template #header >
+        <tr>
+            <th pSortableColumn="id" style="width: 3rem">id <p-sortIcon field="id" /></th>
+            <th style="width: 3rem">Image</th>
+            <th pSortableColumn="razon_social" style="width: 5rem">Razon social <p-sortIcon field="razon_social" /></th>
+            <th pSortableColumn="correo" style="width: 5rem">Correo <p-sortIcon field="correo" /></th>
+            <th pSortableColumn="direccion" style="width: 14rem">Direccion <p-sortIcon field="direccion" /></th>
+            <th pSortableColumn="telefono" style="width: 5rem">Telefono <p-sortIcon field="telefono" /></th>
+            <th style="width: 5rem">Estado</th>
+            <th style="width: 5rem"></th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-proveedor>
+        <tr>
+            <td style="width: 3rem">{{ proveedor.id }}</td>
+            <td style="width: 3rem">
+                <p-image [src]="utils.getImageUrl(proveedor.image,'Proveedor/Proveedor.png')" [alt]="proveedor.razon_social" width="64px"  class="rounded-full" [preview]="true" />
+            </td>
+            <td style="width: 5rem">{{ proveedor.razon_social }}</td>
+            <td style="width: 5rem">{{ proveedor.correo }}</td>
+            <td style="width: 17rem">{{ proveedor.direccion }}</td>
+            <td style="width: 5rem">{{ proveedor.telefono }}</td>
+            <td style="width: 5rem; text-align: right;" >
+                <p-tag [value]="utils.getStatus(proveedor.estado)" [severity]="utils.getSeverity(proveedor.estado)" />
+            </td>
+            <td style="width: 5rem; text-align: right; white-space: nowrap;" >
+                <p-button icon="pi pi-id-card" severity="danger" class="mr-2" [rounded]="true" title="Facturas devolucion" [outlined]="true" (click)="navigateToProveedorDevolucion(proveedor)"  />
+                <p-button icon="pi pi-id-card" class="mr-2" [rounded]="true" title="Facturas general" [outlined]="true" (click)="navigateToProveedorVenta(proveedor)"  />
+                <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [disabled]="proveedor.estado!=true" [outlined]="true" (click)="editProveedor(proveedor)"  />
+                <ng-container *ngIf="proveedor.estado; else restoreButton">
+                    <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true"  (click)="deleteProveedor(proveedor)"/>
+                </ng-container>
+                <ng-template #restoreButton>
+                    <p-button icon="pi pi-refresh" severity="success" [rounded]="true" [outlined]="true"  (click)="restoreProveedor(proveedor)"/>
+                </ng-template>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-confirmdialog [style]="{ width: '450px' }" />
+<app-proveedor-form [visible]="proveedorDialog" [proveedor]="proveedor" (visibleChange)="ProveedorcloseDialog($event)"></app-proveedor-form>
+
+
+

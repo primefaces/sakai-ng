@@ -1,0 +1,190 @@
+<p-toolbar styleClass="mb-6">
+    <!-- Botón a la izquierda -->
+    <ng-template #start>
+      <p-button 
+        label="Nuevo" 
+        icon="pi pi-plus" 
+        severity="primary" 
+        class="mr-2" 
+        (click)="openNew()" 
+      />
+      <p-button 
+        *ngIf="clienteNotaDevolucion"
+        label="Lista Ventas" 
+        icon="pi pi-reply" 
+        severity="warn" 
+        class="mr-2" 
+        (click)="goToVentas()">
+      </p-button>
+      <p-button 
+        *ngIf="proveedorNotaDevolucion"
+        label="Lista Compras" 
+        icon="pi pi-reply" 
+        severity="warn" 
+        class="mr-2" 
+        (click)="goToCompras()">
+      </p-button>
+      
+    </ng-template>
+  
+    <!-- Botón a la derecha -->
+    <ng-template #end>
+      <p-button 
+        *ngIf="clienteNotaDevolucion"
+        label="Estado Cuenta" 
+        icon="pi pi-credit-card" 
+        severity="info" 
+        (click)="estado_de_cuenta()" 
+      />  
+    </ng-template>
+</p-toolbar>
+<div class="flex flex-col ">
+    <div class="card ">
+        <div class="font-semibold text-xl">Nota Devolucion  {{ optionNota === 1 ? 'Venta' : 'Compra' }}</div>
+        <div *ngIf="optionNota==1">
+          <div style="text-transform: uppercase;" class="font-bold text-xl text-center" *ngIf="clienteNotaDevolucion">
+            FACTURAS CLIENTE : &nbsp;
+            {{clienteNotaDevolucion.nombre}} 
+            {{clienteNotaDevolucion.paterno}} 
+            {{clienteNotaDevolucion.materno}} &nbsp;&nbsp; 
+            COD: {{clienteNotaDevolucion.codigo}}
+          </div>
+        </div>
+        <div *ngIf="optionNota==2">
+          <div style="text-transform: uppercase;" class="font-bold text-xl text-center" *ngIf="proveedorNotaDevolucion">
+            FACTURAS PROVEEDOR : &nbsp;
+            {{proveedorNotaDevolucion.razon_social}} 
+             &nbsp;&nbsp; 
+            COD: {{proveedorNotaDevolucion.codigo}}
+          </div>
+        </div>
+        
+        
+        <p-dataview [value]="NotaDevolucions()" 
+        [layout]="layout"
+       
+        [rows]="perPage"
+        [paginator]="true"
+        dataKey="id"
+        currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[5, 10, 25]"
+        [totalRecords]="totalRecords"
+        
+        [lazy]="true"
+        (onPage)="onPageChange($event)"
+        >
+            <ng-template #header>
+                <div class="flex flex-col gap-2">
+                    <!-- Primera fila: categoría + buscador -->
+                    <div class="flex flex-wrap items-center gap-2 justify-between">
+                      <div>
+                        <label class="block font-bold mb-1">Gestión</label>
+                        <p-select 
+                            [appendTo]="'body'" 
+                            [filter]="true" 
+                            (onChange)="onGlobalFilterGestion($event)"
+                            filterBy="nombre_campania,anio"
+                            [(ngModel)]="selectedGestion"
+                            [options]="gestiones" optionLabel="nombre_campania"  
+                            placeholder="Seleccione la gestion" 
+                            class="w-full"
+                            >
+                            <ng-template let-gestion pTemplate="item">
+                                {{ gestion.nombre_campania }} - {{ gestion.anio }}
+                            </ng-template>
+                            <ng-template let-gestion pTemplate="selectedItem">
+                                {{ gestion?.nombre_campania }} - {{ gestion?.anio }}
+                            </ng-template>
+                        </p-select>
+                      </div>
+                      
+                      <div>
+                        <label class="block font-bold mb-1">Buscardor por fecha</label>
+                        <p-iconfield>
+                            <p-inputicon styleClass="pi pi-search" />
+                            <input pInputText type="text" (input)="onGlobalFilter($event)" placeholder="Buscar..." />
+                          </p-iconfield>
+                      </div>
+                    </div>                     
+                </div>
+            </ng-template>
+
+            <ng-template #grid let-items>
+                <div class="grid grid-cols-5 gap-4">
+                    <div *ngFor="let item of items; let i = index" class="col-span-5 sm:col-span-2 lg:col-span-1 p-1">
+                        <div 
+                        class="p-4 border bg-surface-0 dark:bg-surface-900 rounded flex flex-col cursor-pointer hover:shadow-lg transition-shadow duration-300"
+                        [ngClass]="{
+                          'border-green-500 shadow-green-300': item.firma === true && item.estado === true && item.nota_alterna === false ,
+                          'border-blue-500 shadow-blue-300': item.estado===true && item.nota_alterna === false && item.firma === false,
+                          'border-yellow-500 shadow-yellow-300': item.estado === false && item.nota_alterna === false && item.firma === false,
+                          'border-red-500 shadow-red-300': item.nota_alterna === true 
+                        }"
+                          (click)="OnNotaDevolucionDetalle(item)"
+                         
+                          (contextmenu)="menu.show($event); $event.preventDefault(); nota_devolucion = item; loadMenuItems();"
+                        >
+                        <div class="p-2 border border-surface-200 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 rounded flex flex-col">
+                            <div class="bg-surface-50 flex justify-center rounded ">
+                                <div class="relative mx-auto">  
+                                    <p-image class="rounded w-full" [src]="utils.getImageUrl(null,'NotaVenta/NotaVenta.jpg')" [alt]="'NOTA'" max-width="150px" [preview]="false" />
+                                    <div *ngIf="item.nota_alterna" 
+                                         class="absolute inset-0 flex items-center justify-center z-50 pointer-events-none">
+                                      <span class="text-white text-2xl font-extrabold opacity-80 rotate-[20deg] bg-red-600/70 px-6 py-2 rounded shadow-lg">
+                                        ANULADO
+                                      </span>
+                                    </div>
+                                    <div *ngIf="item" 
+                                         class="absolute bottom-2 right-2 z-50 pointer-events-none">
+                                      <span 
+                                        [ngClass]="{
+                                          'bg-green-200/80 text-green-800': item.firma === true && item.estado === true && item.nota_alterna === false ,
+                                          'bg-blue-200/80 text-blue-800': item.estado===true && item.nota_alterna === false && item.firma === false,
+                                          'bg-yellow-200/80 text-yellow-800': item.estado === false && item.nota_alterna === false && item.firma === false
+                                        }"
+                                        class="text-sm font-bold px-3 py-1 rounded shadow-sm">
+                                        {{ getEstadoNota(item) | titlecase }}
+                                      </span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="pt-6">
+                                <div class="flex items-center justify-between w-full"> 
+                                    <span class="font-medium text-surface-500 dark:text-surface-400 text-sm">
+                                        {{ item.fecha }}
+                                    </span>
+                                    <div class="flex items-center gap-2">
+                                      <span class="text-surface-900 font-medium  dark:text-surface-400 text-xl">{{ item.nota_alterna == false ? item.codigo_factura : item.codigo_alterno }}</span>
+                                    </div>
+                                </div>
+                                <div class="text-sm font-medium mt-1" *ngIf="item.cliente && optionNota === 1">
+                                  Cliente : {{ item.cliente.nombre }} {{ item.cliente.paterno }} {{ item.cliente.materno }}
+                                </div>
+                                <div class="text-sm font-medium mt-1" *ngIf="item.proveedor && optionNota === 2">
+                                  Proveedor : {{ item.proveedor.razon_social }} 
+                                </div>
+                                <div class="flex flex-col gap-4 mt-4">
+                                    <div class="flex flex-wrap items-center gap-2 justify-between">
+                                        <span class="text-lg font-semibold">$ {{ item.monto_total }}</span>
+                                        <p-tag [value]="utils.getStatus(item.firma,1)" [severity]="utils.getSeverity(item.firma,1)"></p-tag>
+                                    </div>                     
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataview>
+       
+    </div>
+</div>
+
+<p-confirmdialog [style]="{ width: '450px' }" />
+<app-nota-devolucion-detalle [OptionNotaDevolucion]="optionNota" [visible]="DetalleNotaDevolucionDialog" [nota_devolucion]="nota_devolucion" (visibleChange)="DetalleNotaDevolucionDialog = $event"></app-nota-devolucion-detalle>
+<p-contextMenu #menu [model]="items" (onHide)="onContextMenuHide()" ></p-contextMenu>
+<app-nota-devolucion-add [visible]="AddProductoEnvaseToNotaDialog" [nota_devolucion]="ProductoEnvaseToNota" (visibleChange)="AddProductoEnvaseNotaDialogEvent($event)"></app-nota-devolucion-add>
+<app-nota-devolucion-form [OptionNotaDevolucion]="optionNota" [visible]="NotaDevolucionDialog" [nota_devolucion]="nota_devolucion" (AddProductoNewNota)="AddProductoEnvasNota($event)" (visibleChange)="CreateNotaDevolucionDialogEvent($event)"></app-nota-devolucion-form>
+<app-nota-devolucion-estado-cliente [visible]="EstadoCuentaDialog" [cliente]="clienteNotaDevolucion" [gestion]="selectedGestion" (visibleChange)="EstadoCuentaDialog = $event"></app-nota-devolucion-estado-cliente>

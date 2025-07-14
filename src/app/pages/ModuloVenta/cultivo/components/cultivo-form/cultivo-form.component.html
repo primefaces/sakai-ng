@@ -1,0 +1,35 @@
+<p-dialog [(visible)]="visible" [style]="{ width: '600px' }" [modal]="true" [closable]="false">
+  <ng-template pTemplate="header">
+    <h2 class="text-xl font-bold text-center">Formulario Cultivo</h2>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <p-fluid>
+      <div class="grid grid-cols-1 gap-6">
+        <div class="flex flex-col">
+          <label class="block font-semibold mb-1">Nombre</label>
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-sitemap"></i>
+            </p-inputgroup-addon>
+            <input pInputText [(ngModel)]="cultivo.nombre" class="w-full" placeholder="Ej: Maíz, Trigo, Soya" />
+          </p-inputgroup>
+        </div>
+      </div>
+    </p-fluid>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <div class="flex justify-end gap-2">
+      <p-button label="Cancelar" severity="secondary" icon="pi pi-times" (click)="closeDialog()" />
+      <p-button 
+        [label]="cultivo.id ? 'Actualizar' : 'Guardar'" 
+        severity="info" 
+        [icon]="saving ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
+        [disabled]="saving"
+        (click)="saveCultivo()" 
+      />
+    </div>
+  </ng-template>
+</p-dialog>
+  

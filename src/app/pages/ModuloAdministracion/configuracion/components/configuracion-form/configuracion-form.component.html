@@ -1,0 +1,146 @@
+<div class="card p-4">
+  <h2 class="text-2xl font-bold mb-4">Configuración del Sistema</h2>
+
+  <p-fluid>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Gestión actual -->
+      <div class="flex flex-col">
+        <label class="block font-semibold mb-1">Gestión Actual</label>
+        
+        <p-select 
+            [filter]="true" 
+            filterBy="nombre_campania,anio"
+            [(ngModel)]="selectedGestion"
+            [options]="gestiones"
+            optionLabel="nombre_campania"  
+            placeholder="Seleccione la gestion " 
+            class="w-full"
+            >
+            <ng-template let-gestion pTemplate="item">
+                {{ gestion.nombre_campania }} - {{ gestion.anio }}
+            </ng-template>
+            <ng-template let-gestion pTemplate="selectedItem">
+                {{ gestion?.nombre_campania }} - {{ gestion?.anio }}
+            </ng-template>
+        </p-select>
+      </div>
+
+      <!-- Logo del Proyecto -->
+      <div class="flex justify-center md:justify-start">
+        <div class="flex flex-col items-center gap-3">
+          <p-image 
+            [src]="logoPreview ? logoPreview : utils.getImageUrl(configuracion.logo,'ConfiguraciónLogo/logo.png')" 
+            [alt]="'Logo de la empresa'" 
+            [preview]="true"
+            class="w-full h-full object-cover"
+            [style]="{ width: '200px', height: '200px' }"
+          >
+          </p-image>
+          
+          <!-- Botón para seleccionar imagen -->
+          <p-button 
+            label="Cambiar foto" 
+            icon="pi pi-camera" 
+            size="small"
+            severity="secondary"
+            (click)="fileInput.click()"
+          ></p-button>
+
+          <!-- Input file oculto -->
+          <input 
+            #fileInput 
+            type="file" 
+            accept="image/*" 
+            hidden 
+            (change)="onFileSelected($event)"
+          />
+        </div>
+      </div>
+    
+      <!-- Nombre Empresa -->
+      <div class="flex flex-col">
+        <label class="block font-semibold mb-1">Nombre Empresa</label>
+        <input 
+          pInputText 
+          type="text" 
+          [(ngModel)]="configuracion.nombre_empresa" 
+          class="w-full" 
+          placeholder="Ej: Frutolandia SRL"
+        />
+      </div>
+
+      <!-- NIT -->
+      <div class="flex flex-col">
+        <label class="block font-semibold mb-1">NIT</label>
+        <input 
+          pInputText 
+          type="text" 
+          [(ngModel)]="configuracion.nit" 
+          class="w-full"
+          placeholder="Ej: 123456789"
+        />
+      </div>
+
+      <!-- Celular -->
+      <div class="flex flex-col">
+        <label class="block font-semibold mb-1">Celular</label>
+        <input 
+          pInputText 
+          type="text" 
+          [(ngModel)]="configuracion.telefono" 
+          class="w-full"
+          placeholder="Ej: 77712345"
+        />
+      </div>
+
+      <!-- Dirección -->
+      <div class="flex flex-col">
+        <label class="block font-semibold mb-1">Dirección</label>
+        <input 
+          pInputText 
+          type="text" 
+          [(ngModel)]="configuracion.direccion" 
+          class="w-full"
+          placeholder="Ej: Calle Siempre Viva 123"
+        />
+      </div>
+
+      <!-- Correo electrónico -->
+      <div class="flex flex-col">
+        <label class="block font-semibold mb-1">Correo Electrónico</label>
+        <input 
+          pInputText 
+          type="email" 
+          [(ngModel)]="configuracion.email" 
+          class="w-full"
+          placeholder="Ej: contacto@empresa.com"
+        />
+      </div>
+
+      <!-- Frase institucional -->
+      <div class="flex flex-col md:col-span-2">
+        <label class="block font-semibold mb-1">Frase de la Empresa</label>
+        <textarea 
+          pTextarea
+          [(ngModel)]="configuracion.frase" 
+          rows="3" 
+          class="w-full"
+          placeholder="Ej: 'Tu confianza, nuestra garantía.'"
+        ></textarea>
+      </div>
+
+    </div>
+  </p-fluid>
+
+  <!-- Botón Guardar -->
+  <div class="flex justify-end mt-6 gap-2">
+    <p-button 
+      label="Actualizar" 
+      [icon]="saving ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
+      [disabled]="saving"
+      (click)="guardarConfiguracion()"
+    />
+  </div>
+</div>
+<p-toast position="top-right"></p-toast>
+  
