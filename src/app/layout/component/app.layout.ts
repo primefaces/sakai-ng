@@ -4,13 +4,13 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { AppTopbar } from './app.topbar';
 import { AppSidebar } from './app.sidebar';
-import { AppFooter } from './app.footer';
+//import { AppFooter } from './app.footer';
 import { LayoutService } from '../service/layout.service';
 
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppFooter],
+    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule],
     template: `<div class="layout-wrapper" [ngClass]="containerClass">
         <app-topbar></app-topbar>
         <app-sidebar></app-sidebar>
@@ -18,7 +18,7 @@ import { LayoutService } from '../service/layout.service';
             <div class="layout-main">
                 <router-outlet></router-outlet>
             </div>
-            <app-footer></app-footer>
+            <!-- <app-footer></app-footer> -->
         </div>
         <div class="layout-mask animate-fadein"></div>
     </div> `

@@ -1,0 +1,74 @@
+<p-toolbar styleClass="mb-6">
+    <ng-template #start>
+        <p-button label="Nuevo" icon="pi pi-plus" severity="primary" class="mr-2" (click)="openNew()" />
+    </ng-template>
+</p-toolbar>
+
+<p-table
+        #dt
+        [value]="gestiones()"
+        [rows]="perPage"
+        [paginator]="true"
+        [tableStyle]="{ 'min-width': '50rem'}"
+        [rowHover]="true"
+        dataKey="id"
+        currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[5, 10, 25]"
+      
+        (onSort)="onSortChange($event)"
+        [totalRecords]="totalRecords"
+        [loading]="loading"
+        [lazy]="true"
+        (onPage)="onPageChange($event)"
+        [(first)]="firstRecord"
+    >
+    <ng-template #caption>
+        <div class="flex items-center justify-between">
+            <h5 class="m-0">Modulo Gestion</h5>
+            <p-iconfield>
+                <p-inputicon styleClass="pi pi-search" />
+                <input pInputText type="text" (input)="onGlobalFilter($event)" placeholder="Search..." />
+            </p-iconfield>
+        </div>
+    </ng-template>
+    <ng-template #header >
+        <tr>
+            <th pSortableColumn="id" style="width: 3rem">id <p-sortIcon field="id" /></th>
+            <th pSortableColumn="anio" style="width: 15rem">Año <p-sortIcon field="anio" /></th>
+            <th pSortableColumn="nombre_campania" style="width: 15rem">Nombre Campaña <p-sortIcon field="nombre_campania" /></th>
+            <th style="width: 7rem">Gestion actual</th>
+            <th style="width: 5rem">Estado</th>
+            <th style="width: 5rem"></th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-gestion>
+        <tr>
+            <td style="width: 3rem">{{ gestion.id }}</td>
+            <td style="width: 15rem">{{ gestion.anio }}</td>
+            <td style="width: 15rem">{{ gestion.nombre_campania }}</td>
+            <td style="width: 7rem; text-align: right;" >
+                <p-tag [value]="utils.getStatus(gestion.gestion_actual)" [severity]="utils.getSeverity(gestion.gestion_actual)" />
+            </td>
+            <td style="width: 5rem; text-align: right;" >
+                <p-tag [value]="utils.getStatus(gestion.estado)" [severity]="utils.getSeverity(gestion.estado)" />
+            </td>
+            <td style="width: 5rem; text-align: right; white-space: nowrap;" >
+                <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [disabled]="gestion.estado!=true" [outlined]="true" (click)="editGestion(gestion)"  />
+                <ng-container *ngIf="gestion.estado; else restoreButton">
+                    <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true"  (click)="deleteGestion(gestion)"/>
+                </ng-container>
+                <ng-template #restoreButton>
+                    <p-button icon="pi pi-refresh" severity="success" [rounded]="true" [outlined]="true"  (click)="restoreGestion(gestion)"/>
+                </ng-template>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-confirmdialog [style]="{ width: '450px' }" />
+<p-toast position="top-right"></p-toast>
+<app-gestion-form [visible]="gestionDialog" [gestion]="gestion" (visibleChange)="GestioncloseDialog($event)"></app-gestion-form>
+
+
+

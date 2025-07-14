@@ -1,0 +1,155 @@
+<p-dialog [(visible)]="visible" [style]="{ width: '650px' }" [modal]="true" [closable]="false">
+    <ng-template #header>
+      <strong><h2 class="text-xl font-bold">Formulario Producto</h2></strong>
+    </ng-template>
+  
+    <ng-template #content>
+    <p-fluid>
+        <div class="flex ">
+            <div class="flex flex-col gap-4 w-full">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label class="block font-bold mb-3">Cantidad</label>
+                        <p-inputnumber [(ngModel)]="producto_envase.cantidad"  mode="decimal" [min]="0" />
+                    </div>
+                    <div class="flex flex-wrap gap-2 w-full md:w-1/7">
+                        <label  class="block font-bold mb-3">Precio estimado</label>
+                        <p-inputgroup>
+                            <p-inputgroup-addon>
+                                <i class="pi pi-shopping-cart"></i>
+                            </p-inputgroup-addon>
+                            <p-iftalabel>
+                                <p-inputnumber [(ngModel)]="producto_envase.precio_estimado" mode="currency" currency="USD" locale="en-US" />
+                                <label >Precio estimado de la compra</label>
+                            </p-iftalabel>
+                        </p-inputgroup>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label  class="block font-bold mb-3">Margen minimo</label>
+                        <p-inputgroup>
+                            <p-inputgroup-addon>%</p-inputgroup-addon>
+                            <p-floatlabel variant="on">
+                                <p-inputnumber [(ngModel)]="producto_envase.margen_minimo"  mode="decimal"  [min]="5" [max]="10" />
+                                <label >Min 5 - 10</label>
+                            </p-floatlabel>
+                        </p-inputgroup>
+                        <strong>
+                            precio minimo: {{ calcularPrecioMinimoConMargen | currency:'USD' }}
+                        </strong>
+                    </div>
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label class="block font-bold mb-3">Margen normal</label>
+                        <p-inputgroup>
+                            <p-inputgroup-addon>%</p-inputgroup-addon>
+                            <p-floatlabel variant="on">
+                                <p-inputnumber [(ngModel)]="producto_envase.margen_standar"  mode="decimal" [min]="10" [max]="40"/>
+                                <label >Nor 10 - 40</label>
+                                
+                            </p-floatlabel>
+                        </p-inputgroup>
+                        <strong>
+                            precio standar: {{ calcularPrecioStandarConMargen | currency:'USD' }}
+                        </strong>
+                    </div>
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label  class="block font-bold mb-3">Margen maximo</label>
+                        <p-inputgroup>
+                            <p-inputgroup-addon>%</p-inputgroup-addon>
+                            <p-floatlabel variant="on">
+                                <p-inputnumber [(ngModel)]="producto_envase.margen_maximo"  mode="decimal"  [min]="40" [max]="60" />
+                                <label >Max 40 - 60</label>
+                            </p-floatlabel>
+                        </p-inputgroup>
+                        <strong>
+                            precio maximo: {{ calcularPrecioMaximoConMargen | currency:'USD' }}
+                        </strong>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label class="block font-bold mb-3">Producto</label>
+                        <p-select 
+                        id="producto_id" 
+                        optionLabel="nombre"  
+                        [appendTo]="'body'" 
+                        [filter]="true" 
+                        filterBy="nombre"
+                        [showClear]="true"
+                        [virtualScroll]="true"
+                        [itemSize]="38"
+                        [lazy]="true"
+                        [options]="productos()" 
+                        [(ngModel)]="producto_envase.producto"  
+                        (onLazyLoad)="loadDemoDataProducto()"
+                        (onFilter)="onGlobalFilter($event)"
+                        placeholder="Seleccione un producto" 
+                        [disabled]="producto_envase.id != null"
+                        class="w-full"
+                        [scrollHeight]="'200px'"
+                        >
+                        </p-select>
+                    </div>
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label class="block font-bold mb-3">Unidad</label>
+                        <p-select 
+                            [appendTo]="'body'" 
+                            [filter]="true" 
+                            filterBy="nombre" 
+                            [(ngModel)]="producto_envase.unidad" 
+                            [options]="unidades" optionLabel="nombre"  
+                            placeholder="Seleccione un tipo" 
+                            class="w-full"
+                            [disabled]="producto_envase.id != null"
+                        >
+                        </p-select>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="col-span-full lg:col-span-6">
+                        <label class="block font-bold mb-3">Subir Imagen (recomendado)</label>
+                        <!-- Input para seleccionar la imagen -->
+                        <p-fileupload 
+                        name="image"
+                        [auto]="false"
+                        [multiple]="false"
+                        accept="image/*"
+                        maxFileSize="1000000"
+                        mode="advanced"
+                        (onSelect)="onFileSelected($event)">
+                        <ng-template #empty>
+                            <div>Arrastre y suelte archivos aquí para cargarlos.</div>
+                        </ng-template>
+                        <ng-template #content>
+                            <ul *ngIf="uploadedFiles.length">
+                                <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                            </ul>
+                            <!-- Mostrar imagen actual si no hay archivos subidos -->
+                            <div *ngIf="!uploadedFiles.length && producto_envase?.image">
+                                <p>Imagen actual:</p>
+                                <p-image  [src]="utils.getImageUrl(producto_envase.image,'ProductoEnvase/ProductoEnvase.png')"  alt="Imagen actual" width="200" [preview]="true" />
+                            </div>
+                        </ng-template>
+                        </p-fileupload>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p-fluid> 
+    </ng-template>
+  
+    <ng-template #footer>
+      <p-button label="Cancelar" severity="secondary" icon="pi pi-times" (click)="closeDialog()" />
+      <p-button 
+        [label]="producto_envase.id ? 'Actualizar' : 'Guardar'" 
+        severity="info" 
+        [icon]="saving ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
+        [disabled]="saving"
+        (click)="saveProductoEnvase()" 
+      />
+    </ng-template>
+  </p-dialog>
+  

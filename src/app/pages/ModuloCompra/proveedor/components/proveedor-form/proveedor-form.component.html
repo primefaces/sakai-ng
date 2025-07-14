@@ -1,0 +1,93 @@
+<p-dialog [(visible)]="visible" [style]="{ width: '950px' }" [modal]="true" [closable]="false">
+    <ng-template #header>
+      <strong><h2 class="text-xl font-bold">Formulario Proveedor</h2></strong>
+    </ng-template>
+  
+    <ng-template #content>
+      <p-fluid>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Columna Izquierda: Datos del proveedor -->
+          <div class="flex flex-col gap-4">
+  
+            <div>
+              <label class="block font-semibold mb-1">Razón Social</label>
+              <p-inputgroup>
+                <p-inputgroup-addon><i class="pi pi-building"></i></p-inputgroup-addon>
+                <input pInputText [(ngModel)]="proveedor.razon_social" class="w-full" placeholder="Ej: EMPRESA" />
+              </p-inputgroup>
+            </div>
+  
+            <div>
+              <label class="block font-semibold mb-1">Correo</label>
+              <p-inputgroup>
+                <p-inputgroup-addon><i class="pi pi-envelope"></i></p-inputgroup-addon>
+                <input pInputText [(ngModel)]="proveedor.correo" class="w-full" placeholder="Ej: contacto@empresa.com" />
+              </p-inputgroup>
+            </div>
+  
+            <div>
+              <label class="block font-semibold mb-1">Teléfono</label>
+              <p-inputgroup>
+                <p-inputgroup-addon><i class="pi pi-phone"></i></p-inputgroup-addon>
+                <p-inputnumber [(ngModel)]="proveedor.telefono" mode="decimal" [useGrouping]="false" placeholder="Ej: 71619345" class="w-full" />
+              </p-inputgroup>
+            </div>
+  
+            <div>
+              <label class="block font-semibold mb-1">Dirección</label>
+              <p-inputgroup>
+                <p-inputgroup-addon><i class="pi pi-map-marker"></i></p-inputgroup-addon>
+                <textarea pTextarea [(ngModel)]="proveedor.direccion" rows="3" placeholder="Ej: Av. Santa Cruz - Barrio 24" class="w-full"></textarea>
+              </p-inputgroup>
+            </div>
+  
+          </div>
+  
+          <!-- Columna Derecha: Imagen -->
+          <div class="flex flex-col gap-3">
+            <label class="block font-semibold mb-1">Subir Imagen (recomendado)</label>
+  
+            <p-fileupload
+              name="image"
+              [auto]="false"
+              [multiple]="false"
+              accept="image/*"
+              maxFileSize="1000000"
+              mode="advanced"
+              (onSelect)="onFileSelected($event)">
+              <ng-template #empty>
+                <div>Arrastre y suelte archivos aquí para cargarlos.</div>
+              </ng-template>
+              <ng-template #content>
+                <ul *ngIf="uploadedFiles.length">
+                  <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                </ul>
+                <div *ngIf="!uploadedFiles.length && proveedor?.image">
+                  <p>Imagen actual:</p>
+                  <p-image 
+                    [src]="utils.getImageUrl(proveedor.image,'Proveedor/Proveedor.png')" 
+                    alt="Imagen actual" 
+                    width="200" 
+                    [preview]="true" 
+                    [appendTo]="'body'"
+                  />
+                </div>
+              </ng-template>
+            </p-fileupload>
+          </div>
+        </div>
+      </p-fluid>
+    </ng-template>
+  
+    <ng-template #footer>
+      <p-button label="Cancelar" severity="secondary" icon="pi pi-times" (click)="closeDialog()" />
+      <p-button 
+        label="{{ proveedor.id ? 'Actualizar' : 'Guardar' }}" 
+        severity="info" 
+        [icon]="saving ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
+        [disabled]="saving"
+        (click)="saveProveedor()" 
+      />
+    </ng-template>
+</p-dialog>
+  

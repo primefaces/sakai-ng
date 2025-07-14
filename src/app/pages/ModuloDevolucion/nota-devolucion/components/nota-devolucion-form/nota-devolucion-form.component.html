@@ -1,0 +1,131 @@
+<p-dialog [(visible)]="visible" [style]="{ width: '700px' }" [modal]="true" [closable]="false">
+    <ng-template #header>
+      <strong><h2 class="text-xl font-bold">Formulario Nota de devolucion</h2></strong>
+    </ng-template>
+  
+    <ng-template #content>
+      <p-fluid>
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-col md:flex-row gap-4">
+            <!-- Cliente -->
+            <div class="w-full">
+              <div *ngIf="OptionNotaDevolucion==1">
+                <label class="block font-bold mb-1">Cliente : </label>
+                  <div style="text-transform: uppercase;" class="font-bold text-xl" *ngIf="nota_devolucion.cliente" > 
+                    {{nota_devolucion.cliente.nombre}}
+                    {{nota_devolucion.cliente.paterno}} 
+                    {{nota_devolucion.cliente.materno}}
+                  </div>
+                  <p-autoComplete  
+                      [(ngModel)]="nota_devolucion.cliente" 
+                      [suggestions]="clientes()"
+                      (completeMethod)="onGlobalFilter($event)"
+                      field="codigo"
+                      [forceSelection]="true"
+                      [dropdown]="true"
+                      [appendTo]="'body'"
+                      placeholder="Seleccione un cliente"
+                      class="w-full"
+                      [disabled]="nota_devolucion.id != null"
+                    >
+                    <ng-template let-cliente pTemplate="item">
+                      {{ cliente.nombre }} {{ cliente.paterno }} {{ cliente.materno }}
+                    </ng-template>
+                  </p-autoComplete>
+              </div>
+              <div *ngIf="OptionNotaDevolucion==2">
+                  <label class="block font-bold mb-1">Proveedor : </label>
+                  <div style="text-transform: uppercase;" class="font-bold text-xl" *ngIf="nota_devolucion.proveedor" > 
+                    {{nota_devolucion.proveedor.razon_social}}
+                  </div>
+                  <p-autoComplete  
+                      [(ngModel)]="nota_devolucion.proveedor" 
+                      [suggestions]="proveedores()"
+                      (completeMethod)="onGlobalFilter($event)"
+                      field="codigo"
+                      [forceSelection]="true"
+                      [dropdown]="true"
+                      [appendTo]="'body'"
+                      placeholder="Seleccione un proveedor"
+                      class="w-full"
+                      [disabled]="nota_devolucion.id != null"
+                    >
+                    <ng-template let-proveedor pTemplate="item">
+                      {{ proveedor.razon_social }} 
+                    </ng-template>
+                  </p-autoComplete>
+              </div>
+            </div>
+              
+              
+  
+            <!-- Gestión -->
+            <div class="w-full">
+                <label class="block font-bold mb-1">Gestión</label>
+                <p-select 
+                    [appendTo]="'body'" 
+                    [filter]="true" 
+                    filterBy="nombre_campania,anio"
+                    [(ngModel)]="nota_devolucion.gestion"
+                    [options]="gestiones" optionLabel="nombre_campania"  
+                    placeholder="Seleccione la gestion" 
+                    class="w-full"
+                    [disabled]="nota_devolucion.id != null"
+                >
+                <ng-template let-gestion pTemplate="item">
+                    {{ gestion.nombre_campania }} - {{ gestion.anio }}
+                </ng-template>
+                <ng-template let-gestion pTemplate="selectedItem">
+                    {{ gestion?.nombre_campania }} - {{ gestion?.anio }}
+                </ng-template>
+                </p-select>
+            </div>
+          </div>
+  
+          <div class="flex flex-col md:flex-row gap-4">
+            <!-- Fecha -->
+            <div class="w-full">
+              <label class="block font-bold mb-1">Fecha</label>
+              <p-datepicker 
+                [appendTo]="'body'"  
+                [showIcon]="true" 
+                [showButtonBar]="true" 
+                [(ngModel)]="nota_devolucion.fecha"
+                class="w-full"
+                >
+               </p-datepicker>
+            </div>
+             <!-- Lugar -->
+            <div class="w-full">
+                <label class="block font-bold mb-1">Lugar</label>
+                <input pInputText [(ngModel)]="nota_devolucion.lugar" class="w-full" placeholder="Lugar de la nota_devolucion" />
+            </div>
+          </div>
+  
+          <div class="flex flex-col md:flex-row gap-4">
+            <!-- Recibido por -->
+            <div class="w-full">
+              <label class="block font-bold mb-1">Recibido por</label>
+              <input pInputText [(ngModel)]="nota_devolucion.recibido" class="w-full" placeholder="Nombre de quien recibe" />
+            </div>
+             <!-- Código de factura -->
+             <div class="w-full">
+                <label class="block font-bold mb-1">Código Factura</label>
+                <input pInputText [(ngModel)]="nota_devolucion.codigo_factura" class="w-full" placeholder="Código de la factura" />
+              </div>
+          </div>
+        </div>
+      </p-fluid>
+    </ng-template>
+  
+    <ng-template #footer>
+      <p-button label="Cancelar" icon="pi pi-times" severity="secondary" (click)="closeDialog()" />
+      <p-button  
+      severity="info" 
+      label="{{ nota_devolucion.id ? 'Modificar' : 'Guardar' }}"  
+      [icon]="saving ? 'pi pi-spin pi-spinner' : 'pi pi-check'" 
+      [disabled]="saving"
+      (click)="saveNotaDevolucion()" />
+    </ng-template>
+  </p-dialog>
+  

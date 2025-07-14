@@ -1,0 +1,97 @@
+<p-dialog [(visible)]="visible"  [style]="{ width: '95vw', maxWidth: '800px' }"  [modal]="true" [closable]="false">
+    <ng-template #header>
+      <strong><h2 class="text-xl font-bold">Nota Compra Detalles</h2></strong>
+    </ng-template>
+  
+    <ng-template #content>
+    <p-fluid>
+        <div class="flex">
+            <div class="flex flex-col gap-4 w-full">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex flex-wrap gap-2 w-full ">
+                        <label class="block font-bold ">Proveedor : <h3>{{nota_compra.proveedor.razon_social}}</h3> </label>
+                    </div>
+                    <div class="flex flex-wrap gap-2 w-full  ">
+                        <label class="font-bold">Fecha</label>
+                        <p-datepicker 
+                        [appendTo]="'body'"  
+                        [showIcon]="true" 
+                        [showButtonBar]="true" 
+                        [(ngModel)]="nota_compra.fecha"
+                        class="w-full"
+                        disabled="true"
+                        >
+                        </p-datepicker>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label class="block font-bold mb-3">Codigo Factura 
+                            <p-tag [value]="getStatus(nota_compra.firma,1)" [severity]="getSeverity(nota_compra.firma,1)"></p-tag>
+                            <p-tag 
+                                [value]="nota_compra.compra_credito ? 'CREDITO' : 'CONTADO'" 
+                                [severity]="getSeverity(nota_compra.compra_credito,1)">
+                            </p-tag>
+                                                  </label>
+                        <input pInputText type="text" [(ngModel)]="nota_compra.codigo_factura" [disabled]="true" />
+                    </div>
+                    <div class="flex flex-wrap gap-2 w-full">
+                        <label class="block font-bold mb-3">Gestion</label>
+                        <p-select 
+                            [appendTo]="'body'" 
+                            [filter]="true" 
+                            filterBy="nombre_campania" 
+                             id="gestion_id" 
+                             [(ngModel)]="nota_compra.gestion"
+                             [options]="gestiones" optionLabel="nombre_campania"  
+                             placeholder="Seleccione la gestion" 
+                             class="w-full"
+                             [disabled]="nota_compra.id != null"
+                        >
+                            <ng-template let-gestion pTemplate="item">
+                                {{ gestion.nombre_campania }} - {{ gestion.anio }}
+                            </ng-template>
+                            <ng-template let-gestion pTemplate="selectedItem">
+                                {{ gestion?.nombre_campania }} - {{ gestion?.anio }}
+                            </ng-template>
+                        </p-select>
+                    </div>
+                </div>
+                <div class="overflow-auto">
+                    <p-table [value]="detalles" [tableStyle]="{'min-width': '50rem'}">
+                        <ng-template #header>
+                            <tr>
+                                <th style="width:20%">Producto Envase</th>
+                                <th style="width:20%">Cantidad</th>
+                                <th style="width:20%">Precio</th>
+                                <th style="width:20%">Subtotal</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template #body let-detalles>
+                            <tr>
+                                <td>
+                                    {{detalles.producto_envase.producto.nombre}} {{detalles.producto_envase.cantidad}} {{detalles.producto_envase.unidad.nombre_corto}}
+                                </td>
+                                <td>
+                                    {{detalles.cantidad}}
+                                </td>
+                                <td>
+                                    {{detalles.precio_asignado | currency: 'USD'}}
+                                </td>
+                                <td>
+                                    {{detalles.subtotal | currency: 'USD'}}
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </p-fluid> 
+    </ng-template>
+  
+    <ng-template #footer>
+      <p-button label="Cerrar" severity="secondary" icon="pi pi-times" (click)="closeDialog()" />
+    </ng-template>
+  </p-dialog>
+  

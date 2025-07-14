@@ -1,0 +1,116 @@
+<p-dialog 
+  [(visible)]="visible"  
+  [style]="{ width: '95vw', maxWidth: '800px' }" 
+  [modal]="true" 
+  [closable]="false"
+>
+  <ng-template #header>
+    <h2 class="text-lg font-semibold text-gray-800">Estado de Cuenta del Cliente</h2>
+  </ng-template>
+
+  <ng-template #content>
+    <div class="space-y-4">
+
+      <!-- Tarjeta Cliente -->
+      <div class="flex justify-between items-center gap-4 p-4 border rounded-lg bg-gray-50 shadow-sm">
+        <!-- Foto + Nombre -->
+        <div class="flex items-center gap-4">
+          <img 
+            [src]="utils.getImageUrl(cliente.image, 'Cliente/Cliente.png')" 
+            alt="Foto del Cliente" 
+            class="w-16 h-16 rounded-full object-cover border border-gray-300"
+          />
+          <div>
+            <div class="text-lg text-base font-medium text-gray-800">
+              {{ cliente.nombre }} {{ cliente.paterno }} {{ cliente.materno }}
+            </div>
+            <div class="text-sm text-gray-500">CÓDIGO: {{ cliente.codigo }}</div>
+          </div>
+        </div>
+      
+        <!-- Gestión -->
+        <div class="text-right">
+          <p class="text-lg text-gray-500">Gestión</p>
+          <p-button 
+            label="Exportar PDF" 
+            icon="pi pi-file-pdf" 
+            severity="danger" 
+            (click)="generateEstadoCuentaPDF()" 
+            class="p-button-sm p-button-rounded p-button-text"
+            tooltip="Generar informe en PDF"
+            tooltipPosition="top"
+          />
+          
+          
+          <p class="text-lg font-semibold text-indigo-700">{{ gestion.nombre_campania }} - {{ gestion.anio }} </p>
+        </div>
+      </div>
+      
+
+      <!-- Totales -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-3 bg-white border rounded shadow-sm">
+          <p class="text-sm text-gray-500">Monto Total Contado</p>
+          <div class="text-lg text-base font-semibold text-green-700">
+            {{ EstadoCuenta.montoTotalContado | currency:'$.' }}
+          </div>
+        </div>
+        <div class="p-3 bg-white border rounded shadow-sm">
+          <p class="text-sm text-gray-500">Monto Total Crédito</p>
+          <div class="text-lg text-base font-semibold text-blue-700">
+            {{ EstadoCuenta.montoTotalCredito | currency:'$.' }}
+          </div>
+        </div>
+        <div class="p-3 bg-white border rounded shadow-sm">
+          <p class="text-sm text-gray-500">Monto Total Devolucion</p>
+          <div class="text-lg text-base font-semibold text-blue-700">
+            {{ EstadoCuentaDevolucion.montoTotalContado| currency:'$.' }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Cantidades -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-3 bg-white border rounded shadow-sm">
+          <p class="text-sm text-gray-500">Ventas al Contado</p>
+          <div class="text-lg text-base font-medium">{{ EstadoCuenta.cantidad_venta_contado }}</div>
+        </div>
+        <div class="p-3 bg-white border rounded shadow-sm">
+          <p class="text-sm text-gray-500">Ventas al Crédito</p>
+          <div class="text-lg text-base font-medium">{{ EstadoCuenta.cantidad_venta_credito }}</div>
+        </div>
+        <div class="p-3 bg-white border rounded shadow-sm">
+          <p class="text-sm text-gray-500">Devoluciones</p>
+          <div class="text-lg text-base font-medium">{{ EstadoCuentaDevolucion.cantidad_devolucion_contado }}</div>
+        </div>
+      </div>
+
+      <!-- Estado Ventas -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-3 bg-white border rounded shadow-sm">
+          <p class="text-sm text-gray-500">Ventas Anuladas</p>
+          <div class="text-lg text-base font-medium text-red-600">{{ EstadoCuenta.cantidad_venta_anulada }}</div>
+        </div>
+        <div class="p-3 bg-white border rounded shadow-sm">
+          <p class="text-sm text-gray-500">Ventas Pendientes</p>
+          <div class="text-lg text-base font-medium text-yellow-600">{{ EstadoCuenta.cantidad_venta_pendiente }}</div>
+        </div>
+        <div class="p-3 bg-white border rounded shadow-sm">
+          <p class="text-sm text-gray-500">Devoluciones Anulado</p>
+          <div class="text-lg text-base font-medium text-yellow-600">{{ EstadoCuentaDevolucion.cantidad_devolucion_anulada }}</div>
+        </div>
+      </div>
+
+    </div>
+  </ng-template>
+
+  <ng-template #footer>
+    <p-button 
+      label="Cerrar" 
+      icon="pi pi-times" 
+      severity="secondary" 
+      (click)="closeDialog()" 
+      class="p-button-sm"
+    />
+  </ng-template>
+</p-dialog>

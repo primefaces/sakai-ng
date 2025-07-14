@@ -1,0 +1,34 @@
+<div *ngIf="visible"  class="flex flex-col gap-2 p-2 w-[400px]"> <!-- ancho de 400px -->
+      <!-- Foto, Nombre y Rol -->
+    <div class="flex items-center gap-2">
+        <img
+        [src]="utils.getImageUrl(user.image,'User/User.png')" 
+          alt="Profile Photo"
+          class="w-10 h-10 rounded-full"
+        />
+      <div>
+        <p class="text-base font-semibold"> {{ user.email }} </p>
+        <div *ngIf="user?.roles?.length">
+          <p class="text-sm text-muted-color" *ngFor="let rol of user.roles">
+            {{ rol.name }}
+          </p>
+        </div>
+        <p *ngIf="user?.roles?.length === 0" class="text-sm text-muted-color">
+          Sin roles
+        </p>
+      </div>
+    </div> 
+  <div class="flex gap-2 mt-2">
+    <p-button (click)="goToUpdateProfile()" label="Perfil" severity="info" class="p-button-sm" />
+    <p-button 
+      (click)="logout()" 
+      label="Cerrar sesión" 
+      severity="danger"
+      class="p-button-sm"
+      [icon]="logoutin ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
+      [disabled]="logoutin"
+    />
+  </div>
+</div>
+
+<app-auth-update-profile [user]="user" [(visible)]="showProfileDialog" (visibleChange)="showProfileDialog = $event"></app-auth-update-profile>

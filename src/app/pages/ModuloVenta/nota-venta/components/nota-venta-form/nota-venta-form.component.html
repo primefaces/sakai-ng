@@ -1,0 +1,167 @@
+<p-dialog [(visible)]="visible" [style]="{ width: '700px' }" [modal]="true" [closable]="false">
+    <ng-template #header>
+      <strong><h2 class="text-xl font-bold">Formulario Nota de Venta</h2></strong>
+    </ng-template>
+  
+    <ng-template #content>
+      <p-fluid>
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-col md:flex-row gap-4">
+            <!-- Cliente -->
+            <div class="w-full">
+              <label class="block font-bold mb-1">Cliente : </label>
+              <div style="text-transform: uppercase;" class="font-bold text-xl" *ngIf="nota_venta.cliente" > 
+                {{nota_venta.cliente.nombre}}
+                {{nota_venta.cliente.paterno}} 
+                {{nota_venta.cliente.materno}}
+              </div>
+              <p-autoComplete  
+                [(ngModel)]="nota_venta.cliente" 
+                [suggestions]="clientes()"
+                (completeMethod)="onGlobalFilter($event)"
+                field="codigo"
+                [forceSelection]="true"
+                [dropdown]="true"
+                [appendTo]="'body'"
+                placeholder="Seleccione un cliente"
+                class="w-full"
+                [disabled]="nota_venta.id != null"
+              >
+              <ng-template let-cliente pTemplate="item">
+                {{ cliente.nombre }} {{ cliente.paterno }} {{ cliente.materno }}
+              </ng-template>
+            </p-autoComplete>
+            </div>
+  
+            <!-- Gestión -->
+            <div class="w-full">
+                <label class="block font-bold mb-1">Gestión</label>
+                <p-select 
+                    [appendTo]="'body'" 
+                    [filter]="true" 
+                    filterBy="nombre_campania,anio"
+                    [(ngModel)]="nota_venta.gestion"
+                    [options]="gestiones" optionLabel="nombre_campania"  
+                    placeholder="Seleccione la gestion" 
+                    class="w-full"
+                    [disabled]="nota_venta.id != null"
+                >
+                <ng-template let-gestion pTemplate="item">
+                    {{ gestion.nombre_campania }} - {{ gestion.anio }}
+                </ng-template>
+                <ng-template let-gestion pTemplate="selectedItem">
+                    {{ gestion?.nombre_campania }} - {{ gestion?.anio }}
+                </ng-template>
+                </p-select>
+            </div>
+          </div>
+  
+          <div class="flex flex-col md:flex-row gap-4">
+            <!-- Cultivo -->
+            <div class="w-full">
+              <label class="block font-bold mb-1">Cultivo</label>
+              <p-select
+                [(ngModel)]="nota_venta.cultivo"
+                [options]="cultivos"
+                optionLabel="nombre"
+                placeholder="Seleccione un cultivo"
+                class="w-full"
+                [appendTo]="'body'">
+              </p-select>
+            </div>
+            <!-- Fecha -->
+            <div class="w-full">
+              <label class="block font-bold mb-1">Fecha</label>
+              <p-datepicker 
+                [appendTo]="'body'"  
+                [showIcon]="true" 
+                [showButtonBar]="true" 
+                [(ngModel)]="nota_venta.fecha"
+                class="w-full"
+                >
+               </p-datepicker>
+            </div>
+          </div>
+  
+          <div class="flex flex-col md:flex-row gap-4">
+            <!-- Lugar -->
+            <div class="w-full">
+              <label class="block font-bold mb-1">Lugar</label>
+              <input pInputText [(ngModel)]="nota_venta.lugar" class="w-full" placeholder="Lugar de la venta" />
+            </div>
+  
+            <!-- Recibido por -->
+            <div class="w-full">
+              <label class="block font-bold mb-1">Recibido por</label>
+              <input pInputText [(ngModel)]="nota_venta.recibido" class="w-full" placeholder="Nombre de quien recibe" />
+            </div>
+          </div>
+  
+          <div class="flex flex-col md:flex-row gap-4">
+            <!-- Venta al crédito -->
+            <div class="w-full">
+                <label class="block font-bold mb-2">Venta</label>
+              
+                <div class="flex gap-4">
+                  <label class="flex items-center cursor-pointer">
+                    <span 
+                      class="w-5 h-5 border-2 rounded-md flex items-center justify-center mr-2"
+                      [ngClass]="{
+                        'border-blue-500 text-blue-500 font-bold': nota_venta.venta_credito === false,
+                        'border-gray-400 text-transparent': nota_venta.venta_credito !== false
+                      }"
+                    >
+                      ✕
+                    </span>
+                    <input 
+                      type="radio" 
+                      name="venta_credito" 
+                      [value]="false" 
+                      [(ngModel)]="nota_venta.venta_credito" 
+                      class="hidden"
+                    />
+                    Contado
+                  </label>
+              
+                  <label class="flex items-center cursor-pointer">
+                    <span 
+                      class="w-5 h-5 border-2 rounded-md flex items-center justify-center mr-2"
+                      [ngClass]="{
+                        'border-blue-500 text-blue-500 font-bold': nota_venta.venta_credito === true,
+                        'border-gray-400 text-transparent': nota_venta.venta_credito !== true
+                      }"
+                    >
+                      ✕
+                    </span>
+                    <input 
+                      type="radio" 
+                      name="venta_credito" 
+                      [value]="true" 
+                      [(ngModel)]="nota_venta.venta_credito" 
+                      class="hidden"
+                    />
+                    Crédito
+                  </label>
+                </div>
+            </div>
+            <!-- Código de factura -->
+            <div class="w-full">
+              <label class="block font-bold mb-1">Código Factura</label>
+              <input pInputText [(ngModel)]="nota_venta.codigo_factura" class="w-full" placeholder="Código de la factura" />
+            </div>
+          </div>
+        </div>
+      </p-fluid>
+    </ng-template>
+  
+    <ng-template #footer>
+      <p-button label="Cancelar" icon="pi pi-times" severity="secondary" (click)="closeDialog()" />
+      <p-button  
+      severity="info" 
+      label="{{ nota_venta.id ? 'Modificar' : 'Guardar' }}"  
+      [icon]="saving ? 'pi pi-spin pi-spinner' : 'pi pi-check'" 
+      [disabled]="saving"
+      (click)="saveNotaVenta()" />
+    </ng-template>
+  </p-dialog>
+  

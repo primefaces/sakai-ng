@@ -1,0 +1,155 @@
+<!-- CONTENEDOR PRINCIPAL -->
+<div class="flex flex-col gap-4">
+
+    <!-- TOOLBAR -->
+    <p-toolbar styleClass="mb-6">
+        <ng-template #start>
+            <p-button label="Informe Inventario PDF"  (click)="generateEstadoInventarioPDF()" icon="pi pi-file-pdf" severity="danger" class="mr-2" />
+            
+        </ng-template>
+    </p-toolbar>
+
+    <!-- CABECERA -->
+    <div class="card">
+        <div class="font-semibold text-2xl mb-4">Módulo Inventario</div>
+
+        <!-- DATAVIEW -->
+        <p-dataview
+            [value]="InventarioProductoEnvases()"
+            [layout]="layout"
+            [rows]="perPage"
+            [paginator]="true"
+            [lazy]="true"
+            [totalRecords]="totalRecords"
+            [rowsPerPageOptions]="[5, 10, 25]"
+            dataKey="id"
+            (onPage)="onPageChange($event)"
+            (onSort)="onSortChange($event)"
+            currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros"
+            [showCurrentPageReport]="true">
+
+            <!-- HEADER: FILTROS Y LAYOUT -->
+            <ng-template #header>
+                <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div class="flex flex-wrap items-center gap-4">
+                        <div>
+                          <label class="block font-bold mb-1">Categoria</label>
+                          <p-select 
+                              [appendTo]="'body'" 
+                              [filter]="true" 
+                              (onChange)="onGlobalFilterCategoria($event)"
+                              filterBy="nombre"
+                              [(ngModel)]="selectedCategoria"
+                              [options]="Categorias || []" optionLabel="nombre"  
+                              placeholder="Seleccione el categoria" 
+                              class="w-full"
+                              >
+                              <ng-template let-categoria pTemplate="item">
+                                  {{ categoria.nombre }}
+                              </ng-template>
+                              <ng-template let-categoria pTemplate="selectedItem">
+                                  {{ categoria?.nombre }}
+                              </ng-template>
+                          </p-select>
+                        </div>
+
+                        <div>
+                            <label class="block font-bold mb-1">Buscar por nombre</label> 
+                            <p-iconfield>
+                                <p-inputicon styleClass="pi pi-search" />
+                                <input pInputText type="text" (input)="onGlobalFilter($event)" placeholder="Buscar..." />
+                            </p-iconfield>
+                        </div>
+                        
+                    </div>
+                </div>
+            </ng-template>
+
+            <!-- CUADRICULA -->
+            <ng-template #grid let-items>
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                  <div *ngFor="let item of items"
+                       class="relative flex bg-white border border-gray-200 rounded-xl shadow-md p-4 transition hover:shadow-lg">
+                    <!-- Imagen lateral -->
+                    <div class="w-24 h-24 flex-shrink-0 mr-4 rounded-lg overflow-hidden bg-gray-100">
+                      <p-image 
+                        [src]="utils.getImageUrl(item.image,'ProductoEnvase/ProductoEnvase.png')" 
+                        [alt]="item.producto.nombre" 
+                        [preview]="true"
+                        class="w-full h-full object-cover">
+                      </p-image>
+                    </div>
+              
+                    <!-- Contenido -->
+                    <div class="flex flex-col justify-between flex-grow">
+                      
+                      <!-- Nombre y descripción -->
+                      <div class="mb-2">
+                        <h3 class="text-lg font-bold text-gray-800 truncate">{{ item.producto.nombre }}</h3>
+                        <p class="text-sm text-gray-500 line-clamp-2">{{ item.producto.descripcion }}</p>
+                      </div>
+              
+                      <!-- RESUMEN TIPO DASHBOARD -->
+                      <div class="grid grid-cols-3 gap-2 text-center mt-2">
+                        
+                        <!-- VENDIDO -->
+                        <div class="bg-green-50 rounded-lg p-2">
+                          <i class="pi pi-arrow-up text-green-600 text-xl mb-1"></i>
+                          <div class="text-xs text-gray-600">Vendido</div>
+                          <div class="text-sm font-bold text-green-700">{{ item.sumTotalProductoVendido }} {{ item.unidad.nombre_corto }}</div>
+                        </div>
+                        
+                        <!-- STOCK -->
+                        <div class="rounded-lg p-2"
+                             [ngClass]="{
+                               'bg-red-100': item.stockActual <= 10,
+                               'bg-blue-50': item.stockActual > 10
+                             }">
+                          <i class="pi pi-database text-xl mb-1"
+                             [ngClass]="{
+                               'text-red-600': item.stockActual <= 10,
+                               'text-blue-600': item.stockActual > 10
+                             }"></i>
+                          <div class="text-xs text-gray-600">Stock</div>
+                          <div class="text-sm font-bold"
+                               [ngClass]="{
+                                 'text-red-700': item.stockActual <= 10,
+                                 'text-blue-700': item.stockActual > 10
+                               }">
+                            {{ item.stockActual }} {{ item.unidad.nombre_corto }}
+                          </div>
+                        </div>
+                        
+                        <!-- COMPRADO -->
+                        <div class="bg-yellow-50 rounded-lg p-2">
+                          <i class="pi pi-arrow-down text-yellow-600 text-xl mb-1"></i>
+                          <div class="text-xs text-gray-600">Comprado</div>
+                          <div class="text-sm font-bold text-yellow-700">{{ item.sumTotalProductoComprado }} {{ item.unidad.nombre_corto }}</div>
+                        </div>
+                      </div>
+              
+                      <!-- Pie con categoría y estado -->
+                      <div class="mt-4 flex justify-between items-center text-sm flex-wrap gap-2">
+                        
+                        <!-- Categoría -->
+                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded-full">
+                          {{ item.producto.categoria.nombre }}
+                        </span>
+                        <span class="text-blue-700 bg-blue-100 px-3 py-1 rounded-lg font-bold text-sm shadow-sm">
+                            {{ item.cantidad }} {{ item.unidad.nombre_corto }}
+                        </span>
+                        <!-- Estado -->
+                        <p-tag 
+                          [value]="utils.getStatus(item.estado)" 
+                          [severity]="utils.getSeverity(item.estado)"
+                          class="text-xs">
+                        </p-tag>
+                      </div>
+              
+                    </div>
+                  </div>
+                </div>
+              </ng-template>     
+        </p-dataview>
+    </div>
+</div>

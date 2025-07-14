@@ -25,6 +25,94 @@ export class AppMenu {
                 items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
             },
             {
+                label: 'Menu', 
+                items: [
+                    {
+                        label: 'Modulo Administracion',
+                        icon: 'pi pi-fw pi-tablet',
+                        //routerLink: ['/pages'],
+                        items: [
+                            { label: 'Configuracion', icon: 'pi pi-fw pi-tablet', routerLink: ['/configuracion'] },
+                        ]
+                    },
+                    {
+                        label: 'Modulo Producto',
+                        icon: 'pi pi-fw pi-tablet',
+                        //routerLink: ['/pages'],
+                        items: [
+                            { label: 'Categoria', icon: 'pi pi-fw pi-tablet', routerLink: ['/categoria'] },
+                            { label: 'Unidad', icon: 'pi pi-fw pi-tablet', routerLink: ['/unidad'] },
+                            { label: 'Tipo Producto', icon: 'pi pi-fw pi-tablet', routerLink: ['/tipo_producto'] },
+                            { label: 'Producto', icon: 'pi pi-fw pi-tablet', routerLink: ['/producto'] },
+                            { label: 'Producto Envase', icon: 'pi pi-fw pi-tablet', routerLink: ['/ProductoEnvase'] }
+                        ]
+                    },
+                    {
+                        label: 'Modulo Inventario',
+                        icon: 'pi pi-fw pi-tablet',
+                        //routerLink: ['/pages'],
+                        items: [
+                            { label: 'Inventario', icon: 'pi pi-fw pi-tablet', routerLink: ['/Inventario'] },
+                        ]
+                    },
+                    {
+                        label: 'Modulo Venta',
+                        icon: 'pi pi-fw pi-tablet',
+                        //routerLink: ['/pages'],
+                        items: [
+                            { label: 'Gestion', icon: 'pi pi-fw pi-calendar', routerLink: ['/gestion'] },
+                            { label: 'Cultivo', icon: 'pi pi-fw pi-tablet', routerLink: ['/cultivo'] },
+                            { label: 'Nota Venta', icon: 'pi pi-fw pi-id-card', routerLink: ['/NotaVenta/grupo'] },
+                            { label: 'Cliente', icon: 'pi pi-fw pi-user', routerLink: ['/cliente'] }
+                        ]
+                    },
+                    {
+                        label: 'Modulo Compra',
+                        icon: 'pi pi-fw pi-tablet',
+                        //routerLink: ['/pages'],
+                        items: [
+                            { label: 'Nota Compra', icon: 'pi pi-fw pi-id-card', routerLink: ['/NotaCompra/grupo'] },
+                            { label: 'Proveedor', icon: 'pi pi-fw pi-user', routerLink: ['/proveedor'] },
+                            {
+                                label: 'Plan Pago',
+                                icon: 'pi pi-fw pi-tablet',
+                                items: [
+                                    {
+                                        label: 'Plan Pago Compra',
+                                        icon: 'pi pi-fw pi-id-card',  
+                                        routerLink: ['/NotaDevolucion/grupo']
+                                    },
+                                    {
+                                        label: 'Plan Pago Venta',
+                                        icon: 'pi pi-fw pi-id-card',  
+                                        routerLink: ['/NotaDevolucion/grupo']
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        label: 'Devolucion',
+                        icon: 'pi pi-fw pi-tablet',
+                        items: [
+                            {
+                                label: 'Nota Devolucion Venta',
+                                icon: 'pi pi-fw pi-id-card',  
+                                routerLink: ['/NotaDevolucion/grupo']
+                            },
+                            {
+                                label: 'Nota Devolucion Compra',
+                                icon: 'pi pi-fw pi-id-card',  
+                                routerLink: ['/NotaDevolucion/grupo',2]
+                               // this.router.navigate(['/NotaVenta/grupo', 1]);
+                            }
+                        ]
+                    }
+                ]
+            },
+  /*
+            },
+            {
                 label: 'UI Components',
                 items: [
                     { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
@@ -152,6 +240,7 @@ export class AppMenu {
                     }
                 ]
             }
+*/
         ];
     }
 }

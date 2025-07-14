@@ -1,0 +1,76 @@
+<p-toolbar styleClass="mb-6">
+    <ng-template #start>
+        <p-button label="Nuevo" icon="pi pi-plus" severity="primary" class="mr-2" (click)="openNew()" />
+    </ng-template>
+</p-toolbar>
+<p-table
+        #dt
+        [value]="productos()"
+        [rows]="perPage"
+        [paginator]="true"
+        [tableStyle]="{ 'min-width': '50rem'}"
+        [rowHover]="true"
+        dataKey="id"
+        currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[5, 10, 25]"
+      
+        (onSort)="onSortChange($event)"
+        [totalRecords]="totalRecords"
+        [loading]="loading"
+        [lazy]="true"
+        (onPage)="onPageChange($event)"
+        [(first)]="firstRecord"
+    >
+    <ng-template #caption>
+        <div class="flex items-center justify-between">
+            <h5 class="m-0">Modulo Producto</h5>
+            <p-iconfield>
+                <p-inputicon styleClass="pi pi-search" />
+                <input pInputText type="text" (input)="onGlobalFilter($event)" placeholder="Search..." />
+            </p-iconfield>
+        </div>
+    </ng-template>
+    <ng-template #header >
+        <tr>
+            <th pSortableColumn="id" style="width: 3rem">id <p-sortIcon field="id" /></th>
+            <th pSortableColumn="nombre" style="width: 10rem">Nombre <p-sortIcon field="nombre" /></th>
+            <th pSortableColumn="descripcion" style="width: 12rem">Description <p-sortIcon field="descripcion" /></th>
+            <th style="width: 5rem">Dosis </th>
+            <th style="width: 5rem">Categoria </th>
+            <th style="width: 5rem">Tipo Producto </th>
+            <th style="width: 5rem">Estado</th>
+            <th style="width: 5rem">Accion</th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-producto>
+        <tr>
+            <td style="width: 3rem">{{ producto.id }}</td>
+            <td style="width: 10rem">{{ producto.nombre }}</td>
+            <td style="width: 12rem">{{ producto.descripcion }}</td>
+            <td style="width: 5rem">{{ producto.dosis }}</td>
+            <td style="width: 5rem">{{ producto.categoria.nombre }}</td>
+            <td style="width: 5rem">{{ producto.tipo_producto.nombre }}</td>
+            <td style="width: 5rem; text-align: right;" >
+                <p-tag [value]="utils.getStatus(producto.estado)" [severity]="utils.getSeverity(producto.estado)" />
+            </td>
+            <td style="width: 5rem; text-align: right; white-space: nowrap;" >
+                <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true" (click)="editProducto(producto)" />
+                <ng-container *ngIf="producto.estado; else restoreButton">
+                    <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true"  (click)="deleteProducto(producto)"/>
+                </ng-container>
+                <ng-template #restoreButton>
+                    <p-button icon="pi pi-refresh" severity="success" [rounded]="true" [outlined]="true"  (click)="restoreProducto(producto)"/>
+                </ng-template>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+
+<p-confirmdialog [style]="{ width: '450px' }" />
+<p-toast position="top-right"></p-toast>
+<app-producto-form [visible]="productoDialog" [producto]="producto" (visibleChange)="ProductocloseDialog($event)"></app-producto-form>
+
+
+

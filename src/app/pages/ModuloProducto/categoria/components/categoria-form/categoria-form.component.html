@@ -1,0 +1,58 @@
+<p-dialog 
+  [(visible)]="visible" 
+  [style]="{ width: '600px' }" 
+  [modal]="true" 
+  [closable]="false"
+  [draggable]="false"
+  [resizable]="false"
+  [breakpoints]="{ '960px': '90vw', '640px': '95vw' }"
+>
+  <!-- HEADER CON ÍCONO -->
+  <ng-template #header>
+    <strong><h2 class="text-xl font-bold">Formulario Categoria</h2></strong>
+  </ng-template>
+
+  <!-- CUERPO -->
+  <ng-template #content>
+    <p-fluid>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Nombre -->
+        <div class="flex flex-col">
+          <label class="block font-semibold mb-1">Nombre</label>
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-pencil"></i>
+            </p-inputgroup-addon>
+            <input 
+              pInputText 
+              type="text" 
+              [(ngModel)]="categoria.nombre" 
+              class="w-full" 
+              placeholder="Ej: Frutas" 
+            />
+          </p-inputgroup>
+        </div>
+      </div>
+    </p-fluid>
+  </ng-template>
+
+  <!-- FOOTER -->
+  <ng-template #footer>
+    <div class="flex justify-end gap-3">
+      <p-button 
+        label="Cancelar" 
+        severity="secondary" 
+        icon="pi pi-times" 
+        class="p-button-outlined"
+        (click)="closeDialog()" 
+      />
+      <p-button 
+        [label]="categoria.id ? 'Actualizar' : 'Guardar'" 
+        severity="info" 
+        [icon]="saving ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
+        [disabled]="saving"
+        (click)="saveCategoria()" 
+      />
+    </div>
+  </ng-template>
+</p-dialog>

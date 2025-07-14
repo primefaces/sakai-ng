@@ -5,12 +5,14 @@ import { CommonModule } from '@angular/common';
 import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigurator } from './app.configurator';
 import { LayoutService } from '../service/layout.service';
+import { AuthModule } from "../../pages/ModuloAuth/auth/auth.module";
 
 @Component({
     selector: 'app-topbar',
     standalone: true,
-    imports: [RouterModule, CommonModule, StyleClassModule, AppConfigurator],
-    template: ` <div class="layout-topbar">
+    imports: [RouterModule, CommonModule, StyleClassModule, AppConfigurator, AuthModule],
+    template: ` 
+    <div class="layout-topbar">
         <div class="layout-topbar-logo-container">
             <button class="layout-menu-button layout-topbar-action" (click)="layoutService.onMenuToggle()">
                 <i class="pi pi-bars"></i>
@@ -33,7 +35,7 @@ import { LayoutService } from '../service/layout.service';
                         />
                     </g>
                 </svg>
-                <span>SAKAI</span>
+                <span>AGRO</span>
             </a>
         </div>
 
@@ -58,10 +60,9 @@ import { LayoutService } from '../service/layout.service';
                 </div>
             </div>
 
-            <button class="layout-topbar-menu-button layout-topbar-action" pStyleClass="@next" enterFromClass="hidden" enterActiveClass="animate-scalein" leaveToClass="hidden" leaveActiveClass="animate-fadeout" [hideOnOutsideClick]="true">
+            <button (click)=" profileMenuVisible = false " class="layout-topbar-menu-button layout-topbar-action" pStyleClass="@next" enterFromClass="hidden" enterActiveClass="animate-scalein" leaveToClass="hidden" leaveActiveClass="animate-fadeout" [hideOnOutsideClick]="true">
                 <i class="pi pi-ellipsis-v"></i>
             </button>
-
             <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
                     <button type="button" class="layout-topbar-action">
@@ -72,19 +73,26 @@ import { LayoutService } from '../service/layout.service';
                         <i class="pi pi-inbox"></i>
                         <span>Messages</span>
                     </button>
-                    <button type="button" class="layout-topbar-action">
-                        <i class="pi pi-user"></i>
-                        <span>Profile</span>
+                    <button type="button" class="layout-topbar-action" (click)="toggleProfileMenu()">
+                      <i class="pi pi-user"></i>
+                      <span>profile</span>
                     </button>
+                    <app-auth-profile *ngIf="profileMenuVisible" [visible]="profileMenuVisible" (close)="profileMenuVisible = false" ></app-auth-profile>
                 </div>
             </div>
         </div>
-    </div>`
+    </div>
+`
 })
 export class AppTopbar {
     items!: MenuItem[];
 
     constructor(public layoutService: LayoutService) {}
+    profileMenuVisible = false;
+
+    toggleProfileMenu() {
+      this.profileMenuVisible = !this.profileMenuVisible;
+    }
 
     toggleDarkMode() {
         this.layoutService.layoutConfig.update((state) => ({ ...state, darkTheme: !state.darkTheme }));
