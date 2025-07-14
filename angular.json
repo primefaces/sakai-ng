@@ -51,6 +51,7 @@
                                     "maximumError": "4kb"
                                 }
                             ],
+                            "baseHref": "/src/",
                             "outputHashing": "all"
                         },
                         "development": {
