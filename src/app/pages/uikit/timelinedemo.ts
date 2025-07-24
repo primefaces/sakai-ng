@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { TimelineModule } from 'primeng/timeline';
-import { CardModule } from 'primeng/card';
-import { CommonModule } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
+import {Component} from '@angular/core';
+import {TimelineModule} from 'primeng/timeline';
+import {CardModule} from 'primeng/card';
+import {CommonModule} from '@angular/common';
+import {ButtonModule} from 'primeng/button';
 
 @Component({
     selector: 'app-timeline-demo',
     standalone: true,
     imports: [CommonModule, TimelineModule, ButtonModule, CardModule],
-    template: ` <div class="grid grid-cols-12 gap-8">
-        <div class="col-span-6">
+    template: `<div class="grid grid-cols-12 gap-8">
+        <div class="col-span-12 sm:col-span-6">
             <div class="card">
                 <div class="font-semibold text-xl mb-4">Left Align</div>
                 <p-timeline [value]="events1">
@@ -19,7 +19,7 @@ import { ButtonModule } from 'primeng/button';
                 </p-timeline>
             </div>
         </div>
-        <div class="col-span-6">
+        <div class="col-span-12 sm:col-span-6">
             <div class="card">
                 <div class="font-semibold text-xl mb-4">Right Align</div>
                 <p-timeline [value]="events1" align="right">
@@ -29,7 +29,7 @@ import { ButtonModule } from 'primeng/button';
                 </p-timeline>
             </div>
         </div>
-        <div class="col-span-6">
+        <div class="col-span-12 sm:col-span-6">
             <div class="card">
                 <div class="font-semibold text-xl mb-4">Alternate Align</div>
                 <p-timeline [value]="events1" align="alternate">
@@ -39,7 +39,7 @@ import { ButtonModule } from 'primeng/button';
                 </p-timeline>
             </div>
         </div>
-        <div class="col-span-6">
+        <div class="col-span-12 sm:col-span-6">
             <div class="card">
                 <div class="font-semibold text-xl mb-4">Opposite Content</div>
                 <p-timeline [value]="events1">
@@ -63,7 +63,7 @@ import { ButtonModule } from 'primeng/button';
                     </ng-template>
                     <ng-template #content let-event>
                         <p-card [header]="event.status" [subheader]="event.date">
-                            <img *ngIf="event.image" [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + event.image" [alt]="event.name" width="200" class="shadow" />
+                            <img *ngIf="event.image" [src]="'/images/product/' + event.image" [alt]="event.name" width="200" class="shadow" />
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse,
                                 cupiditate neque quas!
