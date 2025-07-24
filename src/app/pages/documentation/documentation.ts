@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
         <div class="card">
             <div class="font-semibold text-2xl mb-4">Documentation</div>
             <div class="font-semibold text-xl mb-4">Get Started</div>
-            <p class="text-lg mb-4">Sakai is an application template for Angular and is distributed as a CLI project. Current versions is Angular v19 with PrimeNG v19. In case CLI is not installed already, use the command below to set it up.</p>
+            <p class="text-lg mb-4">Sakai is an application template for Angular and is distributed as a CLI project. Current versions is Angular v20 with PrimeNG v20. In case CLI is not installed already, use the command below to set it up.</p>
             <pre class="app-code">
 <code>npm install -g &#64;angular/cli</code></pre>
             <p class="text-lg mb-4">

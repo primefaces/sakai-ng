@@ -177,13 +177,13 @@ interface expandedRows {
                             {{ customer.balance | currency: 'USD' : 'symbol' }}
                         </td>
                         <td>
-                            <p-tag [value]="customer.status.toLowerCase()" [severity]="getSeverity(customer.status.toLowerCase())" styleClass="dark:!bg-surface-900" />
+                            <p-tag [value]="customer.status.toLowerCase()" [severity]="getSeverity(customer.status.toLowerCase())" styleClass="dark:bg-surface-900!" />
                         </td>
                         <td>
                             <p-progressbar [value]="customer.activity" [showValue]="false" [style]="{ height: '0.5rem' }" />
                         </td>
                         <td class="text-center">
-                            <p-tag [value]="customer.status.toLowerCase()" [severity]="getSeverity(customer.status.toLowerCase())" styleClass="dark:!bg-surface-900" />
+                            <p-tag [value]="customer.status.toLowerCase()" [severity]="getSeverity(customer.status.toLowerCase())" styleClass="dark:bg-surface-900!" />
                         </td>
                     </tr>
                 </ng-template>
@@ -282,7 +282,7 @@ interface expandedRows {
                             <p-rating [ngModel]="product.rating" [readonly]="true"></p-rating>
                         </td>
                         <td>
-                            <p-tag [value]="product.inventoryStatus.toLowerCase()" [severity]="getSeverity(product.inventoryStatus)" styleClass="dark:!bg-surface-900" />
+                            <p-tag [value]="product.inventoryStatus.toLowerCase()" [severity]="getSeverity(product.inventoryStatus)" styleClass="dark:bg-surface-900!" />
                         </td>
                     </tr>
                 </ng-template>
