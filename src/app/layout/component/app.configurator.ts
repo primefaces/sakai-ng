@@ -50,12 +50,15 @@ declare type SurfacesType = {
                             type="button"
                             [title]="primaryColor.name"
                             (click)="updateColors($event, 'primary', primaryColor)"
-                            [ngClass]="{ 'outline-primary': primaryColor.name === selectedPrimaryColor() }"
-                            class="border-none w-5 h-5 rounded-full p-0 cursor-pointer outline-none outline-offset-1"
+                            [ngClass]="{
+                                    'outline outline-primary': primaryColor.name === selectedPrimaryColor()
+                                }"
+                            class="cursor-pointer w-5 h-5 rounded-full flex shrink-0 items-center justify-center outline-offset-1 shadow"
                             [style]="{
-                                'background-color': primaryColor?.name === 'noir' ? 'var(--text-color)' : primaryColor?.palette?.['500']
-                            }"
-                        ></button>
+                                    'background-color': primaryColor?.name === 'noir' ? 'var(--text-color)' : primaryColor?.palette?.['500']
+                                }"
+                        >
+                        </button>
                     }
                 </div>
             </div>
@@ -67,11 +70,13 @@ declare type SurfacesType = {
                             type="button"
                             [title]="surface.name"
                             (click)="updateColors($event, 'surface', surface)"
-                            [ngClass]="{ 'outline-primary': selectedSurfaceColor() ? selectedSurfaceColor() === surface.name : layoutService.layoutConfig().darkTheme ? surface.name === 'zinc' : surface.name === 'slate' }"
-                            class="border-none w-5 h-5 rounded-full p-0 cursor-pointer outline-none outline-offset-1"
+                            class="cursor-pointer w-5 h-5 rounded-full flex shrink-0 items-center justify-center p-0 outline-offset-1"
+                            [ngClass]="{
+                                    'outline outline-primary': selectedSurfaceColor() ? selectedSurfaceColor() === surface.name : layoutService.layoutConfig().darkTheme ? surface.name === 'zinc' : surface.name === 'slate'
+                                }"
                             [style]="{
-                                'background-color': surface?.name === 'noir' ? 'var(--text-color)' : surface?.palette?.['500']
-                            }"
+                                    'background-color': surface?.palette?.['500']
+                                }"
                         ></button>
                     }
                 </div>
