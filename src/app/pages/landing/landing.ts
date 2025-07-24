@@ -27,7 +27,6 @@ import {AppFloatingConfigurator} from "@/layout/component/app.floatingconfigurat
                 <footer-widget />
             </div>
         </div>
-        <app-floating-configurator />
     `
 })
 export class Landing {}
