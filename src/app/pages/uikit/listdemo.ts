@@ -75,19 +75,25 @@ import { Product, ProductService } from '../service/product.service';
                     <div class="grid grid-cols-12 gap-4">
                         <div *ngFor="let item of items; let i = index" class="col-span-12 sm:col-span-6 lg:col-span-4 p-2">
                             <div class="p-6 border border-surface-200 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 rounded flex flex-col">
-                                <div class="bg-surface-50 flex justify-center rounded p-6">
-                                    <div class="relative mx-auto">
-                                        <img class="rounded w-full" src="https://primefaces.org/cdn/primevue/images/product/{{ item.image }}" [alt]="item.name" style="max-width: 300px" />
-                                        <div class="absolute bg-black/70 rounded-border" [style]="{ left: '4px', top: '4px' }">
-                                            <p-tag [value]="item.inventoryStatus" [severity]="getSeverity(item)"></p-tag>
-                                        </div>
+                                <div class="relative w-full shadow-sm">
+                                    <img class="rounded w-full" src="https://primefaces.org/cdn/primevue/images/product/{{ item.image }}" [alt]="item.name" />
+                                    <div
+                                        class="absolute bg-black/70 rounded-border"
+                                        [style]="{
+                                            left: '4px',
+                                            top: '4px'
+                                        }"
+                                    >
+                                        <p-tag [value]="item.inventoryStatus" [severity]="getSeverity(item)"></p-tag>
                                     </div>
                                 </div>
                                 <div class="pt-12">
                                     <div class="flex flex-row justify-between items-start gap-2">
                                         <div>
                                             <span class="font-medium text-surface-500 dark:text-surface-400 text-sm">{{ item.category }}</span>
-                                            <div class="text-lg font-medium mt-1">{{ item.name }}</div>
+                                            <div class="text-lg font-medium mt-1">
+                                                {{ item.name }}
+                                            </div>
                                         </div>
                                         <div class="bg-surface-100 p-1" style="border-radius: 30px">
                                             <div
@@ -99,7 +105,7 @@ import { Product, ProductService } from '../service/product.service';
                                                         0px 1px 2px 0px rgba(0, 0, 0, 0.06);
                                                 "
                                             >
-                                                <span class="text-surface-900 font-medium text-sm">{{ item.rating }}</span>
+                                                <span class="text-surface-900 font-medium text-xs">{{ item.rating }}</span>
                                                 <i class="pi pi-star-fill text-yellow-500"></i>
                                             </div>
                                         </div>
