@@ -1,0 +1,1438 @@
+[
+  {
+    "id": "01-_progressive",
+    "name": "Progressive Commercial",
+    "type": "MGA",
+    "submissionEmail": "fleet@commercial.progressive.com",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 1",
+    "riskLevel": "NORMAL",
+    "retention": "None",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": false
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": true,
+      "reefer": false,
+      "flatbed": false,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "progressive",
+        "name": "Progressive",
+        "rating": "A+",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "02k-_brazos",
+    "name": "Brazos Specialty",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "Low",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": false
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "accredited_surety",
+        "name": "Accredited Surety",
+        "rating": "A-",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "concert_specialty_sutton_specialty_insurance_florida_y_texas",
+        "name": "Concert Specialty Sutton Specialty Insurance Florida Y Texas",
+        "rating": "A-",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "03_-_lp_riks",
+    "name": "LP Risk",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "Low",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": true
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": true,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "of_london_star",
+        "name": "Of London Star",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "co_lloyds",
+        "name": "Lloyd's of London",
+        "rating": "NR",
+        "type": "SURPLUS",
+        "isRRG": false
+      },
+      {
+        "id": "accredited",
+        "name": "Accredited",
+        "rating": "A-",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "specialty",
+        "name": "Specialty",
+        "rating": "A-",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "04k-_nta",
+    "name": "NTA (National Truck Underwriting)",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "Low",
+    "coverages": {
+      "al": true,
+      "pd": false,
+      "mtc": true,
+      "gl": false
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": false,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "insurance",
+        "name": "Insurance",
+        "rating": "A-",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "company",
+        "name": "Company",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "southlake",
+        "name": "Southlake",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "specialty",
+        "name": "Specialty",
+        "rating": "A-",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "05_-_qeo",
+    "name": "QEO Insurance Group",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "Medium",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": true
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": true,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 25,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "clear_blue",
+        "name": "Clear Blue",
+        "rating": "A-",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "06-_bass",
+    "name": "Bass Underwriters",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "Medium",
+    "coverages": {
+      "al": true,
+      "pd": false,
+      "mtc": true,
+      "gl": true
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": false,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": false,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "rating_adriatic_insurance_company_a_superior_am_best",
+        "name": "Rating Adriatic Insurance Company A+(superior) Am Best",
+        "rating": "A",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "rating_penn_america_insurance_company_a_excellent_am_best_rating",
+        "name": "Penn-America",
+        "rating": "A",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "lloyds_of_london_the_burlington_insurance_company_kinsale_insurance_company_a_excellent_am_best",
+        "name": "Lloyd's of London",
+        "rating": "A",
+        "type": "SURPLUS",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "07-_paramount",
+    "name": "Paramount General Agency",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 1",
+    "riskLevel": "NORMAL",
+    "retention": "Low",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": false
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": false,
+      "sandGravel": false,
+      "autoHauler": false,
+      "intermodal": true
+    },
+    "requirements": {
+      "minDriverAge": 23,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "occidental_nafta_highlander",
+        "name": "Occidental Nafta Highlander",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "agricultural",
+        "name": "Agricultural",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "08rocklake",
+    "name": "Rocklake",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 3",
+    "riskLevel": "NORMAL",
+    "retention": "High",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": false,
+      "gl": false
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": false,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": true,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "rocklake_carrier",
+        "name": "Rocklake Insurance Company",
+        "rating": "A-",
+        "type": "SURPLUS",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "09brecht_&_associates",
+    "name": "Brecht & Associates",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 1",
+    "riskLevel": "NORMAL",
+    "retention": "$5,000",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": true
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": true,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": true,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 25,
+      "minCdlExperience": 2,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "whilsire_lloyds_of_london",
+        "name": "Lloyd's of London",
+        "rating": "NR",
+        "type": "SURPLUS",
+        "isRRG": false
+      },
+      {
+        "id": "canal",
+        "name": "Canal Insurance",
+        "rating": "A-",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "atlantic_casualty",
+        "name": "Atlantic Casualty",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "great_lakes_the_burlington",
+        "name": "Great Lakes",
+        "rating": "A",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "10treaty",
+    "name": "Treaty",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "$2,500",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": true
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": false,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": true
+    },
+    "requirements": {
+      "minDriverAge": 20,
+      "minCdlExperience": 2,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "great_american",
+        "name": "Great American",
+        "rating": "A+",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "alpine",
+        "name": "Alpine",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "great_lake",
+        "name": "Great Lake",
+        "rating": "A",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "canopius",
+        "name": "Canopius",
+        "rating": "A-",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "lloyds",
+        "name": "Lloyd's of London",
+        "rating": "NR",
+        "type": "SURPLUS",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "11gsiay",
+    "name": "GSIAY",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 3",
+    "riskLevel": "NORMAL",
+    "retention": "High",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": false
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "trailblazer",
+        "name": "Trailblazer",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "12_5_star",
+    "name": "5 Star Insurance",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "Medium",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": true
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": true,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": false,
+      "autoHauler": true,
+      "intermodal": true
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 2,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "knightbrook_nirvana",
+        "name": "Knightbrook Nirvana",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "trisura",
+        "name": "Trisura",
+        "rating": "A-",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "13_amwins",
+    "name": "Amwins Transportation",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 1",
+    "riskLevel": "NORMAL",
+    "retention": "Low",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": true
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 2,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "acepta_negocios_en_la_ciudad_de",
+        "name": "Acepta Negocios En La Ciudad De",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "por_que_comparten_s",
+        "name": "Por Que Comparten S",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "canopius",
+        "name": "Canopius",
+        "rating": "A-",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "great_americ_a_canal",
+        "name": "Canal Insurance",
+        "rating": "A",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "coberturas_al_depende_el",
+        "name": "Coberturas Al Depende El",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "wilshire",
+        "name": "Wilshire",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "14brooklyn",
+    "name": "Brooklyn",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "None",
+    "coverages": {
+      "al": true,
+      "pd": false,
+      "mtc": true,
+      "gl": false
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": false,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "brooklyn",
+        "name": "Brooklyn",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "15_bhhc",
+    "name": "BHHC",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "Low",
+    "coverages": {
+      "al": false,
+      "pd": true,
+      "mtc": true,
+      "gl": true
+    },
+    "appetite": {
+      "autoLiability": false,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "bhhc",
+        "name": "Bhhc",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "16_county_hall",
+    "name": "County Hall Insurance",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "Low",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": false
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": false,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": true,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "county_hall",
+        "name": "County Hall",
+        "rating": "A",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "17crc",
+    "name": "CRC Group",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 3",
+    "riskLevel": "NORMAL",
+    "retention": "$10,000",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": false
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": false,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "kan_mo_nm_ok_",
+        "name": "Kan , Mo, Nm, Ok,",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "states",
+        "name": "States",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "tenn_and_tx_iat_ark_",
+        "name": "Tenn , And Tx Iat- Ark,",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "kan_la_mo_nm_ok_",
+        "name": "Kan , La, Mo, Nm, Ok,",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "_all",
+        "name": "â€“ All",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "18_dynamic",
+    "name": "Dynamic Risk Solutions",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "Low",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": true
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "_para_la_al_es_categoria_b_",
+        "name": "(para La Al Es Categoria B)",
+        "rating": "B",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "canopius_bulldog",
+        "name": "Canopius",
+        "rating": "A-",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "aife_hartwell",
+        "name": "Aife Hartwell",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "lloyds",
+        "name": "Lloyd's of London",
+        "rating": "NR",
+        "type": "SURPLUS",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "19great_west",
+    "name": "West",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "Low",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": false
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 6,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "_6_a_os_en_el_negocio",
+        "name": "+ 6 AÃ±os En El Negocio",
+        "rating": "A",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "great_lakes",
+        "name": "Great Lakes",
+        "rating": "A",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "20jm_wilson",
+    "name": "Wilson",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "Low",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": false
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": true,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "starstone",
+        "name": "Starstone",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "kinsale",
+        "name": "Kinsale",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "_colony_markel_",
+        "name": "â€¢ Colony\tâ€¢ Markel\tâ€¢",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "_centrex_lloyds_of_london_scottsdale_nationwide",
+        "name": "Lloyd's of London",
+        "rating": "NR",
+        "type": "SURPLUS",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "21mtm",
+    "name": "MTM",
+    "type": "RRG",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 4",
+    "riskLevel": "HIGH_RISK",
+    "retention": "$25,000 (RRG)",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": false
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": false,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 19,
+      "minCdlExperience": 3,
+      "notes": ""
+    },
+    "carriers": [],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "22_profesional",
+    "name": "Professional RRG",
+    "type": "RRG",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 4",
+    "riskLevel": "HIGH_RISK",
+    "retention": "HIGH RISK (RRG)",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": false
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 2,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "propio_pfa_o_porfuera",
+        "name": "Propio Pfa O Porfuera",
+        "rating": "NR",
+        "type": "RRG",
+        "isRRG": true
+      },
+      {
+        "id": "professional",
+        "name": "Professional",
+        "rating": "NR",
+        "type": "RRG",
+        "isRRG": true
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "NR"
+  },
+  {
+    "id": "23_sga_southern_general",
+    "name": "SGA Southern General",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "Low",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": true
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": true,
+      "reefer": false,
+      "flatbed": false,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": true,
+      "intermodal": true
+    },
+    "requirements": {
+      "minDriverAge": 23,
+      "minCdlExperience": 3,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "no_new_venture_tienen_que_tener_3_years_o_mas",
+        "name": "No New Venture- Tienen Que Tener 3 Years O Mas",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "prime",
+        "name": "Prime",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "24southwest_risk",
+    "name": "Risk",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "Low",
+    "coverages": {
+      "al": true,
+      "pd": true,
+      "mtc": true,
+      "gl": true
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": false,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 3,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "years",
+        "name": "Years",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "busineess_con_target",
+        "name": "Busineess Con Target",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "price",
+        "name": "Price",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "transvers",
+        "name": "Transvers",
+        "rating": "A-",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  },
+  {
+    "id": "25_star_mutual",
+    "name": "Star Mutual",
+    "type": "MGA",
+    "submissionEmail": "CONTACT_AGENT_MANUALLY",
+    "website": "",
+    "phone": "",
+    "tier": "TIER 2",
+    "riskLevel": "NORMAL",
+    "retention": "Low",
+    "coverages": {
+      "al": true,
+      "pd": false,
+      "mtc": false,
+      "gl": false
+    },
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": false,
+      "cargo": false,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": true,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 1,
+      "notes": ""
+    },
+    "carriers": [
+      {
+        "id": "mutual",
+        "name": "Mutual",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "1_a_o_en_el_negocio",
+        "name": "1 AÃ±o En El Negocio",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "a_os_ellos_usan_su_propia_financiera",
+        "name": "AÃ±os Ellos Usan Su Propia Financiera",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      },
+      {
+        "id": "para",
+        "name": "Para",
+        "rating": "NR",
+        "type": "ADMITTED",
+        "isRRG": false
+      }
+    ],
+    "auditQuestions": [],
+    "rating": "A"
+  }
+]

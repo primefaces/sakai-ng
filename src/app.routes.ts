@@ -1,23 +1,49 @@
 import { Routes } from '@angular/router';
-import { AppLayout } from './app/layout/component/app.layout';
-import { Dashboard } from './app/pages/dashboard/dashboard';
-import { Documentation } from './app/pages/documentation/documentation';
-import { Landing } from './app/pages/landing/landing';
-import { Notfound } from './app/pages/notfound/notfound';
+
+import { authGuard } from './app/core/guards/auth.guard';
 
 export const appRoutes: Routes = [
     {
         path: '',
-        component: AppLayout,
+        canActivate: [authGuard],
         children: [
-            { path: '', component: Dashboard },
-            { path: 'uikit', loadChildren: () => import('./app/pages/uikit/uikit.routes') },
-            { path: 'documentation', component: Documentation },
-            { path: 'pages', loadChildren: () => import('./app/pages/pages.routes') }
+            {
+                path: '',
+                loadComponent: () => import('./app/pages/dashboard/dashboard.component').then(m => m.DashboardComponent)
+            },
+            {
+                path: 'dashboard',
+                loadComponent: () => import('./app/pages/dashboard/dashboard.component').then(m => m.DashboardComponent)
+            },
+            {
+                path: 'markets',
+                loadComponent: () => import('./app/pages/markets/markets.component').then(m => m.MarketsComponent)
+            },
+            {
+                path: 'mga',
+                loadComponent: () => import('./app/pages/mga/mga.component').then(m => m.MgaComponent)
+            },
+            {
+                path: 'underwriting',
+                loadComponent: () => import('./app/pages/underwriting-workbench/underwriting-workbench.component').then(m => m.UnderwritingWorkbenchComponent)
+            },
+            {
+                path: 'quotes',
+                loadComponent: () => import('./app/pages/quotes/quote-list.component').then(m => m.QuoteListComponent)
+            },
+            {
+                path: 'quotes/new',
+                loadComponent: () => import('./app/pages/new-quote/new-quote.component').then(m => m.NewQuoteComponent)
+            },
+            {
+                path: 'quotes/:id',
+                loadComponent: () => import('./app/pages/quotes/quote-detail.component').then(m => m.QuoteDetailComponent)
+            }
         ]
     },
-    { path: 'landing', component: Landing },
-    { path: 'notfound', component: Notfound },
-    { path: 'auth', loadChildren: () => import('./app/pages/auth/auth.routes') },
-    { path: '**', redirectTo: '/notfound' }
+    {
+        path: 'login',
+        loadComponent: () => import('./app/pages/login/login.component').then(m => m.LoginComponent)
+    },
+    { path: '**', redirectTo: '' }
 ];

@@ -1,0 +1,140 @@
+{
+  "FLATBED": {
+    "NEW_VENTURE": {
+      "primary": ["progressive"],
+      "secondary": ["1st_capital", "cover_whale"],
+      "notes": "Progressive es la opción #1. Si falla, intentar First Capital."
+    },
+    "1_YEAR": {
+      "primary": ["progressive", "cover_whale"],
+      "secondary": ["clear_blue_qeo", "paramount"],
+      "notes": "Cover Whale entra fuerte al año 1."
+    },
+    "2_YEARS": {
+      "primary": ["trisura", "rocklake", "paramount"],
+      "secondary": ["great_west", "amwins"],
+      "notes": "Mercados preferentes (Tier 1) disponibles."
+    },
+    "3_YEARS_PLUS": {
+      "primary": ["southwest_risk", "canal", "amwins"],
+      "secondary": ["one80"],
+      "notes": "Acceso a mercados Premium."
+    }
+  },
+  "SAND_GRAVEL": {
+    "NEW_VENTURE": {
+      "primary": ["progressive", "fortegra"],
+      "secondary": ["clear_blue_qeo"],
+      "notes": "Progressive #1. Fortegra para Dump Trucks (requiere PD $20k)."
+    },
+    "1_YEAR": {
+      "primary": ["progressive", "across_america"],
+      "secondary": ["bulldog_national"],
+      "notes": "Across America es especialista en este nicho."
+    },
+    "3_YEARS_PLUS": {
+      "primary": ["southwest_risk", "great_west"],
+      "secondary": ["across_america"],
+      "notes": "Mercados estándar disponibles."
+    }
+  },
+  "HOTSHOT": {
+    "NEW_VENTURE": {
+      "primary": ["progressive"],
+      "secondary": ["trisura"],
+      "notes": "Trisura solo considera Liability Only."
+    },
+    "1_YEAR": {
+      "primary": ["progressive", "cover_whale"],
+      "secondary": ["one80", "amwins"],
+      "notes": "Cover Whale solo si no es Auto Hauler. Amwins: Precios altos en Harris/Fort-Bend."
+    }
+  },
+  "DRY_VAN": {
+    "NEW_VENTURE": {
+      "primary": ["progressive", "great_west"],
+      "secondary": ["national_indemnity"],
+      "notes": "Great West acepta 1 unidad para NV."
+    },
+    "2_YEARS": {
+      "primary": ["paramount", "rocklake", "trisura"],
+      "secondary": ["cover_whale"],
+      "notes": "Amplia disponibilidad de mercados."
+    }
+  },
+  "REEFER": {
+    "NEW_VENTURE": {
+      "primary": ["progressive"],
+      "secondary": ["qeo", "nta"],
+      "notes": "Progressive es la opción #1 para refrigerados."
+    },
+    "1_YEAR": {
+      "primary": ["bass", "paramount"],
+      "secondary": ["brecht"],
+      "notes": "Bass y Paramount especialistas en reefer."
+    },
+    "2_YEARS": {
+      "primary": ["amwins", "5_star"],
+      "secondary": ["treaty"],
+      "notes": "Mercados premium disponibles."
+    }
+  },
+  "CAR_HAULER": {
+    "NEW_VENTURE": {
+      "primary": ["progressive"],
+      "secondary": ["1st_capital"],
+      "notes": "Mercado limitado para auto haulers NV."
+    },
+    "1_YEAR": {
+      "primary": ["5_star", "jm_wilson"],
+      "secondary": ["treaty"],
+      "notes": "5 Star tiene buen apetito para car haulers."
+    },
+    "3_YEARS_PLUS": {
+      "primary": ["county_hall", "5_star"],
+      "secondary": ["southwest_risk"],
+      "notes": "Mejor pricing con experiencia."
+    }
+  },
+  "INTERMODAL": {
+    "NEW_VENTURE": {
+      "primary": ["progressive"],
+      "secondary": ["paramount"],
+      "notes": "Paramount considera intermodal para NV."
+    },
+    "2_YEARS": {
+      "primary": ["treaty", "paramount"],
+      "secondary": ["5_star"],
+      "notes": "Treaty es especialista en intermodal."
+    },
+    "3_YEARS_PLUS": {
+      "primary": ["treaty", "brecht"],
+      "secondary": ["southwest_risk"],
+      "notes": "Mercados estándar disponibles."
+    }
+  },
+  "LOGGING": {
+    "1_YEAR": {
+      "primary": ["bass", "brecht"],
+      "secondary": ["amwins"],
+      "notes": "Mercado especializado - requiere experiencia."
+    },
+    "3_YEARS_PLUS": {
+      "primary": ["brecht", "amwins"],
+      "secondary": ["southwest_risk"],
+      "notes": "Mejor disponibilidad con historial probado."
+    }
+  },
+  "TOWING": {
+    "NEW_VENTURE": {
+      "primary": ["progressive"],
+      "secondary": ["qeo"],
+      "notes": "Opciones limitadas para towing NV."
+    },
+    "1_YEAR": {
+      "primary": ["progressive", "cover_whale"],
+      "secondary": ["qeo"],
+      "notes": "Cover Whale considera towing con restricciones."
+    }
+  }
+}

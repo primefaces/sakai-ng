@@ -1,0 +1,307 @@
+<div class="quote-wizard-container flex flex-column h-screen overflow-hidden bg-gray-900 font-sans">
+    <!-- Header -->
+    <div class="header-section flex justify-content-between align-items-center px-4 py-3 border-bottom-1 border-gray-800 bg-gray-900 shadow-4 z-1">
+        <div>
+             <h1 class="text-2xl font-bold m-0 text-white tracking-tight flex align-items-center gap-2">
+                MARKET FINDER 
+                <span class="text-amber-500 text-xs px-2 py-1 surface-800 border-round border-1 border-amber-900 font-mono">v2.1</span>
+            </h1>
+             <p class="text-gray-500 m-0 font-mono text-xs mt-1">AI-Assisted Underwriting Workflow</p>
+        </div>
+        <div class="w-20rem">
+            <p-steps [model]="items" [(activeIndex)]="activeStep" [readonly]="true" styleClass="custom-steps p-steps-xs"></p-steps>
+        </div>
+    </div>
+
+    <div class="flex-grow-1 overflow-y-auto custom-scrollbar p-4 relative">
+        
+        <!-- STEP 1: RISK PROFILE -->
+        <div *ngIf="activeStep === 0" class="fadein animation-duration-300">
+            <div class="terminal-card surface-card shadow-6 border-round overflow-hidden max-w-50rem mx-auto border-top-3 border-amber-600 bg-gray-900 border-1 border-gray-800">
+                <div class="p-4 border-bottom-1 border-gray-800 bg-gray-900 flex justify-content-between align-items-center">
+                    <h2 class="text-lg font-bold m-0 text-white uppercase tracking-wider flex align-items-center gap-2">
+                        <i class="pi pi-id-card text-amber-600"></i> Risk Profile
+                    </h2>
+                    <p-tag severity="warning" value="REQUIRED FIELDS" class="font-mono"></p-tag>
+                </div>
+                
+                <div class="p-5 grid form-grid custom-inputs">
+                    <!-- Cargo Type -->
+                    <div class="col-12 md:col-6 mb-4">
+                        <p-floatLabel>
+                             <p-select 
+                                inputId="cargo"
+                                [options]="cargoTypes()" 
+                                [ngModel]="filterCriteria().cargoType"
+                                (ngModelChange)="updateFilter('cargoType', $event)"
+                                [showClear]="true"
+                                optionLabel="label"
+                                optionValue="value"
+                                styleClass="w-full text-sm bg-gray-800 border-gray-700 text-white">
+                            </p-select>
+                            <label for="cargo" class="text-gray-400">Cargo Type</label>
+                        </p-floatLabel>
+                    </div>
+    
+                    <!-- Tenure -->
+                    <div class="col-12 md:col-6 mb-4">
+                        <p-floatLabel>
+                             <p-select 
+                                inputId="tenure"
+                                [options]="tenureOptions" 
+                                [ngModel]="filterCriteria().yearsInBusiness"
+                                (ngModelChange)="updateFilter('yearsInBusiness', $event)"
+                                optionLabel="label"
+                                optionValue="value"
+                                styleClass="w-full text-sm bg-gray-800 border-gray-700 text-white">
+                            </p-select>
+                            <label for="tenure" class="text-gray-400">Time in Business</label>
+                        </p-floatLabel>
+                    </div>
+    
+                    <!-- Driver Age -->
+                    <div class="col-12 md:col-6 mb-4">
+                        <p-floatLabel>
+                            <p-inputNumber 
+                                inputId="age"
+                                [ngModel]="filterCriteria().driverAge"
+                                (ngModelChange)="updateFilter('driverAge', $event)"
+                                [min]="18" [max]="99" 
+                                [showButtons]="true"
+                                styleClass="w-full"
+                                inputStyleClass="w-full bg-gray-800 border-gray-700 text-white">
+                            </p-inputNumber>
+                            <label for="age" class="text-gray-400">Youngest Driver Age</label>
+                        </p-floatLabel>
+                    </div>
+    
+                    <!-- Vehicle Year -->
+                    <div class="col-12 md:col-6 mb-4">
+                        <p-floatLabel>
+                            <p-inputNumber 
+                                inputId="year"
+                                [ngModel]="filterCriteria().vehicleYear"
+                                (ngModelChange)="updateFilter('vehicleYear', $event)"
+                                [min]="1995" [max]="2030" 
+                                [useGrouping]="false"
+                                styleClass="w-full"
+                                inputStyleClass="w-full bg-gray-800 border-gray-700 text-white">
+                            </p-inputNumber>
+                            <label for="year" class="text-gray-400">Oldest Power Unit Year</label>
+                        </p-floatLabel>
+                    </div>
+                    
+                    <!-- Dash Cam -->
+                    <div class="col-12">
+                         <div class="flex align-items-center gap-3 p-3 surface-ground border-round border-1 border-gray-800 hover:border-gray-600 transition-colors cursor-pointer bg-gray-800" (click)="updateFilter('hasDashCam', !filterCriteria().hasDashCam)">
+                            <p-checkbox 
+                                [ngModel]="filterCriteria().hasDashCam"
+                                (ngModelChange)="updateFilter('hasDashCam', $event)"
+                                [binary]="true" 
+                                inputId="dashCam"
+                                (onClick)="$event.stopPropagation()"
+                                styleClass="terminal-checkbox">
+                            </p-checkbox>
+                            <div class="flex flex-column">
+                                <label class="font-bold text-sm text-gray-300 cursor-pointer">Fleet equipped with Dash Cameras?</label>
+                                <span class="text-xs text-gray-500">Enabling this may unlock preferred tiers.</span>
+                            </div>
+                            <i class="pi pi-camera text-2xl text-gray-600 ml-auto opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="p-4 bg-gray-900 border-top-1 border-gray-800 flex justify-content-end">
+                    <p-button 
+                        label="FIND MARKETS" 
+                        icon="pi pi-search" 
+                        iconPos="right"
+                        styleClass="p-button-warning font-bold border-noround px-5 shadow-4"
+                        (onClick)="analyzeMarkets()"
+                        [disabled]="!filterCriteria().cargoType">
+                    </p-button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- STEP 2: STRATEGY RESULTS -->
+        <div *ngIf="activeStep === 1" class="fadein animation-duration-300">
+            
+            <div class="flex justify-content-between align-items-center mb-4 sticky top-0 bg-gray-900 z-2 py-2 border-bottom-1 border-gray-800">
+                 <button pButton label="Modify Profile" icon="pi pi-arrow-left" class="p-button-text text-gray-500 p-button-sm hover:text-white" (click)="activeStep = 0"></button>
+                 <div class="text-gray-400 text-xs font-mono">RESULTS: {{ recommendations().recommended.length + recommendations().others.length }} MARKETS FOUND</div>
+            </div>
+
+            <!-- AGENCY PREFERRED -->
+            <div class="mb-5" *ngIf="recommendations().recommended.length > 0">
+                <div class="flex align-items-center gap-2 mb-3">
+                     <span class="text-amber-500 font-bold bg-amber-500-alpha-10 border-1 border-amber-500-alpha-30 px-3 py-1 border-round text-xs uppercase tracking-widest">AGENCY PREFERRED</span>
+                     <div class="h-1px bg-amber-900 flex-grow-1 opacity-50"></div>
+                </div>
+    
+                <div class="grid">
+                    <div class="col-12 md:col-6 lg:col-4 xl:col-3" *ngFor="let market of recommendations().recommended">
+                        <div class="market-card h-full flex flex-column justify-content-between cursor-pointer border-1 border-gray-800 hover:border-amber-500 transition-all bg-gray-900 shadow-4 relative overflow-hidden group">
+                           
+                           <!-- Hover Effect Line -->
+                           <div class="absolute top-0 left-0 w-full h-2px bg-transparent group-hover:bg-amber-500 transition-colors"></div>
+
+                            <div class="p-4">
+                                 <div class="flex justify-content-between mb-3 align-items-start gap-2">
+                                     <h3 class="m-0 text-lg font-bold text-white line-height-2">{{ market.name }}</h3>
+                                     <div *ngIf="market.riskLevel === 'HIGH_RISK'" class="bg-red-900 text-red-100 text-xs px-2 py-1 border-round font-bold flex align-items-center gap-1" pTooltip="Risk Retention Group - Strict Solvency Checks" tooltipPosition="left">
+                                         <i class="pi pi-exclamation-triangle text-xs"></i> RRG
+                                     </div>
+                                 </div>
+                                 
+                                 <div class="surface-ground p-3 border-round text-sm mb-3 border-left-2 border-amber-600 text-gray-300 font-italic line-height-3 bg-gray-800">
+                                     {{ market.recommendationNotes }}
+                                 </div>
+                                 
+                                 <div class="flex gap-2 mb-3 flex-wrap">
+                                     <!-- Tier Badge -->
+                                     <p-tag [value]="market.tier" severity="info" styleClass="text-xs surface-800 text-gray-300 border-1 border-gray-700"></p-tag>
+                                     <!-- Retention Badge if exists -->
+                                     <p-tag *ngIf="market.retention && market.retention !== 'None'" icon="pi pi-shield" [value]="market.retention" severity="warning" styleClass="text-xs"></p-tag>
+                                 </div>
+                            </div>
+    
+                            <div class="p-3 bg-gray-800 border-top-1 border-gray-700 flex gap-2">
+                                <button pButton icon="pi pi-info-circle" class="p-button-text p-button-secondary p-button-sm flex-1 text-gray-400 hover:text-white" pTooltip="Details" tooltipPosition="top" (click)="viewDetails(market)"></button>
+                                <button pButton label="SELECT" icon="pi pi-check" class="p-button-warning p-button-sm flex-2 font-bold" (click)="initiateSelection(market)"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- OPEN MARKET -->
+            <div class="mb-5" *ngIf="recommendations().others.length > 0">
+                 <div class="flex align-items-center gap-2 mb-3">
+                     <span class="text-gray-500 font-bold border-1 border-gray-700 px-3 py-1 border-round text-xs uppercase tracking-widest">OPEN MARKET</span>
+                     <div class="h-1px bg-gray-800 flex-grow-1"></div>
+                </div>
+                
+                <div class="grid">
+                    <div class="col-12 md:col-4 lg:col-3" *ngFor="let market of recommendations().others">
+                        <div class="surface-card p-3 border-round border-1 border-gray-800 h-full flex flex-column justify-content-between hover:surface-ground transition-colors relative bg-gray-900">
+                             <div class="absolute top-0 right-0 p-2">
+                                <span class="text-xs text-gray-600 font-mono">{{ market.tier }}</span>
+                            </div>
+                            <div class="mb-3">
+                                <div class="font-bold text-gray-300 mb-1 text-base">{{ market.name }}</div>
+                                <div class="text-xs text-gray-500 uppercase">{{ market.type }}</div>
+                            </div>
+                            
+                            <div class="mt-auto flex gap-2">
+                                <button pButton icon="pi pi-info-circle" class="p-button-text p-button-secondary p-button-sm w-3rem text-gray-500 hover:text-white" (click)="viewDetails(market)"></button>
+                                <button pButton label="SELECT" class="p-button-outlined p-button-secondary p-button-sm flex-grow-1 text-xs border-gray-700 text-gray-400 hover:border-gray-500 hover:text-white" (click)="initiateSelection(market)"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AUDIT MODAL (The Gatekeeper) -->
+<p-dialog 
+    [(visible)]="showAuditDialog" 
+    [modal]="true" 
+    [style]="{width: '500px'}" 
+    [closable]="true"
+    [draggable]="false"
+    [resizable]="false"
+    header="Pre-Submission Audit"
+    styleClass="brutal-dialog audit-dialog"
+    [contentStyle]="{'background': '#1e293b', 'color': '#e2e8f0'}">
+    
+    <ng-template pTemplate="header">
+        <div class="flex align-items-center gap-2 w-full">
+            <i class="pi pi-shield text-2xl text-primary"></i>
+            <div>
+                <div class="font-bold text-lg text-white">Verification Required</div>
+                <div class="text-xs text-500">{{ selectedMGA?.name }} Underwriting Protocol</div>
+            </div>
+        </div>
+    </ng-template>
+
+    <div *ngIf="selectedMGA" class="py-2">
+        <!-- Audit Questions Loop -->
+        <ng-container *ngIf="selectedMGA.auditQuestions && selectedMGA.auditQuestions.length > 0; else noAuditContent">
+            <div *ngFor="let q of selectedMGA.auditQuestions; let i = index" class="mb-4 pb-3 border-bottom-1 border-gray-700 last:border-none">
+                <div class="font-bold mb-2 text-gray-200">{{ i + 1 }}. {{ q.question }}</div>
+                
+                <div class="flex gap-3">
+                    <div class="field-radiobutton flex align-items-center gap-2 mb-0">
+                        <p-radioButton name="q{{i}}" [value]="true" [(ngModel)]="auditAnswers[q.id || q.question]" (onClick)="checkAuditAnswer(q, true)" inputId="q{{i}}y"></p-radioButton>
+                        <label for="q{{i}}y" class="cursor-pointer text-gray-300">Yes</label>
+                    </div>
+                    <div class="field-radiobutton flex align-items-center gap-2 mb-0">
+                        <p-radioButton name="q{{i}}" [value]="false" [(ngModel)]="auditAnswers[q.id || q.question]" (onClick)="checkAuditAnswer(q, false)" inputId="q{{i}}n"></p-radioButton>
+                        <label for="q{{i}}n" class="cursor-pointer text-gray-300">No</label>
+                    </div>
+                </div>
+
+                <!-- Hard Knockout Message -->
+                <div *ngIf="auditAnswers[q.id || q.question] === q.triggerAnswer" class="mt-2 p-2 bg-red-900 text-red-100 text-sm border-round flex align-items-center gap-2 fadein border-1 border-red-700">
+                    <i class="pi pi-ban"></i>
+                    <span>{{ q.failureMessage }}</span>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-template #noAuditContent>
+            <div class="flex flex-column align-items-center text-center p-4">
+                <i class="pi pi-check-circle text-5xl text-green-500 mb-3"></i>
+                <div class="font-bold text-xl mb-1 text-white">Pre-Qualified</div>
+                <div class="text-gray-400">No additional audit questions required for this market.</div>
+            </div>
+        </ng-template>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <div class="flex justify-content-between align-items-center w-full">
+            <div *ngIf="hasFailedAudit" class="text-red-400 font-bold text-sm uppercase flex align-items-center gap-1">
+                <i class="pi pi-lock"></i> Quote Blocked
+            </div>
+            <div *ngIf="!hasFailedAudit" class="text-green-500 font-bold text-sm uppercase flex align-items-center gap-1">
+                <i class="pi pi-check"></i> Eligible
+            </div>
+            
+            <p-button 
+                [label]="hasFailedAudit ? 'INELIGIBLE' : 'PROCEED TO QUOTE'" 
+                [icon]="hasFailedAudit ? 'pi pi-ban' : 'pi pi-arrow-right'" 
+                [disabled]="hasFailedAudit || !auditComplete" 
+                [severity]="hasFailedAudit ? 'danger' : 'success'"
+                (onClick)="finishQuote()">
+            </p-button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+<!-- INFO DETAILS DIALOG -->
+<p-dialog 
+    [header]="selectedDetailedMGA?.name" 
+    [(visible)]="displayDetails" 
+    [modal]="true" 
+    [style]="{width: '450px'}" 
+    [draggable]="false"
+    styleClass="brutal-dialog"
+    [contentStyle]="{'background': '#1e293b', 'color': '#e2e8f0'}">
+    <div *ngIf="selectedDetailedMGA" class="p-4">
+        <div class="text-xs font-bold text-gray-500 mb-2 uppercase tracking-wide">Contact Information</div>
+        <div class="p-3 bg-gray-900 border-round font-mono text-sm select-all mb-4 text-center border-1 border-gray-700 text-gray-200">
+             {{ selectedDetailedMGA.submissionEmail }}
+        </div>
+
+        <div class="text-xs font-bold text-gray-500 mb-2 uppercase tracking-wide">Underwriting Carriers</div>
+        <div class="flex flex-column gap-2">
+            <div *ngFor="let c of selectedDetailedMGA.carriers" class="flex justify-content-between align-items-center p-2 bg-gray-800 border-round border-1 border-gray-700">
+                <span class="font-medium text-sm text-gray-200">{{ c.name }}</span>
+                <p-tag [value]="c.rating" severity="info"></p-tag>
+            </div>
+        </div>
+    </div>
+</p-dialog>

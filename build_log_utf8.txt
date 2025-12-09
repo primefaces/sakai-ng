@@ -1,0 +1,127 @@
+﻿
+> ajm-market-finder@20.0.0 build
+> ng build
+
+[33mΓ¥»[39m Building...
+[32mΓ£ö[39m Building...
+Application bundle generation failed. [7.474 seconds]
+
+node.exe : 
+[1m[31m[31mX [41;3
+1m[[41;97mERROR[41;3
+1m][0m [1mTS2322: 
+Type '"warning"' is 
+not assignable to 
+type '"success" | 
+"info" | "warn" | 
+"danger" | 
+"secondary" | 
+"contrast"'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+At line:1 char:1
++ & "C:\Program Files\
+nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : 
+NotSpecified    : 
+([1m[31m[31mX.    
+..r-compiler][0m:S   
+ tring) [], RemoteEx  
+  ception
+    + 
+FullyQualifiedErr    
+orId : NativeComman   
+ dError
+ 
+
+    src/app/pages/mark
+ets/markets.component.
+ts:330:90:
+[37m      330 Γöé ...
+ue]="selectedCarrier.t
+ype" [32mseverity[37
+m="warning" 
+size="large"></p...
+          Γò╡         
+                      
+[32m~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;9
+7mERROR[41;31m][0m 
+[1mTS2345: Argument 
+of type 'unknown' is 
+not assignable to 
+parameter of type 
+'string'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/pages/mark
+ets/markets.component.
+ts:380:89:
+[37m      380 Γöé 
+...alue" [label]="form
+atText(key.[32mkey[3
+7m)" icon="pi 
+pi-check" styleCl...
+          Γò╡         
+                      
+   [32m~~~[0m
+
+
+[31mX [41;31m[[41;9
+7mERROR[41;31m][0m 
+[1mTS2322: Type 
+'"warning"' is not 
+assignable to type 
+'"success" | "info" | 
+"warn" | "danger" | 
+"secondary" | 
+"contrast"'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/pages/mga/
+mga.component.ts:99:82
+:
+[37m      99 Γöé ... 
+[value]="selectedMga.t
+ype" [32mseverity[37
+m="warning" 
+size="large"></p...
+         Γò╡          
+                      
+[32m~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;9
+7mERROR[41;31m][0m 
+[1mTS2532: Object is 
+possibly 
+'undefined'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/pages/mga/
+mga.component.ts:155:3
+9:
+[37m      155 Γöé 
+...iv *ngIf="[32msele
+ctedMga.appetiteRules.
+excludedCommodities?.l
+engt[37m...
+          Γò╡         
+     [32m~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m

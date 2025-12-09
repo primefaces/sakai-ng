@@ -1,0 +1,64 @@
+<div class="h-screen flex flex-column surface-ground overflow-hidden">
+    <!-- Topbar (Hidden on Login) -->
+    <p-toolbar *ngIf="!isLoginPage" styleClass="border-none border-bottom-1 surface-section px-3 py-2 shadow-1 flex-shrink-0">
+        <ng-template #start>
+            <div class="flex align-items-center gap-2">
+                <p-button icon="pi pi-bars" [text]="true" styleClass="md:hidden mr-1" (onClick)="mobileSidebarVisible = true"></p-button>
+                <img src="logo.png" alt="AJM Logo" height="32" class="mr-2">
+                <span class="text-xl font-bold text-900 hidden sm:block">AJM MarketFinder</span>
+            </div>
+        </ng-template>
+        <ng-template #center>
+            <div class="hidden md:flex gap-3">
+                <p-button label="Dashboard" icon="pi pi-home" [text]="true" routerLink="/dashboard" routerLinkActive="p-button-secondary font-bold"></p-button>
+                <p-button label="Markets" icon="pi pi-search" [text]="true" routerLink="/markets" routerLinkActive="p-button-secondary font-bold"></p-button>
+                <p-button label="Quotes" icon="pi pi-file" [text]="true" routerLink="/quotes" routerLinkActive="p-button-secondary font-bold"></p-button>
+            </div>
+        </ng-template>
+        <ng-template #end>
+            <div class="flex align-items-center gap-2">
+                <p-toggleSwitch [(ngModel)]="isDarkMode" (onChange)="toggleDarkMode()"></p-toggleSwitch>
+                
+                <p-menu #userMenu [model]="userMenuItems" [popup]="true" appendTo="body"></p-menu>
+                <div class="cursor-pointer flex align-items-center" (click)="userMenu.toggle($event)">
+                    <p-avatar 
+                        [image]="currentUser()?.photoURL ?? undefined" 
+                        [icon]="!currentUser()?.photoURL ? 'pi pi-user' : undefined" 
+                        shape="circle" 
+                        size="large" 
+                        styleClass="transition-colors hover:surface-200"
+                        [style]="{'background-color': 'var(--primary-color)', 'color': '#ffffff'}">
+                    </p-avatar>
+                </div>
+            </div>
+        </ng-template>
+    </p-toolbar>
+
+    <div class="flex flex-grow-1 overflow-hidden relative">
+        <!-- Desktop Sidebar (Hidden on Login) -->
+        <div *ngIf="!isLoginPage" class="hidden md:block w-18rem surface-section border-right-1 surface-border overflow-y-auto p-3 flex-shrink-0 h-full">
+            <p-tree [value]="navItems" selectionMode="single" [(selection)]="selectedNode" (onNodeSelect)="onNodeSelect($event)" styleClass="w-full border-none p-0"></p-tree>
+        </div>
+
+        <!-- Mobile Sidebar -->
+        <p-drawer [(visible)]="mobileSidebarVisible" [modal]="true" [style]="{'width': '18rem', 'background-color': 'var(--p-surface-card)', 'color': 'var(--p-text-color)'}">
+            <div class="flex flex-column h-full">
+                <div class="mb-4 flex align-items-center gap-2">
+                    <img src="logo.png" height="32" alt="Logo">
+                    <span class="font-bold text-xl">Menu</span>
+                </div>
+                <p-tree [value]="mobileNavItems" selectionMode="single" [(selection)]="selectedNode" (onNodeSelect)="onNodeSelect($event); mobileSidebarVisible = false" styleClass="w-full border-none p-0"></p-tree>
+            </div>
+        </p-drawer>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-y-auto p-3 md:p-5 h-full">
+            <main>
+                <router-outlet></router-outlet>
+            </main>
+            <div *ngIf="!isLoginPage" class="text-center text-500 mt-8 mb-4 text-sm">
+                &copy; 2025 AJM Insurance Services. All rights reserved.
+            </div>
+        </div>
+    </div>
+</div>

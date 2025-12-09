@@ -1,0 +1,26 @@
+:host ::ng-deep {
+    .p-stepper {
+        // Nora Theme adjustments if needed
+    }
+
+    .recommended-card {
+        border-top: 4px solid #f59e0b; // Amber-500
+        background: var(--surface-card);
+        
+        .p-card-body {
+            height: 100%;
+        }
+        
+        .p-card-content {
+            height: 100%;
+        }
+    }
+}
+
+.text-amber-500 {
+    color: #f59e0b !important;
+}
+
+.border-amber-500 {
+    border-color: #f59e0b !important;
+}

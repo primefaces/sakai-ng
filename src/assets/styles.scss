@@ -1,5 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
-@use './tailwind.css';
-@use './layout/layout.scss';
-@use 'primeicons/primeicons.css';
-@use './demo/demo.scss';
+/* Global Styles - Sakai Theme with Nora Preset + Amber */
+@layer base, primeng, overrides;
+
+/* Import Prime Dependencies */
+@import 'primeicons/primeicons.css';
+@import 'primeflex/primeflex.css';
+
+/* Define Root Variables (Light Mode) */
+:root {
+    --p-surface-ground: #f8fafc; /* Light Gray */
+    --p-surface-card: #ffffff;   /* White */
+    --p-text-color: #334155;     /* Slate 700 */
+    --p-text-color-secondary: #64748b; /* Slate 500 */
+    --p-primary-color: #d97706;  /* Amber 600 */
+    --p-content-border-color: #e2e8f0;
+}
+
+/* Dark Mode Variables */
+.my-app-dark {
+    --p-surface-ground: #0f172a; /* Slate 900 */
+    --p-surface-card: #1e293b;   /* Slate 800 */
+    --p-text-color: #e2e8f0;     /* Slate 200 */
+    --p-text-color-secondary: #94a3b8; /* Slate 400 */
+    --p-content-border-color: #334155;
+}
+
+/* Overrides Layer - Wins over PrimeNG */
+@layer overrides {
+    body {
+        background-color: var(--p-surface-ground);
+        color: var(--p-text-color);
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .card {
+        background: var(--p-surface-card);
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        margin-bottom: 2rem;
+        border: 1px solid var(--p-content-border-color);
+    }
+
+    /* Strict Card Text Color for Light Mode */
+    .card h1, .card h2, .card h3, .card h4, .card h5, .card h6 {
+        color: var(--p-text-color);
+    }
+
+    /* SweetAlert2 Z-Index Override for PrimeNG Dialogs */
+    .swal2-container {
+        z-index: 10000 !important;
+    }
+}

@@ -1,5 +1,5 @@
 {
-    "name": "sakai-ng",
+    "name": "ajm-market-finder",
     "version": "20.0.0",
     "scripts": {
         "ng": "ng",
@@ -12,9 +12,11 @@
     "private": true,
     "dependencies": {
         "@angular/animations": "^20",
+        "@angular/cdk": "^21.0.2",
         "@angular/common": "^20",
         "@angular/compiler": "^20",
         "@angular/core": "^20",
+        "@angular/fire": "^20.0.1",
         "@angular/forms": "^20",
         "@angular/platform-browser": "^20",
         "@angular/platform-browser-dynamic": "^20",
@@ -22,10 +24,13 @@
         "@primeuix/themes": "^1.2.1",
         "@tailwindcss/postcss": "^4.1.11",
         "chart.js": "4.4.2",
+        "firebase": "^12.6.0",
         "primeclt": "^0.1.5",
+        "primeflex": "^4.0.0",
         "primeicons": "^7.0.0",
         "primeng": "^20",
         "rxjs": "~7.8.2",
+        "sweetalert2": "^11.26.4",
         "tailwindcss-primeui": "^0.6.1",
         "tslib": "^2.8.1",
         "zone.js": "~0.15.1"

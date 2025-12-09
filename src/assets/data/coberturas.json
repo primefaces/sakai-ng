@@ -1,0 +1,155 @@
+[
+  {
+    "id": "AUTO_LIABILITY",
+    "label": "Auto Liability (Responsabilidad Civil)",
+    "description": "Cubre daños corporales y a la propiedad de terceros causados por el camión asegurado.",
+    "subCoverages": [
+      {
+        "id": "CSL",
+        "label": "Combined Single Limit (CSL)",
+        "description": "Límite único combinado (ej. $1,000,000) por accidente.",
+        "isMandatory": true
+      },
+      {
+        "id": "BI_PD_SPLIT",
+        "label": "Split Limits (BI/PD)",
+        "description": "Límites divididos por persona/accidente/propiedad (ej. 25/50/25)."
+      },
+      {
+        "id": "HIRED_AUTO",
+        "label": "Hired Auto Liability",
+        "description": "Cobertura para vehículos rentados o alquilados por la empresa."
+      },
+      {
+        "id": "NON_OWNED",
+        "label": "Non-Owned Auto Liability",
+        "description": "Cobertura para vehículos de empleados usados para el negocio."
+      },
+      {
+        "id": "UM_UIM",
+        "label": "Uninsured / Underinsured Motorist",
+        "description": "Protección si el otro conductor culpable no tiene seguro o es insuficiente."
+      },
+      {
+        "id": "MED_PAY",
+        "label": "Medical Payments / PIP",
+        "description": "Gastos médicos para el conductor y pasajeros del asegurado."
+      }
+    ]
+  },
+  {
+    "id": "PHYSICAL_DAMAGE",
+    "label": "Physical Damage (Daños Físicos)",
+    "description": "Cubre los daños al camión y remolque del asegurado.",
+    "subCoverages": [
+      {
+        "id": "FIRE_THEFT_CAC",
+        "label": "Fire, Theft & CAC",
+        "description": "Opción limitada que cubre solo incendio, robo y eventos combinados (sin colisión)."
+      },
+      {
+        "id": "TOWING_STORAGE",
+        "label": "Towing & Storage",
+        "description": "Gastos de grúa y almacenamiento tras un accidente cubierto."
+      },
+      {
+        "id": "GAP",
+        "label": "Gap Coverage (Loan/Lease)",
+        "description": "Cubre la diferencia entre el valor del camión y la deuda del préstamo en caso de pérdida total."
+      }
+    ]
+  },
+  {
+    "id": "MOTOR_TRUCK_CARGO",
+    "label": "Motor Truck Cargo (Carga)",
+    "description": "Protege la mercancía transportada propiedad de terceros.",
+    "subCoverages": [
+      {
+        "id": "STANDARD_CARGO",
+        "label": "Standard Cargo Limit",
+        "description": "Límite general por embarque (ej. $100,000)."
+      },
+      {
+        "id": "REEFER_BREAKDOWN",
+        "label": "Reefer Breakdown",
+        "description": "Daños a la carga por falla mecánica de la unidad de refrigeración."
+      },
+      {
+        "id": "DEBRIS_REMOVAL",
+        "label": "Debris Removal",
+        "description": "Costo de limpiar la carga derramada en la carretera."
+      },
+      {
+        "id": "EARNED_FREIGHT",
+        "label": "Earned Freight",
+        "description": "Cubre el flete perdido debido a que la carga no se pudo entregar."
+      }
+    ]
+  },
+  {
+    "id": "GENERAL_LIABILITY",
+    "label": "General Liability (Responsabilidad General)",
+    "description": "Protege contra demandas por accidentes fuera de la conducción (ej. en oficinas o patios).",
+    "subCoverages": [
+      {
+        "id": "PREMISES_OPS",
+        "label": "Premises & Operations",
+        "description": "Accidentes ocurridos en las instalaciones de la empresa."
+      },
+      {
+        "id": "PRODUCTS_COMPLETED",
+        "label": "Products & Completed Ops",
+        "description": "Daños causados por servicios completados o productos."
+      }
+    ]
+  },
+  {
+    "id": "SPECIALTY_COVERAGES",
+    "label": "Coberturas Especiales / Otros",
+    "description": "Coberturas específicas para ciertas operaciones o contratos.",
+    "subCoverages": [
+      {
+        "id": "TRAILER_INTERCHANGE",
+        "label": "Trailer Interchange",
+        "description": "Daños físicos a tráilers que no son propiedad del asegurado (Intermodal/UIIA)."
+      },
+      {
+        "id": "NON_TRUCKING_LIABILITY",
+        "label": "Non-Trucking Liability (Bobtail)",
+        "description": "Responsabilidad civil cuando el camión se usa para fines privados (sin carga/despacho)."
+      },
+      {
+        "id": "UNLADEN_LIABILITY",
+        "label": "Unladen Liability",
+        "description": "Cobertura cuando el camión transita vacío (Deadhead)."
+      },
+      {
+        "id": "OCC_ACC",
+        "label": "Occupational Accident",
+        "description": "Beneficios médicos y por discapacidad para dueños operadores (alternativa a Workers Comp)."
+      }
+    ]
+  },
+  {
+    "id": "CERTIFICATE_ENDORSEMENTS",
+    "label": "Endosos para Certificados (COI)",
+    "description": "Cláusulas adicionales requeridas comúnmente por Brokers.",
+    "subCoverages": [
+      {
+        "id": "ADDITIONAL_INSURED",
+        "label": "Additional Insured (AI)",
+        "description": "Extiende la cobertura de responsabilidad a una tercera parte (Broker/Shipper)."
+      },
+      {
+        "id": "WAIVER_SUBROGATION",
+        "label": "Waiver of Subrogation (WOS)",
+        "description": "La aseguradora renuncia al derecho de demandar al tercero por pérdidas pagadas."
+      },
+      {
+        "id": "PRIMARY_NON_CONTRIBUTORY",
+        "label": "Primary & Non-Contributory (PNC)",
+        "description": "La póliza paga primero sin pedir contribución a la póliza del tercero."
+      }
+    ]
+  }
+]

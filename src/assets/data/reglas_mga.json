@@ -1,0 +1,916 @@
+[
+  {
+    "id": "01-_progressive",
+    "name": "01  PROGRESSIVE",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "fleet@commercial.progressive.com",
+    "carriers": [
+      "PROGRESSIVE"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": true,
+      "reefer": false,
+      "flatbed": false,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "02k-_brazos",
+    "name": "02K  BRAZOS",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Yes",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "ACCREDITED SURETY",
+      "CONCERT SPECIALTY SUTTON SPECIALTY INSURANCE FLORIDA Y TEXAS"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "03_-_lp_riks",
+    "name": "03   lp riks",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "of London Star",
+      "Co Lloyds",
+      "Accredited",
+      "Specialty",
+      "Insurance"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": true,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "04k-_nta",
+    "name": "04K  NTA",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "insurance",
+      "Company",
+      "Southlake",
+      "specialty"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": false,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "05_-_qeo",
+    "name": "05   QEO",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "Clear blue"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": true,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 25,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "06-_bass",
+    "name": "06  BASS",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "Rating Adriatic Insurance Company A+(Superior) AM Best",
+      "Rating Penn-America Insurance Company A (Excellent) AM Best Rating",
+      "LLOYDS OF LONDON THE BURLINGTON INSURANCE COMPANY Kinsale Insurance Company A- (Excellent) AM Best"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": false,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": false,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "07-_paramount",
+    "name": "07  PARAMOUNT",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "OCCIDENTAL NAFTA Highlander",
+      "Agricultural"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": false,
+      "sandGravel": false,
+      "autoHauler": false,
+      "intermodal": true
+    },
+    "requirements": {
+      "minDriverAge": 23,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "08rocklake",
+    "name": "08ROCKLAKE",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [],
+    "appetite": {
+      "autoLiability": false,
+      "physicalDamage": false,
+      "cargo": false,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": true,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "09brecht_&_associates",
+    "name": "09brecht & associates",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "WHILSIRE LLOYDS OF LONDON",
+      "CANAL",
+      "ATLANTIC CASUALTY",
+      "GREAT LAKES THE BURLINGTON"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": true,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": true,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 25,
+      "minCdlExperience": 2,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "10treaty",
+    "name": "10TREATY",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Yes",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "GREAT AMERICAN",
+      "Alpine",
+      "GREAT LAKE",
+      "CANOPIUS",
+      "LLOYDS",
+      "ONLY AL",
+      "ENTRE OTROS"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": false,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": true
+    },
+    "requirements": {
+      "minDriverAge": 20,
+      "minCdlExperience": 2,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "11gsiay",
+    "name": "11GSIAY",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "Trailblazer"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "12_5_star",
+    "name": "12 5 Star",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "Knightbrook Nirvana",
+      "Trisura"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": true,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": false,
+      "autoHauler": true,
+      "intermodal": true
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 2,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "13_amwins",
+    "name": "13 Amwins",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "ACEPTA NEGOCIOS EN LA CIUDAD DE",
+      "POR QUE COMPARTEN S",
+      "CANOPIUS",
+      "GREAT AMERIC A CANAL",
+      "COBERTURAS AL DEPENDE EL",
+      "WILSHIRE",
+      "NOTAS NO COTIZAR AL MISMO TIEMPO CON BRECHT Y JM WILSON",
+      "HOUSTON) NICO",
+      "POR QUE NO ES MONOLINE MTC",
+      "UMBRELLA"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 2,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "14brooklyn",
+    "name": "14Brooklyn",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "$1,000",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "Brooklyn"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": false,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "15_bhhc",
+    "name": "15 BHHC",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "BHHC"
+    ],
+    "appetite": {
+      "autoLiability": false,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "16_county_hall",
+    "name": "16 County Hall",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "COUNTY HALL"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": false,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": true,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "17crc",
+    "name": "17CRC",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "Kan , MO, NM, OK,",
+      "states",
+      "Tenn , and TX IAT- Ark,",
+      "Kan , LA, MO, NM, OK,",
+      "– all",
+      "Non Fleet Markets Northland – Ark,",
+      "Tenn , and TX Berkley – Midwest, Southeast, TX NICO- all states C&F- all states Coverwhale"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": false,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "18_dynamic",
+    "name": "18 Dynamic",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "(PARA LA AL ES CATEGORIA B)",
+      "CANOPIUS BULLDOG",
+      "AIFE HARTWELL",
+      "LLOYDS"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "19great_west",
+    "name": "19great west",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "+ 6 AÑOS EN EL NEGOCIO",
+      "GREAT LAKES"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 6,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "20jm_wilson",
+    "name": "20JM Wilson",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "Starstone",
+      "Kinsale",
+      "• Colony\t• Markel\t•",
+      "• Centrex\t• Lloyds of London\t• Scottsdale/Nationwide",
+      "• Great American\t• National Indemnity",
+      "• Founders\t• National Fire & Marine",
+      "Commercial",
+      "• BRS of Ohio\t• JLT Re\t•",
+      "• Berkley Environmental\t•",
+      "• Capital Specialty\t•",
+      "• Beazley\t• Greenhill\t• Specialty Global",
+      "• Arch/ Freberg",
+      "• Axis Pro\t• Great American\t•",
+      "• Burlington/IFG\t• Investor Specialty Coverage\t• PIE Insurance (work comp)",
+      "O’Schinnerer",
+      "• Core Specialty\t• MUSIC/Mesa\t• USLI",
+      "• Vela",
+      "Tokio",
+      "Transportation",
+      "• ACE/Westchester\t• Crum & Forster\t• Lloyds of London",
+      "Brokerage",
+      "• Argo Pro\t• General Star\t• Nautilus",
+      "• Burlington Insurance\t• Liberty International\t• Victor",
+      "Environmental\t• McGowan Companies",
+      "Hiscox",
+      "MarketsBinding",
+      "Proassurance",
+      "Secura",
+      "Marine",
+      "• Great American",
+      "Verus",
+      "• Allianz (Cargo only)\t• Markel American\t• WQIS - Vessel Pollution",
+      "Huntersure",
+      "• Berkshire Hathaway\t• Hudson\t•",
+      "Freberg",
+      "• CFC Underwriting\t• Markel\t• WKF&C",
+      "• Atlantic Casualty\t• Markel\t• RLI",
+      "• BISA\t•",
+      "• AU Gold\t• Hudson\t• Penn Star",
+      "• Berkley\t• IAT\t• Northland",
+      "• Canal\t• Lancer\t• PIE Insurance (work comp)",
+      "• Allianz\t•",
+      "• Westchester",
+      "• Atlantic Casualty\t• General Star\t• Nautilus"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": true,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 0,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "21mtm",
+    "name": "21MTM",
+    "type": "RRG",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Yes",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": false,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 19,
+      "minCdlExperience": 3,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "22_profesional",
+    "name": "22 Profesional",
+    "type": "RRG",
+    "rating": "NR",
+    "tier": "TIER 4",
+    "retention": "HIGH RISK (RRG)",
+    "warningLevel": "HIGH_RISK",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "PROPIO PFA O PORFUERA",
+      "PROFESSIONAL"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": false,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 2,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "23_sga_southern_general",
+    "name": "23 SGA Southern General",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "NO NEW VENTURE- Tienen que tener 3 YEARS o mas",
+      "PRIME"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": true,
+      "reefer": false,
+      "flatbed": false,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": true,
+      "intermodal": true
+    },
+    "requirements": {
+      "minDriverAge": 23,
+      "minCdlExperience": 3,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "24southwest_risk",
+    "name": "24Southwest Risk",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "years",
+      "busineess Con target",
+      "price",
+      "Transvers"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": true,
+      "cargo": true,
+      "generalLiability": true,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": false,
+      "dryVan": false,
+      "sandGravel": true,
+      "autoHauler": false,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 3,
+      "notes": ""
+    },
+    "auditQuestions": []
+  },
+  {
+    "id": "25_star_mutual",
+    "name": "25 Star Mutual",
+    "type": "MGA",
+    "rating": "A",
+    "tier": "TIER 2",
+    "retention": "Low",
+    "warningLevel": "NONE",
+    "newVentureFit": "Check",
+    "submissionEmail": "CONTACT AGENT",
+    "carriers": [
+      "mutual",
+      "1 año en el negocio",
+      "años Ellos usan su propia financiera",
+      "Para",
+      "minimo",
+      "Star"
+    ],
+    "appetite": {
+      "autoLiability": true,
+      "physicalDamage": false,
+      "cargo": false,
+      "generalLiability": false,
+      "trailerInterchange": false,
+      "reefer": true,
+      "flatbed": true,
+      "dryVan": true,
+      "sandGravel": true,
+      "autoHauler": true,
+      "intermodal": false
+    },
+    "requirements": {
+      "minDriverAge": 21,
+      "minCdlExperience": 1,
+      "notes": ""
+    },
+    "auditQuestions": []
+  }
+]

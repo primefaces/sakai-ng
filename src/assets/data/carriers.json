@@ -1,0 +1,176 @@
+[
+  {
+    "id": "progressive",
+    "name": "Progressive Commercial",
+    "rating": "A+",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "canopius",
+    "name": "Canopius",
+    "rating": "A-",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "lloyds",
+    "name": "Lloyd's of London",
+    "rating": "A",
+    "type": "SURPLUS"
+  },
+  {
+    "id": "palomar",
+    "name": "Palomar Specialty",
+    "rating": "A-",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "great_american",
+    "name": "Great American",
+    "rating": "A+",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "great_lakes",
+    "name": "Great Lakes",
+    "rating": "A",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "american_interfidelity",
+    "name": "American Interfidelity",
+    "rating": "NR",
+    "type": "RRG"
+  },
+  {
+    "id": "canal",
+    "name": "Canal Insurance",
+    "rating": "A-",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "trisura",
+    "name": "Trisura",
+    "rating": "A-",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "hallmark",
+    "name": "Hallmark",
+    "rating": "B++",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "fortegra",
+    "name": "Fortegra",
+    "rating": "A-",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "accellerant",
+    "name": "Accellerant",
+    "rating": "A-",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "transverse",
+    "name": "Transverse",
+    "rating": "A-",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "falls_lake",
+    "name": "Falls Lake",
+    "rating": "A",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "sutton",
+    "name": "Sutton",
+    "rating": "A-",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "clear_blue",
+    "name": "Clear Blue",
+    "rating": "A-",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "benchmark",
+    "name": "Benchmark",
+    "rating": "A",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "national_fire",
+    "name": "National Fire",
+    "rating": "A",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "axis",
+    "name": "AXIS",
+    "rating": "A",
+    "type": "SURPLUS"
+  },
+  {
+    "id": "accredited_surety",
+    "name": "Accredited Surety",
+    "rating": "A-",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "concert_specialty",
+    "name": "Concert Specialty",
+    "rating": "A-",
+    "type": "SURPLUS"
+  },
+  {
+    "id": "berkshire_hathaway",
+    "name": "Berkshire Hathaway",
+    "rating": "A++",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "star_mutual",
+    "name": "Star Mutual",
+    "rating": "NR",
+    "type": "RRG"
+  },
+  {
+    "id": "obsidian",
+    "name": "Obsidian",
+    "rating": "A-",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "west_bend",
+    "name": "West Bend",
+    "rating": "A",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "dale_underwriting",
+    "name": "Dale Underwriting",
+    "rating": "A-",
+    "type": "SURPLUS"
+  },
+  {
+    "id": "iat_insurance",
+    "name": "IAT Insurance",
+    "rating": "A-",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "universal_casualty",
+    "name": "Universal Casualty",
+    "rating": "NR",
+    "type": "ADMITTED"
+  },
+  {
+    "id": "county_hall",
+    "name": "County Hall",
+    "rating": "A",
+    "type": "ADMITTED"
+  }
+]

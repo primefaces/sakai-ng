@@ -1,157 +1,119 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AppMenuitem } from './app.menuitem';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
     selector: 'app-menu',
     standalone: true,
-    imports: [CommonModule, AppMenuitem, RouterModule],
-    template: `<ul class="layout-menu">
+    imports: [CommonModule, AppMenuitem, RouterModule, DividerModule],
+    template: `
+    <div class="menu-header">
+        <i class="pi pi-compass header-icon"></i>
+        <h3>NAVIGATION</h3>
+    </div>
+    <ul class="layout-menu">
         <ng-container *ngFor="let item of model; let i = index">
             <li app-menuitem *ngIf="!item.separator" [item]="item" [index]="i" [root]="true"></li>
-            <li *ngIf="item.separator" class="menu-separator"></li>
+            <li *ngIf="item.separator" class="menu-separator">
+                <p-divider></p-divider>
+            </li>
         </ng-container>
-    </ul> `
+    </ul>`,
+    styles: [`
+        .menu-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-400) 100%);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-radius: var(--content-border-radius);
+        }
+
+        .header-icon {
+            font-size: 1.5rem;
+            color: var(--primary-contrast-color);
+        }
+
+        .menu-header h3 {
+            margin: 0;
+            color: var(--primary-contrast-color);
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        :host ::ng-deep .layout-menu {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        :host ::ng-deep .layout-menu .layout-menuitem-root-text {
+            color: var(--text-color-secondary);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.75rem 1rem 0.5rem 1rem;
+            display: block;
+        }
+
+        :host ::ng-deep .layout-menu .layout-root-menuitem > .layout-menuitem-root-text {
+            margin-top: 1rem;
+        }
+
+        :host ::ng-deep .layout-menu .layout-root-menuitem:first-child > .layout-menuitem-root-text {
+            margin-top: 0;
+        }
+
+        .menu-separator {
+            margin: 1rem 0;
+        }
+    `]
 })
 export class AppMenu {
+    private router = inject(Router);
+
     model: MenuItem[] = [];
 
+    dashboardMenu = [
+        { label: 'Overview', icon: 'pi pi-fw pi-home', routerLink: ['/dashboard'] }
+    ];
+
+    marketsMenu = [
+        { label: 'Find Markets', icon: 'pi pi-fw pi-search', routerLink: ['/markets'] },
+        { label: 'MGA Guidelines', icon: 'pi pi-fw pi-list', routerLink: ['/mga'] }
+    ];
+
+    quotesMenu = [
+        { label: 'My Quotes', icon: 'pi pi-fw pi-list', routerLink: ['/quotes'] },
+        { label: 'New Quote (Workbench)', icon: 'pi pi-fw pi-plus', routerLink: ['/underwriting'] }
+    ];
+
     ngOnInit() {
-        this.model = [
-            {
-                label: 'Home',
-                items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
-            },
-            {
-                label: 'UI Components',
-                items: [
-                    { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
-                    { label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input'] },
-                    { label: 'Button', icon: 'pi pi-fw pi-mobile', class: 'rotated-icon', routerLink: ['/uikit/button'] },
-                    { label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table'] },
-                    { label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list'] },
-                    { label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/uikit/tree'] },
-                    { label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel'] },
-                    { label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/uikit/overlay'] },
-                    { label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/uikit/media'] },
-                    { label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu'] },
-                    { label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message'] },
-                    { label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file'] },
-                    { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts'] },
-                    { label: 'Timeline', icon: 'pi pi-fw pi-calendar', routerLink: ['/uikit/timeline'] },
-                    { label: 'Misc', icon: 'pi pi-fw pi-circle', routerLink: ['/uikit/misc'] }
-                ]
-            },
-            {
-                label: 'Pages',
-                icon: 'pi pi-fw pi-briefcase',
-                routerLink: ['/pages'],
-                items: [
-                    {
-                        label: 'Landing',
-                        icon: 'pi pi-fw pi-globe',
-                        routerLink: ['/landing']
-                    },
-                    {
-                        label: 'Auth',
-                        icon: 'pi pi-fw pi-user',
-                        items: [
-                            {
-                                label: 'Login',
-                                icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/auth/login']
-                            },
-                            {
-                                label: 'Error',
-                                icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/auth/error']
-                            },
-                            {
-                                label: 'Access Denied',
-                                icon: 'pi pi-fw pi-lock',
-                                routerLink: ['/auth/access']
-                            }
-                        ]
-                    },
-                    {
-                        label: 'Crud',
-                        icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/pages/crud']
-                    },
-                    {
-                        label: 'Not Found',
-                        icon: 'pi pi-fw pi-exclamation-circle',
-                        routerLink: ['/pages/notfound']
-                    },
-                    {
-                        label: 'Empty',
-                        icon: 'pi pi-fw pi-circle-off',
-                        routerLink: ['/pages/empty']
-                    }
-                ]
-            },
-            {
-                label: 'Hierarchy',
-                items: [
-                    {
-                        label: 'Submenu 1',
-                        icon: 'pi pi-fw pi-bookmark',
-                        items: [
-                            {
-                                label: 'Submenu 1.1',
-                                icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark' },
-                                    { label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark' },
-                                    { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark' }
-                                ]
-                            },
-                            {
-                                label: 'Submenu 1.2',
-                                icon: 'pi pi-fw pi-bookmark',
-                                items: [{ label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-bookmark' }]
-                            }
-                        ]
-                    },
-                    {
-                        label: 'Submenu 2',
-                        icon: 'pi pi-fw pi-bookmark',
-                        items: [
-                            {
-                                label: 'Submenu 2.1',
-                                icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    { label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-bookmark' },
-                                    { label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-bookmark' }
-                                ]
-                            },
-                            {
-                                label: 'Submenu 2.2',
-                                icon: 'pi pi-fw pi-bookmark',
-                                items: [{ label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-bookmark' }]
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                label: 'Get Started',
-                items: [
-                    {
-                        label: 'Documentation',
-                        icon: 'pi pi-fw pi-book',
-                        routerLink: ['/documentation']
-                    },
-                    {
-                        label: 'View Source',
-                        icon: 'pi pi-fw pi-github',
-                        url: 'https://github.com/primefaces/sakai-ng',
-                        target: '_blank'
-                    }
-                ]
+        // Initial check
+        this.updateMenu(this.router.url);
+
+        // Listen for route changes
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                this.updateMenu(event.urlAfterRedirects || event.url);
             }
-        ];
+        });
+    }
+
+    updateMenu(url: string) {
+        if (url.includes('/markets') || url.includes('/mga')) {
+            this.model = this.marketsMenu;
+        } else if (url.includes('/quotes') || url.includes('/underwriting')) {
+            this.model = this.quotesMenu;
+        } else {
+            // Default to Dashboard
+            this.model = this.dashboardMenu;
+        }
     }
 }

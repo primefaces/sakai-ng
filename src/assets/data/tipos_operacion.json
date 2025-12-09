@@ -1,0 +1,111 @@
+{
+  "vehicleTypes": [
+    {
+      "id": "TRACTOR",
+      "label": "Tractor",
+      "category": "POWER_UNIT",
+      "description": "Road tractor designed to pull trailers"
+    },
+    {
+      "id": "STRAIGHT_TRUCK",
+      "label": "Straight Truck (Box Truck)",
+      "category": "POWER_UNIT",
+      "description": "Single cab and body vehicle"
+    },
+    {
+      "id": "PICKUP",
+      "label": "Pickup Truck",
+      "category": "POWER_UNIT",
+      "description": "Light to medium duty truck (Hotshot)"
+    },
+    {
+      "id": "CARGO_VAN",
+      "label": "Cargo Van",
+      "category": "POWER_UNIT",
+      "description": "Enclosed van for freight"
+    },
+    {
+      "id": "DUMP_TRUCK",
+      "label": "Dump Truck",
+      "category": "POWER_UNIT",
+      "description": "Truck with open-box bed for construction"
+    },
+    {
+      "id": "TRAILER_DRY_VAN",
+      "label": "Dry Van Trailer",
+      "category": "TRAILER",
+      "description": "Enclosed trailer for general freight"
+    },
+    {
+      "id": "TRAILER_REEFER",
+      "label": "Refrigerated Trailer",
+      "category": "TRAILER",
+      "description": "Temperature controlled trailer"
+    },
+    {
+      "id": "TRAILER_FLATBED",
+      "label": "Flatbed Trailer",
+      "category": "TRAILER",
+      "description": "Open deck trailer"
+    },
+    {
+      "id": "TRAILER_AUTO_HAULER",
+      "label": "Auto Hauler",
+      "category": "TRAILER",
+      "description": "Trailer designed to carry vehicles"
+    },
+    {
+      "id": "TRAILER_TANKER",
+      "label": "Tanker Trailer",
+      "category": "TRAILER",
+      "description": "Trailer for liquids or gases"
+    },
+    {
+      "id": "TRAILER_LOGGING",
+      "label": "Logging Trailer",
+      "category": "TRAILER",
+      "description": "Trailer for logs"
+    },
+    {
+      "id": "TRAILER_LIVESTOCK",
+      "label": "Livestock Trailer",
+      "category": "TRAILER",
+      "description": "Trailer for animals"
+    },
+    {
+      "id": "TRAILER_INTERMODAL",
+      "label": "Intermodal Chassis",
+      "category": "TRAILER",
+      "description": "Chassis for shipping containers"
+    }
+  ],
+  "cargoCommodities": [
+    { "id": "GENERAL_FREIGHT", "label": "General Freight (Dry Van)", "riskLevel": "LOW", "commonTrailers": ["TRAILER_DRY_VAN"] },
+    { "id": "PRODUCE", "label": "Produce / Perishables", "riskLevel": "MEDIUM", "commonTrailers": ["TRAILER_REEFER"] },
+    { "id": "BUILDING_MATERIALS", "label": "Building Materials", "riskLevel": "MEDIUM", "commonTrailers": ["TRAILER_FLATBED"] },
+    { "id": "AUTOS", "label": "Motor Vehicles (Auto Hauler)", "riskLevel": "HIGH", "commonTrailers": ["TRAILER_AUTO_HAULER"] },
+    { "id": "MACHINERY", "label": "Heavy Machinery", "riskLevel": "HIGH", "commonTrailers": ["TRAILER_FLATBED"] },
+    { "id": "AGRICULTURAL", "label": "Agricultural Goods / Grain", "riskLevel": "MEDIUM", "commonTrailers": ["TRAILER_HOPPER"] },
+    { "id": "LOGGING", "label": "Logging / Lumber / Wood Products", "riskLevel": "HIGH", "commonTrailers": ["TRAILER_LOGGING", "TRAILER_FLATBED"] },
+    { "id": "LIVESTOCK", "label": "Livestock / Live Animals", "riskLevel": "HIGH", "commonTrailers": ["TRAILER_LIVESTOCK"] },
+    { "id": "SAND_GRAVEL", "label": "Sand, Gravel & Aggregates", "riskLevel": "MEDIUM", "commonTrailers": ["DUMP_TRUCK"] },
+    { "id": "FRAC_SAND", "label": "Frac Sand", "riskLevel": "HIGH", "commonTrailers": ["DUMP_TRUCK", "TRAILER_PNEUMATIC"] },
+    { "id": "COIL", "label": "Metal Coils", "riskLevel": "HIGH", "commonTrailers": ["TRAILER_FLATBED"] },
+    { "id": "MOBILE_HOME", "label": "Mobile Homes", "riskLevel": "HIGH", "commonTrailers": ["TRAILER_TOTER"] },
+    { "id": "HOUSEHOLD_GOODS", "label": "Household Goods (Movers)", "riskLevel": "HIGH", "commonTrailers": ["TRAILER_DRY_VAN"] },
+    { "id": "GARBAGE", "label": "Garbage / Refuse / Scrap", "riskLevel": "HIGH", "commonTrailers": ["DUMP_TRUCK"] },
+    { "id": "SCRAP_METAL", "label": "Scrap Metal", "riskLevel": "HIGH", "commonTrailers": ["DUMP_TRUCK", "TRAILER_FLATBED"] },
+    { "id": "HAY", "label": "Hay / Feed", "riskLevel": "HIGH", "commonTrailers": ["TRAILER_FLATBED"] },
+    { "id": "COTTON", "label": "Cotton", "riskLevel": "HIGH", "commonTrailers": ["TRAILER_FLATBED", "TRAILER_DRY_VAN"] },
+    { "id": "OILFIELD", "label": "Oilfield Equipment", "riskLevel": "HIGH", "commonTrailers": ["TRAILER_FLATBED"] },
+    { "id": "INTERMODAL", "label": "Intermodal Containers (UIIA)", "riskLevel": "MEDIUM", "commonTrailers": ["TRAILER_INTERMODAL"] },
+    { "id": "TOWING", "label": "Towing / Wrecker Service", "riskLevel": "PROHIBITED", "commonTrailers": [] },
+    { "id": "HAZMAT", "label": "Hazardous Materials", "riskLevel": "PROHIBITED", "commonTrailers": ["TRAILER_DRY_VAN", "TRAILER_TANKER"] },
+    { "id": "LIQUIDS", "label": "Liquids (Non-Hazmat)", "riskLevel": "MEDIUM", "commonTrailers": ["TRAILER_TANKER"] },
+    { "id": "PHARMACEUTICAL", "label": "Pharmaceuticals", "riskLevel": "PROHIBITED", "commonTrailers": ["TRAILER_REEFER"] },
+    { "id": "LIQUOR", "label": "Liquor / Alcohol", "riskLevel": "PROHIBITED", "commonTrailers": ["TRAILER_DRY_VAN"] },
+    { "id": "MEAT_HANGING", "label": "Hanging Meat", "riskLevel": "HIGH", "commonTrailers": ["TRAILER_REEFER"] },
+    { "id": "COAL", "label": "Coal", "riskLevel": "MEDIUM", "commonTrailers": ["DUMP_TRUCK"] },
+    { "id": "ICE_CREAM", "label": "Ice Cream / Frozen Goods", "riskLevel": "MEDIUM", "commonTrailers": ["TRAILER_REEFER"] }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "entityTypes": [
+    { "code": "INDIVIDUAL", "label": "Individual / Sole Proprietor" },
+    { "code": "CORP", "label": "Corporation (Corp)" },
+    { "code": "LLC", "label": "Limited Liability Company (LLC)" },
+    { "code": "PARTNERSHIP", "label": "Partnership" },
+    { "code": "TRUST", "label": "Trust" },
+    { "code": "OTHER", "label": "Other" }
+  ],
+  "usStates": [
+    { "code": "TX", "name": "Texas" },
+    { "code": "FL", "name": "Florida" },
+    { "code": "CA", "name": "California" },
+    { "code": "NM", "name": "New Mexico" },
+    { "code": "OK", "name": "Oklahoma" },
+    { "code": "LA", "name": "Louisiana" },
+    { "code": "AZ", "name": "Arizona" },
+    { "code": "AL", "name": "Alabama" },
+    { "code": "GA", "name": "Georgia" },
+    { "code": "NC", "name": "North Carolina" },
+    { "code": "SC", "name": "South Carolina" }
+  ],
+  "licenseTypes": [
+    { "code": "CDL_A", "label": "CDL Class A" },
+    { "code": "CDL_B", "label": "CDL Class B" },
+    { "code": "CDL_C", "label": "CDL Class C" },
+    { "code": "NON_CDL", "label": "Regular Driver License (Class C/D)" },
+    { "code": "MX_FEDERAL", "label": "Licencia Federal Mexicana (MX CDL)" },
+    { "code": "MX_STATE", "label": "Licencia Estatal Mexicana" },
+    { "code": "INTL", "label": "International License" }
+  ],
+  "filings": [
+    {
+      "code": "USDOT",
+      "label": "USDOT Number",
+      "description": "Identificador único de seguridad. Se actualiza cada 2 años.",
+      "renewalFrequency": "Biennial",
+      "requiredFor": "ALL"
+    },
+    {
+      "code": "MC",
+      "label": "MC Number (Operating Authority)",
+      "description": "Para transporte Interestatal (48 estados).",
+      "renewalFrequency": "N/A",
+      "requiredFor": "INTERSTATE"
+    },
+    {
+      "code": "UCR",
+      "label": "UCR (Unified Carrier Registration)",
+      "description": "Impuesto de carretera interestatal.",
+      "renewalFrequency": "Annual (Oct-Dec)",
+      "requiredFor": "INTERSTATE"
+    },
+    {
+      "code": "TXDMV",
+      "label": "TxDMV (Form E/H)",
+      "description": "Permiso para transitar en Texas (Intrastate).",
+      "renewalFrequency": "Biennial",
+      "requiredFor": "INTRASTATE_TX"
+    },
+    {
+      "code": "IFTA",
+      "label": "IFTA (Fuel Tax)",
+      "description": "Impuestos sobre el combustible para transportistas interestatales.",
+      "renewalFrequency": "Quarterly (Apr, Jul, Oct, Jan)",
+      "requiredFor": "INTERSTATE"
+    },
+    {
+      "code": "BOC3",
+      "label": "BOC-3 (Process Agents)",
+      "description": "Designación de agentes legales.",
+      "renewalFrequency": "One-time (unless name change)",
+      "requiredFor": "INTERSTATE"
+    },
+    {
+      "code": "UIIA",
+      "label": "UIIA (Intermodal)",
+      "description": "Requerido para entrar a puertos y rieles.",
+      "renewalFrequency": "Annual",
+      "requiredFor": "INTERMODAL"
+    },
+    {
+      "code": "OVERWEIGHT",
+      "label": "Bond & Overweight Permit",
+      "description": "Permiso para transportar exceso de peso.",
+      "renewalFrequency": "Annual",
+      "requiredFor": "HEAVY_HAUL"
+    }
+  ]
+}

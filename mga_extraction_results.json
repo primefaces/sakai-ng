@@ -1,0 +1,228 @@
+[
+  {
+    "folder": "01- PROGRESSIVE",
+    "name": "PROGRESSIVE",
+    "carriers": [
+      "Considered primary insurance.",
+      "SPECIALTY",
+      "PROOF OF PRIOR INSURANCE SAVINGS",
+      "Auto - Contractors - For-Hire Specialty - For-Hire Transportation - Tow"
+    ],
+    "submissionEmail": "Opción 3: Envíe por correo electrónico toda la información de riesgo requerida a fleet@commercial.progressive.com e incluya:",
+    "notes": "Nuestra opción de radio ilimitado está disponible para todo tipo de vehículo. Las pólizas de Responsabilidad Civil No Transportista, Solo Daños Físicos y de Uso No Comercial también pueden tener un radio ilimitado. Si se selecciona otra opción de radio, se espera un mínimo de viajes (10 % o menos) que excedan el radio seleccionado. Las pólizas que excedan el radio con mayor frecuencia están sujetas a auditoría o aumento de la prima. Progressive cobrará y aplicará la tarifa según el kilometraje anual esperado. Es posible que se requiera comprobante."
+  },
+  {
+    "folder": "02K- BRAZOS",
+    "name": "BRAZOS",
+    "carriers": [
+      "BRAZOS SPECIALTY",
+      "ACCREDITED SURETY",
+      "CONCERT SPECIALTY",
+      "SUTTON SPECIALTY INSURANCE",
+      "Y AJM INSURANCE"
+    ],
+    "submissionEmail": "",
+    "notes": "Programs available in all States EXCEPT: AK,CT,DC,DE,HI,KY,MA,ME,MI,NH,NJ,NY,RI,VT,WV"
+  },
+  {
+    "folder": "03 - lp riks",
+    "name": "lp riks",
+    "carriers": [
+      "Specialty",
+      "Insurance",
+      "Lloyds"
+    ],
+    "submissionEmail": "",
+    "notes": "y cuando NO haya cargas sobredimensionadas, sobrepeso,"
+  },
+  {
+    "folder": "04K- NTA",
+    "name": "NTA",
+    "carriers": [
+      "NTA GENERAL INSURANCE AGENCY",
+      "specialty",
+      "insurance"
+    ],
+    "submissionEmail": "",
+    "notes": "Unidades tiene que tener registración, a nombre del dueño/ chofer o a nombre de la compañía"
+  },
+  {
+    "folder": "05 - QEO",
+    "name": "QEO",
+    "carriers": [],
+    "submissionEmail": "",
+    "notes": "Según nuestras pautas para conductores, todos los conductores de clase A deben tener al menos 25 años de edad"
+  },
+  {
+    "folder": "06- BASS",
+    "name": "BASS",
+    "carriers": [
+      "LLOYDS OF LONDON",
+      "THE BURLINGTON INSURANCE COMPANY",
+      "Kinsale Insurance Company A- (Excellent) AM Best",
+      "Adriatic Insurance Company A+(Superior) AM Best",
+      "Penn-America Insurance Company A (Excellent) AM Best Rating",
+      "activar con JLP INS AGENCY &amp; AJM INSURANCE"
+    ],
+    "submissionEmail": "",
+    "notes": "Penn-America Insurance Company A (Excellent) AM Best Rating"
+  },
+  {
+    "folder": "07- PARAMOUNT",
+    "name": "PARAMOUNT",
+    "carriers": [
+      "Agricultural Workers Mutual Auto Insurance",
+      "California &amp; Texas Trucking Insurance Program",
+      "DB Insurance"
+    ],
+    "submissionEmail": "",
+    "notes": "Debe tener al menos 2 años completos de experiencia en conducción comercial."
+  },
+  {
+    "folder": "08ROCKLAKE",
+    "name": "",
+    "carriers": [],
+    "submissionEmail": "",
+    "notes": "Siempre y cuando NO haya cargas sobredimensionadas, sobrepeso,"
+  },
+  {
+    "folder": "09brecht & associates",
+    "name": "& associates",
+    "carriers": [
+      "LLOYDS OF LONDON",
+      "ATLANTIC CASUALTY"
+    ],
+    "submissionEmail": "",
+    "notes": "2+ years in business – the following will be considered"
+  },
+  {
+    "folder": "10TREATY",
+    "name": "",
+    "carriers": [
+      "LLOYDS"
+    ],
+    "submissionEmail": "",
+    "notes": "sand and 50% sand and gravel.. we cannot have mixed loads. For the current policy you have 100%"
+  },
+  {
+    "folder": "11GSIAY",
+    "name": "",
+    "carriers": [],
+    "submissionEmail": "",
+    "notes": ""
+  },
+  {
+    "folder": "12 5 Star",
+    "name": "5 Star",
+    "carriers": [],
+    "submissionEmail": "",
+    "notes": "Auto Liability, General Liability, Cargo, Physical Damage, Trailer Interchange,"
+  },
+  {
+    "folder": "13 Amwins",
+    "name": "Amwins",
+    "carriers": [],
+    "submissionEmail": "",
+    "notes": ""
+  },
+  {
+    "folder": "14Brooklyn",
+    "name": "",
+    "carriers": [],
+    "submissionEmail": "",
+    "notes": "Dirt, Sand, Coal, Gravel, Rock and or Dumping Operations"
+  },
+  {
+    "folder": "15 BHHC",
+    "name": "BHHC",
+    "carriers": [],
+    "submissionEmail": "",
+    "notes": "DRIVER TIENE QUE ESTAR EN EL MISMO ESTADO QUE LA COMPAÑÍA Y TAMBIEN EL DUEÑO"
+  },
+  {
+    "folder": "16 County Hall",
+    "name": "County Hall",
+    "carriers": [],
+    "submissionEmail": "",
+    "notes": "De 23 a 65 años con un mínimo de 2 años de licencia de conducir comercial (CDL) y experiencia de conducción. Los conductores serán evaluados según su edad, sexo, estado civil, experiencia, antigüedad laboral e historial de conducción. (Clasificación basada en la propiedad)."
+  },
+  {
+    "folder": "17CRC",
+    "name": "",
+    "carriers": [],
+    "submissionEmail": "",
+    "notes": "1-25 power units, 1 or less CAB alert, 2+ years in business, good loss history,"
+  },
+  {
+    "folder": "18 Dynamic",
+    "name": "Dynamic",
+    "carriers": [
+      "LLOYDS"
+    ],
+    "submissionEmail": "",
+    "notes": ""
+  },
+  {
+    "folder": "19great west",
+    "name": "west",
+    "carriers": [],
+    "submissionEmail": "",
+    "notes": ""
+  },
+  {
+    "folder": "20JM Wilson",
+    "name": "Wilson",
+    "carriers": [
+      "• Atlantic Casualty\t• General Star\t• Nautilus",
+      "• Burlington/IFG\t• Investor Specialty Coverage\t• PIE Insurance (work comp)",
+      "• Centrex\t• Lloyds of London\t• Scottsdale/Nationwide",
+      "• Core Specialty\t• MUSIC/Mesa\t• USLI",
+      "• Beazley\t• Greenhill\t• Specialty Global",
+      "• Burlington Insurance\t• Liberty International\t• Victor",
+      "• Capital Specialty\t•",
+      "• CFC Underwriting\t• Markel\t• WKF&amp;C",
+      "• Atlantic Casualty\t• Markel\t• RLI",
+      "• ACE/Westchester\t• Crum &amp; Forster\t• Lloyds of London",
+      "• Canal\t• Lancer\t• PIE Insurance (work comp)"
+    ],
+    "submissionEmail": "",
+    "notes": "• Burlington/IFG\t• Investor Specialty Coverage\t• PIE Insurance (work comp)"
+  },
+  {
+    "folder": "21MTM",
+    "name": "",
+    "carriers": [],
+    "submissionEmail": "",
+    "notes": "Drivers must have at least 1-year CDL driving experience"
+  },
+  {
+    "folder": "22 Profesional",
+    "name": "Profesional",
+    "carriers": [],
+    "submissionEmail": "",
+    "notes": "Pueden tomar drivers mexicanos, siempre y cuando sean parte de una flota y"
+  },
+  {
+    "folder": "23 SGA Southern General",
+    "name": "SGA Southern General",
+    "carriers": [],
+    "submissionEmail": "",
+    "notes": "TRABAJAN CON EL UIIA SOLO PARA EL MOTOR CARGO Y OFRECEN TRAILER INTERCHANGE - ELLIABILITY SE TIENE QUE VENDER CON OTRO SEGURO."
+  },
+  {
+    "folder": "24Southwest Risk",
+    "name": "Risk",
+    "carriers": [],
+    "submissionEmail": "",
+    "notes": ""
+  },
+  {
+    "folder": "25 Star Mutual",
+    "name": "Star Mutual",
+    "carriers": [
+      "mutual"
+    ],
+    "submissionEmail": "",
+    "notes": ""
+  }
+]

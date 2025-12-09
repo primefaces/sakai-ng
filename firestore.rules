@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Regla para la colección de cotizaciones
+    match /quotes/{quoteId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Regla para usuarios (si la tienes)
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Regla por defecto (bloquea el resto por seguridad)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

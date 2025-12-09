@@ -1,8 +1,5 @@
-@use './variables/_common';
-@use './variables/_light';
-@use './variables/_dark';
+@use './variables/common';
 @use './_mixins';
-@use './_preloading';
 @use './_core';
 @use './_main';
 @use './_topbar';
@@ -11,3 +8,4 @@
 @use './_responsive';
 @use './_utils';
 @use './_typography';
+@use './_preloading';

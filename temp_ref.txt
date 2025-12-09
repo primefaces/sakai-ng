@@ -1,0 +1,108 @@
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { AuthService } from '../../core/services/auth.service';
+
+@Component({
+    selector: 'app-login',
+    standalone: true,
+    imports: [CommonModule, ButtonModule, CardModule],
+    template: `
+    <div class="login-container">
+      <div class="login-card-wrapper">
+        <p-card>
+          <div class="login-content">
+            <img src="assets/images/logo.png" alt="AJM Insurance" class="logo" />
+            <h1>AJM MarketFinder</h1>
+            <p class="subtitle">Decision Support Tool for Insurance Agents</p>
+            
+            <p-button 
+              label="Sign in with Google" 
+              icon="pi pi-google"
+              (onClick)="signInWithGoogle()"
+              styleClass="p-button-warning p-button-lg google-btn"
+              [loading]="loading()">
+            </p-button>
+            
+            @if (errorMessage) {
+              <div class="error-message">
+                {{ errorMessage }}
+              </div>
+            }
+          </div>
+        </p-card>
+      </div>
+    </div>
+  `,
+    styles: [`
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #000000 0%, #333333 100%);
+      padding: 2rem;
+    }
+    
+    .login-card-wrapper {
+      width: 100%;
+      max-width: 450px;
+    }
+    
+    .login-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .logo {
+      max-width: 200px;
+      margin-bottom: 1.5rem;
+    }
+    
+    h1 {
+      color: #000000;
+      margin: 0 0 0.5rem 0;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    
+    .subtitle {
+      color: #666666;
+      margin: 0 0 2rem 0;
+      font-size: 1rem;
+    }
+    
+    .google-btn {
+      width: 100%;
+      margin-top: 1rem;
+    }
+    
+    .error-message {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background-color: #fee;
+      color: #c00;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+  `]
+})
+export class LoginComponent {
+    private authService = inject(AuthService);
+
+    loading = this.authService.loading;
+    errorMessage: string = '';
+
+    async signInWithGoogle(): Promise<void> {
+        try {
+            this.errorMessage = '';
+            await this.authService.signInWithGoogle();
+        } catch (error: any) {
+            this.errorMessage = error.message || 'Failed to sign in. Please try again.';
+        }
+    }
+}

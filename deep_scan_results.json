@@ -1,0 +1,255 @@
+{
+  "00. AGENCIAS, MGA Y PFAS": {
+    "carriers": [],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "01- PROGRESSIVE": {
+    "carriers": [
+      "american_interfidelity"
+    ],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "01.ORGANIZACION TO QUOTES": {
+    "carriers": [],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "02K- BRAZOS": {
+    "carriers": [
+      "sutton"
+    ],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": [
+      "EXCLUDED: 24 months experience and drivers age 65+ must have clear  mvr\u2019s no international or b1  drivers"
+    ]
+  },
+  "03 - lp riks": {
+    "carriers": [
+      "trisura"
+    ],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "04K- NTA": {
+    "carriers": [],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "05 - QEO": {
+    "carriers": [
+      "clear_blue"
+    ],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "06- BASS": {
+    "carriers": [],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "07- PARAMOUNT": {
+    "carriers": [],
+    "excluded_commodities": [
+      "coils"
+    ],
+    "rules": [],
+    "raw_exclusions": [
+      "EXCLUDED: car leasing and rental operations buses hazardous materials carriers maintenance vehicles risks related to freight operations risks related to the tr"
+    ]
+  },
+  "08ROCKLAKE": {
+    "carriers": [],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "09brecht & associates": {
+    "carriers": [
+      "great_lakes"
+    ],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "10TREATY": {
+    "carriers": [
+      "canopius",
+      "great_american"
+    ],
+    "excluded_commodities": [],
+    "rules": [
+      "Age: 20+"
+    ],
+    "raw_exclusions": [
+      "PROHIBITED: * \u2022  private passenger autos \u2022 dump trucks \u2022 trash trucks \u2022 hotshots - pickups \u2022 box trucks \u2022 towing \u2022 freight brokers \u2022 household goods movers \u2022 con"
+    ]
+  },
+  "11GSIAY": {
+    "carriers": [],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "12 5 Star": {
+    "carriers": [
+      "trisura"
+    ],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "13 Amwins": {
+    "carriers": [
+      "canopius"
+    ],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "14Brooklyn": {
+    "carriers": [],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": [
+      "UNACCEPTABLE: a.  mobile homes / house movers b.  crushed autos / junk / salvage c.  logging operations d.  salvage or scrap metals e.  tow trucks f.  dirt, sand,"
+    ]
+  },
+  "15 BHHC": {
+    "carriers": [],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "16 County Hall": {
+    "carriers": [
+      "axis"
+    ],
+    "excluded_commodities": [
+      "garbage",
+      "livestock"
+    ],
+    "rules": [],
+    "raw_exclusions": [
+      "UNACCEPTABLE: ak, ca, dc, de, hi, ma, mi, &amp; ny.  loss frequency:",
+      "EXCLUDED: ambulances , or emergency vehicles armored trucks buses/limousines/taxis \u2013 no passengers allowed cement mixers catering trucks coal, or coke haulers"
+    ]
+  },
+  "17CRC": {
+    "carriers": [],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "18 Dynamic": {
+    "carriers": [
+      "canopius"
+    ],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "19great west": {
+    "carriers": [
+      "great_lakes"
+    ],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "20JM Wilson": {
+    "carriers": [
+      "national_fire",
+      "axis",
+      "great_american"
+    ],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "21MTM": {
+    "carriers": [
+      "american_interfidelity"
+    ],
+    "excluded_commodities": [],
+    "rules": [
+      "Exp: 1 Years",
+      "Age: 19+"
+    ],
+    "raw_exclusions": []
+  },
+  "22 Profesional": {
+    "carriers": [
+      "american_interfidelity"
+    ],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "23 SGA Southern General": {
+    "carriers": [],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "24Southwest Risk": {
+    "carriers": [],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "25 Star Mutual": {
+    "carriers": [],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "BINDER Y ORGANIZACION - to agent": {
+    "carriers": [],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  },
+  "MGA": {
+    "carriers": [
+      "transverse",
+      "canopius",
+      "hallmark",
+      "american_interfidelity",
+      "trisura",
+      "clear_blue",
+      "great_american",
+      "fortegra",
+      "great_lakes"
+    ],
+    "excluded_commodities": [
+      "cotton",
+      "garbage"
+    ],
+    "rules": [
+      "Exp: 2 Years",
+      "Age: 25+",
+      "Age: 70+",
+      "Age: 20+"
+    ],
+    "raw_exclusions": []
+  },
+  "PARA COTIZAR": {
+    "carriers": [
+      "trisura",
+      "american_interfidelity"
+    ],
+    "excluded_commodities": [],
+    "rules": [],
+    "raw_exclusions": []
+  }
+}
