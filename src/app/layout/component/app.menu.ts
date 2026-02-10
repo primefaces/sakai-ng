@@ -107,7 +107,7 @@ export class AppMenu {
                     {
                         label: 'Layout Builder',
                         icon: 'pi pi-fw pi-code',
-                        routerLink: ['/pages/builder']
+                        routerLink: ['/builder']
                     }
                 ]
             },
