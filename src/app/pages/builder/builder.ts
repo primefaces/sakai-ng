@@ -89,7 +89,7 @@ import { LayoutService } from '@/app/layout/service/layout.service';
                                             }
                                             <div class="flex flex-col gap-4">
                                                 @for (block of page.blocks; track $index) {
-                                                    <app-dynamic-renderer [block]="block" />
+                                                    <app-dynamic-renderer [block]="block" [componentDefaults]="builderService.componentDefaults()" />
                                                 }
                                             </div>
                                         </p-tabpanel>

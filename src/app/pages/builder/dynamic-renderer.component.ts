@@ -1,4 +1,4 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
@@ -13,7 +13,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { SelectModule } from 'primeng/select';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { BlockConfig, FieldConfig } from './builder.service';
+import { BlockConfig, FieldConfig, ComponentDefaults } from './builder.service';
 
 @Component({
     selector: 'app-dynamic-renderer',
@@ -27,42 +27,42 @@ import { BlockConfig, FieldConfig } from './builder.service';
     template: `
         @switch (block.type) {
             @case ('message') {
-                <p-message [severity]="block.props?.['severity'] || 'info'" [text]="block.props?.['text'] || ''" styleClass="w-full" />
+                <p-message [severity]="prop('severity', 'info')" [text]="prop('text', '')" styleClass="w-full" />
             }
             @case ('divider') {
-                <p-divider [align]="block.props?.['align']" [type]="block.props?.['type']" />
+                <p-divider [align]="prop('align')" [type]="prop('type')" />
             }
             @case ('button') {
                 <p-button
-                    [label]="block.props?.['label'] || 'Button'"
-                    [icon]="block.props?.['icon']"
-                    [severity]="block.props?.['severity']"
-                    [outlined]="block.props?.['outlined'] || false"
-                    [disabled]="block.props?.['disabled'] || false"
+                    [label]="prop('label', 'Button')"
+                    [icon]="prop('icon')"
+                    [severity]="prop('severity')"
+                    [outlined]="prop('outlined', false)"
+                    [disabled]="prop('disabled', false)"
                 />
             }
             @case ('card') {
-                <p-card [header]="block.props?.['header']" [subheader]="block.props?.['subheader']">
+                <p-card [header]="prop('header')" [subheader]="prop('subheader')">
                     <div class="flex flex-col gap-4">
                         @for (child of block.blocks || []; track $index) {
-                            <app-dynamic-renderer [block]="child" />
+                            <app-dynamic-renderer [block]="child" [componentDefaults]="componentDefaults" />
                         }
                     </div>
                 </p-card>
             }
             @case ('panel') {
-                <p-panel [header]="block.props?.['header'] || 'Panel'" [toggleable]="block.props?.['toggleable'] || false" [collapsed]="block.props?.['collapsed'] || false">
+                <p-panel [header]="prop('header', 'Panel')" [toggleable]="prop('toggleable', false)" [collapsed]="prop('collapsed', false)">
                     <div class="flex flex-col gap-4">
                         @for (child of block.blocks || []; track $index) {
-                            <app-dynamic-renderer [block]="child" />
+                            <app-dynamic-renderer [block]="child" [componentDefaults]="componentDefaults" />
                         }
                     </div>
                 </p-panel>
             }
             @case ('form') {
-                <div [class]="block.props?.['layout'] === 'grid' ? 'grid grid-cols-12 gap-4' : 'flex flex-col gap-4'">
+                <div [class]="prop('layout') === 'grid' ? 'grid grid-cols-12 gap-4' : 'flex flex-col gap-4'">
                     @for (field of block.fields || []; track field.name) {
-                        <div [class]="block.props?.['layout'] === 'grid' ? 'col-span-12 md:col-span-6' : ''">
+                        <div [class]="prop('layout') === 'grid' ? 'col-span-12 md:col-span-6' : ''">
                             @switch (field.type) {
                                 @case ('checkbox') {
                                     <div class="flex items-center gap-2">
@@ -141,10 +141,10 @@ import { BlockConfig, FieldConfig } from './builder.service';
             @case ('table') {
                 <p-table
                     [value]="block.data || []"
-                    [paginator]="block.props?.['paginator'] || false"
-                    [rows]="block.props?.['rows'] || 10"
-                    [showGridlines]="block.props?.['showGridlines'] || false"
-                    [stripedRows]="true"
+                    [paginator]="prop('paginator', false)"
+                    [rows]="prop('rows', 10)"
+                    [showGridlines]="prop('showGridlines', false)"
+                    [stripedRows]="prop('stripedRows', true)"
                 >
                     <ng-template #header>
                         <tr>
@@ -177,8 +177,20 @@ import { BlockConfig, FieldConfig } from './builder.service';
 })
 export class DynamicRendererComponent {
     @Input() block!: BlockConfig;
+    @Input() componentDefaults: ComponentDefaults = {};
 
     private formData: Record<string, any> = {};
+
+    /** Resolve a prop: block.props[key] > config[block.type][key] > fallback */
+    prop(key: string, fallback?: any): any {
+        const blockVal = this.block.props?.[key];
+        if (blockVal !== undefined && blockVal !== null) return blockVal;
+
+        const defaultVal = this.componentDefaults[this.block.type]?.[key];
+        if (defaultVal !== undefined && defaultVal !== null) return defaultVal;
+
+        return fallback ?? null;
+    }
 
     getFormValue(name: string): any {
         return this.formData[name] ?? null;

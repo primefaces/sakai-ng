@@ -34,20 +34,43 @@ export interface PageConfig {
     blocks: BlockConfig[];
 }
 
+export interface ComponentDefaults {
+    [componentType: string]: Record<string, any>;
+}
+
 export interface LayoutBuilderConfig {
+    config?: ComponentDefaults;
     pages: PageConfig[];
 }
 
 const STORAGE_KEY = 'layout-builder-config';
 
-const DEFAULT_YAML = `pages:
+const DEFAULT_YAML = `# Default config per component type.
+# Each block inherits these unless it overrides with its own props.
+config:
+  button:
+    severity: primary
+    outlined: false
+  table:
+    paginator: true
+    rows: 5
+    stripedRows: true
+    showGridlines: false
+  form:
+    layout: vertical
+  message:
+    severity: info
+  panel:
+    toggleable: true
+    collapsed: false
+
+pages:
   - id: welcome
     title: Welcome
     description: Getting started with Layout Builder
     blocks:
       - type: message
         props:
-          severity: info
           text: "Edit the YAML on the left to see changes here!"
 
       - type: card
@@ -55,8 +78,6 @@ const DEFAULT_YAML = `pages:
           header: Sample Form
         blocks:
           - type: form
-            props:
-              layout: vertical
             fields:
               - name: username
                 label: Username
@@ -84,19 +105,14 @@ const DEFAULT_YAML = `pages:
             props:
               label: Submit
               icon: pi pi-check
-              severity: primary
 
       - type: divider
 
       - type: panel
         props:
           header: Data Table
-          toggleable: true
         blocks:
           - type: table
-            props:
-              paginator: true
-              rows: 5
             columns:
               - { field: id, header: ID }
               - { field: name, header: Name }
@@ -123,8 +139,6 @@ const DEFAULT_YAML = `pages:
           header: Quick Stats
         blocks:
           - type: table
-            props:
-              rows: 5
             columns:
               - { field: metric, header: Metric }
               - { field: value, header: Value }
@@ -133,6 +147,13 @@ const DEFAULT_YAML = `pages:
               - { metric: Users, value: "1,234", change: "+12%" }
               - { metric: Revenue, value: "$5,678", change: "+8%" }
               - { metric: Orders, value: "456", change: "-3%" }
+
+      - type: button
+        props:
+          label: Export Report
+          icon: pi pi-download
+          severity: secondary
+          outlined: true
 `;
 
 @Injectable({
@@ -144,6 +165,7 @@ export class LayoutBuilderService {
     selectedPageId = signal<string>('');
     parsedConfig = signal<LayoutBuilderConfig | null>(null);
     pages = signal<PageConfig[]>([]);
+    componentDefaults = signal<ComponentDefaults>({});
 
     constructor() {
         this.load();
@@ -155,6 +177,7 @@ export class LayoutBuilderService {
         if (!code.trim()) {
             this.parsedConfig.set(null);
             this.pages.set([]);
+            this.componentDefaults.set({});
             this.errors.set([]);
             return;
         }
@@ -165,16 +188,19 @@ export class LayoutBuilderService {
                 this.errors.set(validationErrors);
                 this.parsedConfig.set(null);
                 this.pages.set([]);
+                this.componentDefaults.set({});
                 return;
             }
             this.errors.set([]);
             const config = parsed as LayoutBuilderConfig;
             this.parsedConfig.set(config);
             this.pages.set(config.pages ?? []);
+            this.componentDefaults.set(config.config ?? {});
         } catch (e) {
             this.errors.set([(e as Error).message]);
             this.parsedConfig.set(null);
             this.pages.set([]);
+            this.componentDefaults.set({});
         }
     }
 
