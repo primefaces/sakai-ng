@@ -9,6 +9,7 @@ import Nora from '@primeuix/themes/nora';
 import { PrimeNG } from 'primeng/config';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { LayoutService } from '@/app/layout/service/layout.service';
+import { ConfigService } from '@/app/pages/service/config.service';
 
 const presets = {
     Aura,
@@ -101,6 +102,8 @@ export class AppConfigurator {
     config: PrimeNG = inject(PrimeNG);
 
     layoutService: LayoutService = inject(LayoutService);
+
+    configService = inject(ConfigService);
 
     platformId = inject(PLATFORM_ID);
 
@@ -417,8 +420,10 @@ export class AppConfigurator {
     updateColors(event: any, type: string, color: any) {
         if (type === 'primary') {
             this.layoutService.layoutConfig.update((state) => ({ ...state, primary: color.name }));
+            this.configService.updateThemeConfig({ primaryColor: color.name });
         } else if (type === 'surface') {
             this.layoutService.layoutConfig.update((state) => ({ ...state, surface: color.name }));
+            this.configService.updateThemeConfig({ surfaceColor: color.name });
         }
         this.applyTheme(type, color);
 
@@ -435,6 +440,7 @@ export class AppConfigurator {
 
     onPresetChange(event: any) {
         this.layoutService.layoutConfig.update((state) => ({ ...state, preset: event }));
+        this.configService.updateThemeConfig({ preset: event });
         const preset = presets[event as KeyOfType<typeof presets>];
         const surfacePalette = this.surfaces.find((s) => s.name === this.selectedSurfaceColor())?.palette;
         $t().preset(preset).preset(this.getPresetExt()).surfacePalette(surfacePalette).use({ useDefaultOptions: true });

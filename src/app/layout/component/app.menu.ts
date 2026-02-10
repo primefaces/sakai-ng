@@ -93,6 +93,21 @@ export class AppMenu {
                         label: 'Empty',
                         icon: 'pi pi-fw pi-circle-off',
                         routerLink: ['/pages/empty']
+                    },
+                    {
+                        label: 'Layout',
+                        icon: 'pi pi-fw pi-objects-column',
+                        routerLink: ['/layout']
+                    },
+                    {
+                        label: 'Config',
+                        icon: 'pi pi-fw pi-cog',
+                        routerLink: ['/pages/config']
+                    },
+                    {
+                        label: 'Layout Builder',
+                        icon: 'pi pi-fw pi-code',
+                        routerLink: ['/builder']
                     }
                 ]
             },
