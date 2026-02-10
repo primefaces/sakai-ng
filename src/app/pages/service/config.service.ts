@@ -4,10 +4,11 @@ import * as yaml from 'js-yaml';
 
 export interface ConfigState {
     showcaseMenu: MenuItem[];  // Menu for showcase demos, not the main app menu
-    // Placeholder for future configs
-    theme?: {
-        primaryColor?: string;
-        darkMode?: boolean;
+    theme: {
+        darkMode: boolean;
+        primaryColor: string;
+        surfaceColor: string;
+        preset: string;
     };
     notifications?: {
         enabled?: boolean;
@@ -164,7 +165,13 @@ const DEFAULT_SHOWCASE_MENU_CONFIG: MenuItem[] = [
 })
 export class ConfigService {
     private configState = signal<ConfigState>({
-        showcaseMenu: []
+        showcaseMenu: [],
+        theme: {
+            darkMode: false,
+            primaryColor: 'emerald',
+            surfaceColor: 'slate',
+            preset: 'Aura'
+        }
     });
 
     // Public signals
@@ -197,23 +204,58 @@ export class ConfigService {
             } catch (e) {
                 console.error('Failed to parse config from localStorage', e);
                 config = {
-                    showcaseMenu: [...DEFAULT_SHOWCASE_MENU_CONFIG]
+                    showcaseMenu: [...DEFAULT_SHOWCASE_MENU_CONFIG],
+                    theme: {
+                        darkMode: false,
+                        primaryColor: 'emerald',
+                        surfaceColor: 'slate',
+                        preset: 'Aura'
+                    }
                 };
             }
         } else {
             // Initialize with defaults if no stored config
             config = {
-                showcaseMenu: [...DEFAULT_SHOWCASE_MENU_CONFIG]
+                showcaseMenu: [...DEFAULT_SHOWCASE_MENU_CONFIG],
+                theme: {
+                    darkMode: false,
+                    primaryColor: 'emerald',
+                    surfaceColor: 'slate',
+                    preset: 'Aura'
+                }
             };
         }
         
         this.configState.set(config);
         this.showcaseMenuConfig.set(config.showcaseMenu);
         
+        // Ensure theme defaults exist
+        if (!config.theme) {
+            config.theme = {
+                darkMode: false,
+                primaryColor: 'emerald',
+                surfaceColor: 'slate',
+                preset: 'Aura'
+            };
+            this.configState.set(config);
+        }
+        
         // Save to localStorage if it was empty
         if (!stored) {
             this.saveConfig();
         }
+    }
+
+    getThemeConfig() {
+        return this.configState().theme;
+    }
+
+    updateThemeConfig(theme: Partial<ConfigState['theme']>) {
+        this.configState.update(state => ({
+            ...state,
+            theme: { ...state.theme, ...theme }
+        }));
+        this.saveConfig();
     }
 
     private saveConfig(): void {
@@ -253,7 +295,13 @@ export class ConfigService {
     
     resetConfig(): void {
         const defaultConfig: ConfigState = {
-            showcaseMenu: [...DEFAULT_SHOWCASE_MENU_CONFIG]
+            showcaseMenu: [...DEFAULT_SHOWCASE_MENU_CONFIG],
+            theme: {
+                darkMode: false,
+                primaryColor: 'emerald',
+                surfaceColor: 'slate',
+                preset: 'Aura'
+            }
         };
         this.configState.set(defaultConfig);
         this.showcaseMenuConfig.set(defaultConfig.showcaseMenu);

@@ -5,7 +5,6 @@ import { DrawerModule } from 'primeng/drawer';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { PanelMenuModule } from 'primeng/panelmenu';
-import { SelectButtonModule } from 'primeng/selectbutton';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { InputTextModule } from 'primeng/inputtext';
@@ -63,7 +62,7 @@ const DEFAULT_MENU: EditableMenuItem[] = [
     standalone: true,
     imports: [
         CommonModule, FormsModule, DrawerModule, ToolbarModule, ButtonModule,
-        PanelMenuModule, SelectButtonModule, AvatarModule, BadgeModule,
+        PanelMenuModule, AvatarModule, BadgeModule,
         InputTextModule, TextareaModule
     ],
     template: `
@@ -74,11 +73,7 @@ const DEFAULT_MENU: EditableMenuItem[] = [
                     <p-button icon="pi pi-bars" [text]="true" (click)="leftVisible.set(!leftVisible())" />
                     <span class="font-semibold text-xl ml-2">Layout Showcase</span>
                 </ng-template>
-                <ng-template #center>
-                    <p-selectbutton [options]="modeOptions" [ngModel]="mode()" (ngModelChange)="mode.set($event)" [allowEmpty]="false" />
-                </ng-template>
                 <ng-template #end>
-                    <p-button [icon]="darkMode() ? 'pi pi-moon' : 'pi pi-sun'" [text]="true" (click)="toggleDarkMode()" />
                     <p-button icon="pi pi-sliders-h" [text]="true" (click)="rightVisible.set(!rightVisible())" />
                     <p-avatar icon="pi pi-user" shape="circle" />
                 </ng-template>
@@ -320,8 +315,6 @@ export class Layout {
     mode = signal<'demo' | 'config'>('demo');
     leftVisible = signal(true);
     rightVisible = signal(false);
-    darkMode = signal(false);
-
     menuItems = signal<EditableMenuItem[]>([]);
     menuJson = signal('');
     jsonError = signal<string | null>(null);
@@ -336,11 +329,6 @@ export class Layout {
     newItemLabel = '';
     newItemIcon = 'pi pi-circle';
     newItemRoute = '';
-
-    modeOptions = [
-        { label: 'Demo', value: 'demo' },
-        { label: 'Config', value: 'config' }
-    ];
 
     stats = [
         { label: 'Orders', value: '152', icon: 'pi pi-shopping-cart', iconClass: 'text-blue-500', bgClass: 'bg-blue-100 dark:bg-blue-400/10', change: '24 new', period: 'since last visit' },
@@ -383,12 +371,6 @@ export class Layout {
             this.menuJson.set(JSON.stringify(menu, null, 2));
         });
 
-        this.darkMode.set(document.documentElement.classList.contains('app-dark'));
-    }
-
-    toggleDarkMode() {
-        this.darkMode.update(v => !v);
-        document.documentElement.classList.toggle('app-dark');
     }
 
     // Inline editing
