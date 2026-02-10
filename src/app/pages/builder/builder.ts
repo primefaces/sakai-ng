@@ -4,23 +4,23 @@ import { FormsModule } from '@angular/forms';
 import { SplitterModule } from 'primeng/splitter';
 import { TabsModule } from 'primeng/tabs';
 import { ButtonModule } from 'primeng/button';
-import { TextareaModule } from 'primeng/textarea';
 import { MessageModule } from 'primeng/message';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
-import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MessageService } from 'primeng/api';
 import { LayoutBuilderService } from './builder.service';
 import { DynamicRendererComponent } from './dynamic-renderer.component';
+import { CodemirrorComponent } from './codemirror.component';
+import { LayoutService } from '@/app/layout/service/layout.service';
 
 @Component({
     selector: 'app-layout-builder',
     standalone: true,
     imports: [
         CommonModule, FormsModule,
-        SplitterModule, TabsModule, ButtonModule, TextareaModule,
-        MessageModule, FileUploadModule, ToastModule, ToggleButtonModule,
-        DynamicRendererComponent
+        SplitterModule, TabsModule, ButtonModule,
+        MessageModule, FileUploadModule, ToastModule,
+        DynamicRendererComponent, CodemirrorComponent
     ],
     providers: [MessageService],
     template: `
@@ -61,14 +61,12 @@ import { DynamicRendererComponent } from './dynamic-renderer.component';
                             <p-message severity="error" [text]="err" styleClass="w-full" />
                         }
 
-                        <textarea
-                            pInputTextarea
-                            [ngModel]="editorCode()"
-                            (ngModelChange)="editorCode.set($event)"
-                            class="w-full flex-1 font-mono text-sm"
-                            [style]="{ resize: 'none', minHeight: '100%' }"
-                            spellcheck="false"
-                        ></textarea>
+                        <app-codemirror
+                            [value]="editorCode()"
+                            (valueChange)="editorCode.set($event)"
+                            [darkMode]="isDark()"
+                            class="flex-1 min-h-0"
+                        />
                     </div>
                 </ng-template>
 
@@ -114,9 +112,11 @@ import { DynamicRendererComponent } from './dynamic-renderer.component';
 })
 export class LayoutBuilder {
     builderService = inject(LayoutBuilderService);
+    private layoutService = inject(LayoutService);
     private messageService = inject(MessageService);
 
     editorCode = signal<string>('');
+    isDark = computed(() => this.layoutService.isDarkTheme());
 
     constructor() {
         this.editorCode.set(this.builderService.yamlCode());
@@ -165,14 +165,7 @@ export class LayoutBuilder {
         const reader = new FileReader();
         reader.onload = (e: any) => {
             try {
-                let content = e.target.result as string;
-
-                if (file.name.endsWith('.json')) {
-                    const parsed = JSON.parse(content);
-                    const yaml = (window as any).jsyaml?.dump?.(parsed);
-                    content = yaml || content;
-                }
-
+                const content = e.target.result as string;
                 this.editorCode.set(content);
                 const success = this.builderService.applyYaml(content);
                 if (success) {
