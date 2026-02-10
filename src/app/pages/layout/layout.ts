@@ -11,6 +11,7 @@ import { BadgeModule } from 'primeng/badge';
 import { InputTextModule } from 'primeng/inputtext';
 import { TextareaModule } from 'primeng/textarea';
 import { MenuItem } from 'primeng/api';
+import { ConfigService } from '../service/config.service';
 
 interface EditableMenuItem {
     label: string;
@@ -321,8 +322,8 @@ export class Layout {
     rightVisible = signal(false);
     darkMode = signal(false);
 
-    menuItems = signal<EditableMenuItem[]>(structuredClone(DEFAULT_MENU));
-    menuJson = signal(JSON.stringify(DEFAULT_MENU, null, 2));
+    menuItems = signal<EditableMenuItem[]>([]);
+    menuJson = signal('');
     jsonError = signal<string | null>(null);
 
     editingGroup = signal(-1);
@@ -369,7 +370,19 @@ export class Layout {
 
     menuItemsPreview = computed(() => JSON.stringify(this.menuItems(), null, 2));
 
-    constructor() {
+    constructor(private configService: ConfigService) {
+        // Load menu from config service
+        const configMenu = this.configService.getShowcaseMenuConfig();
+        this.menuItems.set(structuredClone(configMenu as any));
+        this.menuJson.set(JSON.stringify(configMenu, null, 2));
+
+        // Watch for changes in config service and update menu
+        effect(() => {
+            const menu = this.configService.showcaseMenuConfig();
+            this.menuItems.set(structuredClone(menu as any));
+            this.menuJson.set(JSON.stringify(menu, null, 2));
+        });
+
         this.darkMode.set(document.documentElement.classList.contains('app-dark'));
     }
 
@@ -474,6 +487,8 @@ export class Layout {
     syncJsonFromItems() {
         this.menuJson.set(JSON.stringify(this.menuItems(), null, 2));
         this.jsonError.set(null);
+        // Save to config service
+        this.configService.updateShowcaseMenuConfig(this.menuItems() as any);
     }
 
     onJsonInput() {
@@ -489,6 +504,8 @@ export class Layout {
             }
             this.menuItems.set(parsed);
             this.jsonError.set(null);
+            // Save to config service
+            this.configService.updateShowcaseMenuConfig(parsed);
         } catch (e: any) {
             this.jsonError.set('Invalid JSON: ' + e.message);
         }

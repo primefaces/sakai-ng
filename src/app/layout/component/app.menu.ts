@@ -98,6 +98,11 @@ export class AppMenu {
                         label: 'Layout',
                         icon: 'pi pi-fw pi-objects-column',
                         routerLink: ['/layout']
+                    },
+                    {
+                        label: 'Config',
+                        icon: 'pi pi-fw pi-cog',
+                        routerLink: ['/pages/config']
                     }
                 ]
             },
