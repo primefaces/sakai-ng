@@ -103,6 +103,11 @@ export class AppMenu {
                         label: 'Config',
                         icon: 'pi pi-fw pi-cog',
                         routerLink: ['/pages/config']
+                    },
+                    {
+                        label: 'Layout Builder',
+                        icon: 'pi pi-fw pi-code',
+                        routerLink: ['/pages/builder']
                     }
                 ]
             },
