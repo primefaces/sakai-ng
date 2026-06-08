@@ -2,6 +2,26 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.
 
+## Project setup
+
+This repository uses a Git submodule for `src/assets`. When cloning the project, include submodules:
+
+```bash
+git clone --recurse-submodules https://github.com/primefaces/sakai-ng.git
+```
+
+Or with the GitHub CLI:
+
+```bash
+gh repo clone primefaces/sakai-ng -- --recurse-submodules
+```
+
+If you have already cloned the repository, initialize the submodule before running or building the project:
+
+```bash
+git submodule update --init --recursive
+```
+
 ## Development server
 
 To start a local development server, run:
