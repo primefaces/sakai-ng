@@ -65,7 +65,7 @@ interface PanelNavItem {
                     <div class="topbar-left">
                         <button pButton type="button" class="topbar-menu" severity="secondary" text icon="pi pi-bars" (click)="toggleSidebar()"></button>
                         <div>
-                            <div class="topbar-kicker">Current page</div>
+                        
                             <div class="topbar-title">{{ pageTitle() }}</div>
                             <div class="topbar-subtitle">{{ pageSubtitle() }}</div>
                         </div>
