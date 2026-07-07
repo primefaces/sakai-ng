@@ -10,6 +10,14 @@ To start a local development server, run:
 ng serve
 ```
 
+Before starting the app, set the backend API base URL in `.env` at the project root:
+
+```env
+BACKEND_API_BASE_URL=http://localhost:3000/api/v1
+```
+
+The frontend reads that value through `scripts/generate-frontend-env.mjs` and uses it for API requests.
+
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
 ## Code scaffolding

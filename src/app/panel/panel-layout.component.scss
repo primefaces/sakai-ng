@@ -1,0 +1,272 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    color: #111827;
+}
+
+.panel-shell {
+    height: 100vh;
+    position: relative;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.panel-backdrop {
+    display: none;
+}
+
+.panel-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 300px;
+    height: 100vh;
+    padding: 1.5rem;
+    background: #000000;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.panel-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.9rem 1rem;
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.brand-mark {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.95rem;
+    background: linear-gradient(135deg, #ef4444, #7f1d1d);
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.brand-title {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.brand-subtitle {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.56);
+    margin-top: 0.1rem;
+}
+
+.panel-nav {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.9rem 1rem;
+    border-radius: 1rem;
+    color: rgba(255, 255, 255, 0.82);
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    transform: translateX(3px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(239, 68, 68, 0.38);
+    color: #ffffff;
+}
+
+.nav-item i {
+    color: #ef4444;
+    width: 1rem;
+    text-align: center;
+}
+
+.panel-sidebar-card {
+    margin-top: auto;
+    padding: 1rem;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.sidebar-session-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.sidebar-name {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.sidebar-role {
+    margin-top: 0.2rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.sidebar-logout {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.panel-main {
+    min-width: 0;
+    margin-left: 300px;
+    display: flex;
+    flex-direction: column;
+    background: #f5f6f8;
+    height: 100vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.panel-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    background: #ffffff;
+    color: #111827;
+}
+
+.topbar-left,
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.topbar-kicker {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 0.2rem;
+}
+
+.topbar-title {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.topbar-subtitle {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 0.15rem;
+}
+
+.topbar-account {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 9999px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+}
+
+.topbar-avatar {
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 9999px;
+    display: grid;
+    place-items: center;
+    background: #111827;
+    color: #ffffff;
+    flex: 0 0 auto;
+}
+
+.topbar-account-copy {
+    display: grid;
+    gap: 0.1rem;
+}
+
+.topbar-account-name {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.topbar-account-role {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.panel-content {
+    padding: 1.5rem;
+    background: #f5f6f8;
+    min-height: calc(100vh - 4.5rem);
+}
+
+.topbar-menu {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .panel-shell {
+        height: 100vh;
+    }
+
+    .panel-sidebar {
+        width: min(84vw, 320px);
+        transform: translateX(-105%);
+        transition: transform 0.22s ease;
+        display: flex;
+        box-shadow: 24px 0 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .panel-sidebar.mobile-open {
+        transform: translateX(0);
+    }
+
+    .panel-backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background: rgba(0, 0, 0, 0.42);
+        backdrop-filter: blur(4px);
+    }
+
+    .topbar-right {
+        display: flex;
+    }
+
+    .topbar-menu {
+        display: inline-flex;
+    }
+
+    .panel-main {
+        margin-left: 0;
+        height: 100vh;
+    }
+}

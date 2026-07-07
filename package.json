@@ -2,9 +2,12 @@
     "name": "sakai-ng",
     "version": "21.0.0",
     "scripts": {
+        "prestart": "node scripts/generate-frontend-env.mjs",
         "ng": "ng",
         "start": "ng serve",
+        "prebuild": "node scripts/generate-frontend-env.mjs",
         "build": "ng build",
+        "pretest": "node scripts/generate-frontend-env.mjs",
         "watch": "ng build --watch --configuration development",
         "format": "prettier --write \"**/*.{js,mjs,ts,mts,d.ts,html}\" --cache",
         "test": "ng test"
